@@ -46,25 +46,25 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInterpret(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'max') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'max') {
     (s as any).result = 100 - ((s as any).pcs_mood ?? 0);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'min') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'min') {
       (s as any).result = ((s as any).pcs_mood ?? 0);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'huge') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'huge') {
         (s as any).result = 40;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'large') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'large') {
           (s as any).result = 30;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'medium') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'medium') {
             (s as any).result = 20;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'small') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'small') {
               (s as any).result = 10;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'tiny') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'tiny') {
                 (s as any).result = 5;
               } else {
                 (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -81,7 +81,7 @@ function enterInterpret(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRaise(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_val = ((Number((s as any).locArgs?.[1] ?? 0) !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
+  (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['pos_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['pos_mood_mult']));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
@@ -90,7 +90,7 @@ function enterRaise(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLower(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_val = ((Number((s as any).locArgs?.[1] ?? 0) !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
+  (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0))));
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['neg_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['neg_mood_mult']));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
@@ -126,10 +126,10 @@ function enterLowerTrauma(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRaiseDisposition(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'max') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'max') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 75;
   } else {
-    (s as any).temp_val = ((Number((s as any).locArgs?.[1] ?? 0) !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
+    (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
   }
   ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = ((s as any).moodVars['disp_base'] ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['pos_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['pos_mood_mult']));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -139,10 +139,10 @@ function enterRaiseDisposition(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLowerDisposition(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'min') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'min') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 25;
   } else {
-    (s as any).temp_val = ((Number((s as any).locArgs?.[1] ?? 0) !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
+    (s as any).temp_val = ((String((s as any).locArgs?.[1] ?? '') !== 0) ? (((s as any).locArgs?.[1] ?? 0)) : (qspFunc(s, 'mood', 'interpret', ((s as any).locArgs?.[1] ?? 0)) / 5));
   }
   ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = ((s as any).moodVars['disp_base'] ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['neg_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['neg_mood_mult']));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -162,19 +162,19 @@ function enterStatusEffects(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodSEValues = (s as any).moodSEValues ?? {})['gerpes'] = (-5);
   ((s as any).moodSEValues = (s as any).moodSEValues ?? {})['sifilis'] = (-5);
   ((s as any).moodSEValues = (s as any).moodSEValues ?? {})['triper'] = (-5);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'add') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'add') {
     // TODO-QSP: moodSE[$ARGS[2]] += 1
     // TODO-QSP: gs 'mood', 'raise_disposition', moodSEValues[$ARGS[2]]
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pop') {
-      if (((s as any).moodSE ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pop') {
+      if (((s as any).moodSE ?? 0)[String((s as any).locArgs?.[2] ?? '')] === 0) {
         // TODO-QSP: "removed nonexistent mood base status effect <<$ARGS[2]>>. This is a bug, please report it"
       } else {
         // TODO-QSP: moodSE[$ARGS[2]] -= 1
         // TODO-QSP: gs 'mood', 'lower_disposition', moodSEValues[$ARGS[2]]
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'clear') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'clear') {
         // TODO-QSP: gs 'mood', 'lower_disposition', (moodSEValues[$ARGS[2]] * moodSE[$ARGS[2]])
         // TODO-QSP: moodSE[$ARGS[2]] = 0
       }

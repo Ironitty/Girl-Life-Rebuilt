@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'setup_home_filters') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'setup_home_filters') {
     // TODO-QSP: gs 'shop_utils', 'filter_builder', 'init', 'panty_view', 'view_grid', $shop_display['link']
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_number_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_quality_sort');
@@ -18,7 +18,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'filter_builder', 'finish', 'mini');
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'setup_shop_filter') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'setup_shop_filter') {
     qspCall(s, 'shop_utils', 'filter_builder', 'init', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_number_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_quality_sort');
@@ -28,7 +28,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'filter_builder', 'finish', 'mini');
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'setup_sport_filter') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'setup_sport_filter') {
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_sport_filter', 'PanSport');
     return;
   }
@@ -56,7 +56,7 @@ function enterShopFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFilter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'sport') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'sport') {
     if (((s as any).PanSport ?? 0)) {
       if (((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
         (s as any).result = 1;
@@ -74,31 +74,31 @@ function enterFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'add_types') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'add_types') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'cats');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'danilovich') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'danilovich') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'danilovich');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'eroto') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'eroto') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'eroto');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'fashionista') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'fashionista') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'fashionista');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'gm');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'lusso') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'lusso') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'lusso');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious') {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'salacious');
     }
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_exceptions') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_exceptions') {
     ((s as any).shop_display_exceptions = (s as any).shop_display_exceptions ?? {})['gm_panties-7'] = 1;
     ((s as any).shop_display_exceptions = (s as any).shop_display_exceptions ?? {})['gm_panties-9'] = 1;
     ((s as any).shop_display_exceptions = (s as any).shop_display_exceptions ?? {})['gm_panties-21'] = 1;
@@ -111,7 +111,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'add') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'add') {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[2] + '_panties', ARGS[3]
     if ((!((s as any).PanQuality ?? 0))) {
       // TODO-QSP: exit
@@ -127,37 +127,37 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'header') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'grid_shop') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'header') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'setup_shop_filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'main') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       // TODO-QSP: gs 'underwear_attributes', $ARGS[4] + '_panties', ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         scene.img(`${qspFunc(s, '$panty_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       }
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'footer') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
       return;
     }
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'grid_wardrobe') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'header') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'grid_wardrobe') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'header') {
       qspCall(s, 'shop_utils', 'display', 'wardrobe_storage_unwanted_header', 'view_grid');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'setup_home_filters']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'main') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       // TODO-QSP: gs 'underwear_attributes', $ARGS[4] + '_panties', ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         scene.img(`${qspFunc(s, '$panty_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       }
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'footer') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
       return;
     }
     return;
@@ -186,13 +186,13 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'panties', 'add_item', 'gm', 1);
   }
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
-    // TODO-QSP: dynamic text: <center><b>You put the ' + iif($pursepantytype = '', '', 'panties') + iif($purse...
+    // TODO-QSP: dynamic text: '<center><b>You put the ' + iif($pursepantytype = '', '', 'panties') + iif($purs...
     scene.text('<center><b>You put the ' + ((((s as any).pursepantytype ?? 0) === '') ? ('') : ('panties')) + ((((s as any).pursepantytype ?? 0) === ''  ||  ((s as any).pursebratype ?? 0) === '') ? ('') : (' and ')) + ((((s as any).pursebratype ?? 0) === '') ? ('') : ('bra')) + ' from your purse back in the wardrobe.</b></center><br>');
   }
   if (((s as any).shop_display ?? 0)?.['init'] === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'panties', ((s as any).locArgs?.[1] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', 'all']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'wardrobe'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'storage'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'unwanted') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'wardrobe'  ||  String((s as any).locArgs?.[1] ?? '') === 'storage'  ||  String((s as any).locArgs?.[1] ?? '') === 'unwanted') {
       qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     } else {
       qspCall(s, 'shop_utils', 'init', 'set_return', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
@@ -203,7 +203,7 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove panties', handler: (st: GameState) => {
     qspCall(st, 'panties', 'strip');
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_display['link']
+    qspGoto(st, 'panty_view', 'view_grid', (((st as any).shop_display ?? {})['link']));
   } },
     ]);
   }
@@ -248,9 +248,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'panty_view', 'view_item_unwanted');
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -335,9 +333,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -359,9 +355,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 { label: 'Wear', handler: (st: GameState) => {
     // TODO-QSP: xgt 'panty_view', 'view_item_wear_single'
   } },
@@ -395,7 +389,7 @@ function enterViewItemBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You own this bra and can wear this set.');
       scene.actions([
         { label: 'Wear set', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterViewItemWearPair(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterViewItemWearPair(st, scene); (st as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
@@ -415,9 +409,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('These panties are in storage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -428,9 +420,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('These panties are unwanted.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -440,9 +430,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWearSingle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloPanties ?? 0) === 1) {
     scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['action'], $s...
-  } },
+{ label: 'Return', goto: ['panty_view', 'view_item', '(((s as any).shop_utils_view ?? {})[\'action\'])', '(((s as any).shop_utils_view ?? {})[\'type\'])'] },
 ]);
     return;
   }
@@ -475,16 +463,14 @@ function enterViewItemWearSingleHypno(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     // TODO-QSP: gs 'panties', 'wear', $shop_utils_view['type'], shop_utils_view['number']
     qspCall(st, 'shop_utils', 'cleanup');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 0) {
+    if (String((st as any).locArgs?.[1] ?? '') === 0) {
       qspGoto(st, 'wardrobe', 'main');
     }
   } },
     ]);
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -494,17 +480,13 @@ function enterViewItemWearSingleHypno(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWearPair(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloPanties ?? 0) === 1) {
     scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['action'], $s...
-  } },
+{ label: 'Return', goto: ['panty_view', 'view_item', '(((s as any).shop_utils_view ?? {})[\'action\'])', '(((s as any).shop_utils_view ?? {})[\'type\'])'] },
 ]);
     return;
   }
   if (((s as any).PCloBra ?? 0) === 1) {
     scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['action'], $s...
-  } },
+{ label: 'Return', goto: ['panty_view', 'view_item', '(((s as any).shop_utils_view ?? {})[\'action\'])', '(((s as any).shop_utils_view ?? {})[\'type\'])'] },
 ]);
     return;
   }
@@ -514,7 +496,7 @@ function enterViewItemWearPair(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'panties', 'wear', $shop_utils_view['type'], shop_utils_view['number']
   // TODO-QSP: gs 'bras', 'wear', $shop_utils_view['type'], underwear['pair']
   qspCall(s, 'shop_utils', 'cleanup');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     qspGoto(s, 'wardrobe', 'main');
   }
   return;
@@ -559,9 +541,7 @@ function enterViewItemWearPairHypno(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'panty_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 ]);
   return;
   // TODO-QSP: end
@@ -576,7 +556,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
     // TODO-QSP: gs 'panties', 'move_to_wardrobe', $shop_utils_view['type'], shop_utils_view['number']
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['n...
+    qspGoto(st, 'panty_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
   }
@@ -587,7 +567,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
     // TODO-QSP: gs 'panties', 'move_to_storage', $shop_utils_view['type'], shop_utils_view['number']
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['n...
+    qspGoto(st, 'panty_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
   }
@@ -595,13 +575,13 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
     // TODO-QSP: gs 'panties', 'move_to_unwanted', $shop_utils_view['type'], shop_utils_view['number']
-    // TODO-QSP: gt 'panty_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['n...
+    qspGoto(st, 'panty_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
   }
   // TODO-QSP: act $func('wrap', 'neg', 'Throw these panties away'):
   // TODO-QSP: gs 'panties', 'remove_item', $shop_utils_view['type'], shop_utils_view['number']
-  // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
+  qspGoto(s, 'panty_view', 'view_grid', (((s as any).shop_utils_view ?? {})['link']));
   // TODO-QSP: end
   return;
   // TODO-QSP: end

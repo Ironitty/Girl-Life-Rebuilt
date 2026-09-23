@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killall
   (s as any).usehtml = 1;
   (s as any).debug = 1;
-  scene.hideMenu();
+  // TODO-QSP: showstat 0
   // TODO-QSP: showobjs 0
   // TODO-QSP: showinput 0
   if (((s as any).qspver ?? 0) > '9.9.9') {
@@ -45,7 +45,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center>Version <<$version>></center>
   scene.text(`<center>Version ${((s as any).version ?? '')}</center>`);
   scene.text('<center><font color="red"><b>Children under 18 years are strictly forbidden to play</b></font>');
-  scene.img('images/system/1_openings/splashes/splash' + (Math.floor(Math.random() * 30) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/system/1_openings/splashes/splash' + ran...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/system/1_openings/splashes/splash` + (Math.floor(Math.random() * 30) + 1) + '.jpg" ></center>');
   scene.text('<center>Based on the Russian game ЭТО by DeGross.</center>');
   scene.text('This game is about the simulated life of a woman containing elements of RPG, strategy, porn and magical combat.');
   scene.text('You may choose what kind of life the character will live according to your play style, conscience or even personal beliefs.');
@@ -102,8 +103,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: '<center>New Features</center>', goto: ['feature_updates', 'show', 'start'] },
     { label: '<center>Manage mods</center>', handler: (st: GameState) => {
     (st as any).settingmode = 2;
-    dynamicGoto(st, 'menu_settings', 'mods');
-  } },
+  }, goto: ['$menu_settings', 'mods'] },
   ]);
   scene.build();
 }

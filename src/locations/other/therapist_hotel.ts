@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  // TODO-QSP: gt $ARGS[1]
+  dynamicGoto(s, 'ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -33,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'RUN!!!', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'medium');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_hotel']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -325,7 +325,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A186');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
-  // TODO-QSP: dynamic text: You make your way into the hotel room once again and see no one around. You wond...
+  // TODO-QSP: dynamic text: 'You make your way into the hotel room once again and see no one around. You won...
   scene.text(`You make your way into the hotel room once again and see no one around. You wonder if its empty, but before you can look around, you hear a snap and your mind goes blank. "Welcome back, Wife. Today you will be doing house work for me and you will be doing it naked. You always want to be naked around me. This will change when we have children he says and then asks: ${qspFunc(s, 'wrap', 'hypno', '"Got it, wife?"')}`);
   // TODO-QSP: end
   scene.actions([
@@ -599,7 +599,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'underwear', 'wear');
     qspCall(st, 'outfit', 'wear_last_worn');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -628,7 +628,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'underwear', 'wear');
     qspCall(st, 'outfit', 'wear_last_worn');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -689,7 +689,7 @@ function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'underwear', 'wear');
     qspCall(st, 'outfit', 'wear_last_worn');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -83,7 +83,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -103,7 +103,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -123,7 +123,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -143,7 +143,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -163,7 +163,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {

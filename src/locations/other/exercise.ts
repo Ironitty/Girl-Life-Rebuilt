@@ -289,7 +289,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'rope');
   } },
       ]);
@@ -298,7 +298,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'rope');
   } },
       ]);
@@ -307,7 +307,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'rope');
   } },
       ]);
@@ -316,7 +316,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'rope');
   } },
       ]);
@@ -334,7 +334,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'yoga');
   } },
       ]);
@@ -343,7 +343,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'yoga');
   } },
       ]);
@@ -352,7 +352,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'yoga');
   } },
       ]);
@@ -361,7 +361,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'yoga');
   } },
       ]);
@@ -379,7 +379,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'hula');
   } },
       ]);
@@ -388,7 +388,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'hula');
   } },
       ]);
@@ -397,7 +397,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'hula');
   } },
       ]);
@@ -406,7 +406,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'hula');
   } },
       ]);
@@ -428,7 +428,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'push');
   } },
       ]);
@@ -437,7 +437,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'push');
   } },
       ]);
@@ -446,7 +446,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'push');
   } },
       ]);
@@ -455,7 +455,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'push');
   } },
       ]);
@@ -469,7 +469,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'press');
   } },
       ]);
@@ -478,7 +478,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'press');
   } },
       ]);
@@ -487,7 +487,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'press');
   } },
       ]);
@@ -496,7 +496,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'press');
   } },
       ]);
@@ -510,7 +510,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '5 minutes', handler: (st: GameState) => {
     (st as any).timemult = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'butt');
   } },
       ]);
@@ -519,7 +519,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '10 minutes', handler: (st: GameState) => {
     (st as any).timemult = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'butt');
   } },
       ]);
@@ -528,7 +528,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '15 minutes', handler: (st: GameState) => {
     (st as any).timemult = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'butt');
   } },
       ]);
@@ -537,7 +537,7 @@ function enterManual(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '20 minutes', handler: (st: GameState) => {
     (st as any).timemult = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimestring(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'butt');
   } },
       ]);
@@ -560,16 +560,16 @@ function enterRoutines(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Exercise Routines</h2></center>');
   scene.text('<center><table>');
   scene.text('<td><b>Routine</b></td><td><b>Push ups</b></td><td><b>Crunches</b></td><td><b>Jump rope</b></td><td><b>Yoga</td><td><b>Hula hoop</b></td><td><b>Squats</b></td>');
-  // TODO-QSP: dynamic text: <tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href="...
-  scene.text('<tr><td width="100" cellspacing="2" align="left">\'+iif(exer_menu = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[1] = input (/u0027<center>Enter name for exercise routine 1<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[1]", { location: "exercise" }) + ':</a> \', \'' + qspUntranslated(s, "excer_name[1]", { location: "exercise" }) + ':</a> \')+\'</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout0 ?? '')[1]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout1 ?? '')[1]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout2 ?? '')[1]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout3 ?? '')[1]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout4 ?? '')[1]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout5 ?? '')[1]*5 + '</b> minutes</td>');
-  // TODO-QSP: dynamic text: <tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href="...
-  scene.text('<tr><td width="100" cellspacing="2" align="left">\'+iif(exer_menu = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[2] = input (/u0027<center>Enter name for exercise routine 2<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[2]", { location: "exercise" }) + ':</a> \', \'' + qspUntranslated(s, "excer_name[2]", { location: "exercise" }) + ':</a> \')+\'</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout0 ?? '')[2]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout1 ?? '')[2]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout2 ?? '')[2]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout3 ?? '')[2]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout4 ?? '')[2]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout5 ?? '')[2]*5 + '</b> minutes</td>');
-  // TODO-QSP: dynamic text: <tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href="...
-  scene.text('<tr><td width="100" cellspacing="2" align="left">\'+iif(exer_menu = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[3] = input (/u0027<center>Enter name for exercise routine 3<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[3]", { location: "exercise" }) + ':</a> \', \'' + qspUntranslated(s, "excer_name[3]", { location: "exercise" }) + ':</a> \')+\'</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout0 ?? '')[3]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout1 ?? '')[3]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout2 ?? '')[3]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout3 ?? '')[3]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout4 ?? '')[3]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout5 ?? '')[3]*5 + '</b> minutes</td>');
-  // TODO-QSP: dynamic text: <tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href="...
-  scene.text('<tr><td width="100" cellspacing="2" align="left">\'+iif(exer_menu = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[4] = input (/u0027<center>Enter name for exercise routine 4<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[4]", { location: "exercise" }) + ':</a> \', \'' + qspUntranslated(s, "excer_name[4]", { location: "exercise" }) + ':</a> \')+\'</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout0 ?? '')[4]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout1 ?? '')[4]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout2 ?? '')[4]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout3 ?? '')[4]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout4 ?? '')[4]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout5 ?? '')[4]*5 + '</b> minutes</td>');
-  // TODO-QSP: dynamic text: <tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href="...
-  scene.text('<tr><td width="100" cellspacing="2" align="left">\'+iif(exer_menu = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[5] = input (/u0027<center>Enter name for exercise routine 5<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[5]", { location: "exercise" }) + ':</a> \', \'' + qspUntranslated(s, "excer_name[5]", { location: "exercise" }) + ':</a> \')+\'</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout0 ?? '')[5]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout1 ?? '')[5]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout2 ?? '')[5]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout3 ?? '')[5]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout4 ?? '')[5]*5 + '</b> minutes</td><td width="100" cellspacing="2" align="left"><b>' + ((s as any).exer_rout5 ?? '')[5]*5 + '</b> minutes</td>');
+  // TODO-QSP: dynamic text: '<tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href=...
+  scene.text('<tr><td width="100" cellspacing="2" align="left">' + ((((s as any).exer_menu ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[1] = input (/u0027<center>Enter name for exercise routine 1<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[1]", { location: "exercise" }) + ':</a> ') : ('' + qspUntranslated(s, "excer_name[1]", { location: "exercise" }) + ':</a> ')) + `</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout0 ?? '')[1]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout1 ?? '')[1]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout2 ?? '')[1]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout3 ?? '')[1]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout4 ?? '')[1]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout5 ?? '')[1]*5}</b> minutes</td>`);
+  // TODO-QSP: dynamic text: '<tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href=...
+  scene.text('<tr><td width="100" cellspacing="2" align="left">' + ((((s as any).exer_menu ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[2] = input (/u0027<center>Enter name for exercise routine 2<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[2]", { location: "exercise" }) + ':</a> ') : ('' + qspUntranslated(s, "excer_name[2]", { location: "exercise" }) + ':</a> ')) + `</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout0 ?? '')[2]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout1 ?? '')[2]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout2 ?? '')[2]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout3 ?? '')[2]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout4 ?? '')[2]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout5 ?? '')[2]*5}</b> minutes</td>`);
+  // TODO-QSP: dynamic text: '<tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href=...
+  scene.text('<tr><td width="100" cellspacing="2" align="left">' + ((((s as any).exer_menu ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[3] = input (/u0027<center>Enter name for exercise routine 3<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[3]", { location: "exercise" }) + ':</a> ') : ('' + qspUntranslated(s, "excer_name[3]", { location: "exercise" }) + ':</a> ')) + `</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout0 ?? '')[3]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout1 ?? '')[3]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout2 ?? '')[3]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout3 ?? '')[3]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout4 ?? '')[3]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout5 ?? '')[3]*5}</b> minutes</td>`);
+  // TODO-QSP: dynamic text: '<tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href=...
+  scene.text('<tr><td width="100" cellspacing="2" align="left">' + ((((s as any).exer_menu ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[4] = input (/u0027<center>Enter name for exercise routine 4<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[4]", { location: "exercise" }) + ':</a> ') : ('' + qspUntranslated(s, "excer_name[4]", { location: "exercise" }) + ':</a> ')) + `</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout0 ?? '')[4]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout1 ?? '')[4]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout2 ?? '')[4]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout3 ?? '')[4]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout4 ?? '')[4]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout5 ?? '')[4]*5}</b> minutes</td>`);
+  // TODO-QSP: dynamic text: '<tr><td width="100" cellspacing="2" align="left">'+iif(exer_menu = 1, '<a href=...
+  scene.text('<tr><td width="100" cellspacing="2" align="left">' + ((((s as any).exer_menu ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $excer_name[5] = input (/u0027<center>Enter name for exercise routine 5<br>Leave blank to restore default name.</center>/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027rename/u0027); return false;">' + qspUntranslated(s, "excer_name[5]", { location: "exercise" }) + ':</a> ') : ('' + qspUntranslated(s, "excer_name[5]", { location: "exercise" }) + ':</a> ')) + `</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout0 ?? '')[5]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout1 ?? '')[5]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout2 ?? '')[5]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout3 ?? '')[5]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout4 ?? '')[5]*5}</b> minutes</td><td width="100" cellspacing="2" align="left"><b>${((s as any).exer_rout5 ?? '')[5]*5}</b> minutes</td>`);
   scene.text('<tr><td colspan="7"><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027setup/u0027); return false;">Define up to 5 automated exercise routines.</a></center></td></tr>');
   scene.text('</table></center>');
   // TODO-QSP: end
@@ -589,7 +589,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['exercise', 'matrix'] },
     { label: '', labelFn: (s: GameState) => '1. Rename "' + String(qspUntranslated(s, "excer_name[1]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
     // TODO-QSP: $excer_name[1] = input ('<center>Enter name for exercise routine 1<br>Leave blank to restore default...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'setup');
   } },
     { label: '', labelFn: (s: GameState) => '2. Define "' + String(qspUntranslated(s, "excer_name[2]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
@@ -597,7 +597,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['exercise', 'matrix'] },
     { label: '', labelFn: (s: GameState) => '2. Rename "' + String(qspUntranslated(s, "excer_name[2]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
     // TODO-QSP: $excer_name[2] = input ('<center>Enter name for exercise routine 2<br>Leave blank to restore default...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'setup');
   } },
     { label: '', labelFn: (s: GameState) => '3. Define "' + String(qspUntranslated(s, "excer_name[3]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
@@ -605,7 +605,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['exercise', 'matrix'] },
     { label: '', labelFn: (s: GameState) => '3. Rename "' + String(qspUntranslated(s, "excer_name[3]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
     // TODO-QSP: $excer_name[3] = input ('<center>Enter name for exercise routine 3<br>Leave blank to restore default...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'setup');
   } },
     { label: '', labelFn: (s: GameState) => '4. Define "' + String(qspUntranslated(s, "excer_name[4]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
@@ -613,7 +613,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['exercise', 'matrix'] },
     { label: '', labelFn: (s: GameState) => '4. Rename "' + String(qspUntranslated(s, "excer_name[4]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
     // TODO-QSP: $excer_name[4] = input ('<center>Enter name for exercise routine 4<br>Leave blank to restore default...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'setup');
   } },
     { label: '', labelFn: (s: GameState) => '5. Define "' + String(qspUntranslated(s, "excer_name[5]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
@@ -621,7 +621,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['exercise', 'matrix'] },
     { label: '', labelFn: (s: GameState) => '5. Rename "' + String(qspUntranslated(s, "excer_name[5]", { location: "exercise" }) ?? '') + '"', handler: (st: GameState) => {
     // TODO-QSP: $excer_name[5] = input ('<center>Enter name for exercise routine 5<br>Leave blank to restore default...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRename(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'exercise', 'setup');
   } },
   ]);
@@ -721,16 +721,16 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout${((s as any).locArgs?.[1] ?? '')}[stamindx] = 0/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 1) {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[3] ?? '') === 1) {
       // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = ((5 * (10 - sport_clothes_exercise_bonus) + 5) / 6)'
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[3] ?? '') === 2) {
         // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = ((5 * (10 - sport_clothes_exercise_bonus) + 2) / 3)'
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === 3) {
           // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = ((5 * (10 - sport_clothes_exercise_bonus) + 2) / 2)'
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[3] ?? '') === 4) {
             // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = ((25 * (10 - sport_clothes_exercise_bonus) + 6) / 6)'
           }
         }
@@ -742,16 +742,16 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout${((s as any).locArgs?.[1] ?? '')}[stamindx] = 1/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 2) {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[3] ?? '') === 1) {
       // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (2*((5 * (10 - sport_clothes_exercise_bonus) + 5) / 6)...
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[3] ?? '') === 2) {
         // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (2*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 3)...
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === 3) {
           // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (2*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 2)...
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[3] ?? '') === 4) {
             // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (2*((25 * (10 - sport_clothes_exercise_bonus) + 6) / 6...
           }
         }
@@ -763,16 +763,16 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout${((s as any).locArgs?.[1] ?? '')}[stamindx] = 2/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 3) {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[3] ?? '') === 1) {
       // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (3*((5 * (10 - sport_clothes_exercise_bonus) + 5) / 6)...
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[3] ?? '') === 2) {
         // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (3*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 3)...
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === 3) {
           // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (3*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 2)...
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[3] ?? '') === 4) {
             // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (3*((25 * (10 - sport_clothes_exercise_bonus) + 6) / 6...
           }
         }
@@ -784,16 +784,16 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout${((s as any).locArgs?.[1] ?? '')}[stamindx] = 3/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 4) {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[3] ?? '') === 1) {
       // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (4*((5 * (10 - sport_clothes_exercise_bonus) + 5) / 6)...
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[3] ?? '') === 2) {
         // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (4*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 3)...
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === 3) {
           // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (4*((5 * (10 - sport_clothes_exercise_bonus) + 2) / 2)...
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[3] ?? '') === 4) {
             // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = (4*((25 * (10 - sport_clothes_exercise_bonus) + 6) / 6...
           }
         }
@@ -1042,11 +1042,11 @@ function enterPushupsInner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTier1(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[1] ?? '') > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
       ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).locArgs?.[1] ?? 0)) / 5;
     } else {
@@ -1059,8 +1059,8 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
   (s as any).lastexerciseexp = 0;
   ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop1
-  (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * 6) + 1) / 6);
-  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
+  (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
+  if (String((s as any).locArgs?.[3] ?? '') === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), (Math.floor(Math.random() * 2) + 0));
   } else {
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['i'] = 2;
@@ -1072,10 +1072,10 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 6) + 0)) / 6);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * 3) + 1) / 3);
-  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - ((Math.floor(Math.random() * 3) + 2) / 3);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * (3 - 1 + 1)) + (1)));
+  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - ((Math.floor(Math.random() * (4 - 2 + 1)) + (2)));
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
   qspCall(s, 'sweat', 'add', 1);
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2 + (Math.floor(Math.random() * 2) + 1) / 2);
@@ -1091,11 +1091,11 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTier2(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[1] ?? '') > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
       ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).locArgs?.[1] ?? 0)) / 5;
     } else {
@@ -1109,7 +1109,7 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop2
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
-  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
+  if (String((s as any).locArgs?.[3] ?? '') === '') {
     // TODO-QSP: gs 'exp_gain', $ARGS[2], rand(5, 10) / 6
   } else {
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['i'] = 2;
@@ -1121,10 +1121,10 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 3) + 0)) / 3);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * 3) + 2) / 3);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * (4 - 2 + 1)) + (2)));
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (1 + (Math.floor(Math.random() * 3) + 1) / 3);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
   // TODO-QSP: gs 'sweat', 'add', 3 + rand(1, 3) / 3
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5 + (Math.floor(Math.random() * 2) + 1) / 2);
@@ -1140,11 +1140,11 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTier3(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[1] ?? '') > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
       ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).locArgs?.[1] ?? 0)) / 5;
     } else {
@@ -1158,7 +1158,7 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop3
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
-  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
+  if (String((s as any).locArgs?.[3] ?? '') === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), (Math.floor(Math.random() * 2) + 1));
   } else {
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['i'] = 2;
@@ -1173,7 +1173,7 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (1);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (2);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
   qspCall(s, 'sweat', 'add', 5);
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -1189,11 +1189,11 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTier4(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[1] ?? '') > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
       ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).locArgs?.[1] ?? 0)) / 5;
     } else {
@@ -1207,7 +1207,7 @@ function enterTier4(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :timeexploop4
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
-  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
+  if (String((s as any).locArgs?.[3] ?? '') === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), (Math.floor(Math.random() * 2) + 2));
   } else {
     ((s as any).temp_exVars = (s as any).temp_exVars ?? {})['i'] = 2;
@@ -1222,7 +1222,7 @@ function enterTier4(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (1 + (Math.floor(Math.random() * 3) + 1) / 3);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (4);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
   // TODO-QSP: gs 'sweat', 'add', 8 + rand(2, 4) / 3
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);

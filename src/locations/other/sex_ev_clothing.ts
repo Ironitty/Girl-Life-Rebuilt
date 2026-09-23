@@ -289,8 +289,8 @@ function enterPantyStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterPantylessSkirt(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/undress/skirt_drop1.mp4');
-  // TODO-QSP: dynamic text: You trail behind <<$npc_usedname[$npcID]>> on the way to the bed, letting him la...
-  scene.text('You trail behind ' + ((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '' + ' on the way to the bed, letting him lay back on it as a mischievous smirk plays on your lips. You drop \' + iif(sex_ev[\'CloDress\'] = 1, \'the rest of your dress\', \'your skirt\') + \' to the floor to let him see what\'s underneath.');
+  // TODO-QSP: dynamic text: 'You trail behind <<$npc_usedname[$npcID]>> on the way to the bed, letting him l...
+  scene.text(`You trail behind ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} on the way to the bed, letting him lay back on it as a mischievous smirk plays on your lips. You drop ` + ((((s as any).sex_ev ?? 0)?.['CloDress'] === 1) ? ('the rest of your dress') : ('your skirt')) + ' to the floor to let him see what\'s underneath.');
   if (((s as any).sex_ev ?? 0)?.['commando'] === 1) {
     scene.text('"I see you weren\'t lying about not wearing any underwear," he says, staring at your bare pussy.');
   } else {

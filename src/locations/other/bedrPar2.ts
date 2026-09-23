@@ -46,8 +46,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).prezikday = ((st as any).daystart ?? 0);
     (st as any).prezikProver = 0;
     scene.img('images/pc/items/accessories/birthcontrol/condoms_steal.jpg');
-    // TODO-QSP: dynamic text: After you make sure you''re not seen, you quickly search your parents'' room for...
-    scene.text('After you make sure you\'re not seen, you quickly search your parents\' room for their condom stash and take a few. You now have \'+iif(preziktype = 0, \'' + ((st as any).mc_inventory ?? 0)?.['equipped_condoms'] ?? '' + '\', \'' + ((st as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '' + '\')+\' condoms.');
+    // TODO-QSP: dynamic text: 'After you make sure you''re not seen, you quickly search your parents'' room fo...
+    scene.text('After you make sure you\'re not seen, you quickly search your parents\' room for their condom stash and take a few. You now have ' + (((!((st as any).preziktype ?? 0))) ? ('' + ((st as any).mc_inventory ?? 0)?.['equipped_condoms'] ?? '' + '') : ('' + ((st as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '' + '')) + ' condoms.');
     scene.actions([
       { label: 'Continue', goto: ['bedrPar2', ''] },
     ]);
@@ -86,7 +86,8 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  scene.img('images/pc/items/accessories/books/kamasutra/ik' + ((s as any).kamasutra_page ?? '') + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/books/kamasutra/ik'...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/items/accessories/books/kamasutra/ik` + ((s as any).kamasutra_page ?? '') + '.jpg"></td></tr><tr><td align=center>' + ((((s as any).kamasutra_page ?? 0) < 1) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027bedrPar2/u0027, /u0027read_book/u0027); return false;"><br>Previous page</a>')) + '</td><td align=center>' + ((((s as any).kamasutra_page ?? 0) > 45) ? ('') : ('<a href="#" onclick="window.__gameStore.setState((s) => { s.kamasutra_page +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027bedrPar2/u0027, /u0027read_book/u0027); return false;"><br>Next page</a>')) + '</center>');
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
     scene.actions([
       { label: 'Masturbate', goto: ['selfplay', 'start'] },
@@ -126,7 +127,8 @@ function enterWardrobeSearch(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).tookmomdildo ?? 0) === 1) {
-    scene.img('images/locations/pavlovsk/resident/apartment/home/wardrobesearch' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ho...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/home/wardrobesearch` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     // TODO-QSP: $failwords[0] = 'You don''t find anything interesting.'
     // TODO-QSP: $failwords[1] = 'You find some clothes and underwear.'
     // TODO-QSP: $failwords[2] = 'You dig through your mother''s closet, but find nothing interesting except underwea...

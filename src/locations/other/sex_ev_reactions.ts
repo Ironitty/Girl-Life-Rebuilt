@@ -13,7 +13,7 @@ function enterCumReact(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'React', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReactMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReactMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -108,7 +108,7 @@ function enterCondomReactions(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGoodThingCondom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGoodThingCondom(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_sex', 'sex_end');
@@ -166,26 +166,26 @@ function enterBaskSatisfaction(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['did_we_cum_together'] = 0;
     if (((st as any).sex_ev ?? 0)?.['orgasm'] < ((st as any).orgasm ?? 0)  &&  ((st as any).sex_ev ?? 0)?.['cum_together_fake'] !== 1) {
       if (((st as any).sex_ev ?? 0)?.['last_cum'] === 'creampie') {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCreampie1(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCreampie1(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).sex_ev ?? 0)?.['last_cum'] === 'anal_creampie') {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskAnalCreampie1(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskAnalCreampie1(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).sex_ev ?? 0)?.['last_cum'] === 'condom') {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCondom1(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCondom1(st, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskExternalCum1(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskExternalCum1(st, scene); (st as any).locArgs = __savedLocArgs; }
           }
         }
       }
     } else {
       if (((st as any).sex_ev ?? 0)?.['last_cum'] === 'creampie') {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCreampie2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCreampie2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).sex_ev ?? 0)?.['last_cum'] === 'condom') {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCondom2(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskCondom2(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskExternalCum2(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBaskExternalCum2(st, scene); (st as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1541,7 +1541,7 @@ function enterFacialHappyReacts(s: GameState, scene: SceneBuilder): void {
       scene.text('"No," he says. "Just the slutty ones."');
     }
     qspCall(st, 'sex_ev_after', 'quit');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLetItGo(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLetItGo(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'He has a point', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -1863,7 +1863,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_know_not_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         scene.actions([
           { label: 'Not on birth control', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'sex_ev_stats', 'no_birth_control_know');
     // TODO-QSP: dynamic text: "Sorry. I can''t let you come inside me," you say, <<$sex_ev[''cum_describe2'']>...
     scene.text(`"Sorry. I can't let you come inside me," you say, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I'm not on birth control."`);
@@ -1876,13 +1876,13 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
             { label: 'You know I\'m not on birth control', handler: (st: GameState) => {
     scene.actions([
       { label: '(Apologetic)', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "I''m sorry," you say wistfully, <<$sex_ev[''cum_describe2'']>>. "I know how muc...
     scene.text(`"I'm sorry," you say wistfully, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I know how much you want to finish inside me, but I'm still not on birth control."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
   } },
       { label: '(Annoyed)', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Dumbass!" you scowl, <<$sex_ev[''cum_describe2'']>>. "You know I''m not on birt...
     scene.text(`"Dumbass!" you scowl, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "You know I'm not on birth control!"`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
@@ -1899,7 +1899,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['preg_risk'] = 'danger';
       scene.actions([
         { label: '(Apologetic)', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "I''m sorry," you say wistfully, <<$sex_ev[''cum_describe2'']>>. "I know how muc...
     scene.text(`"I'm sorry," you say wistfully, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I know how much you want to finish inside me, but it's a danger day. I'll get pregnant."`);
     qspCall(st, 'sex_ev_sex', 'sex_end');
@@ -1909,7 +1909,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['preg_risk'] === 'danger') {
       scene.actions([
         { label: '(Annoyed)', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNoCumInsidePic(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Dumbass!" you scowl, <<$sex_ev[''cum_describe2'']>>. "I told you it''s a danger...
     scene.text(`"Dumbass!" you scowl, ${((st as any).sex_ev ?? 0)?.['cum_describe2'] ?? ''}. "I told you it's a danger day for me! Are you <i>trying</i> to get me pregnant?!"`);
     scene.text('"Sorry," he says sheepishly. "I forgot."');
@@ -2259,7 +2259,7 @@ function enterBjAlready(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Your mouth just felt too good!" he says. "I couldn\'t hold it in!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjAlready2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjAlready2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Teasing', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -2271,7 +2271,7 @@ function enterBjAlready(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"I tried to hold back but you sucked it out of me," he grins back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjAlready2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjAlready2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -2305,7 +2305,7 @@ function enterBjSwallowGross(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"Ugh, I hate swallowing," you say, finally losing your lips from his cock with a pop and shaking your head, as if that would somehow get rid of the taste.');
     scene.text('"But you did it anyways," he says back, grin widening across his face.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjSwallowGross2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjSwallowGross2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -2371,7 +2371,7 @@ function enterBjSpitGross(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"<i>Yech</i>," you gag, opening your mouth wide to let the slimy bitter liquid dribble from your tongue. "I hate the taste off this stuff."');
     scene.text('"But you let me come in your mouth anyways," he says back, grin widening across his face.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjSpitGross2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjSpitGross2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -2489,7 +2489,7 @@ function enterCumAlready(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I couldn\'t hold it all of a sudden," he mumbles sheepishly.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuickshotTease1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuickshotTease1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2672,14 +2672,14 @@ function enter2pumpReact(s: GameState, scene: SceneBuilder): void {
     { label: 'That was fast', handler: (st: GameState) => {
     scene.text('"Did you just come...?" you ask.');
     if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 0  ||  (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((st as any).sex_ev ?? 0)?.['orgasm'] === ((st as any).orgasm ?? 0))) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReactAwkward(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReactAwkward(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReactSelfish(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReactSelfish(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Already? Seriously?', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpIrate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpIrate(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('"Are you kidding me?" you huff. "You came? Already?!"');
       scene.text('He grimaces, clearly embarrassed and your comment not helping.');
@@ -2687,7 +2687,7 @@ function enter2pumpReact(s: GameState, scene: SceneBuilder): void {
       scene.text('"Ugh, can you at least go five minutes without busting your nut?" you huff in irritation.');
       scene.text('He grimaces, clearly embarrassed and your comment not helping.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -2698,7 +2698,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['men_fucked'] > 0) {
     scene.actions([
       { label: 'Used to it (nice)', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('"Don\'t worry," you smirk. "Guys do this all the time."');
       scene.text('"Maybe with some other guys," he says, clearly embarrassed. "It\'s... kind of a regular thing with me..."');
@@ -2708,7 +2708,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
       scene.text('"Doesn\'t mean I\'m not embarrassed..."');
       scene.text('"Don\'t be. It\'s just who you are."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2720,11 +2720,11 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"Oh damn!" you say, shaking your fist in mock anger. "My pussy is just too tight! Damn my vice-like vagina and its ability to get guys off!"');
     // TODO-QSP: dynamic text: Meeting <<$npcdesc>>''s eyes, you flash him a smile and he smiles back. Seems th...
     scene.text(`Meeting ${((st as any).npcdesc ?? '')}'s eyes, you flash him a smile and he smiles back. Seems that you managed to take the edge off his embarrassment.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Reassure him', handler: (st: GameState) => {
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -2732,7 +2732,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('"It\'s okay," you coo softly. "It happens sometimes."');
       scene.text('"Maybe with some other guys," he says, clearly embarrassed. "It\'s... kind of a regular thing with me..."');
@@ -2741,7 +2741,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
       scene.text('"I just wish-" He cuts off, grimacing.');
       scene.text('"It\'s okay. It\'s okay..."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Cute', handler: (st: GameState) => {
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -2749,7 +2749,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('"Don\'t worry," you smile. "I think it\'s cute."');
       scene.text('"Really?" he asks hesitantly. "Cause... this kind of happens every time..."');
@@ -2759,7 +2759,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
       scene.text('"When I... prematurely ejaculate?"');
       scene.text('"Yes," you say, smile broadening. "<i>Especially</i> when you do that."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'That was <i>hot</i>', handler: (st: GameState) => {
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -2767,7 +2767,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpSmile(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_fuck_times ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('"<i>Fuck</i>, that was so hot," you grin.');
       scene.text('"Sorry I... wait what?"');
@@ -2777,7 +2777,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
       scene.text('"When I... prematurely ejaculate?"');
       scene.text('"<i>Yes</i>," you say, smile broadening. "Makes me feel like a sex goddess that you can\'t hold your cum when you\'re inside me."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

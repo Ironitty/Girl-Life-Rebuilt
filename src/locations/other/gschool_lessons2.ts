@@ -163,7 +163,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesb' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesb` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Mr. Ivanov\'s desk. After making sure Mr. Ivanov isn\'t looking, you pull up the back of your skirt and expose your panty clad ass to anyone looking.');
     scene.text('A few of the other students notice what you\'re doing: Artem\'s mouth drops open and he just stares at your ass while Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
@@ -189,7 +190,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 2);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesd' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesd` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('While Mr. Ivanov\'s back is turned, you spread your legs wide and pull up the front of your skirt while sitting at your desk, showing off your panties to anyone that looks your way.');
     scene.text('A few of the others students notice what you\'re doing: Artem just stares with his mouth wide open, Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you close your legs before he gets his phone up.');
     scene.actions([
@@ -215,7 +217,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesf' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesf` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Mr. Ivanov\'s desk. After making sure Mr. Ivanov isn\'t looking, you turn like you\'re about to walk back to your seat, but instead pull up your skirt and expose your panties to anyone looking.');
     scene.text('Artem\'s mouth drops open and he just stares at your ass, Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
@@ -292,7 +295,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
-    // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
+    // TODO-QSP: dynamic text: 'You take a few quick selfies of your exposed breasts until you get one you real...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -914,7 +917,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesb' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesb` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Miss Orlov\'s desk. After making sure Miss Orlov isn\'t looking, you pull up the back of your skirt and expose your panty clad ass to anyone looking.');
     scene.text('Fedor\'s mouth drops open and he just stares at your ass, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
@@ -940,7 +944,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 2);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesd' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesd` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('While Miss Orlov\'s back is turned, you spread your legs wide and pull up the front of your skirt while sitting at your desk, which shows off your panties to anyone that looks your way.');
     scene.text('A few of the other students notice what you\'re doing: Fedor\'s mouth drops open and he just stares at your panties, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
@@ -966,7 +971,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesf' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesf` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Miss Orlov\'s desk. After making sure Miss Orlov isn\'t looking, you turn like you\'re about to walk back to your seat, but instead pull up your skirt and expose your panties to anyone looking.');
     scene.text('Fedor\'s mouth drops open and he just stares at your panties, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
@@ -1044,7 +1050,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
-    // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
+    // TODO-QSP: dynamic text: 'You take a few quick selfies of your exposed breasts until you get one you real...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -1472,7 +1478,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesb' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesb` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Mr. Vasilyev\'s desk. After making sure Mr. Vasilyev isn\'t looking, you pull up the back of your skirt and expose your panty clad ass to anyone looking.');
     scene.text('Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away, Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
@@ -1498,7 +1505,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 2);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesd' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesd` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('While Mr. Vasilyev\'s back is turned, you spread your legs wide and pull up the front of your skirt while sitting at your desk, which shows off your panties to anyone that looks your way.');
     scene.text('A few of the other students notice what you\'re doing: Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away and Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you close your legs before he gets his phone up.');
     scene.actions([
@@ -1524,7 +1532,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesf' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesf` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Mr. Vasilyev\'s desk. After making sure Mr. Vasilyev isn\'t looking, you turn like you\'re about to walk back to your seat, but instead pull up your skirt and expose your panties to anyone looking.');
     scene.text('Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away and Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
@@ -1602,7 +1611,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
-    // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
+    // TODO-QSP: dynamic text: 'You take a few quick selfies of your exposed breasts until you get one you real...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? (' You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -2156,7 +2165,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesb' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesb` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Miss Orlov\'s desk. After making sure Miss Orlov isn\'t looking, you pull up the back of your skirt and expose your panty clad ass to anyone looking.');
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at you while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
@@ -2182,7 +2192,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 2);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesd' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesd` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('While Miss Orlov\'s back is turned, you spread your legs wide and pull up the front of your skirt while sitting at your desk, which shows off your panties to anyone that looks your way.');
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at your panties while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
@@ -2208,7 +2219,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'flash', 'panties', 'indoors', 1, 1);
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/classroom/flashpantiesf' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/flas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/flashpantiesf` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Near the end of class, you get up and act like you\'re checking one of the books near Miss Orlov\'s desk. After making sure Miss Orlov isn\'t looking, you turn like you\'re about to walk back to your seat, but instead pull up your skirt and expose your panties to anyone looking.');
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at your panties while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
@@ -2286,7 +2298,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
     scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
-    // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
+    // TODO-QSP: dynamic text: 'You take a few quick selfies of your exposed breasts until you get one you real...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {

@@ -17,22 +17,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).kotovVSkozlov = 2;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
-    // TODO-QSP: dynamic text: Vadim nods. "So you don''t dispute it. Well kid, you''ll learn that if you''re r...
+    // TODO-QSP: dynamic text: 'Vadim nods. "So you don''t dispute it. Well kid, you''ll learn that if you''re ...
     scene.text('Vadim nods. "So you don\'t dispute it. Well kid, you\'ll learn that if you\'re rude to the wrong people, you get trouble. I\'ll give you one chance to pay for your mistakes. 30000₽, tomorrow. If you don\'t pay up, you lose fingers, one for every day you\'re late. Understood?"');
     scene.text('Fedor\'s face pales and tears form in his eyes. Vadim Bely is quite notorious in your region, and this wouldn\'t be the first time he\'s actually taken fingers from someone for missing payments.');
     scene.text('"Please sir!" he exclaims. "I don\'t have that kind of money! I\'m just a kid going to school!"');
-    // TODO-QSP: dynamic text: Vadim shrugs. "You should''ve thought of that before you were disrespectful, ''k...
+    // TODO-QSP: dynamic text: 'Vadim shrugs. "You should''ve thought of that before you were disrespectful, ''...
     scene.text('Vadim shrugs. "You should\'ve thought of that before you were disrespectful, \'kid going to school\'. That\'s really not my problem. 30000₽, tomorrow."');
     scene.text('At this point, a number of other students have noticed the commotion and wandered a little closer to get a better look at what\'s going on.');
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big11.jpg');
     scene.text('Fedor is panicking now. "Sir, please!" he begs. "I can\'t get that amount of money!"');
-    // TODO-QSP: dynamic text: Vasily grins. "Come on guys, the only way this kid could get ' + $func('money', ...
+    // TODO-QSP: dynamic text: 'Vasily grins. "Come on guys, the only way this kid could get ' + $func('money',...
     scene.text('Vasily grins. "Come on guys, the only way this kid could get 30000₽ together is if his parents sold their house. Let\'s cut him a deal." He waits a moment to make sure he has everyone\'s attention before he continues. "How about this? He sucks my dick. Right here, right now. If he does, we\'re even."');
     scene.text('Vadim smirks and shakes his head as he looks at Dan and Vitek. "This guy… Unbelievable! Still, it\'s up to you. If you\'re okay with it, then I am too."');
     scene.text('Vitek shrugs. "I don\'t care."');
-    // TODO-QSP: dynamic text: "Fine by me too," Dan adds. "Your call, Fedor. ' + $func('money', 'string_price'...
+    // TODO-QSP: dynamic text: '"Fine by me too," Dan adds. "Your call, Fedor. ' + $func('money', 'string_price...
     scene.text('"Fine by me too," Dan adds. "Your call, Fedor. 30000₽ tomorrow or you suck Shulga\'s dick right now."');
     scene.actions([
       { label: 'Say nothing', handler: (st: GameState) => {

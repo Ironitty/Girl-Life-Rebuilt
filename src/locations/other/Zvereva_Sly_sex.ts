@@ -203,8 +203,8 @@ function enterSexEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterHj_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/handjob/hj2.mp4');
-  // TODO-QSP: dynamic text: You wrap your hand around his dick and start jacking him off slowly '+iif(christ...
-  scene.text('You wrap your hand around his dick and start jacking him off slowly \'+iif(christinaQW[\'fight\'] = -1, \'while trying not to look him in the eye.\', \'and seductively, while staring into his eyes.\')+\'');
+  // TODO-QSP: dynamic text: 'You wrap your hand around his dick and start jacking him off slowly '+iif(chris...
+  scene.text('You wrap your hand around his dick and start jacking him off slowly ' + ((((s as any).christinaQW ?? 0)?.['fight'] === -1) ? ('while trying not to look him in the eye.') : ('and seductively, while staring into his eyes.')) + '');
   scene.text('He seems to enjoy it for a few minutes before saying "You can speed up a bit now."');
   scene.text('Pumping his cock harder draws a small groan from his lips, but he quickly stops you from continuing.');
   qspCall(s, 'arousal', 'hj', 3, 'sub');
@@ -221,7 +221,8 @@ function enterHj_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBj_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/blowjob/kotovbj' + (Math.floor(Math.random() * 5) + 110) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/blowjob/kotov...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/kotovbj` + (Math.floor(Math.random() * 5) + 110) + '.mp4"></video></center>');
   scene.text('He grabs his dick with one hand, the back of your head with his other hand, and lines the tip of it up with your lips.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You try to keep your lips pressed tightly shut, but he forces his way in, trying to fit the whole thing down your throat all at once! Almost immediately you find yourself unable to breathe, gagging and drooling all over his cock.');
@@ -258,9 +259,10 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/cowgirl/hard' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/cowgirl/h...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/cowgirl/hard` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock ...
+  // TODO-QSP: dynamic text: 'Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock...
   scene.text('Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock in hard, without any attempt to be gentle. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + '"Start shaking those hips," he says, laying back with his arms behind his head.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You reluctantly move your hips back and forth until he seems to get annoyed at your pace. Grabbing your hips, he takes over, thrusting in and out as he pulls you forward and pushes you back.');
@@ -291,9 +293,10 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/doggy/kotovsex' + (Math.floor(Math.random() * 4) + 10) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/doggy/kot...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/kotovsex` + (Math.floor(Math.random() * 4) + 10) + '.mp4"></video></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: dynamic text: He flips you onto your hands and knees and just slams his cock inside without wa...
+  // TODO-QSP: dynamic text: 'He flips you onto your hands and knees and just slams his cock inside without w...
   scene.text('He flips you onto your hands and knees and just slams his cock inside without warning. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'He presses your face into the bed and, finding his rhythm, pounds away.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You grunt into the blankets with each thrust, annoyed at how your body reacts to the unwanted stimulus. Even with your face smashed into the blankets, you can hear the wet sounds your pussy makes as he plunges in and out of you.');
@@ -322,19 +325,20 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/facedown/kotovsex' + (Math.floor(Math.random() * 6) + 40) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/vag/facedown/...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/vag/facedown/kotovsex` + (Math.floor(Math.random() * 6) + 40) + '.mp4"></video></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
-    // TODO-QSP: dynamic text: Sly pushes you to your stomach and pushes his way inside. '+iif(func('pcs_has_at...
+    // TODO-QSP: dynamic text: 'Sly pushes you to your stomach and pushes his way inside. '+iif(func('pcs_has_a...
     scene.text('Sly pushes you to your stomach and pushes his way inside. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'He starts fucking you hard, giving you no chance to adjust to the speed of his thrusts.');
     scene.text('As you think he\'s going to ease up, instead the pace picks up and Sly is now violently thrusting into you. The pain is making you teary-eyed as you\'re not able to handle the pounding.');
   } else {
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
-      // TODO-QSP: dynamic text: "W-Wait…" you manage to yell out before as he grabs hold of the back of your hea...
+      // TODO-QSP: dynamic text: '"W-Wait…" you manage to yell out before as he grabs hold of the back of your he...
       scene.text('"W-Wait…" you manage to yell out before as he grabs hold of the back of your head pushes you down onto your stomach, facefirst into the bed. "I-I…" You take too long to utter a word as he enters you without pardon. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin, as ') : ('')) + 'Sly plunges deep into your pussy, leaving you barely able to keep in control of yourself.');
     } else {
       scene.text('He grabs hold of you and throws you on the bed with ease. You try to squirm into a more pleasant position, but he\'s got you firmly held on your stomach with your face down, not letting you move an inch in any direction.');
-      // TODO-QSP: dynamic text: Without any hesitation, his cock plunges inside of you. '+iif(func('pcs_has_attr...
+      // TODO-QSP: dynamic text: 'Without any hesitation, his cock plunges inside of you. '+iif(func('pcs_has_att...
       scene.text('Without any hesitation, his cock plunges inside of you. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'You let out a little screech, to let him know that he\'s hurting you, but he\'s not easing up as he continues to furiously thrust without any consideration.');
     }
   }
@@ -439,7 +443,8 @@ function enterAnalPiledriver_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/cum/analcreampie/cumanal' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/analcream...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/cumanal` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You suddenly find yourself bent over, his dick in your asshole. You can feel it twitching inside you, and a warmth is spreading. He pulls out, and you feel his cum leaking out.');
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', 'anus', 'A248', 1);
@@ -450,7 +455,8 @@ function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVagDoggyCum_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/cum/vagcreampie/doggy' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/vagcreamp...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/cum/vagcreampie/doggy` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
   scene.text('You suddenly find yourself bent over, his dick shoved in your pussy. You can feel it twitching inside you, and a warmth is spreading. He pulls out, and you feel his cum leaking out.');
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', '', '', 'A248', 1);

@@ -44,7 +44,7 @@ function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 1;
     scene.text('"Sorry, I\'m busy," you excuse yourself.');
     scene.text('Vladimir shakes his head to that. "Well, what are you busy with? I will not bite. I would just like to know the name of a beautiful, young lady."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwnamedy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwnamedy(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave anyway', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 2;
@@ -107,7 +107,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('You explain that you simply can\'t today, as busy as you are.');
-    // TODO-QSP: dynamic text: "Okay. Then I''ll call you tomorrow at '+func('time', 'get_time_string', 16, 0)+...
+    // TODO-QSP: dynamic text: '"Okay. Then I''ll call you tomorrow at '+func('time', 'get_time_string', 16, 0)...
     scene.text('"Okay. Then I\'ll call you tomorrow at 16:00." Vladimir promises.');
     scene.actions([
       { label: 'Hang up', handler: (st: GameState) => {
@@ -120,7 +120,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('"I would like that," you tell him.');
-    // TODO-QSP: dynamic text: "Wonderful!" says Vladimir. "Then I''ll meet you at the restaurant in the city c...
+    // TODO-QSP: dynamic text: '"Wonderful!" says Vladimir. "Then I''ll meet you at the restaurant in the city ...
     scene.text('"Wonderful!" says Vladimir. "Then I\'ll meet you at the restaurant in the city center at 20:00."');
     scene.text('"I\'ll see you then!"');
     scene.actions([

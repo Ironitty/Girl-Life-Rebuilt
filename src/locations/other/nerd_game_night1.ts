@@ -298,8 +298,8 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Damn this foul dark magic! How do we break out of this loop?" Artems asks, roleplaying his character\'s frustration.');
   // TODO-QSP: iif(nerd_game['lust_curse'] = 1, '"<<$pcs_nickname>>''s rogue', '"Julia''s cleric') + ' suddenly hea...
   scene.text('"We need to let this magic guide us if we want to get out of here," Gerasim replies.');
-  // TODO-QSP: dynamic text: "But it''s <i>dark magic</i>!" Artem retorts. "Just look at what it''s done to '...
-  scene.text('"But it\'s <i>dark magic</i>!" Artem retorts. "Just look at what it\'s done to \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname ?? '') + '!\', \'Julia!\') + \' This voice clearly intends to lure us into a trap!"');
+  // TODO-QSP: dynamic text: '"But it''s <i>dark magic</i>!" Artem retorts. "Just look at what it''s done to ...
+  scene.text('"But it\'s <i>dark magic</i>!" Artem retorts. "Just look at what it\'s done to ' + ((((s as any).nerd_game ?? 0)?.['lust_curse'] === 1) ? ('' + ((s as any).pcs_nickname ?? '') + '!') : ('Julia!')) + ' This voice clearly intends to lure us into a trap!"');
   scene.text('"Look around us! We\'re already in the trap!" Gerasim points out. "The only way we\'re getting out of here is to let her follow the voice."');
   scene.text('Artem sighs before he reluctantly nods.');
   // TODO-QSP: end
@@ -427,8 +427,8 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
 function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
-  // TODO-QSP: dynamic text: "Okay, when we left off, you''d just finished battling a group of strange men wh...
-  scene.text('"Okay, when we left off, you\'d just finished battling a group of strange men who were under the control of dark magic. You had just healed up and looted the area when \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname ?? '') + '\'s rogue\', \'Julia\'s cleric\') + \' started hearing the strange voice in her head again," Feofan explains.');
+  // TODO-QSP: dynamic text: '"Okay, when we left off, you''d just finished battling a group of strange men w...
+  scene.text('"Okay, when we left off, you\'d just finished battling a group of strange men who were under the control of dark magic. You had just healed up and looted the area when ' + ((((s as any).nerd_game ?? 0)?.['lust_curse'] === 1) ? ('' + ((s as any).pcs_nickname ?? '') + '\'s rogue') : ('Julia\'s cleric')) + ' started hearing the strange voice in her head again," Feofan explains.');
   if (((s as any).nerd_game ?? 0)?.['lust_curse'] === 1) {
     scene.text('"That\'s the voice of a succubus!" Julia points out. "Somewhere in this maze of a cave is a powerful lust demon waiting to take advantage of us!"');
     // TODO-QSP: dynamic text: "I know, but we have to keep doing what we''re doing and let <<$pcs_nickname>> f...

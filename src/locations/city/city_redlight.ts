@@ -36,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).job_status ?? 0)?.['city_strip_stripper'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_strip_stripper') === 1)  ||  (((s as any).job_status ?? 0)?.['city_strip_bargirl'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_strip_bargirl') === 1)) {
       scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stripclub/u0027, /u0027start/u0027); return false;">Golden Girls</a> strip club is still closed, but you can get in through the staff entrance.');
     } else {
-      // TODO-QSP: dynamic text: The strip club is closed for the day and will reopen at ' + func('time', 'get_ti...
+      // TODO-QSP: dynamic text: 'The strip club is closed for the day and will reopen at ' + func('time', 'get_t...
       scene.text('The strip club is closed for the day and will reopen at 18:00.');
     }
   }
@@ -44,7 +44,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 22) {
       scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornstudio/u0027, /u0027/u0027); return false;">porn studio</a> is housed within one of the few warehouses that hasn\'t been abandoned.');
     } else {
-      // TODO-QSP: dynamic text: The porn studio is closed and will reopen at ' + func('time', 'get_time_string',...
+      // TODO-QSP: dynamic text: 'The porn studio is closed and will reopen at ' + func('time', 'get_time_string'...
       scene.text('The porn studio is closed and will reopen at 9:00.');
     }
   }
@@ -52,7 +52,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: A <a href="exec:minut += 1 & gt ''shop_erotomaniac'', ''start''">seedy looking s...
     scene.text('A <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027start/u0027); return false;">seedy looking shop</a> that sells sex toys and other erotic merchandise is open for perverts from all around the city to browse its stock.');
   } else {
-    // TODO-QSP: dynamic text: A seedy looking shop that sells sex toys and other erotic merchandise. It is cur...
+    // TODO-QSP: dynamic text: 'A seedy looking shop that sells sex toys and other erotic merchandise. It is cu...
     scene.text('A seedy looking shop that sells sex toys and other erotic merchandise. It is currently closed and will reopen at 11:00.');
   }
   if (((s as any).bordel ?? 0) > 0  &&  qspFunc(s, 'bordel', 'is_open')) {
@@ -61,13 +61,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 10) {
     scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_redlight/u0027, /u0027city_copy_shop/u0027); return false;">printing shop</a> is tucked away between two larger buildings.');
   } else {
-    // TODO-QSP: dynamic text: A small printing shop is tucked away between two larger buildings. It is current...
+    // TODO-QSP: dynamic text: 'A small printing shop is tucked away between two larger buildings. It is curren...
     scene.text('A small printing shop is tucked away between two larger buildings. It is currently closed and will reopen at 10:00.');
   }
   if (((s as any).hour ?? 0) >= 19  ||  ((s as any).hour ?? 0) < 2) {
     scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027hookahlounge/u0027, /u0027start/u0027); return false;">Hookah Lounge</a> sits on a corner, with Indian music and the scent of exotic spices streaming from an open door.');
   } else {
-    // TODO-QSP: dynamic text: The Hookah Lounge is currently closed and will reopen at ' + func('time', 'get_t...
+    // TODO-QSP: dynamic text: 'The Hookah Lounge is currently closed and will reopen at ' + func('time', 'get_...
     scene.text('The Hookah Lounge is currently closed and will reopen at 19:00.');
   }
   qspCall(s, 'taxi', '');
@@ -138,12 +138,12 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the run-down looking copy shop and look around. Scattered across the room are small tables with various dusty looking copy machines that don\'t strike you as being very reliable. Watching you from behind a counter is a bored looking man with greasy hair and a sleazy look.');
   if (((s as any).fakepassport ?? 0) === 2) {
     (s as any).fakepassport = 0;
-    // TODO-QSP: dynamic text: He gives you a hard stare. "A fake passport will cost you ' + $func('money', 'st...
+    // TODO-QSP: dynamic text: 'He gives you a hard stare. "A fake passport will cost you ' + $func('money', 's...
     scene.text('He gives you a hard stare. "A fake passport will cost you 30000₽," he says quietly.');
   }
   if (((s as any).university ?? 0)?.['fakediplom'] === 2) {
     ((s as any).university = (s as any).university ?? {})['fakediplom'] = 0;
-    // TODO-QSP: dynamic text: "A diploma for a bachelor''s degree will cost you ' + $func('money', 'string_pri...
+    // TODO-QSP: dynamic text: '"A diploma for a bachelor''s degree will cost you ' + $func('money', 'string_pr...
     scene.text('"A diploma for a bachelor\'s degree will cost you 100000₽," he says quietly.');
   }
   if (((s as any).age ?? 0) < 18  &&  ((s as any).fakepassport ?? 0) !== 1) {

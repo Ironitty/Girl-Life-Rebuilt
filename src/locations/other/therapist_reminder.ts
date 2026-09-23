@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -12,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/reactions/forget.jpg');
   scene.text('');
-  // TODO-QSP: dynamic text: You remember that you have an appointment with your therapist today at '+func('t...
+  // TODO-QSP: dynamic text: 'You remember that you have an appointment with your therapist today at '+func('...
   scene.text(`You remember that you have an appointment with your therapist today at 18:00. It's already <b>${(String(100+((s as any).hour ?? '')).slice((2)-1, ((2)-1)+(2)))}:${(String(100+((s as any).minut ?? '')).slice((2)-1, ((2)-1)+(2)))}</b>. You should go now.`);
   if (((s as any).region ?? 0) === 'pav') {
     if (((s as any).reminderFreebee ?? 0) < 4) {
@@ -29,14 +27,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
     scene.text('You feel bad about missing your appointment, but you have other things to do now. You tell yourself that you\'ll see him again as soon as possible.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReturn(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -45,7 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
@@ -60,7 +58,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go see your therapist', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMoveToTherapist(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMoveToTherapist(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/therapist/schoolWalk.mp4');
     scene.text('You walk to your therapist\'s office.');
@@ -76,7 +74,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('… But you realize you are much to far away, there\'s no way you can make it on time.');
     scene.actions([
       { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
@@ -107,7 +105,7 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
     ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
     ((s as any).tempReminderVars = (s as any).tempReminderVars ?? {})['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * (((s as any).tempReminderVars ?? {})?.['Mult'] ?? 0));
   }
-  qspCall(s, 'mood', 'lower', qspUntranslated(s, "rand(tempReminderVars['CostLow'], tempReminderVars['CostHigh'])", { location: "therapist_reminder" }));
+  qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * (((s as any).tempReminderVars ?? 0)?.['CostHigh'] - ((s as any).tempReminderVars ?? 0)?.['CostLow'] + 1)) + (((s as any).tempReminderVars ?? 0)?.['CostLow'])));
   (s as any).daysSkippedHypno = ((s as any).daysSkippedHypno ?? 0) + (1);
   if (((s as any).daysSkippedHypno ?? 0) >= 5) {
     (s as any).hypnoTime = ((s as any).hypnoTime ?? 0) - (1);

@@ -41,7 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       scene.text('The foreman looks at your car, if this wreckage even qualifies as one, with a professional boredom that tells you he\'s seen vehicles in similar or worse states a million times over.');
-      // TODO-QSP: dynamic text: He quickly but thoroughly inspects it, murmuring all the while to take mental no...
+      // TODO-QSP: dynamic text: 'He quickly but thoroughly inspects it, murmuring all the while to take mental n...
       scene.text('He quickly but thoroughly inspects it, murmuring all the while to take mental notes on what needs to be done, and, when he returns to you, simply states that it would cost \' + $func(\'money\', \'string_price\', normrem) + \' to repair the damage.');
       scene.actions([
         { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
@@ -57,7 +57,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       scene.text('Since he tells you that it\'s not gonna take long - at first you think he is being sarcastic but then realize that his no-nonsense attitude doesn\'t leave much room for humour - you go into a waiting room with couches and a TV. After about an hour of flipping through channels, you are called back to the garage and can hardly believe your eyes.');
       scene.text('The car looks brand new! Not a single dent, not one scratch, and when you start the engine to make sure it\'s working, it sounds better than ever before. You ask the foreman how he and his crew managed to repair the car, and that quickly, but his only response is a shrug.');
-      // TODO-QSP: dynamic text: Before he sends you back into the office to pay the ' + $func('money', 'string_p...
+      // TODO-QSP: dynamic text: 'Before he sends you back into the office to pay the ' + $func('money', 'string_...
       scene.text('Before he sends you back into the office to pay the \' + $func(\'money\', \'string_price\', normrem) + \', he asks you to not bring them cars in this pitiable state anymore - you\'re not sure whether he is joking or not.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -74,7 +74,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('The foreman inspects your car quickly but thoroughly.');
         scene.text('Here and there, he seems to be murmuring to himself, maybe assessing a defect. After only a few minutes, he returns to you and points out what needs to be fixed.');
-        // TODO-QSP: dynamic text: It would cost you ' + $func('money', 'string_price', normrem) + '.
+        // TODO-QSP: dynamic text: 'It would cost you ' + $func('money', 'string_price', normrem) + '.'
         scene.text('It would cost you \' + $func(\'money\', \'string_price\', normrem) + \'.');
         scene.actions([
           { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
@@ -87,7 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((st as any).car = (st as any).car ?? {})['wreck'] = 0;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
-      // TODO-QSP: dynamic text: Since he tells you that it''s not gonna take long, you go into a waiting room wi...
+      // TODO-QSP: dynamic text: 'Since he tells you that it''s not gonna take long, you go into a waiting room w...
       scene.text('Since he tells you that it\'s not gonna take long, you go into a waiting room with couches and a TV. After about an hour of flipping through channels, the car is ready, and you pay \' + $func(\'money\', \'string_price\', normrem) + \'.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {

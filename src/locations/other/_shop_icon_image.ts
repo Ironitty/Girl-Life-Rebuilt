@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'all') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'all') {
     (s as any).result = 'images/system/icons/clothing/all_outfits.png';
   } else {
     if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'allure') {
@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'dolls') {
                 (s as any).result = 'images/locations/city/island/dolls/shop_name.png';
               } else {
-                if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'sexshop') {
+                if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto'  ||  String((s as any).locArgs?.[0] ?? '') === 'sexshop') {
                   (s as any).result = 'images/locations/city/redlight/erotomaniac/shop_name.png';
                 } else {
                   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'fancy') {
@@ -36,16 +36,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'flamingos') {
                         (s as any).result = 'images/locations/city/island/flamingos/shop_name.png';
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 'gm_school') {
+                        if (String((s as any).locArgs?.[0] ?? '') === 'gm_school') {
                           (s as any).result = 'images/pc/items/gm/school.png';
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 'gm_office') {
+                          if (String((s as any).locArgs?.[0] ?? '') === 'gm_office') {
                             (s as any).result = 'images/pc/items/gm/officewear.png';
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 'gm_maid') {
+                            if (String((s as any).locArgs?.[0] ?? '') === 'gm_maid') {
                               (s as any).result = 'images/pc/items/gm/maid.png';
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 'gm_server') {
+                              if (String((s as any).locArgs?.[0] ?? '') === 'gm_server') {
                                 (s as any).result = 'images/pc/items/gm/server.png';
                               } else {
                                 if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
@@ -69,10 +69,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'nerdvana') {
                                               (s as any).result = 'images/locations/city/island/nerdvana/shop_name.png';
                                             } else {
-                                              if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'exhibitshop') {
+                                              if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious'  ||  String((s as any).locArgs?.[0] ?? '') === 'exhibitshop') {
                                                 (s as any).result = 'images/locations/pushkin/exhibitshop/shop_name.png';
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 'scandalicious_swimwear') {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 'scandalicious_swimwear') {
                                                   (s as any).result = 'images/locations/city/citycenter/mall/scandalicious_swimwear.png';
                                                 } else {
                                                   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(13))) === 'scandalicious') {

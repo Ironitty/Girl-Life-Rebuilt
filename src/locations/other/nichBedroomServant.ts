@@ -36,8 +36,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
   }
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    // TODO-QSP: dynamic text: 'On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = ...
+    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka ?? '')} teddy bear` + ((((s as any).mishka ?? 0) === 1) ? ('') : ('s')) + '.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
@@ -58,7 +58,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (st as any).sick = 0;
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/apartment/event/sick/si...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/apartment/event/sick/sick` + (Math.floor(Math.random() * 7) + 11) + '.jpg"></center>');
     scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
     scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
     scene.actions([
@@ -105,12 +106,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('Tomorrow is also a free day.');
     } else {
       if (((s as any).nichVactionTil ?? 0) > ((s as any).daystart ?? 0) + 1) {
-        // TODO-QSP: dynamic text: The next '+(nichVactionTil-daystart)+' days are also free.
-        scene.text('The next \'+(nichVactionTil-daystart)+\' days are also free.');
+        // TODO-QSP: dynamic text: 'The next '+(nichVactionTil-daystart)+' days are also free.'
+        scene.text('\'The next \'+(nichVactionTil-daystart)+\' days are also free.\'');
       }
     }
   }
-  // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
+  // TODO-QSP: dynamic text: 'You should start preparing breakfast before '+func('time', 'get_time_string', 7...
   scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
   if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
     scene.text('');
@@ -195,8 +196,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
   }
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    // TODO-QSP: dynamic text: 'On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = ...
+    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka ?? '')} teddy bear` + ((((s as any).mishka ?? 0) === 1) ? ('') : ('s')) + '.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
@@ -217,7 +218,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (st as any).sick = 0;
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/apartment/event/sick/si...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/apartment/event/sick/sick` + (Math.floor(Math.random() * 7) + 11) + '.jpg"></center>');
     scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
     scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
     scene.actions([
@@ -264,12 +266,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Tomorrow is also a free day.');
     } else {
       if (((s as any).nichVactionTil ?? 0) > ((s as any).daystart ?? 0) + 1) {
-        // TODO-QSP: dynamic text: The next '+(nichVactionTil-daystart)+' days are also free.
-        scene.text('The next \'+(nichVactionTil-daystart)+\' days are also free.');
+        // TODO-QSP: dynamic text: 'The next '+(nichVactionTil-daystart)+' days are also free.'
+        scene.text('\'The next \'+(nichVactionTil-daystart)+\' days are also free.\'');
       }
     }
   }
-  // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
+  // TODO-QSP: dynamic text: 'You should start preparing breakfast before '+func('time', 'get_time_string', 7...
   scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
   if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
     scene.text('');
@@ -354,8 +356,8 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
   }
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    // TODO-QSP: dynamic text: 'On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = ...
+    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka ?? '')} teddy bear` + ((((s as any).mishka ?? 0) === 1) ? ('') : ('s')) + '.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
@@ -376,7 +378,8 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       (st as any).sick = 0;
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/apartment/event/sick/si...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/apartment/event/sick/sick` + (Math.floor(Math.random() * 7) + 11) + '.jpg"></center>');
     scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
     scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
     scene.actions([
@@ -423,12 +426,12 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       scene.text('Tomorrow is also a free day.');
     } else {
       if (((s as any).nichVactionTil ?? 0) > ((s as any).daystart ?? 0) + 1) {
-        // TODO-QSP: dynamic text: The next '+(nichVactionTil-daystart)+' days are also free.
-        scene.text('The next \'+(nichVactionTil-daystart)+\' days are also free.');
+        // TODO-QSP: dynamic text: 'The next '+(nichVactionTil-daystart)+' days are also free.'
+        scene.text('\'The next \'+(nichVactionTil-daystart)+\' days are also free.\'');
       }
     }
   }
-  // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
+  // TODO-QSP: dynamic text: 'You should start preparing breakfast before '+func('time', 'get_time_string', 7...
   scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
   if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
     scene.text('');
@@ -543,7 +546,7 @@ function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     } else {
@@ -552,7 +555,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 100) {
+    if (String((s as any).locArgs?.[1] ?? '') === 100) {
       (s as any).nichGalaContractTarasLast = ((s as any).daystart ?? 0);
       (s as any).nichRand = (-1);
       if (((s as any).nichGalaContractTarasCount ?? 0) > 10) {
@@ -922,7 +925,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 1000) {
+      if (String((s as any).locArgs?.[1] ?? '') === 1000) {
         (s as any).hour = 23;
         (s as any).minut = ((s as any).minut ?? 0) + 180;
         scene.text('In the middle of the night, you wake up from your sleep. You sense somebody is in your room watching you. You look around, but there is nobody to be seen.');

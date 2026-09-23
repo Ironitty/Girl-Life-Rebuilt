@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/park/theater/kinoteatr.jpg');
-  // TODO-QSP: dynamic text: Small cinema in which there is just one small screen. A movie ticket costs ' + $...
+  // TODO-QSP: dynamic text: 'Small cinema in which there is just one small screen. A movie ticket costs ' + ...
   scene.text('Small cinema in which there is just one small screen. A movie ticket costs 100₽.');
   // TODO-QSP: end
   scene.actions([

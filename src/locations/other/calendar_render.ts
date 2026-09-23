@@ -194,7 +194,7 @@ function enterIsTodayBusyAtTimeslot(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_week_start = ((s as any).week_schedule ?? 0)?.['start_daystart'];
   (s as any).temp_days_from_monday = ((s as any).daystart ?? 0) - ((s as any).temp_week_start ?? 0);
   if (((s as any).temp_days_from_monday ?? 0) >= 0  &&  ((s as any).temp_days_from_monday ?? 0) <= 6) {
-    (s as any).result = ((((s as any).week_schedule ?? 0)['days=' + ((s as any).temp_days_from_monday ?? 0) + 1 + ', timeslots=' + ((s as any).temp_check_ts ?? 0) + ', busy_count'] > 0) ? (1) : (0));
+    (s as any).result = ((((s as any).week_schedule ?? 0)['days=' + (((s as any).temp_days_from_monday ?? 0) + 1) + ', timeslots=' + (((s as any).temp_check_ts ?? 0)) + ', busy_count'] > 0) ? (1) : (0));
   }
   return;
   // TODO-QSP: end
@@ -372,7 +372,7 @@ function enterRenderAlldaySection(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</td>'
     (s as any).temp_ad_d = ((s as any).temp_ad_d ?? 0) + ((((s as any).temp_ad_event_colspan ?? 0) - 1));
   } else {
-    if (((s as any).week_schedule ?? 0)['days=' + ((s as any).temp_ad_d ?? 0) + ', allday=' + ((s as any).temp_ad_row ?? 0) + ', continued'] === 1) {
+    if (((s as any).week_schedule ?? 0)['days=' + (((s as any).temp_ad_d ?? 0)) + ', allday=' + (((s as any).temp_ad_row ?? 0)) + ', continued'] === 1) {
     } else {
       (s as any).temp_ad_empty_colspan = 0;
       (s as any).temp_ad_check_day = ((s as any).temp_ad_d ?? 0);

@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('A dirt road leading to the outskirts of Gadukino. You are surrounded by grainfields where the grains appear, reaching all the way to the heavens.');
-  // TODO-QSP: dynamic text: The forest ' + iif(gad_meadow_found = 1, 'and meadow ', '') + 'can be found furt...
+  // TODO-QSP: dynamic text: 'The forest ' + iif(gad_meadow_found = 1, 'and meadow ', '') + 'can be found fur...
   scene.text('The forest ' + ((((s as any).gad_meadow_found ?? 0) === 1) ? ('and meadow ') : ('')) + 'can be found further down the road, away from the village.');
   if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 20  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] > 2)) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mitka/u0027, /u0027/u0027); return false;">Mitka</a> is smoking near the road, he smiles at you as you walk by.');

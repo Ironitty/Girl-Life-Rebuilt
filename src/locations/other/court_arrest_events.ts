@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookingStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shplft'  ||  String((s as any).locArgs?.[1] ?? '') === 'shoplift') {
     qspCall(s, 'court_functions', 'arrest_for', 'shoplift');
     (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
     if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -26,7 +26,7 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'prst'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'prostitution') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'prst'  ||  String((s as any).locArgs?.[1] ?? '') === 'prostitution') {
       qspCall(s, 'court_functions', 'arrest_for', 'prostitution');
       (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
       if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -43,7 +43,7 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'pub_ind'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'public_indecency') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'pub_ind'  ||  String((s as any).locArgs?.[1] ?? '') === 'public_indecency') {
         qspCall(s, 'court_functions', 'arrest_for', 'public_indecency');
         (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
         if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -289,10 +289,10 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
 
 function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'shoplift') {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'easy') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'easy') {
       qspGoto(s, 'court_arrest_events', 'shoplift_easy');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'norm') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'norm') {
         qspGoto(s, 'court_arrest_events', 'shoplift_norm');
       } else {
         qspGoto(s, 'court_arrest_events', 'shoplift_hard');
@@ -300,10 +300,10 @@ function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'prostitution') {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'easy') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'easy') {
         qspGoto(s, 'court_arrest_events', 'prostitution_easy');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'norm') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'norm') {
           qspGoto(s, 'court_arrest_events', 'prostitution_norm');
         } else {
           qspGoto(s, 'court_arrest_events', 'prostitution_hard');
@@ -571,23 +571,23 @@ function enterFirstPublicIndecency(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/police/arrested.jpg');
   if (((s as any).pcs_hotcat ?? 0) >= 7) {
-    // TODO-QSP: dynamic text: "Well, well,"' + ' the officer chuckles to his colleagues as he brings you in. "...
-    scene.text('"Well, well,"\' + \' the officer chuckles to his colleagues as he brings you in. "This one got herself arrested for flashing in the park. At least we know why she thought she could get away with it."');
+    // TODO-QSP: dynamic text: '"Well, well,"' + ' the officer chuckles to his colleagues as he brings you in. ...
+    scene.text('\'"Well, well,"\' + \' the officer chuckles to his colleagues as he brings you in. "This one got herself arrested for flashing in the park. At least we know why she thought she could get away with it."\'');
     scene.text('A few of them grin. You look at the floor as you\'re led further into the station.');
   } else {
     if (((s as any).pcs_hotcat ?? 0) <= 3) {
-      // TODO-QSP: dynamic text: "Brought in for public indecency,"' + ' he announces flatly. "In the park." Some...
-      scene.text('"Brought in for public indecency,"\' + \' he announces flatly. "In the park." Someone snorts. The humiliation is complete.');
+      // TODO-QSP: dynamic text: '"Brought in for public indecency,"' + ' he announces flatly. "In the park." Som...
+      scene.text('\'"Brought in for public indecency,"\' + \' he announces flatly. "In the park." Someone snorts. The humiliation is complete.\'');
       scene.text('You stare at the floor as he leads you further inside.');
     } else {
-      // TODO-QSP: dynamic text: "Caught exposing herself in the park,"' + ' the officer announces, not bothering...
-      scene.text('"Caught exposing herself in the park,"\' + \' the officer announces, not bothering to lower his voice. A few heads turn. "Take a seat over there."');
+      // TODO-QSP: dynamic text: '"Caught exposing herself in the park,"' + ' the officer announces, not botherin...
+      scene.text('\'"Caught exposing herself in the park,"\' + \' the officer announces, not bothering to lower his voice. A few heads turn. "Take a seat over there."\'');
       scene.text('He steers you toward the booking area without ceremony.');
     }
   }
   if (((s as any).flash_police_resist ?? 0) === 1) {
-    // TODO-QSP: dynamic text: "Resisting arrest on top of it,"' + ' the officer adds, almost as an afterthough...
-    scene.text('"Resisting arrest on top of it,"\' + \' the officer adds, almost as an afterthought. A few heads turn.');
+    // TODO-QSP: dynamic text: '"Resisting arrest on top of it,"' + ' the officer adds, almost as an afterthoug...
+    scene.text('\'"Resisting arrest on top of it,"\' + \' the officer adds, almost as an afterthought. A few heads turn.\'');
   }
   // TODO-QSP: end
   scene.actions([
@@ -601,8 +601,8 @@ function enterPublicIndecencyInterrogation(s: GameState, scene: SceneBuilder): v
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/police/interrogation${((s as any).picrand ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: "So,"' + ' the detective says, leaning back in his chair and looking you over wi...
-  scene.text('"So,"\' + \' the detective says, leaning back in his chair and looking you over with unconcealed amusement. "Public indecency. In the park." He lets that hang in the air for a moment. "You want to explain that to me?"');
+  // TODO-QSP: dynamic text: '"So,"' + ' the detective says, leaning back in his chair and looking you over w...
+  scene.text('\'"So,"\' + \' the detective says, leaning back in his chair and looking you over with unconcealed amusement. "Public indecency. In the park." He lets that hang in the air for a moment. "You want to explain that to me?"\'');
   scene.text('You feel the colour rising in your cheeks and stare at the table.');
   // TODO-QSP: end
   scene.actions([
@@ -610,8 +610,8 @@ function enterPublicIndecencyInterrogation(s: GameState, scene: SceneBuilder): v
     qspCall(st, 'stat', '');
     (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
     scene.img(`images/locations/shared/police/interrogation${((st as any).picrand ?? '')}.jpg`);
-    // TODO-QSP: dynamic text: "I''m waiting,"' + ' he says. You take a breath and start talking. He writes thi...
-    scene.text('"I\'m waiting,"\' + \' he says. You take a breath and start talking. He writes things down, occasionally raising an eyebrow but saying nothing until you\'ve finished.');
+    // TODO-QSP: dynamic text: '"I''m waiting,"' + ' he says. You take a breath and start talking. He writes th...
+    scene.text('\'"I\'m waiting,"\' + \' he says. You take a breath and start talking. He writes things down, occasionally raising an eyebrow but saying nothing until you\'ve finished.\'');
     // TODO-QSP: dynamic text: "Okay. That''s all I need. You''ll see the judge and he''ll decide what to do wi...
     scene.text(`"Okay. That's all I need. You'll see the judge and he'll decide what to do with you." He closes the folder and stands. "Don't make a habit of this, ${((st as any).pcs_firstname ?? '')}."`);
     if (((st as any).flash_police_resist ?? 0) === 1) {

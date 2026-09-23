@@ -35,7 +35,7 @@ function enterToysPaddle(s: GameState, scene: SceneBuilder): void {
     (st as any).BDSM_Knowledge = ((st as any).BDSM_Knowledge ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     scene.text('"Not necessarily. I\'m "quite open" to both when it comes to BDSM, hehehe. I don\'t mind if you want to try the paddle on your own butt and if you prefer to try it on a test subject, look no further."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterToysPaddleOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterToysPaddleOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

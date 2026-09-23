@@ -28,7 +28,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/community/chess/play' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/chess/play'...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/chess/play` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You spend the next hour practicing against the other players with the coach walking around and stopping to help out or point things out. You learn a little every time. You also discuss the various chess openings and which ones are the best, which can often get lively.');
     scene.actions([
       { label: 'Return', goto: ['kruchess', ''] },
@@ -59,40 +60,40 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('On Saturdays, after a week\'s training, club members spend the whole day playing against each other.');
       if (((s as any).chess_win ?? 0) < 5) {
-        // TODO-QSP: dynamic text: You have beaten Vitalik '+str(chess_win)+' times.
+        // TODO-QSP: dynamic text: 'You have beaten Vitalik '+str(chess_win)+' times.'
         scene.text('You have beaten Vitalik ' + String(((s as any).chess_win ?? '')) + ' times.');
       } else {
         if (((s as any).chess_win ?? 0) >= 5  &&  ((s as any).chess_win ?? 0) < 10) {
           scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
-          // TODO-QSP: dynamic text: You have beaten Kostya '+str(chess_win-5)+' times.
-          scene.text('You have beaten Kostya \'+str(chess_win-5)+\' times.');
+          // TODO-QSP: dynamic text: 'You have beaten Kostya '+str(chess_win-5)+' times.'
+          scene.text('You have beaten Kostya ' + String(((s as any).chess_win ?? '')-5) + ' times.');
         } else {
           if (((s as any).chess_win ?? 0) >= 10  &&  ((s as any).chess_win ?? 0) < 15) {
             scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
             scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
-            // TODO-QSP: dynamic text: You have beaten Sergei '+str(chess_win-10)+' times.
-            scene.text('You have beaten Sergei \'+str(chess_win-10)+\' times.');
+            // TODO-QSP: dynamic text: 'You have beaten Sergei '+str(chess_win-10)+' times.'
+            scene.text('You have beaten Sergei ' + String(((s as any).chess_win ?? '')-10) + ' times.');
           } else {
             if (((s as any).chess_win ?? 0) >= 15  &&  ((s as any).chess_win ?? 0) < 20) {
               scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
               scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
               scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
-              // TODO-QSP: dynamic text: You have beaten Coach Genrikh '+str(chess_win-15)+' times.
-              scene.text('You have beaten Coach Genrikh \'+str(chess_win-15)+\' times.');
+              // TODO-QSP: dynamic text: 'You have beaten Coach Genrikh '+str(chess_win-15)+' times.'
+              scene.text('You have beaten Coach Genrikh ' + String(((s as any).chess_win ?? '')-15) + ' times.');
             } else {
               if (((s as any).chess_win ?? 0) >= 20) {
                 scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
                 scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
                 scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
                 scene.text('You have beaten Coach Genrikh 5 times. You cannot play against him anymore.');
-                // TODO-QSP: dynamic text: You have beaten Evgeny Kuznetsov '+str(chess_win-20)+' times. He is the only opp...
-                scene.text('You have beaten Evgeny Kuznetsov \'+str(chess_win-20)+\' times. He is the only opponent left you can challenge.');
+                // TODO-QSP: dynamic text: 'You have beaten Evgeny Kuznetsov '+str(chess_win-20)+' times. He is the only op...
+                scene.text('You have beaten Evgeny Kuznetsov ' + String(((s as any).chess_win ?? '')-20) + ' times. He is the only opponent left you can challenge.');
               }
             }
           }
         }
       }
-      // TODO-QSP: dynamic text: You have won a total of '+str(chess_win)+' chess matches.
+      // TODO-QSP: dynamic text: 'You have won a total of '+str(chess_win)+' chess matches.'
       scene.text('You have won a total of ' + String(((s as any).chess_win ?? '')) + ' chess matches.');
       if (((s as any).chess_win ?? 0) < 5) {
         // TODO-QSP: dynamic text: You are paired against Vitalik, the youngest boy in the club. Despite his age he...

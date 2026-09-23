@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nightclub</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/club.jpg');
   scene.text('The entrance area of the club is full of younger looking people. The entrance itself is watched over by a very large man wearing a shirt that says \'Security\'. He\'s checking everyone and ensuring that they pay to enter.');
-  // TODO-QSP: dynamic text: The entry fee is ' + $func('money', 'string_price', 250) + '.
+  // TODO-QSP: dynamic text: 'The entry fee is ' + $func('money', 'string_price', 250) + '.'
   scene.text('The entry fee is 250₽.');
   if (((s as any).clubwork ?? 0) === 1) {
     scene.actions([
@@ -144,9 +144,9 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     scene.actions([
 { label: 'Hear him out', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
-    // TODO-QSP: dynamic text: "The club opens at '+func('time', 'get_time_string', 18, 0)+'. You can work for ...
+    // TODO-QSP: dynamic text: '"The club opens at '+func('time', 'get_time_string', 18, 0)+'. You can work for...
     scene.text('"The club opens at 18:00. You can work for an hour at a time, up to 1:00. The jobs will vary, according to time and demand. It includes finding customers to bring to the club, promoting drinks, and some dancing."');
-    // TODO-QSP: dynamic text: "Your pay will depend on results: get more people in and get them buying up the ...
+    // TODO-QSP: dynamic text: '"Your pay will depend on results: get more people in and get them buying up the...
     scene.text('"Your pay will depend on results: get more people in and get them buying up the promotional drinks, or if you dance well, and you\'ll get \' + $func(\'money\', \'string_profit\', 200) + \'. Do worse, you get less. Do very well, you get a bonus. When you finish, you can stay in the club, so you get free entry as well."');
     scene.text('"So, are you interested?"');
     scene.actions([
@@ -1009,16 +1009,16 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     if (((st as any).pcs_apprnc ?? 0) > (Math.floor(Math.random() * 41) + 80)) {
       qspCall(st, 'money', 'earn', 300);
-      // TODO-QSP: dynamic text: You exceeded Erik''s expectations and found a lot of customers. He pays you ' + ...
+      // TODO-QSP: dynamic text: 'You exceeded Erik''s expectations and found a lot of customers. He pays you ' +...
       scene.text('You exceeded Erik\'s expectations and found a lot of customers. He pays you \' + $func(\'money\', \'string_profit\', 300) + \'.');
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         qspCall(st, 'money', 'earn', 200);
-        // TODO-QSP: dynamic text: Erik seems fairly happy and pays you ' + $func('money', 'string_profit', 200) + ...
+        // TODO-QSP: dynamic text: 'Erik seems fairly happy and pays you ' + $func('money', 'string_profit', 200) +...
         scene.text('Erik seems fairly happy and pays you \' + $func(\'money\', \'string_profit\', 200) + \'.');
       } else {
         qspCall(st, 'money', 'earn', 100);
-        // TODO-QSP: dynamic text: You hardly found anyone. Erik doesn''t seem happy, but he pays you ' + $func('mo...
+        // TODO-QSP: dynamic text: 'You hardly found anyone. Erik doesn''t seem happy, but he pays you ' + $func('m...
         scene.text('You hardly found anyone. Erik doesn\'t seem happy, but he pays you \' + $func(\'money\', \'string_profit\', 100) + \' for your efforts.');
       }
     }
@@ -1050,7 +1050,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 200);
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
-    // TODO-QSP: dynamic text: You hand Erik the empty bottles and he gives you ' + $func('money', 'string_prof...
+    // TODO-QSP: dynamic text: 'You hand Erik the empty bottles and he gives you ' + $func('money', 'string_pro...
     scene.text('You hand Erik the empty bottles and he gives you \' + $func(\'money\', \'string_profit\', 200) + \'.');
     if (((st as any).hour ?? 0) < 1  ||  ((st as any).hour ?? 0) >= 18) {
       scene.actions([
@@ -1078,12 +1078,12 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_danc ?? 0) > (Math.floor(Math.random() * 71) + 30)) {
       qspCall(st, 'money', 'earn', 300);
       scene.text('You put on a great show, getting a lot of attention and drawing people up to dance.');
-      // TODO-QSP: dynamic text: Erik is very happy and pays you ' + $func('money', 'string_profit', 300) + '.
+      // TODO-QSP: dynamic text: 'Erik is very happy and pays you ' + $func('money', 'string_profit', 300) + '.'
       scene.text('Erik is very happy and pays you \' + $func(\'money\', \'string_profit\', 300) + \'.');
     } else {
       qspCall(st, 'money', 'earn', 200);
       scene.text('You try hard, but you\'re mostly ignored by the customers.');
-      // TODO-QSP: dynamic text: Erik thanks you for helping and pays you ' + $func('money', 'string_profit', 200...
+      // TODO-QSP: dynamic text: 'Erik thanks you for helping and pays you ' + $func('money', 'string_profit', 20...
       scene.text('Erik thanks you for helping and pays you \' + $func(\'money\', \'string_profit\', 200) + \', but doesn\'t mention your dancing.');
     }
     qspCall(st, 'stat', '');

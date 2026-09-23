@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Reassure Vitek', handler: (st: GameState) => {
-    qspCall(st, 'exp_gain', 'chrsm', 0);
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * (((st as any).will_cost ?? 0) - 0 + 1)) + (0)));
     qspCall(st, 'willpower', 'pay', 'force');
     (st as any).artemVitokQW = 1;
     qspCall(st, 'stat', '');

@@ -20,31 +20,31 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).pregChem ?? 0);
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) < 2184) {
+  if (String((s as any).locArgs?.[3] ?? '') < 2184) {
     (s as any).result = 0;
   } else {
-    if (Number((s as any).locArgs?.[3] ?? 0) < 2688) {
+    if (String((s as any).locArgs?.[3] ?? '') < 2688) {
       (s as any).result = 1000;
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) < 3192) {
+      if (String((s as any).locArgs?.[3] ?? '') < 3192) {
         (s as any).result = 2000;
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) < 3696) {
+        if (String((s as any).locArgs?.[3] ?? '') < 3696) {
           (s as any).result = 3000;
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) < 4200) {
+          if (String((s as any).locArgs?.[3] ?? '') < 4200) {
             (s as any).result = 4000;
           } else {
-            if (Number((s as any).locArgs?.[3] ?? 0) < 4704) {
+            if (String((s as any).locArgs?.[3] ?? '') < 4704) {
               (s as any).result = 5000;
             } else {
-              if (Number((s as any).locArgs?.[3] ?? 0) < 5208) {
+              if (String((s as any).locArgs?.[3] ?? '') < 5208) {
                 (s as any).result = 6000;
               } else {
-                if (Number((s as any).locArgs?.[3] ?? 0) < 5712) {
+                if (String((s as any).locArgs?.[3] ?? '') < 5712) {
                   (s as any).result = 7000;
                 } else {
-                  if (Number((s as any).locArgs?.[3] ?? 0) < 6216) {
+                  if (String((s as any).locArgs?.[3] ?? '') < 6216) {
                     (s as any).result = 8000;
                   } else {
                     (s as any).result = 9000;
@@ -57,28 +57,28 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 16) {
+  if (String((s as any).locArgs?.[1] ?? '') < 16) {
     (s as any).result = ((s as any).result ?? 0) + (0);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) < 19) {
+    if (String((s as any).locArgs?.[1] ?? '') < 19) {
       (s as any).result = ((s as any).result ?? 0) + (100);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) < 22) {
+      if (String((s as any).locArgs?.[1] ?? '') < 22) {
         (s as any).result = ((s as any).result ?? 0) + (200);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) < 25) {
+        if (String((s as any).locArgs?.[1] ?? '') < 25) {
           (s as any).result = ((s as any).result ?? 0) + (300);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) < 30) {
+          if (String((s as any).locArgs?.[1] ?? '') < 30) {
             (s as any).result = ((s as any).result ?? 0) + (400);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) < 35) {
+            if (String((s as any).locArgs?.[1] ?? '') < 35) {
               (s as any).result = ((s as any).result ?? 0) + (500);
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) < 40) {
+              if (String((s as any).locArgs?.[1] ?? '') < 40) {
                 (s as any).result = ((s as any).result ?? 0) + (600);
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) < 45) {
+                if (String((s as any).locArgs?.[1] ?? '') < 45) {
                   (s as any).result = ((s as any).result ?? 0) + (700);
                 } else {
                   (s as any).result = ((s as any).result ?? 0) + (800);
@@ -90,55 +90,55 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) <= 5) {
+  if (String((s as any).locArgs?.[2] ?? '') <= 5) {
     (s as any).result = ((s as any).result ?? 0) + (0);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) <= 10) {
+    if (String((s as any).locArgs?.[2] ?? '') <= 10) {
       (s as any).result = ((s as any).result ?? 0) + (1);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) <= 15) {
+      if (String((s as any).locArgs?.[2] ?? '') <= 15) {
         (s as any).result = ((s as any).result ?? 0) + (2);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) <= 25) {
+        if (String((s as any).locArgs?.[2] ?? '') <= 25) {
           (s as any).result = ((s as any).result ?? 0) + (3);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) <= 35) {
+          if (String((s as any).locArgs?.[2] ?? '') <= 35) {
             (s as any).result = ((s as any).result ?? 0) + (4);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) <= 50) {
+            if (String((s as any).locArgs?.[2] ?? '') <= 50) {
               (s as any).result = ((s as any).result ?? 0) + (5);
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) <= 70) {
+              if (String((s as any).locArgs?.[2] ?? '') <= 70) {
                 (s as any).result = ((s as any).result ?? 0) + (6);
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) <= 100) {
+                if (String((s as any).locArgs?.[2] ?? '') <= 100) {
                   (s as any).result = ((s as any).result ?? 0) + (7);
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) <= 110) {
+                  if (String((s as any).locArgs?.[2] ?? '') <= 110) {
                     (s as any).result = ((s as any).result ?? 0) + (8);
                   } else {
-                    if (Number((s as any).locArgs?.[2] ?? 0) <= 120) {
+                    if (String((s as any).locArgs?.[2] ?? '') <= 120) {
                       (s as any).result = ((s as any).result ?? 0) + (9);
                     } else {
-                      if (Number((s as any).locArgs?.[2] ?? 0) <= 130) {
+                      if (String((s as any).locArgs?.[2] ?? '') <= 130) {
                         (s as any).result = ((s as any).result ?? 0) + (10);
                       } else {
-                        if (Number((s as any).locArgs?.[2] ?? 0) <= 140) {
+                        if (String((s as any).locArgs?.[2] ?? '') <= 140) {
                           (s as any).result = ((s as any).result ?? 0) + (11);
                         } else {
-                          if (Number((s as any).locArgs?.[2] ?? 0) <= 150) {
+                          if (String((s as any).locArgs?.[2] ?? '') <= 150) {
                             (s as any).result = ((s as any).result ?? 0) + (12);
                           } else {
-                            if (Number((s as any).locArgs?.[2] ?? 0) <= 160) {
+                            if (String((s as any).locArgs?.[2] ?? '') <= 160) {
                               (s as any).result = ((s as any).result ?? 0) + (13);
                             } else {
-                              if (Number((s as any).locArgs?.[2] ?? 0) <= 170) {
+                              if (String((s as any).locArgs?.[2] ?? '') <= 170) {
                                 (s as any).result = ((s as any).result ?? 0) + (14);
                               } else {
-                                if (Number((s as any).locArgs?.[2] ?? 0) <= 180) {
+                                if (String((s as any).locArgs?.[2] ?? '') <= 180) {
                                   (s as any).result = ((s as any).result ?? 0) + (15);
                                 } else {
-                                  if (Number((s as any).locArgs?.[2] ?? 0) <= 190) {
+                                  if (String((s as any).locArgs?.[2] ?? '') <= 190) {
                                     (s as any).result = ((s as any).result ?? 0) + (16);
                                   } else {
                                     (s as any).result = ((s as any).result ?? 0) + (17);
@@ -164,97 +164,97 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyImgTotals(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = 2;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
+    if (String((s as any).locArgs?.[1] ?? '') === 6) {
       (s as any).result = 2;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 100) {
+      if (String((s as any).locArgs?.[1] ?? '') === 100) {
         (s as any).result = 4;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 106) {
+        if (String((s as any).locArgs?.[1] ?? '') === 106) {
           (s as any).result = 3;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 200) {
+          if (String((s as any).locArgs?.[1] ?? '') === 200) {
             (s as any).result = 2;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 206) {
+            if (String((s as any).locArgs?.[1] ?? '') === 206) {
               (s as any).result = 4;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 207) {
+              if (String((s as any).locArgs?.[1] ?? '') === 207) {
                 (s as any).result = 3;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 208) {
+                if (String((s as any).locArgs?.[1] ?? '') === 208) {
                   (s as any).result = 1;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 210) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 210) {
                     (s as any).result = 1;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 213) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 213) {
                       (s as any).result = 1;
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 215) {
+                      if (String((s as any).locArgs?.[1] ?? '') === 215) {
                         (s as any).result = 1;
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 300) {
+                        if (String((s as any).locArgs?.[1] ?? '') === 300) {
                           (s as any).result = 3;
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 306) {
+                          if (String((s as any).locArgs?.[1] ?? '') === 306) {
                             (s as any).result = 3;
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 307) {
+                            if (String((s as any).locArgs?.[1] ?? '') === 307) {
                               (s as any).result = 1;
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) === 308) {
+                              if (String((s as any).locArgs?.[1] ?? '') === 308) {
                                 (s as any).result = 1;
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) === 400) {
+                                if (String((s as any).locArgs?.[1] ?? '') === 400) {
                                   (s as any).result = 2;
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) === 406) {
+                                  if (String((s as any).locArgs?.[1] ?? '') === 406) {
                                     (s as any).result = 2;
                                   } else {
-                                    if (Number((s as any).locArgs?.[1] ?? 0) === 500) {
+                                    if (String((s as any).locArgs?.[1] ?? '') === 500) {
                                       (s as any).result = 3;
                                     } else {
-                                      if (Number((s as any).locArgs?.[1] ?? 0) === 506) {
+                                      if (String((s as any).locArgs?.[1] ?? '') === 506) {
                                         (s as any).result = 2;
                                       } else {
-                                        if (Number((s as any).locArgs?.[1] ?? 0) === 600) {
+                                        if (String((s as any).locArgs?.[1] ?? '') === 600) {
                                           (s as any).result = 1;
                                         } else {
-                                          if (Number((s as any).locArgs?.[1] ?? 0) === 700) {
+                                          if (String((s as any).locArgs?.[1] ?? '') === 700) {
                                             (s as any).result = 2;
                                           } else {
-                                            if (Number((s as any).locArgs?.[1] ?? 0) === 800) {
+                                            if (String((s as any).locArgs?.[1] ?? '') === 800) {
                                               (s as any).result = 1;
                                             } else {
-                                              if (Number((s as any).locArgs?.[1] ?? 0) === 1000) {
+                                              if (String((s as any).locArgs?.[1] ?? '') === 1000) {
                                                 (s as any).result = 1;
                                               } else {
-                                                if (Number((s as any).locArgs?.[1] ?? 0) === 2000) {
+                                                if (String((s as any).locArgs?.[1] ?? '') === 2000) {
                                                   (s as any).result = 1;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[1] ?? 0) === 3000) {
+                                                  if (String((s as any).locArgs?.[1] ?? '') === 3000) {
                                                     (s as any).result = 1;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[1] ?? 0) === 4000) {
+                                                    if (String((s as any).locArgs?.[1] ?? '') === 4000) {
                                                       (s as any).result = 1;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[1] ?? 0) === 5000) {
+                                                      if (String((s as any).locArgs?.[1] ?? '') === 5000) {
                                                         (s as any).result = 1;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[1] ?? 0) === 6000) {
+                                                        if (String((s as any).locArgs?.[1] ?? '') === 6000) {
                                                           (s as any).result = 1;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[1] ?? 0) === 7000) {
+                                                          if (String((s as any).locArgs?.[1] ?? '') === 7000) {
                                                             (s as any).result = 1;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[1] ?? 0) === 8000) {
+                                                            if (String((s as any).locArgs?.[1] ?? '') === 8000) {
                                                               (s as any).result = 1;
                                                             } else {
-                                                              if (Number((s as any).locArgs?.[1] ?? 0) === 9000) {
+                                                              if (String((s as any).locArgs?.[1] ?? '') === 9000) {
                                                                 (s as any).result = 1;
                                                               }
                                                             }
@@ -292,106 +292,106 @@ function enterBodyImgTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) < 6) {
+  if (String((s as any).locArgs?.[1] ?? '') < 6) {
     (s as any).result = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) < 100) {
+    if (String((s as any).locArgs?.[1] ?? '') < 100) {
       (s as any).result = 6;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) < 106) {
+      if (String((s as any).locArgs?.[1] ?? '') < 106) {
         (s as any).result = 100;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) < 200) {
+        if (String((s as any).locArgs?.[1] ?? '') < 200) {
           (s as any).result = 106;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) < 206) {
+          if (String((s as any).locArgs?.[1] ?? '') < 206) {
             (s as any).result = 200;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 206) {
+            if (String((s as any).locArgs?.[1] ?? '') === 206) {
               (s as any).result = 206;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 207) {
+              if (String((s as any).locArgs?.[1] ?? '') === 207) {
                 (s as any).result = 207;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) < 210) {
+                if (String((s as any).locArgs?.[1] ?? '') < 210) {
                   (s as any).result = 208;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) < 213) {
+                  if (String((s as any).locArgs?.[1] ?? '') < 213) {
                     (s as any).result = 210;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) < 215) {
+                    if (String((s as any).locArgs?.[1] ?? '') < 215) {
                       (s as any).result = 213;
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) < 300) {
+                      if (String((s as any).locArgs?.[1] ?? '') < 300) {
                         (s as any).result = 215;
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) < 306) {
+                        if (String((s as any).locArgs?.[1] ?? '') < 306) {
                           (s as any).result = 300;
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 306) {
+                          if (String((s as any).locArgs?.[1] ?? '') === 306) {
                             (s as any).result = 306;
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 307) {
+                            if (String((s as any).locArgs?.[1] ?? '') === 307) {
                               (s as any).result = 307;
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) < 310) {
+                              if (String((s as any).locArgs?.[1] ?? '') < 310) {
                                 (s as any).result = 308;
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) < 313) {
+                                if (String((s as any).locArgs?.[1] ?? '') < 313) {
                                   (s as any).result = 210;
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) < 315) {
+                                  if (String((s as any).locArgs?.[1] ?? '') < 315) {
                                     (s as any).result = 213;
                                   } else {
-                                    if (Number((s as any).locArgs?.[1] ?? 0) < 400) {
+                                    if (String((s as any).locArgs?.[1] ?? '') < 400) {
                                       (s as any).result = 215;
                                     } else {
-                                      if (Number((s as any).locArgs?.[1] ?? 0) < 406) {
+                                      if (String((s as any).locArgs?.[1] ?? '') < 406) {
                                         (s as any).result = 400;
                                       } else {
-                                        if (Number((s as any).locArgs?.[1] ?? 0) < 500) {
+                                        if (String((s as any).locArgs?.[1] ?? '') < 500) {
                                           (s as any).result = 406;
                                         } else {
-                                          if (Number((s as any).locArgs?.[1] ?? 0) < 506) {
+                                          if (String((s as any).locArgs?.[1] ?? '') < 506) {
                                             (s as any).result = 500;
                                           } else {
-                                            if (Number((s as any).locArgs?.[1] ?? 0) < 600) {
+                                            if (String((s as any).locArgs?.[1] ?? '') < 600) {
                                               (s as any).result = 506;
                                             } else {
-                                              if (Number((s as any).locArgs?.[1] ?? 0) < 700) {
+                                              if (String((s as any).locArgs?.[1] ?? '') < 700) {
                                                 (s as any).result = 600;
                                               } else {
-                                                if (Number((s as any).locArgs?.[1] ?? 0) < 800) {
+                                                if (String((s as any).locArgs?.[1] ?? '') < 800) {
                                                   (s as any).result = 700;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[1] ?? 0) < 1000) {
+                                                  if (String((s as any).locArgs?.[1] ?? '') < 1000) {
                                                     (s as any).result = 800;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[1] ?? 0) < 2000) {
+                                                    if (String((s as any).locArgs?.[1] ?? '') < 2000) {
                                                       (s as any).result = 1000;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[1] ?? 0) < 3000) {
+                                                      if (String((s as any).locArgs?.[1] ?? '') < 3000) {
                                                         (s as any).result = 2000;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[1] ?? 0) < 4000) {
+                                                        if (String((s as any).locArgs?.[1] ?? '') < 4000) {
                                                           (s as any).result = 3000;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[1] ?? 0) < 5000) {
+                                                          if (String((s as any).locArgs?.[1] ?? '') < 5000) {
                                                             (s as any).result = 4000;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[1] ?? 0) < 6000) {
+                                                            if (String((s as any).locArgs?.[1] ?? '') < 6000) {
                                                               (s as any).result = 5000;
                                                             } else {
-                                                              if (Number((s as any).locArgs?.[1] ?? 0) < 7000) {
+                                                              if (String((s as any).locArgs?.[1] ?? '') < 7000) {
                                                                 (s as any).result = 6000;
                                                               } else {
-                                                                if (Number((s as any).locArgs?.[1] ?? 0) < 8000) {
+                                                                if (String((s as any).locArgs?.[1] ?? '') < 8000) {
                                                                   (s as any).result = 7000;
                                                                 } else {
-                                                                  if (Number((s as any).locArgs?.[1] ?? 0) < 9000) {
+                                                                  if (String((s as any).locArgs?.[1] ?? '') < 9000) {
                                                                     (s as any).result = 8000;
                                                                   } else {
-                                                                    if (Number((s as any).locArgs?.[1] ?? 0) < 10000) {
+                                                                    if (String((s as any).locArgs?.[1] ?? '') < 10000) {
                                                                       (s as any).result = 9000;
                                                                     }
                                                                   }
@@ -432,7 +432,7 @@ function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultSetClassTransform(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) >= 1000) {
+  if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
     (s as any).result = ((s as any).locArgs?.[1] ?? 0);
     return;
   }
@@ -484,33 +484,33 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[1] = qspFunc(s, 'body_structure', 'Body_img_transform', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = qspFunc(s, 'body_structure', 'body_img_path_from_class', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: $result += '/'
-  if (Number((s as any).locArgs?.[1] ?? 0) >= 1000) {
+  if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
     // TODO-QSP: $result += '0/'
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1000) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1000) {
       // TODO-QSP: $result += '0'
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2000) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2000) {
         // TODO-QSP: $result += '1'
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 3000) {
+        if (String((s as any).locArgs?.[1] ?? '') === 3000) {
           // TODO-QSP: $result += '2'
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 4000) {
+          if (String((s as any).locArgs?.[1] ?? '') === 4000) {
             // TODO-QSP: $result += '3'
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 5000) {
+            if (String((s as any).locArgs?.[1] ?? '') === 5000) {
               // TODO-QSP: $result += '4'
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 6000) {
+              if (String((s as any).locArgs?.[1] ?? '') === 6000) {
                 // TODO-QSP: $result += '5'
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 7000) {
+                if (String((s as any).locArgs?.[1] ?? '') === 7000) {
                   // TODO-QSP: $result += '6'
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 8000) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 8000) {
                     // TODO-QSP: $result += '7'
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 9000) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 9000) {
                       // TODO-QSP: $result += '8'
                     }
                   }
@@ -525,55 +525,55 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
     return;
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (((s as any).locArgs?.[1] ?? 0) % 100);
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: $result += '0_low_'
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       // TODO-QSP: $result += '1_???_'
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         // TODO-QSP: $result += '2_???_'
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[2] ?? '') === 3) {
           // TODO-QSP: $result += '3_???_'
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[2] ?? '') === 4) {
             // TODO-QSP: $result += '4_???_'
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 5) {
+            if (String((s as any).locArgs?.[2] ?? '') === 5) {
               // TODO-QSP: $result += '5_???_'
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 6) {
+              if (String((s as any).locArgs?.[2] ?? '') === 6) {
                 // TODO-QSP: $result += '6_mid_'
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 7) {
+                if (String((s as any).locArgs?.[2] ?? '') === 7) {
                   // TODO-QSP: $result += '7_high_'
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) === 8) {
+                  if (String((s as any).locArgs?.[2] ?? '') === 8) {
                     // TODO-QSP: $result += '8_strong_'
                   } else {
-                    if (Number((s as any).locArgs?.[2] ?? 0) === 9) {
+                    if (String((s as any).locArgs?.[2] ?? '') === 9) {
                       // TODO-QSP: $result += '9_???_'
                     } else {
-                      if (Number((s as any).locArgs?.[2] ?? 0) === 10) {
+                      if (String((s as any).locArgs?.[2] ?? '') === 10) {
                         // TODO-QSP: $result += '10_vstrong_'
                       } else {
-                        if (Number((s as any).locArgs?.[2] ?? 0) === 11) {
+                        if (String((s as any).locArgs?.[2] ?? '') === 11) {
                           // TODO-QSP: $result += '11_???_'
                         } else {
-                          if (Number((s as any).locArgs?.[2] ?? 0) === 12) {
+                          if (String((s as any).locArgs?.[2] ?? '') === 12) {
                             // TODO-QSP: $result += '12_???_'
                           } else {
-                            if (Number((s as any).locArgs?.[2] ?? 0) === 13) {
+                            if (String((s as any).locArgs?.[2] ?? '') === 13) {
                               // TODO-QSP: $result += '13_bbuilder_'
                             } else {
-                              if (Number((s as any).locArgs?.[2] ?? 0) === 14) {
+                              if (String((s as any).locArgs?.[2] ?? '') === 14) {
                                 // TODO-QSP: $result += '14_???_'
                               } else {
-                                if (Number((s as any).locArgs?.[2] ?? 0) === 15) {
+                                if (String((s as any).locArgs?.[2] ?? '') === 15) {
                                   // TODO-QSP: $result += '15_hulk_'
                                 } else {
-                                  if (Number((s as any).locArgs?.[2] ?? 0) === 16) {
+                                  if (String((s as any).locArgs?.[2] ?? '') === 16) {
                                     // TODO-QSP: $result += '16_???_'
                                   } else {
                                     // TODO-QSP: $result += '17_???_'
@@ -598,10 +598,10 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
     (s as any).temp_img_chosen = (Math.floor(Math.random() * (((s as any).temp_img_totals ?? 0)-1 - 0 + 1)) + (0));
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) < 0) {
+    if (String((s as any).locArgs?.[2] ?? '') < 0) {
       (s as any).temp_img_chosen = 0;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) < ((s as any).temp_img_totals ?? 0)) {
+      if (String((s as any).locArgs?.[2] ?? '') < ((s as any).temp_img_totals ?? 0)) {
         (s as any).temp_img_chosen = ((s as any).locArgs?.[2] ?? 0);
       } else {
         (s as any).temp_img_chosen = ((s as any).temp_img_totals ?? 0) - 1;
@@ -615,31 +615,31 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
 
 function enterBodyImgPathFromClass(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).DEFAULT_PATH ?? 0) + '/';
-  if (Number((s as any).locArgs?.[1] ?? 0) < 100) {
+  if (String((s as any).locArgs?.[1] ?? '') < 100) {
     // TODO-QSP: $result += '0_starving'
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) < 200) {
+    if (String((s as any).locArgs?.[1] ?? '') < 200) {
       // TODO-QSP: $result += '1_underweight'
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) < 300) {
+      if (String((s as any).locArgs?.[1] ?? '') < 300) {
         // TODO-QSP: $result += '2_slender'
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) < 400) {
+        if (String((s as any).locArgs?.[1] ?? '') < 400) {
           // TODO-QSP: $result += '3_healthy'
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) < 500) {
+          if (String((s as any).locArgs?.[1] ?? '') < 500) {
             // TODO-QSP: $result += '4_overweight'
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) < 600) {
+            if (String((s as any).locArgs?.[1] ?? '') < 600) {
               // TODO-QSP: $result += '5_modobese'
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) < 700) {
+              if (String((s as any).locArgs?.[1] ?? '') < 700) {
                 // TODO-QSP: $result += '6_sevobese'
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) < 800) {
+                if (String((s as any).locArgs?.[1] ?? '') < 800) {
                   // TODO-QSP: $result += '7_vsevobese'
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) < 1000) {
+                  if (String((s as any).locArgs?.[1] ?? '') < 1000) {
                     // TODO-QSP: $result += '8_morobese'
                   } else {
                     // TODO-QSP: $result += 'preg'
@@ -657,11 +657,11 @@ function enterBodyImgPathFromClass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) >= 1000) {
+  if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
     (s as any).result = qspFunc(s, 'body_structure', 'body_img_from_class', ((s as any).locArgs?.[1] ?? 0));
     return;
   }
-  if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
+  if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).locArgs?.[1] ?? 0) / 100;
     (s as any).temp_img_name = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_img_<<ARGS[1]>>']", { location: "body_structure" });
     (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
@@ -675,7 +675,7 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
     }
     // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
-    if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_path_' + ((s as any).cbi_class ?? 0)] !== '') {
+    if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_path_' + (((s as any).cbi_class ?? 0))] !== '') {
       // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_path_<<$cbi_class>>']
     }
   }
@@ -713,79 +713,79 @@ function enterBodyDesc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyDescFromClass(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) <= 17) {
+  if (String((s as any).locArgs?.[1] ?? '') <= 17) {
     (s as any).result = 'starving';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) <= 105) {
+    if (String((s as any).locArgs?.[1] ?? '') <= 105) {
       (s as any).result = 'underweight';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) <= 107) {
+      if (String((s as any).locArgs?.[1] ?? '') <= 107) {
         (s as any).result = 'slight';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) <= 117) {
+        if (String((s as any).locArgs?.[1] ?? '') <= 117) {
           (s as any).result = 'wiry';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) <= 205) {
+          if (String((s as any).locArgs?.[1] ?? '') <= 205) {
             (s as any).result = 'slender';
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) <= 207) {
+            if (String((s as any).locArgs?.[1] ?? '') <= 207) {
               (s as any).result = 'skinny';
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) <= 217) {
+              if (String((s as any).locArgs?.[1] ?? '') <= 217) {
                 (s as any).result = 'lean';
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) <= 305) {
+                if (String((s as any).locArgs?.[1] ?? '') <= 305) {
                   (s as any).result = 'healthy';
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) <= 307) {
+                  if (String((s as any).locArgs?.[1] ?? '') <= 307) {
                     (s as any).result = 'toned';
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) <= 317) {
+                    if (String((s as any).locArgs?.[1] ?? '') <= 317) {
                       (s as any).result = 'ripped';
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) <= 405) {
+                      if (String((s as any).locArgs?.[1] ?? '') <= 405) {
                         (s as any).result = 'overweight';
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) <= 407) {
+                        if (String((s as any).locArgs?.[1] ?? '') <= 407) {
                           (s as any).result = 'curvy';
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) <= 417) {
+                          if (String((s as any).locArgs?.[1] ?? '') <= 417) {
                             (s as any).result = 'heavy set';
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) <= 517) {
+                            if (String((s as any).locArgs?.[1] ?? '') <= 517) {
                               (s as any).result = 'very overweight';
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) <= 617) {
+                              if (String((s as any).locArgs?.[1] ?? '') <= 617) {
                                 (s as any).result = 'moderately obese';
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) <= 717) {
+                                if (String((s as any).locArgs?.[1] ?? '') <= 717) {
                                   (s as any).result = 'severely obese';
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) < 1000) {
+                                  if (String((s as any).locArgs?.[1] ?? '') < 1000) {
                                     (s as any).result = 'morbidly obese';
                                   } else {
-                                    if (Number((s as any).locArgs?.[1] ?? 0) < 2000) {
+                                    if (String((s as any).locArgs?.[1] ?? '') < 2000) {
                                       (s as any).result = 'pregnant, but not showing';
                                     } else {
-                                      if (Number((s as any).locArgs?.[1] ?? 0) < 3000) {
+                                      if (String((s as any).locArgs?.[1] ?? '') < 3000) {
                                         (s as any).result = 'glowing';
                                       } else {
-                                        if (Number((s as any).locArgs?.[1] ?? 0) < 4000) {
+                                        if (String((s as any).locArgs?.[1] ?? '') < 4000) {
                                           (s as any).result = 'starting to show';
                                         } else {
-                                          if (Number((s as any).locArgs?.[1] ?? 0) < 5000) {
+                                          if (String((s as any).locArgs?.[1] ?? '') < 5000) {
                                             (s as any).result = 'clearly showing';
                                           } else {
-                                            if (Number((s as any).locArgs?.[1] ?? 0) < 6000) {
+                                            if (String((s as any).locArgs?.[1] ?? '') < 6000) {
                                               (s as any).result = 'fairly pregnant';
                                             } else {
-                                              if (Number((s as any).locArgs?.[1] ?? 0) < 7000) {
+                                              if (String((s as any).locArgs?.[1] ?? '') < 7000) {
                                                 (s as any).result = 'quite pregnant';
                                               } else {
-                                                if (Number((s as any).locArgs?.[1] ?? 0) < 8000) {
+                                                if (String((s as any).locArgs?.[1] ?? '') < 8000) {
                                                   (s as any).result = 'very pregnant';
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[1] ?? 0) < 9000) {
+                                                  if (String((s as any).locArgs?.[1] ?? '') < 9000) {
                                                     (s as any).result = 'extremely pregnant';
                                                   } else {
                                                     (s as any).result = 'ready to pop';
@@ -819,11 +819,11 @@ function enterBodyDescFromClass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) >= 1000) {
+  if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
     (s as any).result = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).locArgs?.[1] ?? 0));
     return;
   }
-  if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
+  if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).locArgs?.[1] ?? 0) / 100;
     (s as any).temp_bs_body_desc = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_desc_<<ARGS[1]>>']", { location: "body_structure" });
   } else {
@@ -848,28 +848,28 @@ function enterBmiDesc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBmiDescFromClass(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) < 100) {
+  if (String((s as any).locArgs?.[1] ?? '') < 100) {
     (s as any).result = 'You are severely underweight.';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) < 200) {
+    if (String((s as any).locArgs?.[1] ?? '') < 200) {
       (s as any).result = 'You are underweight';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) < 300) {
+      if (String((s as any).locArgs?.[1] ?? '') < 300) {
         (s as any).result = 'You have a normal, healthy weight.';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) < 400) {
+        if (String((s as any).locArgs?.[1] ?? '') < 400) {
           (s as any).result = 'You have a normal, healthy weight.';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) < 500) {
+          if (String((s as any).locArgs?.[1] ?? '') < 500) {
             (s as any).result = 'You are overweight.';
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) < 600) {
+            if (String((s as any).locArgs?.[1] ?? '') < 600) {
               (s as any).result = 'You are moderately obese.';
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) < 700) {
+              if (String((s as any).locArgs?.[1] ?? '') < 700) {
                 (s as any).result = 'You are severely obese.';
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) < 800) {
+                if (String((s as any).locArgs?.[1] ?? '') < 800) {
                   (s as any).result = 'You are very severely obese.';
                 } else {
                   (s as any).result = 'You are morbidly obese.';
@@ -900,28 +900,28 @@ function enterAppearanceBonus(s: GameState, scene: SceneBuilder): void {
 
 function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).locArgs?.[1] ?? 0) % 1000;
-  if (Number((s as any).locArgs?.[1] ?? 0) < 100) {
+  if (String((s as any).locArgs?.[1] ?? '') < 100) {
     (s as any).result = (-10);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) < 200) {
+    if (String((s as any).locArgs?.[1] ?? '') < 200) {
       (s as any).result = 25;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) < 300) {
+      if (String((s as any).locArgs?.[1] ?? '') < 300) {
         (s as any).result = 50;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) < 400) {
+        if (String((s as any).locArgs?.[1] ?? '') < 400) {
           (s as any).result = 50;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) < 500) {
+          if (String((s as any).locArgs?.[1] ?? '') < 500) {
             (s as any).result = 25;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) < 600) {
+            if (String((s as any).locArgs?.[1] ?? '') < 600) {
               (s as any).result = 10;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) < 700) {
+              if (String((s as any).locArgs?.[1] ?? '') < 700) {
                 (s as any).result = (-15);
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) < 800) {
+                if (String((s as any).locArgs?.[1] ?? '') < 800) {
                   (s as any).result = (-40);
                 } else {
                   (s as any).result = (-80);
@@ -934,55 +934,55 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
     }
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (((s as any).locArgs?.[1] ?? 0) % 100);
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     (s as any).result = ((s as any).result ?? 0) - (30);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       (s as any).result = ((s as any).result ?? 0) - (20);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         (s as any).result = ((s as any).result ?? 0) - (15);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[2] ?? '') === 3) {
           (s as any).result = ((s as any).result ?? 0) - (10);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[2] ?? '') === 4) {
             (s as any).result = ((s as any).result ?? 0) - (5);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 5) {
+            if (String((s as any).locArgs?.[2] ?? '') === 5) {
               (s as any).result = ((s as any).result ?? 0) + (0);
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 6) {
+              if (String((s as any).locArgs?.[2] ?? '') === 6) {
                 (s as any).result = ((s as any).result ?? 0) + (5);
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 7) {
+                if (String((s as any).locArgs?.[2] ?? '') === 7) {
                   (s as any).result = ((s as any).result ?? 0) + (10);
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) === 8) {
+                  if (String((s as any).locArgs?.[2] ?? '') === 8) {
                     (s as any).result = ((s as any).result ?? 0) + (5);
                   } else {
-                    if (Number((s as any).locArgs?.[2] ?? 0) === 9) {
+                    if (String((s as any).locArgs?.[2] ?? '') === 9) {
                       (s as any).result = ((s as any).result ?? 0) + (0);
                     } else {
-                      if (Number((s as any).locArgs?.[2] ?? 0) === 10) {
+                      if (String((s as any).locArgs?.[2] ?? '') === 10) {
                         (s as any).result = ((s as any).result ?? 0) - (5);
                       } else {
-                        if (Number((s as any).locArgs?.[2] ?? 0) === 11) {
+                        if (String((s as any).locArgs?.[2] ?? '') === 11) {
                           (s as any).result = ((s as any).result ?? 0) - (15);
                         } else {
-                          if (Number((s as any).locArgs?.[2] ?? 0) === 12) {
+                          if (String((s as any).locArgs?.[2] ?? '') === 12) {
                             (s as any).result = ((s as any).result ?? 0) - (30);
                           } else {
-                            if (Number((s as any).locArgs?.[2] ?? 0) === 13) {
+                            if (String((s as any).locArgs?.[2] ?? '') === 13) {
                               (s as any).result = ((s as any).result ?? 0) - (45);
                             } else {
-                              if (Number((s as any).locArgs?.[2] ?? 0) === 14) {
+                              if (String((s as any).locArgs?.[2] ?? '') === 14) {
                                 (s as any).result = ((s as any).result ?? 0) - (60);
                               } else {
-                                if (Number((s as any).locArgs?.[2] ?? 0) === 15) {
+                                if (String((s as any).locArgs?.[2] ?? '') === 15) {
                                   (s as any).result = ((s as any).result ?? 0) - (75);
                                 } else {
-                                  if (Number((s as any).locArgs?.[2] ?? 0) === 16) {
+                                  if (String((s as any).locArgs?.[2] ?? '') === 16) {
                                     (s as any).result = ((s as any).result ?? 0) - (100);
                                   } else {
                                     (s as any).result = ((s as any).result ?? 0) - (130);
@@ -1008,7 +1008,7 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterCsGetDefaultImg(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
+  if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
     // TODO-QSP: ARGS[1] *= 100
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_img_from_class', ((s as any).locArgs?.[1] ?? 0));
@@ -1017,7 +1017,7 @@ function enterCsGetDefaultImg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCsGetDefaultDesc(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
+  if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_advanced'] === 0) {
     // TODO-QSP: ARGS[1] *= 100
   }
   (s as any).result = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).locArgs?.[1] ?? 0));

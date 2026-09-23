@@ -1462,7 +1462,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('He shows you a small box filled with red and blue pills. There are about two dozen of each pill inside.');
   if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-    // TODO-QSP: dynamic text: Buy neuroboosters ' + $func('money', 'string_price', 1000) + ' (You do not have ...
+    // TODO-QSP: dynamic text: 'Buy neuroboosters ' + $func('money', 'string_price', 1000) + ' (You do not have...
     scene.text('Buy neuroboosters 1000₽ (You do not have enough money)');
   } else {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 1000, ''cash'' & mc_inventory[''mentats''] += 20 & gt ''metro...
@@ -1471,7 +1471,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['mentats'] ?? ''}`);
   scene.text('A pillbox with 10 orange pills inside, the description is removed from the box.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
-    // TODO-QSP: dynamic text: Buy steroids ' + $func('money', 'string_price', 500) + ' (You do not have enough...
+    // TODO-QSP: dynamic text: 'Buy steroids ' + $func('money', 'string_price', 500) + ' (You do not have enoug...
     scene.text('Buy steroids 500₽ (You do not have enough money)');
   } else {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 500, ''cash'' & mc_inventory[''steroids''] += 10 & gt ''metro...
@@ -1480,7 +1480,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['steroids'] ?? ''}`);
   scene.text('Paste tube with two pictures of a woman. In the latter one, she sports an enormous bust.');
   if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
-    // TODO-QSP: dynamic text: Buy breast cream ' + $func('money', 'string_price', 500) + ' (You do not have en...
+    // TODO-QSP: dynamic text: 'Buy breast cream ' + $func('money', 'string_price', 500) + ' (You do not have e...
     scene.text('Buy breast cream 500₽ (You do not have enough money)');
   } else {
     // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 500, ''cash'' & mc_inventory[''breastcream''] += 5 & gt ''met...
@@ -1490,7 +1490,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     scene.text('Packet of pink chewing gum. There are 10 in one package.');
     if (qspFunc(s, 'money', 'can_afford', 200, 'cash') === 0) {
-      // TODO-QSP: dynamic text: Buy aphrodisiacs ' + $func('money', 'string_price', 200) + ' (You do not have en...
+      // TODO-QSP: dynamic text: 'Buy aphrodisiacs ' + $func('money', 'string_price', 200) + ' (You do not have e...
       scene.text('Buy aphrodisiacs 200₽ (You do not have enough money)');
     } else {
       // TODO-QSP: '<a href="exec: gs ''money'', ''pay'', 200, ''cash'' & mc_inventory[''aphrodisiac''] += 10 & gt ''me...
@@ -1499,7 +1499,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     scene.text(`Uses left: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? ''}`);
   }
   if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
-    // TODO-QSP: dynamic text: Buy enough weed for 5 joints for ' + $func('money', 'string_price', 250) + ' (Yo...
+    // TODO-QSP: dynamic text: 'Buy enough weed for 5 joints for ' + $func('money', 'string_price', 250) + ' (Y...
     scene.text('Buy enough weed for 5 joints for 250₽ (You do not have enough money)');
   } else {
     // TODO-QSP: 'Buy enough <a href="exec: gs ''money'', ''pay'', 250, ''cash'' & mc_inventory[''joints''] += 5 & gt...
@@ -1508,7 +1508,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'get_metro_image') {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'get_metro_image') {
     // TODO-QSP: killvar 'temp_transportVars'
   }
   scene.actions([

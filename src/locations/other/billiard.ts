@@ -41,7 +41,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).billwin ?? 0) > 10  &&  (!((s as any).billvar ?? 0))) {
     qspCall(s, 'money', 'earn', 1000, 'cash');
-    // TODO-QSP: dynamic text: You won and received ' + $func('money', 'string_profit', 1000) + '.
+    // TODO-QSP: dynamic text: 'You won and received ' + $func('money', 'string_profit', 1000) + '.'
     scene.text('You won and received \' + $func(\'money\', \'string_profit\', 1000) + \'.');
     scene.actions([
       { label: 'Leave', goto: ['billiard', ''] },
@@ -69,7 +69,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).billwin ?? 0) > 10  &&  ((s as any).billvar ?? 0) === 3) {
           qspCall(s, 'money', 'earn', 250, 'cash');
-          // TODO-QSP: dynamic text: You won and received ' + $func('money', 'string_profit', 250) + '.
+          // TODO-QSP: dynamic text: 'You won and received ' + $func('money', 'string_profit', 250) + '.'
           scene.text('You won and received \' + $func(\'money\', \'string_profit\', 250) + \'.');
           scene.actions([
             { label: 'Get_Away', goto: ['billiard', ''] },
@@ -77,7 +77,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).billwin ?? 0) <= 10  &&  (!((s as any).billvar ?? 0))) {
             qspCall(s, 'money', 'pay', 1000, 'cash');
-            // TODO-QSP: dynamic text: You lost and paid ' + $func('money', 'string_price', 1000) + '.
+            // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 1000) + '.'
             scene.text('You lost and paid 1000₽.');
             scene.actions([
               { label: 'Leave', goto: ['billiard', ''] },
@@ -107,14 +107,14 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).billwin ?? 0) <= 10  &&  ((s as any).billvar ?? 0) === 3) {
                   qspCall(s, 'money', 'pay', 300, 'cash');
-                  // TODO-QSP: dynamic text: You lost and paid ' + $func('money', 'string_price', 300) + '.
+                  // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 300) + '.'
                   scene.text('You lost and paid 300₽.');
                   scene.actions([
                     { label: 'Leave', goto: ['billiard', ''] },
                   ]);
                 } else {
                   qspCall(s, 'money', 'pay', 300, 'cash');
-                  // TODO-QSP: dynamic text: You lost and paid ' + $func('money', 'string_price', 300) + '.
+                  // TODO-QSP: dynamic text: 'You lost and paid ' + $func('money', 'string_price', 300) + '.'
                   scene.text('You lost and paid 300₽.');
                   scene.actions([
                     { label: 'Leave', goto: ['billiard', ''] },

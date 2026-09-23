@@ -99,15 +99,15 @@ function enterCreampieMad(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I\'ll buy a morning-after pill (apologetic)', handler: (st: GameState) => {
     scene.text('"It\'s fine," you sigh, taking another deep breath. "I\'ll just buy a morning-after pill tomorrow. I shouldn\'t have freaked out so much. Sorry."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I\'ll buy a morning-after pill (calm)', handler: (st: GameState) => {
     scene.text('"It\'s fine," you say, shaking your head. "I\'ll just buy a morning-after pill."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I\'ll buy a morning-after pill (nervous)', handler: (st: GameState) => {
     scene.text('"Everything will be okay," you say, still taking deep breaths. "I\'ll just buy a morning-after pill. I won\'t get pregnant, everything will be fine..." You keep repeating the words to yourself and eventually your heartrate decreases and you feel calm again.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -119,7 +119,7 @@ function enterCreampieMad(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: ... angry with <<$npcdesc>>.
     scene.text(`... angry with ${((st as any).npcdesc ?? '')}.`);
     scene.text('<i>Fine? How could it be fine?!</i> you fume internally. <i>What part of you blowing your load inside me is "fine"?!</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '... angry with yourself', handler: (st: GameState) => {
     scene.text('... angry with yourself.');
@@ -128,13 +128,13 @@ function enterCreampieMad(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<i>Idiot!</i> you scold yourself internally. <i>Moron! Bimbo! Dumbass! Slut! What were you thinking, not using a condom?! What are you going to do if you end up pregnant?</i>');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       { label: 'I overreacted', handler: (st: GameState) => {
     scene.text('"It\'s fine," you sigh. "I overreacted. You\'re right, it\'s just a mistake. I\'m sure I\'ll be alright."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -186,7 +186,7 @@ function enterCreampiePanic(s: GameState, scene: SceneBuilder): void {
       scene.text('<i>He\'s right, it\'ll be okay. You\'re on birth control so you don\'t need another pill. You\'re not going to get pregnant! And he\'s not going to have an STD. Can\'t have one! Because if he did that would be... Nope! I\'m not gonna think about that! Because I\'m not getting an STD tonight! Everything is going to be fine! <b>It\'s going to be fine!</b></i>');
     }
     scene.text('After running through this thought process several more times accompanied by many more breaths, you finally begin to calm down.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -243,7 +243,7 @@ function enterCreampiePanic(s: GameState, scene: SceneBuilder): void {
     scene.text(`Trying to focus on his words, you force yoruself to take deep, slow breaths, calming down while ${((st as any).npcdesc ?? '')} tries to reassure you.`);
     scene.text('<i>He\'s right, it\'ll be okay. You\'re on birth control and he came inside you so it\'s okay! He\'s not going to have an STD. Can\'t have one! Because if he did that would... Nope! I\'m not gonna think about that! Because I\'m not getting an STD tonight! Everything is going to be fine! <b>It\'s going to be fine!</b></i>');
     scene.text('After running through this thought process several more times accompanied by many more breaths, you finally begin to calm down.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I have to go!', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart1.mp4');
@@ -286,7 +286,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Changed my mind," you smile tiredly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
     ]);
@@ -337,7 +337,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieMad(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieMad(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Take it in stride', handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['take_in_stride'] = 1;
@@ -365,7 +365,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Sorry! I didn\'t mean to-!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -376,7 +376,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Sorry! I didn\'t mean to-!"');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -420,28 +420,28 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/cum6.jpg');
     scene.text('"It\'s okay I guess," you say, leaning back, letting the cum continue trickling out of you.');
     if (((st as any).tabletkishot ?? 0) > 0  ||  ((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControl(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControl(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlLie(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregResponsibilityTease(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregResponsibilityGlare(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlLie(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregResponsibilityTease(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregResponsibilityGlare(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'I\'ll be fine', handler: (st: GameState) => {
     scene.text('You bite your lip for a moment considering the situation. You decide it isn\'t a big deal.');
     scene.text('<i>I\'ll probably be fine. I mean, what are the odds that something bad happens, right?</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I\'ll buy a morning-after pill', handler: (st: GameState) => {
     scene.text('You bite your lip for a moment considering the situation.');
     scene.text('<i>Well... that probably isn\'t good... I\'ll have to buy a morning-after pill tomorrow. As long as I don\'t forget it should be fine, right?</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact2(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'What the fuck!', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'hands', ((st as any).npcID ?? 0), 1);
@@ -457,7 +457,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieMad(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieMad(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Panic!', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'hands', ((st as any).npcID ?? 0), 1);
@@ -473,7 +473,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampiePanic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampiePanic(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Just wondering', handler: (st: GameState) => {
     if (((st as any).hookup ?? 0)?.['position'] === 'miss') {
@@ -490,7 +490,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
       { label: 'That\'s hot', handler: (st: GameState) => {
@@ -519,7 +519,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     scene.text('"Seriously."');
     scene.text('You nod in satisfaction, feeling a glob of cum leak out of you.');
     scene.text('"I\'m so sexy and desirable that a guy can\'t hold his load? Can\'t help but nut inside of me? <i>So</i> fucking hot!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
       ]);
@@ -527,7 +527,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Maybe', handler: (st: GameState) => {
     scene.text('"Maybe..."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
     ]);
@@ -554,7 +554,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
       { label: 'Glad you enjoyed yourself', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk2.mp4');
     scene.text('"Well I\'m glad you enjoyed yourself," you laugh, rolling your eyes.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
       { label: 'It was hot', handler: (st: GameState) => {
@@ -562,7 +562,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
     scene.text('"It <i>was</i> pretty hot," you smile wryly.');
     // TODO-QSP: dynamic text: "I knew I liked you," <<$npcdesc>> grins back at you
     scene.text(`"I knew I liked you," ${((st as any).npcdesc ?? '')} grins back at you`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
     ]);
@@ -576,7 +576,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s fine," you laugh. "I\'m not mad."');
     scene.text('"Wait, really?"');
     scene.text('"Yeah, you\'re good dude," you reaffirm with a snigger.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
       { label: 'It was cute', handler: (st: GameState) => {
@@ -586,7 +586,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s kind of... sweet, that you can\'t hold it while you\'re inside me. I thought it was adorable."');
     // TODO-QSP: dynamic text: You shrug, a bit embarrassed, but it seems to have reassured <<$npcdesc>> and he...
     scene.text(`You shrug, a bit embarrassed, but it seems to have reassured ${((st as any).npcdesc ?? '')} and he settles down.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
       { label: 'It was hot', handler: (st: GameState) => {
@@ -595,7 +595,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
     scene.text('"... Seriously??"');
     scene.text('"Yeah! The idea that you just can\'t help but let loose inside me, I guess in my mind I figure it\'s cause you find me attractive. Maybe I find it hot cause it must mean you think I\'m hot?"');
     scene.text('You grin at him and he seems reassured, if not a little embarrassed.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
     ]);
@@ -679,7 +679,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
     ]);
@@ -714,7 +714,7 @@ function enterBirthControlLie(s: GameState, scene: SceneBuilder): void {
       scene.text('"Don\'t worry. I\'m on birth control," you smile at him gently, lying through your teeth.');
     }
     scene.text('<i>I wonder if his baby is going to be swimming around inside me after this...</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
   ]);
@@ -741,7 +741,7 @@ function enterPregResponsibilityTease(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"If I get pregnant, you better take responsibility for this."');
     scene.text('Though the words carry a heavy weight, you say it with a smile to let him know you\'re only teasing. Though you really hope you don\'t get pregnant off of this...');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk1');
   } },
   ]);
@@ -768,7 +768,7 @@ function enterPregResponsibilityGlare(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"If I get pregnant, you better take responsibility for this," you glare at him.');
     scene.text('You swear, this better not end with you getting knocked up...');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -796,7 +796,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('Smoke fills your lungs and you hold it there, savoring it, before exhaling slowly. As the smoke blows past your lips, it\'s like all your stress goes with it and you sigh happily, relaxing into the bed as both of you unwind with a post-fuck smoke together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk2');
   } },
     ]);
@@ -816,7 +816,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke', 1);
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('He leans over with the lighter and lights it for you and you inhale with him, savoring the smoke that fills your lungs as the two of you sit back and puff away together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk2');
   } },
     ]);
@@ -834,7 +834,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke');
     scene.img('images/shared/sex/after/bed_smoke1.jpg');
     scene.text('Smoke fills your lungs and you hold it there, savoring it, before exhaling slowly. As the smoke blows past your lips, it\'s like all your stress goes with it and you sigh happily, relaxing into the bed.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk2');
   } },
     ]);
@@ -858,7 +858,7 @@ function enterLightCigarette2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('Smoke fills your lungs and you hold it there, savoring it, before exhaling slowly. As the smoke blows past your lips, it\'s like all your stress goes with it and you sigh happily, relaxing into the bed as both of you unwind with a post-fuck smoke together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk2');
   } },
     ]);
@@ -879,7 +879,7 @@ function enterLightCigarette2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke', 1);
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('He leans over with the lighter and lights it for you and you inhale with him, savoring the smoke that fills your lungs as the two of you sit back and puff away together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPre(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'hookup_talk', 'pillow_talk2');
   } },
     ]);
@@ -996,7 +996,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('All cleaned up, you bend down and pick up your clothes, getting ready to leave.');
     scene.text('"Thanks for the hookup," you say as you begin throwing clothes on.');
     scene.text('"Yeah, you were a great lay too."');
@@ -1017,7 +1017,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Sheezus. Who shat in your cereal?" you roll your eyes at him, reaching for your...
     scene.text(`"Sheezus. Who shat in your cereal?" you roll your eyes at him, reaching for your clothes. You get dressed quickly, ${((st as any).npcdesc ?? '')} grumpily ignoring you the whole time. Once finished, you head towards the door.`);
     scene.text('"Guess I\'ll just see myself out," you mumble, leaving his apartment and shutting the door behind you.');
@@ -1034,7 +1034,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"Oooookay..." you mumble, reaching for your clothes.');
     scene.text('<i>Sheezus. What\'s <b>his</b> problem?</i> you wonder while you get dressed. Once you finish you make sure you have all your stuff and head towards the door.');
     scene.text('"Guess I\'ll just see myself out," you mumble, leaving his apartment and shutting the door behind you.');
@@ -1057,7 +1057,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"Thanks," you smile. "I really needed that. Anyways, thanks for the hookup."');
     // TODO-QSP: dynamic text: "Yeah, you were a great lay too," <<$npcdesc>> replies, watching you pull your c...
     scene.text(`"Yeah, you were a great lay too," ${((st as any).npcdesc ?? '')} replies, watching you pull your clothes over your still-moist body.`);
@@ -1078,7 +1078,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You bend down and pick up your clothes, getting ready to leave.');
     scene.text('"Thanks for the hookup," you say as you begin throwing clothes over your shoulders.');
     scene.text('"Yeah, you were a great lay too."');
@@ -1154,7 +1154,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You bend down and pick up your clothes, throwing them on in annoyance. By the time you\'re done dressing, you\'re done with this whole night. You grab your stuff and leave, slamming the door behind you.');
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
@@ -1169,7 +1169,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You bend down and pick up your clothes, throwing them on in annoyance, wincing in disgust as you feel the cum smear across the inside. By the time you\'re done dressing, you\'re done with this whole night. You grab your stuff and leave, slamming the door behind you.');
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
@@ -1183,7 +1183,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart1.mp4');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You bend down and pick up your clothes, throwing them on in annoyance. By the time you\'re done dressing, you\'re done with this whole night. You grab your stuff and leave, slamming the door behind you.');
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
@@ -1208,7 +1208,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Have a smoke and play with your phone', handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['cigarette'] = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1265,13 +1265,13 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $npc_apt_bedroom[$npcID]
       scene.text('Feeling tired, you stretch out on the bed, relaxing in the afterglow.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Get up', handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['get_up'] = 1;
     scene.text(`<center><b>${((st as any).npcdesc ?? '')}'s Bedroom</b></center>`);
     // TODO-QSP: $npc_apt_bedroom[$npcID]
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You swing your legs over the side and scooting forward until your feet touch the ground and allow you to stand up from the bed.');
   } },
       { label: 'Play with your phone', handler: (st: GameState) => {
@@ -1295,7 +1295,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1487,7 +1487,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'din_van', 'showerdin');
     // TODO-QSP: dynamic text: You turn on the faucet, relaxing as the hot water pours down over your skin. Aft...
     scene.text(`You turn on the faucet, relaxing as the hot water pours down over your skin. After a few minutes, you turn the tap off, toweling off using what you can only assume to be ${((st as any).npcdesc ?? '')}'s towel and walk naked back into his room. ${((st as any).npcdesc ?? '')} is still there, relaxing in his bed`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGottaGo(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGottaGo(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Crawl back into bed', goto: ['hookup_after', 'cuddle'] },
     ]);
@@ -1547,7 +1547,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
     ((st as any).hookup = (st as any).hookup ?? {})['get_up'] = 1;
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     scene.text('With tremendous effort, you force your eyes open and haul yourself out of bed. You can\'t fall asleep now, not yet.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1628,12 +1628,12 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I should go," you say, padding over to where your clothes lay in a heap and beginning to pull them on.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => 'Thanks for the ' + String(((s as any).hookup ?? 0)?.['fun'] ?? '' ?? ''), handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['thank_for_fun'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/pc/activities/misc/dress_1.mp4');
     if (((st as any).hookup ?? 0)?.['bed'] === 1) {
       // TODO-QSP: dynamic text: You get up from the bed and pad across the floor, bending down to pick up your d...
@@ -1656,7 +1656,7 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Right back at you," he smirks in return while you're ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}.`);
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1694,7 +1694,7 @@ function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
     { label: 'No thanks', handler: (st: GameState) => {
     ((st as any).hookup = (st as any).hookup ?? {})['npc_can_spend_the_night'] = 2;
     scene.text('"Thanks but no thanks," you smile wistfully. "I really need to get home tonight."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Well...', handler: (st: GameState) => {
     scene.text('"Well..." you pause for a moment, considering. You <i>could</i> stay over tonight. Maybe you don\'t <i>have</i> to go...');
@@ -1703,7 +1703,7 @@ function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><b>${((st as any).npcdesc ?? '')}'s Bedroom</b></center>`);
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     scene.text('"... no," you sigh. "I really shouldn\'t. I want to, but I can\'t."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I guess I could...', handler: (st: GameState) => {
     scene.text(`<center><b>${((st as any).npcdesc ?? '')}'s Bedroom</b></center>`);
@@ -1734,7 +1734,7 @@ function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I wish I could but I really have to go. I can\'t stay over tonight," you say pulling up your pants all the way and throwing your top over your head.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHookupContinuation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1762,7 +1762,7 @@ function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why not?" you smirk.');
       scene.text('"Sure, I\'ll sleep with you again if you\'re offering."');
       scene.text('You tell him your number while you finish getting dressed and he taps it into his phone. A few moments later, a notification pings in your messages:');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
@@ -2032,7 +2032,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     ((st as any).hookup = (st as any).hookup ?? {})['fuckbuddy'] = 1;
     scene.text('"So long as you know," you smirk back. You exchange numbers with him and a moment later a notification pings in your messages.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
     ]);
@@ -2075,7 +2075,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     ((st as any).hookup = (st as any).hookup ?? {})['fuckbuddy'] = 1;
     scene.text('"So long as you know," you smirk back. You exchange numbers with him and a moment later a notification pings in your messages.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckbuddyText(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
     ]);
@@ -2173,7 +2173,7 @@ function enterFinishDressing(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish getting dressed', handler: (st: GameState) => {
     scene.text(`<center><b>${((st as any).npcdesc ?? '')}'s Bedroom</b></center>`);
     // TODO-QSP: $npc_apt_bedroom[$npcID]
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You quickly finish tugging your clothes on and waggle your fingers at him in goodbye before heading out the door.');
     scene.actions([
       { label: 'Leave', goto: ['hookup_after', 'exit'] },
@@ -2196,7 +2196,7 @@ function enterPantyGift(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Give him your panties', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     ((st as any).npc_panty_give = (st as any).npc_panty_give ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_panty_give[String((st as any).npcID ?? 0)] ?? 0) + (1);
     qspCall(st, 'panties', 'dispose');
     scene.img('images/shared/romance/misc/panty_gift.mp4');
@@ -2207,14 +2207,14 @@ function enterPantyGift(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "A gift?" <<$npcdesc>> asks curiously.
       scene.text(`"A gift?" ${((st as any).npcdesc ?? '')} asks curiously.`);
       scene.text('In one smooth motion, you tug your panties down your legs and daintily toss them into the rumpled sheets of the bed you were just fucked in.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGift2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGift2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: "Another pair of your panties?" <<$npcdesc>> grins.
       scene.text(`"Another pair of your panties?" ${((st as any).npcdesc ?? '')} grins.`);
       scene.text('"You guessed correctly," you grin back. "And your prize is-!"');
       scene.text('In one smooth motion, you tug your panties down your legs and daintily toss them into the rumpled sheets of the bed you were just fucked in.');
       scene.text('"Enjoy," you smirk.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -2235,11 +2235,11 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> doesn''t say anything in response, but given the lustful glint in h...
       scene.text(`${((st as any).npcdesc ?? '')} doesn't say anything in response, but given the lustful glint in his eyes, he seems pretty pleased.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'For making me orgasm (tradition)', handler: (st: GameState) => {
@@ -2251,11 +2251,11 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> doesn''t say anything in response, but given the lustful glint in h...
       scene.text(`${((st as any).npcdesc ?? '')} doesn't say anything in response, but given the lustful glint in his eyes, he seems pretty pleased.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -2271,12 +2271,12 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: "Ah yes, women''s underwear," <<$npcdesc>> says, looking at them dryly. "Just wh...
       scene.text(`"Ah yes, women's underwear," ${((st as any).npcdesc ?? '')} says, looking at them dryly. "Just what I've always wanted."`);
       scene.text('But despite his sarcasm, he seems pretty pleased.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Something to remember the occasion', handler: (st: GameState) => {
@@ -2293,11 +2293,11 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: "Maybe I should frame it," <<$npcdesc>> snickers.
       scene.text(`"Maybe I should frame it," ${((st as any).npcdesc ?? '')} snickers.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Consider it a trophy', handler: (st: GameState) => {
@@ -2309,11 +2309,11 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
         ((st as any).pc_know_npc_has_girlfriend = (st as any).pc_know_npc_has_girlfriend ?? {})[String((st as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPantyGiftGirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> doesn''t say anything in response, but given the lustful glint in h...
       scene.text(`${((st as any).npcdesc ?? '')} doesn't say anything in response, but given the lustful glint in his eyes, he seems pretty pleased.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -2327,15 +2327,15 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
     { label: 'Hide them', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Just hide them," you say, <<$hookup[''dress_describe'']>>. "If you can hide a f...
     scene.text(`"Just hide them," you say, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "If you can hide a fucking a girl in your bed, surely you can hide a pair of panties."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Say they\'re hers', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Tell her they''re hers," you snicker, <<$hookup[''dress_describe'']>>. "Maybe s...
     scene.text(`"Tell her they're hers," you snicker, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Maybe she'll think she bought them."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinishDressing(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Say they\'re yours', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Tell her they''re yours," you snicker, <<$hookup[''dress_describe'']>>. "A guy ...
     scene.text(`"Tell her they're yours," you snicker, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "A guy can't wear a cute pair of panties now and then?"`);
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
@@ -2348,7 +2348,7 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
     scene.text('"I was just kidding," you say, rolling your eyes. "Bad joke, sorry."');
     // TODO-QSP: dynamic text: You move to <<$hookup[''dress_describe'']>> but <<$npcdesc>> continues to glare ...
     scene.text(`You move to ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I was kidding (acerbic)', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
@@ -2356,28 +2356,28 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Christ, I was just kidding," you say, giving ${((st as any).npcdesc ?? '')} a look of exasperation. "Of course I wasn't seriously suggesting that. Take a joke, dumbass."`);
     // TODO-QSP: dynamic text: You start <<$hookup[''dress_describe'']>> but <<$npcdesc>> continues to glare at...
     scene.text(`You start ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''} but ${((st as any).npcdesc ?? '')} continues to glare at you out of the corner of your eye for a few moments longer before looking away.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> laughs aloud.
       scene.text(`${((st as any).npcdesc ?? '')} laughs aloud.`);
       scene.text('"Yeah, I bet that\'d get me off the hook."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Give them to her', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Gift them to her," you say mischievously, <<$hookup[''dress_describe'']>>. "May...
     scene.text(`"Gift them to her," you say mischievously, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Maybe she'll put them on."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Throw them away', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Throw them away then," you shrug, <<$hookup[''dress_describe'']>>. "Do whatever...
     scene.text(`"Throw them away then," you shrug, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}. "Do whatever you want with them.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDressLoop(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "They''re your panties now," you add with a smirk, <<$hookup[''dress_describe'']...
     scene.text(`"They're your panties now," you add with a smirk, ${((st as any).hookup ?? 0)?.['dress_describe'] ?? ''}.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLater(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

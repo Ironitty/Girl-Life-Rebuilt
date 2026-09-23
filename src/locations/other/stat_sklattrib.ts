@@ -39,14 +39,10 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'daycall') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'daycall') {
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
     // TODO-QSP: :sklxploop
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$temp_sklattrib['name']>>_exp += <<$temp_sklattrib['name']>>_exp_skill_derived / 100
-    // TODO-QSP: <<$temp_sklattrib['name']>>_exp_skill_derived = 0
-    // TODO-QSP: "
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'sklxploop'
@@ -62,14 +58,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDaycall(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'daycall') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'daycall') {
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = 0;
     // TODO-QSP: :sklxploop
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$temp_sklattrib['name']>>_exp += <<$temp_sklattrib['name']>>_exp_skill_derived / 100
-    // TODO-QSP: <<$temp_sklattrib['name']>>_exp_skill_derived = 0
-    // TODO-QSP: "
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'sklxploop'
@@ -151,7 +143,7 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'daycall') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'daycall') {
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['daycall'] = 1;
   }
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'attribute';
@@ -165,46 +157,8 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_sklattrib ?? 0)?.['daycall']) {
     ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
-  } else {
-    // TODO-QSP: dynamic "
-    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) !== ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_mem2'] ?? 0)) {
-      ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
-    } else {
-      if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) >= ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpnxt'] ?? 0)) {
-        ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
-      } else {
-        if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) < ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpprv'] ?? 0)) {
-          ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 1;
-        } else {
-          ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['update_stat'] = 0;
-        }
-      }
-    }
-    // TODO-QSP: "
   }
   if (((s as any).temp_sklattrib ?? 0)?.['update_stat']) {
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = <<$temp_sklattrib['name']>>_lvlst
-    // TODO-QSP: <<$temp_sklattrib['name']>>_xpprv = func('stat_funcs', 'get_xpprv', <<$temp_sklattrib['name']>>_lvl)
-    // TODO-QSP: <<$temp_sklattrib['name']>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$temp_sklattrib['name']>>_lvl)
-    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) >= ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpnxt'] ?? 0)) {
-      // TODO-QSP: <<$temp_sklattrib['name']>>_lvl += 1
-    } else {
-      if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_exp'] ?? 0) < ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_xpprv'] ?? 0)) {
-        // TODO-QSP: <<$temp_sklattrib['name']>>_lvl -= 1
-      }
-    }
-    // TODO-QSP: <<$temp_sklattrib['name']>>_lvlst = <<$temp_sklattrib['name']>>_lvl
-    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0) / 5 > ((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_flr'] ?? 0)) {
-      // TODO-QSP: <<$temp_sklattrib['name']>>_flr = <<$temp_sklattrib['name']>>_lvl / 5
-    }
-    if (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_lvl'] ?? 0) > (100 + (((s as any)[((s as any).temp_sklattrib ?? {})['name'] + '_muta'] ?? 0) * 50))) {
-      // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = (100 + (<<$temp_sklattrib['name']>>_muta * 50))
-    }
-    // TODO-QSP: <<$temp_sklattrib['name']>>_xpprv = func('stat_funcs', 'get_xpprv', <<$temp_sklattrib['name']>>_lvl)
-    // TODO-QSP: <<$temp_sklattrib['name']>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$temp_sklattrib['name']>>_lvl)
-    // TODO-QSP: <<$temp_sklattrib['name']>>_mem2 = <<$temp_sklattrib['name']>>_exp
-    // TODO-QSP: "
   }
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
   if (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'attribute') {
@@ -228,7 +182,7 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitVars(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).attsklupdate ?? 0)  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (((s as any).attsklupdate ?? 0)  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitLoop(s, scene); (s as any).locArgs = __savedLocArgs; }

@@ -126,7 +126,7 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
     ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
     ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['grupTipe'] = ((s as any).grupTipe ?? 0);
     scene.text('Albina and the other girls grow silent and just stare at you as you enter. You feel very awkward and self-conscious as Albina walks up to you with a puzzled glare. "What are <i>you</i> doing here?"');
-    // TODO-QSP: dynamic text: Christina laughs as she walks up to you. "Oh my god, does this ' + iif(pcs_hotca...
+    // TODO-QSP: dynamic text: 'Christina laughs as she walks up to you. "Oh my god, does this ' + iif(pcs_hotc...
     scene.text('Christina laughs as she walks up to you. "Oh my god, does this ' + ((((s as any).pcs_hotcat ?? 0) < 6) ? ('hidious hag') : ('social reject')) + ' actually think she can become a cheerleader? Everyone would be too busy laughing to focus on the game!"');
     scene.text('"It\'s best if you just leave. Nobody wants you hanging around making things awkward," Albina says.');
     scene.text('"You better hope that I\'m still too busy laughing at your dumb ass that I forget to punish you for embarrassing me," Christina adds.');
@@ -140,14 +140,14 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
       ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
       ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['grupTipe'] = ((s as any).grupTipe ?? 0);
       scene.text('The other girls grow silent and just stare at you as you enter and Albina walks up to you with a cold glare on her face. "You\'re mistaken if you think I\'m even going to give someone like <i>you</i> a chance. Now fuck off," she says while pointing to the door.');
-      // TODO-QSP: dynamic text: Christina laughs as she walks up to you. "Oh my god, does this specimen actually...
+      // TODO-QSP: dynamic text: 'Christina laughs as she walks up to you. "Oh my god, does this specimen actuall...
       scene.text('Christina laughs as she walks up to you. "Oh my god, does this specimen actually think she can become a cheerleader? Isn\'t there some ' + ((((s as any).gopnik_slut ?? 0) === 1) ? ('dirty gopnik cock waiting for you somewhere to suck it?') : ('drugs waiting somewhere for you to snort them?')) + '" she asks mockingly, which causes Bella to let out a loud laugh.');
       scene.text('You clench your fist. You want to beat the smug smile off her face, but there\'s nothing you can do except leave, the sounds of mocking laughter following you down the corridor.');
       scene.actions([
         { label: 'Leave', goto: ['gschool_grounds', 'main'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: After school, you head to the PE hall to try out for the cheerleading team'+iif(...
+      // TODO-QSP: dynamic text: 'After school, you head to the PE hall to try out for the cheerleading team'+iif...
       scene.text('After school, you head to the PE hall to try out for the cheerleading team' + ((((s as any).cheerleadingQW ?? 0)?.['try_count'] > 1) ? (' again') : ('')) + ', taking your place amongst the group of hopeful girls already here. Albina is standing with Vicky, Christina, Lina, Lariska and Bella, as well as a few other girls from other classes who you don\'t recognise that round out the squad. They are all inspecting you and talking amongst themselves.');
       scene.text('Once everyone is gathered, Albina speaks up. "Before we begin, you should all know that training is every Tuesday and Thursday and game days are every second Friday. Anyone who can\'t commit to the squad on those days should leave now and not waste our time."');
       scene.text('A few girls leave as Albina starts showing you part of the cheerleading routine as an example and asks everyone to copy it.');
@@ -175,8 +175,8 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
         ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['quest_stage'] = 3;
         qspCall(st, 'calendar', 'pack', 'add', 'cheerleading_practice');
         qspCall(st, 'calendar', 'pack', 'add', 'cheerleading_games');
-        // TODO-QSP: dynamic text: "You, <<$pcs_nickname>>, you actually impressed us'+iif(cheerleadingQW['try_coun...
-        scene.text('"You, ' + ((st as any).pcs_nickname ?? '') + ', you actually impressed us\'+iif(cheerleadingQW[\'try_count\'] > 1, \' this time\', \')+\'. \'+iif(cheerleadingQW[\'try_physical\'] < cheerleadingQW[\'try_social\'], \'Sure, you were a bumbling idiot in your execution, but we have a good feeling about you.\', \'I didn\'t think you had it in you, but those moves really were something!\')+\' I expect to see you on time at our next practice session!"');
+        // TODO-QSP: dynamic text: '"You, <<$pcs_nickname>>, you actually impressed us'+iif(cheerleadingQW['try_cou...
+        scene.text(`"You, ${((st as any).pcs_nickname ?? '')}, you actually impressed us` + ((((st as any).cheerleadingQW ?? 0)?.['try_count'] > 1) ? (' this time') : ('')) + '. ' + ((((st as any).cheerleadingQW ?? 0)?.['try_physical'] < ((st as any).cheerleadingQW ?? 0)?.['try_social']) ? ('Sure, you were a bumbling idiot in your execution, but we have a good feeling about you.') : ('I didn\'t think you had it in you, but those moves really were something!')) + ' I expect to see you on time at our next practice session!"');
         scene.text('You barely have time to react before Albina and the other girls walk away. You ignore the jealous stares you receive from the others and get ready to leave.');
       } else {
         ((st as any).cheerleadingQW = (st as any).cheerleadingQW ?? {})['quest_stage'] = 2;
@@ -197,15 +197,15 @@ function enterTryouts(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/lineup.jpg');
       if (((st as any).cheerleadingQW ?? 0)?.['try_physical'] < ((st as any).cheerleadingQW ?? 0)?.['try_social']) {
-        // TODO-QSP: dynamic text: You '+iif(cheerleadingQW['try_count'] > 1, 'still', 'just')+' don''t have the ca...
+        // TODO-QSP: dynamic text: 'You '+iif(cheerleadingQW['try_count'] > 1, 'still', 'just')+' don''t have the c...
         scene.text('You ' + ((((st as any).cheerleadingQW ?? 0)?.['try_count'] > 1) ? ('still') : ('just')) + ' don\'t have the capability to match Albina\'s high standards. You mess up almost every move and you can hear the mocking laughter of the girls around you.');
       } else {
-        // TODO-QSP: dynamic text: You have the feeling you''re doing at least as good as some of the others, maybe...
+        // TODO-QSP: dynamic text: 'You have the feeling you''re doing at least as good as some of the others, mayb...
         scene.text('You have the feeling you\'re doing at least as good as some of the others, maybe even better, but the majority of the girls, especially Christina, constantly point in your direction and laugh at the tiniest of your mistakes' + ((((st as any).cheerleadingQW ?? 0)?.['try_count'] > 1) ? (', just like last time') : ('')) + '. Being under such scrutiny causes you to stumble even more, provoking yet more mocking. Albina just crosses her arms and shakes her head in disappointment.');
       }
       scene.text('Embarrassed, you sheepishly line up with the group as Albina and the girls start rejecting those who weren\'t good enough, some of the cheerleaders happily mocking and laughing at them.');
-      // TODO-QSP: dynamic text: When they get to you, the girls behind Albina can''t control themselves and burs...
-      scene.text('When they get to you, the girls behind Albina can\'t control themselves and burst out laughing. Albina again shakes her head in disappointment as she speaks to you. "\'+iif(cheerleadingQW[\'try_count\'] > 1, \'I didn\'t think you could do any worse than you did last time ' + ((st as any).pcs_nickname ?? '') + ', but… wow.\', \'I don\'t think I\'ve ever seen a more horrific attempt as that!\')+\' Why are you even here, ' + ((st as any).pcs_nickname ?? '') + '? These are tryouts for cheerleading, not a fucking circus!"');
+      // TODO-QSP: dynamic text: 'When they get to you, the girls behind Albina can''t control themselves and bur...
+      scene.text('When they get to you, the girls behind Albina can\'t control themselves and burst out laughing. Albina again shakes her head in disappointment as she speaks to you. "' + ((((st as any).cheerleadingQW ?? 0)?.['try_count'] > 1) ? ('I didn\'t think you could do any worse than you did last time ' + ((st as any).pcs_nickname ?? '') + ', but… wow.') : ('I don\'t think I\'ve ever seen a more horrific attempt as that!')) + ` Why are you even here, ${((st as any).pcs_nickname ?? '')}? These are tryouts for cheerleading, not a fucking circus!"`);
       // TODO-QSP: 'Feeling dejected, you watch her continue down the line and select the girl she wants on the team. '...
     }
     scene.actions([
@@ -223,7 +223,7 @@ function enterAfterschoolPractice(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/gymdoors.jpg');
-  // TODO-QSP: dynamic text: You''re standing next to the doors leading to the PE hall. You have cheerleading...
+  // TODO-QSP: dynamic text: 'You''re standing next to the doors leading to the PE hall. You have cheerleadin...
   scene.text('You\'re standing next to the doors leading to the PE hall. You have cheerleading practice at 14:15 and should go and change if you don\'t want to be late.');
   if (((s as any).cheerleadingQW ?? 0)?.['skipped'] === 0) {
     scene.text('You recall how angry Albina was at that Karine girl who skipped practice. It probably wouldn\'t be a good idea to do it yourself.');
@@ -264,7 +264,7 @@ function enterAfterschoolPractice(s: GameState, scene: SceneBuilder): void {
 function enterAfterschoolGame(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheerleadingQW = (s as any).cheerleadingQW ?? {})['day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/pavlovsk/school/grounds/field.jpg');
-  // TODO-QSP: dynamic text: There is a football game at '+func('time', 'get_time_string', 14, 15)+' on the s...
+  // TODO-QSP: dynamic text: 'There is a football game at '+func('time', 'get_time_string', 14, 15)+' on the ...
   scene.text('There is a football game at 14:15 on the sports field behind the school today.');
   if (((s as any).cheerleadingQW ?? 0)?.['skipped'] === 0) {
     scene.text('You recall how angry Albina was at that Karine girl, and that was just for skipping practice. It probably wouldn\'t be a good idea to skip a game.');
@@ -541,7 +541,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'gschool_cheerleading', 'cheerleaders_react');
   } else {
     scene.text('Heading into the locker room, you see Albina and the rest of the squad have already arrived and are in various states of changing into their uniforms while chatting to each other.');
-    // TODO-QSP: dynamic text: You head to your locker and strip down before pulling your uniform out and getti...
+    // TODO-QSP: dynamic text: 'You head to your locker and strip down before pulling your uniform out and gett...
     scene.text('You head to your locker and strip down before pulling your uniform out and getting dressed.' + ((((s as any).cheerleadingQW ?? 0)?.['backup_game'] === 1) ? (' The fact that you\'re actually wearing the uniform and are going out to perform with them doesn\'t seem real to you, even if the girls have only reluctantly let you join them.') : ('')) + '');
     scene.text('You finish tying your shoes when Albina stands on the bench. "You already know that today is game day! So let\'s go out there and cheer our boys to victory!"');
     scene.text('The squad cheers in unison as you all head out.');
@@ -776,9 +776,9 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((st as any).cheerleadingQW ?? 0)?.['practice_count'] <= 3  &&  ((st as any).christinaQW ?? 0)?.['blackmail'] === 0  &&  ((st as any).christinaQW ?? 0)?.['fight'] !== 1) {
           scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/christina_ambush.jpg');
-          // TODO-QSP: dynamic text: The locker room is quiet as you enter and head to your locker, but panic when yo...
+          // TODO-QSP: dynamic text: 'The locker room is quiet as you enter and head to your locker, but panic when y...
           scene.text('The locker room is quiet as you enter and head to your locker, but panic when you can\'t find your ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('cheerleading uniform') : ('clothes')) + ' inside. "Looking for something?"');
-          // TODO-QSP: dynamic text: Before you can react to the voice, your towel is ripped away from you. You turn ...
+          // TODO-QSP: dynamic text: 'Before you can react to the voice, your towel is ripped away from you. You turn...
           scene.text('Before you can react to the voice, your towel is ripped away from you. You turn to see a naked Christina sitting on the bench with your ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('uniform in her hand') : ('clothes in a crumpled pile at her feet')) + ', smiling at you mockingly.');
           if (((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) {
             scene.text('"Like I said, you need to earn the right to wear this. Just do as I want and you get it back. You wouldn\'t want to anger Albina by losing it would you?"');
@@ -791,7 +791,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
               { label: 'Do as you\'re told', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/christina_force.jpg');
     scene.text('Having already submitted to her, you have no desire to fight back and obediently get on your knees in front of her in a submissive pose.');
-    // TODO-QSP: dynamic text: She looks at you with a satisfied smirk before '+iif(cheerleadingQW['quest_stage...
+    // TODO-QSP: dynamic text: 'She looks at you with a satisfied smirk before '+iif(cheerleadingQW['quest_stag...
     scene.text('She looks at you with a satisfied smirk before ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('tossing your uniform across the room and') : ('')) + ' dragging you in front of her. "Good bitch. Now eat my pussy."');
     scene.text('She turns around and kneels on the bench before grabbing your head and forcing your face into her crotch. You start obediently running your tongue up and down her pussy before drifting down to her clit and flicking your tongue over it.');
     scene.text('"Oh fuck yeah, just like that, bitch!" she moans in pleasure as she maintains a tight grip on your hair. You please her for a few minutes before her knees give out to the pleasure and she ends up laying flat on the bench, her legs split wide. "Oh fuck! Yes, yes, yes! Keep going, bitch!"');
@@ -820,7 +820,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/christina_ambush.jpg');
     scene.text('The idea of submitting to her and letting her do whatever she wants with you sounds appealing to you. "What do you want me to do?" you ask in your most submissive tone.');
-    // TODO-QSP: dynamic text: She looks at you with a satisfied smirk. "Be a good little bitch, get on your kn...
+    // TODO-QSP: dynamic text: 'She looks at you with a satisfied smirk. "Be a good little bitch, get on your k...
     scene.text('She looks at you with a satisfied smirk. "Be a good little bitch, get on your knees and eat my pussy!" she barks as she ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('tosses your uniform across the room and') : ('')) + ' drags you in front of her.');
     if ((Math.floor(Math.random() * 3) + 0) < 2) {
       scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/sex/christina_force.jpg');
@@ -856,7 +856,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (2);
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/events/albina_rescue.jpg');
-    // TODO-QSP: dynamic text: "She''s lying!" you exclaim while looking up pleadingly at Albina. "She stole my...
+    // TODO-QSP: dynamic text: '"She''s lying!" you exclaim while looking up pleadingly at Albina. "She stole m...
     scene.text('"She\'s lying!" you exclaim while looking up pleadingly at Albina. "She stole my ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('uniform') : ('clothes')) + ' and forced me to eat her out to get ' + ((((st as any).cheerleadingQW ?? 0)?.['quest_stage'] === 3) ? ('it') : ('them')) + ' back!"');
     // TODO-QSP: dynamic text: "I fucking knew it! No way <<$pcs_nickname>> would ever willingly go down on you...
     scene.text(`"I fucking knew it! No way ${((st as any).pcs_nickname ?? '')} would ever willingly go down on you," Albina replies while pulling you to your feet and shielding you behind her. "You're fucking despicable, you know that? Stay the fuck away from ${((st as any).pcs_nickname ?? '')} or we'll be having a chat about your 'extra curricular' activities…"`);
@@ -1418,7 +1418,7 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
     scene.text('Albina is waiting for you in the hallway and pulls you to the side.');
     // TODO-QSP: '"Where were you yesterday, <<$pcs_nickname>>? '+iif(cheerleadingQW['skipped_ev'] = 1, 'You missed l...
     scene.text('"Sorry, Albina. I… had a family thing I had to deal with yesterday and I didn\'t have time to tell you…" you meekly reply. ');
-    // TODO-QSP: dynamic text: She doesn''t look completely convinced. "Right… Well if you care about your plac...
+    // TODO-QSP: dynamic text: 'She doesn''t look completely convinced. "Right… Well if you care about your pla...
     scene.text('She doesn\'t look completely convinced. "Right… Well if you care about your place on the team then you\'ll be at the next ' + ((((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) ? ('practice session') : ('game')) + ' on time. No excuses."');
     scene.text('You nod at her and she gives you a pat on the shoulder before walking away. It looks like you got off lightly this time.');
   } else {
@@ -1426,8 +1426,8 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', 'A23', (-10));
       qspCall(s, 'mood', 'lower', 'medium');
       scene.text('You notice Albina angrily watching you walk down the hallway towards her and she drags you to the side when you reach her.');
-      // TODO-QSP: dynamic text: "Skipping '+iif(cheerleadingQW['skipped_ev'] = 1, 'practice', 'the game')+' <i>a...
-      scene.text('"Skipping \'+iif(cheerleadingQW[\'skipped_ev\'] = 1, \'practice\', \'the game\')+\' <i>again</i>, ' + ((s as any).pcs_nickname ?? '') + '?! I thought I told you that you were to be \'+iif(cheerleadingQW[\'skipped_ev\'] = 1, \'at practice\', \'at the next game\')+\'… <b>no excuses</b>?! I don\'t care about what miserable story you have to defend yourself with. You either commit to the squad or you\'re out. Don\'t test me, ' + ((s as any).pcs_nickname ?? '') + '!"');
+      // TODO-QSP: dynamic text: '"Skipping '+iif(cheerleadingQW['skipped_ev'] = 1, 'practice', 'the game')+' <i>...
+      scene.text('"Skipping ' + ((((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) ? ('practice') : ('the game')) + ` <i>again</i>, ${((s as any).pcs_nickname ?? '')}?! I thought I told you that you were to be ` + ((((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) ? ('at practice') : ('at the next game')) + `… <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the squad or you're out. Don't test me, ${((s as any).pcs_nickname ?? '')}!"`);
       scene.text('You don\'t have a chance to speak before she storms off. Maybe it\'s best for both of you if you stopped pissing her off?');
     } else {
       if (((s as any).cheerleadingQW ?? 0)?.['skipped'] === 3) {
@@ -1437,7 +1437,7 @@ function enterSkippedEv(s: GameState, scene: SceneBuilder): void {
         ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
         qspCall(s, 'mood', 'lower', 'large');
         scene.text('You\'re walking down the hallway when you clock a furious Albina heading straight for you. You barely have time to react before she grabs your shirt and forcefully pins you against the lockers, silencing the hall as everyone looks at you.');
-        // TODO-QSP: dynamic text: Albina glares directly into your eyes. "ARE YOU DOING THIS TO MOCK ME, YOU FUCKI...
+        // TODO-QSP: dynamic text: 'Albina glares directly into your eyes. "ARE YOU DOING THIS TO MOCK ME, YOU FUCK...
         scene.text('Albina glares directly into your eyes. "ARE YOU DOING THIS TO MOCK ME, YOU FUCKING BITCH?! I\'VE GIVEN YOU CHANCE AFTER FUCKING CHANCE AND YOU STILL SKIP ' + ((((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) ? ('PRACTICE') : ('GAME DAY')) + '?! Luckily for you, Vicky convinced me to give you one. Last. Fucking. Chance. You dare miss even ONE FUCKING SECOND of our next ' + ((((s as any).cheerleadingQW ?? 0)?.['skipped_ev'] === 1) ? ('session') : ('performance')) + ', then you better pray that I don\'t fucking find you."');
         scene.text('She releases you and angrily storms off, shoving other students out of her way. You compose yourself and continue on your way, trying to ignore the stares.');
       } else {

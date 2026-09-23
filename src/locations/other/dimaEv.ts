@@ -146,7 +146,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/minet.jpg');
     // TODO-QSP: dynamic text: Seeing his hard dick, you almost feel your mouth water. You don''t understand wh...
     scene.text(`Seeing his hard dick, you almost feel your mouth water. You don't understand what is happening anymore, but you want to suck his cock so much right now. You walk, stumbling over, to Dimka and settle comfortably in front of him, taking his hard, hot dick in your mouth. Your lips slide down the shaft of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock and you start bobbing your head on his rod while one hand strokes his shaft and the other massages his balls. Your mind is too drugged to have any will or thought anymore.`);
-    (st as any).dimadalrand = 0;
+    (st as any).dimadalrand = (Math.floor(Math.random() * (((st as any).maxdra ?? 0) - 0 + 1)) + (0));
     qspCall(st, 'arousal', 'bj', 15, 'sub');
     qspCall(st, 'stat', '');
     if ((!((st as any).dimadalrand ?? 0))) {

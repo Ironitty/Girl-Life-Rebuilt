@@ -3,47 +3,47 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).TatQuality = 3;
     (s as any).TatPrice = 17250;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).TatQuality = 3;
       (s as any).TatPrice = 17250;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).TatQuality = 3;
         (s as any).TatPrice = 17250;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).TatQuality = 3;
           (s as any).TatPrice = 17250;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).TatQuality = 3;
             (s as any).TatPrice = 17250;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).TatQuality = 3;
               (s as any).TatPrice = 17250;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).TatQuality = 3;
                 (s as any).TatPrice = 17250;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).TatQuality = 3;
                   (s as any).TatPrice = 17250;
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).TatQuality = 3;
                     (s as any).TatPrice = 17250;
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).TatQuality = 3;
                       (s as any).TatPrice = 17250;
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).TatQuality = 3;
                         (s as any).TatPrice = 17250;
                       }

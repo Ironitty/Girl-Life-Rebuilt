@@ -208,7 +208,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKatinka(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'desc') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'desc') {
     scene.img('images/characters/city/taras/katinka1.jpg');
     scene.actions([
       { label: 'Talk', handler: (st: GameState) => {
@@ -232,7 +232,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'talkEnd') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'talkEnd') {
       scene.text('As you think about what you could say next you hear Taras returning from upstairs. He is dressed for his job.');
       // TODO-QSP: dynamic text: "Time to get you back to your own room." he grabs <<$nichKatinkaName>> by her ha...
       scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName ?? '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
@@ -243,7 +243,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'wash') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'wash') {
         scene.img('images/characters/city/taras/washing1.jpg');
         // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> takes a bottle of shower gel and covers you in it. Being ...
         scene.text(`${((s as any).nichKatinkaNameUC ?? '')} takes a bottle of shower gel and covers you in it. Being all tied up there is nothing you can do to prevent it. Her touch feels soft on your skin. Then she uses a hose to clean you. The water is ice cold. She gently dries you with a towel before combing your hair.`);
@@ -273,7 +273,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName ?? '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
     (s as any).nichKatinkaPresent = 0;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     qspCall(s, 'stat', '');
     if (((s as any).nichTarasReturn ?? 0) <= ((s as any).hour ?? 0)) {
       scene.text('You hear the locks of the door upstairs being opened again. Then heavy steps. Taras has returned.');
@@ -307,15 +307,15 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'bed') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'bed') {
       qspCall(s, 'stat', '');
-      if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+      if (String((s as any).locArgs?.[2] ?? '') === '') {
         scene.img('images/characters/city/taras/dungeonBed.jpg');
         scene.text('You crawl over to the bed. Being tied up you have a hard time climbing on the mattress. It isn\'t very comfortable but still better than the cold ground.');
         if (((s as any).pcs_sleep ?? 0) < 80  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
           scene.actions([
             { label: 'Sleep', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichTaras', 'dungeon', 'bed', 'sleep'
+    qspGoto(st, 'nichTaras', 'dungeon', 'bed', 'sleep');
   } },
           ]);
         }
@@ -325,7 +325,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'sleep') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'sleep') {
           scene.text('The bed is extremely uncomfortable and smells of old sweat. You try to get into a comfortable position but your bondage would\'t allow that.');
           scene.text('Giving up you decide to try to sleep like this. It takes a while but finally you manage to fall asleep.');
           if (((s as any).hour ?? 0) + 4 >= ((s as any).nichTarasReturn ?? 0)) {
@@ -344,7 +344,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_sleep ?? 0) < 80  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
               scene.actions([
                 { label: 'Sleep', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichTaras', 'dungeon', 'bed', 'sleep'
+    qspGoto(st, 'nichTaras', 'dungeon', 'bed', 'sleep');
   } },
               ]);
             }
@@ -357,7 +357,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'eat') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'eat') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
         (s as any).pcs_hydra = Math.max(((s as any).pcs_hydra ?? 0), 80);
         (s as any).pcs_energy = Math.max(((s as any).pcs_energy ?? 0), 80);
@@ -370,7 +370,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'mirror') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'mirror') {
           scene.img('images/characters/city/taras/mirror.jpg');
           scene.text('This is a dirty old mirror standing on the ground.');
           if ((!((s as any).nichTarasMirror ?? 0))) {
@@ -750,7 +750,7 @@ function enterVan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.img('images/characters/city/taras/abduction.jpg');
     scene.text('As you pass the van the back door is suddenly opened. You have no time to react before a piece of cloth is pressed against your face.');
     scene.text('It smells sweetish… and you begin to black out.');
@@ -759,7 +759,7 @@ function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['nichTaras', 'vanAbduct', '1'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       scene.img('images/characters/city/taras/abductionVan.jpg');
       scene.text('You slowly come back to your senses. The first thing you realize is that you are completely tied up. You can\'t move at all.');
       scene.text('You open your eyes in panic. You are in the back area of the van and it is moving. You try to scream, but your mouth is taped shut.');

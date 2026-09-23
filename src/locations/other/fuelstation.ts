@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/gas/gazprom_day.jpg');
   }
   scene.text('The local gas station, the cheap pumps are limited in functionality and will always fill the tank up completely.');
-  // TODO-QSP: dynamic text: The petrol price is ' + $func('money', 'string_price', 30) + ' per liter.
+  // TODO-QSP: dynamic text: 'The petrol price is ' + $func('money', 'string_price', 30) + ' per liter.'
   scene.text('The petrol price is 30₽ per liter.');
   scene.text('When the weather is nice, girls will sometimes offer a car washing service for some tips. There\'s no structure to it, so you could always try it.');
   if (((s as any).temper ?? 0) < 10) {
@@ -70,7 +70,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car ?? 0)?.['tank'];
       qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
       scene.img('images/locations/shared/gas/zapr1.jpg');
-      // TODO-QSP: dynamic text: You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.
+      // TODO-QSP: dynamic text: 'You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.'
       scene.text('You fill the tank and pay \' + $func(\'money\', \'string_price\', zprpay) + \'.');
       scene.actions([
         { label: 'Disengage from the pump', goto: ['fuelstation', 'start'] },

@@ -189,14 +189,16 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'Who are you?', handler: (st: GameState) => {
     (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) - (30);
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You exhale slowly, retreating toward the door and trying to pull yourself together. "You scared me," you continue, trying to stop your voice from shaking. "I recognize you—you\'re the man from the park. How did you get in here?"');
     scene.text('"Through the door," he replies, his voice deep and resonant. You stop at the doorway. You could just leave, but something makes you hesitate.');
     scene.actions([
       { label: 'I feel foolish…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I left the door open. But I didn\'t hear you come in."');
     scene.text('"I was here before you," his voice scrapes slightly.');
@@ -207,7 +209,8 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'I\'m looking at old houses', handler: (st: GameState) => {
     (st as any).arnksg = 1;
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I\'m considering renting an apartment in this building," he says.');
     scene.text('"Are you planning to rent here?" you ask.');
@@ -217,7 +220,8 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     (st as any).psihb = 0;
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You automatically smooth your hair, using the glass door as a mirror.');
     scene.text('A fleeting thought crosses your mind—I\'m being foolish—but it quickly vanishes.');
@@ -380,7 +384,8 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) - (50);
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"No," he replies, "the ottoman will stay where it is."');
     scene.text('It sounds like an order. Rude, firm, and clear.');
@@ -433,7 +438,8 @@ function enterPavser7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavser8(s: GameState, scene: SceneBuilder): void {
-  scene.img('+func(\'$face_image\')+');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+  scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - 50;
   qspCall(s, 'stat', '');
@@ -454,7 +460,8 @@ function enterPavser8(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mana = ((st as any).manamax ?? 0);
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'stat', '');
-    scene.img('+func(\'$face_image\')+');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="'+func('$face_image')+'"></center>'
+    scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="\'+func(\'$face_image\')+\'"></center>');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I thought you\'d left."');
     scene.text('"I locked the door."');

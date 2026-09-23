@@ -38,7 +38,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly wriggle out of your top, allowing it to slip down your body.');
     scene.text('You are both overcome by a loving feeling towards each other and lust quickly takes over.');
     scene.text('She slowly makes her way down your body and tenderly starts kissing and sucking on your breasts.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -58,7 +58,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', (-5), 'lesbian');
     qspCall(st, 'arousal', 'foreplay_give', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -74,7 +74,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'clit_finger_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'clit_finger', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -90,7 +90,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'cuni', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -109,7 +109,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, I was ready. Anyway enough talk!"');
     qspCall(st, 'arousal', 'vaginal_strap', 5, 'A16', 'D2', 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'No, I\'m a virgin', handler: (st: GameState) => {
     (st as any).temp_last_sexact = 'dildo';
@@ -118,7 +118,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She immediately stops and removes the dildo. "I''m sorry, <<$pcs_nickname>>! I d...
     scene.text(`She immediately stops and removes the dildo. "I'm sorry, ${((st as any).pcs_nickname ?? '')}! I didn't know. Okay, let's leave that for now."`);
     scene.text('You nod. "Thank you. Maybe next time?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -131,7 +131,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly lower yourself onto it and start rocking to and fro, so that you are fucking Natasha while stimulating yourself at the same time.');
     qspCall(st, 'arousal', 'vaginal_strap', 5, 'A16', 'D2', 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -170,7 +170,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Okay, I better go before I get tempted and we both end up exhausted. I\'ll see you soon."');
     scene.text('"I\'m looking forward to it," Natasha says as she leans over and gently kisses your boob. "Till next time, sexy."');
     scene.text('You slip out of her bed, get redressed and exit her apartment.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetMainEndActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetMainEndActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -269,7 +269,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     scene.text('Slowly you begin kissing, licking and sucking them then letting her nipple pop out before recommencing as you keep your eyes focused directly on hers.');
     qspCall(st, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -283,7 +283,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     scene.text('You both begin rocking back and forth slowly at first but gradually increasing in speed and intensity bring you both higher and higher.');
     qspCall(st, 'arousal', 'trib', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -312,7 +312,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'breasts', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -349,7 +349,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'cuni', (-1), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -398,7 +398,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want her to feel left out, so you reciprocate.');
     qspCall(st, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -409,12 +409,12 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['horny'] = ((st as any).NatbelQW['horny'] ?? 0) + ((Math.floor(Math.random() * 21) + 10));
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha27.mp4');
     scene.text('Natasha turns over slowly and lying on her front she spreads her legs sticking her bum in the air giving you easy access to that sexy arse.');
-    // TODO-QSP: dynamic text: You ' + iif(pcs_horny >= 50, 'are already very turned on and ', '') +'quickly ge...
+    // TODO-QSP: dynamic text: 'You ' + iif(pcs_horny >= 50, 'are already very turned on and ', '') +'quickly g...
     scene.text('You ' + ((((st as any).pcs_horny ?? 0) >= 50) ? ('are already very turned on and ') : ('')) + 'quickly get to work massaging her clit and soon both of you are soaking wet.');
     scene.text('Not wanting you to feel left out, she ensures that you receive the same attention by concentrating on your for a while.');
     qspCall(st, 'arousal', 'clit_finger_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -432,7 +432,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni_give', 3, 'lesbian');
     qspCall(st, 'arousal', 'cuni', 2, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -448,7 +448,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     scene.text('Placing one leg between yours and straddling your right leg, she starts to grind on you, bringing you both closer and closer to the edge of an orgasm.');
     qspCall(st, 'arousal', 'trib', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -462,7 +462,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
       scene.text('You slowly lower yourself onto it and start rocking to and fro, so that you are fucking Natasha while stimulating yourself at the same time.');
       qspCall(st, 'arousal', 'vaginal_strap', 5, 'A16', 'D2', 'lesbian');
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29b.jpg');
       scene.text('Natasha opens her bedside cabinet drawer and pulls out a double dildo and, after placing it inside her pussy, lines it up with yours.');
@@ -477,7 +477,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     scene.text('Holding her face gently you give her a lingering kiss then reply. "I know but I wanted to give it to you. I love you <i>girlfriend</i> and I was ready. Anyway enough talk!"');
     qspCall(st, 'arousal', 'vaginal_strap', 5, 'A16', 'D2', 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'No, I\'m a virgin', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha29b.jpg');
@@ -485,7 +485,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She immediately stops and removes the dildo. "I''m sorry, <<$pcs_nickname>>! I d...
     scene.text(`She immediately stops and removes the dildo. "I'm sorry, ${((st as any).pcs_nickname ?? '')}! I didn't know. Okay, let's leave that for now."`);
     scene.text('You nod. "Thank you. Maybe next time?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -517,7 +517,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'breasts', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -554,7 +554,7 @@ function enterSetSexActs3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'cuni', (-1), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSexActs3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

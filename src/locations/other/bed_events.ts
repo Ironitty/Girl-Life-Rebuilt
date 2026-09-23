@@ -60,11 +60,11 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+  if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
   qspGoto(s, 'bed_events', 'event_end');
@@ -230,7 +230,7 @@ function enterVor2(s: GameState, scene: SceneBuilder): void {
     scene.text('You check the lock on the door and it appears to be intact. You\'re not sure if you forgot to lock the door when you came in or if the lock was picked. Maybe you should have a second one installed…');
     scene.actions([
       { label: 'Lock the door', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'korr', '');
   } },
     ]);
@@ -285,7 +285,7 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).picrand = 38;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'sexdvoe', 'var');
   } },
     ]);
@@ -491,7 +491,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get fucked in the ass', handler: (st: GameState) => {
     (st as any).picrand = 89;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'sex', 'anal');
   } },
     ]);
@@ -514,7 +514,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Spread your legs ', handler: (st: GameState) => {
     (st as any).picrand = 89;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'sex', 'vag');
   } },
         ]);
@@ -538,7 +538,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Offer your ass', handler: (st: GameState) => {
     (st as any).picrand = 89;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'sex', 'anal');
   } },
     ]);

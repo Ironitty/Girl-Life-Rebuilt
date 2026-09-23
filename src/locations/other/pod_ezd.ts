@@ -447,14 +447,14 @@ function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/elevator' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/event/elevator` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('When the elevator door opens, you see a naked woman standing in it! She looks at you in panic and is frantically pressing all the elevator buttons. You\'re too baffled to do anything until it\'s too late. The door is already closed again, and the elevator is moving away from you.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'pod_ezd', $ARGS[1]
-  } },
+  }, goto: ['pod_ezd', 'ARGS[1]'] },
   ]);
   scene.build();
 }
@@ -470,8 +470,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'pod_ezd', $ARGS[1]
-  } },
+  }, goto: ['pod_ezd', 'ARGS[1]'] },
   ]);
   scene.build();
 }
@@ -479,12 +478,11 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
 function enterElevObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/elevator_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', $ARGS[1]
-  } },
+    { label: 'Continue', goto: ['pod_ezd', 'lift', 'ARGS[1]'] },
   ]);
   scene.build();
 }
@@ -492,7 +490,8 @@ function enterElevObjava(s: GameState, scene: SceneBuilder): void {
 function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/pod_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('<br>As you pass by the advertisements, you notice a sign - "сдаeтся в аренду комната" (Room for rent!). Some guys are looking for a roommate. They live in an apartment in one of the other buildings in the apartment complex.');
   // TODO-QSP: end
   scene.actions([
@@ -958,7 +957,8 @@ function enterFloor4Event_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor4Event_5(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/flashp' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/event/flashp` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('As you walk around a corner in the stairwell, you see some girl hanging out with the boys that smoke. They are encouraging her to lift her dress and show them her pussy. After a bit, she finally relents and lifts her dress showing off her pussy. This only seems to encourage them as they crowd her a bit and encourage her to get naked. When you catch one of them boys looking at you, you decide it is best to be on your way.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
@@ -1212,7 +1212,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).fame ?? 0)?.['pav_sex'] < ((st as any).fame ?? 0)?.['pav_prostitute']) {
-        // TODO-QSP: dynamic text: As you smoke the cigarette, you hear the boys whisper among themselves. "That''s...
+        // TODO-QSP: dynamic text: 'As you smoke the cigarette, you hear the boys whisper among themselves. "That''...
         scene.text('As you smoke the cigarette, you hear the boys whisper among themselves. "That\'s ' + ((st as any).pcs_nickname ?? '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. From what I\'ve been told, she\'ll let you do anything to her if the price is right. Let\'s see if she\'ll fuck us cheap!."');
         // TODO-QSP: dynamic text: One of the guys walks close to you and gestures for you to lean your head closer...
         scene.text(`One of the guys walks close to you and gestures for you to lean your head closer to his. When you do, he pulls all of his money out of his pocket. He counts the crumpled bills and offers them to you, asking, "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex ?? ''))} enough for two?"`);
@@ -1236,7 +1236,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept and fuck them', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', ((st as any).rnd_money_sex ?? 0));
     qspCall(st, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * 7) + 3));
-    qspGoto(st, 'pod_ezd', 'sex_ev' + (Math.floor(Math.random() * 3) + 1) + '');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
   } },
         ]);
       } else {
@@ -1270,7 +1270,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave before they get any ideas', handler: (st: GameState) => { qspGoto(st, 'pod_ezd', ((st as any).smoke_loc ?? '')); } },
           { label: 'Keep smoking', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 2);
-    qspGoto(st, 'pod_ezd', 'sex_ev' + (Math.floor(Math.random() * 3) + 1) + '');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
   } },
         ]);
       }
@@ -1288,7 +1288,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).fame ?? 0)?.['pav_sex'] < ((st as any).fame ?? 0)?.['pav_prostitute']) {
         qspCall(st, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
-        // TODO-QSP: dynamic text: You hear the boys trying to whisper among themselves. "That''s <<$pcs_nickname>>...
+        // TODO-QSP: dynamic text: 'You hear the boys trying to whisper among themselves. "That''s <<$pcs_nickname>...
         scene.text('You hear the boys trying to whisper among themselves. "That\'s ' + ((st as any).pcs_nickname ?? '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. Rumor says she\'ll let you do anything to her for rubles, I want to see if she\'ll fuck us cheap!"');
         // TODO-QSP: dynamic text: One of the guys walks closer to you and gestures for you to do the same. When yo...
         scene.text(`One of the guys walks closer to you and gestures for you to do the same. When you do, he pulls all of his money out of his pocket. He counts the bills and offers them to you, asking somewhat excitedly: "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex ?? ''))} enough for two?"`);
@@ -1313,7 +1313,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', ((st as any).rnd_money_sex ?? 0));
     qspCall(st, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * 7) + 3));
     ((st as any).stat = (st as any).stat ?? {})['prostitution_count'] = ((st as any).stat['prostitution_count'] ?? 0) + (1);
-    qspGoto(st, 'pod_ezd', 'sex_ev' + (Math.floor(Math.random() * 3) + 1) + '');
+    qspGoto(st, 'pod_ezd', qspUntranslated(s, "''sex_ev<<rand(1'", { location: "pod_ezd" }), '3)>>');
   } },
         ]);
       } else {
@@ -1346,7 +1346,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Do as they say', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 7) + 3));
-  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+  }, goto: ['pod_ezd', 'qspUntranslated(s, "\'sex_ev<<rand(1", { location: "pod_ezd" })', 'qspUntranslated(s, "3)>>\'", { location: "pod_ezd" })'] },
         ]);
       }
     }
@@ -1589,7 +1589,8 @@ function enterVasilySmoke(s: GameState, scene: SceneBuilder): void {
 
 function enterVasilySmokeBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A11');
-  scene.img('images/characters/pavlovsk/school/boy/vasya/sex/stairs/otsos' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/vasya/sex...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/vasya/sex/stairs/otsos` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You sigh, and squat before <<$boydesc>>. While you take his <<dick>>cm <<$dick_g...
   scene.text(`You sigh, and squat before ${((s as any).boydesc ?? '')}. While you take his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
   // TODO-QSP: dynamic text: You know you have to be quick about this, so you take his <<dick>>cm <<$dick_gir...

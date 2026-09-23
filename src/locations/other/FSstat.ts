@@ -241,11 +241,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeed ?? 0) * 2 - ((s as any).FSspeed ?? 0) / 2 + 1)) + (((s as any).FSspeed ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0)) {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0) - ((s as any).FSstren ?? 0)/2 + 1)) + (((s as any).FSstren ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0) - ((s as any).FSweaponDam ?? 0)/2 + 1)) + (((s as any).FSweaponDam ?? 0)/2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0) - ((s as any).FSstren ?? 0)/2 + 1)) + (((s as any).FSstren ?? 0)/2));
       (s as any).FSHPV = ((s as any).FSHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`CRETE ${((s as any).KGHPnpow ?? '')}`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0)/2 - ((s as any).FSstren ?? 0)/4 + 1)) + (((s as any).FSstren ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0)/2 - ((s as any).FSweaponDam ?? 0)/4 + 1)) + (((s as any).FSweaponDam ?? 0)/4));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0)/2 - ((s as any).FSstren ?? 0)/4 + 1)) + (((s as any).FSstren ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbronaV ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;
@@ -261,11 +261,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeedV ?? 0) * 2 - ((s as any).FSspeedV ?? 0) / 2 + 1)) + (((s as any).FSspeedV ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0)) {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0) - ((s as any).FSstrenV ?? 0)/2 + 1)) + (((s as any).FSstrenV ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0) - ((s as any).FSweaponDamV ?? 0)/2 + 1)) + (((s as any).FSweaponDamV ?? 0)/2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0) - ((s as any).FSstrenV ?? 0)/2 + 1)) + (((s as any).FSstrenV ?? 0)/2));
       (s as any).FSHP = ((s as any).FSHP ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`CRETE ${((s as any).KGHPnpow ?? '')}`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0)/2 - ((s as any).FSstrenV ?? 0)/4 + 1)) + (((s as any).FSstrenV ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0)/2 - ((s as any).FSweaponDamV ?? 0)/4 + 1)) + (((s as any).FSweaponDamV ?? 0)/4));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0)/2 - ((s as any).FSstrenV ?? 0)/4 + 1)) + (((s as any).FSstrenV ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbrona ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;

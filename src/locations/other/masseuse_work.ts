@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'this_week') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'this_week') {
     qspCall(s, 'masseuse_schedule', 'set_schedule');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'next_week') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'next_week') {
       qspCall(s, 'masseuse_schedule', 'next_week_set_schedule');
     }
   }
@@ -377,9 +377,9 @@ function enterStretchOut(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).masseuse ?? 0)?.['shift_finished'] === 1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinalCleanup(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinalCleanup(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -748,7 +748,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Looking back to the table, you see he left a tip of <<$func(''money'', ''string_...
       scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Slip your hand under the towel and jerk him off', goto: ['masseuse_work', '1.handjob1'] },
       ]);
@@ -778,7 +778,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       scene.text('"No! I told you, if you wanted that then you should have paid for it! Keep this up I\'ll call the manager and you\'re getting kicked out. <i>No refund.</i>"');
     }
     scene.text('"Fine, fine," he grumbles and flips over so you can do his back, staying quiet for the rest of the massage. When you\'re done, he gets dressed and quickly leaves.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I suppose...', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/normalchest.jpg');
@@ -815,7 +815,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/normalback.jpg');
     scene.text('Turning him over, you massage his back while he stays quiet for the rest of the session. When you\'re done, he gets dressed quickly and leaves.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -859,10 +859,10 @@ function enter1_handjob1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Here's a little something extra," he says, handing you ${qspFunc(s, 'money', 'string_profit', 300)}. "Maybe I'll stop by again sometime for your services. Maybe you'll even offer something a little more."`);
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       scene.text('With a wink, he leaves. Before doing anything else, you take a look at the clock to see if you have time for another client.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('With a wink, he leaves. Slipping your well earned tip into your pocket, you begin changing the sheets to prepare for your next client.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -899,10 +899,10 @@ function enter1_handjob2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Your tip, as promised," he says, handing you ${qspFunc(s, 'money', 'string_profit', 300)}. "Maybe I'll stop by again sometime for your services. Maybe even get a <i>full body</i> service from you."`);
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
       scene.text('With a wink, he leaves. Before doing anything else, you take a look at the clock to see if you have time for another client.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('With a wink, he leaves. Slipping your well earned tip into your pocket, you begin changing the sheets to prepare for your next client.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -933,9 +933,9 @@ function enter1_handjob3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/work/room.jpg');
     scene.text('Still watching the client, you raise your hand to your lips and shove your fingers inside your mouth. You taste the bitter flavor of semen mixed with the massage oils and suck every drop of the former off each of your digits and gulp it all down. Smiling at him, you take a towel and begin to wipe him down, cleaning his body of his own cum and the rest of the oil before allowing him to get dressed.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
@@ -954,10 +954,10 @@ function enter1_handjob3(s: GameState, scene: SceneBuilder): void {
       scene.text('"Damn..." he breathes. "I gotta come back for you..."');
       if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
         scene.text('With that, he leaves. Before doing anything else, you take a look at the clock to see if you have time for another client.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('With that, he leaves and you begin changing the sheets to prepare for your next client.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       ((st as any).massage = (st as any).massage ?? {})['sex_tips'] = ((st as any).massage['sex_tips'] ?? 0) + (300);
@@ -968,10 +968,10 @@ function enter1_handjob3(s: GameState, scene: SceneBuilder): void {
       scene.text('"Damn..." he breathes. "I gotta come back for you..."');
       if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
         scene.text('With that, he leaves. Before doing anything else, you take a look at the clock to see if you have time for another client.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('With that, he leaves. Slipping your well earned tip into your pocket, you begin changing the sheets to prepare for your next client.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -1061,9 +1061,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).robe = 1;
     scene.text('Only once he\'s left do you reach for your robe and take a look at the clock.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1179,9 +1179,9 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Only once he\'s left do you look down at the cum on your body. You ought to clean up for your next customer. If you have one that is, you think before taking a look at the clock.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
@@ -1211,9 +1211,9 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
       scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1309,9 +1309,9 @@ function enter4_1(s: GameState, scene: SceneBuilder): void {
       scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1351,9 +1351,9 @@ function enter4_2(s: GameState, scene: SceneBuilder): void {
       scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1449,9 +1449,9 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Then you look at the clock on the wall to check how much time you have left in your shift.');
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('Looking down at your cum dripping pussy, you think to yourself if you care enough to clean it off. Company policy says you should be completely clean for each new customer but...');
       scene.actions([
         { label: 'Don\'t bother', handler: (st: GameState) => {
@@ -1462,7 +1462,7 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Guess you should just wait for the next client now.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Wipe your pussy', handler: (st: GameState) => {
     (st as any).cumspclnt = 15;
@@ -1475,7 +1475,7 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Guess you should just wait for the next client now.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1501,18 +1501,18 @@ function enter5_1(s: GameState, scene: SceneBuilder): void {
       scene.text(`Looking back to the table, you see he left a tip of ${qspFunc(s, 'money', 'string_profit', ((st as any).massage ?? 0)?.['client_tip'] ?? '')} for you on the table.`);
     }
     if (((st as any).salon ?? 0)?.['work_minutes'] >= 235) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLastClient(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       (st as any).cumspclnt = 12;
       qspCall(st, 'cum_cleanup', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNext(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('Looks like you still have some customers to serve. Well, you can\'t serve them looking like this. You grab a towel and clean your face and hair off before tossing it into a laundry bin and resetting the room.');
       if (((st as any).masseuse ?? 0)?.['break'] === 0) {
         scene.text('Now the only question left is if you should you take a break or just wait for the next client?');
       } else {
         scene.text('Guess you should just wait for the next client now.');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrepareNextMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1537,7 +1537,7 @@ function enterJobInterview1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Well... if that\'s all you have, tell me more about the masseuse job then."');
     scene.text('"I\'d be happy to!" she smiles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1545,7 +1545,7 @@ function enterJobInterview1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"I might be interested. Tell me more about it?"');
     scene.text('"I\'d be happy to!" she smiles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1574,7 +1574,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"What kind of work?" you ask curiously.');
     scene.text('"Well..."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1600,7 +1600,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
         { label: 'What?!', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"What?!" you gasp, shocked.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1691,14 +1691,14 @@ function enterWhoreOffer(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Well...', handler: (st: GameState) => {
     scene.text('"Well..." you say. The money is pretty tempting. "I guess you could tell me more about working as a whore to find out if I\'m really interested or not..."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
     { label: 'Tell me more', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Tell me more about this."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOffer2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1824,7 +1824,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "In that case, I can only offer you a position as a whore with a reduced pay of ...
       scene.text(`"In that case, I can only offer you a position as a whore with a reduced pay of ${qspFunc(s, 'money', 'string_profit', 600)} per shift instead of the standard ${qspFunc(s, 'money', 'string_profit', 1000)} per shift."`);
       scene.text('"Whore? Reduced pay?" you sputter. "Why?"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyAppend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyAppend(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1847,7 +1847,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "In that case, I can only offer you a position as a whore with a reduced pay of ...
       scene.text(`"In that case, I can only offer you a position as a whore with a reduced pay of ${qspFunc(s, 'money', 'string_profit', 600)} per shift instead of the standard ${qspFunc(s, 'money', 'string_profit', 1000)} per shift."`);
       scene.text('"Whore? Reduced pay?" you sputter.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyAppend(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWhoreOnlyAppend(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -2116,7 +2116,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Why did you tell me about the whoring?', handler: (st: GameState) => {
     ((st as any).masseuse = (st as any).masseuse ?? {})['brothel_question'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Uhhhh, yeah... Why did you tell me about all the whoring stuff? I thought we agreed I\'m just working as a normal masseuse?"');
     scene.text('"In case you wanted to change jobs," she says simply. "I might have mentioned it before but even if you\'re just a masseuse right now, you might change your mind in the future. As long as you have the certificate, you are welcome to ascend or descend to any level of masseuse here. As it is such a fluid system, even if you\'re not doing the work it\'s easiest to explain it all in one orientation."');
@@ -2126,7 +2126,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Why did you tell me all that... other stuff?', handler: (st: GameState) => {
     ((st as any).masseuse = (st as any).masseuse ?? {})['brothel_question'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Uhhhh, yeah... Why did you tell me about all that... other stuff?"');
     scene.text('"In case you wanted to change jobs and because I didn\'t want to you to be surprised by any of the other work we do here," she says simply. "We also offer many sex services to customers. As long as you have the certificate, you are welcome to ascend or descend to any level of employee here. As it is such a fluid system, even if you\'re not doing the work it\'s easiest to explain it all in one orientation."');
@@ -2138,7 +2138,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'This is a brothel?!', handler: (st: GameState) => {
     ((st as any).masseuse = (st as any).masseuse ?? {})['brothel_know'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQuestions(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Wait, do you mean this is some kind of brothel?!"');
     scene.text('"Well, yes. Of course," she says, giving you an eye. "Surely you didn\'t think that a massage parlor in <i>this</i> town was <i>just</i> a massage parlor did you?"');

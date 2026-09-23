@@ -21,7 +21,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('The two hunters, Sergei and Igor are sitting and telling each other all kinds of hunting stories.');
       }
     } else {
-      scene.img('images/locations/gadukino/hunters/hanterswork1.' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterswork1....
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterswork1.` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
       if (((s as any).hunterVars ?? 0)?.['evening'] === 0) {
         scene.text('The three hunters, Sergei, Igor and Andrei, are all minding their own business.');
       } else {
@@ -338,7 +339,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/gadukino/hunters/hanters1.jpg');
       scene.text('You enthusiastically listen to the their hunting stories and even share some of your stories.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHuntersTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHuntersTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('You get so caught up in the conversation, you don\'t even notice how fast the time flies by.');
     }
     scene.actions([
@@ -466,7 +467,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/sex/hunter/backwaterrelax5.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/backwaterr...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/backwaterrelax5.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('While Sergei is holding you by the arms Andrei and Igor start groping every inch of your body…');
     qspCall(st, 'arousal', 'foreplay', 5, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
@@ -922,7 +924,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALsi(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalsi1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalsi1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('The men surround you with their cocks out, telling you to suck them off.');
   scene.text('You began to suck their cocks alternately, while carefully paying equal attention to each member.');
   scene.text('Each of them start groaning as soon as your lips touch their penis head.');
@@ -957,7 +960,8 @@ function enterHuntersgroupORALsi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALsi1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalsi2.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalsi2.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('You begin sucking Sergei and Igor off, altering pleasuring them orally.');
   }
@@ -1019,7 +1023,8 @@ function enterHuntersgroupORALs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALs1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporals1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporals1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('You begin pleasuring Sergei. He grabs you by the head giving him the control over how deep you will go…');
   }
@@ -1077,7 +1082,8 @@ function enterHuntersgroupORALi1end(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalend1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalend1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You get down on your knees. <<$boydesc>> grabs you by the head and tells you he ...
   scene.text(`You get down on your knees. ${((s as any).boydesc ?? '')} grabs you by the head and tells you he wants you to lick his penis head…`);
   qspCall(s, 'oral', 'start', 5, 'gangbang');
@@ -1114,7 +1120,8 @@ function enterHuntersgroupORALa1end(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalend1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalend1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You get down on your knees. <<$boydesc>> grabs you by the head and tells you he ...
   scene.text(`You get down on your knees. ${((s as any).boydesc ?? '')} grabs you by the head and tells you he wants you to lick his penis head…`);
   qspCall(s, 'oral', 'start', 5, 'gangbang');
@@ -1243,7 +1250,8 @@ function enterHuntersgroupORALend1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALai(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalsi1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalsi1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You begin to pleasure the three men, diligently giving all the men equal attention.');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     qspCall(s, 'boyStat', 'A172');
@@ -1279,7 +1287,8 @@ function enterHuntersgroupORALai(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALai1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalai1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalai1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You began sucking the men, trying to fit two cocks in your mouth at the same time.');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     qspCall(s, 'boyStat', 'A172');
@@ -1333,7 +1342,8 @@ function enterHuntersgroupORALi1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALas(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgrouporalsi1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgrouporalsi1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You began to suck their cocks alternately, while carefully paying equal attention to each one of them.');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     qspCall(s, 'boyStat', 'A172');
@@ -1369,7 +1379,8 @@ function enterHuntersgroupORALas(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupORALasi(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupbj3.' + (Math.floor(Math.random() * 9) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupbj3.` + (Math.floor(Math.random() * 9) + 0) + '.jpg"></center>');
   scene.text('The men take turns, grabbing your head, forcing their cock down your throat.');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     qspCall(s, 'boyStat', 'A172');
@@ -1401,7 +1412,8 @@ function enterHuntersgroupORALasi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupVias(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvias3.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvias3.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Igor lies down on the ground with his cock out, he commands you to straddle him. While Igor enters you… Andrei and Sergei tell you to start sucking them off.');
   }
@@ -1500,7 +1512,8 @@ function enterHuntersgroupVas(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupVas1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvas1.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvas1.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Andrei positions you on all fours and enters you from the behind while Sergei steps in front of you and thrusts his cock inside your mouth…');
   }
@@ -1765,7 +1778,8 @@ function enterHuntersgroupVis(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupVis1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvis1.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvis1.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Sergei positions you on all fours and enters you from the behind while Igor steps in front of you and thrusts his cock inside your mouth…');
   }
@@ -1964,7 +1978,8 @@ function enterHuntersgroupVia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupVia1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvia1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvia1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Igor spreads your anus, using his spit as lube while he enters you, Andrei makes you suck him off…');
   }
@@ -2088,7 +2103,8 @@ function enterHuntersgroupVa1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupVaOsHi(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvaoshi1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvaoshi1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('You go down on all fours, Andrei enters you from behind, Sergei and Igor stand in front of you. You begin sucking Sergei\'s cock while you jerk off Igor…');
   }
@@ -2223,7 +2239,8 @@ function enterHuntersgroupVaOHi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgroupDPasi(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupdpasi1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupdpasi1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Andrei pulls you on top of him. Igor steps behind you, goes down on his knees and starts fucking you in the ass. While you are adjusting to getting fucked by two cocks Sergei steps up to you and shoves his cock in your mouth…');
   }
@@ -2460,7 +2477,8 @@ function enterHuntersgroupDPai(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupVsOaHi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Sergei positions you on your side and enters from behind. Andrei buries his cock in your mouth…');
   }
@@ -2502,7 +2520,8 @@ function enterHuntersgroupVsOaHi(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupVsOHi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Sergei puts you on your side and starts fucking you. Andrei shoves his cock in your mouth. You grab Igor\'s member and begin to masturbate him…');
   }
@@ -2552,7 +2571,8 @@ function enterHuntersgroupVsOHi(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupVsOi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvsoi1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvsoi1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Sergei positions you on the side and enters you from behind. Igor grabs you by the head and thrusts his cock inside your mouth…');
   }
@@ -2687,7 +2707,8 @@ function enterHuntersgroupVsO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupVOaHi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvsoahi1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Sergei positions you on your side and enters from behind. Andrei buries his cock in your mouth. Igor grabs one of your hands and makes you jerk him off…');
   }
@@ -2722,7 +2743,8 @@ function enterHuntersgroupVOaHi(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupViOa(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvioa1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvioa1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Igor fucks you sideways while Andrei shoves his cock deep inside your mouth…');
   }
@@ -2801,7 +2823,8 @@ function enterHuntersgroupViO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgroupVaOs(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupvaos1.' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvaos1.` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['sexnude'] === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 3) {
     scene.text('Laying on your stomach, Andrei grabs hold of his cock and leads it inside you from behind. You begin pleasuring Sergei with your mouth…');
   }
@@ -3141,7 +3164,8 @@ function enterHuntersgroupOis(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pose = 1;
   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupo1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupo1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   scene.text('You\'re on your knees masturbating their throbbing cocks right in front of your face. You see them grimace, they\'re edging and are ready to cover your pretty little face with spunk. The men cum all over your face, satisfied they leave you by the bedspread…');
   qspCall(s, 'arousal', 'end');
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
@@ -3173,7 +3197,8 @@ function enterHuntersgroupOia(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupo1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupo1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   scene.text('You\'re kneeling down eagerly awaiting the men to finish, hoping they\'ll cover your face with their sprem. The men cum simultaneously, grunting loudly, shooting their spunk all over your face. They leave you behind sitting on a blanket craving for more…');
   qspCall(s, 'arousal', 'end');
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
@@ -3207,7 +3232,8 @@ function enterHuntersgroupOsa(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupo1.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupo1.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   scene.text('The men order you on your knees, they\'ve had enough and want to finish. You can see on their faces that they\'re at the edge and you\'ll soon feel their warm sperm all over the face. The sperm flowes down your chin, dripping down on your chest. The men leave you behind on a blanket covered in their spunk.');
   qspCall(s, 'arousal', 'end');
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
@@ -3243,7 +3269,8 @@ function enterHuntersgroupAa(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupa1.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> tells you to go ass up face down. Without any hesitation he starts ...
   scene.text(`${((s as any).boydesc ?? '')} tells you to go ass up face down. Without any hesitation he starts pounding your anus relentlessly…`);
   // TODO-QSP: dynamic text: You hear <<$boydesc>> grunting from behind, his cock getting stiffer and stiffer...
@@ -3350,7 +3377,8 @@ function enterHuntersgroupAs(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupa1.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> positions you on all fours and begins slowly fucking you in the anu...
   scene.text(`${((s as any).boydesc ?? '')} positions you on all fours and begins slowly fucking you in the anus…`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
@@ -3454,7 +3482,8 @@ function enterHuntersgroupAi(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupa1.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> grabs his cock and crouches down, guiding his cock inside your anus...
   scene.text(`${((s as any).boydesc ?? '')} grabs his cock and crouches down, guiding his cock inside your anus…`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
@@ -3558,7 +3587,8 @@ function enterHuntersgroupVa2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupv0.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls you on top of him, spreading one of your ass cheeks while you...
   scene.text(`${((s as any).boydesc ?? '')} pulls you on top of him, spreading one of your ass cheeks while you grab hold of the other and spread it so he can enter you more easily…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -3620,7 +3650,8 @@ function enterHuntersgroupVs2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupv0.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls you on top of him, spreading one of your ass cheeks while you...
   scene.text(`${((s as any).boydesc ?? '')} pulls you on top of him, spreading one of your ass cheeks while you grab hold of the other and spread it so he can enter you more easily…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -3682,7 +3713,8 @@ function enterHuntersgroupVi3(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupv0.` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls you on top of him, spreading one of your ass cheeks while you...
   scene.text(`${((s as any).boydesc ?? '')} pulls you on top of him, spreading one of your ass cheeks while you grab hold of the other and spread it so he can enter you more easily…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -3750,7 +3782,8 @@ function enterHuntersgroupOsend(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupoend1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupoend1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: Not wanting to get you pregnant, <<$boydesc>> starts jerking off his cock in fro...
   scene.text(`Not wanting to get you pregnant, ${((s as any).boydesc ?? '')} starts jerking off his cock in front of you…`);
   qspCall(s, 'oral', 'start', 5, 'gangbang');
@@ -3801,7 +3834,8 @@ function enterHuntersgroupOaend(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupoend1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupoend1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: Making you kneel down, <<$boydesc>> starts masturbating in front of your face…
   scene.text(`Making you kneel down, ${((s as any).boydesc ?? '')} starts masturbating in front of your face…`);
   qspCall(s, 'oral', 'start', 5, 'gangbang');
@@ -3846,7 +3880,8 @@ function enterHuntersgroupOiend(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupoend1.' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupoend1.` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> tells you that he wants you kneeling down, cause he wants to cover ...
   scene.text(`${((s as any).boydesc ?? '')} tells you that he wants you kneeling down, cause he wants to cover your face with his spunk…`);
   qspCall(s, 'oral', 'start', 5, 'gangbang');
@@ -3930,7 +3965,8 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
     qspCall(st, 'cum_call', 'stomach', ((st as any).boy ?? 0), 1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/sex/hunter/hanterslutend2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hanterslutend2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     qspCall(st, 'dinsex', 'dinrandswallow');
     // TODO-QSP: dynamic text: The quantity of sperm was so overwhelming that you were not able to swallow all ...
     scene.text(`The quantity of sperm was so overwhelming that you were not able to swallow all of it and some of it runs down the chin, dripping down, staining your chest and stomach. ${((st as any).boydesc ?? '')} used his pants to clean the cock and went about his business, leaving you alone to freshen up.`);
@@ -3968,7 +4004,8 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutORAL(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/hunter/hanterslutoral1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hanterslutoral1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You\'re hunching down, sucking the tip of his cock…');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -3990,7 +4027,8 @@ function enterHunterslutCOW(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hanterslutcow1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hanterslutcow1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> lies down on the ground, pulling you towards him. You straddle him ...
   scene.text(`${((s as any).boydesc ?? '')} lies down on the ground, pulling you towards him. You straddle him and he leads his cock inside you…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -4014,7 +4052,8 @@ function enterHunterslutHANDS(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersluthands1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersluthands1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> lifts you up by the legs and stars relentlessly fucking you…
   scene.text(`${((s as any).boydesc ?? '')} lifts you up by the legs and stars relentlessly fucking you…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
@@ -4038,7 +4077,8 @@ function enterHunterslutTREE(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersluttree1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersluttree1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You lean on the tree for support while <<$boydesc>> enters you from behind…
   scene.text(`You lean on the tree for support while ${((s as any).boydesc ?? '')} enters you from behind…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -4062,7 +4102,8 @@ function enterHunterslutTREELEG(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hantersluttreeleg1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersluttreeleg1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You turn your back to <<$boydesc>> and lean on the tree for balance. <<$boydesc>...
   scene.text(`You turn your back to ${((s as any).boydesc ?? '')} and lean on the tree for balance. ${((s as any).boydesc ?? '')} raises your thigh from behind, entering you more easily…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
@@ -4086,7 +4127,8 @@ function enterHunterslutLEG1(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hanterslutleg1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hanterslutleg1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You turn your back to <<$boydesc>> and hugged him around the neck. <<$boydesc>> ...
   scene.text(`You turn your back to ${((s as any).boydesc ?? '')} and hugged him around the neck. ${((s as any).boydesc ?? '')} raised your thigh so he could enter you more easily…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -4110,7 +4152,8 @@ function enterHunterslutLEG2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  scene.img('images/locations/gadukino/sex/hunter/hanterslutleg2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hanterslut...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hanterslutleg2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You turned towards <<$boydesc>> and hug him by the neck. <<$boydesc>> raised you...
   scene.text(`You turned towards ${((s as any).boydesc ?? '')} and hug him by the neck. ${((s as any).boydesc ?? '')} raised your thigh, making it easier to enter you…`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');

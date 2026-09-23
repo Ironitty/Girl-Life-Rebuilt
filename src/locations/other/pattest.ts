@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 1  &&  ((s as any).pattest ?? 0) > 0) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 1  &&  ((s as any).pattest ?? 0) > 0) {
     (s as any).j = 0;
     // TODO-QSP: p ''
     if (((s as any).kid ?? 0) > 0  &&  (Array.isArray((s as any).surefather) ? ((s as any).surefather as any[]).indexOf('0') : -1) !== ((s as any).kid ?? 0)) {
@@ -31,13 +31,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) !== 1) {
+    if (String((s as any).locArgs?.[1] ?? '') !== 1) {
       qspCall(s, 'stat', '');
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     // TODO-QSP: testresDay[ARGS[0]] = 2147483647
-    if (((s as any).ChildFath ?? 0)[Number((s as any).locArgs?.[0] ?? 0)] === ((s as any).papa ?? 0)) {
+    if (((s as any).ChildFath ?? 0)[String((s as any).locArgs?.[0] ?? '')] === ((s as any).papa ?? 0)) {
       // TODO-QSP: testresRes[ARGS[0]] = 1 else testresRes[ARGS[0]] = 0
     }
     // TODO-QSP: $testresPotfath[ARGS[0]] = $papa

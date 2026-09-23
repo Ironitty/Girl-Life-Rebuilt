@@ -109,7 +109,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'pantyrear', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
     qspCall(st, 'clothing', 'decrease_cur_strength', (Math.floor(Math.random() * 1001) + 500));
     qspCall(st, 'stat', '');
-    scene.img('images/locations/city/shared/metro/sex/grop/frotc' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/sex/grop/fro...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/sex/grop/frotc` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('The man jerks back, and stops molesting you. A few seconds later, you feel something wet seep through your clothes. After a few more seconds, the guy moves away.');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -544,7 +545,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).metrorand ?? 0) === 1) {
       qspCall(s, 'stat', '');
-      scene.img('images/locations/city/shared/metro/station/guitar' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/guit...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/guitar` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
       scene.text('As you head through the metro station, you notice a man playing a guitar; he has his guitar case open and you can see some money in it already. Several other people have stopped to listen to him play; he isn\'t half bad.');
       scene.actions([
         { label: 'Ignore', handler: (st: GameState) => {
@@ -554,7 +556,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         { label: 'Listen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/guitar' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/guit...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/guitar` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
     scene.text('You stop and listen to him play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -583,7 +586,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).metrorand ?? 0) === 2) {
         qspCall(s, 'stat', '');
-        scene.img('images/locations/city/shared/metro/station/violin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/viol...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/violin` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
         scene.text('As you head through the metro station, you notice a young woman has her violin case open and you can see some money in it already. Several other people have stopped to listen to her play; she isn\'t half bad.');
         scene.actions([
           { label: 'Ignore', handler: (st: GameState) => {
@@ -593,7 +597,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
           { label: 'Listen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/violin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/viol...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/violin` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You stop and listen to her play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -641,7 +646,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at them and pull down your pants, flashing your pussy at them. They wave you over.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
-        // TODO-QSP: dynamic text: You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
+        // TODO-QSP: dynamic text: 'You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress'...
         scene.text('You smile back at them and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy at them. They wave you over.');
       }
       qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
@@ -651,7 +656,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at them and pull down your pants, flashing your panties at them. They wave you over.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
-        // TODO-QSP: dynamic text: You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
+        // TODO-QSP: dynamic text: 'You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress'...
         scene.text('You smile back at them and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at them. They wave you over.');
       }
       qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
@@ -703,7 +708,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).metrorand ?? 0) === 6) {
-            scene.img('images/locations/city/shared/metro/station/flashus' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/flas...
+            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/flashus` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
             scene.text('As you head through the metro station, you notice a pretty young woman who keeps lifting her skirt and flashing her pussy at various strangers. As you get closer, she smiles at and then flashes you.');
             qspCall(s, 'arousal', 'erotic', 3);
             qspCall(s, 'arousal', 'end');
@@ -723,7 +729,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at her and pull down your pants, flashing your pussy back at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
-        // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
+        // TODO-QSP: dynamic text: 'You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
         scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy back at her. You both share a laugh before going on your way.');
       }
       qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
@@ -733,7 +739,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at her and pull down your pants, flashing your panties at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
-        // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
+        // TODO-QSP: dynamic text: 'You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
         scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at her. You both share a laugh before going on your way.');
       }
       qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
@@ -875,7 +881,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                         } else {
                           if (((s as any).metrorand ?? 0) === 14) {
                             ((s as any).metrorand = (s as any).metrorand ?? {})['rand'] = (Math.floor(Math.random() * 2) + 1);
-                            scene.img('images/locations/city/shared/metro/station/sex/fuck' + ((s as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg');
+                            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/sex/...
+                            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + ((s as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg"></center>');
                             scene.text('As you head through the metro station, you see a couple leaning against one of the walls, the woman struggling to keep her moans quiet as the man hammers her for all he is worth. Several people gather around to watch, many of them pulling out their phones to record the scene. A few men try to join in, but are quickly shooed away.');
                             qspCall(s, 'arousal', 'voyeur_sex', 3);
                             qspCall(s, 'stat', '');
@@ -886,7 +893,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                               { label: 'Record them', handler: (st: GameState) => {
-    scene.img('images/locations/city/shared/metro/station/sex/fuck' + ((st as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/sex/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/sex/fuck` + ((st as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg"></center>');
     qspCall(st, 'exp_gain', 'photoskl', 2);
     scene.text('You pull out your phone and start recording them. He pounds her without mercy, but by the sounds of her moans, she is loving every moment of it. They fuck for several more minutes until he starts to grunt and buries himself balls deep. Once he pulls out of her, they both quickly get dressed and hurry to catch a train.');
     qspCall(st, 'arousal', 'voyeur_sex', 3);
@@ -902,7 +910,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).metrorand ?? 0) === 15) {
                               qspCall(s, 'stat', '');
-                              scene.img('images/locations/city/shared/metro/station/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/guit...
+                              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/guitarf` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                               scene.text('As you head through the metro station, you notice a woman playing a guitar; she has her guitar case open and you can see some money in it already. Several other people have stopped to listen to her play; she isn\'t half bad.');
                               scene.actions([
                                 { label: 'Ignore', handler: (st: GameState) => {
@@ -912,7 +921,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                 { label: 'Listen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/guit...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/guitarf` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You stop and listen to her play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -941,7 +951,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).metrorand ?? 0) === 16) {
                                 qspCall(s, 'stat', '');
-                                scene.img('images/locations/city/shared/metro/station/musicgroupm' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+                                // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/musi...
+                                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/musicgroupm` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
                                 scene.text('As you head through the metro station, you notice a group of men playing music; there is a case open and you can see some money in it already. Several other people have stopped to listen to them play; they aren\'t half bad.');
                                 scene.actions([
                                   { label: 'Ignore', handler: (st: GameState) => {
@@ -951,7 +962,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                   { label: 'Listen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/musicgroupm' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/musi...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/musicgroupm` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
     scene.text('You stop and listen to them play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -980,7 +992,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 if (((s as any).metrorand ?? 0) === 17) {
                                   qspCall(s, 'stat', '');
-                                  scene.img('images/locations/city/shared/metro/station/accordionm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                                  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/acco...
+                                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/accordionm` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                                   scene.text('As you head through the metro station, you notice a man playing an accordion; he has his case open and you can see some money in it already. Several other people have stopped to listen to him play; he isn\'t half bad.');
                                   scene.actions([
                                     { label: 'Ignore', handler: (st: GameState) => {
@@ -990,7 +1003,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                     { label: 'Listen', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/accordionm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/station/acco...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/metro/station/accordionm` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You stop and listen to him play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -1152,7 +1166,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).metrorand ?? 0) === 3) {
-        scene.img('images/locations/city/shared/metro/flasha' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/flasha' + ra...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/flasha` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention, and you soon learn why. She repeatedly lifts her skirt up, flashing her ass at the other passengers. She seems to love the attention that she\'s getting, as she maintains a very pleased smile.');
         qspCall(s, 'arousal', 'erotic_nudity', 5);
         qspCall(s, 'arousal', 'end');
@@ -1163,7 +1178,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).metrorand ?? 0) === 4) {
-          scene.img('images/locations/city/shared/metro/flashb' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/flashb' + ra...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/flashb` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
           scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention, and you soon learn why. She repeatedly lifts her shirt up, flashing her breasts at the other passengers. She seems to love the attention she\'s getting, as she maintains a very pleased smile.');
           qspCall(s, 'arousal', 'erotic_nudity', 5);
           qspCall(s, 'arousal', 'end');
@@ -1185,7 +1201,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).metrorand ?? 0) === 6) {
-              scene.img('images/locations/city/shared/metro/flashg' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/flashg' + ra...
+              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/flashg` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
               scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention and you soon learn why. She repeatedly pulls her clothes away, flashing her naked body at the other passengers. She seems to love the attention she\'s getting, as she maintains a very pleased smile.');
               qspCall(s, 'arousal', 'erotic_nudity', 5);
               qspCall(s, 'arousal', 'end');
@@ -1199,7 +1216,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).pcs_hotcat ?? 0) < 7) {
                   qspGoto(s, 'metro', 'vagon');
                 }
-                scene.img('images/locations/city/shared/metro/flashus' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+                // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/flashus' + r...
+                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/flashus` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
                 scene.text('As you ride the metro, you notice a young woman. When she sees you looking at her, she gives you a wicked grin and winks before spreading her legs, showing off her pussy from under her skirt. She sticks out her tongue and flicks it at you, as if mimicking eating pussy.');
                 qspCall(s, 'arousal', 'erotic_nudity', 5);
                 qspCall(s, 'stat', '');
@@ -1219,7 +1237,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at her and pull down your pants, flashing your pussy back at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
-        // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
+        // TODO-QSP: dynamic text: 'You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
         scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy back at her. You both share a laugh before going on your way.');
       }
       qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
@@ -1229,7 +1247,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile back at her and pull down your pants, flashing your panties at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
-        // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
+        // TODO-QSP: dynamic text: 'You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
         scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at her. You both share a laugh before going on your way.');
       }
       qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
@@ -1283,7 +1301,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                       ]);
                     } else {
                       if (((s as any).metrorand ?? 0) === 11) {
-                        scene.img('images/locations/city/shared/metro/nakedg' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+                        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/nakedg' + ra...
+                        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/nakedg` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
                         scene.text('As you find a seat, you notice a woman wearing only a pair of shoes. She is strangely calm, as if riding the metro naked was the most normal thing in the world. She gets off at the next stop, leaving you wondering why she was naked, and where she was going.');
                         qspCall(s, 'arousal', 'erotic_nudity', 5);
                         qspCall(s, 'arousal', 'end');
@@ -1294,7 +1313,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (((s as any).metrorand ?? 0) === 12) {
-                          scene.img('images/locations/city/shared/metro/nakedm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/nakedm' + ra...
+                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/nakedm` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                           scene.text('As you find a seat, you notice a naked man who acts as if walking around naked is the most normal thing in the world to do. He gets off at the next stop, leaving you wondering why he was naked, and where he was going.');
                           qspCall(s, 'arousal', 'erotic_nudity', 5);
                           qspCall(s, 'arousal', 'end');
@@ -1350,7 +1370,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                   ]);
                                 } else {
                                   if (((s as any).metrorand ?? 0) === 17) {
-                                    scene.img('images/locations/city/shared/metro/sex/fuck' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+                                    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/shared/me...
+                                    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/sex/fuck` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
                                     scene.text('As you find a seat, you notice a couple having intercourse in the car, going at each other like animals. Many people are watching them, some even pulling out their phones to record them. They switch between several sex positions during the ride, getting more and more turned on. The man seems to have a lot of stamina, as they are still going at it as you leave the car at your stop.');
                                     qspCall(s, 'arousal', 'voyeur_sex', 5);
                                     qspCall(s, 'arousal', 'end');
@@ -1383,7 +1404,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((s as any).metrorand ?? 0) === 20) {
                                           qspCall(s, 'stat', '');
-                                          scene.img('images/locations/city/shared/metro/girlsbff' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                                          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/metro/girlsbff' + ...
+                                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/metro/girlsbff` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                                           scene.text('As you find a seat, you see some girls horsing around, talking loudly and goofing off. While they seem to be having fun, they\'re also annoying several of the other passengers.');
                                           scene.actions([
                                             { label: 'Leave', handler: (st: GameState) => {

@@ -19,32 +19,32 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterDebug(s: GameState, scene: SceneBuilder): void {
   if (((s as any).settingmode ?? 0) > 0) {
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'debugToggle') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'debugToggle') {
     (s as any).nichDebug = 1 - ((s as any).nichDebug ?? 0);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'galaTrainingToggle') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'galaTrainingToggle') {
       (s as any).nichGalaTraining = 1 - ((s as any).nichGalaTraining ?? 0);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'chore') {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 'min') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'chore') {
+        if (String((s as any).locArgs?.[3] ?? '') === 'min') {
           // TODO-QSP: nichChoreState[ARGS[2]] = 0
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === '1') {
+          if (String((s as any).locArgs?.[3] ?? '') === '1') {
             // TODO-QSP: nichChoreState[ARGS[2]] += 1
           } else {
-            if (Number((s as any).locArgs?.[3] ?? 0) === '5') {
+            if (String((s as any).locArgs?.[3] ?? '') === '5') {
               // TODO-QSP: nichChoreState[ARGS[2]] += 5
             }
           }
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'evaluation') {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'silent') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'evaluation') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'silent') {
             qspCall(s, 'nichNicholas', 'evaluation', 'silent');
           }
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'shortcut') {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'meetTanya') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'shortcut') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'meetTanya') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVars(s, scene); (s as any).locArgs = __savedLocArgs; }
               (s as any).abonement = 30;
               (s as any).nichWork = 0;
@@ -52,7 +52,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
               ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = 0;
               qspGoto(s, 'havana', 'start');
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'getHired') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'getHired') {
                 (s as any).nichWork = 0;
                 ((s as any).nichTanya = (s as any).nichTanya ?? {})['Relationship'] = 1;
                 (s as any).nichJobRefused = 0;
@@ -60,7 +60,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
                 (s as any).hour = 16;
                 qspGoto(s, 'city_center', '');
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'tanyaDate100') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'tanyaDate100') {
                   (s as any).nichWork = 2;
                   ((s as any).nichTanya = (s as any).nichTanya ?? {})['Relationship'] = 1;
                   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = 10;
@@ -71,7 +71,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
                   (s as any).loc = 'nichBedroomTanja';
                   qspGoto(s, 'nichTanya', 'bedroomTanya');
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) === 'nichGentleclubE1') {
+                  if (String((s as any).locArgs?.[2] ?? '') === 'nichGentleclubE1') {
                     (s as any).nichWork = 2;
                     (s as any).minut = 0;
                     (s as any).hour = 18;
@@ -79,7 +79,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
                     (s as any).nichGentleclubE1 = 1;
                     qspGoto(s, 'nichApartment', '');
                   } else {
-                    if (Number((s as any).locArgs?.[2] ?? 0) === 'galaContract') {
+                    if (String((s as any).locArgs?.[2] ?? '') === 'galaContract') {
                       (s as any).nichGalaTraining = 1;
                       (s as any).nichGalaTrainCounter = 5;
                       (s as any).nichWork = 2;
@@ -157,8 +157,8 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('-<a href="#" onclick="window.__gameStore.setState((s) => { (s.nichTanya ??= {})/u0027Relationship/u0027 = s.1; (s.nichTanya ??= {})/u0027RelationshipState/u0027 = s.20; return s; }); window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027); return false;">In a relationship</a>');
   // TODO-QSP: dynamic text: You fucked Tanya <<nichTanya[''FuckCounter'']>> times
   scene.text(`You fucked Tanya ${((s as any).nichTanya ?? 0)?.['FuckCounter'] ?? ''} times`);
-  // TODO-QSP: dynamic text: The last time you fucked Tanya was '+(daystart-nichTanya['FuckLast'])+' days ago
-  scene.text('The last time you fucked Tanya was \'+(daystart-nichTanya[\'FuckLast\'])+\' days ago');
+  // TODO-QSP: dynamic text: 'The last time you fucked Tanya was '+(daystart-nichTanya['FuckLast'])+' days ag...
+  scene.text('\'The last time you fucked Tanya was \'+(daystart-nichTanya[\'FuckLast\'])+\' days ago\'');
   // TODO-QSP: dynamic text: Tanya has a dominance of <<nichTanya[''Dominance'']>> (range: -100 - 100)
   scene.text(`Tanya has a dominance of ${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''} (range: -100 - 100)`);
   scene.actions([
@@ -281,7 +281,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'homes_properties', 'block_access', 'maid_bedroom');
     (st as any).nichWork = 3;
     qspCall(st, 'jobs', 'set_terminated', 'nich_maid');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearVarsQuit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearVarsQuit(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Take your belongings and leave the apartment', handler: (st: GameState) => {
     qspGoto(st, 'city_center', '');
@@ -413,23 +413,23 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanPic(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'bed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'bed') {
     // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid7.jpg'
     // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid21.jpg'
     // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid31.jpg'
     // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid79.jpg'
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'servant'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'tanya') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'servant'  ||  String((s as any).locArgs?.[2] ?? '') === 'tanya') {
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid27.jpg'
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid34.jpg'
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid71.jpg'
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'master') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'master') {
         // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid56.jpg'
         // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid79.jpg'
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'floor') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'floor') {
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid5.jpg'
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid9.jpg'
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid15.jpg'
@@ -438,12 +438,12 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid60.jpg'
       // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid61.jpg'
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'bath') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'bath') {
         // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid26.jpg'
         // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid35.jpg'
         // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid80.jpg'
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'kitchen') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'kitchen') {
           // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid19.jpg'
           // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid23.jpg'
           // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid24.jpg'
@@ -452,8 +452,8 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid66.jpg'
           // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid67.jpg'
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'furniture') {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'living') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'furniture') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'living') {
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid0.jpg'
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid4.jpg'
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid41.jpg'
@@ -464,13 +464,13 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid76.jpg'
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid78.jpg'
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'study') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'study') {
                 // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid30.jpg'
               }
             }
             // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid8.jpg'
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'laundry') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'laundry') {
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid12.jpg'
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid13.jpg'
               // TODO-QSP: $nichTempPic[arrsize('$nichTempPic')] = 'maid25.jpg'
@@ -497,21 +497,21 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
 
 function enterTanyaPic(s: GameState, scene: SceneBuilder): void {
   (s as any).nichTempFolder = 'images/characters/city/tanya/';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'idle') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'idle') {
     (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'idle/idle' + (Math.floor(Math.random() * 6) + 0) + '.jpg';
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'cuddle') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'cuddle') {
     (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sex/cuddle' + (Math.floor(Math.random() * 5) + 0) + '.jpg';
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'sexH') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'spy') {
-      if (Number((s as any).locArgs?.[3] ?? 0) === ''  ||  Number((s as any).locArgs?.[3] ?? 0) === 'nicholas') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'sexH') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'spy') {
+      if (String((s as any).locArgs?.[3] ?? '') === ''  ||  String((s as any).locArgs?.[3] ?? '') === 'nicholas') {
         (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexNich/nich' + (Math.floor(Math.random() * 6) + 0) + '.jpg';
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) === 'bf1') {
+        if (String((s as any).locArgs?.[3] ?? '') === 'bf1') {
           (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexBf/bf1/sex' + (Math.floor(Math.random() * 5) + 0) + '.jpg';
         } else {
-          if (Number((s as any).locArgs?.[3] ?? 0) === 'bf2') {
+          if (String((s as any).locArgs?.[3] ?? '') === 'bf2') {
             (s as any).RESULT = ((s as any).nichTempFolder ?? 0) + 'sexBf/bf2/sex' + (Math.floor(Math.random() * 3) + 0) + '.jpg';
           }
         }
@@ -544,7 +544,7 @@ function enterNpcActivityAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nicholas') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nicholas') {
     if (((s as any).week ?? 0) <= 5) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 6, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 7, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -618,7 +618,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'gala') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'gala') {
       if (((s as any).nichGalaDisabled ?? 0) === 1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vanished', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
@@ -683,7 +683,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'tanya') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'tanya') {
         if (((s as any).week ?? 0) <= 5) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 8, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -784,7 +784,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
 
 function enterWhereIs(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 'unknown';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nicholas') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nicholas') {
     (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
     if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'gala') {
       (s as any).RESULT = 'masterBedroom';
@@ -822,7 +822,7 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'gala') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'gala') {
       (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
       if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'snooze'  ||  ((s as any).nichTemp ?? 0) === 'nicholas'  ||  ((s as any).nichTemp ?? 0) === 'prepareClub') {
         (s as any).RESULT = 'masterBedroom';
@@ -848,7 +848,7 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'tanya') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'tanya') {
         (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
         if (((s as any).nichTemp ?? 0) === 'sleep'  ||  ((s as any).nichTemp ?? 0) === 'nicholas'  ||  ((s as any).nichTemp ?? 0) === 'tanya'  ||  ((s as any).nichTemp ?? 0) === 'boyfriend') {
           (s as any).RESULT = 'bedroomTanya';
@@ -886,7 +886,7 @@ function enterWhereIs(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'cook') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'cook') {
           if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20) {
             (s as any).RESULT = 'kitchen';
           }
@@ -936,7 +936,7 @@ function enterIsAlone(s: GameState, scene: SceneBuilder): void {
 
 function enterIsPresent(s: GameState, scene: SceneBuilder): void {
   (s as any).npcLocation = qspFunc(s, 'nichUtil', 'whereIs', ((s as any).locArgs?.[1] ?? 0));
-  if (((s as any).npcLocation ?? 0) === Number((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).npcLocation ?? 0) === String((s as any).locArgs?.[2] ?? '')) {
     (s as any).RESULT = 1;
   } else {
     (s as any).RESULT = 0;
@@ -966,7 +966,7 @@ function enterOnArouse(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).nichTempNaughtyLoc ?? 0) === 1) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_finger'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_fist'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_dildo'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_strap'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_vibe') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'vaginal'  ||  String((s as any).locArgs?.[1] ?? '') === 'vaginal_finger'  ||  String((s as any).locArgs?.[1] ?? '') === 'vaginal_fist'  ||  String((s as any).locArgs?.[1] ?? '') === 'vaginal_dildo'  ||  String((s as any).locArgs?.[1] ?? '') === 'vaginal_strap'  ||  String((s as any).locArgs?.[1] ?? '') === 'vaginal_vibe') {
         (s as any).nichGalaImplantCount = ((s as any).nichGalaImplantCount ?? 0) + (1);
       }
     }
@@ -976,7 +976,7 @@ function enterOnArouse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFreeDay(s: GameState, scene: SceneBuilder): void {
-  (s as any).nichTempFree = ((Number((s as any).locArgs?.[1] ?? 0)>0) ? (((s as any).locArgs?.[1] ?? 0)) : (1));
+  (s as any).nichTempFree = ((String((s as any).locArgs?.[1] ?? '')>0) ? (((s as any).locArgs?.[1] ?? 0)) : (1));
   if (((s as any).nichVactionTil ?? 0) < ((s as any).daystart ?? 0) + ((s as any).nichTempFree ?? 0) - 1) {
     (s as any).nichVacationFrom = ((s as any).daystart ?? 0);
     (s as any).nichVactionTil = ((s as any).daystart ?? 0) + ((s as any).nichTempFree ?? 0) - 1;
@@ -987,7 +987,7 @@ function enterFreeDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisableNPC(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'Gala') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'Gala') {
     (s as any).nichGalaDisabled = 1;
   }
   // TODO-QSP: end

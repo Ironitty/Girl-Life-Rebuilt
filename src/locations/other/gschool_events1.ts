@@ -68,7 +68,7 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Dimka. You know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
-    // TODO-QSP: dynamic text: He looks down, eyes wide, but just before your skirt is high enough to reveal '+...
+    // TODO-QSP: dynamic text: 'He looks down, eyes wide, but just before your skirt is high enough to reveal '...
     scene.text('He looks down, eyes wide, but just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward while giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
     scene.actions([
@@ -192,7 +192,7 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Svyatoslav. You know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
-    // TODO-QSP: dynamic text: He looks down, eyes wide, but just before your skirt is high enough to reveal '+...
+    // TODO-QSP: dynamic text: 'He looks down, eyes wide, but just before your skirt is high enough to reveal '...
     scene.text('He looks down, eyes wide, but just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward while giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
     scene.actions([
@@ -299,7 +299,7 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Lazar, you know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
-    // TODO-QSP: dynamic text: He grins expectantly at you, confident you''re going to show him the goods. Just...
+    // TODO-QSP: dynamic text: 'He grins expectantly at you, confident you''re going to show him the goods. Jus...
     scene.text('He grins expectantly at you, confident you\'re going to show him the goods. Just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward, giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
     scene.actions([
@@ -1338,7 +1338,7 @@ function enterToiletBj2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSweet(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'normal'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'normal'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
       (s as any).sweet_talk = 10;
     } else {
@@ -1400,7 +1400,7 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
       (s as any).sweet_talk = ((s as any).sweet_talk ?? 0) + ((((s as any).pcs_hotcat ?? 0) - 5) * 5);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'sex') {
       if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
         (s as any).sweet_talk = (-20);
       } else {

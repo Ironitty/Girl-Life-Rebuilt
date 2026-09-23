@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -229,7 +227,8 @@ function enterCustomer2(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/2/Touch' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev2/diner/2/Touch` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('Once you reach the back of the diner, the man pulls your clothes aside and starts sucking on your nipples and rubbing your clitoris. You let the man caress your body as you enjoy the stimulation and appreciation for him providing some foreplay before having sex with you.');
     scene.text('After a few seconds, the man says "Sit down and spread your legs, I want a closer look."');
     scene.text('You obediently do as he says and he starts touching your vaginal lips and rubbing on your clitoris. "Ah yeah, that\'s nice. What a cute pussy."');
@@ -371,7 +370,8 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'outfit', 'strip_all');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/3/Undress' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev2/diner/3/Undress` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('As soon as you enter the restroom, the man starts kissing your chest as he undresses you. You let him undress you as he runs his hands over your body, gently rubbing and squeezing your breasts and buttocks. After a few seconds, you\'re completely naked as the man takes off his pants while staring at your nude body before he approaches you and starts rubbing your pussy.');
     // TODO-QSP: dynamic text: "So <<$NikoSlutName>>, are you ready to get your pussy fucked?" he asks with a g...
     scene.text(`"So ${((st as any).NikoSlutName ?? '')}, are you ready to get your pussy fucked?" he asks with a grin.`);
@@ -505,7 +505,8 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     { label: 'Follow the man', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/4/Undress' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev2/diner/4/Undress` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('As soon as you get outside the diner, the man takes a deep breath. "Nothing like getting some fresh air while fucking a cute little thing like yourself. Now take off your clothes."');
     scene.text('You obediently nod and remove your clothes as the man pulls down his pants and starts stroking his cock as he watches you undress.');
     scene.actions([
@@ -763,7 +764,7 @@ function enterCustomer6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/6.jpg');
   scene.text('A trucker approaches Niko. "I\'d like to borrow this young lady for a few minutes. How much?"');
-  // TODO-QSP: dynamic text: "'+$func('money', 'string_profit', 2000)+'," Niko replies and the trucker hands ...
+  // TODO-QSP: dynamic text: '"'+$func('money', 'string_profit', 2000)+'," Niko replies and the trucker hands...
   scene.text('"\'+$func(\'money\', \'string_profit\', 2000)+\'," Niko replies and the trucker hands Niko the money before leading you out of the diner as Niko follows closely behind.');
   scene.text('Once outside the trucker turns to you. "Alright young lady, pull down your pants and get ready for the biggest dick you\'ve ever had."');
   scene.text('You nod and do as he says.');
@@ -894,7 +895,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/7.jpg');
   scene.text('A trucker approaches Niko. "Hello there. I heard that this one is good at helping a lonely man."');
-  // TODO-QSP: dynamic text: Niko chuckles. "She sure is. Are you interested? Her services are only '+$func('...
+  // TODO-QSP: dynamic text: 'Niko chuckles. "She sure is. Are you interested? Her services are only '+$func(...
   scene.text('Niko chuckles. "She sure is. Are you interested? Her services are only \'+$func(\'money\', \'string_profit\', 2000)+\'."');
   scene.text('"Sounds fair," the trucker responds. "I\'m friends with the owner of this diner, so we can use the back room."');
   scene.text('He hands Niko the money before leading you to the back room.');
@@ -1056,7 +1057,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/8.jpg');
   scene.text('A trucker approaches Niko. "Hello there. How much for this one\'s services?"');
-  // TODO-QSP: dynamic text: "'+$func('money', 'string_profit', 2000)+'" Niko replies.
+  // TODO-QSP: dynamic text: '"'+$func('money', 'string_profit', 2000)+'" Niko replies.'
   scene.text('"\'+$func(\'money\', \'string_profit\', 2000)+\'" Niko replies.');
   scene.text('"Fair enough. Here you go." He hands Niko the money and offers you his hand before leading you to the restroom.');
   // TODO-QSP: end
@@ -1206,7 +1207,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/borisdiner/npc/9.jpg');
   // TODO-QSP: dynamic text: A trucker approaches Niko. "I''d like to borrow <<$NikoSlutName>> for a few minu...
   scene.text(`A trucker approaches Niko. "I'd like to borrow ${((s as any).NikoSlutName ?? '')} for a few minutes."`);
-  // TODO-QSP: dynamic text: "Sure. '+$func('money', 'string_profit', 2000)+' and you can borrow her for a fe...
+  // TODO-QSP: dynamic text: '"Sure. '+$func('money', 'string_profit', 2000)+' and you can borrow her for a f...
   scene.text('"Sure. \'+$func(\'money\', \'string_profit\', 2000)+\' and you can borrow her for a few minutes."');
   scene.text('"I guess I can spare a few rubles…" the trucker says and hands Niko the money before wrapping his arm around your waist and leading you to the restroom.');
   if (((s as any).VK ?? 0) === 1) {
@@ -1374,7 +1375,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
     { label: 'Help Niko', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "NikoSlut" })}`);
+    scene.img(`${qspFunc(s, '$$face_image')}`);
     scene.text('You punch the biker as hard as you can, but he barely reacts before turning to you and smacking you with the back of his hand. You look in horror as Niko stops squirming "STOP IT! YOU\'RE KILLING HIM!!!" you cry out, but the biker turns to you and smirks.');
     scene.text('"Am I?" he shrugs. You charge at the biker again, trying one last time to save Niko when you\'re suddenly grabbed from behind and pulled back as a man charges past and rams his fist into the biker\'s face, sending him falling onto the floor. The man then climbs on top of the biker and starts repeatedly punching him in the face. "HOW DARE YOU TOUCH MY BROTHER, YOU WORTHLESS SACK OF SHIT! I\'LL FUCKING TEAR YOU APART!"');
     scene.actions([

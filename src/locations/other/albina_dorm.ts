@@ -79,7 +79,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text('"Oh? Who with?" you ask.');
           scene.text('"I\'m not giving names, but there\'s a chance that they live in this very dorm, but also that they don\'t…" she teases.');
           if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 1) {
-            // TODO-QSP: dynamic text: You haven''t asked her about it yet, but you wonder if she''s hooking up with '+...
+            // TODO-QSP: dynamic text: 'You haven''t asked her about it yet, but you wonder if she''s hooking up with '...
             scene.text('You haven\'t asked her about it yet, but you wonder if she\'s hooking up with ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('that black guy you saw her with')) + ' again.');
             scene.text('Deciding now isn\'t the time to ask, you just laugh and give her a hug before heading for the door. As you leave, you hear her phone ping and see her taking a very provocative selfie with her tongue hanging out in response. It seems she\'s sexting before she heads out.');
           } else {
@@ -360,7 +360,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
-    (st as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((st as any).pcs_gaming ?? 0);
+    (st as any).gameresult = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
     if (((st as any).gameresult ?? 0) >= 150) {
       (st as any).albplay = 3;
     } else {

@@ -198,9 +198,9 @@ interface ParseResult {
     let inBlockComment = false;
 
       while (i < lines.length) {
-       const raw = lines[i];
-       const trimmed = raw.trim();
-       if (!trimmed) { i++; continue; }
+        const raw = lines[i];
+        const trimmed = raw.trim();
+        if (!trimmed) { i++; continue; }
 
 
         // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } (may span lines)
@@ -346,15 +346,39 @@ interface ParseResult {
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
-          if (gtMatch) {
-            act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
+          const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+          if (gtArithMatch) {
+            act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
           } else {
-            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-            if (gtVarArgMatch) {
-              act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+            const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
+            if (gtMatch) {
+              act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
             } else {
-              act.inlineStatements = rest;
+              const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
+              if (gtVarArgMatch) {
+                act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+              } else {
+                const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+                if (gtIifMatch) {
+                  const iifStart = rest.indexOf('iif(');
+                  let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+                  for (let j = iifStart; j < rest.length; j++) {
+                    const ch = rest[j];
+                    if (inStr) { if (ch === strCh) inStr = false; continue; }
+                    if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+                    if (ch === '(') depth++;
+                    else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+                  }
+                  if (iifEnd !== -1) {
+                    const iifExpr = rest.slice(iifStart, iifEnd + 1);
+                    act.inlineGoto = { target: gtIifMatch[1], arg: iifExpr, arg2: undefined };
+                  } else {
+                    act.inlineStatements = rest;
+                  }
+                } else {
+                  act.inlineStatements = rest;
+                }
+              }
             }
           }
         }
@@ -380,16 +404,40 @@ interface ParseResult {
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
+        const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+        if (gtArithMatch) {
+          act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
+        } else {
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
         if (gtMatch) {
           act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
         } else {
-          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
           if (gtVarArgMatch) {
             act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
           } else {
-            act.inlineStatements = rest;
+            const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+            if (gtIifMatch) {
+              const iifStart = rest.indexOf('iif(');
+              let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+              for (let j = iifStart; j < rest.length; j++) {
+                const ch = rest[j];
+                if (inStr) { if (ch === strCh) inStr = false; continue; }
+                if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+                if (ch === '(') depth++;
+                else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+              }
+              if (iifEnd !== -1) {
+                const iifExpr = rest.slice(iifStart, iifEnd + 1);
+                act.inlineGoto = { target: gtIifMatch[1], arg: iifExpr, arg2: undefined };
+              } else {
+                act.inlineStatements = rest;
+              }
+            } else {
+              act.inlineStatements = rest;
+            }
           }
+        }
         }
       }
 
@@ -475,40 +523,81 @@ interface ParseResult {
 
     // Text line: 'text'
     if (trimmed.startsWith("'") && trimmed.endsWith("'")) {
-      const inner = trimmed.slice(1, -1);
-      const isImage = inner.includes('<img') || inner.includes('<center>');
-      if (isImage) {
-        const imgMatch = inner.match(/src="([^"]+)"/);
-        if (imgMatch) {
-          nodes.push({ kind: 'image', src: imgMatch[1] });
-          i++;
-          continue;
-        }
+      // Check if this is a complex expression with + concatenation at top level
+      let hasTopPlus = false, inStr = false, strCh = '', depth = 0;
+      let start = 1;
+      if (trimmed[1] === "'") {
+        start = 2;
+      } else {
+        inStr = true;
+        strCh = "'";
       }
-      const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-      nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+      for (let ci = start; ci < trimmed.length - 1; ci++) {
+        const ch = trimmed[ci];
+        if (inStr) {
+          if (ch === strCh) {
+            if (strCh === "'" && trimmed[ci + 1] === "'") { ci++; }
+            else inStr = false;
+          } else if (ch === '<' && trimmed[ci + 1] === '<') {
+            const closeIdx = trimmed.indexOf('>>', ci + 2);
+            if (closeIdx !== -1) ci = closeIdx + 1;
+          }
+        } else if (ch === '<' && trimmed[ci + 1] === '<') {
+          const closeIdx = trimmed.indexOf('>>', ci + 2);
+          if (closeIdx !== -1) ci = closeIdx + 1;
+        } else if (ch === "'" || ch === '"') {
+          inStr = true; strCh = ch;
+        } else if (ch === '(') { depth++; }
+        else if (ch === ')') { depth--; }
+        else if (ch === '+' && depth === 0) { hasTopPlus = true; break; }
+      }
+    if (hasTopPlus) {
+      nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    } else {
+      const inner = trimmed.slice(1, -1);
+        const isImage = inner.includes('<img') || inner.includes('<center>');
+        if (isImage) {
+          const imgMatch = inner.match(/src="([^"]+)"/);
+          if (imgMatch) {
+            nodes.push({ kind: 'image', src: imgMatch[1] });
+            i++;
+            continue;
+          }
+        }
+        const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+        nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+      }
       i++;
       continue;
     }
 
     // Goto: gt 'target', 'arg' or xgt 'target', 'arg'
-    const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
-    if (gt4Match) {
-      nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
-      i++;
-      continue;
-    }
-    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
-    if (gtMatch) {
-      const rawA1 = gtMatch[2];
-      const rawA2 = gtMatch[3];
-      let a1 = rawA1;
-      let a2 = rawA2;
-      const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
-      const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
-      if (a1Quoted) a1 = a1.slice(1, -1);
-      if (a2Quoted) a2 = a2.slice(1, -1);
-      nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
+    const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s+(.+)$/);
+    if (gtAnyMatch) {
+      const argsStr = gtAnyMatch[1].trim();
+      const args = argsStr.split(',').map(a => a.trim()).filter(Boolean);
+      if (args.length >= 1) {
+        const target = args[0];
+        const isDynamicTarget = target.startsWith('$') || target.includes('<<');
+        if (!isDynamicTarget) {
+          const t = target.startsWith("'") && target.endsWith("'") ? target.slice(1, -1) : target;
+          const a1 = args[1] || '';
+          const a2 = args[2] || '';
+          const a3 = args[3] || '';
+          const a1Quoted = !!(a1 && a1.startsWith("'") && a1.endsWith("'"));
+          const a2Quoted = !!(a2 && a2.startsWith("'") && a2.endsWith("'"));
+          const a3Quoted = !!(a3 && a3.startsWith("'") && a3.endsWith("'"));
+          let cleanA1 = a1;
+          let cleanA2 = a2;
+          let cleanA3 = a3;
+          if (a1Quoted) cleanA1 = a1.slice(1, -1);
+          if (a2Quoted) cleanA2 = a2.slice(1, -1);
+          if (a3Quoted) cleanA3 = a3.slice(1, -1);
+          nodes.push({ kind: 'goto', target: t, arg: cleanA1, arg2: cleanA2 || undefined, arg3: cleanA3 || undefined, argQuoted: a1Quoted, arg2Quoted: a2Quoted, arg3Quoted: a3Quoted });
+        } else {
+          nodes.push({ kind: 'goto', target, arg: args[1] || '', arg2: args[2] || undefined, arg3: args[3] || undefined });
+        }
+      }
       i++;
       continue;
     }
@@ -808,6 +897,19 @@ function parseIfChain(lines: string[], startIdx: number, condition: string, unsu
 function parseSingleLine(trimmed: string, lines: string[], idx: number, unsupported: string[]): { nodes: QspNode[]; nextIdx: number } {
   const nodes: QspNode[] = [];
 
+  // Dynamic block: dynamic " ... "
+  if (trimmed === 'dynamic "' || trimmed.startsWith('dynamic "')) {
+    const dynNodes: QspNode[] = [];
+    let j = idx + 1;
+    while (j < lines.length && lines[j].trim() !== '"') {
+      const dynResult = parseSingleLine(lines[j].trim(), lines, j, unsupported);
+      dynNodes.push(...dynResult.nodes);
+      j = dynResult.nextIdx;
+    }
+    nodes.push({ kind: 'scene', arg: '__dynamic__', body: dynNodes });
+    return { nodes, nextIdx: j + 1 };
+  }
+
   if (trimmed.includes('&') && !trimmed.startsWith('act ') && !trimmed.startsWith('if ') && !trimmed.startsWith('end') && !trimmed.startsWith('else') && !trimmed.startsWith("'") && !trimmed.startsWith('gt ') && !trimmed.startsWith('gs ')) {
     const parts = splitTopLevelAmp(trimmed);
     const stmtRe = /^(?:[\w$]+\[?\w*\]?\s*(?:\+=|-=|=)\s*|jump\s+|gt\s+|gs\s+|\*p\s+|\*s\s+|killvar\s+|dynamic\s+)/;
@@ -828,10 +930,12 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Act block
-  const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/i);
+  const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/i) || trimmed.match(/^act\s+"(.*)"\s*:\s*$/i);
   if (actBlockMatch) {
+    const rawLabel = actBlockMatch[1];
+    const label = unescapeQsp(rawLabel.replace(/""/g, '"'));
     const inner = parseBlock(lines, idx + 1, unsupported);
-    nodes.push({ kind: 'act', label: unescapeQsp(actBlockMatch[1]), body: inner.nodes });
+    nodes.push({ kind: 'act', label, body: inner.nodes });
     return { nodes, nextIdx: inner.endIdx };
   }
 
@@ -849,15 +953,20 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       if (gt4Match) {
         act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
       } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
-        if (gtMatch) {
-          act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
+        const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+        if (gtArithMatch) {
+          act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
         } else {
-          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-          if (gtVarArgMatch) {
-            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
+          if (gtMatch) {
+            act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
-            act.inlineStatements = rest;
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
+            if (gtVarArgMatch) {
+              act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+            } else {
+              act.inlineStatements = rest;
+            }
           }
         }
       }
@@ -879,21 +988,45 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
+        const gtArithMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*([\d+\-*/()\s\w.,]+)$/);
+        if (gtArithMatch) {
+          act.inlineGoto = { target: gtArithMatch[1], arg: gtArithMatch[2], arg2: gtArithMatch[3].trim() };
+        } else {
         const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
           if (gtMatch) {
             act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
-            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
             if (gtVarArgMatch) {
               act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
             } else {
-              act.inlineStatements = rest;
+              const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+              if (gtIifMatch) {
+                const iifStart = rest.indexOf('iif(');
+                let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+                for (let j = iifStart; j < rest.length; j++) {
+                  const ch = rest[j];
+                  if (inStr) { if (ch === strCh) inStr = false; continue; }
+                  if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+                  if (ch === '(') depth++;
+                  else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+                }
+                if (iifEnd !== -1) {
+                  const iifExpr = rest.slice(iifStart, iifEnd + 1);
+                  act.inlineGoto = { target: gtIifMatch[1], arg: iifExpr, arg2: undefined };
+                } else {
+                  act.inlineStatements = rest;
+                }
+              } else {
+                act.inlineStatements = rest;
+              }
             }
           }
+        }
         }
       }
     nodes.push(act);
@@ -973,17 +1106,48 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
 
   // Text
   if (trimmed.startsWith("'") && trimmed.endsWith("'")) {
-    const inner = trimmed.slice(1, -1);
-    const isImage = inner.includes('<img') || inner.includes('<center>');
-    if (isImage) {
-      const imgMatch = inner.match(/src="([^"]+)"/);
-      if (imgMatch) {
-        nodes.push({ kind: 'image', src: imgMatch[1] });
-        return { nodes, nextIdx: idx + 1 };
-      }
+    let hasTopPlus = false, inStr = false, strCh = '', depth = 0;
+    let start = 1;
+    if (trimmed[1] === "'") {
+      start = 2;
+    } else {
+      inStr = true;
+      strCh = "'";
     }
-    const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-    nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+    for (let ci = start; ci < trimmed.length - 1; ci++) {
+      const ch = trimmed[ci];
+      if (inStr) {
+        if (ch === strCh) {
+          if (strCh === "'" && trimmed[ci + 1] === "'") { ci++; }
+          else inStr = false;
+        } else if (ch === '<' && trimmed[ci + 1] === '<') {
+          const closeIdx = trimmed.indexOf('>>', ci + 2);
+          if (closeIdx !== -1) ci = closeIdx + 1;
+        }
+      } else if (ch === '<' && trimmed[ci + 1] === '<') {
+        const closeIdx = trimmed.indexOf('>>', ci + 2);
+        if (closeIdx !== -1) ci = closeIdx + 1;
+      } else if (ch === "'" || ch === '"') {
+        inStr = true; strCh = ch;
+      } else if (ch === '(') { depth++; }
+      else if (ch === ')') { depth--; }
+      else if (ch === '+' && depth === 0) { hasTopPlus = true; break; }
+    }
+    if (hasTopPlus) {
+      nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    } else {
+      const inner = trimmed.slice(1, -1);
+      const isImage = inner.includes('<img') || inner.includes('<center>');
+      if (isImage) {
+        const imgMatch = inner.match(/src="([^"]+)"/);
+        if (imgMatch) {
+          nodes.push({ kind: 'image', src: imgMatch[1] });
+          return { nodes, nextIdx: idx + 1 };
+        }
+      }
+      const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+      nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+    }
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -1246,15 +1410,34 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+\['[^']*'\]|\$\w+|\w+))?$/);
           if (gtMatch) {
             act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
-            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+\['[^']*'\]|\$\w+|\w+)\s*$/);
             if (gtVarArgMatch) {
               act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
             } else {
-              act.inlineStatements = rest;
+              const gtIifMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*iif\(/);
+              if (gtIifMatch) {
+                const iifStart = rest.indexOf('iif(');
+                let depth = 0, iifEnd = -1, inStr = false, strCh = '';
+                for (let j = iifStart; j < rest.length; j++) {
+                  const ch = rest[j];
+                  if (inStr) { if (ch === strCh) inStr = false; continue; }
+                  if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
+                  if (ch === '(') depth++;
+                  else if (ch === ')') { depth--; if (depth === 0) { iifEnd = j; break; } }
+                }
+                if (iifEnd !== -1) {
+                  const iifExpr = rest.slice(iifStart, iifEnd + 1);
+                  act.inlineGoto = { target: gtIifMatch[1], arg: iifExpr, arg2: undefined };
+                } else {
+                  act.inlineStatements = rest;
+                }
+              } else {
+                act.inlineStatements = rest;
+              }
             }
           }
         }
@@ -1334,9 +1517,40 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
   }
 
   if (trimmed.startsWith("'") && trimmed.endsWith("'")) {
-    const inner = trimmed.slice(1, -1);
-    const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-    nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+    let hasTopPlus = false, inStr = false, strCh = '', depth = 0;
+    let start = 1;
+    if (trimmed[1] === "'") {
+      start = 2;
+    } else {
+      inStr = true;
+      strCh = "'";
+    }
+    for (let ci = start; ci < trimmed.length - 1; ci++) {
+      const ch = trimmed[ci];
+      if (inStr) {
+        if (ch === strCh) {
+          if (strCh === "'" && trimmed[ci + 1] === "'") { ci++; }
+          else inStr = false;
+        } else if (ch === '<' && trimmed[ci + 1] === '<') {
+          const closeIdx = trimmed.indexOf('>>', ci + 2);
+          if (closeIdx !== -1) ci = closeIdx + 1;
+        }
+      } else if (ch === '<' && trimmed[ci + 1] === '<') {
+        const closeIdx = trimmed.indexOf('>>', ci + 2);
+        if (closeIdx !== -1) ci = closeIdx + 1;
+      } else if (ch === "'" || ch === '"') {
+        inStr = true; strCh = ch;
+      } else if (ch === '(') { depth++; }
+      else if (ch === ')') { depth--; }
+      else if (ch === '+' && depth === 0) { hasTopPlus = true; break; }
+    }
+    if (hasTopPlus) {
+      nodes.push({ kind: 'text', content: trimmed, dynamic: true });
+    } else {
+      const inner = trimmed.slice(1, -1);
+      const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+      nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
+    }
     return nodes;
   }
 

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -8,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'reset_ShoVars');
-  if (hasLocation('$attributes_' + Number((s as any).locArgs?.[0] ?? 0) + '_shoes')) {
+  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')) + '_shoes')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_shoes', ARGS[1]
   }
   if ((!((s as any).ShoQuality ?? 0))) {
@@ -55,9 +53,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ShoMaxStrength = ((s as any).ShoStrength ?? 0);
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
-    // TODO-QSP: dynamic "
-    (s as any).ShoStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_shoe_h[((s as any).locArgs?.[1] ?? 0)]", { location: "shoe_attributes" });
-    // TODO-QSP: "
   }
   scene.build();
 }

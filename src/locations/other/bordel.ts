@@ -138,7 +138,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).borrand = (Math.floor(Math.random() * 11) + 0);
   if ((!((s as any).borrand ?? 0))) {
-    (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 21) + 10) * 10);
+    (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (30 - 10 + 1)) + (10)));
     // TODO-QSP: dynamic text: A customer orders you (<<$func(''money'', ''string_profit'', bordelpay)>>).
     scene.text(`A customer orders you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
     qspCall(s, 'willpower', 'sex', 'resist');
@@ -175,7 +175,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).borrand ?? 0) === 1) {
-      (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 21) + 10) * 10);
+      (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (30 - 10 + 1)) + (10)));
       // TODO-QSP: dynamic text: A customer orders you and another girl (<<$func(''money'', ''string_profit'', bo...
       scene.text(`A customer orders you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
       qspCall(s, 'willpower', 'sex', 'resist', 'hard');
@@ -211,7 +211,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).borrand ?? 0) === 2) {
-        (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 31) + 15) * 10);
+        (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (45 - 15 + 1)) + (15)));
         // TODO-QSP: dynamic text: Two clients book you (<<$func(''money'', ''string_profit'', bordelpay)>>).
         scene.text(`Two clients book you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
@@ -249,7 +249,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).borrand ?? 0) === 3) {
-          (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 31) + 15) * 10);
+          (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (45 - 15 + 1)) + (15)));
           // TODO-QSP: dynamic text: Two clients book you and another girl (<<$func(''money'', ''string_profit'', bor...
           scene.text(`Two clients book you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
           qspCall(s, 'willpower', 'sex', 'resist');
@@ -287,7 +287,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).borrand ?? 0) === 4) {
-            (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 41) + 20) * 10);
+            (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * (60 - 20 + 1)) + (20)));
             // TODO-QSP: dynamic text: A group of customers order you (<<$func(''money'', ''string_profit'', bordelpay)...
             scene.text(`A group of customers order you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? ''))}).`);
             qspCall(s, 'willpower', 'sex', 'resist', 'hard');

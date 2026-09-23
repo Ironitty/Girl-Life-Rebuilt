@@ -421,7 +421,7 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want my honest answer?" you look at him, a serious expression on your face, "Simply put, because I can and the adrenaline kick is amazing!"');
     scene.text('The security guard smirks, "So you\'re only doing it for the fun of it?"');
     scene.text('Looking pleased, you give him a satisfied nod.');
-    // TODO-QSP: dynamic text: All of a sudden, he changes his posture, "I don''t usually do this, but if you g...
+    // TODO-QSP: dynamic text: 'All of a sudden, he changes his posture, "I don''t usually do this, but if you ...
     scene.text('All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."');
     scene.text('"And if I don\'t?" you curiously inquire.');
     scene.text('"You\'ll have to face the consequences then…" he shortly replies.');
@@ -877,7 +877,7 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
     scene.text('"You want my honest answer?" you look at him, a serious expression on your face, "Simply put, because I can and the adrenaline kick is amazing!"');
     scene.text('The security guard smirks, "So you\'re only doing it for the fun of it?"');
     scene.text('Looking pleased, you give him a satisfied nod.');
-    // TODO-QSP: dynamic text: All of a sudden, he changes his posture, "I don''t usually do this, but if you g...
+    // TODO-QSP: dynamic text: 'All of a sudden, he changes his posture, "I don''t usually do this, but if you ...
     scene.text('All of a sudden, he changes his posture, "I don\'t usually do this, but if you give me 5000₽, then we\'re all good."');
     scene.text('"And if I don\'t?" you curiously inquire.');
     scene.text('"You\'ll have to face the consequences then…" he shortly replies.');

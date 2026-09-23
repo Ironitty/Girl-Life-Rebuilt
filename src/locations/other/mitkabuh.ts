@@ -64,7 +64,7 @@ function enterPartyalone(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'mitkabuh';
   (s as any).menu_arg = 'partyalone';
   scene.img('images/locations/gadukino/village/drunk.jpg');
-  // TODO-QSP: dynamic text: You, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, 'logs ou...
+  // TODO-QSP: dynamic text: 'You, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, 'logs o...
   scene.text('You, Mitka, Kolyamba and Vasyan are sitting on some ' + ((((s as any).sunWeather ?? 0)===1) ? ('logs outside') : ('couches inside')) + ' the trailer. There is plenty of moonshine to go around but no snacks.');
   if (((s as any).GadBoy ?? 0)?.['drunk_event'] === 1  &&  ((s as any).alko ?? 0) < 10) {
     (s as any).alko = 10;
@@ -178,7 +178,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 1;
   }
   scene.img('images/locations/gadukino/village/drunk.jpg');
-  // TODO-QSP: dynamic text: You, Mira, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, 'l...
+  // TODO-QSP: dynamic text: 'You, Mira, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, '...
   scene.text('You, Mira, Mitka, Kolyamba and Vasyan are sitting on some ' + ((((s as any).sunWeather ?? 0)===1) ? ('logs outside') : ('couches inside')) + ' the trailer. There is plenty of moonshine to go around but no snacks.');
   if (((s as any).GadBoy ?? 0)?.['drunk_event'] === 1  &&  ((s as any).alko ?? 0) < 10) {
     (s as any).alko = 10;
@@ -545,7 +545,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/gadukino/sex/mitka/mitka2.jpg');
     }
-    // TODO-QSP: dynamic text: He takes you '+iif(sunWeather=1, 'inside the trailer,', 'into the bedroom of the...
+    // TODO-QSP: dynamic text: 'He takes you '+iif(sunWeather=1, 'inside the trailer,', 'into the bedroom of th...
     scene.text('He takes you ' + ((((st as any).sunWeather ?? 0)===1) ? ('inside the trailer,') : ('into the bedroom of the trailer,')) + ' has you lie down on the bed and begins removing your clothes.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
       scene.text('You feel your hymen break as Mitka penetrates you. Mitka looks down at you and says, "Wow, how were you still a virgin? I should have savoured this moment longer!"');
@@ -563,7 +563,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', '', '', 'A63', 1);
     qspCall(st, 'arousal', 'vaginal', 20, 'sub');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -571,7 +571,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'You nod and slur your words… mumbling something as you fall into his waiting arms', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkabj.jpg');
-    // TODO-QSP: dynamic text: He takes you '+iif(sunWeather=1, 'inside the trailer', 'into the bedroom of the ...
+    // TODO-QSP: dynamic text: 'He takes you '+iif(sunWeather=1, 'inside the trailer', 'into the bedroom of the...
     scene.text('He takes you ' + ((((st as any).sunWeather ?? 0)===1) ? ('inside the trailer') : ('into the bedroom of the trailer')) + ' and pushes you to your knees.');
     scene.text('He makes you remove your clothes before he puts his cock in your mouth for you to suck on.');
     qspCall(st, 'npc_relationship', 'modify', 'A63', 1);
@@ -613,7 +613,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -626,7 +626,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/gadukino/sex/mitka/mitkaanal1.jpg');
     }
-    // TODO-QSP: dynamic text: He takes you '+iif(sunWeather=1, 'inside the trailer,', 'into the bedroom of the...
+    // TODO-QSP: dynamic text: 'He takes you '+iif(sunWeather=1, 'inside the trailer,', 'into the bedroom of th...
     scene.text('He takes you ' + ((((st as any).sunWeather ?? 0)===1) ? ('inside the trailer,') : ('into the bedroom of the trailer,')) + ' has you bend over on the bed and begins removing your clothes.');
     if ((!((st as any).pcs_ass ?? 0))) {
       scene.text('"An anal virgin, huh? Well your ass will never be the same after this!" Mitka says as he pushes his cock inside your ass.');
@@ -644,7 +644,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'anus', 'A63', 1);
     qspCall(st, 'arousal', 'anal', 15, 'sub', 'rough');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -661,7 +661,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'You mumble something about needing to pee', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/village/drunkgirl.jpg');
-    // TODO-QSP: dynamic text: Mitka helps you '+iif(sunWeather=1, 'get up', 'go outside')+' and lean against a...
+    // TODO-QSP: dynamic text: 'Mitka helps you '+iif(sunWeather=1, 'get up', 'go outside')+' and lean against ...
     scene.text('Mitka helps you ' + ((((st as any).sunWeather ?? 0)===1) ? ('get up') : ('go outside')) + ' and lean against a tree, as you giggle drunkenly and pee. Mitka watches you and laughs at your the whole time. He stumbles over to you, barely able to stand himself and pulls you into him.');
     // TODO-QSP: dynamic text: "Listen, <<$pcs_nickname>>, come with me," Mitka says loudly. You try to hide it...
     scene.text(`"Listen, ${((st as any).pcs_nickname ?? '')}, come with me," Mitka says loudly. You try to hide it from us but, we already know. "I'm going have you fucked like the slut you are. I know you won't mind." Mitka grins evilly.`);
@@ -671,7 +671,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
       { label: 'Protest', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/village/drunkgirl.jpg');
     scene.text('You refuse, drunkenly trying to fight off the advancing Kolyamba while barely standing on your feet.');
-    // TODO-QSP: dynamic text: Your struggles piss Mitka off, who grabs you by the arm and leads you '+iif(sunW...
+    // TODO-QSP: dynamic text: 'Your struggles piss Mitka off, who grabs you by the arm and leads you '+iif(sun...
     scene.text('Your struggles piss Mitka off, who grabs you by the arm and leads you ' + ((((st as any).sunWeather ?? 0)===1) ? ('inside the trailer') : ('into the bedroom of the trailer')) + '.');
     scene.text('Mitka whispers in your ear, "You want my dick so bad then you can have it this time. But, next time you will do as I say. Understand?"');
     scene.actions([
@@ -693,16 +693,16 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'anal', 10, 'sub', 'rough');
     }
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       { label: 'Bend over', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkasexpublic0.2.jpg');
-    // TODO-QSP: dynamic text: Kolyamba bends you over a nearby log. He places one hand on your back to steady ...
+    // TODO-QSP: dynamic text: 'Kolyamba bends you over a nearby log. He places one hand on your back to steady...
     scene.text('Kolyamba bends you over a nearby log. He places one hand on your back to steady himself while guiding his dick into your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     scene.text('All you can manage are moans as Kolyamba fucks you, but you can\'t help but think to yourself that the other guys may start treating you differently after tonight.');
-    // TODO-QSP: dynamic text: You are both so drunk that any type of rhythm is hard to maintain. Eventually Ko...
+    // TODO-QSP: dynamic text: 'You are both so drunk that any type of rhythm is hard to maintain. Eventually K...
     scene.text('You are both so drunk that any type of rhythm is hard to maintain. Eventually Kolyamba speeds up a little and finishes inside of your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     scene.text('He gets up and goes back to drinking with Mitka and Vasyan, leaving you naked outside. After a little while you sober up enough to get dressed and go sit back by the boys.');
     qspCall(st, 'npc_relationship', 'modify', 'A63', 1);
@@ -718,7 +718,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'anal', 10, 'sub');
     }
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -772,7 +772,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -808,14 +808,14 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkasexpublic0.2.jpg');
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> bends you over a nearby log outside the trailer. He places one h...
-    scene.text('' + qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" }) + ' bends you over a nearby log outside the trailer. He places one hand on your back to steady himself while guiding his dick into your \'+iif(mesec=0, \'pussy\', \'ass\')+\'.');
+    // TODO-QSP: dynamic text: '<<$boydesc[0]>> bends you over a nearby log outside the trailer. He places one ...
+    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} bends you over a nearby log outside the trailer. He places one hand on your back to steady himself while guiding his dick into your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     if ((!((st as any).mesec ?? 0))) {
       // TODO-QSP: gs 'cum_call', '', $boy[0], 1
     } else {
       // TODO-QSP: gs 'cum_call', 'anus', $boy[0], 1
     }
-    // TODO-QSP: dynamic text: He quickly picks up the pace, and you feel as if every thrust goes deeper than t...
+    // TODO-QSP: dynamic text: 'He quickly picks up the pace, and you feel as if every thrust goes deeper than ...
     scene.text('He quickly picks up the pace, and you feel as if every thrust goes deeper than the last. Soon enough, he cums inside of your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       // TODO-QSP: dynamic text: After he''s done <<$boydesc[0]>> looks at you and says, "What are you waiting fo...
@@ -826,7 +826,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('He gets up and goes back to drinking again, leaving you alone outside. After a little while you sober up enough to get dressed and go sit back by the boys.');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -872,8 +872,8 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/mitka/mitkabjpublicguys.jpg');
-    // TODO-QSP: dynamic text: As you bend over to suck <<$boydesc[0]>>''s cock, <<$boydesc[1]>> moves behind y...
-    scene.text('As you bend over to suck ' + qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" }) + '\'s cock, ' + qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" }) + ' moves behind you and begins to finger your \'+iif(mesec=0, \'pussy\', \'ass\')+\'.');
+    // TODO-QSP: dynamic text: 'As you bend over to suck <<$boydesc[0]>>''s cock, <<$boydesc[1]>> moves behind ...
+    scene.text(`As you bend over to suck ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })}'s cock, ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} moves behind you and begins to finger your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     scene.text('After a few minutes they switch positions, each taking turns having you blow them while the other fingers you.');
     scene.actions([
       { label: 'Make them cum', handler: (st: GameState) => {
@@ -892,7 +892,7 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
     // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -942,8 +942,8 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguys2.jpg');
     }
     scene.text('First the boys remove your clothes exposing your body for everyone to see.');
-    // TODO-QSP: dynamic text: <<$boydesc[0]>> bends you over '+iif(sunWeather=1, 'the bench outside the traile...
-    scene.text('' + qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" }) + ' bends you over \'+iif(sunWeather=1, \'the bench outside the trailer.\', \'in the kitcen of the trailer.\')+\' He places his hands on your hips and pulls your \'+iif(mesec=0, \'pussy\', \'ass\')+\' onto his dick.');
+    // TODO-QSP: dynamic text: '<<$boydesc[0]>> bends you over '+iif(sunWeather=1, 'the bench outside the trail...
+    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} bends you over ` + ((((st as any).sunWeather ?? 0)===1) ? ('the bench outside the trailer.') : ('in the kitcen of the trailer.')) + ' He places his hands on your hips and pulls your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + ' onto his dick.');
     // TODO-QSP: dynamic text: <<$boydesc[1]>> grabs you by the hair and shoves his cock into your mouth. You r...
     scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} grabs you by the hair and shoves his cock into your mouth. You rock back and forth between the two boys as they thrust into you.`);
     scene.text('They quicken their pace and it doesn\'t take long for them both to cum inside of you.');
@@ -962,7 +962,7 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -979,7 +979,7 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
     { label: 'Smile at them', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkagroup.jpg');
     scene.text('You have a seat on the bench outside the trailer and expose your breasts to the boys. This is all the encouragement the boys need as they quickly surround you.');
-    // TODO-QSP: dynamic text: You start jerking off Kolyamba and Vasyan while Mitka pushes his fingers into yo...
+    // TODO-QSP: dynamic text: 'You start jerking off Kolyamba and Vasyan while Mitka pushes his fingers into y...
     scene.text('You start jerking off Kolyamba and Vasyan while Mitka pushes his fingers into your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     qspCall(st, 'npc_relationship', 'modify', 'A63', 1);
     qspCall(st, 'npc_relationship', 'modify', 'A62', 1);
@@ -1004,11 +1004,11 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get gangbanged', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkagroupcum.jpg');
-    // TODO-QSP: dynamic text: Kolyamba and Vasyan hold you down as Mitka penetrates your '+iif(mesec=0, 'pussy...
+    // TODO-QSP: dynamic text: 'Kolyamba and Vasyan hold you down as Mitka penetrates your '+iif(mesec=0, 'puss...
     scene.text('Kolyamba and Vasyan hold you down as Mitka penetrates your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '. You do your best to please them both with your mouth and hands at the same time.');
     scene.text('They switch positions so everyone gets a chance will all your holes. After a while you get used to the constant pounding as the three boys don\'t seem to be tiring out as quick as usual.');
     scene.text('You have a feeling they may be competing to see who can go the longest without telling you.');
-    // TODO-QSP: dynamic text: Vasyan is the first to go, spraying cum all over your body. This sets off a chai...
+    // TODO-QSP: dynamic text: 'Vasyan is the first to go, spraying cum all over your body. This sets off a cha...
     scene.text('Vasyan is the first to go, spraying cum all over your body. This sets off a chain reaction as Kolyamba begins cumming all over your face and hair and Mitka fills your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + ' at the same time.');
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       scene.text('After they\'re done Mitka looks at you and says, "What are you waiting for? Oh right, money. You\'ll do anything for a ruble. Here you go."');
@@ -1034,7 +1034,7 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'cum_call', 'anus', 'A63', 1);
     }
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1047,7 +1047,7 @@ function enterMira_5(s: GameState, scene: SceneBuilder): void {
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 6;
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
-  // TODO-QSP: dynamic text: Mira is absolutely trashed now, she looks at you and winks before taking Mitka''...
+  // TODO-QSP: dynamic text: 'Mira is absolutely trashed now, she looks at you and winks before taking Mitka'...
   scene.text('Mira is absolutely trashed now, she looks at you and winks before taking Mitka\'s hand and leading him ' + ((((s as any).sunWeather ?? 0)===1) ? ('behind the trailer out of view ') : (' outside the trailer away')) + ' from the other boys.');
   scene.text('A few minutes later, you excuse yourself from talking with Kolyamba and Vasyan and follow after them.');
   // TODO-QSP: end

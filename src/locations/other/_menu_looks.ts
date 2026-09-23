@@ -23,7 +23,7 @@ function enterLookstabs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tabsaction[3] = "menu_page = 3 & gt '$menu_looks', 'tattoos'"
   // TODO-QSP: $tabsname[4] = 'Piercings'
   // TODO-QSP: $tabsaction[4] = "menu_page = 4 & gt '$menu_looks', 'piercing'"
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_looks" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);

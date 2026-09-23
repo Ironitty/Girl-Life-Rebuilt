@@ -95,7 +95,8 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bimbo_rand1 ?? 0) < 40) {
     scene.img('images/locations/pavlovsk/trainstation/bimbo.boy0.jpg');
   } else {
-    scene.img('images/shared/sex/blowjob/bimbo.knees' + (Math.floor(Math.random() * 7) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bimbo.knees'+rand(0, ...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bimbo.knees` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
   }
   scene.text('You burst into the stall without knocking. The man is standing there with his pants unbuttoned, dick hanging out, and looking at you with surprise. You get down on your knees and wrap your lips around his cock.');
   // TODO-QSP: end
@@ -109,9 +110,11 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo22.jpg');
     } else {
       if (((st as any).bimbo_rand1 ?? 0) < 40) {
-        scene.img('images/locations/pavlovsk/trainstation/sex/bimbo.boy0,' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/trainstation/sex/bimb...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy0,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
       } else {
-        scene.img('images/locations/pavlovsk/trainstation/sex/bimbo0,' + (Math.floor(Math.random() * 14) + 0) + '.mp4');
+        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+        scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo0,` + (Math.floor(Math.random() * 14) + 0) + '.mp4"></video></center>');
       }
     }
     scene.text('As you are sucking his dick, it quickly gets hard. Work his shaft with your lips and bobbing head, you fondle his balls with your hand. It doesn\'t take too long before he starts moaning and places his hands on your head.');
@@ -122,7 +125,8 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (5);
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    scene.img('images/shared/sex/cum/mouth/cum1,' + (Math.floor(Math.random() * 11) + 0) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/mouth/cum...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/mouth/cum1,` + (Math.floor(Math.random() * 11) + 0) + '.mp4"></video></center>');
     scene.text('You keep sucking his dick, and you are rewarded with hot spurts of cum shooting into your mouth and filling it. There is so much sperm that some of it leaks from the corners of your lips.');
     scene.text('Once he finally stops spurting sperm in your mouth, you stand up, swallowing his cum. You wipe the cum off your lips and suck your fingers clean as you smile at him.');
     scene.actions([
@@ -134,7 +138,8 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    scene.img('images/shared/sex/cum/facial/facial0,' + (Math.floor(Math.random() * 9) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/cum/facial/facial0,'+rand(0, ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/facial/facial0,` + (Math.floor(Math.random() * 9) + 0) + '.jpg"></center>');
     scene.text('You pull your mouth off his cock and sit back with your face tilted up. He gets the idea and starts jerking off.');
     scene.text('Soon, hot spurts of cum are splashing across your face and into your hair. You squeeze your eyes shut to keep the sperm out of your eyes as you feel another jet of hot cum land on your face.');
     scene.actions([
@@ -149,9 +154,11 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'fame', 'pav', 'sex', 'tiny', 'local');
     if (((st as any).bimbo_rand1 ?? 0) < 30) {
-      scene.img('images/locations/pavlovsk/trainstation/sex/bimbo.boy1,' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/trainstation/sex/bimb...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy1,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     } else {
-      scene.img('images/locations/pavlovsk/trainstation/sex/bimbo.boy1,' + (Math.floor(Math.random() * 9) + 0) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo.boy1,` + (Math.floor(Math.random() * 9) + 0) + '.mp4"></video></center>');
     }
     qspCall(st, 'dinSex', 'wear_condom');
     qspCall(st, 'dinsex', 'vaginal_sex', 10);
@@ -185,7 +192,8 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kneel down', handler: (st: GameState) => {
-    scene.img('images/shared/sex/blowjob/bimbo.knees' + (Math.floor(Math.random() * 7) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bimbo.knees'+rand(0, ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bimbo.knees` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
     scene.text('You get down on your knees and open your mouth to suck his cock.');
     scene.actions([
       { label: 'Suck', goto: ['trainbimbo', 'pos33'] },
@@ -202,7 +210,8 @@ function enterPos33(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bimbo_rand1 ?? 0) < 10) {
     scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo33.jpg');
   } else {
-    scene.img('images/locations/pavlovsk/trainstation/sex/bimbo0,' + (Math.floor(Math.random() * 14) + 0) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo0,` + (Math.floor(Math.random() * 14) + 0) + '.mp4"></video></center>');
   }
   scene.text('As you open your mouth to start sucking the guy, he grabs you by your hair, and before you can react, he shoves his dick into your mouth and down your throat.');
   scene.text('You start gagging and struggling to breath. After a bit, he stops forcing himself so deep in your mouth, giving you time to recover.');
@@ -220,7 +229,8 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 1, 1);
   ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/trainstation/bimbo.strip' + (Math.floor(Math.random() * 7) + 0) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
   scene.text('You start rubbing your clit as the guy fucks your mouth and throat. After a bit, you are completely naked. He pulls you up and pushes you down on the floor where you sprawl before him, your clothes lying around you.');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.text('"You\'re hot and give great head, but I think I want to try that tight little ass of yours."');
@@ -239,7 +249,8 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
 
 function enterPos3333(s: GameState, scene: SceneBuilder): void {
   (s as any).horand = 0;
-  scene.img('images/locations/pavlovsk/trainstation/sex/bimbo3,' + (Math.floor(Math.random() * 8) + 0) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/sex/bimbo3,` + (Math.floor(Math.random() * 8) + 0) + '.mp4"></video></center>');
   scene.text('He turns your face to the wall and enters your ass from behind. You are not prepared for this. With no lubrication on your ass and only your saliva on his dick, the pain is sharp. You wince and tear up. You try to pull away, but strong hands hold you firm. As you struggle more, he pushes you tight up against the wall, leaving you nowhere to go.');
   scene.text('He pounds your ass furiously, balls deep with out mercy. The more you whimper the harder he pounds you. He seems to have supernatural stamina as he ravishes your ass. You completely lose track of time as tears start to stream down your face.');
   scene.text('"Like that girl? Yeah I know a little slut like you loves having your ass tore up. You can be my ass whore anytime, ha ha!" With these words, his cock begins to twitch, and you feel spurts of hot sperm shooting deep into your ass. Once he has finished cumming, he pushes your head against the wall while he pulls his dick out of you and wipes it off on your butt cheeks.');
@@ -324,7 +335,8 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/trainstation/bimbo.strip' + (Math.floor(Math.random() * 7) + 0) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/train...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip` + (Math.floor(Math.random() * 7) + 0) + '.mp4"></video></center>');
     scene.text('You strip out of your clothes.');
     scene.actions([
       { label: 'Further', goto: ['trainbimbo', 'pos66'] },

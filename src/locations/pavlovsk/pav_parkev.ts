@@ -79,7 +79,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
               scene.text('You pass by a guy and two girls hanging out and taking a bunch of selfies together. You can\'t tell if they\'re locals or not, nor can you tell if it\'s a couple with their friend or just three friends hanging out. Not that it really matters, but they seem happy.');
             } else {
               if (((s as any).temprand ?? 0) === 5) {
-                scene.img('images/locations/pavlovsk/park/event/walk/day/winter/selfie_2girls' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+                // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/w...
+                scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/winter/selfie_2girls` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
                 scene.text('You pass by two girls hanging out and taking a bunch of selfies together. You can\'t tell if they\'re locals, but they seem to be close friends having fun. Maybe you should ask one of your girlfriends to come and hang out with you here? Goofing off and taking selfies in the park sounds like fun.');
               } else {
                 if (((s as any).temprand ?? 0) === 6) {
@@ -119,7 +120,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
       } else {
         if (((s as any).temprand ?? 0) === 2) {
-          scene.img('images/locations/pavlovsk/park/event/walk/day/bench_2girls_drinking' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/b...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/bench_2girls_drinking` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
           scene.text('Two girls are drinking beers on one of the benches on the primary walkway near the front of the park. You can\'t hear what they\'re talking about, but they\'re laughing, smiling and having a good time hanging out together.');
         } else {
           if (((s as any).temprand ?? 0) === 3) {
@@ -150,7 +152,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).temprand ?? 0) === 6) {
-                  scene.img('images/locations/pavlovsk/park/event/walk/day/bench_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/b...
+                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/bench_girl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                   scene.text('Sitting on one of the benches on the primary walkway near the front of the park is a girl about your sister\'s age. She\'s watching the people walk by, but doesn\'t seem to be paying attention to anyone. Perhaps she\'s waiting on someone…');
                 } else {
                   if (((s as any).temprand ?? 0) === 7) {
@@ -183,7 +186,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                         scene.text('As you take your walk, you pass by an old man and a young boy sitting on a bench with a chessboard between them. As you walk past them, the boy makes a move while the old man studies the board.');
                       } else {
                         if (((s as any).temprand ?? 0) === 10) {
-                          scene.img('images/locations/pavlovsk/park/event/walk/day/couple' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/c...
+                          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/couple` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                           scene.text('You pass by a man and a woman out and about as well. They seem to be romantically involved by how they look at each other and their body language. You can\'t help but smile a little.');
                         } else {
                           if (((s as any).temprand ?? 0) === 11) {
@@ -256,7 +260,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                                             qspCall(s, 'arousal', 'end');
                                           } else {
                                             if (((s as any).temprand ?? 0) === 20) {
-                                              scene.img('images/locations/pavlovsk/park/event/walk/day/selfie_girl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+                                              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/s...
+                                              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/selfie_girl` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
                                               scene.text('You see a young woman busy taking a lot of selfies in different poses who seems to be utterly oblivious to other people or that some of them are watching.');
                                             } else {
                                               if (((s as any).temprand ?? 0) === 21) {
@@ -522,7 +527,8 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
                   scene.text('As you pass one of the benches, you see a girl sitting on it with her shoes off, reading a book. As you walk past, she doesn\'t even glance up at you. Instead, she seems to be wholly engrossed in reading her book.');
                 } else {
                   if (((s as any).temprand ?? 0) === 7) {
-                    scene.img('images/locations/pavlovsk/park/event/walk/day/deep/bench_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/event/walk/day/d...
+                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/event/walk/day/deep/bench_girl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                     scene.text('As you come down one of the trails through a bunch of trees to one of the small clearings with a bench, you see a girl sitting on it. She looks up in your direction as you come into view and sighs a little before losing interest in you.');
                     scene.text('By her actions, she seems to be waiting on someone and that someone is not you.');
                   } else {

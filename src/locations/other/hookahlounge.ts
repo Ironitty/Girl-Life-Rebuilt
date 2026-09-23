@@ -39,7 +39,7 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/aliyyah/Hookah_Aliyyah.jpg');
   scene.text('At the counter, you see a young Muslim woman. She appears quite timid. Nonetheless, she greets you with a smile as you walk up. She squeaks "What do you need, ma\'am?"');
   scene.text('I\'d like to buy a seat at a hookah, please.');
-  // TODO-QSP: dynamic text: Okay, that will be ' + $func('money', 'string_price', 100) + ' please.
+  // TODO-QSP: dynamic text: 'Okay, that will be ' + $func('money', 'string_price', 100) + ' please.'
   scene.text('Okay, that will be 100₽ please.');
   if ((!((s as any).smoketab ?? 0))) {
     scene.actions([

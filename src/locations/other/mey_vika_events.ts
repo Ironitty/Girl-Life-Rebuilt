@@ -245,9 +245,11 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).zz_stage ?? 0) === 27) {
       } else {
         if (((s as any).zz_stage ?? 0) === 16  ||  ((s as any).zz_stage ?? 0) === 22  ||  ((s as any).zz_stage ?? 0) === 25  ||  (((s as any).zz_stage ?? 0) >= 28  &&  ((s as any).zz_stage ?? 0) < 31)) {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage ?? '') + '.mp4');
+          // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+          scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip` + ((s as any).zz_stage ?? '') + '.mp4"></video></center>');
         } else {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage ?? '') + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip` + ((s as any).zz_stage ?? '') + '.jpg"></center>');
         }
       }
       if (((s as any).zz_stage ?? 0) === 16) {
@@ -372,9 +374,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_vika_events', 'play_game_wish1', zz_stage + 1
-  } },
+        { label: 'Continue', goto: ['mey_vika_events', 'play_game_wish1', 'zz_stage + 1'] },
       ]);
     } else {
       scene.text('Still panting, tired but happy, you relax. Lying on the messy bed, the three of you hug each other carefully, gently stroking each other, slowly cooling down.');
@@ -622,7 +622,8 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] === 1) {
         scene.text('<center><h2>Pavlovsk Park</h2></center>');
-        scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_park_kiss_' + ((((s as any).month ?? 0) > 10  ||  ((s as any).month ?? 0) < 4) ? ('winter') : ('summer')) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/meynolds/sex...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/meynolds/sex/vika_park_kiss_` + ((((s as any).month ?? 0) > 10  ||  ((s as any).month ?? 0) < 4) ? ('winter') : ('summer')) + '.jpg"></center>');
       } else {
         if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] === 2) {
           scene.text('<center><h2>Pavlovsk Park</h2></center>');
@@ -1057,7 +1058,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 20;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1147,7 +1148,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 60));
       scene.text('Being a virgin you don\'t know how to deal with something sexual like this and just go quiet and hope it blows over.');
       scene.text('You meet some others from school and spend an hour or so at the beach before getting ready to head back into town.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Further', handler: (st: GameState) => {
@@ -1249,7 +1250,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Don''t forget about it now, <<$pcs_nickname>>!" Vicky presses on.
       scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname ?? '')}!" Vicky presses on.`);
       scene.text('"Of course I won\'t, Vicky!" You sincerely reply.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1319,7 +1320,7 @@ function enterBeachEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about we head over to the remote beach instead?!"');
     scene.actions([
       { label: 'Go to the remote beach', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterBeachEvent0(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterBeachEvent0(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

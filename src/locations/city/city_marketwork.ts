@@ -32,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You give Arthur <<rinart>> per sold <<rinvesh>> items.
     scene.text(`You give Arthur ${((st as any).rinart ?? '')} per sold ${((st as any).rinvesh ?? '')} items.`);
-    // TODO-QSP: dynamic text: You have earned ' + $func('money', 'string_profit', rinmon) + ' today.
+    // TODO-QSP: dynamic text: 'You have earned ' + $func('money', 'string_profit', rinmon) + ' today.'
     scene.text('You have earned \' + $func(\'money\', \'string_profit\', rinmon) + \' today.');
     (st as any).rinmon = 0;
     (st as any).rinvesh = 0;
@@ -93,7 +93,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).arturplan = ((st as any).arturplan ?? 0) + (1000);
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1) {
       qspCall(st, 'money', 'pay', 1000, 'cash');
-      // TODO-QSP: dynamic text: "Your stall is filthy! I''m fining you ' + $func('money', 'string_price', 1000) ...
+      // TODO-QSP: dynamic text: '"Your stall is filthy! I''m fining you ' + $func('money', 'string_price', 1000)...
       scene.text('"Your stall is filthy! I\'m fining you 1000₽." You hand over the money and Arthur quickly snatches it.');
     } else {
       scene.text('Go with him before it gets worse.');
@@ -758,19 +758,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Now this is very fashionable', handler: (st: GameState) => {
     (st as any).tipred = 3;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'This item is very high quality and reliable', handler: (st: GameState) => {
     (st as any).tipred = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'You\'ll find this very reasonable', handler: (st: GameState) => {
     (st as any).tipred = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'That is so you', handler: (st: GameState) => {
     (st as any).tipred = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnswerrin(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -830,7 +830,7 @@ function enterTellprice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Name the price', handler: (st: GameState) => {
-    (st as any).prodpay = 0;
+    (st as any).prodpay = window.prompt("Enter the selling price") ?? '';
     if (((st as any).prodpay ?? 0) < 1000) {
       (st as any).prodpay = ((st as any).prodpayum ?? 0);
     }
@@ -849,14 +849,14 @@ function enterTellprice(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: dynamic text: The customer twirls the clothing in their hands. "<<$func(''money'', ''string_pr...
         scene.text(`The customer twirls the clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))} is too expensive."`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((st as any).prodpay ?? 0) > ((st as any).pokpay ?? 0)  &&  ((st as any).prodpay ?? 0) <= ((st as any).pokpay ?? 0) + 100) {
         if (((st as any).poknorand ?? 0) >= 10) {
           // TODO-QSP: dynamic text: The customer twirls clothing in their hands. "<<$func(''money'', ''string_profit...
           scene.text(`The customer twirls clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))} is too expensive."`);
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('They put the item back and leaves');
           scene.actions([

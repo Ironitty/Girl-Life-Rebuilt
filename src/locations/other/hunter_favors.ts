@@ -315,7 +315,7 @@ function enterCreeksideGangbangRequest(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterYardBondage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).yard_bound_temprand = (Math.floor(Math.random() * 9) + 1);
     if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 5) {
       qspCall(s, 'arousal', 'end');
@@ -374,7 +374,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'lost_bet') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'lost_bet') {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (20);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (40);
     qspCall(s, 'arousal', 'flash', 15, 'bound', 'exhibitionism', 'humiliation');
@@ -386,7 +386,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for him to come back', goto: ['hunter_favors', 'yard_bondage'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'passing_bj') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'passing_bj') {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (6);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (3);
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'bound', 'deepthroat');
@@ -435,7 +435,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'passing_fuck') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'passing_fuck') {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (10);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
     scene.img('images/locations/gadukino/sex/hunter/bound_fucked2.jpg');
@@ -492,7 +492,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'clamp_fuck') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'clamp_fuck') {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (15);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (10);
     qspCall(s, 'boyStat', 'A172');
@@ -574,7 +574,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'unbound_fuck') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'unbound_fuck') {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (15);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (15);
     qspCall(s, 'boyStat', 'A173');

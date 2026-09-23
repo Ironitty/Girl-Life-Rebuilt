@@ -76,7 +76,8 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
       { label: 'Make her blow Kolka', handler: (st: GameState) => {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['Debt'] = ((st as any).NatbelQW['Debt'] ?? 0) - (500);
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['bj'] = ((st as any).NatbelQW['bj'] ?? 0) + (1);
-    scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbj' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/natasha/sex/natbj` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
     scene.text('"You\'re going to use that mouth of yours to make Kolka feel good; you got it?" You hiss at Natasha, grabbing her jaw, and staring into her eyes.');
     scene.text('Natasha jerkily nods and motions him over to the side of her bed. She reaches up with trembling hands to unfasten Kolka\'s pants and pulls out his semi-hard dick. She tentatively begins to lick it, and after a moment takes the now fully erect shaft into her mouth.');
     scene.text('"Get her hair out of the way Kolka. I want to see this properly." You tell Kolka, and he gathers her hair in his hand, keeping hold of it as he uses it to guide her mouth up and down on his shaft.');
@@ -147,7 +148,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['KolkaSex'] = ((st as any).NatbelQW['KolkaSex'] ?? 0) + (1);
     qspCall(st, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -193,7 +194,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['KolkaSex'] = ((st as any).NatbelQW['KolkaSex'] ?? 0) + (1);
     qspCall(st, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -265,7 +266,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     scene.text('Kolka grabs hold of Natasha, lifting her up and starts fucking her as fast as he can. Within a few minutes, you can see Natasha\'s eyes roll back in her head while she moans loudly as her orgasm rockets through her.');
     scene.text('After a few more minutes Kolka says "I\'m going to cum."');
     qspCall(st, 'natbelEv', 'natcumresponse');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -292,7 +293,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     scene.text('Kolka grabs Natasha by the ass, holding her in place and starts fucking her as fast as he can. Within a few minutes, you can see Natasha\'s eyes roll back in her head while she moans loudly as her orgasm hits her.');
     scene.text('After a few more minutes Kolka says "I\'m going to cum."');
     qspCall(st, 'natbelEv', 'natcumresponse');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 2]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 2]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -320,7 +321,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     scene.text('Kolka grabs Natasha by the hips, holding her in place and starts fucking her as fast as he can. Within a few minutes you can see Natasha\'s eyes roll back in her head while she moans loudly as her orgasm hits her.');
     scene.text('After a few more minutes Kolka says "I\'m going to cum."');
     qspCall(st, 'natbelEv', 'natcumresponse');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 3]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 3]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -439,7 +440,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
       scene.text('"Jesus your ass is tight Natasha. You\'re nearly crushing me." He pants as he slowly pushes in and out, making her wince and gasp with each thrust.');
       scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great for your first time."');
       scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).NatbelQW ?? 0)?.['anal'] < 5) {
         scene.text('"I\'m going to start moving now Natasha." Kolka says as he slowly pushes deeper into her ass, making her moan.');
@@ -447,7 +448,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her gasp with each thrust.');
         scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing a lot better than last time."');
         scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).NatbelQW ?? 0)?.['anal'] < 10) {
           scene.text('"You like it, don\'t you?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
@@ -455,7 +456,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
           scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her moan with each thrust.');
           scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great."');
           scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"How much do you want it?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
           scene.text('"Y-Yeah I love how you feel in my ass." Natasha says as she uses her hands to keep Kolka from going too deep right away.');
@@ -468,7 +469,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
     scene.text('The thought of having turned Natasha into a butt slut makes your pussy so wet that you can feel it running down your inner thighs.');
     scene.text('It doesn\'t take much of Kolka\'s relentless pounding before she starts to shake in orgasm.');
     scene.text('After a few more strokes Kolka says "I\'m going to cum."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 4]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -517,7 +518,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
       scene.text('"Jesus your ass is tight Natasha. You\'re nearly crushing me." He pants as he slowly pushes in and out, making her wince and gasp with each thrust.');
       scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great for your first time."');
       scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).NatbelQW ?? 0)?.['anal'] < 5) {
         scene.text('"I\'m going to start moving now Natasha." Kolka says as he slowly pushes deeper into her ass, making her moan.');
@@ -525,7 +526,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her gasp with each thrust.');
         scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing a lot better than last time."');
         scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).NatbelQW ?? 0)?.['anal'] < 10) {
           scene.text('"You like it, don\'t you?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
@@ -533,7 +534,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
           scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her moan with each thrust.');
           scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great."');
           scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"How much do you want it?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
           scene.text('"Y-Yeah I love how you feel in my ass." Natasha says.');
@@ -546,7 +547,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
     scene.text('The thought of having turned Natasha into a butt slut makes your pussy so wet that you can feel it running down your inner thighs.');
     scene.text('It doesn\'t take much of Kolka\'s relentless pounding before she starts to shake in orgasm.');
     scene.text('After a few more thrusts Kolka says "I\'m going to cum."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -594,7 +595,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
       scene.text('"Jesus your ass is tight Natasha. You\'re nearly crushing me." He pants as he slowly pushes in and out, making her wince and gasp with each thrust.');
       scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great for your first time."');
       scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).NatbelQW ?? 0)?.['anal'] < 5) {
         scene.text('"I\'m going to start moving now Natasha." Kolka says as he slowly pushes deeper into her ass, making her moan.');
@@ -602,7 +603,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her gasp with each thrust.');
         scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing a lot better than last time."');
         scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).NatbelQW ?? 0)?.['anal'] < 10) {
           scene.text('"You like it, don\'t you?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
@@ -610,7 +611,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
           scene.text('"Relax your ass. I won\'t go too fast." He pants as he slowly pushes in and out, making her moan with each thrust.');
           scene.text('You sit down on the bed next to Natasha and whisper in her ear. "Keep your asshole relaxed. You\'re doing great."');
           scene.text('After a few more minutes of slowly fucking her ass, Kolka says "I\'m going to cum."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"How much do you want it?" Kolka asks as he slowly pushes himself deep into her ass, making her moan.');
           scene.text('"I-I need it really bad. I love how you feel in my ass." Natasha says.');
@@ -623,7 +624,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
     scene.text('The thought of having turned Natasha into a butt slut makes your pussy so wet that you can feel it running down your inner thighs.');
     scene.text('It doesn\'t take much of Kolka\'s relentless pounding before she starts to shake in orgasm.');
     scene.text('After a few more thrusts Kolka says "I\'m going to cum."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 6]; enterKolkacum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -641,7 +642,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
   qspCall(s, 'arousal', 'end');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -656,7 +657,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
       ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -677,7 +678,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
         ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcumbelly.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
@@ -685,7 +686,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cum on her belly."');
       scene.text('With a grunt Kolka pulls his cock out of Natasha at the last second and starts jerking it over her pussy, shooting a huge load all over Natasha\'s belly and pussy. By the time he\'s done Natasha\'s belly is covered in cum, some even reached her tits.');
       scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'belly']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'belly']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
@@ -704,7 +705,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
         ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcumpussy.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
@@ -712,7 +713,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cum on her pussy."');
       scene.text('With a grunt Kolka pulls his cock out of Natasha at the last second and starts jerking it over her pussy, shooting his load all over Natasha\'s pussy. By the time he\'s done Natasha\'s pussy is covered in cum, some dripping down her ass.');
       scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
@@ -720,7 +721,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === 2) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -735,7 +736,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
       ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -756,7 +757,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
         ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcumride.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
@@ -764,7 +765,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cum on her ass."');
       scene.text('With a grunt Kolka pulls his cock out of Natasha\'s pussy at the last second and starts jerking it over her ass, shooting a huge load all over Natasha\'s ass. By the time he\'s done Natasha\'s ass is covered in cum, some even reached lower back.');
       scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
@@ -772,7 +773,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[1] ?? '') === 3) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -787,7 +788,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
       ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -808,7 +809,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((st as any).NatbelQW ?? 0)?.['pregday'] === 0) {
         ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['pregday'] = ((st as any).daystart ?? 0);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcumassdoggy.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
@@ -816,7 +817,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cum on her ass."');
       scene.text('With a grunt Kolka pulls his cock out of Natasha\'s pussy at the last second and starts jerking it over her ass, shooting a huge load all over Natasha\'s ass. By the time he\'s done Natasha\'s ass is covered in cum, some even reached her lower back.');
       scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
@@ -824,7 +825,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+  if (String((s as any).locArgs?.[1] ?? '') === 4) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -834,7 +835,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cum on her pussy."');
     scene.text('With a grunt Kolka pulls his cock out of Natasha at the last second and starts jerking it over her pussy, shooting a huge load of his cum all over Natasha\'s pussy. By the time he\'s done Natasha\'s pussy is covered in cum, some dripping down her ass.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'labia']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -844,14 +845,14 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cum in her ass Kolka, I want you to paint her insides with your cum."');
     scene.text('As if on command Kolka starts shooting his load into her ass. After a second he takes his dick out and shoots the rest of his load onto her asshole.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+  if (String((s as any).locArgs?.[1] ?? '') === 5) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -860,14 +861,14 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cum in her ass Kolka, I want you to paint her insides with your cum."');
     scene.text('As if on command Kolka starts shooting his load into her ass. When he pulls out, Natasha rolls off him and you can see some of it dripping out of her full asshole.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
+  if (String((s as any).locArgs?.[1] ?? '') === 6) {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -877,7 +878,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cum on her ass."');
     scene.text('With a grunt Kolka pulls his cock out of Natasha\'s ass at the last second and starts jerking it, shooting a huge load all over Natasha\'s ass. By the time he\'s done Natasha\'s ass is covered in cum, some even reached her lower back.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'butt']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -888,7 +889,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('As if on command Kolka starts shooting his load in her ass. When he pulls out, you can see some of it dripping out of her full ass.');
     scene.text('He pushes his dick back into her ass a few more times. Each time he takes it out some of his cum seeps out as well.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anus']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -902,7 +903,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do it on her face."');
     scene.text('Natasha kneels down at Kolka\'s feet and jerks his cock over her face rapidly. With a grunt, Kolka shoots a huge load of his cum onto Natasha\'s face. By the time he\'s done Natasha\'s face and chest are covered in the cum that she didn\'t manage to catch in her mouth.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'face']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'face']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -937,7 +938,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Jerk him off on your tits Natasha."');
     scene.text('Natasha leans over Kolka\'s cock and squeezes her tits together with one hand. With the other, she rapidly strokes his cock. With a grunt, Kolka shoots a huge load of his cum onto Natasha\'s tits. By the time he\'s done Natasha\'s chest is covered in cum.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterCumeater(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterCumeater(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -955,7 +956,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcStat', 'A16');
       scene.img(`images/shared/sex/cum/eat/eat_cum_${((s as any).temp_loc ?? '')}.mp4`);
       // TODO-QSP: 'After Kolka closes the door you move closer to Natasha who''s still recovering her breath on the be...
-      // TODO-QSP: dynamic text: This goes on for about three minutes until you''re satisfied you got most of you...
+      // TODO-QSP: dynamic text: 'This goes on for about three minutes until you''re satisfied you got most of yo...
       scene.text('This goes on for about three minutes until you\'re satisfied you got most of your snack ' + ((((s as any).temp_loc ?? 0)==='labia') ? ('off') : ('out of')) + ' the Natasha-shaped cum dispenser who is now lying there, chest heaving, with eyes glazed over and only able to produce incoherent groaning noises. If you weren\'t so absorbed in getting to the cum, you would have noticed she came twice in these last three minutes. You feel a tinge of pity for the poor girl after you ' + ((((s as any).temp_loc ?? 0)==='labia') ? ('get up') : ('push her off you')) + ' and see the state she\'s in. Pulling the bed covers over her naked body, you give her a small kiss on the lips and leave her room, hoping she has some nice dreams in her orgasm-induced coma.');
       qspCall(s, 'arousal', '', ((((s as any).temp_loc ?? 0)==='anus') ? ('rimming_give') : ('cuni_give')), 3, 'lesbian', 'dom');
       qspCall(s, 'arousal', 'kiss', 1, 'lesbian', 'dom');

@@ -604,7 +604,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (st as any).anushLimitedQuestions = ((st as any).anushLimitedQuestions ?? 0) - (1);
     (st as any).anushAskedofAlyona = 1;
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     scene.text('You\'ve heard some messed up things about Alyona, so you\'re curious about her friendship with Anushka. "You\'re friends with Alyona, right?" you ask and she nods. "How\'s she doing?"');
     scene.text('Anushka\'s eyes narrow ever so slightly and her tone takes on a cooler, much less playful edge to it. "Why?"');
     scene.text('You rarely see Anushka in a bad mood, but her body language and tone suggest that you should tread carefully on this subject. "I was just curious. I heard some stuff and wanted to know if she was alright is all."');
@@ -632,7 +633,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (st as any).anushLimitedQuestions = ((st as any).anushLimitedQuestions ?? 0) - (1);
     (st as any).anushAskedGrad = 1;
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     scene.text('Curious about her plans for the future, you decide to ask what she plans to do once school is over. "Once we graduate, what do you plan to do? Are you going to focus on the band more?"');
     scene.text('"Sort of. I mean I plan to keep playing with the band and hopefully we can make it big, but I\'m not going to depend on that. I plan to go to the university so I have a back-up plan in case the band never takes off."');
     scene.text('You\'re a bit surprised, since you always hear that she\'s doing badly in school like all the other gopniks. "Oh… I didn\'t know you were doing that good in school."');
@@ -675,7 +677,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I don\'t know', handler: (st: GameState) => {
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     scene.text('"I\'m not so sure, but I have a few options I guess," you tell her.');
     scene.text('She nods. "Well, you should decide before you get stuck in this crappy little town married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
     scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
@@ -685,7 +688,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Go to the university', handler: (st: GameState) => {
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     scene.text('You get a bit excited. "I\'m planning to attend the university as well. I\'m glad I\'ll know someone there now at least."');
     scene.text('She becomes thoughtful for a second. "Maybe we should think about being roommates when we go? As you said, then we know each other and already get along. Let\'s talk about it more when the time comes, yeah?"');
     scene.actions([
@@ -732,7 +736,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (st as any).anushLimitedQuestions = ((st as any).anushLimitedQuestions ?? 0) - (1);
     qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     if (((st as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
       ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['practice_invite'] = 1;
       qspCall(st, 'calendar', 'add', 'band_practice_event');
@@ -753,7 +758,8 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask if she has a boyfriend', handler: (st: GameState) => {
     (st as any).anushLimitedQuestions = ((st as any).anushLimitedQuestions ?? 0) - (1);
     scene.text('<center><b>Classroom</b></center>');
-    scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
     scene.text('You know that she\'s seeing some guys and girls, so it\'s not really a secret. You\'re not sure if you should even ask, but you\'re curious. "Do you have a boyfriend? Or a girlfriend?"');
     scene.text('She shakes her head. "Nope, not really looking right now. I\'m young and carefree. I plan to, as they say, sow my wild oats while I can. I\'m not against the idea mind you. If that right person came along and just blew me away, then I would likely consider it." She pauses for a second and gives you a wicked grin. "Why do you ask? Are you wanting to fill that <i>slot?</i>"');
     scene.text('The way she says it makes you blush. She leaves no doubt about what she means and makes it sound so dirty, yet so exciting at the same time.');
@@ -1022,7 +1028,8 @@ function enterTellAboutGenericBoyfreind(s: GameState, scene: SceneBuilder): void
 
 function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Classroom</b></center>');
-  scene.img('images/characters/pavlovsk/school/girl/anushka/' + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/anushka/...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/anushka/` + (((!(Math.floor(Math.random() * 2) + 0))) ? ('weed') : ('hiding')) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$ARGS[1]>> and I can...
   scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('She gives you a somewhat skeptical look before shrugging. "Well, best of luck with that."');

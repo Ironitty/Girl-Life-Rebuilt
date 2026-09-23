@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).ShoStyle = 0;
     (s as any).ShoQuality = 7;
     (s as any).ShoStrength = 500000;
@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).ShoSport = 1;
     (s as any).ShoPrice = 3000;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).ShoStyle = 0;
       (s as any).ShoQuality = 5;
       (s as any).ShoStrength = 400000;
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).ShoSport = 1;
       (s as any).ShoPrice = 2800;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).ShoStyle = 0;
         (s as any).ShoQuality = 5;
         (s as any).ShoStrength = 400000;
@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).ShoSport = 1;
         (s as any).ShoPrice = 2800;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).ShoStyle = 0;
           (s as any).ShoQuality = 5;
           (s as any).ShoStrength = 400000;
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).ShoSport = 1;
           (s as any).ShoPrice = 2800;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).ShoStyle = 0;
             (s as any).ShoQuality = 6;
             (s as any).ShoStrength = 450000;
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).ShoSport = 1;
             (s as any).ShoPrice = 2900;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).ShoStyle = 0;
               (s as any).ShoQuality = 6;
               (s as any).ShoStrength = 450000;
@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).ShoSport = 1;
               (s as any).ShoPrice = 2900;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).ShoStyle = 0;
                 (s as any).ShoQuality = 6;
                 (s as any).ShoStrength = 450000;
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).ShoSport = 1;
                 (s as any).ShoPrice = 2900;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).ShoStyle = 0;
                   (s as any).ShoQuality = 6;
                   (s as any).ShoStrength = 450000;
@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).ShoSport = 1;
                   (s as any).ShoPrice = 2900;
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).ShoStyle = 0;
                     (s as any).ShoQuality = 7;
                     (s as any).ShoStrength = 500000;
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).ShoSport = 1;
                     (s as any).ShoPrice = 3000;
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).ShoStyle = 0;
                       (s as any).ShoQuality = 7;
                       (s as any).ShoStrength = 500000;
@@ -104,7 +104,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).ShoSport = 1;
                       (s as any).ShoPrice = 3000;
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).ShoStyle = 0;
                         (s as any).ShoQuality = 4;
                         (s as any).ShoStrength = 350000;
@@ -114,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).ShoSport = 1;
                         (s as any).ShoPrice = 2700;
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (String((s as any).locArgs?.[0] ?? '') === 12) {
                           (s as any).ShoStyle = 0;
                           (s as any).ShoQuality = 4;
                           (s as any).ShoStrength = 350000;
@@ -125,7 +125,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).ShoSport = 1;
                           (s as any).ShoPrice = 2700;
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (String((s as any).locArgs?.[0] ?? '') === 13) {
                             (s as any).ShoStyle = 0;
                             (s as any).ShoQuality = 4;
                             (s as any).ShoStrength = 350000;
@@ -135,7 +135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).ShoSport = 1;
                             (s as any).ShoPrice = 2700;
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (String((s as any).locArgs?.[0] ?? '') === 14) {
                               (s as any).ShoStyle = 0;
                               (s as any).ShoQuality = 6;
                               (s as any).ShoStrength = 450000;
@@ -145,7 +145,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).ShoSport = 1;
                               (s as any).ShoPrice = 2900;
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (String((s as any).locArgs?.[0] ?? '') === 15) {
                                 (s as any).ShoStyle = 0;
                                 (s as any).ShoQuality = 6;
                                 (s as any).ShoStrength = 450000;
@@ -156,7 +156,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).ShoGoth = 1;
                                 (s as any).ShoPrice = 2900;
                               } else {
-                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (String((s as any).locArgs?.[0] ?? '') === 16) {
                                   (s as any).ShoStyle = 0;
                                   (s as any).ShoQuality = 4;
                                   (s as any).ShoStrength = 350000;
@@ -166,7 +166,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).ShoSport = 1;
                                   (s as any).ShoPrice = 2700;
                                 } else {
-                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === 17) {
                                     (s as any).ShoStyle = 0;
                                     (s as any).ShoQuality = 4;
                                     (s as any).ShoStrength = 350000;
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).ShoSport = 1;
                                     (s as any).ShoPrice = 2700;
                                   } else {
-                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === 18) {
                                       (s as any).ShoStyle = 0;
                                       (s as any).ShoQuality = 4;
                                       (s as any).ShoStrength = 350000;
@@ -186,7 +186,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).ShoSport = 1;
                                       (s as any).ShoPrice = 2700;
                                     } else {
-                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (String((s as any).locArgs?.[0] ?? '') === 19) {
                                         (s as any).ShoStyle = 0;
                                         (s as any).ShoQuality = 4;
                                         (s as any).ShoStrength = 350000;
@@ -197,7 +197,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).ShoGoth = 1;
                                         (s as any).ShoPrice = 2700;
                                       } else {
-                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (String((s as any).locArgs?.[0] ?? '') === 20) {
                                           (s as any).ShoStyle = 0;
                                           (s as any).ShoQuality = 5;
                                           (s as any).ShoStrength = 400000;
@@ -207,7 +207,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).ShoSport = 1;
                                           (s as any).ShoPrice = 2800;
                                         } else {
-                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (String((s as any).locArgs?.[0] ?? '') === 21) {
                                             (s as any).ShoStyle = 0;
                                             (s as any).ShoQuality = 4;
                                             (s as any).ShoStrength = 350000;
@@ -217,7 +217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).ShoSport = 1;
                                             (s as any).ShoPrice = 2700;
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 22) {
                                               (s as any).ShoStyle = 0;
                                               (s as any).ShoQuality = 4;
                                               (s as any).ShoStrength = 350000;
@@ -227,7 +227,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).ShoSport = 1;
                                               (s as any).ShoPrice = 2700;
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 23) {
                                                 (s as any).ShoStyle = 0;
                                                 (s as any).ShoQuality = 4;
                                                 (s as any).ShoStrength = 350000;
@@ -237,7 +237,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).ShoSport = 1;
                                                 (s as any).ShoPrice = 2700;
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 24) {
                                                   (s as any).ShoStyle = 0;
                                                   (s as any).ShoQuality = 5;
                                                   (s as any).ShoStrength = 400000;
@@ -247,7 +247,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).ShoSport = 1;
                                                   (s as any).ShoPrice = 2800;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 25) {
                                                     (s as any).ShoStyle = 0;
                                                     (s as any).ShoQuality = 5;
                                                     (s as any).ShoStrength = 400000;
@@ -258,7 +258,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).ShoSport = 1;
                                                     (s as any).ShoPrice = 2800;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (String((s as any).locArgs?.[0] ?? '') === 26) {
                                                       (s as any).ShoStyle = 0;
                                                       (s as any).ShoQuality = 5;
                                                       (s as any).ShoStrength = 400000;
@@ -268,7 +268,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).ShoSport = 1;
                                                       (s as any).ShoPrice = 2800;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (String((s as any).locArgs?.[0] ?? '') === 27) {
                                                         (s as any).ShoStyle = 0;
                                                         (s as any).ShoQuality = 6;
                                                         (s as any).ShoStrength = 450000;
@@ -278,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).ShoSport = 1;
                                                         (s as any).ShoPrice = 2900;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (String((s as any).locArgs?.[0] ?? '') === 28) {
                                                           (s as any).ShoStyle = 0;
                                                           (s as any).ShoQuality = 6;
                                                           (s as any).ShoStrength = 450000;
@@ -288,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).ShoSport = 1;
                                                           (s as any).ShoPrice = 2900;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (String((s as any).locArgs?.[0] ?? '') === 29) {
                                                             (s as any).ShoStyle = 0;
                                                             (s as any).ShoQuality = 6;
                                                             (s as any).ShoStrength = 450000;
@@ -298,7 +298,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).ShoSport = 1;
                                                             (s as any).ShoPrice = 2900;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (String((s as any).locArgs?.[0] ?? '') === 30) {
                                                               (s as any).ShoStyle = 0;
                                                               (s as any).ShoQuality = 4;
                                                               (s as any).ShoStrength = 350000;
@@ -308,7 +308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               (s as any).ShoSport = 1;
                                                               (s as any).ShoPrice = 2700;
                                                             } else {
-                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 31) {
+                                                              if (String((s as any).locArgs?.[0] ?? '') === 31) {
                                                                 (s as any).ShoStyle = 0;
                                                                 (s as any).ShoQuality = 5;
                                                                 (s as any).ShoStrength = 400000;
@@ -318,7 +318,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                 (s as any).ShoSport = 1;
                                                                 (s as any).ShoPrice = 2800;
                                                               } else {
-                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 32) {
+                                                                if (String((s as any).locArgs?.[0] ?? '') === 32) {
                                                                   (s as any).ShoStyle = 0;
                                                                   (s as any).ShoQuality = 5;
                                                                   (s as any).ShoStrength = 400000;
@@ -328,7 +328,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   (s as any).ShoSport = 1;
                                                                   (s as any).ShoPrice = 2800;
                                                                 } else {
-                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 33) {
+                                                                  if (String((s as any).locArgs?.[0] ?? '') === 33) {
                                                                     (s as any).ShoStyle = 0;
                                                                     (s as any).ShoQuality = 5;
                                                                     (s as any).ShoStrength = 400000;
@@ -338,7 +338,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     (s as any).ShoSport = 1;
                                                                     (s as any).ShoPrice = 2800;
                                                                   } else {
-                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 34) {
+                                                                    if (String((s as any).locArgs?.[0] ?? '') === 34) {
                                                                       (s as any).ShoStyle = 0;
                                                                       (s as any).ShoQuality = 5;
                                                                       (s as any).ShoStrength = 400000;
@@ -348,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                       (s as any).ShoSport = 1;
                                                                       (s as any).ShoPrice = 2800;
                                                                     } else {
-                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 35) {
+                                                                      if (String((s as any).locArgs?.[0] ?? '') === 35) {
                                                                         (s as any).ShoStyle = 0;
                                                                         (s as any).ShoQuality = 6;
                                                                         (s as any).ShoStrength = 450000;
@@ -358,7 +358,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                         (s as any).ShoSport = 1;
                                                                         (s as any).ShoPrice = 2900;
                                                                       } else {
-                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 36) {
+                                                                        if (String((s as any).locArgs?.[0] ?? '') === 36) {
                                                                           (s as any).ShoStyle = 0;
                                                                           (s as any).ShoQuality = 6;
                                                                           (s as any).ShoStrength = 450000;
@@ -369,7 +369,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).ShoGoth = 1;
                                                                           (s as any).ShoPrice = 2900;
                                                                         } else {
-                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 37) {
+                                                                          if (String((s as any).locArgs?.[0] ?? '') === 37) {
                                                                             (s as any).ShoStyle = 0;
                                                                             (s as any).ShoQuality = 4;
                                                                             (s as any).ShoStrength = 350000;
@@ -379,7 +379,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                             (s as any).ShoSport = 1;
                                                                             (s as any).ShoPrice = 2700;
                                                                           } else {
-                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 38) {
+                                                                            if (String((s as any).locArgs?.[0] ?? '') === 38) {
                                                                               (s as any).ShoStyle = 0;
                                                                               (s as any).ShoQuality = 5;
                                                                               (s as any).ShoStrength = 400000;
@@ -389,7 +389,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                               (s as any).ShoSport = 1;
                                                                               (s as any).ShoPrice = 2800;
                                                                             } else {
-                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 39) {
+                                                                              if (String((s as any).locArgs?.[0] ?? '') === 39) {
                                                                                 (s as any).ShoStyle = 0;
                                                                                 (s as any).ShoQuality = 5;
                                                                                 (s as any).ShoStrength = 400000;
@@ -399,7 +399,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                 (s as any).ShoSport = 1;
                                                                                 (s as any).ShoPrice = 2800;
                                                                               } else {
-                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 40) {
+                                                                                if (String((s as any).locArgs?.[0] ?? '') === 40) {
                                                                                   (s as any).ShoStyle = 0;
                                                                                   (s as any).ShoQuality = 5;
                                                                                   (s as any).ShoStrength = 400000;

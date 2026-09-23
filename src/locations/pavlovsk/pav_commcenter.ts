@@ -11,7 +11,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
-  scene.img('images/locations/pavlovsk/community/' + ((((s as any).DayStage ?? 0) < 4) ? ('dk.jpg') : ('dk_night.jpg')) + '');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/' + iif(Day...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/` + ((((s as any).DayStage ?? 0) < 4) ? ('dk.jpg') : ('dk_night.jpg')) + '"></center>');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Wait in line for the disco to open (0:' + String('TODO' ?? '') + '", 60-minut)>>)', handler: (st: GameState) => {
@@ -44,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco', ''] },
             ]);
           } else {
-            // TODO-QSP: dynamic text: The dance is on, but you don''t have the ' + $func('money', 'string_price', 25) ...
+            // TODO-QSP: dynamic text: 'The dance is on, but you don''t have the ' + $func('money', 'string_price', 25)...
             scene.text('The dance is on, but you don\'t have the 25₽ needed to pay the entrance fee.');
           }
         }
@@ -63,13 +64,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.text('The community center has sports facilities and offers classes in the evening.');
-      // TODO-QSP: dynamic text: It houses a small library which is open from ' + func('time', 'get_time_string',...
+      // TODO-QSP: dynamic text: 'It houses a small library which is open from ' + func('time', 'get_time_string'...
       scene.text('It houses a small library which is open from 8:00 until 18:00.');
-      // TODO-QSP: dynamic text: Upstairs, there are some hobby clubs available from ' + func('time', 'get_time_s...
+      // TODO-QSP: dynamic text: 'Upstairs, there are some hobby clubs available from ' + func('time', 'get_time_...
       scene.text('Upstairs, there are some hobby clubs available from 12:00 until 20:00.');
-      // TODO-QSP: dynamic text: The sports section is open from ' + func('time', 'get_time_string', 14, 0) + ' u...
+      // TODO-QSP: dynamic text: 'The sports section is open from ' + func('time', 'get_time_string', 14, 0) + ' ...
       scene.text('The sports section is open from 14:00 until 20:00 during the week and from 9:00 until 20:00 during the weekend.');
-      // TODO-QSP: dynamic text: On Friday and Saturday evenings, from ' + func('time', 'get_time_string', 20, 0)...
+      // TODO-QSP: dynamic text: 'On Friday and Saturday evenings, from ' + func('time', 'get_time_string', 20, 0...
       scene.text('On Friday and Saturday evenings, from 20:00 to midnight, the main hall is used as a club with popular music and dancing. Entry fee is 25₽.');
     }
   }

@@ -27,8 +27,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<h4>Rent Information</h4>');
     // TODO-QSP: :listing_rented_properties_loop
     // TODO-QSP: 'You have <b><<property_days[agentned_i]>> days</b> remaining on the lease of your <<$property_displ...
-    // TODO-QSP: dynamic "
-    // TODO-QSP: act ""Cancel the lease of the <<$property_display[agentned_i]>>"":
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => '"Cancel the lease of the ' + String(((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '' ?? '') + '"', handler: (st: GameState) => {
     scene.text('Attention: You won\'t be able to return to your apartment when you cancel the lease.');
     scene.actions([
       { label: 'Return', goto: ['agentned', 'start'] },
@@ -37,13 +37,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'agentned', 'start');
   } },
     ]);
+  } },
+    ]);
+    (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
+    if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
+      // TODO-QSP: jump 'listing_rented_properties_loop'
+    }
   }
-  // TODO-QSP: "
-  (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
-  if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
-    // TODO-QSP: jump 'listing_rented_properties_loop'
-  }
-  // TODO-QSP: end
   qspCall(s, 'homes_properties', 'get_owned_properties', 'home');
   (s as any).agentned_count = 0;
   if (((s as any).agentned_count ?? 0) > 0) {
@@ -94,21 +94,12 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
       scene.text(`You could buy the ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''} you're currently renting, for ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '')}.`);
     }
     if (((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_apartment'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'village_cottage'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_house'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'matryona_mansion') {
-      // TODO-QSP: dynamic "
-      // TODO-QSP: act ""Buy the <<$property_display[agentned_i]>>"" + $func('money', 'get_cost_string', <<property_sal...
-      if (qspFunc(s, 'money', 'can_afford', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)], 'bank') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-      } else {
-        qspGoto(s, 'agentned', 'buy_property', '' + ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] + '');
-      }
     }
-    // TODO-QSP: "
+    (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
+    if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
+      // TODO-QSP: jump 'listing_properties_for_sale_loop'
+    }
   }
-  (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
-  if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
-    // TODO-QSP: jump 'listing_properties_for_sale_loop'
-  }
-  // TODO-QSP: end
   qspCall(s, 'homes_properties', 'clean_up_property_data');
   // TODO-QSP: end
   scene.actions([
@@ -122,11 +113,11 @@ function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'money', 'pay', ((s as any).property_sales_price ?? 0), 'bank');
   qspCall(s, 'homes_properties', 'buy_property', ((s as any).locArgs?.[1] ?? 0), ((s as any).property_sales_price ?? 0));
-  (s as any).set_homeyn = ((s as any).input ?? 0)("((s as any).Would ?? 0) ((s as any).you ?? 0) ((s as any).like ?? 0) ((s as any).to ?? 0) ((s as any).set ?? 0) ((s as any).this ?? 0) ((s as any).as ?? 0) ((s as any).your ?? 0) new ((s as any).home ?? 0)? (((s as any).yes ?? 0)/((s as any).no ?? 0))");
+  (s as any).set_homeyn = window.prompt("Would you like to set this as your new home? (yes/no)") ?? '';
   if (((s as any).set_homeyn ?? 0) === 'yes') {
     qspCall(s, 'homes_properties', 'set_home', ((s as any).locArgs?.[1] ?? 0));
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'village_cottage') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'village_cottage') {
     ((s as any).exhib = (s as any).exhib ?? {})['status'] = 0;
   }
   qspCall(s, 'stat', '');
@@ -162,29 +153,42 @@ function enterSell(s: GameState, scene: SceneBuilder): void {
         if (((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_apartment'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'village_cottage'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_house'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'matryona_mansion') {
           // TODO-QSP: dynamic text: We have found a buyer for your <<$property_display[agentned_i]>>. They will offe...
           scene.text(`We have found a buyer for your ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''}. They will offer ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? ''))}, minus 5% for fees and taxes to the value of ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 5 / 100)}, bringing the total to ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 95 / 100)}`);
-          // TODO-QSP: dynamic "
-          // TODO-QSP: act ""Sell the <<$property_display[agentned_i]>> for <<$func('money', 'string_profit', offer * 95 / ...
-          // TODO-QSP: gt 'agentned', 'finalise_sale', '<<$property_code[agentned_i]>>', <<agentned_i>>, <<offer>>
+          scene.actions([
+            { label: '', labelFn: (s: GameState) => '"Sell the ' + String(((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '' ?? '') + ' for ' + String(qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 95 / 100) ?? '') + '"', handler: (st: GameState) => {
+    qspGoto(st, 'agentned', 'finalise_sale', '' + ((st as any).property_code ?? 0)?.[String((st as any).agentned_i ?? 0)] + '', '' + ((st as any).agentned_i ?? 0) + '');
+  } },
+          ]);
         }
-        // TODO-QSP: "
+      }
+      (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
+      if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
+        // TODO-QSP: jump 'listing_offers_on_owned_properties_loop'
       }
     }
-    (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
-    if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
-      // TODO-QSP: jump 'listing_offers_on_owned_properties_loop'
+    qspCall(s, 'homes_properties', 'clean_up_property_data');
+    if (((s as any).bankAccount ?? 0) === 1) {
+      if (((s as any).rembedr ?? 0) === 1  &&  ((s as any).remsitr ?? 0) === 1  &&  ((s as any).remkorr ?? 0) === 1  &&  ((s as any).remvanr ?? 0) === 1  &&  ((s as any).remkuhr ?? 0) === 1) {
+        (s as any).offer1 = ((800000 + 250000) + (Math.floor(Math.random() * (100000 - (-100000) + 1)) + ((-100000))));
+      } else {
+        (s as any).offer1 = (800000 + (Math.floor(Math.random() * (100000 - (-100000) + 1)) + ((-100000))));
+      }
+      if (qspFunc(s, 'homes_properties', 'property_renovated', 'village_cottage') === 1) {
+        (s as any).offer2 = (((((s as any).prop_price ?? {})?.['village_cottage'] ?? 0) + 200000) + (Math.floor(Math.random() * (10000 - (-10000) + 1)) + ((-10000))));
+      } else {
+        (s as any).offer2 = ((((s as any).prop_price ?? {})?.['village_cottage'] ?? 0) + (Math.floor(Math.random() * (5000 - (-5000) + 1)) + ((-5000))));
+      }
     }
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_center', ''] },
+    ]);
   }
-  qspCall(s, 'homes_properties', 'clean_up_property_data');
-  // TODO-QSP: end
-  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'clean_up_property_data');
     qspGoto(st, 'agentned', 'start');
   } },
-    { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 5;
-  }, goto: ['city_center', ''] },
   ]);
   scene.build();
 }
@@ -223,16 +227,16 @@ function enterRent(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :listing_properties_for_rent_loop
     // TODO-QSP: dynamic text: We have a(n) <<$property_display[agentned_i]>> available for a monthly rent of <...
     scene.text(`We have a(n) ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''} available for a monthly rent of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '')}.`);
-    // TODO-QSP: dynamic "
-    // TODO-QSP: act ""View the <<$property_display[agentned_i]>> details"":
-    // TODO-QSP: gt 'agentned', 'view_property_details', '<<$property_code[agentned_i]>>', <<property_rent[agentned_i...
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => '"View the ' + String(((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '' ?? '') + ' details"', handler: (st: GameState) => {
+    qspGoto(st, 'agentned', 'view_property_details', '' + ((st as any).property_code ?? 0)?.[String((st as any).agentned_i ?? 0)] + '', '' + ((st as any).property_rent ?? 0)?.[String((st as any).agentned_i ?? 0)] + '');
+  } },
+    ]);
+    (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
+    if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
+      // TODO-QSP: jump 'listing_properties_for_rent_loop'
+    }
   }
-  // TODO-QSP: "
-  (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
-  if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
-    // TODO-QSP: jump 'listing_properties_for_rent_loop'
-  }
-  // TODO-QSP: end
   qspCall(s, 'homes_properties', 'clean_up_property_data');
   // TODO-QSP: end
   scene.actions([
@@ -250,12 +254,8 @@ function enterViewPropertyDetails(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', ((s as any).locArgs?.[2] ?? 0)) === 0) {
     scene.text('You do not have enough money with you or in your bank account to pay the rent.');
   } else {
-    // TODO-QSP: dynamic "
-    // TODO-QSP: "
     scene.actions([
-      { label: 'Agree and pay', handler: (st: GameState) => {
-    // TODO-QSP: gt 'agentned', 'finalise_rent', '<<$ARGS[1]>>', <<ARGS[2]>>
-  } },
+      { label: 'Agree and pay', goto: ['agentned', 'finalise_rent', 'String(((s as any).ARGS[1] ?? \'))', ((s as any).locArgs?.[2] ?? 0)] },
     ]);
   }
   // TODO-QSP: end
@@ -275,10 +275,10 @@ function enterViewPropertyDetails(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRentDetailDialogue(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'old_town_apartment') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'old_town_apartment') {
     (s as any).result = '"We have a small apartment available right now that is in Pushkin\'s city center. It\'s a little bit pricey, but it\'s been recently renovated to be more modern. It looks quite nice, so you won\'t find a place like that outside of Pushkin."';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'city_apartment') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'city_apartment') {
       (s as any).result = '"We have a flat available right now in the St. Petersburg residential area."';
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetRentDetailDialogueHook(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -302,7 +302,7 @@ function enterFinaliseRent(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'get_accessible_property_count', 'home') === 1) {
     qspCall(s, 'homes_properties', 'set_home', ((s as any).locArgs?.[1] ?? 0));
   } else {
-    (s as any).set_homeyn = ((s as any).input ?? 0)('Would you like to set this as your new home? (yes/no)');
+    (s as any).set_homeyn = window.prompt("Would you like to set this as your new home? (yes/no)") ?? '';
     if (((s as any).set_homeyn ?? 0) === 'yes') {
       qspCall(s, 'homes_properties', 'set_home', ((s as any).locArgs?.[1] ?? 0));
     }

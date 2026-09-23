@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -727,7 +725,7 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Reply', handler: (st: GameState) => {
     (st as any).VKKatjaChat = 1;
     qspCall(st, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoMeyHome" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     if ((!((st as any).VKNatChat ?? 0))) {
       scene.text('"Tell me about it," you sarcastically reply and Katja lightly squeezes your shoulders.');
       scene.text('"No one can change who you are beside you. Remember that. Anyway, you should take a bath before Vicky decides to gussy herself in there. Trust me when I say you won\'t be able to use the bathroom anytime this century."');

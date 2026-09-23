@@ -47,7 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     scene.actions([
       { label: 'Hide some cigarettes in your drawer', handler: (st: GameState) => {
-    (st as any).cigIN = 0;
+    // TODO-QSP: cigIN = input('How many cigarettes do you want to hide in your drawer? (Your purse contains <<mc_inventory[''cigarettes'']>> cigarettes.)')
     if (((st as any).cigIN ?? 0) <= 0  ||  ((st as any).cigIN ?? 0) > ((st as any).mc_inventory ?? 0)?.['cigarettes']) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
@@ -58,11 +58,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).stolcigarettes ?? 0)[((s as any).loc ?? 0)] > 0) {
+  if (((s as any).stolcigarettes ?? 0)[(((s as any).loc ?? 0))] > 0) {
     scene.actions([
       { label: 'Take some cigarettes from your drawer', handler: (st: GameState) => {
-    (st as any).cigOUT = 0;
-    if (((st as any).cigOUT ?? 0) <= 0  ||  ((st as any).cigOUT ?? 0) > ((st as any).stolcigarettes ?? 0)[((st as any).loc ?? 0)]) {
+    // TODO-QSP: cigOUT = input ("How many cigarettes do you want to put in your purse? (There are <<stolcigarettes['<<$loc>>']>> cigarettes here.)")
+    if (((st as any).cigOUT ?? 0) <= 0  ||  ((st as any).cigOUT ?? 0) > ((st as any).stolcigarettes ?? 0)[(((st as any).loc ?? 0))]) {
       scene.text('You can\'t take this amount from your drawer.');
     } else {
       ((st as any).stolcigarettes = (st as any).stolcigarettes ?? {})[String(((st as any).loc ?? 0))] = ((st as any).stolcigarettes[String(((st as any).loc ?? 0))] ?? 0) - (((st as any).cigOUT ?? 0));
@@ -84,7 +84,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Put some money in the desk drawer', handler: (st: GameState) => {
-    (st as any).stolIN = 0;
+    // TODO-QSP: stolIN = input ("How much money you want to put in the drawer? (Your purse contains <<$func('money', 'format_balance', 'cash')>>.)")
     if (((st as any).stolIN ?? 0) <= 0  ||  ((st as any).stolIN ?? 0) > ((st as any).money ?? 0)) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
@@ -109,7 +109,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Take some money from the desk drawer', handler: (st: GameState) => {
-    (st as any).stolOUT = 0;
+    // TODO-QSP: stolOUT = input ("How much money do you want to put in your purse? (There is <<$func('money', 'format_balance', 'desk')>> here.)")
     if (((st as any).stolOUT ?? 0) <= 0  ||  ((st as any).stolOUT ?? 0) > ((st as any).stolmoney ?? 0)) {
       scene.text('You can\'t take this amount from the drawer.');
     } else {
@@ -131,8 +131,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['semester_week'] > 0) {
       (s as any).i = 0;
       // TODO-QSP: :study_loop
-      if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
-        if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] + '_optional_weekly_max']) {
+      if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+        if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
           // TODO-QSP: dynamic ' act ''Study for your <<$class_list_name[i]>> class'': gt ''stol'', ''studying'', ''<<$clas...
         } else {
           // TODO-QSP: dynamic text: You don''t need to study more this week for your <<$class_list_name[i]>> class.
@@ -147,7 +147,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).university ?? 0)?.['exam_week'] > 0) {
         (s as any).i = 0;
         // TODO-QSP: :exam_loop
-        if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
+        if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
           if (qspFunc(s, 'uni_programs', 'exam', 'is_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
             // TODO-QSP: dynamic ' act ''Study intensely for your <<$class_list_name[i]>> exam'': gt ''stol'', ''studying_exa...
           }
@@ -196,11 +196,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
       qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 0, 0);
-      // TODO-QSP: dynamic text: You spend an hour '+iif(lernHome = 0, 'completing', 'doing part of')+' your home...
+      // TODO-QSP: dynamic text: 'You spend an hour '+iif(lernHome = 0, 'completing', 'doing part of')+' your hom...
       scene.text('You spend an hour ' + (((!((st as any).lernHome ?? 0))) ? ('completing') : ('doing part of')) + ' your homework.');
     } else {
       qspCall(st, 'grades', 'homework', 'school', 'no', 1, 0, 0);
-      // TODO-QSP: dynamic text: You spend an hour '+iif(lernHome = 0, 'completing', 'doing part of')+' your home...
+      // TODO-QSP: dynamic text: 'You spend an hour '+iif(lernHome = 0, 'completing', 'doing part of')+' your hom...
       scene.text('You spend an hour ' + (((!((st as any).lernHome ?? 0))) ? ('completing') : ('doing part of')) + ' your homework, but the part for computer class is not as good as it could be since you don\'t have a computer. You could do your homework at the library at the community center in the future since there\'s a computer available to use there.');
     }
     scene.actions([
@@ -252,13 +252,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Check your birth control', goto: ['stol', 'bc'] },
     { label: 'Modify shortcut amount', handler: (st: GameState) => {
-    (st as any).temp_ShortCutMoney = 0;
+    (st as any).temp_ShortCutMoney = window.prompt("How much money would you like to use in the shortcuts? [-1 to disable]") ?? '';
     if (((st as any).temp_ShortCutMoney ?? 0) < 0) {
       (st as any).temp_ShortCutMoney = (-1);
     }
     if (((st as any).temp_ShortCutMoney ?? 0) !== 0) {
       (st as any).bankShortCutMoney = ((st as any).temp_ShortCutMoney ?? 0);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -482,7 +482,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).study_mod = Math.max(0, (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0) + ((s as any).study_mod ?? 0) - 30 + ((s as any).study_mod ?? 0) + 1)) + (30 + ((s as any).study_mod ?? 0)))/33);
+  (s as any).study_mod = Math.max(0, (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0) + ((s as any).study_mod ?? 0) - 30 + ((s as any).study_mod ?? 0) + 1)) + (30 + ((s as any).study_mod ?? 0))));
   if (((s as any).no_study ?? 0) === 1) {
     scene.text('You try to study for half an hour, but gets nothing done.');
   } else {

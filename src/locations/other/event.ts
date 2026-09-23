@@ -1,6 +1,4 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -997,7 +995,7 @@ function enterDima52(s: GameState, scene: SceneBuilder): void {
 function enterDima53(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'arousal', 'end');
-  scene.img(`${qspUntranslated(s, "FUNC('clothing_image', clothingworntype, clothingwornnumber)", { location: "event" })}`);
+  scene.img(`${qspFunc(s, '$$clothing_image', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
   scene.text('Enraged by your refusal, man pushes you, but you stand firm. Realizing that you\'re not to be messed with, he runs away.');
   scene.text('You sort out you clothing and dress yourself in the outfit you were wearing when this all started.');
   // TODO-QSP: end

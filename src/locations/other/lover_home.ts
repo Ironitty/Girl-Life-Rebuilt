@@ -64,7 +64,8 @@ function enterNeighborhoodImage(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   } else {
@@ -107,10 +108,10 @@ function enterNeighborhoodImage(s: GameState, scene: SceneBuilder): void {
 function enterDailyInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lover_home_init ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).daystart ?? 0)) {
     ((s as any).lover_home_init = (s as any).lover_home_init ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_dirty_dishes = (s as any).lover_home_dirty_dishes ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
+    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * (1 - 0 + 1)) + (0));
+    ((s as any).lover_home_dirty_dishes = (s as any).lover_home_dirty_dishes ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * (1 - 0 + 1)) + (0));
+    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * (1 - 0 + 1)) + (0));
+    ((s as any).lover_home_trash = (s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * (1 - 0 + 1)) + (0));
   }
   // TODO-QSP: end
   scene.build();
@@ -183,7 +184,7 @@ function enterLocMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
   }
   qspCall(s, 'stat', '');

@@ -757,13 +757,13 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('You kiss him. "I love you too, Artem."');
     scene.text('You\'ve never seen him look so happy as he starts kissing you and roaming his hands all over your body.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterArtemgirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterArtemgirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Say nothing, just hug him back', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('You kiss him and hug him back.');
     scene.text('You\'ve never seen him look so happy as he starts kissing you and roaming his hands all over your body.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterArtemgirlfriend(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterArtemgirlfriend(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1420,7 +1420,8 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'What is it about', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A2', 'like');
-    scene.img('images/pc/items/accessories/books/fantasy' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/books/fantasy' + ra...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/books/fantasy` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     scene.text('Not really what you expected, but you decide to be nice and widen your eyes. "Oh, what\'s it about?"');
     scene.text('Artem shines up in the biggest smile. "Oh, it\'s about this hero that needs to fight for a kingdom and the bad guy has all sorts of weird creatures that he forces to attack him. He finds this hidden world in his own world, so the book takes a completely different path than the one you expect it to take."');
     scene.text('Artem is so excited while explaining that you\'re having a hard time following him, but you immerse yourself in it just to make him happy.');
@@ -1710,7 +1711,7 @@ function enterStripagree(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/school/boy/artem/strip1.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.text('You give him a serious look. "You want me to get naked for you?"');
   } else {
     scene.text('You give him a serious look. "You want me to get naked for you that badly?"');

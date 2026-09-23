@@ -150,7 +150,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/terminal/trfatherqw_3.jpg');
     scene.text('You go up to the managers office. "Good afternoon! What I can help you?" he says.');
     scene.text('"Hello, I wanted to know, if you know a Mikhail Kuznetsov or if he works here?"');
-    // TODO-QSP: dynamic text: He turns to his computer and pulls something up. "I''ll check in our database, y...
+    // TODO-QSP: dynamic text: 'He turns to his computer and pulls something up. "I''ll check in our database, ...
     scene.text('He turns to his computer and pulls something up. "I\'ll check in our database, yes, we have a driver by that name. He is on the road right now and only comes in on Saturday at 12:00."');
     scene.text('"Thank you very much, you helped me a lot." With that you leaved but now you know when and where to find him.');
     scene.actions([
@@ -227,7 +227,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.text('You got out of the truck with sperm all over your face.');
     scene.text('"So, What did you want to know?" The first man asked.');
     scene.text('"I wanted you to know, whether you know a Mikhail Kuznetsov?"');
-    // TODO-QSP: dynamic text: "Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at '+...
+    // TODO-QSP: dynamic text: '"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at '...
     scene.text('"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at 12:00."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

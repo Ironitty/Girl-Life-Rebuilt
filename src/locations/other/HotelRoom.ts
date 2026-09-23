@@ -27,7 +27,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -88,7 +88,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -153,7 +153,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -359,7 +359,8 @@ function enterWatchTv(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 10));
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/hotel/tv0,' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/tv0,'+rand(0, 4...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/tv0,` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
   scene.text('You are watching the country\'s main television channel. None of their programs are really worth watching, but the distraction is welcome anyway.');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
     scene.actions([

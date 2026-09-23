@@ -341,7 +341,7 @@ function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * (3 - 2 * ((s as any).locArgs?.[1] ?? 0) - 1 - ((s as any).locArgs?.[1] ?? 0) + 1)) + (1 - ((s as any).locArgs?.[1] ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksimplay.jpg');
-  if (((s as any).pcs_gaming ?? 0) <= 40  ||  Number((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (((s as any).pcs_gaming ?? 0) <= 40  ||  String((s as any).locArgs?.[1] ?? '') > 0) {
     scene.text('The two of you start playing, and it quickly becomes obvious he\'s played this game a lot and is very good at it. You try, but you\'re unable to keep up with him. You come close a few times, but you\'re mostly hopelessly outmatched. After a few matches, he pauses the game and looks at you with a lustful grin. "Haha you lost! Now show me your boobs."');
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

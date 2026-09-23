@@ -1244,7 +1244,7 @@ function enterAnalDiscussion(s: GameState, scene: SceneBuilder): void {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
     scene.text('"Ivan seems to be very interested in our kissing. I sometimes have anal sex with him. You can say we\'re what you call \'friends with benefits\'. I think he might be interested," you tell her.');
     scene.text('"Ivan is hot and I\'ve also heard that he\'s really into anal sex. Yeah, if you think he\'s willing, then…" Katja is having trouble finding the words as she gets visibly excited thinking about it.');
-    // TODO-QSP: dynamic text: "We could try to see if he is up for something next time he watches us kiss at s...
+    // TODO-QSP: dynamic text: '"We could try to see if he is up for something next time he watches us kiss at ...
     scene.text('"We could try to see if he is up for something next time he watches us kiss at school' + ((((s as any).month ?? 0) > 4  &&  ((s as any).month ?? 0) < 10) ? (', or if we ran into him on the beach') : ('.')) + '" you answer and Katja throws her arms around you and goes in for a kiss.');
     scene.actions([
       { label: 'Kiss her back', goto: ['katjaEvDin', 'kiss'] },
@@ -1270,7 +1270,7 @@ function enterPreventationTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['birth_control_start_day'] = ((s as any).daystart ?? 0) + 15;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
-  // TODO-QSP: dynamic text: "If you want to '+iif( katjaQW['QWstage'] = 7, 'have sex with boys in the park',...
+  // TODO-QSP: dynamic text: '"If you want to '+iif( katjaQW['QWstage'] = 7, 'have sex with boys in the park'...
   scene.text('"If you want to ' + ((((s as any).katjaQW ?? 0)?.['QWstage'] === 7) ? ('have sex with boys in the park') : ('continue having sex with boys around here')) + ', you should get on birth control," you tell Katja. "Most of the boys around here don\'t want to use condoms, and don\'t care if they get the girls pregnant."');
   scene.text('"And if they get a girl pregnant, they\'ll just pretend it wasn\'t them. You don\'t want to raise a child on your own right now, do you?" you ask.');
   scene.text('"No," she answer weakly. "No, I don\'t. I want to have children, but not right now. Not before I go to university."');
@@ -1557,7 +1557,7 @@ function enterAnalSexWithBoyAsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['anal_quest'] = 1;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
-  // TODO-QSP: dynamic text: Katja starts speaking a little hesitantly. "You keep telling me that anal sex wi...
+  // TODO-QSP: dynamic text: 'Katja starts speaking a little hesitantly. "You keep telling me that anal sex w...
   scene.text('Katja starts speaking a little hesitantly. "You keep telling me that anal sex with a boy is so good' + ((((s as any).katjaQW ?? 0)?.['strapon_ass'] === 1) ? (', and you fucking me in the ass with your strapon is nice, but it would probably be so much better with a real cock,') : (', and I think I also would like to try it,')) + '" she says while looking at you with her most begging eyes.');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6) {
     scene.text('"So you want me to set it up again?" you ask and she just nods sheepishly. "Okay. Since you asked, I expect that you want to try it with somebody else that isn\'t Marcus?"');
@@ -1663,7 +1663,7 @@ function enterKatjaUniTell(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    // TODO-QSP: dynamic text: Katja excitedly tells you that she has also been accepted into the university to...
+    // TODO-QSP: dynamic text: 'Katja excitedly tells you that she has also been accepted into the university t...
     scene.text('Katja excitedly tells you that she has also been accepted into the university to study teaching and that it will be fun studying at the university together.' + ((((s as any).katjaQW ?? 0)?.['QWstage'] === 2) ? ('She also tells you that she is going to move into room 206 at the university dorm at the beginning of August.') : ('')) + '');
     scene.text('You then spend the next few minutes talking excitedly about what you know about the program.');
   }
@@ -2135,7 +2135,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"We\'re not together anymore," you sigh. "But it\'s probably for the best."');
     scene.text('Katja looks at you with both concern and skepticism, the latter seemingly a worry that you\'re just trying to fool yourself.');
     scene.text('"Really," you add quickly, trying to quell her thoughts. "We weren\'t good for each other. If I really think about it, I can\'t imagine a future where the two of us stayed together forever. It was always going to end with us breaking up. Better to do it now before it gets too painful and too much time is wasted for the both of us."');
-    // TODO-QSP: dynamic text: "Okay…" she replies, still not sounding really convinced. "As long as you''re fi...
+    // TODO-QSP: dynamic text: '"Okay…" she replies, still not sounding really convinced. "As long as you''re f...
     scene.text('"Okay…" she replies, still not sounding really convinced. "As long as you\'re fine with it. I liked Artem, but there are other boys out there. ' + ((((st as any).katjaQW ?? 0)?.['QWstage'] >= 6) ? ('Maybe even others we could try together?') : ('You will be fine,')) + '" she ends in a more cheerful note.');
     if (((st as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([
@@ -2165,7 +2165,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well there are plenty of other hot guys to fool around with, so I can definitely understand settling with one is boring. We\'re still smoking hot and will find other guys to amuse us," she says sounding a little aroused.');
     } else {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 5));
-      // TODO-QSP: dynamic text: "There are plenty of other guys around, so'+iif(pcs_hotcat > 6, ' with your gorg...
+      // TODO-QSP: dynamic text: '"There are plenty of other guys around, so'+iif(pcs_hotcat > 6, ' with your gor...
       scene.text('"There are plenty of other guys around, so' + ((((st as any).pcs_hotcat ?? 0) > 6) ? (' with your gorgeous looks ') : (' ')) + 'you will find somebody else," she continues.');
       scene.text('You can\'t quite get her tone. Is it a hint of jealousy you detect, and if so, jealous of <i>who?</i> You or the boys she mentioned?');
     }
@@ -2206,7 +2206,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well there are plenty of other hot guys to fool around with, so I can definitely understand you want to move on. We\'re still smoking hot and will find other guys to amuse us," she says, sounding a little aroused.');
     } else {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 5));
-      // TODO-QSP: dynamic text: "There are plenty of other guys around, so'+iif(pcs_hotcat > 6, ' with your gorg...
+      // TODO-QSP: dynamic text: '"There are plenty of other guys around, so'+iif(pcs_hotcat > 6, ' with your gor...
       scene.text('"There are plenty of other guys around, so' + ((((st as any).pcs_hotcat ?? 0) > 6) ? (' with your gorgeous looks ') : (' ')) + 'you will find somebody else," she continues.');
       scene.text('You can\'t quite get her tone. Is it a hint of jealousy you detect, and if so, jealous of <i>who?</i> You or the boys she mentioned?');
     }
@@ -2275,7 +2275,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 11) + 5));
     scene.text('"The truth is… I cheated on him," you confess and Katja gasps in shock before you continue. "I\'m not sure why. Maybe it was just the thrill. Maybe I was bored of him. Maybe I just wanted an excuse to break up. Maybe I just like hurting people. Or maybe I\'m just a slut, I don\'t know. But I slept with another guy and he found out about it. That\'s why we broke up."');
     scene.text('"I see. Well if you promised you would be faithful, then it\'s clearly your fault, and he was right to break up with you," she replies, which hurts a little, but you don\'t feel that she\'s mad at you.');
-    // TODO-QSP: dynamic text: "I don''t care how many boys you sleep with," she continues. '+iif(katjaQW['QWst...
+    // TODO-QSP: dynamic text: '"I don''t care how many boys you sleep with," she continues. '+iif(katjaQW['QWs...
     scene.text('"I don\'t care how many boys you sleep with," she continues. ' + ((((st as any).katjaQW ?? 0)?.['QWstage'] >= 6) ? ('"As long as you share some with me,"') : ('"It gives you good stories to tell me,"')) + ' she says in a very low voice.');
     scene.text('You can\'t quite get her tone. Is it a hint of jealousy you detect, and if so, jealous of <i>who?</i> You or the boys she mentioned?');
     if (((st as any).loc ?? 0) === 'katja_dorm') {
@@ -2331,7 +2331,7 @@ function enterArtemOpneRelationship(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).katjaQW ?? 0)?.['park_sex'] > 0) {
-    // TODO-QSP: dynamic text: "No. I meant that we could start going to the park again looking for '+iif(katja...
+    // TODO-QSP: dynamic text: '"No. I meant that we could start going to the park again looking for '+iif(katj...
     scene.text('"No. I meant that we could start going to the park again looking for ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] > 1) ? ('boys') : ('a boy')) + ' to have fun with," she explains.');
   } else {
     if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] + ((s as any).katjaQW ?? 0)?.['lazar_pussy'] + ((s as any).katjaQW ?? 0)?.['lazar_anal']> 0) {
@@ -2395,7 +2395,7 @@ function enterMarcusDiscussion(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 2) {
     scene.text('"I kind of miss our threesomes, now that you no longer have a boyfriend," Katja says. "Maybe we could find somebody else to have fun with, but it needs to be somebody that can keep quiet about it!"');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1) {
       scene.text('"So now that you and Artem have an open relationship, I was thinking that you maybe you and me could try having sex with another guy?" Katja asks while looking at you pleadingly.');
     }
   }

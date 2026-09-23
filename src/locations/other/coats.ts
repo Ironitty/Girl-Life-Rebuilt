@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -175,7 +173,7 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).coatworntype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).coatwornnumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).coatworntype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).coatwornnumber ?? 0) === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
@@ -189,10 +187,10 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'coat_attributes', $ARGS[1], ARGS[2]
@@ -211,13 +209,13 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
     // TODO-QSP: exit
   }
   // TODO-QSP: dynamic "
@@ -226,8 +224,8 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_coats_w[<<ARGS[2]>>] = 0
   // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
-  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).coatworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).coatwornnumber ?? 0)) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (String((s as any).locArgs?.[1] ?? '') === ((s as any).coatworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).coatwornnumber ?? 0)) {
+    qspCall(s, 'coats', 'strip_code');
     (s as any).lastworncoattype = 'none';
     (s as any).lastworncoatnumber = 0;
   }
@@ -250,250 +248,14 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_coats_s[<<ARGS[2]>>] = 0"
   }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
-  }
-  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_coats_s[<<ARGS[2]>>] = 1"
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
-  }
-  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_coats_s[<<ARGS[2]>>] = 2"
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterRemove(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterStrip(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).coatworntype ?? 0) === '') {
-    (s as any).coatworntype = 'none';
-    (s as any).coatwornnumber = 0;
-  }
-  (s as any).lastworncoattype = ((s as any).coatworntype ?? 0);
-  (s as any).lastworncoatnumber = ((s as any).coatwornnumber ?? 0);
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterStripCode(s: GameState, scene: SceneBuilder): void {
-  (s as any).coatworntype = 'none';
-  (s as any).coatwornnumber = 0;
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_CoatVars(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PCoatVars(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'outfit', 'set_derived_vars');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterReset_CoatVars(s: GameState, scene: SceneBuilder): void {
-  (s as any).CoatWarm = 0;
-  (s as any).CoatQuality = 0;
-  (s as any).CoatPrice = 0;
-  (s as any).CoatStrength = 0;
-  (s as any).CoatMaxStrength = 0;
-  (s as any).coat_description = '';
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterReset_PCoatVars(s: GameState, scene: SceneBuilder): void {
-  (s as any).PCoatWarm = 0;
-  (s as any).PCoatQuality = 0;
-  (s as any).PCoatPrice = 0;
-  (s as any).PCoatStrength = 0;
-  (s as any).PCoatMaxStrength = 0;
-  (s as any).PCoatBorrowed = 0;
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
-    // TODO-QSP: $ARGS[1] = $lastworncoattype
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).lastworncoatnumber ?? 0);
-  }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
-    // TODO-QSP: exit
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'coat_attributes', $ARGS[1], ARGS[2]
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('check') : -1) > 0) {
-    (s as any).temp_not_wear_reason = qspFunc(s, 'coats', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set');
-    if (((s as any).temp_not_wear_reason ?? 0) !== '') {
-      if (((s as any).temp_not_wear_reason ?? 0) === 'not_owned') {
-      }
-      return;
-    }
-  }
-  (s as any).coatworntype = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).coatwornnumber = ((s as any).locArgs?.[2] ?? 0);
-  // TODO-QSP: dynamic "
-  // TODO-QSP: <<$ARGS[1]>>_coats_w[<<ARGS[2]>>] = 1
-  // TODO-QSP: "
-  (s as any).PCoatWarm = ((s as any).CoatWarm ?? 0);
-  (s as any).PCoatQuality = ((s as any).CoatQuality ?? 0);
-  (s as any).PCoatPrice = ((s as any).CoatPrice ?? 0);
-  (s as any).PCoatStrength = ((s as any).CoatStrength ?? 0);
-  (s as any).PCoatMaxStrength = ((s as any).CoatMaxStrength ?? 0);
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('borrowed') : -1) >= 0) {
-    (s as any).PCoatBorrowed = 1;
-    (s as any).PCoatStrength = ((s as any).PCoatMaxStrength ?? 0);
-  }
-  qspCall(s, 'outfit', 'set_derived_vars');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 1;
-  }
-  // TODO-QSP: gs 'coats', 'increase_strength', $coatworntype, coatwornnumber, ARGS[1]
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDecreaseCurStrength(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 1;
-  }
-  // TODO-QSP: gs 'coats', 'decrease_strength', $coatworntype, coatwornnumber, ARGS[1]
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
-  }
-  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
-  }
-  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: gs 'coat_attributes', $ARGS[1], ARGS[2]
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = min(<<$ARGS[1]>>_coats_h[<<ARGS[2]>>] + <<ARGS[3]>>, <<CoatMaxSt...
-    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).coatworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).coatwornnumber ?? 0)) {
-      (s as any).PCoatStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_coats_h[((s as any).locArgs?.[2] ?? 0)]", { location: "coats" });
-    }
-    // TODO-QSP: "
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
-  }
-  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
-  }
-  if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] -= <<ARGS[3]>>
-    if (Number((s as any).locArgs?.[1] ?? 0)((s as any)._coats_h ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] < 0) {
-      // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = 0
-    }
-    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).coatworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).coatwornnumber ?? 0)) {
-      (s as any).PCoatStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_coats_h[((s as any).locArgs?.[2] ?? 0)]", { location: "coats" });
-    }
-    // TODO-QSP: "
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'coat_view', 'init', 'set_exceptions');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterViewCoatList(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'coat_view', 'view_grid', $ARGS[1]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterViewCoatItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'coat_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest0(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'coats', 'move_to_wardrobe', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'coat_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'coats', 'move_to_storage', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'coat_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'coats', 'move_to_unwanted', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'coat_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -550,60 +312,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
-      break;
-    case 'move_to_storage':
-      enterMoveToStorage(s, scene);
-      break;
-    case 'move_to_unwanted':
-      enterMoveToUnwanted(s, scene);
-      break;
-    case 'remove':
-      enterRemove(s, scene);
-      break;
-    case 'strip':
-      enterStrip(s, scene);
-      break;
-    case 'strip_code':
-      enterStripCode(s, scene);
-      break;
-    case 'reset_CoatVars':
-      enterReset_CoatVars(s, scene);
-      break;
-    case 'reset_PCoatVars':
-      enterReset_PCoatVars(s, scene);
-      break;
-    case 'wear':
-      enterWear(s, scene);
-      break;
-    case 'increase_cur_strength':
-      enterIncreaseCurStrength(s, scene);
-      break;
-    case 'decrease_cur_strength':
-      enterDecreaseCurStrength(s, scene);
-      break;
-    case 'increase_strength':
-      enterIncreaseStrength(s, scene);
-      break;
-    case 'decrease_strength':
-      enterDecreaseStrength(s, scene);
-      break;
-    case 'set_shop_display_exceptions':
-      enterSetShopDisplayExceptions(s, scene);
-      break;
-    case 'view_coat_list':
-      enterViewCoatList(s, scene);
-      break;
-    case 'view_coat_item':
-      enterViewCoatItem(s, scene);
-      break;
-    case 'dest0':
-      enterDest0(s, scene);
-      break;
-    case 'dest1':
-      enterDest1(s, scene);
-      break;
-    case 'dest2':
-      enterDest2(s, scene);
       break;
     default:
       enterDefault(s, scene);

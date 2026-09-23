@@ -1022,7 +1022,7 @@ function enterSecrets(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).Kirill_brotherBJ ?? 0) === 1  &&  ((s as any).Kirill_Crpt ?? 0) > 20) {
-    // TODO-QSP: dynamic text: …you remember last time you told Father Kirill about sucking off your brother af...
+    // TODO-QSP: dynamic text: '…you remember last time you told Father Kirill about sucking off your brother a...
     scene.text('…you remember last time you told Father Kirill about sucking off your brother after watching porn, he didn\'t chastise you about engaging in incest. ' + ((((s as any).Kirill_Crpt ?? 0) > 60) ? ('In fact, you\'re pretty sure he enjoyed hearing about it. ') : ('')) + 'Maybe you could tell him about the other things you and your brother have been up to…');
     scene.actions([
       { label: 'Tell him about having sex with your brother', handler: (st: GameState) => {
@@ -1044,7 +1044,7 @@ function enterSecrets(s: GameState, scene: SceneBuilder): void {
     if (((st as any).brotherQW ?? 0)?.['shower_times'] !== 0) {
       scene.text('Eventually you wanted to feel more than just his eyes on your skin, and invited him to shower with you.');
     }
-    // TODO-QSP: dynamic text: You continue describing your fall into incestual deviancy' + iif(brotherQW['last...
+    // TODO-QSP: dynamic text: 'You continue describing your fall into incestual deviancy' + iif(brotherQW['las...
     scene.text('You continue describing your fall into incestual deviancy' + ((((st as any).brotherQW ?? 0)?.['last_day_homework'] > 0) ? (', how you let him feel you up while you help him with his homework') : ('')) + ((((st as any).npc_QW ?? 0)?.['A34'] >= 4) ? (', how you\'ve used your naked body to show him the secrets of the female anatomy') : ('')) + ((((st as any).brotherQW ?? 0)?.['last_sex_day_morning'] > 0  ||  ((st as any).brotherQW ?? 0)?.['last_sex_day_night'] > 0  ||  ((st as any).brotherQW ?? 0)?.['last_sex_day_evening'] > 0) ? (', how you regularly help each other with your sexual urges') : ('')) + ((((st as any).brotherQW ?? 0)?.['last_sex_day_morning'] === ((st as any).daystart ?? 0)  ||  ((st as any).brotherQW ?? 0)?.['last_sex_day_night'] === ((st as any).daystart ?? 0)  ||  ((st as any).brotherQW ?? 0)?.['last_sex_day_evening'] === ((st as any).daystart ?? 0)) ? (', and that one of those times was just earlier today') : ('')) + ', all while Father Kirill sits calmly and waits for you to finish.');
     if (((st as any).Kirill_Crpt ?? 0) <= 60) {
       scene.text('He speaks up when you\'re finally done. "Hmmm. This is quite disturbing. Incest is a sure path to hell, but on the other hand it is natural for two young people who have grown close to want to explore their sexuality together."');

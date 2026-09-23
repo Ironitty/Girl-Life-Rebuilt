@@ -90,7 +90,8 @@ function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).body_write = 5;
     (s as any).face_write = 1;
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/gop/podvalwrite' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/gop/podv...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/gop/podvalwrite` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     scene.text('You passed out at some point during their fuck session. When you come to your body aches, your head is throbbing, and some kid is mocking you.');
     scene.text('When you look down, you realize why: those bastards have written obscene words all over your face and body! You look like a public toilet, and quickly cover up their writing as best you can while you get up.');
     qspCall(s, 'arousal', 'end');

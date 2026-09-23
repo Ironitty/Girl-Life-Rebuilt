@@ -29,16 +29,12 @@ function enterFacefuck(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).artfacefucktimes ?? 0) < 2) {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'artlick', 'artchik')
-  } },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('artlick') : ('artchik'))); } },
     ]);
   } else {
     if (((s as any).artfacefucktimes ?? 0) >= 2) {
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
-  } },
+        { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('bed') : ('bedmiss'))); } },
       ]);
     }
   }
@@ -136,9 +132,7 @@ function enterBedmiss(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).artfucktimes ?? 0) >= 2) {
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'sexmiss_cum', 'cum')
-  } },
+        { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('sexmiss_cum') : ('cum'))); } },
       ]);
     }
   }
@@ -160,9 +154,7 @@ function enterSexmiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
-  } },
+    { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('bed') : ('bedmiss'))); } },
   ]);
   scene.build();
 }
@@ -195,9 +187,7 @@ function enterSexdog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
-  } },
+    { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('bed') : ('bedmiss'))); } },
   ]);
   scene.build();
 }
@@ -233,9 +223,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
-  } },
+    { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('bed') : ('bedmiss'))); } },
   ]);
   scene.build();
 }
@@ -331,9 +319,7 @@ function enterFist(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
-  } },
+    { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'arturdin', (((!(Math.floor(Math.random() * 2) + 0))) ? ('bed') : ('bedmiss'))); } },
   ]);
   scene.build();
 }

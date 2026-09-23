@@ -54,14 +54,14 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop the stream and transfer the money to your bank account', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'earn', ml_streaming['unclaimed_earnings'], 'bank'
     ((st as any).ml_streaming = (st as any).ml_streaming ?? {})['unclaimed_earnings'] = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop the stream', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -201,7 +201,7 @@ function enterUploadmusic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
   // TODO-QSP: ml_onlinesong_uploaded[ml_onlinesongcount-1] = 1
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'recording') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'recording') {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_onlinemusic', 'finish', 'recording');
@@ -306,10 +306,10 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
   if (((s as any).location_type ?? 0) === 'public_outdoors') {
     (s as any).ml_rand_event = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).ml_rand_event ?? 0) <= 10  &&  ((s as any).region ?? 0) === 'pav'  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 40) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'streaming') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'streaming') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnushkaStreamingEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'recording') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'recording') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnushkaRecordingEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -338,8 +338,8 @@ function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).ml_famebase = ( (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0) + ( (((s as any).pcs_hotcat ?? 0)-5) * 20 ) ) / 20;
   }
-  qspCall(s, 'fame', 'pav', 'music', 0);
-  qspCall(s, 'fame', 'city', 'music', 0);
+  qspCall(s, 'fame', 'pav', 'music', (Math.floor(Math.random() * (((s as any).ml_famebase ?? 0) - 0 + 1)) + (0)));
+  qspCall(s, 'fame', 'city', 'music', (Math.floor(Math.random() * (((s as any).ml_famebase ?? 0) - 0 + 1)) + (0)));
   qspCall(s, 'exp_gain', 'vokal', (Math.floor(Math.random() * 3) + 1));
   if (((s as any).perform_lvl ?? 0) < 35) {
     qspCall(s, 'exp_gain', 'perform', (Math.floor(Math.random() * 3) + 1));

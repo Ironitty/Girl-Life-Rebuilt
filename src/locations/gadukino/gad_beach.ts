@@ -89,7 +89,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
     qspGoto(s, 'gad_beach', 'Mira_leaves');
   } else {
-    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  Number((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
+    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  String((s as any).locArgs?.[1] ?? '') === 0  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
       qspGoto(s, 'gad_beach', 'arrive_Mira_already_there');
     }
   }
@@ -222,7 +222,8 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 16) + 0) >= 10  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
         (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 11) + 5));
         qspCall(st, 'stat', '');
-        scene.img('images/characters/gadukino/mira/rivertwogirlsnude' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/rivertwogirlsnu...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/rivertwogirlsnude` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
         scene.text('You step into the river with Mira and have a good old-fashioned water fight, splashing each other until one of you finally surrenders.');
       } else {
         scene.img('images/locations/gadukino/river/watergirls.jpg');
@@ -460,7 +461,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
       scene.actions([
         { label: 'Change into swimwear', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'start']; enterGetChanged(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'start']; enterGetChanged(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -474,7 +475,8 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
     scene.text('Without hesitation, you take off all your clothes and neatly fold them before putting them down in a pile. Without your clothes holding you back, you can go for a nice swim in the river or lie down in the sand and sunbathe.');
     scene.actions([
       { label: 'Swim', handler: (st: GameState) => {
-    scene.img('images/characters/gadukino/mira/rivertwogirlsnude' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/rivertwogirlsnu...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/rivertwogirlsnude` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
     scene.text('You wade into the river and have fun with Mira spraying each other with water.');
     if (((st as any).deodorant_on ?? 0) === 1) {
       qspCall(st, 'sweat', 'remove_deo');
@@ -508,7 +510,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
 function enterGetChanged(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'gad_beach';
   (s as any).loc_arg = 'get_changed';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'start') {
     qspGoto(s, 'changingroom', '');
   } else {
     qspCall(s, 'stat', '');
@@ -567,7 +569,7 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
 function enterMira(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if (((s as any).MiraVars ?? 0)?.['QW'] < 12) {
       scene.img('images/characters/gadukino/mira/mirabeach.jpg');
     } else {

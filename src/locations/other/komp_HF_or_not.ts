@@ -95,7 +95,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
       (s as any).fu_count = 0;
     }
   } else {
-    if (((s as any).npc_gender ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] < 6)) {
+    if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
       // TODO-QSP: $fu_text += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="ima...
       (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
       if (((s as any).fu_count ?? 0) === 6) {
@@ -123,7 +123,7 @@ function enterHotornotList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :ho_loop_2
   (s as any).i = 1;
   // TODO-QSP: :ho_loop
-  if (((s as any).npc_gender ?? 0)['A' + ((s as any).i ?? 0)] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] < 6)) {
+  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
     // TODO-QSP: $ho_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
     (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
     if (((s as any).ho_count ?? 0) === 6) {
@@ -204,7 +204,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
       (s as any).fu_count = 0;
     }
   }
-  if (((s as any).npc_gender ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + ((s as any).i ?? 0)] !== 'professor') {
+  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
     (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
     // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
     if (((s as any).fu_count ?? 0) === 6) {
@@ -231,7 +231,7 @@ function enterHotornotUniList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :ho_loop_2_uni
   (s as any).i = 1;
   // TODO-QSP: :ho_loop_uni
-  if (((s as any).npc_gender ?? 0)['A' + ((s as any).i ?? 0)] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + ((s as any).i ?? 0)] !== 'professor') {
+  if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
     (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
     // TODO-QSP: $ho_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="images/c...
     if (((s as any).ho_count ?? 0) === 6) {

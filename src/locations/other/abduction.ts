@@ -882,7 +882,8 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'anus', 'Master');
         (s as any).gifornot = 0;
         if (((s as any).gifornot ?? 0) > 50) {
-          scene.img('images/locations/shared/abduction/sex/fucktiedanal' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fucktieda...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fucktiedanal` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
         } else {
           scene.img('images/locations/shared/abduction/sex/fucktiedanal1.mp4');
         }
@@ -897,7 +898,8 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         if (((s as any).rapeType ?? 0) === 4) {
           ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (8);
           qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-          scene.img('images/locations/shared/abduction/sex/fistanal' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fistanal'...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fistanal` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
           scene.text('Your hands and feet are bound as you hang upside down with your ass in the air.');
           scene.text('The guy starts trying to push his thick fist inside your anus. At least he used a bit of lubricant…');
           scene.text('When your sphincter fails to resist anymore, you hear a loud pop as his fist quickly penetrates you.');
@@ -913,7 +915,8 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
             ((s as any).pain = (s as any).pain ?? {})['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
             qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-            scene.img('images/locations/shared/abduction/sex/fistvaginal' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/abduction/sex/fistvagin...
+            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/abduction/sex/fistvaginal` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
             scene.text('Your hands and feet are tied with your ass raised higher than your head.');
             scene.text('The guy starts pushing his thick fist deep inside your pussy. At least he used a bit of lubricant…');
             scene.text('Suddenly, you feel his fingers touch your cervix. He\'s doing it on purpose!');
@@ -1248,7 +1251,7 @@ function enterAbdNotSold(s: GameState, scene: SceneBuilder): void {
 function enterAbdSoldSauna(s: GameState, scene: SceneBuilder): void {
   scene.text('"A nice lady from an established business." he smiles.');
   scene.text('You are blindfolded and led away to a car. After some time, you are led through doors and the blindfold is removed. You are in a backroom of a brothel.');
-  // TODO-QSP: dynamic text: "The madame of the brothel stands before you. "I paid ' + $func('money', 'string...
+  // TODO-QSP: dynamic text: '"The madame of the brothel stands before you. "I paid ' + $func('money', 'strin...
   scene.text('"The madame of the brothel stands before you. "I paid \' + $func(\'money\', \'string_debt_addition\', 8000) + \' for you, bitch. Don\'t make me regret this."');
   scene.text('"Yes, madame." you obediently reply.');
   scene.text('"I\'m not a bad person," she continues. "If you earn me at least five times more than what I paid, I may let you go."');

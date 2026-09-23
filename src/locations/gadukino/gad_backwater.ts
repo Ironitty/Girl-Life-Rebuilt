@@ -25,9 +25,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterAlone(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Backwater</b></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('backwater.jpg') : ('backwater_night.jpg')) + '');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('backwater.jpg') : ('backwater_night.jpg')) + '"></center>');
   } else {
-    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('backwater_winter.jpg') : ('backwater_winter_night.jpg')) + '');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('backwater_winter.jpg') : ('backwater_winter_night.jpg')) + '"></center>');
   }
   scene.text('A small creek with relatively clean water. If the weather is warm, you can clean yourself up. Also, if your clothes are dirty, you can wash them here.');
   if (((s as any).clothesAtLocation ?? 0) === 1) {
@@ -36,7 +38,8 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Wash self', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/' + ((((st as any).pantyworntype ?? 0) === 'none') ? ('backwaterswim2.jpg') : ('backwaterswim1.jpg')) + '');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif($pantyw...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).pantyworntype ?? 0) === 'none') ? ('backwaterswim2.jpg') : ('backwaterswim1.jpg')) + '"></center>');
     (st as any).noshampoo = 1;
     qspCall(st, 'din_van', 'showerdin');
     (st as any).face_write = 0;
@@ -140,7 +143,8 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get undressed', handler: (st: GameState) => {
     if (((st as any).hunterVars ?? 0)?.['KnowSlut'] > 0  ||  (((st as any).hunterVars ?? 0)?.['outside'] === 0  &&  ((st as any).hunterVars ?? 0)?.['available'] === 0)  ||  (((st as any).hour ?? 0) < 7  ||  ((st as any).hour ?? 0) > 22)  ||  (((st as any).pcs_inhib ?? 0) >= 25  ||  ((st as any).trait_vars ?? 0)?.['exhibitionist'] > 1)) {
-      scene.img('images/locations/gadukino/hunters/' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('backwaterundress_ski.jpg') : ('backwaterundress.jpg')) + '');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(PCloSki...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((st as any).PCloSkirt ?? 0) > 0) ? ('backwaterundress_ski.jpg') : ('backwaterundress.jpg')) + '"></center>');
       scene.text('You do not hesitate to get undressed, not caring if anyone is watching.');
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {

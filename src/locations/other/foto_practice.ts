@@ -29,18 +29,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: '"I\'d like to practice fashion shoots"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Alright, we can do that. What would you like to do?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFashion(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBikini(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLingerie(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFashion(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBikini(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLingerie(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '"I\'d like to practice glamour shoots"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Alright, we can do that. What would you like to do?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTransparent(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTransLing(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTopless(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNude(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTransparent(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTransLing(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTopless(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNude(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

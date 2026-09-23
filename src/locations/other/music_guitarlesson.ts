@@ -21,7 +21,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You shift on your feet "I''m <<$pcs_firstname>>, and yes, I think. Can you pleas...
   scene.text(`You shift on your feet "I'm ${((s as any).pcs_firstname ?? '')}, and yes, I think. Can you please tell me a bit more?"`);
   scene.text(' "Sure. I assume you are a beginner…" he looks at you, and you nod "Then obviously we would start at the basics. The instrument, chords, some basic theory. We would meet once a week, here.');
-  // TODO-QSP: dynamic text: If you have a guitar, that''s great, if not, you can use mine. But you will real...
+  // TODO-QSP: dynamic text: 'If you have a guitar, that''s great, if not, you can use mine. But you will rea...
   scene.text('If you have a guitar, that\'s great, if not, you can use mine. But you will really need to get a guitar to practice at home. The lessons cost ' + qspFunc(s, 'money', 'string_price', 500) + ', but if you are under 18\' +iif(vidage < 18, \', which I assume you are,\', \')+ \' then it\'s only ' + qspFunc(s, 'money', 'string_price', 300) + '."');
   // TODO-QSP: dynamic text: He looks at you "So, <<$pcs_firstname>>, do you think you would be interested in...
   scene.text(`He looks at you "So, ${((s as any).pcs_firstname ?? '')}, do you think you would be interested in taking lessons?"`);
@@ -83,7 +83,8 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'npc_relationship', 'modify', 'ML1', 1);
-  scene.img('images/locations/pavlovsk/community/guitarlesson/guitarteach_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/guitarlesso...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/guitarlesson/guitarteach_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   if (((s as any).pcs_instrmusic ?? 0) < 15) {
     qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
     scene.text('You spend the next 45 minutes learning the basics of the guitar and some chords. At the end of the lesson your fingers and hands hurt, but you feel that you have learned a lot.');

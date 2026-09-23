@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/cards/porndeck.jpg');
-  // TODO-QSP: dynamic text: You pull your deck of cards out and spread them around ' + iif($card_loc = 'gad_...
+  // TODO-QSP: dynamic text: 'You pull your deck of cards out and spread them around ' + iif($card_loc = 'gad...
   scene.text('You pull your deck of cards out and spread them around ' + ((((s as any).card_loc ?? 0) === 'gad_gpbarn') ? ('an old desk in the barn') : ('your desk')) + ' to look at them.');
   if ((!((s as any).card_deck ?? 0))) {
     scene.actions([

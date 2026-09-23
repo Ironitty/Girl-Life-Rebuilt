@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('"I\'m glad I got my birth control shot!" you think to yourself.');
           } else {
             if (((s as any).tmp ?? 0) === -1) {
-              // TODO-QSP: dynamic text: "Good thing '+iif(birth_control['implant_status'] > 1, 'I have a birth control i...
+              // TODO-QSP: dynamic text: '"Good thing '+iif(birth_control['implant_status'] > 1, 'I have a birth control ...
               scene.text('"Good thing ' + ((((s as any).birth_control ?? 0)?.['implant_status'] > 1) ? ('I have a birth control implant') : ('I\'m on the pill')) + '…" you think to yourself.');
             } else {
               if (((s as any).tmp ?? 0) === 1) {

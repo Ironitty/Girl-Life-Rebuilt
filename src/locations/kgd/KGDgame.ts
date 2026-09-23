@@ -14,10 +14,10 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
   (s as any).baseDam = ((s as any).locArgs?.[3] ?? 0);
   (s as any).i = 2;
   // TODO-QSP: :kgdhire_loop
-  if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 1) {
     (s as any).i = 6;
   }
-  if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 0) {
+  if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 0) {
     ((s as any).KGD = (s as any).KGD ?? {})['name_' + String(((s as any).i ?? 0))] = ((s as any).type ?? 0);
     ((s as any).KGD = (s as any).KGD ?? {})['lvl_' + String(((s as any).i ?? 0))] = 1;
     ((s as any).KGD = (s as any).KGD ?? {})['HP_' + String(((s as any).i ?? 0))] = ((s as any).baseHP ?? 0);
@@ -39,12 +39,12 @@ function enterMngFarm(s: GameState, scene: SceneBuilder): void {
   ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Farm Manager</td></tr>');
   (s as any).i = 1;
   // TODO-QSP: :farmmanage_loop
-  if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 0) {
+  if (((s as any).KGD ?? 0)['farm_' + (((s as any).i ?? 0))] === 0) {
     (s as any).i = 10;
   }
-  if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).KGD ?? 0)['farm_' + (((s as any).i ?? 0))] === 1) {
     ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>farm ' + ((s as any).i ?? 0) + '</td><td>Level: \'+KGD[\'farm_level_' + ((s as any).i ?? 0) + '\']+\'</td><td>Production: \'+KGD[\'farm_rate_' + ((s as any).i ?? 0) + '\']*KGD[\'farm_level_' + ((s as any).i ?? 0) + '\']+\' R/D</td></tr>');
-    if (((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)] < 5  &&  ((s as any).KGD ?? 0)?.['money'] >= 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)]) {
+    if (((s as any).KGD ?? 0)['farm_level_' + (((s as any).i ?? 0))] < 5  &&  ((s as any).KGD ?? 0)?.['money'] >= 100*((s as any).KGD ?? 0)['farm_level_' + (((s as any).i ?? 0))]) {
       ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2"><a href="#" onclick="window.__gameStore.setState((s) => { (s.KGD ??= {})/u0027farm_level_' + ((s as any).i ?? 0) + '/u0027 +=s.1; (s.KGD ??= {})/u0027farm_rate_' + ((s as any).i ?? 0) + '/u0027 +=s.2; (s.KGD ??= {})/u0027money/u0027 -=100*KGD[/u0027farm_level_' + ((s as any).i ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027KGDgame/u0027, /u0027MngFarm/u0027); return false;">Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + ''] + ' resources)</a></td></tr>');
     } else {
       ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2">\' + $func(\'wrap\', \'neg\', \'Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + ''] + ' resources)\') + \'</td></tr>');
@@ -143,7 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 2;
     ((s as any).KGD = (s as any).KGD ?? {})['table'] = '<center><table border="0"><tr><th>Name</th><th>Level</th><th>HP</th><th>DMG</th></tr>';
     // TODO-QSP: :kgdparty_loop
-    if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] > 0) {
+    if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] > 0) {
       ((s as any).KGD = (s as any).KGD ?? {})['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>' + ((s as any).KGD ?? 0)?.['name_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['HP_' + String(((s as any).i ?? 0))] + '</td><td>' + ((s as any).KGD ?? 0)?.['damage_' + String(((s as any).i ?? 0))] + '</td></tr>');
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -160,7 +160,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Build a farm (150 resources)', handler: (st: GameState) => {
     (st as any).i = 1;
     // TODO-QSP: :farm_loop
-    if (((st as any).KGD ?? 0)['farm_' + ((st as any).i ?? 0)] === 0) {
+    if (((st as any).KGD ?? 0)['farm_' + (((st as any).i ?? 0))] === 0) {
       ((st as any).KGD = (st as any).KGD ?? {})['money'] = ((st as any).KGD['money'] ?? 0) - (150);
       ((st as any).KGD = (st as any).KGD ?? {})['farm_' + String(((st as any).i ?? 0))] = 1;
       ((st as any).KGD = (st as any).KGD ?? {})['farm_level_' + String(((st as any).i ?? 0))] = 1;
@@ -240,10 +240,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((st as any).KGD = (st as any).KGD ?? {})['day'] = ((st as any).KGD['day'] ?? 0) + (1);
     (st as any).i = 1;
     // TODO-QSP: :kgdnextday_loop
-    if (((st as any).KGD ?? 0)['farm_' + ((st as any).i ?? 0)] === 0) {
+    if (((st as any).KGD ?? 0)['farm_' + (((st as any).i ?? 0))] === 0) {
       (st as any).i = 10;
     }
-    if (((st as any).KGD ?? 0)['farm_' + ((st as any).i ?? 0)] === 1) {
+    if (((st as any).KGD ?? 0)['farm_' + (((st as any).i ?? 0))] === 1) {
       ((st as any).KGD = (st as any).KGD ?? {})['farm'] = ((st as any).KGD['farm'] ?? 0) + (((st as any).KGD ?? 0)['farm_rate_' + ((st as any).i ?? 0) + ''] * ((st as any).KGD ?? 0)['farm_level_' + ((st as any).i ?? 0) + '']);
     }
     if (((st as any).i ?? 0) < 10) {

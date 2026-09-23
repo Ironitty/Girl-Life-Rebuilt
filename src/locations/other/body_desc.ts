@@ -34,7 +34,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChooseDescWord(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((s as any).ARGS ?? 0)?.[((s as any).rand ?? 0)(2, ((s as any).arrsize ?? 0)('ARGS')-1)];
+  (s as any).result = ((s as any).ARGS ?? 0)?.[(Math.floor(Math.random() * (0 - 2 + 1)) + (2))];
   return;
   // TODO-QSP: end
   scene.build();

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -21,7 +21,7 @@ function enterWarning(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckimg(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === Number((s as any).locArgs?.[3] ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === Number((s as any).locArgs?.[4] ?? 0)) {
+  if (String((s as any).locArgs?.[1] ?? '') === String((s as any).locArgs?.[3] ?? '')  &&  String((s as any).locArgs?.[2] ?? '') === String((s as any).locArgs?.[4] ?? '')) {
     (s as any).result = '<td><center><img src="images/system/icons/check.png" height="50"></center></td>';
   } else {
     (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[/u0027loc/u0027] = /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027 */ /* TODO-QSP: $start_type[/u0027magic/u0027] = /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027begin/u0027, /u0027start/u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
@@ -34,7 +34,7 @@ function enterCheckimg(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'begin', 'start');
   qspCall(s, 'cheatmenu_din', '');
-  scene.showMenu();
+  // TODO-QSP: showstat 1
   scene.text('<center><b>CHOOSE GAME START</b></center>');
   scene.text('<center>There are three main start types:');
   scene.text('Last year of school (before or after summer holidays);');
@@ -78,8 +78,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Manage mods', handler: (st: GameState) => {
     (st as any).settingmode = 1;
-    dynamicGoto(st, 'menu_settings', 'mods');
-  } },
+  }, goto: ['$menu_settings', 'mods'] },
   ]);
   scene.build();
 }
@@ -93,7 +92,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRandom(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'loc') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'loc') {
     (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
       (s as any).result = 'sg';
@@ -105,7 +104,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'magic') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'magic') {
       (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
       if ((!((s as any).temp_rand ?? 0))) {
         (s as any).result = 'nomagic';
@@ -159,7 +158,7 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
-  ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 0;
+  ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = window.prompt("Where is the avatar image located? (Leave blank for \"images/avatar.jpg\")") ?? '';
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
     ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }

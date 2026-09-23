@@ -96,7 +96,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).komblrand = 0;
+  (s as any).komblrand = (Math.floor(Math.random() * (((s as any).kobl2 ?? 0) - ((s as any).kobl ?? 0) + 1)) + (((s as any).kobl ?? 0)));
   if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] >= 2) {
     if ((!((s as any).komblrand ?? 0))) {
       scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');

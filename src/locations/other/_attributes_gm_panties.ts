@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).PanType = 1;
     (s as any).PanFun = 1;
     (s as any).PanQuality = 1;
@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).PanPrice = 300;
     ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 1;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).PanType = 1;
       (s as any).PanFun = 1;
       (s as any).PanQuality = 2;
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).PanPrice = 350;
       ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 2;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).PanType = 1;
         (s as any).PanFun = 1;
         (s as any).PanQuality = 1;
@@ -30,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).PanPrice = 300;
         ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 3;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).PanType = 1;
           (s as any).PanFun = 1;
           (s as any).PanQuality = 2;
@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).PanPrice = 350;
           ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 4;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).PanType = 1;
             (s as any).PanFun = 1;
             (s as any).PanQuality = 1;
@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).PanPrice = 300;
             ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 5;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).PanType = 1;
               (s as any).PanFun = 1;
               (s as any).PanQuality = 1;
@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).PanPrice = 300;
               ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 6;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).PanType = 2;
                 (s as any).PanFun = 1;
                 (s as any).PanQuality = 1;
@@ -66,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).PanPrice = 300;
                 ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 7;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).PanType = 1;
                   (s as any).PanFun = 1;
                   (s as any).PanQuality = 2;
@@ -75,7 +75,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).PanPrice = 350;
                   ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 8;
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).PanType = 1;
                     (s as any).PanFun = 1;
                     (s as any).PanQuality = 2;
@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).PanPrice = 350;
                     ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 9;
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).PanType = 1;
                       (s as any).PanFun = 1;
                       (s as any).PanQuality = 1;
@@ -93,7 +93,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).PanPrice = 300;
                       ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 10;
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).PanType = 1;
                         (s as any).PanFun = 1;
                         (s as any).PanQuality = 1;
@@ -102,7 +102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).PanPrice = 300;
                         ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 11;
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (String((s as any).locArgs?.[0] ?? '') === 12) {
                           (s as any).PanType = 1;
                           (s as any).PanFun = 1;
                           (s as any).PanQuality = 1;
@@ -111,7 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).PanPrice = 300;
                           ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 12;
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (String((s as any).locArgs?.[0] ?? '') === 13) {
                             (s as any).PanType = 1;
                             (s as any).PanFun = 1;
                             (s as any).PanQuality = 1;
@@ -120,7 +120,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).PanPrice = 300;
                             ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 13;
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (String((s as any).locArgs?.[0] ?? '') === 14) {
                               (s as any).PanType = 1;
                               (s as any).PanFun = 1;
                               (s as any).PanQuality = 2;
@@ -129,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).PanPrice = 350;
                               ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 14;
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (String((s as any).locArgs?.[0] ?? '') === 15) {
                                 (s as any).PanType = 2;
                                 (s as any).PanFun = 1;
                                 (s as any).PanQuality = 2;
@@ -138,7 +138,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).PanPrice = 350;
                                 ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 15;
                               } else {
-                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (String((s as any).locArgs?.[0] ?? '') === 16) {
                                   (s as any).PanType = 1;
                                   (s as any).PanFun = 1;
                                   (s as any).PanQuality = 1;
@@ -147,7 +147,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).PanPrice = 300;
                                   ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 16;
                                 } else {
-                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === 17) {
                                     (s as any).PanType = 1;
                                     (s as any).PanFun = 1;
                                     (s as any).PanMaterial = 6;
@@ -157,7 +157,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).PanPrice = 350;
                                     ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 17;
                                   } else {
-                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === 18) {
                                       (s as any).PanType = 1;
                                       (s as any).PanFun = 1;
                                       (s as any).PanQuality = 2;
@@ -166,7 +166,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).PanPrice = 350;
                                       ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 18;
                                     } else {
-                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (String((s as any).locArgs?.[0] ?? '') === 19) {
                                         (s as any).PanType = 1;
                                         (s as any).PanFun = 1;
                                         (s as any).PanMaterial = 6;
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).PanPrice = 350;
                                         ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 19;
                                       } else {
-                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (String((s as any).locArgs?.[0] ?? '') === 20) {
                                           (s as any).PanType = 1;
                                           (s as any).PanFun = 1;
                                           (s as any).PanQuality = 1;
@@ -184,7 +184,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).PanThinness = 2;
                                           (s as any).PanPrice = 300;
                                         } else {
-                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (String((s as any).locArgs?.[0] ?? '') === 21) {
                                             (s as any).PanType = 1;
                                             (s as any).PanFun = 1;
                                             (s as any).PanQuality = 1;
@@ -192,7 +192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).PanThinness = 2;
                                             (s as any).PanPrice = 300;
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 22) {
                                               (s as any).PanType = 1;
                                               (s as any).PanFun = 1;
                                               (s as any).PanQuality = 2;
@@ -200,7 +200,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).PanThinness = 2;
                                               (s as any).PanPrice = 350;
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 23) {
                                                 (s as any).PanType = 1;
                                                 (s as any).PanFun = 1;
                                                 (s as any).PanQuality = 2;
@@ -208,7 +208,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).PanThinness = 2;
                                                 (s as any).PanPrice = 350;
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 24) {
                                                   (s as any).PanType = 1;
                                                   (s as any).PanFun = 1;
                                                   (s as any).PanQuality = 1;
@@ -216,7 +216,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).PanThinness = 2;
                                                   (s as any).PanPrice = 300;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 25) {
                                                     (s as any).PanType = 1;
                                                     (s as any).PanFun = 1;
                                                     (s as any).PanQuality = 1;
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).PanThinness = 2;
                                                     (s as any).PanPrice = 300;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (String((s as any).locArgs?.[0] ?? '') === 26) {
                                                       (s as any).PanType = 1;
                                                       (s as any).PanFun = 1;
                                                       (s as any).PanQuality = 1;
@@ -232,7 +232,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).PanThinness = 2;
                                                       (s as any).PanPrice = 300;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (String((s as any).locArgs?.[0] ?? '') === 27) {
                                                         (s as any).PanType = 1;
                                                         (s as any).PanFun = 1;
                                                         (s as any).PanQuality = 2;
@@ -240,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).PanThinness = 2;
                                                         (s as any).PanPrice = 350;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (String((s as any).locArgs?.[0] ?? '') === 28) {
                                                           (s as any).PanType = 1;
                                                           (s as any).PanFun = 1;
                                                           (s as any).PanMaterial = 6;
@@ -249,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).PanThinness = 2;
                                                           (s as any).PanPrice = 350;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (String((s as any).locArgs?.[0] ?? '') === 29) {
                                                             (s as any).PanType = 1;
                                                             (s as any).PanFun = 1;
                                                             (s as any).PanQuality = 2;
@@ -257,7 +257,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).PanThinness = 2;
                                                             (s as any).PanPrice = 350;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (String((s as any).locArgs?.[0] ?? '') === 30) {
                                                               (s as any).PanType = 1;
                                                               (s as any).PanFun = 1;
                                                               (s as any).PanQuality = 1;
@@ -265,7 +265,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               (s as any).PanThinness = 3;
                                                               (s as any).PanPrice = 300;
                                                             } else {
-                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 31) {
+                                                              if (String((s as any).locArgs?.[0] ?? '') === 31) {
                                                                 (s as any).PanType = 1;
                                                                 (s as any).PanFun = 1;
                                                                 (s as any).PanQuality = 2;
@@ -273,7 +273,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                 (s as any).PanThinness = 2;
                                                                 (s as any).PanPrice = 350;
                                                               } else {
-                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 32) {
+                                                                if (String((s as any).locArgs?.[0] ?? '') === 32) {
                                                                   (s as any).PanType = 1;
                                                                   (s as any).PanFun = 1;
                                                                   (s as any).PanQuality = 1;
@@ -281,7 +281,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   (s as any).PanThinness = 2;
                                                                   (s as any).PanPrice = 300;
                                                                 } else {
-                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 33) {
+                                                                  if (String((s as any).locArgs?.[0] ?? '') === 33) {
                                                                     (s as any).PanType = 1;
                                                                     (s as any).PanFun = 1;
                                                                     (s as any).PanQuality = 1;
@@ -289,7 +289,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     (s as any).PanThinness = 2;
                                                                     (s as any).PanPrice = 300;
                                                                   } else {
-                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 34) {
+                                                                    if (String((s as any).locArgs?.[0] ?? '') === 34) {
                                                                       (s as any).PanType = 1;
                                                                       (s as any).PanFun = 1;
                                                                       (s as any).PanMaterial = 6;
@@ -298,7 +298,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                       (s as any).PanThinness = 2;
                                                                       (s as any).PanPrice = 350;
                                                                     } else {
-                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 35) {
+                                                                      if (String((s as any).locArgs?.[0] ?? '') === 35) {
                                                                         (s as any).PanType = 1;
                                                                         (s as any).PanFun = 1;
                                                                         (s as any).PanQuality = 1;
@@ -306,7 +306,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                         (s as any).PanThinness = 2;
                                                                         (s as any).PanPrice = 300;
                                                                       } else {
-                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 36) {
+                                                                        if (String((s as any).locArgs?.[0] ?? '') === 36) {
                                                                           (s as any).PanType = 1;
                                                                           (s as any).PanFun = 1;
                                                                           (s as any).PanQuality = 1;
@@ -314,7 +314,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).PanThinness = 2;
                                                                           (s as any).PanPrice = 300;
                                                                         } else {
-                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 37) {
+                                                                          if (String((s as any).locArgs?.[0] ?? '') === 37) {
                                                                             (s as any).PanType = 1;
                                                                             (s as any).PanFun = 1;
                                                                             (s as any).PanQuality = 2;

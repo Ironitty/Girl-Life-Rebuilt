@@ -72,7 +72,8 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
           if (((st as any).alko ?? 0) < 6) {
             scene.actions([
               { label: 'Refuse', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/thinks' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/thinks'+rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/thinks` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('After you hear him out, you start seriously considering his offer. It would be nice to help out a friend is nice, but you sense that there\'s an ulterior motive.');
     scene.text('"No Andrei, I\'m sorry but I refuse." you answer. "How could you even think that I would be accepting your offer?');
     scene.text('You got up from the bench and quickly went back to the hut.');
@@ -90,7 +91,8 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/thinks' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/thinks'+rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/thinks` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('After you hear him out, you start seriously considering his offer. It would be nice to help out a friend is nice, but you sense that there\'s an ulterior motive.');
     scene.text('"Well Andrei, after carefully thinking about it, I\'ll help you out. How do you want me to help you out?" you ask.');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, I knew you would," he replied. "Well, I wouldn''t mind...
@@ -122,7 +124,8 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
           if (((st as any).alko ?? 0) < 6) {
             scene.actions([
               { label: 'Refuse', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/thinks' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/thinks'+rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/thinks` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('"You know what Andrei, I\'ve changed my mind. I\'m more than happy to help a friend in need, but I\'m not some whore that only exists for your pleasure."');
     scene.text('You got up from the bench and quickly went back to the hut.');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -247,13 +250,13 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 10));
   ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (2);
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'generic') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'generic') {
     scene.img('images/locations/gadukino/hunters/hanters1.jpg');
     scene.text('You enthusiastically listen to the their hunting stories and even share some of your stories.');
     qspCall(s, 'hunter_ambient', 'generic_convo');
     scene.text('You get so caught up in the conversation, you don\'t even notice how fast the time flies by.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pantiless_flash') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pantiless_flash') {
       scene.img('images/locations/gadukino/hunters/hantersnotanga1.jpg');
       scene.text('You are sitting in front of the men, not wearing any panties, so the stories you tell are mostly ignored by the men throwing not-so-subtle glances at your exposed pussy.');
       if (((s as any).hunterVars ?? 0)?.['sexual_comfort'] > 30) {
@@ -269,7 +272,7 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
         { label: 'Further', goto: ['gad_swamp_yard', 'campfire'] },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'boy_talk') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'boy_talk') {
         scene.img('images/locations/gadukino/hunters/fireside_drink.jpg');
         // TODO-QSP: dynamic text: "So, <<$pcs_nickname>>, anyone special in your life?" Igor asks, slurring notice...
         scene.text(`"So, ${((s as any).pcs_nickname ?? '')}, anyone special in your life?" Igor asks, slurring noticeably`);
@@ -326,7 +329,7 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'virginity_talk') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'virginity_talk') {
           scene.img('images/locations/gadukino/hunters/fireside_drink.jpg');
           // TODO-QSP: dynamic text: "So, <<$pcs_nickname>>, have you ever done it with a boy" Andrei asks, grinning ...
           scene.text(`"So, ${((s as any).pcs_nickname ?? '')}, have you ever done it with a boy" Andrei asks, grinning mischievously.`);
@@ -366,7 +369,7 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'nude') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'nude') {
             scene.img('images/locations/gadukino/sex/hunter/fireside_night/nude.jpg');
             scene.text('You stand by the fire to chat up a bit with the men. Although you feel like the men are simply nodding along with whatever you are saying, staring at your bared ass and tits, devouring your exposed body with their eyes instead.');
             if (((s as any).hunterVars ?? 0)?.['sexual_comfort'] > 30) {
@@ -382,7 +385,7 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', goto: ['gad_swamp_yard', 'campfire'] },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'entertainment') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'entertainment') {
               scene.img('images/locations/gadukino/hunters/hanters1.jpg');
               // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>, can you do us a favor?" says Andrei, seeing you approac...
               scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}, can you do us a favor?" says Andrei, seeing you approach them. "We are in desperate need of some entertainment. Say, why don't you help us with that?"`);
@@ -449,29 +452,21 @@ function enterJoinDrinking(s: GameState, scene: SceneBuilder): void {
           scene.text(`"I don't know, ${((s as any).pcs_nickname ?? '')}." says Andrei. "What if you turn out to be a mean drunk? You should perform a dare for us to prove we can safely have you wasted."`);
           if (((s as any).alko ?? 0) < 5) {
             scene.actions([
-              { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'innocent'
-  } },
+              { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'innocent'] },
             ]);
           } else {
             if (((s as any).alko ?? 0) < 6) {
               scene.actions([
-                { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'strip'
-  } },
+                { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'strip'] },
               ]);
             } else {
               if (((s as any).alko ?? 0) < 7) {
                 scene.actions([
-                  { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'softcore'
-  } },
+                  { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'softcore'] },
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'hardcore'
-  } },
+                  { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'hardcore'] },
                 ]);
               }
             }
@@ -496,29 +491,21 @@ function enterJoinDrinking(s: GameState, scene: SceneBuilder): void {
         scene.text(`"You see, ${((s as any).pcs_nickname ?? '')}" says Andrei. "We had to work hard to make the money for this booze here. You should work for it just like us. Say, how about you provide some entertainment for us?"`);
         if (((s as any).alko ?? 0) < 1) {
           scene.actions([
-            { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'innocent'
-  } },
+            { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'innocent'] },
           ]);
         } else {
           if (((s as any).alko ?? 0) < 3) {
             scene.actions([
-              { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'strip'
-  } },
+              { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'strip'] },
             ]);
           } else {
             if (((s as any).alko ?? 0) < 5) {
               scene.actions([
-                { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'softcore'
-  } },
+                { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'softcore'] },
               ]);
             } else {
               scene.actions([
-                { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'hardcore'
-  } },
+                { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'hardcore'] },
               ]);
             }
           }
@@ -527,15 +514,11 @@ function enterJoinDrinking(s: GameState, scene: SceneBuilder): void {
         scene.text('"What does this look like to you, free booze charity?" says Sergei. "You gotta pay up or put out and we are not interested in your money"');
         if (((s as any).alko ?? 0) < 4) {
           scene.actions([
-            { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'softcore'
-  } },
+            { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'softcore'] },
           ]);
         } else {
           scene.actions([
-            { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'hardcore'
-  } },
+            { label: 'Further', goto: ['hunter_interactions', 'booze_dare', 'pick', 'hardcore'] },
           ]);
         }
       }
@@ -592,8 +575,8 @@ function enterDrinkWithHunters(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'pick') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'innocent') {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'pick') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'innocent') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'willpower', 'voyeur', 'exhib');
       qspCall(s, 'stat', '');
@@ -639,7 +622,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'strip') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'strip') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'willpower', 'voyeur', 'exhib');
       qspCall(s, 'stat', '');
@@ -681,7 +664,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'softcore') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'softcore') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'willpower', 'voyeur', 'humiliation');
       qspCall(s, 'stat', '');
@@ -719,7 +702,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'hardcore') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'hardcore') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -771,7 +754,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk away', goto: ['gad_swamphouse', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'flash_thong') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'flash_thong') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/flash_thong.jpg');
     scene.text('You do not think it is a big deal so you slide your pants down a bit to show off your panty-clad ass.');
     scene.text('After a few seconds you cover back up much to your friends\' dismay. They had a good enough look to satisfy their "scientific curiosity".');
@@ -785,7 +768,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'flash_ass') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'flash_ass') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/flash_ass.jpg');
     scene.text('You pull up your bottom to expose your uncovered ass. Noticing Andrei trying to move closer probably to cope a feel, you cover back up.');
     // TODO-QSP: dynamic text: "You have a cute butt, <<$pcs_nickname>>" comments Igor. You blush slightly at h...
@@ -801,7 +784,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'flash_tits') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'flash_tits') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/flash_tits_2.jpg');
     scene.text('You pull down your top to expose your tits to the hunters. You can feel your nipples slightly harden from the breeze.');
     scene.text('After letting the hunters stare at your tits for a minute, you pull your top back up.');
@@ -819,7 +802,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'flash_pussy') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'flash_pussy') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/pantiless_upskirt.jpg');
     scene.text('You pull up your skirt to show the hunters what is under. Since you were not wearing panties that means they get a direct view of your exposed pussy');
     scene.text('You feel yourself getting a little wet feeling the breeze on your exposed pussy, bared for the hunters\' viewing pleasure');
@@ -834,7 +817,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nude_dance') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nude_dance') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'arousal', 'flash', (-12), 'exhibitionism');
     qspCall(s, 'arousal', 'end');
@@ -848,7 +831,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'strip_outfit') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'strip_outfit') {
     qspCall(s, 'clothing', 'strip', 'gad_swamphouse');
     (s as any).clothesAtLocation = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -871,7 +854,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'strip_panties') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'strip_panties') {
     qspCall(s, 'underwear', 'remove');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'arousal', 'flash', (-13), 'exhibitionism');
@@ -887,7 +870,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'present_pussy') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'present_pussy') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'arousal', 'flash', (-15), 'exhibitionism', 'sub');
     qspCall(s, 'arousal', 'end');
@@ -900,7 +883,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pussy_spread') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pussy_spread') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'arousal', 'flash', (-17), 'exhibitionism', 'sub');
     qspCall(s, 'arousal', 'end');
@@ -915,7 +898,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'present_tits') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'present_tits') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'arousal', 'foreplay', (-13), 'exhibitionism', 'sub');
     qspCall(s, 'arousal', 'end');
@@ -930,7 +913,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'masturbate_1') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'masturbate_1') {
     (s as any).orgasm_or = 'no';
     qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate', 'exhibitionism', 'sub');
     qspCall(s, 'stat', '');
@@ -974,7 +957,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'masturbate_2') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'masturbate_2') {
     qspCall(s, 'arousal', 'clit_finger', 4, 'masturbate', 'exhibitionism', 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/masturbation_2.jpg');
@@ -1005,7 +988,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'blow_clothed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'blow_clothed') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/dare_bj_clothed_1.jpg');
     scene.text('You kneel down as Sergei unzips in front of you. Grabbing his throbbing dick with your hand, you start lightly stroking him as you start thinking about how you will fit it all in your mouth.');
     qspCall(s, 'arousal', 'hj', 2);
@@ -1037,7 +1020,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'chair_fuck') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'chair_fuck') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/dare_qfuck_1.jpg');
     scene.text('Andrei quickly strips his clothes while you kneel in front of him. He is still flaccid so you grab and start stroking his shaft while licking the head, tasting his sweat and pre-cum. After a few moments, he is ready.');
     (s as any).orgasm_or = 'no';
@@ -1066,7 +1049,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'blanket_fuck') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'blanket_fuck') {
     scene.img('images/locations/gadukino/sex/hunter/fireside_night/dare_bj_nude_1.jpg');
     scene.text('You sit on your hands and knees on the blanket, watching Igor strip off his clothes. He joins you on the blanket before suddenly pulling you on top of him, burying his face in your crotch. You yelp half in shock and half in the blissful sensation of his tongue exploring your folds before taking his cock in your mouth, returning the favor.');
     (s as any).orgasm_or = 'no';
@@ -1247,7 +1230,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
   (s as any).tirkoef = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_shoot ?? 0);
   (s as any).tirmin = ((s as any).tirkoef ?? 0) * 20 / 100;
   (s as any).tirand = (Math.floor(Math.random() * (((s as any).tirkoef ?? 0) + ((s as any).tirmin ?? 0) - ((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0) + 1)) + (((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0)));
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'win') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'win') {
     scene.text('"Hah!" you exclaim. "I win!", before looking back.');
     scene.text('Andrei is nowhere to be seen. That bastard ran away!');
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (15);
@@ -1255,7 +1238,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'lose') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'lose') {
     scene.img('images/characters/shared/headshots_main/big172.jpg');
     scene.text('"Well seems like that did not work out as expected. Now, give me a moment while I think" says Andrei.');
     scene.text('Just a second after you start thinking about what perverted scheme he can come up with, "Oh I know!" he says.');
@@ -1547,7 +1530,7 @@ function enterNakedEncounter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNighttimeGangbang(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     if (((s as any).alko ?? 0) > 5) {
       (s as any).alko = 5;
     }
@@ -1648,7 +1631,7 @@ function enterNighttimeGangbang(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'finish') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'finish') {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     qspCall(s, 'arousal', 'hj', (-5), 'gangbang', 'exhibitionism', 'sub');
     qspCall(s, 'arousal', 'end');
@@ -1754,14 +1737,16 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'striptease', 10);
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/hunters/dance1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/dance1.'+rand...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/dance1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You stand next to the table and begin to depict something that reminds of rhythmic dance, the men start clapping.');
     scene.actions([
       { label: 'Keep dancing', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'striptease', 10);
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/hunters/dance2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/dance2.'+rand...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/dance2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('In the spur of the moment, while the men cheer you on, you remove your top, leaving you only with a bra on…');
     scene.actions([
       { label: 'Keep dancing', handler: (st: GameState) => {
@@ -1838,7 +1823,8 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_sh = (Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/sex/hunter/hantersmokbj1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersmok...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersmokbj1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   if (((s as any).hunterVars ?? 0)?.['smokeBJ'] === 0) {
     scene.text('You got comfortable on your knees and start sucking on his cock…');
   }
@@ -2022,7 +2008,8 @@ function enterSkirtBreeze(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/hantersgroupbj3.' + (Math.floor(Math.random() * 9) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupbj3.` + (Math.floor(Math.random() * 9) + 0) + '.jpg"></center>');
   scene.text('The men start taking turns, grabbing your head, forcing their cocks down your throat.');
   qspCall(s, 'boyStat', 'A172');
   qspCall(s, 'oral', 'start', 1, 'gangbang');
@@ -2035,7 +2022,8 @@ function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'The men step back for a second', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/hunter/hantersgroupvias3.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/hantersgro...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/hantersgroupvias3.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
     scene.text('Igor lies down on the ground with his cock out, he commands you to straddle him. While Igor enters you, Andrei and Sergei tell you to get back to sucking them off.');
     qspCall(st, 'boyStat', 'A174');
     qspCall(st, 'oral', 'start', 1);

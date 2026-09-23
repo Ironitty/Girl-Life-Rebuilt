@@ -18,7 +18,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt2.' + (Math.floor(Math.random() * 3) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['SergeiQw'] = ((st as any).hunterVars['SergeiQw'] ?? 0) + (1);
     qspCall(st, 'stat', '');
@@ -75,7 +76,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0) {
           scene.actions([
             { label: 'Flirt', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt1....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
     if (((st as any).hunterVars ?? 0)?.['SergeiQw'] <= 35  &&  ((st as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
@@ -154,7 +156,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_horny ?? 0) >= 60) {
             scene.actions([
               { label: 'Have sex', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt2.' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['SergeiQw'] = ((st as any).hunterVars['SergeiQw'] ?? 0) + (1);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['Sergeisex'] = ((st as any).hunterVars['Sergeisex'] ?? 0) + ((Math.floor(Math.random() * 22) + 9));
     qspCall(st, 'arousal', 'foreplay', 10);
@@ -183,7 +186,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Spend time together', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterlove1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterlove1.'...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterlove1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['SergeiQw'] = ((st as any).hunterVars['SergeiQw'] ?? 0) + (1);
@@ -206,7 +210,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Chat (0:30)', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/talk1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/talk1.'+rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/talk1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     if (((st as any).hunterVars ?? 0)?.['SergeiQw'] >= 0) {
       scene.text('You spend some time chatting with Sergei, listening to exciting stories from his life and telling some stories of your own.');
     }

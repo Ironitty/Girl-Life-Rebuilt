@@ -30,13 +30,15 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Turn to see what it is', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/mom/prost' + (Math.floor(Math.random() * 3) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/mom/prost'+...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/mom/prost` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     // TODO-QSP: dynamic text: Your mother backs out of the kitchen with a tray of food and places some in fron...
     scene.text(`Your mother backs out of the kitchen with a tray of food and places some in front of each of you. "Nice of you to finally join us, ${((st as any).pcs_nickname ?? '')}. I was beginning to think that you were never going to wake up." You giggle as you start eating.`);
     scene.actions([
       { label: 'Eat breakfast', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/mom/prost' + (Math.floor(Math.random() * 3) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/mom/prost'+...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/mom/prost` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     scene.text('Your mother suddenly shouts out. "HEY! No eating until your brother gets here!" You look and see your stepfather whispering in Kolka\'s ear, but stopping as soon as you face them.');
     scene.text('You point at Kolka. "He\'s right there…"');
     scene.text('Your mother crosses her arms. "I\'m not talking about Kolka." She walks back to the kitchen as your brother and stepfather continue cackling and whispering at each other. You look around in confusion until you hear light moaning nearby.');
@@ -406,8 +408,8 @@ function enterWoodsHome(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b><h4><font color=#E400FF>${'Happy Home'}</font></h4></b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/mansion/happyhome.jpg');
   if ((!((s as any).VKTeeHee ?? 0))) {
-    // TODO-QSP: dynamic text: You finally approach the end of the forest and see a derelict house. As you walk...
-    scene.text('You finally approach the end of the forest and see a derelict house. As you walk towards it, you can can see what appears to be a woman standing in the middle of the path leading to the house crying. \' + $OpenInnerThought + \'She must be stranded here like me. Maybe I can help her.\' + $CloseInnerThought + \' You suddenly feel a cold chill run down your spine before seeing a strange looking <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoDreams/u0027, /u0027teehee/u0027); return false;">cat</a> sitting on a tree stump, licking its paw.');
+    // TODO-QSP: dynamic text: 'You finally approach the end of the forest and see a derelict house. As you wal...
+    scene.text('\'You finally approach the end of the forest and see a derelict house. As you walk towards it, you can can see what appears to be a woman standing in the middle of the path leading to the house crying. \' + $OpenInnerThought + \'She must be stranded here like me. Maybe I can help her.\' + $CloseInnerThought + \' You suddenly feel a cold chill run down your spine before seeing a strange looking <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoDreams/u0027, /u0027teehee/u0027); return false;">cat</a> sitting on a tree stump, licking its paw.\'');
   } else {
     scene.text('There is an old derelict house in the distance, but the path to the house is blocked by a crying woman. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoDreams/u0027, /u0027teehee/u0027); return false;">TeeHee</a> continuously rubs against your leg while purring softly.');
   }
@@ -504,7 +506,7 @@ function enterWoodsHide(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
   } else {
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDreams" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     scene.text('You quickly duck behind a tree and stare into the forest. You wait for a few seconds before realizing that there\'s nothing there. You get out from behind the tree and brush the dirt from your leg.');
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods ?? '')}.jpg`);
   }
@@ -581,7 +583,8 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk through the door', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/mom/prost' + (Math.floor(Math.random() * 3) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/mom/prost'+...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/mom/prost` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     // TODO-QSP: dynamic text: You enter the room, recognizing it as your apartment. Your mother is standing in...
     scene.text(`You enter the room, recognizing it as your apartment. Your mother is standing in front of you with a sneer on her face. "${((st as any).pcs_firstname ?? '')}! You let those boys get you pregnant? I can't believe you!"`);
     scene.text('"Not only that. She\'s also been eating my pussy," Anya adds and your mother\'s eyes widen.');
@@ -591,8 +594,8 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       { label: 'Fall', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/friends/darkness.jpg');
-    // TODO-QSP: dynamic text: You fall to the ground and stare at your stomach, watching as an almost endless ...
-    scene.text(`You fall to the ground and stare at your stomach, watching as an almost endless stream of cum pours out of you. You suddenly hear someone whisper in your ear. "Hey, are you alright?" You look around to see who it was, but see nothing at all. You're surrounded by darkness. ' + $OpenInnerThought + 'Where did everyone go? Where am I? It's so dark.' + $CloseInnerThought + ' You hear the voice whisper again. "${((st as any).pcs_firstname ?? '')}, wake up…"`);
+    // TODO-QSP: dynamic text: 'You fall to the ground and stare at your stomach, watching as an almost endless...
+    scene.text(`'You fall to the ground and stare at your stomach, watching as an almost endless stream of cum pours out of you. You suddenly hear someone whisper in your ear. "Hey, are you alright?" You look around to see who it was, but see nothing at all. You're surrounded by darkness. ' + $OpenInnerThought + 'Where did everyone go? Where am I? It's so dark.' + $CloseInnerThought + ' You hear the voice whisper again. "${((st as any).pcs_firstname ?? '')}, wake up…"'`);
     scene.actions([
       { label: '…', goto: ['NikoEv2', 'niko_wake'] },
     ]);
@@ -642,8 +645,8 @@ function enterClassroomDream(s: GameState, scene: SceneBuilder): void {
       { label: 'See what he does', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/sex.jpg');
-    // TODO-QSP: dynamic text: He pushes you over, rams his dick inside you and starts thrusting. All you can t...
-    scene.text(`He pushes you over, rams his dick inside you and starts thrusting. All you can think about is the humiliation of being fucked by your teacher in front of your class. ' + $OpenInnerThought + 'Why is this happening? Why me? Will I never have a normal life again? Will I always be…' + $CloseInnerThought + ' You suddenly hear a soft voice whispering in your ear. "Hey ${((st as any).pcs_firstname ?? '')}, are you okay? Come on, get up…"`);
+    // TODO-QSP: dynamic text: 'He pushes you over, rams his dick inside you and starts thrusting. All you can ...
+    scene.text(`'He pushes you over, rams his dick inside you and starts thrusting. All you can think about is the humiliation of being fucked by your teacher in front of your class. ' + $OpenInnerThought + 'Why is this happening? Why me? Will I never have a normal life again? Will I always be…' + $CloseInnerThought + ' You suddenly hear a soft voice whispering in your ear. "Hey ${((st as any).pcs_firstname ?? '')}, are you okay? Come on, get up…"'`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -692,8 +695,8 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     { label: 'Wake up', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/shared/home/bedroom/dream/class/1.jpg');
-    // TODO-QSP: dynamic text: You awaken and slowly lift your head, looking around the room but immediately re...
-    scene.text('You awaken and slowly lift your head, looking around the room but immediately recoil in shock when you notice how dark the classroom is. \' + $OpenInnerThought + \'Whoa, how long did I sleep? Oh shit, I must have slept through the whole day! I should get home right now!\' + $CloseInnerThought + \' You quickly shove your books into your bag and walk to the door.');
+    // TODO-QSP: dynamic text: 'You awaken and slowly lift your head, looking around the room but immediately r...
+    scene.text('\'You awaken and slowly lift your head, looking around the room but immediately recoil in shock when you notice how dark the classroom is. \' + $OpenInnerThought + \'Whoa, how long did I sleep? Oh shit, I must have slept through the whole day! I should get home right now!\' + $CloseInnerThought + \' You quickly shove your books into your bag and walk to the door.\'');
     scene.actions([
       { label: 'Go to the hallway', handler: (st: GameState) => {
     if (((st as any).sound_settings ?? 0)?.['music_off'] === 0) {
@@ -712,16 +715,16 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.img('images/shared/home/bedroom/dream/class/3.jpg');
-    // TODO-QSP: dynamic text: You reach the bottom of the stairs and hear the laughter getting louder. ' + $Op...
-    scene.text('You reach the bottom of the stairs and hear the laughter getting louder. \' + $OpenInnerThought + \'Hmm, I must be getting closer.\' + $CloseInnerThought + \' The hallway is dark, but you can see a light at the end.');
+    // TODO-QSP: dynamic text: 'You reach the bottom of the stairs and hear the laughter getting louder. ' + $O...
+    scene.text('\'You reach the bottom of the stairs and hear the laughter getting louder. \' + $OpenInnerThought + \'Hmm, I must be getting closer.\' + $CloseInnerThought + \' The hallway is dark, but you can see a light at the end.\'');
     scene.actions([
       { label: 'Continue down the hallway', handler: (st: GameState) => {
     if (((st as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
     qspCall(st, 'stat', '');
     scene.img('images/shared/home/bedroom/dream/class/4.jpg');
-    // TODO-QSP: dynamic text: You continue walking down the hallway until you reach a strange puddle on the fl...
-    scene.text('You continue walking down the hallway until you reach a strange puddle on the floor, coming from one of the lockers. \' + $OpenInnerThought + \'What is this stuff? Did someone have a drink in their locker that\'s spilled?\' + $CloseInnerThought + \' When you look closer, you notice that the locker is slightly open and leaking the strange liquid.');
+    // TODO-QSP: dynamic text: 'You continue walking down the hallway until you reach a strange puddle on the f...
+    scene.text('\'You continue walking down the hallway until you reach a strange puddle on the floor, coming from one of the lockers. \' + $OpenInnerThought + \'What is this stuff? Did someone have a drink in their locker that\'s spilled?\' + $CloseInnerThought + \' When you look closer, you notice that the locker is slightly open and leaking the strange liquid.\'');
     scene.actions([
       { label: 'Open the locker', handler: (st: GameState) => {
     if (((st as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -730,8 +733,8 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><b><h4><font color=#FFA200><<"Puppet">></font></h4></b></center>
     scene.text(`<center><b><h4><font color=#FFA200>${'Puppet'}</font></h4></b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/residents/puppet.jpg');
-    // TODO-QSP: dynamic text: You slowly open the locker to find a creepy doll inside, which is constantly lau...
-    scene.text('You slowly open the locker to find a creepy doll inside, which is constantly laughing in an automated voice. \' + $OpenInnerThought + \'Who left this here? And why is it all wet? What is this stuff?\' + $CloseInnerThought + \' The doll is heavier than it looks and seems to be covered in a thick warm liquid. \' + $OpenInnerThought + \'What is this?\' + $CloseInnerThought + \' You look closely as you hold up the doll to the light and notice that the liquid is dark red, almost like blood. The doll has some strings attached to it\'s wrists and ankles. \' + $OpenInnerThought + \'Maybe it\'s a puppet?\' + $CloseInnerThought + \' You look into it\'s eyes and notice your own reflection next to something else…');
+    // TODO-QSP: dynamic text: 'You slowly open the locker to find a creepy doll inside, which is constantly la...
+    scene.text('\'You slowly open the locker to find a creepy doll inside, which is constantly laughing in an automated voice. \' + $OpenInnerThought + \'Who left this here? And why is it all wet? What is this stuff?\' + $CloseInnerThought + \' The doll is heavier than it looks and seems to be covered in a thick warm liquid. \' + $OpenInnerThought + \'What is this?\' + $CloseInnerThought + \' You look closely as you hold up the doll to the light and notice that the liquid is dark red, almost like blood. The doll has some strings attached to it\'s wrists and ankles. \' + $OpenInnerThought + \'Maybe it\'s a puppet?\' + $CloseInnerThought + \' You look into it\'s eyes and notice your own reflection next to something else…\'');
     scene.actions([
       { label: 'Turn around', handler: (st: GameState) => {
     if (((st as any).sound_settings ?? 0)?.['environment_off'] === 0) {

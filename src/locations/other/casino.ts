@@ -73,7 +73,7 @@ function enterCashier(s: GameState, scene: SceneBuilder): void {
   if (((s as any).casino_chips ?? 0) > 0) {
     scene.actions([
       { label: 'Exchange chips for money', handler: (st: GameState) => {
-    (st as any).temp_chips = 0;
+    // TODO-QSP: temp_chips = input('Enter the amount of chips you want to exchange for money, between 1 and <<casino_chips>>.')
     if (((st as any).temp_chips ?? 0) > 0  &&  ((st as any).temp_chips ?? 0) <= ((st as any).casino_chips ?? 0)) {
       qspCall(st, 'money', 'earn', ((st as any).temp_chips ?? 0));
       (st as any).casino_chips = ((st as any).casino_chips ?? 0) - (((st as any).temp_chips ?? 0));
@@ -89,7 +89,7 @@ function enterCashier(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 1) === 1  &&  ((s as any).casino_chips ?? 0) < 1000) {
     scene.actions([
       { label: 'Exchange money for chips', handler: (st: GameState) => {
-    (st as any).temp_chips = 0;
+    // TODO-QSP: temp_chips = input('Enter the amount of chips you want to buy, between 1 and <<1000 - casino_chips>>.')
     if (((st as any).temp_chips ?? 0) > 0  &&  ((st as any).temp_chips ?? 0) <= 1000 - ((st as any).casino_chips ?? 0)) {
       if (qspFunc(s, 'money', 'can_afford', ((st as any).temp_chips ?? 0))) {
         qspCall(st, 'money', 'pay', ((st as any).temp_chips ?? 0));
@@ -167,7 +167,7 @@ function enterRouletteBet1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Move away from the table', goto: ['casino', 'roulette'] },
     { label: 'Make a bet', handler: (st: GameState) => {
-    (st as any).st_1 = 0;
+    (st as any).st_1 = window.prompt("Enter the amount") ?? '';
     if (((st as any).casino_chips ?? 0) < ((st as any).st_1 ?? 0)) {
       qspGoto(st, 'casino', 'roulette_bet1');
     } else {
@@ -266,7 +266,7 @@ function enterRouletteBet2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Reconsider', goto: ['casino', 'roulette_bet2'] },
       { label: 'Choose a number', handler: (st: GameState) => {
-    (st as any).chi = 0;
+    (st as any).chi = window.prompt("Enter a number from 0-36") ?? '';
     if (((st as any).chi ?? 0) < 0  &&  ((st as any).chi ?? 0) > 36) {
       qspGoto(st, 'casino', 'roulette_bet2');
     } else {
@@ -686,7 +686,7 @@ function enterCardsCwplay(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave the table', goto: ['casino', 'cards_cw'] },
       ]);
     }
-    (st as any).bet_amount = 0;
+    (st as any).bet_amount = window.prompt("Enter the amount to bet") ?? '';
     if (((st as any).casino_chips ?? 0) < ((st as any).bet_amount ?? 0)) {
     } else {
       if (((st as any).bet_amount ?? 0) < 1) {
@@ -912,7 +912,7 @@ function enterRules(s: GameState, scene: SceneBuilder): void {
 function enterBet1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/casino/stavkabd.jpg');
   scene.text(`<center><b>You currently have ${((s as any).casino_chips ?? '')} chips.<br></b></center>`);
-  ((s as any).temp_player_bets = (s as any).temp_player_bets ?? {})[0] = 0;
+  ((s as any).temp_player_bets = (s as any).temp_player_bets ?? {})[0] = window.prompt("Place your bet.") ?? '';
   if (((s as any).casino_chips ?? 0) < ((s as any).temp_player_bets ?? 0)[0]) {
     qspGoto(s, 'casino', 'blackjack_play');
   } else {
@@ -973,7 +973,7 @@ function enterInsurance1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Bet insurance', handler: (st: GameState) => {
-    (st as any).insurance = 0;
+    (st as any).insurance = window.prompt("Place your bet.") ?? '';
     if (((st as any).casino_chips ?? 0) < ((st as any).insurance ?? 0)) {
       qspGoto(st, 'casino', 'insurance1');
     } else {
@@ -1209,7 +1209,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.img(`${qspUntranslated(s, "deckImg[temp_dealer_hand[0]]", { location: "casino" })}`);
   } else {
     (s as any).numAces = 0;

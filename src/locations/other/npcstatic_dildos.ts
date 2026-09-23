@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_do_all = (Object.keys((s as any).ARGS ?? {}).length === 0);
   (s as any).npctemp = 0;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D0'  ||  Number((s as any).locArgs?.[0] ?? 0) === 0) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D0'  ||  String((s as any).locArgs?.[0] ?? '') === 0) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 5;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 8;
@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a tiny sized';
   }
   (s as any).npctemp = 1;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D1'  ||  Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D1'  ||  String((s as any).locArgs?.[0] ?? '') === 1) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 10;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 9;
@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a small sized';
   }
   (s as any).npctemp = 2;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D2'  ||  Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D2'  ||  String((s as any).locArgs?.[0] ?? '') === 2) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 15;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 10;
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a medium sized';
   }
   (s as any).npctemp = 3;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D3'  ||  Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D3'  ||  String((s as any).locArgs?.[0] ?? '') === 3) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 20;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 11;
@@ -45,7 +45,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a large sized';
   }
   (s as any).npctemp = 4;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D4'  ||  Number((s as any).locArgs?.[0] ?? 0) === 4) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D4'  ||  String((s as any).locArgs?.[0] ?? '') === 4) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 25;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 12;
@@ -55,7 +55,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a huge sized';
   }
   (s as any).npctemp = 5;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D5'  ||  Number((s as any).locArgs?.[0] ?? 0) === 5) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D5'  ||  String((s as any).locArgs?.[0] ?? '') === 5) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 30;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 13;
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a giant sized';
   }
   (s as any).npctemp = 6;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D6'  ||  Number((s as any).locArgs?.[0] ?? 0) === 6) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D6'  ||  String((s as any).locArgs?.[0] ?? '') === 6) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 35;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 14;
@@ -75,7 +75,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['D' + String(((s as any).npctemp ?? 0))] = 'a humongous sized';
   }
   (s as any).npctemp = 7;
-  if (((s as any).temp_do_all ?? 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 'D7'  ||  Number((s as any).locArgs?.[0] ?? 0) === 7) {
+  if (((s as any).temp_do_all ?? 0)  ||  String((s as any).locArgs?.[0] ?? '') === 'D7'  ||  String((s as any).locArgs?.[0] ?? '') === 7) {
     ((s as any).npc_isinanimate = (s as any).npc_isinanimate ?? {})['D' + String(((s as any).npctemp ?? 0))] = 1;
     ((s as any).npc_dick = (s as any).npc_dick ?? {})['D' + String(((s as any).npctemp ?? 0))] = 40;
     ((s as any).npc_girth = (s as any).npc_girth ?? {})['D' + String(((s as any).npctemp ?? 0))] = 15;

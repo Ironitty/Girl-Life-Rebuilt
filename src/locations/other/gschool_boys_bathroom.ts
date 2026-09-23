@@ -212,7 +212,7 @@ function enterBoy2(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts pulling your clothes off. "Sure you do, every girl wants a strong man to fuck her."');
     scene.text('You struggle and do your best to break free, but his grip is too tight. He pushes you up against the sinks and slips his hand up your skirt.');
     if (((st as any).grupTipe ?? 0) === 4) {
-      // TODO-QSP: dynamic text: As he finds and rubs your clit '+iif($pantyworntype ! 'none', 'through your pant...
+      // TODO-QSP: dynamic text: 'As he finds and rubs your clit '+iif($pantyworntype ! 'none', 'through your pan...
       scene.text('As he finds and rubs your clit ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('through your panties') : ('')) + ', he whispers: "If you\'re an obedient little bitch, I will put in a good word with the rest. Who knows, maybe I could get you fully accepted."');
     }
     qspCall(st, 'arousal', 'foreplay', 5);
@@ -1173,7 +1173,8 @@ function enterCompanyb1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boy\'s bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       // TODO-QSP: dynamic text: Listening to <<$rand_girl>> getting her pussy violated, the constant slapping so...
       scene.text(`Listening to ${((st as any).rand_girl ?? '')} getting her pussy violated, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn't, you know it's risky, but you just can't resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.`);
@@ -1229,7 +1230,8 @@ function enterCompanyb2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boy\'s bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       // TODO-QSP: dynamic text: Listening to <<$rand_girl>> getting her ass violated, the constant slapping soun...
       scene.text(`Listening to ${((st as any).rand_girl ?? '')} getting her ass violated, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn't, you know it's risky, but you just can't resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.`);
@@ -1315,7 +1317,8 @@ function enterCompanyb3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boy\'s bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('Listening to Anushka getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Arkadi is giving Anushka. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
@@ -1395,7 +1398,8 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boy\'s bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('Listening to Anushka getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Arkadi is giving Anushka. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
@@ -1487,7 +1491,8 @@ function enterMasturbateb4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
   qspCall(s, 'arousal', 'end');
   scene.text('<center><b>Boy\'s bathroom</b></center>');
-  scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.text('Listening to Miss Orlov getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You pull your panties off, hike up your skirt and spread your legs. Your hands slide down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
     scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Mr. Kuznetsov is giving Miss Orlov. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
@@ -1551,7 +1556,8 @@ function enterCaughtb1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/locations/pavlovsk/school/bathroom/sweettalk' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/sweet...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sweettalk` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       scene.text('You hang your head and feign shame as best you can. "I know, and I\'m sorry Mr. Vasilyev, but I was feeling stressed out and I just needed a break, just a few minutes alone. I know I shouldn\'t have, but I couldn\'t help it." You give him a pleading look. "Please, please don\'t report me. I promise I won\'t do it again."');
       scene.text('Mr. Vasilyev looks at you and sighs. You think you can see pity in his eyes. "Okay. I\'ll let you off with a warning and you take some time to collect yourself, but no more cutting class, you hear me?" You nod that you understand, then he shakes his head, mumbles something that sounds like "my good nature be damned" and goes about his business. A few seconds later, the bathroom is quiet again.');
       if ((!((st as any).school_bunk ?? 0))) {
@@ -1851,7 +1857,8 @@ function enterCaughtb2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/locations/pavlovsk/school/bathroom/sweettalk' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/sweet...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sweettalk` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       scene.text('You hang your head and feign shame as best you can. "I know, and I\'m sorry Mr. Ivanov, but I was feeling stressed out and I just needed a break, just a few minutes alone. I know I shouldn\'t have but I couldn\'t help it." You give him a pleading look. "Please, please don\'t report me. I promise I won\'t do it again."');
       // TODO-QSP: dynamic text: Mr. Ivanov gives you a long, hard stare. You can see a vein twitch at his temple...
       scene.text(`Mr. Ivanov gives you a long, hard stare. You can see a vein twitch at his temple and he seems to be struggling with himself but, eventually, he nods curtly. "Okay," he hisses."I'll let you off with a warning today, Miss ${((st as any).pcs_lastname ?? '')}, but I expect you to be at the top of my class and, so help me god, if I find out you're cutting class again…" he trails off meaningfully. "Do we understand each other?"`);

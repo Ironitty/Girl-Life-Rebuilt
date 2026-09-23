@@ -182,7 +182,7 @@ function enterCoffeeHoleChatGf_1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a minute or so embracing you finish your coffee and get up. "Okay Natasha, I\'ve go to go now but I\'ll see you here or at university and we\'ll arrange some dates soon." After a brief pause you continue "Actually… What about the nightclub this weekend; what do you say?"');
     // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
     scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-    // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+    // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
     scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole Saturday. Shall we say around 20:00?"');
     scene.text('"Yes, I\'ll look forward to it." With that she you give her another kiss as you turn to leave.');
     scene.actions([
@@ -472,7 +472,7 @@ function enterCoffeeHoleNightclubdate_1CafeLeave(s: GameState, scene: SceneBuild
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/dorm.jpg');
     scene.text('You both get washed and take the metro back to Vasilyevsky Island and head to the university.');
-    // TODO-QSP: dynamic text: During the journey she tells you where her dorm room is and have a quick discuss...
+    // TODO-QSP: dynamic text: 'During the journey she tells you where her dorm room is and have a quick discus...
     scene.text('During the journey she tells you where her dorm room is and have a quick discussion about where best to meet up and agree that The Coffee Hole is the best option as Natasha isn\'t sure when her room mate will be there as she seems to spend a lot of time away and only returns occasionally. She confirms that when she isn\'t working she normally spends an hour or two in the Coffee Hole after class around 15:00.');
     scene.text('You enter the dorm room area and after passing the concierge you say your good byes and with a parting kiss promise to meet up again soon.');
     scene.actions([
@@ -557,7 +557,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
       scene.text('After obtaining her confirmation you finish your coffee and get up. "Okay Natasha, I\'ve go to go now but I\'ll see you here or at university and we\'ll arrange some dates soon. Maybe watch a movie, go shopping and so on or perhaps go to the nightclub." After a brief pause you continue "So perhaps the nightclub this weekend; what do you say?"');
       // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
       scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-      // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+      // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
       scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole on Saturday. Shall we say 20:00?"');
       scene.text('"Yes, I\'ll look forward to it." With that she you give her another kiss as you turn to leave.');
     } else {
@@ -568,7 +568,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
       scene.text('You finish your coffee and get up. "Okay Natasha, I\'ve go to go now but I\'ll see you here or at university and we\'ll arrange some dates soon. Maybe watch a movie, go shopping and so on or perhaps go to the nightclub." After a brief pause you continue "So perhaps the nightclub this weekend; what do you say?"');
       // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
       scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-      // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+      // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
       scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole on Saturday. Shall we say 20:00?"');
       scene.text('"Yes, I\'ll look forward to it." With that she you give her another kiss as you turn to leave.');
     }
@@ -637,7 +637,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
       scene.text('After obtaining her confirmation you finish your coffee and get up. "Okay Natasha, I\'ve go to go now but I\'ll see you here or maybe in your university dorm room and we\'ll arrange some dates soon. Maybe watch a movie, go shopping and so on or perhaps go to the nightclub." After a brief pause you continue. "So perhaps the nightclub this weekend; what do you say?"');
       // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
       scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-      // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+      // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
       scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole on Saturday. Shall we say 20:00?"');
       scene.text('"Yes, I\'ll look forward to it." With that she you give her another kiss as you turn to leave.');
     } else {
@@ -648,7 +648,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
       scene.text('You finish your coffee and get up. "Okay Natasha, I\'ve go to go now but I\'ll see you here or maybe in your university dorm room and we\'ll arrange some dates soon. Maybe watch a movie, go shopping and so on or perhaps go to the nightclub." After a brief pause you continue "So perhaps the nightclub this weekend; what do you say?"');
       // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
       scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-      // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+      // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
       scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole Saturday. Shall we say 20:00?"');
       scene.text('"Yes, I\'ll look forward to it." With that she you give her another kiss as you turn to leave.');
     }
@@ -780,7 +780,7 @@ function enterCoffeeHoleChatStrangers_1(s: GameState, scene: SceneBuilder): void
     scene.text('Okay look Natasha, I\'m happy to help if I can and if you need a friendly ear just let me know; maybe we can hang out and perhaps go out and about together, watch a movie, go shopping and so on or perhaps go to the nightclub. What do you say?"');
     // TODO-QSP: dynamic text: With a big grin Natasha looks at you and replies. "Oh that''d be great <<$pcs_ni...
     scene.text(`With a big grin Natasha looks at you and replies. "Oh that'd be great ${((st as any).pcs_nickname ?? '')} I love dancing but haven't had the courage to go by myself as yet."`);
-    // TODO-QSP: dynamic text: You give her a big smile in return. "Right, well it''s a date then. I''ll meet y...
+    // TODO-QSP: dynamic text: 'You give her a big smile in return. "Right, well it''s a date then. I''ll meet ...
     scene.text('You give her a big smile in return. "Right, well it\'s a date then. I\'ll meet you in The Coffee Hole Saturday. Shall we say 20:00?"');
     scene.text('Natasha nods and confirms her acceptance. "Yes I\'ll look forward to it and if either of us can\'t make it I guess we can just go on another Saturday."');
     scene.text('"So, as we\'ve finished our meal for now do you fancy a walk in the park before we head our separate ways?"');
@@ -817,7 +817,7 @@ function enterCoffeeHoleChatStrangers_1(s: GameState, scene: SceneBuilder): void
     // TODO-QSP: dynamic text: You approach Natasha, who is admiring herself in the mirror. "So, what do you th...
     scene.text(`You approach Natasha, who is admiring herself in the mirror. "So, what do you think, ${((st as any).pcs_nickname ?? '')}?" she asks, doing a slow turn on her heels. "Do you like it?"`);
     scene.text('"Natasha, that really suits you, very pretty" you say.');
-    // TODO-QSP: dynamic text: The two of you thank the stylist for his work and you pay him ' + $func('money',...
+    // TODO-QSP: dynamic text: 'The two of you thank the stylist for his work and you pay him ' + $func('money'...
     scene.text('The two of you thank the stylist for his work and you pay him 750₽ and you say to him "Guess I know where to come when I need mine done."');
     scene.text('As you leave Natasha is gushing with thanks to which you reply with a bright smile. "Just a little something which I thought would help cheer you up. Anyway I want you to look your best for our date at the nightclub."');
     scene.text('Natasha gives you a brief kiss on the cheek and a big hug. "Yeah, I\'m really looking forward to that. Anyway I\'ve got to get going now so see you soon."');
@@ -1094,7 +1094,7 @@ function enterCoffeeHoleNightclubdateStrangers_1After(s: GameState, scene: Scene
     if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       // TODO-QSP: $temp_city_work[] = 'model'
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Nope.', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/delparco1.jpg');
@@ -1127,7 +1127,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHub(s: GameState, scene: Scen
     scene.text('"That\'s completely random and some pay better than others, but it\'s a way to gaining more experience so I\'m happy to take them as I quite enjoy seeing the world through a lens; you never know I may become good enough to start doing some well paid jobs." You shrug.');
     scene.text('"Yeah I guess we\'re all trying to figure out what we want to do and even if we\'ve chosen a career path there\'s lots of different options in that chosen path."');
     scene.text('You smile at her and nod your agreement.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1141,7 +1141,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHub(s: GameState, scene: Scen
     scene.text(`Natasha blushes at your remark "${((st as any).pcs_nickname ?? '')}! Not so loud!"`);
     scene.text('You hold your hands up. "Sorry Natasha you just blush and get embarrassed so easily I can\'t resist a bit of teasing."');
     scene.text('"I know and I don\'t mind you teasing, I just need to get used to all this." You smile at her and take a sip of your drink.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1172,7 +1172,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHub(s: GameState, scene: Scen
     scene.text('"Thank you. Anyway it\'d be up to her if she wants to say something."');
     scene.text('Natasha nods her agreement and plays with her hair while beaming at you.');
     if (((st as any).firstkasting ?? 0) === 0  &&  ((st as any).modelfoto ?? 0)?.['erotic'] === 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Erm…', goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1_job_hub_porn'] },
@@ -1190,7 +1190,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHub(s: GameState, scene: Scen
     // TODO-QSP: dynamic text: "I''m trying <<$pcs_nickname>>, I just lack self confidence." She plays with her...
     scene.text(`"I'm trying ${((st as any).pcs_nickname ?? '')}, I just lack self confidence." She plays with her hair and beams at you.`);
     if (((st as any).firstkasting ?? 0) === 0  &&  ((st as any).modelfoto ?? 0)?.['erotic'] === 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Erm…', goto: ['natbel_uni_chat', 'coffee_hole_nightclubdate_strangers_1_job_hub_porn'] },
@@ -1274,7 +1274,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHubPorn(s: GameState, scene: 
       scene.text('"Well… Yes Natasha, I didn\'t want to say anything as I really don\'t want that known as it\'d just cause problems but yes I do it because the money is good. Anyway, now that my racing is starting to provide a good income plus the model work it should be fine so it shouldn\'t be much longer before I can stop if I want as I\'ll also be able to do the sports modelling work which comes with better pay. Maybe I\'ll be able to stop soon, I\'ll have to think about that. Also I\'m sorry I lied to you initially, that wasn\'t nice!"');
       scene.text('You take hold of her hand and give it a friendly squeeze.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeHoleNightclubdateStrangers_1JobHub(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

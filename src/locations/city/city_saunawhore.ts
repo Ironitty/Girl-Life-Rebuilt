@@ -27,13 +27,13 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Sauna</b></center>');
   scene.img('images/locations/city/residential/sauna/sauna1.jpg');
   scene.text('');
-  // TODO-QSP: dynamic text: The sauna is open to "customers" between '+func('time', 'get_time_string', 8, 0)...
+  // TODO-QSP: dynamic text: 'The sauna is open to "customers" between '+func('time', 'get_time_string', 8, 0...
   scene.text('The sauna is open to "customers" between 8:00 and 0:00.');
   scene.text('All the walls are covered in <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>.');
   if (((s as any).saunaWorkNow ?? 0) === 1) {
     (s as any).saunaWorkNow = 0;
     qspCall(s, 'money', 'pay', ((s as any).paymamka ?? 0));
-    // TODO-QSP: dynamic text: A nurse enters the room and takes ' + $func('money', 'string_price', paymamka) +...
+    // TODO-QSP: dynamic text: 'A nurse enters the room and takes ' + $func('money', 'string_price', paymamka) ...
     scene.text('A nurse enters the room and takes \' + $func(\'money\', \'string_price\', paymamka) + \' per customer from you.');
   }
   if (((s as any).workDolg ?? 0) > 0) {
@@ -245,11 +245,11 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/office/clener2.jpg');
     if (((st as any).workDolg ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You scrub the sauna toilets for an hour, reducing your debt by ' + $func('money'...
+      // TODO-QSP: dynamic text: 'You scrub the sauna toilets for an hour, reducing your debt by ' + $func('money...
       scene.text('You scrub the sauna toilets for an hour, reducing your debt by \' + $func(\'money\', \'string_debt_reduction\', 100) + \'.');
       qspCall(st, 'money', 'debt_pay', 'workDolg', 100, 'none');
     } else {
-      // TODO-QSP: dynamic text: You scrub the sauna toilets for an hour. You are paid ' + $func('money', 'string...
+      // TODO-QSP: dynamic text: 'You scrub the sauna toilets for an hour. You are paid ' + $func('money', 'strin...
       scene.text('You scrub the sauna toilets for an hour. You are paid \' + $func(\'money\', \'string_profit\', 100) + \' for your work.');
       qspCall(st, 'money', 'earn', 100);
     }
@@ -269,11 +269,11 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/office/clener1.jpg');
     if (((st as any).workDolg ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You spend an hour mopping and scrubbing all the floors, reducing your debt by ' ...
+      // TODO-QSP: dynamic text: 'You spend an hour mopping and scrubbing all the floors, reducing your debt by '...
       scene.text('You spend an hour mopping and scrubbing all the floors, reducing your debt by \' + $func(\'money\', \'string_debt_reduction\', 100) + \'.');
       qspCall(st, 'money', 'debt_pay', 'workDolg', 100, 'none');
     } else {
-      // TODO-QSP: dynamic text: You spend an hour mopping and scrubbing all the floors. You are paid ' + $func('...
+      // TODO-QSP: dynamic text: 'You spend an hour mopping and scrubbing all the floors. You are paid ' + $func(...
       scene.text('You spend an hour mopping and scrubbing all the floors. You are paid \' + $func(\'money\', \'string_profit\', 100) + \' for your work.');
       qspCall(st, 'money', 'earn', 100);
     }
@@ -332,7 +332,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).SifacOnce ?? 0) === 1) {
         (st as any).SifNapr = 1;
         scene.text('You have syphilis which if untreated can be fatal. However, thanks to modern medicine can now be cured with a single shot.');
-        // TODO-QSP: dynamic text: The injection will cost ' + $func('money', 'string_debt_addition', 1000) + ', wh...
+        // TODO-QSP: dynamic text: 'The injection will cost ' + $func('money', 'string_debt_addition', 1000) + ', w...
         scene.text('The injection will cost \' + $func(\'money\', \'string_debt_addition\', 1000) + \', which will be added to your debt or put you in debt if not already.');
       }
       if (((st as any).TriperOnce ?? 0) === 1) {
@@ -377,7 +377,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/brothelshower.jpg');
   scene.text('');
   scene.text('You enter the staff bathroom, which is usually cleaned by the new girls who have just started working here, whether they want to or not.');
-  // TODO-QSP: dynamic text: There is a <a href="exec:gt ''mirror'', ''start''">mirror</a>, where you can ' +...
+  // TODO-QSP: dynamic text: 'There is a <a href="exec:gt ''mirror'', ''start''">mirror</a>, where you can ' ...
   scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, a shower, toilet and a sink.');
   if (((s as any).mc_inventory ?? 0)?.['razor'] > 0) {
     if (((s as any).workDolg ?? 0) > 0) {
@@ -633,7 +633,8 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
     }
   }
-  scene.img('images/locations/city/residential/sauna/sex/striptease' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/striptease` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('Hoping to please the customer, you decide to give him a little show. You count a beat in your head and begin dancing, slowly stripping away your clothes, one piece at a time. It would probably be better if you had actual music, but the client smirks and seems to enjoy it nonetheless.');
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'arousal', 'striptease', 5, 'prostitution');
@@ -654,7 +655,8 @@ function enterSimplystrip(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     }
   }
-  scene.img('images/locations/city/residential/sauna/sex/simplystrip' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/simplystrip` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You remove your clothes and toss them aside, mentally preparing for the task ahead. The client looks vaguely irritated - perhaps he expected something a bit more provocative?');
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) - (1);
   qspCall(s, 'arousal', 'foreplay', 2, 'prostitution');
@@ -696,7 +698,8 @@ function enterNakeddance(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
   }
-  scene.img('images/locations/city/residential/sauna/sex/nakeddance' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/nakeddance` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
   scene.text('You walk towards the client, straddle his legs, and begin to dance. He leans back and you proceed to give him the best lapdance you can muster. You alternate between rubbing your breasts in his face and turning around to grind your ass on his crotch. Judging from the hardness in his pants, it seems that he is pleased with your efforts.');
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
@@ -716,7 +719,8 @@ function enterHoleshow(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
   }
-  scene.img('images/locations/city/residential/sauna/sex/holeshow' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/holeshow` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('You decide to tease him further. You lean in close to him and open your mouth, sticking your tongue out and sucking your fingers before you turn around, bend over and grab your ass with both hands.');
   scene.text('You pull your ass cheeks apart, giving him a great view of both your holes.');
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
@@ -732,7 +736,8 @@ function enterHoleshow(s: GameState, scene: SceneBuilder): void {
 function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).moodType ?? 0) === 'fairly normal') {
-    scene.img('images/locations/city/residential/sauna/sex/blowjob' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/blowjob` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You kneel in front of him and bite your lip, caressing his cock through his pant...
     scene.text(`You kneel in front of him and bite your lip, caressing his cock through his pants with your hands. He pulls out his ${((s as any).dick_girth ?? '')} dick and brings it to your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips.`);
     scene.text('You start kissing the tip, licking it all around and putting it a bit inside your mouth and sucking the head.');
@@ -743,7 +748,8 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).moodType ?? 0) === 'good') {
-      scene.img('images/locations/city/residential/sauna/sex/blowjob' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/blowjob` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
       scene.text('You kneel in front of him and bite your lip, caressing his cock through his pants with your hand.');
       scene.text('He then fondles your hair and face and takes you gently by your arm, pulling you up from the floor. He directs you to the bed, undresses and both of you lie down.');
       scene.actions([
@@ -751,7 +757,8 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).moodType ?? 0) === 'bad') {
-        scene.img('images/locations/city/residential/sauna/sex/slapface' + (Math.floor(Math.random() * 1) + 1) + '.mp4');
+        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+        scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/slapface` + (Math.floor(Math.random() * 1) + 1) + '.mp4"></video></center>');
         scene.text('You kneel in front of him and bite your lip, caressing his cock through his pants with your hands.');
         scene.text('He comes close to you and suddenly slaps your face hard. You\'re caught by surprise and tears well up in your eyes. He seems very angry and even aroused by your misfortune.');
         scene.text('As you kneel in front of him in tears, he grabs you roughly by your arms, painfully twisting them behind your back, and slams you down on the bed.');
@@ -803,21 +810,24 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
   (s as any).moodChange = (Math.floor(Math.random() * (0 - (-2) + 1)) + ((-2)));
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (((s as any).moodChange ?? 0));
   if (((s as any).moodType ?? 0) === 'good') {
-    scene.img('images/locations/city/residential/sauna/sex/blowjob' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/blowjob` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     scene.text('He seems to enjoy your efforts anyway, and signals that he\'s ready to move on to the next stage.');
     scene.actions([
       { label: 'Continue', goto: ['city_saunawhore', 'fuckGate'] },
     ]);
   } else {
     if (((s as any).moodType ?? 0) === 'fairly normal') {
-      scene.img('images/locations/city/residential/sauna/sex/blowjob' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/blowjob` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
       scene.text('He seem to have had enough as he takes your hand and directs you towards the bed.');
       scene.actions([
         { label: 'Continue', goto: ['city_saunawhore', 'fuckGate'] },
       ]);
     } else {
       if (((s as any).moodType ?? 0) === 'bad') {
-        scene.img('images/locations/city/residential/sauna/sex/slapface' + (Math.floor(Math.random() * 1) + 1) + '.mp4');
+        // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+        scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/slapface` + (Math.floor(Math.random() * 1) + 1) + '.mp4"></video></center>');
         scene.text('He scowls at your pathetic attempt and pulls his cock out of your mouth.');
         (s as any).question = 0;
         if (((s as any).question ?? 0) === 1) {
@@ -847,7 +857,8 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
 function enterBlowjobDeepthroat(s: GameState, scene: SceneBuilder): void {
   (s as any).moodChange = ((s as any).moodChange ?? 0) + ((Math.floor(Math.random() * (2 - (-1) + 1)) + ((-1))));
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (((s as any).moodChange ?? 0));
-  scene.img('images/locations/city/residential/sauna/sex/deepthroat' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/deepthroat` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   // TODO-QSP: dynamic text: The client groans as you take him all the way to the hilt - his <<$dick_girth>> ...
   scene.text(`The client groans as you take him all the way to the hilt - his ${((s as any).dick_girth ?? '')} ${((s as any).dick ?? '')}cm cock is pushing deep into your throat.`);
   scene.text('You try to hold it as long as possible while teasing his balls with your tongue.');
@@ -933,7 +944,8 @@ function enterFuckGateGo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckVaginal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/fuckvaginal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/fuckvaginal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('He climbs on top of you and pushes his dick inside you.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_vag ?? 0)) {
     // TODO-QSP: dynamic text: His <<$dick_girth>> <<dick>>cm cock is too big for your pussy and causes you int...
@@ -971,7 +983,8 @@ function enterFuckVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckAnal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/fuckanal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/fuckanal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('He climbs on the bed behind you, presses the tip of his dick against your asshole and begins to push it in.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_ass ?? 0)) {
     // TODO-QSP: dynamic text: His <<dick>> cm <<$dick_girth>> cock is too big for your ass and causes you inte...
@@ -1037,7 +1050,8 @@ function enterFuckRoughGate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckRoughVaginal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/fuckroughvaginal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/fuckroughvaginal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('He forces his dick inside you and begins to roughly fuck your tender pussy.');
   scene.text('You cannot help but scream in pain, which seems to arouse him even more and makes him push even harder and deeper.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_vag ?? 0)) {
@@ -1070,7 +1084,8 @@ function enterFuckRoughVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckRoughAnal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/fuckroughanal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/fuckroughanal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('He roughly shoves his entire cock up your ass and begins to fuck it furiously.');
   scene.text('You cannot help but scream in agony, which arouses him even more and makes him push even harder and deeper.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_ass ?? 0)) {
@@ -1240,7 +1255,8 @@ function enterCumVaginal(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    scene.img('images/locations/city/residential/sauna/sex/cumvaginal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumvaginal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: The client''s cock twitches several more times, and you feel a warmth spreading ...
     scene.text(`The client's cock twitches several more times, and you feel a warmth spreading inside you as he pumps ${((s as any).cumType ?? '')} cum deep inside your pussy.`);
     qspCall(s, 'cum_call', '', '', 'sauna client', 0, 0, 0, ((s as any).cumVolMl ?? 0));
@@ -1280,7 +1296,8 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    scene.img('images/locations/city/residential/sauna/sex/cumanal' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumanal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: The client''s cock twitches several more times, and you feel a warmth spreading ...
     scene.text(`The client's cock twitches several more times, and you feel a warmth spreading inside you as he pumps ${((s as any).cumType ?? '')} cum deep inside your bowels.`);
     if ((Math.floor(Math.random() * 100) + 1) >= 70) {
@@ -1297,7 +1314,8 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumFace(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/cumface' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumface` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   if (((s as any).useCondom ?? 0) === 1) {
     // TODO-QSP: dynamic text: The client rips the condom from his dick and <<$cumType>> cum splatters all over...
     scene.text(`The client rips the condom from his dick and ${((s as any).cumType ?? '')} cum splatters all over your face.`);
@@ -1315,7 +1333,8 @@ function enterCumFace(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumMouth(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/cummouth' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cummouth` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   if (((s as any).useCondom ?? 0) === 1) {
     // TODO-QSP: dynamic text: The client rips the condom from his dick and shoots <<$cumType>> cum inside your...
     scene.text(`The client rips the condom from his dick and shoots ${((s as any).cumType ?? '')} cum inside your mouth.`);
@@ -1336,7 +1355,8 @@ function enterCumMouth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumBelly(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/cumbelly' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumbelly` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   if (((s as any).useCondom ?? 0) === 1) {
     // TODO-QSP: dynamic text: The client rips the condom from his dick and <<$cumType>> cum splatters all over...
     scene.text(`The client rips the condom from his dick and ${((s as any).cumType ?? '')} cum splatters all over your belly.`);
@@ -1354,7 +1374,8 @@ function enterCumBelly(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumTits(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/sauna/sex/cumtits' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/residenti...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumtits` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('You kneel down in front of him, raising your breasts higher for him to shoot his load on them.');
   if (((s as any).useCondom ?? 0) === 1) {
     // TODO-QSP: dynamic text: The client rips the condom from his dick and shoots <<$cumType>> cum all over yo...
@@ -1437,12 +1458,12 @@ function enterBdsmclient(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/sauna/givemoney.jpg');
     if (((st as any).workDolg ?? 0) > 0) {
       qspCall(st, 'money', 'debt_pay', 'workDolg', ((st as any).payment ?? 0), 'none');
-      // TODO-QSP: dynamic text: The client leaves the room and pays the sauna ' + $func('money', 'string_debt_re...
+      // TODO-QSP: dynamic text: 'The client leaves the room and pays the sauna ' + $func('money', 'string_debt_r...
       scene.text('The client leaves the room and pays the sauna \' + $func(\'money\', \'string_debt_reduction\', payment) + \' for your services.');
       scene.text('The men untie you and have you slowly turn around so the madam can be sure you are unmarked, then leave.');
     } else {
       qspCall(st, 'money', 'earn', ((st as any).payment ?? 0));
-      // TODO-QSP: dynamic text: The client counts the money out as his men untie you. He hands you ' + $func('mo...
+      // TODO-QSP: dynamic text: 'The client counts the money out as his men untie you. He hands you ' + $func('m...
       scene.text('The client counts the money out as his men untie you. He hands you \' + $func(\'money\', \'string_profit\', payment) + \' for your services.');
     }
     qspCall(st, 'arousal', 'end');
@@ -1482,7 +1503,7 @@ function enterClientLeave(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/givemoney.jpg');
   if (((s as any).workDolg ?? 0) > 0) {
     qspCall(s, 'money', 'debt_pay', 'workDolg', ((s as any).payment ?? 0), 'none');
-    // TODO-QSP: dynamic text: Having finished with you, the client gets dressed, leaves the room and pays the ...
+    // TODO-QSP: dynamic text: 'Having finished with you, the client gets dressed, leaves the room and pays the...
     scene.text('Having finished with you, the client gets dressed, leaves the room and pays the sauna \' + $func(\'money\', \'string_debt_reduction\', payment) + \' for your services.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1491,9 +1512,9 @@ function enterClientLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).nichTarSauna ?? 0) === 1) {
       (s as any).nichTarSaunaPay = ((s as any).nichTarSaunaPay ?? 0) + (((s as any).payment ?? 0));
-      // TODO-QSP: dynamic text: Having finished with you, the client gets dressed, leaves the room and pays the ...
+      // TODO-QSP: dynamic text: 'Having finished with you, the client gets dressed, leaves the room and pays the...
       scene.text('Having finished with you, the client gets dressed, leaves the room and pays the sauna \' + $func(\'money\', \'string_profit\', payment) + \' for your services. This money will be collected by Taras later.');
-      // TODO-QSP: dynamic text: You earned ' + $func('money', 'string_profit', nichTarSaunaPay) + ' for Taras.
+      // TODO-QSP: dynamic text: 'You earned ' + $func('money', 'string_profit', nichTarSaunaPay) + ' for Taras.'
       scene.text('You earned \' + $func(\'money\', \'string_profit\', nichTarSaunaPay) + \' for Taras.');
       qspCall(s, 'arousal', 'end');
       scene.actions([
@@ -1501,7 +1522,7 @@ function enterClientLeave(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(s, 'money', 'earn', ((s as any).payment ?? 0));
-      // TODO-QSP: dynamic text: Having finished with you, the client gets dressed, takes his wallet out and hand...
+      // TODO-QSP: dynamic text: 'Having finished with you, the client gets dressed, takes his wallet out and han...
       scene.text('Having finished with you, the client gets dressed, takes his wallet out and hands you \' + $func(\'money\', \'string_profit\', payment) + \'.');
       qspCall(s, 'arousal', 'end');
       scene.actions([

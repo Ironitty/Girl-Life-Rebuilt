@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).CloQuality = 6;
     (s as any).CloStrength = 202500;
     (s as any).CloThinness = 3;
@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).CloPantsShortness = 1;
     (s as any).CloPrice = 5800;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).CloQuality = 4;
       (s as any).CloStrength = 191250;
       (s as any).CloThinness = 4;
@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloPantsShortness = 5;
       (s as any).CloPrice = 5400;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).CloQuality = 6;
         (s as any).CloStrength = 202500;
         (s as any).CloThinness = 2;
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).CloPantsShortness = 1;
         (s as any).CloPrice = 5800;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).CloQuality = 6;
           (s as any).CloStrength = 202500;
           (s as any).CloThinness = 3;
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).CloPantsShortness = 5;
           (s as any).CloPrice = 5800;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).CloQuality = 4;
             (s as any).CloStrength = 191250;
             (s as any).CloThinness = 4;
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).CloPantsShortness = 5;
             (s as any).CloPrice = 5400;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).CloQuality = 5;
               (s as any).CloStrength = 196875;
               (s as any).CloThinness = 4;
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).CloSkirtShortness = 3;
               (s as any).CloPrice = 5600;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).CloQuality = 5;
                 (s as any).CloStrength = 196875;
                 (s as any).CloThinness = 4;
@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).CloPantsShortness = 1;
                 (s as any).CloPrice = 5600;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).CloQuality = 6;
                   (s as any).CloStrength = 202500;
                   (s as any).CloThinness = 3;
@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).CloPantsShortness = 1;
                   (s as any).CloPrice = 5800;
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).CloQuality = 6;
                     (s as any).CloStrength = 202500;
                     (s as any).CloThinness = 4;
@@ -75,7 +75,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).CloPantsShortness = 5;
                     (s as any).CloPrice = 5800;
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).CloQuality = 6;
                       (s as any).CloStrength = 202500;
                       (s as any).CloThinness = 4;
@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).CloBimbo = 1;
                       (s as any).CloPrice = 5800;
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).CloQuality = 5;
                         (s as any).CloStrength = 196875;
                         (s as any).CloThinness = 2;
@@ -92,7 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).CloPantsShortness = 1;
                         (s as any).CloPrice = 5600;
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (String((s as any).locArgs?.[0] ?? '') === 12) {
                           (s as any).CloQuality = 7;
                           (s as any).CloStrength = 208125;
                           (s as any).CloThinness = 3;
@@ -100,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).CloPantsShortness = 1;
                           (s as any).CloPrice = 6000;
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (String((s as any).locArgs?.[0] ?? '') === 13) {
                             (s as any).CloQuality = 5;
                             (s as any).CloStrength = 196875;
                             (s as any).CloThinness = 4;
@@ -108,7 +108,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).CloPantsShortness = 1;
                             (s as any).CloPrice = 5600;
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (String((s as any).locArgs?.[0] ?? '') === 14) {
                               (s as any).CloQuality = 4;
                               (s as any).CloStrength = 191250;
                               (s as any).CloThinness = 4;
@@ -117,7 +117,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).CloOnePiece = 1;
                               (s as any).CloPrice = 5400;
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (String((s as any).locArgs?.[0] ?? '') === 15) {
                                 (s as any).CloQuality = 6;
                                 (s as any).CloStrength = 202500;
                                 (s as any).CloThinness = 4;
@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).CloOnePiece = 1;
                                 (s as any).CloPrice = 5800;
                               } else {
-                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (String((s as any).locArgs?.[0] ?? '') === 16) {
                                   (s as any).CloQuality = 4;
                                   (s as any).CloStrength = 191250;
                                   (s as any).CloThinness = 4;
@@ -134,7 +134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).CloPantsShortness = 6;
                                   (s as any).CloPrice = 5400;
                                 } else {
-                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === 17) {
                                     (s as any).CloQuality = 4;
                                     (s as any).CloStrength = 191250;
                                     (s as any).CloThinness = 4;
@@ -142,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).CloPantsShortness = 1;
                                     (s as any).CloPrice = 5400;
                                   } else {
-                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === 18) {
                                       (s as any).CloQuality = 4;
                                       (s as any).CloStrength = 191250;
                                       (s as any).CloThinness = 3;
@@ -150,7 +150,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).CloSkirtShortness = 4;
                                       (s as any).CloPrice = 5400;
                                     } else {
-                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (String((s as any).locArgs?.[0] ?? '') === 19) {
                                         (s as any).CloQuality = 5;
                                         (s as any).CloStrength = 196875;
                                         (s as any).CloThinness = 4;
@@ -159,7 +159,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).CloOnePiece = 1;
                                         (s as any).CloPrice = 5600;
                                       } else {
-                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (String((s as any).locArgs?.[0] ?? '') === 20) {
                                           (s as any).CloQuality = 6;
                                           (s as any).CloStrength = 202500;
                                           (s as any).CloThinness = 4;
@@ -167,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).CloPantsShortness = 1;
                                           (s as any).CloPrice = 5800;
                                         } else {
-                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (String((s as any).locArgs?.[0] ?? '') === 21) {
                                             (s as any).CloQuality = 7;
                                             (s as any).CloStrength = 208125;
                                             (s as any).CloThinness = 4;
@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).CloPantsShortness = 1;
                                             (s as any).CloPrice = 6000;
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 22) {
                                               (s as any).CloQuality = 4;
                                               (s as any).CloStrength = 191250;
                                               (s as any).CloThinness = 4;
@@ -183,7 +183,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).CloPantsShortness = 1;
                                               (s as any).CloPrice = 5400;
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 23) {
                                                 (s as any).CloQuality = 4;
                                                 (s as any).CloStrength = 191250;
                                                 (s as any).CloThinness = 4;
@@ -191,7 +191,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).CloPantsShortness = 1;
                                                 (s as any).CloPrice = 5400;
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 24) {
                                                   (s as any).CloQuality = 5;
                                                   (s as any).CloStrength = 196875;
                                                   (s as any).CloThinness = 4;
@@ -199,7 +199,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).CloPantsShortness = 1;
                                                   (s as any).CloPrice = 5600;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 25) {
                                                     (s as any).CloQuality = 6;
                                                     (s as any).CloStrength = 202500;
                                                     (s as any).CloThinness = 4;
@@ -207,7 +207,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).CloPantsShortness = 1;
                                                     (s as any).CloPrice = 5800;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (String((s as any).locArgs?.[0] ?? '') === 26) {
                                                       (s as any).CloQuality = 6;
                                                       (s as any).CloStrength = 202500;
                                                       (s as any).CloThinness = 4;
@@ -216,7 +216,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).CloOnePiece = 1;
                                                       (s as any).CloPrice = 5800;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (String((s as any).locArgs?.[0] ?? '') === 27) {
                                                         (s as any).CloQuality = 4;
                                                         (s as any).CloStrength = 191250;
                                                         (s as any).CloThinness = 4;
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).CloPantsShortness = 5;
                                                         (s as any).CloPrice = 5400;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (String((s as any).locArgs?.[0] ?? '') === 28) {
                                                           (s as any).CloQuality = 6;
                                                           (s as any).CloStrength = 202500;
                                                           (s as any).CloThinness = 4;
@@ -232,7 +232,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).CloPantsShortness = 1;
                                                           (s as any).CloPrice = 5800;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (String((s as any).locArgs?.[0] ?? '') === 29) {
                                                             (s as any).CloQuality = 4;
                                                             (s as any).CloStrength = 191250;
                                                             (s as any).CloThinness = 4;
@@ -240,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).CloPantsShortness = 5;
                                                             (s as any).CloPrice = 5400;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (String((s as any).locArgs?.[0] ?? '') === 30) {
                                                               (s as any).CloQuality = 6;
                                                               (s as any).CloStrength = 202500;
                                                               (s as any).CloThinness = 4;
@@ -248,7 +248,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               (s as any).CloPantsShortness = 5;
                                                               (s as any).CloPrice = 5800;
                                                             } else {
-                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 31) {
+                                                              if (String((s as any).locArgs?.[0] ?? '') === 31) {
                                                                 (s as any).CloQuality = 6;
                                                                 (s as any).CloStrength = 202500;
                                                                 (s as any).CloThinness = 3;
@@ -256,7 +256,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                 (s as any).CloSkirtShortness = 4;
                                                                 (s as any).CloPrice = 5800;
                                                               } else {
-                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 32) {
+                                                                if (String((s as any).locArgs?.[0] ?? '') === 32) {
                                                                   (s as any).CloQuality = 7;
                                                                   (s as any).CloStrength = 208125;
                                                                   (s as any).CloThinness = 2;
@@ -264,7 +264,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   (s as any).CloPantsShortness = 1;
                                                                   (s as any).CloPrice = 6000;
                                                                 } else {
-                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 33) {
+                                                                  if (String((s as any).locArgs?.[0] ?? '') === 33) {
                                                                     (s as any).CloQuality = 4;
                                                                     (s as any).CloStrength = 191250;
                                                                     (s as any).CloThinness = 4;
@@ -272,7 +272,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     (s as any).CloSkirtShortness = 5;
                                                                     (s as any).CloPrice = 5400;
                                                                   } else {
-                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 34) {
+                                                                    if (String((s as any).locArgs?.[0] ?? '') === 34) {
                                                                       (s as any).CloQuality = 5;
                                                                       (s as any).CloStrength = 196875;
                                                                       (s as any).CloThinness = 4;
@@ -280,7 +280,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                       (s as any).CloSkirtShortness = 4;
                                                                       (s as any).CloPrice = 5600;
                                                                     } else {
-                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 35) {
+                                                                      if (String((s as any).locArgs?.[0] ?? '') === 35) {
                                                                         (s as any).CloQuality = 5;
                                                                         (s as any).CloStrength = 196875;
                                                                         (s as any).CloThinness = 4;
@@ -288,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                         (s as any).CloPantsShortness = 1;
                                                                         (s as any).CloPrice = 5600;
                                                                       } else {
-                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 36) {
+                                                                        if (String((s as any).locArgs?.[0] ?? '') === 36) {
                                                                           (s as any).CloQuality = 4;
                                                                           (s as any).CloStrength = 191250;
                                                                           (s as any).CloThinness = 4;
@@ -297,7 +297,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).CloOnePiece = 1;
                                                                           (s as any).CloPrice = 5400;
                                                                         } else {
-                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 37) {
+                                                                          if (String((s as any).locArgs?.[0] ?? '') === 37) {
                                                                             (s as any).CloQuality = 6;
                                                                             (s as any).CloStrength = 202500;
                                                                             (s as any).CloThinness = 4;
@@ -306,7 +306,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                             (s as any).CloOnePiece = 1;
                                                                             (s as any).CloPrice = 5800;
                                                                           } else {
-                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 38) {
+                                                                            if (String((s as any).locArgs?.[0] ?? '') === 38) {
                                                                               (s as any).CloQuality = 5;
                                                                               (s as any).CloStrength = 196875;
                                                                               (s as any).CloThinness = 4;
@@ -315,7 +315,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                               (s as any).CloOnePiece = 1;
                                                                               (s as any).CloPrice = 5600;
                                                                             } else {
-                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 39) {
+                                                                              if (String((s as any).locArgs?.[0] ?? '') === 39) {
                                                                                 (s as any).CloQuality = 5;
                                                                                 (s as any).CloStrength = 196875;
                                                                                 (s as any).CloThinness = 4;
@@ -324,7 +324,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                 (s as any).CloOnePiece = 1;
                                                                                 (s as any).CloPrice = 5600;
                                                                               } else {
-                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 40) {
+                                                                                if (String((s as any).locArgs?.[0] ?? '') === 40) {
                                                                                   (s as any).CloQuality = 6;
                                                                                   (s as any).CloStrength = 202500;
                                                                                   (s as any).CloThinness = 4;
@@ -333,7 +333,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                   (s as any).CloOnePiece = 1;
                                                                                   (s as any).CloPrice = 5800;
                                                                                 } else {
-                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 41) {
+                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 41) {
                                                                                     (s as any).CloQuality = 5;
                                                                                     (s as any).CloStrength = 196875;
                                                                                     (s as any).CloThinness = 4;
@@ -341,7 +341,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                     (s as any).CloPantsShortness = 1;
                                                                                     (s as any).CloPrice = 5600;
                                                                                   } else {
-                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 42) {
+                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 42) {
                                                                                       (s as any).CloQuality = 5;
                                                                                       (s as any).CloStrength = 196875;
                                                                                       (s as any).CloThinness = 3;
@@ -350,7 +350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                       (s as any).CloOnePiece = 1;
                                                                                       (s as any).CloPrice = 5600;
                                                                                     } else {
-                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 43) {
+                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 43) {
                                                                                         (s as any).CloQuality = 4;
                                                                                         (s as any).CloStrength = 191250;
                                                                                         (s as any).CloThinness = 4;
@@ -359,7 +359,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                         (s as any).CloOnePiece = 1;
                                                                                         (s as any).CloPrice = 5400;
                                                                                       } else {
-                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 44) {
+                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 44) {
                                                                                           (s as any).CloQuality = 5;
                                                                                           (s as any).CloStrength = 196875;
                                                                                           (s as any).CloThinness = 4;
@@ -368,7 +368,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                           (s as any).CloOnePiece = 1;
                                                                                           (s as any).CloPrice = 5600;
                                                                                         } else {
-                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 45) {
+                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 45) {
                                                                                             (s as any).CloQuality = 6;
                                                                                             (s as any).CloStrength = 202500;
                                                                                             (s as any).CloThinness = 3;
@@ -376,7 +376,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                             (s as any).CloPantsShortness = 1;
                                                                                             (s as any).CloPrice = 5800;
                                                                                           } else {
-                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 46) {
+                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 46) {
                                                                                               (s as any).CloQuality = 4;
                                                                                               (s as any).CloStrength = 191250;
                                                                                               (s as any).CloThinness = 5;
@@ -384,7 +384,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                               (s as any).CloPanties = 1;
                                                                                               (s as any).CloPrice = 5400;
                                                                                             } else {
-                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 47) {
+                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 47) {
                                                                                                 (s as any).CloQuality = 7;
                                                                                                 (s as any).CloStrength = 208125;
                                                                                                 (s as any).CloThinness = 5;
@@ -392,7 +392,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                 (s as any).CloPanties = 1;
                                                                                                 (s as any).CloPrice = 6000;
                                                                                               } else {
-                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 48) {
+                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 48) {
                                                                                                   (s as any).CloQuality = 6;
                                                                                                   (s as any).CloStrength = 202500;
                                                                                                   (s as any).CloThinness = 3;
@@ -400,7 +400,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                   (s as any).CloPrice = 5800;
                                                                                                 } else {
-                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 49) {
+                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 49) {
                                                                                                     (s as any).CloQuality = 4;
                                                                                                     (s as any).CloStrength = 191250;
                                                                                                     (s as any).CloThinness = 3;
@@ -408,7 +408,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     (s as any).CloPantsShortness = 1;
                                                                                                     (s as any).CloPrice = 5400;
                                                                                                   } else {
-                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 50) {
+                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 50) {
                                                                                                       (s as any).CloQuality = 5;
                                                                                                       (s as any).CloStrength = 196875;
                                                                                                       (s as any).CloThinness = 4;
@@ -416,7 +416,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       (s as any).CloPantsShortness = 1;
                                                                                                       (s as any).CloPrice = 5600;
                                                                                                     } else {
-                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 51) {
+                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 51) {
                                                                                                         (s as any).CloQuality = 6;
                                                                                                         (s as any).CloStrength = 202500;
                                                                                                         (s as any).CloThinness = 3;
@@ -424,7 +424,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                         (s as any).CloPantsShortness = 1;
                                                                                                         (s as any).CloPrice = 5800;
                                                                                                       } else {
-                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 52) {
+                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 52) {
                                                                                                           (s as any).CloQuality = 7;
                                                                                                           (s as any).CloStrength = 208125;
                                                                                                           (s as any).CloThinness = 2;
@@ -432,7 +432,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                           (s as any).CloPrice = 6000;
                                                                                                         } else {
-                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 53) {
+                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 53) {
                                                                                                             (s as any).CloQuality = 5;
                                                                                                             (s as any).CloStrength = 196875;
                                                                                                             (s as any).CloThinness = 2;
@@ -440,7 +440,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                             (s as any).CloSkirtShortness = 4;
                                                                                                             (s as any).CloPrice = 5600;
                                                                                                           } else {
-                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 54) {
+                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 54) {
                                                                                                               (s as any).CloQuality = 4;
                                                                                                               (s as any).CloStrength = 191250;
                                                                                                               (s as any).CloThinness = 4;
@@ -448,7 +448,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                               (s as any).CloPrice = 5400;
                                                                                                             } else {
-                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 55) {
+                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 55) {
                                                                                                                 (s as any).CloQuality = 6;
                                                                                                                 (s as any).CloStrength = 202500;
                                                                                                                 (s as any).CloThinness = 4;
@@ -457,7 +457,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                 (s as any).CloOnePiece = 1;
                                                                                                                 (s as any).CloPrice = 5800;
                                                                                                               } else {
-                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 56) {
+                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 56) {
                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                   (s as any).CloThinness = 3;
@@ -465,7 +465,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                 } else {
-                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 57) {
+                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 57) {
                                                                                                                     (s as any).CloQuality = 4;
                                                                                                                     (s as any).CloStrength = 191250;
                                                                                                                     (s as any).CloThinness = 4;
@@ -474,7 +474,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                     (s as any).CloOnePiece = 1;
                                                                                                                     (s as any).CloPrice = 5400;
                                                                                                                   } else {
-                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 58) {
+                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 58) {
                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                       (s as any).CloThinness = 4;
@@ -483,7 +483,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                       (s as any).CloOnePiece = 1;
                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                     } else {
-                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 59) {
+                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 59) {
                                                                                                                         (s as any).CloQuality = 6;
                                                                                                                         (s as any).CloStrength = 202500;
                                                                                                                         (s as any).CloThinness = 4;
@@ -492,7 +492,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                         (s as any).CloOnePiece = 1;
                                                                                                                         (s as any).CloPrice = 5800;
                                                                                                                       } else {
-                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 60) {
+                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 60) {
                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                           (s as any).CloThinness = 4;
@@ -501,7 +501,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                           (s as any).CloOnePiece = 1;
                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                         } else {
-                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 61) {
+                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 61) {
                                                                                                                             (s as any).CloQuality = 6;
                                                                                                                             (s as any).CloStrength = 202500;
                                                                                                                             (s as any).CloThinness = 4;
@@ -509,7 +509,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                             (s as any).CloPrice = 5800;
                                                                                                                           } else {
-                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 62) {
+                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 62) {
                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                               (s as any).CloThinness = 4;
@@ -517,7 +517,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                             } else {
-                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 63) {
+                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 63) {
                                                                                                                                 (s as any).CloQuality = 4;
                                                                                                                                 (s as any).CloStrength = 191250;
                                                                                                                                 (s as any).CloThinness = 4;
@@ -526,7 +526,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                 (s as any).CloOnePiece = 1;
                                                                                                                                 (s as any).CloPrice = 5400;
                                                                                                                               } else {
-                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 64) {
+                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 64) {
                                                                                                                                   (s as any).CloQuality = 4;
                                                                                                                                   (s as any).CloStrength = 191250;
                                                                                                                                   (s as any).CloThinness = 4;
@@ -535,7 +535,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                   (s as any).CloOnePiece = 1;
                                                                                                                                   (s as any).CloPrice = 5400;
                                                                                                                                 } else {
-                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 65) {
+                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 65) {
                                                                                                                                     (s as any).CloQuality = 6;
                                                                                                                                     (s as any).CloStrength = 202500;
                                                                                                                                     (s as any).CloThinness = 3;
@@ -544,7 +544,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                     (s as any).CloOnePiece = 1;
                                                                                                                                     (s as any).CloPrice = 5800;
                                                                                                                                   } else {
-                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 66) {
+                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 66) {
                                                                                                                                       (s as any).CloQuality = 4;
                                                                                                                                       (s as any).CloStrength = 191250;
                                                                                                                                       (s as any).CloThinness = 4;
@@ -552,7 +552,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                       (s as any).CloPantsShortness = 5;
                                                                                                                                       (s as any).CloPrice = 5400;
                                                                                                                                     } else {
-                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 67) {
+                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 67) {
                                                                                                                                         (s as any).CloQuality = 4;
                                                                                                                                         (s as any).CloStrength = 191250;
                                                                                                                                         (s as any).CloThinness = 4;
@@ -560,7 +560,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                         (s as any).CloSkirtShortness = 1;
                                                                                                                                         (s as any).CloPrice = 5400;
                                                                                                                                       } else {
-                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 68) {
+                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 68) {
                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                           (s as any).CloThinness = 4;
@@ -570,7 +570,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                           (s as any).CloCoverBack = 4;
                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                         } else {
-                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 69) {
+                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 69) {
                                                                                                                                             (s as any).CloQuality = 3;
                                                                                                                                             (s as any).CloStrength = 185625;
                                                                                                                                             (s as any).CloThinness = 4;
@@ -579,7 +579,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                             (s as any).CloOnePiece = 1;
                                                                                                                                             (s as any).CloPrice = 5200;
                                                                                                                                           } else {
-                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 70) {
+                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 70) {
                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                               (s as any).CloThinness = 4;
@@ -587,7 +587,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                             } else {
-                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 71) {
+                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 71) {
                                                                                                                                                 (s as any).CloQuality = 7;
                                                                                                                                                 (s as any).CloStrength = 208125;
                                                                                                                                                 (s as any).CloThinness = 4;
@@ -595,7 +595,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                 (s as any).CloPantsShortness = 1;
                                                                                                                                                 (s as any).CloPrice = 6000;
                                                                                                                                               } else {
-                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 72) {
+                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 72) {
                                                                                                                                                   (s as any).CloQuality = 7;
                                                                                                                                                   (s as any).CloStrength = 208125;
                                                                                                                                                   (s as any).CloThinness = 4;
@@ -604,7 +604,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                   (s as any).CloOnePiece = 1;
                                                                                                                                                   (s as any).CloPrice = 6000;
                                                                                                                                                 } else {
-                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 73) {
+                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 73) {
                                                                                                                                                     (s as any).CloQuality = 5;
                                                                                                                                                     (s as any).CloStrength = 196875;
                                                                                                                                                     (s as any).CloThinness = 4;
@@ -612,7 +612,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                     (s as any).CloPantsShortness = 1;
                                                                                                                                                     (s as any).CloPrice = 5600;
                                                                                                                                                   } else {
-                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 74) {
+                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 74) {
                                                                                                                                                       (s as any).CloQuality = 6;
                                                                                                                                                       (s as any).CloStrength = 202500;
                                                                                                                                                       (s as any).CloThinness = 4;
@@ -620,7 +620,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                       (s as any).CloPantsShortness = 5;
                                                                                                                                                       (s as any).CloPrice = 5800;
                                                                                                                                                     } else {
-                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 75) {
+                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 75) {
                                                                                                                                                         (s as any).CloQuality = 4;
                                                                                                                                                         (s as any).CloStrength = 191250;
                                                                                                                                                         (s as any).CloThinness = 4;
@@ -628,7 +628,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                         (s as any).CloPanties = 1;
                                                                                                                                                         (s as any).CloPrice = 5400;
                                                                                                                                                       } else {
-                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 76) {
+                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 76) {
                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                           (s as any).CloThinness = 4;
@@ -636,7 +636,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                           (s as any).CloSkirtShortness = 5;
                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                         } else {
-                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 77) {
+                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 77) {
                                                                                                                                                             (s as any).CloQuality = 6;
                                                                                                                                                             (s as any).CloStrength = 202500;
                                                                                                                                                             (s as any).CloThinness = 4;
@@ -644,7 +644,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                             (s as any).CloPrice = 5800;
                                                                                                                                                           } else {
-                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 78) {
+                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 78) {
                                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                                               (s as any).CloThinness = 3;
@@ -652,7 +652,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                                             } else {
-                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 79) {
+                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 79) {
                                                                                                                                                                 (s as any).CloQuality = 5;
                                                                                                                                                                 (s as any).CloStrength = 196875;
                                                                                                                                                                 (s as any).CloThinness = 5;
@@ -661,7 +661,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                 (s as any).CloCoverBack = 3;
                                                                                                                                                                 (s as any).CloPrice = 5600;
                                                                                                                                                               } else {
-                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 80) {
+                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 80) {
                                                                                                                                                                   (s as any).CloQuality = 4;
                                                                                                                                                                   (s as any).CloStrength = 191250;
                                                                                                                                                                   (s as any).CloThinness = 5;
@@ -669,7 +669,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                                                                                   (s as any).CloPrice = 5400;
                                                                                                                                                                 } else {
-                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 81) {
+                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 81) {
                                                                                                                                                                     (s as any).CloQuality = 6;
                                                                                                                                                                     (s as any).CloStrength = 202500;
                                                                                                                                                                     (s as any).CloThinness = 5;
@@ -677,7 +677,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                     (s as any).CloPanties = 1;
                                                                                                                                                                     (s as any).CloPrice = 5800;
                                                                                                                                                                   } else {
-                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 82) {
+                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 82) {
                                                                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -685,7 +685,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                       (s as any).CloSkirtShortness = 5;
                                                                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                                                                     } else {
-                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 83) {
+                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 83) {
                                                                                                                                                                         (s as any).CloQuality = 4;
                                                                                                                                                                         (s as any).CloStrength = 191250;
                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -693,7 +693,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                         (s as any).CloPanties = 1;
                                                                                                                                                                         (s as any).CloPrice = 5400;
                                                                                                                                                                       } else {
-                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 84) {
+                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 84) {
                                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -702,7 +702,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                           (s as any).CloCoverBack = 4;
                                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                                         } else {
-                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 85) {
+                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 85) {
                                                                                                                                                                             (s as any).CloQuality = 4;
                                                                                                                                                                             (s as any).CloStrength = 191250;
                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -711,7 +711,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                             (s as any).CloOnePiece = 1;
                                                                                                                                                                             (s as any).CloPrice = 5400;
                                                                                                                                                                           } else {
-                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 86) {
+                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 86) {
                                                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -719,7 +719,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                               (s as any).CloSkirtShortness = 5;
                                                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                                                             } else {
-                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 87) {
+                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 87) {
                                                                                                                                                                                 (s as any).CloQuality = 6;
                                                                                                                                                                                 (s as any).CloStrength = 202500;
                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -727,7 +727,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                 (s as any).CloPantsShortness = 3;
                                                                                                                                                                                 (s as any).CloPrice = 5800;
                                                                                                                                                                               } else {
-                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 88) {
+                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 88) {
                                                                                                                                                                                   (s as any).CloQuality = 5;
                                                                                                                                                                                   (s as any).CloStrength = 196875;
                                                                                                                                                                                   (s as any).CloThinness = 4;
@@ -735,7 +735,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                   (s as any).CloSkirtShortness = 5;
                                                                                                                                                                                   (s as any).CloPrice = 5600;
                                                                                                                                                                                 } else {
-                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 89) {
+                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 89) {
                                                                                                                                                                                     (s as any).CloQuality = 5;
                                                                                                                                                                                     (s as any).CloStrength = 196875;
                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -744,7 +744,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                     (s as any).CloDress = 1;
                                                                                                                                                                                     (s as any).CloPrice = 5600;
                                                                                                                                                                                   } else {
-                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 90) {
+                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 90) {
                                                                                                                                                                                       (s as any).CloQuality = 6;
                                                                                                                                                                                       (s as any).CloStrength = 202500;
                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -752,7 +752,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                       (s as any).CloPantsShortness = 1;
                                                                                                                                                                                       (s as any).CloPrice = 5800;
                                                                                                                                                                                     } else {
-                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 91) {
+                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 91) {
                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -760,7 +760,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                         (s as any).CloSkirtShortness = 5;
                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                       } else {
-                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 92) {
+                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 92) {
                                                                                                                                                                                           (s as any).CloQuality = 6;
                                                                                                                                                                                           (s as any).CloStrength = 202500;
                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -768,7 +768,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           (s as any).CloSkirtShortness = 1;
                                                                                                                                                                                           (s as any).CloPrice = 5800;
                                                                                                                                                                                         } else {
-                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 93) {
+                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 93) {
                                                                                                                                                                                             (s as any).CloQuality = 4;
                                                                                                                                                                                             (s as any).CloStrength = 191250;
                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -776,7 +776,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                             (s as any).CloPantsShortness = 5;
                                                                                                                                                                                             (s as any).CloPrice = 5400;
                                                                                                                                                                                           } else {
-                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 94) {
+                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 94) {
                                                                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -784,7 +784,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                               (s as any).CloPantsShortness = 5;
                                                                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                                                                             } else {
-                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 95) {
+                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 95) {
                                                                                                                                                                                                 (s as any).CloQuality = 6;
                                                                                                                                                                                                 (s as any).CloStrength = 202500;
                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -792,7 +792,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                 (s as any).CloSkirtShortness = 5;
                                                                                                                                                                                                 (s as any).CloPrice = 5800;
                                                                                                                                                                                               } else {
-                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 96) {
+                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 96) {
                                                                                                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                                                                                                   (s as any).CloThinness = 3;
@@ -800,7 +800,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 97) {
+                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 97) {
                                                                                                                                                                                                     (s as any).CloQuality = 5;
                                                                                                                                                                                                     (s as any).CloStrength = 196875;
                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -808,7 +808,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                     (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                     (s as any).CloPrice = 5600;
                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 98) {
+                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 98) {
                                                                                                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -817,7 +817,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                       (s as any).CloOnePiece = 1;
                                                                                                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 99) {
+                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 99) {
                                                                                                                                                                                                         (s as any).CloQuality = 6;
                                                                                                                                                                                                         (s as any).CloStrength = 202500;
                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -826,7 +826,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                         (s as any).CloOnePiece = 1;
                                                                                                                                                                                                         (s as any).CloPrice = 5800;
                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 100) {
+                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 100) {
                                                                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -834,7 +834,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 101) {
+                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 101) {
                                                                                                                                                                                                             (s as any).CloQuality = 3;
                                                                                                                                                                                                             (s as any).CloStrength = 185625;
                                                                                                                                                                                                             (s as any).CloThinness = 1;
@@ -842,7 +842,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                             (s as any).CloPrice = 5200;
                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 102) {
+                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 102) {
                                                                                                                                                                                                               (s as any).CloQuality = 7;
                                                                                                                                                                                                               (s as any).CloStrength = 208125;
                                                                                                                                                                                                               (s as any).CloThinness = 1;
@@ -850,7 +850,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                               (s as any).CloPrice = 6000;
                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 103) {
+                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 103) {
                                                                                                                                                                                                                 (s as any).CloQuality = 4;
                                                                                                                                                                                                                 (s as any).CloStrength = 191250;
                                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -859,7 +859,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                 (s as any).CloCoverBack = 4;
                                                                                                                                                                                                                 (s as any).CloPrice = 5400;
                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 104) {
+                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 104) {
                                                                                                                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                                                                                                                   (s as any).CloThinness = 4;
@@ -868,7 +868,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                   (s as any).CloCoverBack = 4;
                                                                                                                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 105) {
+                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 105) {
                                                                                                                                                                                                                     (s as any).CloQuality = 4;
                                                                                                                                                                                                                     (s as any).CloStrength = 191250;
                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -877,7 +877,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                     (s as any).CloCoverBack = 4;
                                                                                                                                                                                                                     (s as any).CloPrice = 5400;
                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 106) {
+                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 106) {
                                                                                                                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -885,7 +885,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                       (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 107) {
+                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 107) {
                                                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -893,7 +893,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                         (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 108) {
+                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 108) {
                                                                                                                                                                                                                           (s as any).CloQuality = 6;
                                                                                                                                                                                                                           (s as any).CloStrength = 202500;
                                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -901,7 +901,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                           (s as any).CloPrice = 5800;
                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 109) {
+                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 109) {
                                                                                                                                                                                                                             (s as any).CloQuality = 4;
                                                                                                                                                                                                                             (s as any).CloStrength = 191250;
                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -909,7 +909,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                             (s as any).CloPrice = 5400;
                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 110) {
+                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 110) {
                                                                                                                                                                                                                               (s as any).CloQuality = 4;
                                                                                                                                                                                                                               (s as any).CloStrength = 191250;
                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -917,7 +917,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                               (s as any).CloPrice = 5400;
                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 111) {
+                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 111) {
                                                                                                                                                                                                                                 (s as any).CloQuality = 6;
                                                                                                                                                                                                                                 (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                 (s as any).CloThinness = 1;
@@ -925,7 +925,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                 (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                 (s as any).CloPrice = 5800;
                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 112) {
+                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 112) {
                                                                                                                                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                   (s as any).CloThinness = 3;
@@ -933,7 +933,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 113) {
+                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 113) {
                                                                                                                                                                                                                                     (s as any).CloQuality = 6;
                                                                                                                                                                                                                                     (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                     (s as any).CloThinness = 3;
@@ -941,7 +941,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                     (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                     (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 114) {
+                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 114) {
                                                                                                                                                                                                                                       (s as any).CloQuality = 7;
                                                                                                                                                                                                                                       (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -949,7 +949,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                       (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                       (s as any).CloPrice = 6000;
                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 115) {
+                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 115) {
                                                                                                                                                                                                                                         (s as any).CloQuality = 7;
                                                                                                                                                                                                                                         (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -957,7 +957,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                         (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                         (s as any).CloPrice = 6000;
                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 116) {
+                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 116) {
                                                                                                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -965,7 +965,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 117) {
+                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 117) {
                                                                                                                                                                                                                                             (s as any).CloQuality = 5;
                                                                                                                                                                                                                                             (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -973,7 +973,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                             (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 118) {
+                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 118) {
                                                                                                                                                                                                                                               (s as any).CloQuality = 4;
                                                                                                                                                                                                                                               (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -981,7 +981,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                               (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 119) {
+                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 119) {
                                                                                                                                                                                                                                                 (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                 (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                 (s as any).CloThinness = 5;
@@ -989,7 +989,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                 (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                 (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 120) {
+                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 120) {
                                                                                                                                                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                   (s as any).CloThinness = 4;
@@ -997,7 +997,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                   (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 121) {
+                                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 121) {
                                                                                                                                                                                                                                                     (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                     (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -1005,7 +1005,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                     (s as any).CloSkirtShortness = 5;
                                                                                                                                                                                                                                                     (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 122) {
+                                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 122) {
                                                                                                                                                                                                                                                       (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                       (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                       (s as any).CloThinness = 5;
@@ -1014,7 +1014,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                       (s as any).CloOnePiece = 1;
                                                                                                                                                                                                                                                       (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 123) {
+                                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 123) {
                                                                                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                         (s as any).CloThinness = 5;
@@ -1022,7 +1022,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                         (s as any).CloSkirtShortness = 6;
                                                                                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 124) {
+                                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 124) {
                                                                                                                                                                                                                                                           (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                           (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                           (s as any).CloThinness = 5;
@@ -1031,7 +1031,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                           (s as any).CloCoverBack = 2;
                                                                                                                                                                                                                                                           (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 125) {
+                                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 125) {
                                                                                                                                                                                                                                                             (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                             (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -1040,7 +1040,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                             (s as any).CloDress = 1;
                                                                                                                                                                                                                                                             (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 126) {
+                                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 126) {
                                                                                                                                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -1048,7 +1048,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                               (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 127) {
+                                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 127) {
                                                                                                                                                                                                                                                                 (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                 (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -1056,7 +1056,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                 (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                 (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 128) {
+                                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 128) {
                                                                                                                                                                                                                                                                   (s as any).CloQuality = 3;
                                                                                                                                                                                                                                                                   (s as any).CloStrength = 185625;
                                                                                                                                                                                                                                                                   (s as any).CloThinness = 5;
@@ -1064,7 +1064,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                   (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                                   (s as any).CloPrice = 5200;
                                                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 129) {
+                                                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 129) {
                                                                                                                                                                                                                                                                     (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                     (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -1072,7 +1072,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                     (s as any).CloSkirtShortness = 4;
                                                                                                                                                                                                                                                                     (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 130) {
+                                                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 130) {
                                                                                                                                                                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -1080,7 +1080,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                       (s as any).CloSkirtShortness = 5;
                                                                                                                                                                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 131) {
+                                                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 131) {
                                                                                                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -1088,7 +1088,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                         (s as any).CloSkirtShortness = 4;
                                                                                                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 132) {
+                                                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 132) {
                                                                                                                                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -1097,7 +1097,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                           (s as any).CloOnePiece = 1;
                                                                                                                                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 133) {
+                                                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 133) {
                                                                                                                                                                                                                                                                             (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                             (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -1105,7 +1105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                             (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                                             (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 134) {
+                                                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 134) {
                                                                                                                                                                                                                                                                               (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                               (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -1114,7 +1114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                               (s as any).CloOnePiece = 1;
                                                                                                                                                                                                                                                                               (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 135) {
+                                                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 135) {
                                                                                                                                                                                                                                                                                 (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                 (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -1122,7 +1122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                 (s as any).CloSkirtShortness = 2;
                                                                                                                                                                                                                                                                                 (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 136) {
+                                                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 136) {
                                                                                                                                                                                                                                                                                   (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                   (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                   (s as any).CloThinness = 5;
@@ -1130,7 +1130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                   (s as any).CloSkirtShortness = 2;
                                                                                                                                                                                                                                                                                   (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 137) {
+                                                                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 137) {
                                                                                                                                                                                                                                                                                     (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                     (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -1139,7 +1139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                     (s as any).CloCoverBack = 4;
                                                                                                                                                                                                                                                                                     (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 138) {
+                                                                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 138) {
                                                                                                                                                                                                                                                                                       (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                                       (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -1148,7 +1148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                       (s as any).CloCoverBack = 4;
                                                                                                                                                                                                                                                                                       (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 139) {
+                                                                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 139) {
                                                                                                                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -1156,7 +1156,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                         (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 140) {
+                                                                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 140) {
                                                                                                                                                                                                                                                                                           (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                                           (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -1164,7 +1164,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                           (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 141) {
+                                                                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 141) {
                                                                                                                                                                                                                                                                                             (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                             (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -1173,7 +1173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                             (s as any).CloDress = 1;
                                                                                                                                                                                                                                                                                             (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 142) {
+                                                                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 142) {
                                                                                                                                                                                                                                                                                               (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                               (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -1181,7 +1181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                               (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                                                               (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 143) {
+                                                                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 143) {
                                                                                                                                                                                                                                                                                                 (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                 (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -1190,7 +1190,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                 (s as any).CloOnePiece = 1;
                                                                                                                                                                                                                                                                                                 (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 144) {
+                                                                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 144) {
                                                                                                                                                                                                                                                                                                   (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                                   (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                                   (s as any).CloThinness = 4;
@@ -1198,7 +1198,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                   (s as any).CloPanties = 1;
                                                                                                                                                                                                                                                                                                   (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 145) {
+                                                                                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 145) {
                                                                                                                                                                                                                                                                                                     (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                     (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -1206,7 +1206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                     (s as any).CloPanties = 1;
                                                                                                                                                                                                                                                                                                     (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 146) {
+                                                                                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 146) {
                                                                                                                                                                                                                                                                                                       (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                       (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -1214,7 +1214,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                       (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                                                                       (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 147) {
+                                                                                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 147) {
                                                                                                                                                                                                                                                                                                         (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                         (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -1222,7 +1222,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                         (s as any).CloPantsShortness = 5;
                                                                                                                                                                                                                                                                                                         (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 148) {
+                                                                                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 148) {
                                                                                                                                                                                                                                                                                                           (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                           (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                           (s as any).CloThinness = 4;
@@ -1230,7 +1230,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                           (s as any).CloPantsShortness = 6;
                                                                                                                                                                                                                                                                                                           (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 149) {
+                                                                                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 149) {
                                                                                                                                                                                                                                                                                                             (s as any).CloQuality = 7;
                                                                                                                                                                                                                                                                                                             (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                                                                                             (s as any).CloThinness = 3;
@@ -1238,7 +1238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                             (s as any).CloPrice = 6000;
                                                                                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 150) {
+                                                                                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 150) {
                                                                                                                                                                                                                                                                                                               (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                                                               (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -1246,7 +1246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                               (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 151) {
+                                                                                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 151) {
                                                                                                                                                                                                                                                                                                                 (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                                 (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                                 (s as any).CloThinness = 2;
@@ -1254,7 +1254,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                 (s as any).CloPantsShortness = 6;
                                                                                                                                                                                                                                                                                                                 (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 152) {
+                                                                                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 152) {
                                                                                                                                                                                                                                                                                                                   (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                                                                   (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                                                                   (s as any).CloThinness = 4;
@@ -1262,7 +1262,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                   (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                                   (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                                                                 } else {
-                                                                                                                                                                                                                                                                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 153) {
+                                                                                                                                                                                                                                                                                                                  if (String((s as any).locArgs?.[0] ?? '') === 153) {
                                                                                                                                                                                                                                                                                                                     (s as any).CloQuality = 6;
                                                                                                                                                                                                                                                                                                                     (s as any).CloStrength = 202500;
                                                                                                                                                                                                                                                                                                                     (s as any).CloThinness = 4;
@@ -1270,7 +1270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                     (s as any).CloPantsShortness = 6;
                                                                                                                                                                                                                                                                                                                     (s as any).CloPrice = 5800;
                                                                                                                                                                                                                                                                                                                   } else {
-                                                                                                                                                                                                                                                                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 154) {
+                                                                                                                                                                                                                                                                                                                    if (String((s as any).locArgs?.[0] ?? '') === 154) {
                                                                                                                                                                                                                                                                                                                       (s as any).CloQuality = 4;
                                                                                                                                                                                                                                                                                                                       (s as any).CloStrength = 191250;
                                                                                                                                                                                                                                                                                                                       (s as any).CloThinness = 4;
@@ -1278,7 +1278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                       (s as any).CloSkirtShortness = 2;
                                                                                                                                                                                                                                                                                                                       (s as any).CloPrice = 5400;
                                                                                                                                                                                                                                                                                                                     } else {
-                                                                                                                                                                                                                                                                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 155) {
+                                                                                                                                                                                                                                                                                                                      if (String((s as any).locArgs?.[0] ?? '') === 155) {
                                                                                                                                                                                                                                                                                                                         (s as any).CloQuality = 7;
                                                                                                                                                                                                                                                                                                                         (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                                                                                                         (s as any).CloThinness = 4;
@@ -1286,7 +1286,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                         (s as any).CloPantsShortness = 6;
                                                                                                                                                                                                                                                                                                                         (s as any).CloPrice = 6000;
                                                                                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 156) {
+                                                                                                                                                                                                                                                                                                                        if (String((s as any).locArgs?.[0] ?? '') === 156) {
                                                                                                                                                                                                                                                                                                                           (s as any).CloQuality = 7;
                                                                                                                                                                                                                                                                                                                           (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                                                                                                           (s as any).CloThinness = 1;
@@ -1294,7 +1294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                           (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                                           (s as any).CloPrice = 6000;
                                                                                                                                                                                                                                                                                                                         } else {
-                                                                                                                                                                                                                                                                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 157) {
+                                                                                                                                                                                                                                                                                                                          if (String((s as any).locArgs?.[0] ?? '') === 157) {
                                                                                                                                                                                                                                                                                                                             (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                                             (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                                             (s as any).CloThinness = 4;
@@ -1302,7 +1302,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                             (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                                             (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                                           } else {
-                                                                                                                                                                                                                                                                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 158) {
+                                                                                                                                                                                                                                                                                                                            if (String((s as any).locArgs?.[0] ?? '') === 158) {
                                                                                                                                                                                                                                                                                                                               (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                                               (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                                               (s as any).CloThinness = 4;
@@ -1310,7 +1310,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                               (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                                               (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                                             } else {
-                                                                                                                                                                                                                                                                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 159) {
+                                                                                                                                                                                                                                                                                                                              if (String((s as any).locArgs?.[0] ?? '') === 159) {
                                                                                                                                                                                                                                                                                                                                 (s as any).CloQuality = 5;
                                                                                                                                                                                                                                                                                                                                 (s as any).CloStrength = 196875;
                                                                                                                                                                                                                                                                                                                                 (s as any).CloThinness = 4;
@@ -1318,7 +1318,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                                                 (s as any).CloPantsShortness = 1;
                                                                                                                                                                                                                                                                                                                                 (s as any).CloPrice = 5600;
                                                                                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 160) {
+                                                                                                                                                                                                                                                                                                                                if (String((s as any).locArgs?.[0] ?? '') === 160) {
                                                                                                                                                                                                                                                                                                                                   (s as any).CloQuality = 7;
                                                                                                                                                                                                                                                                                                                                   (s as any).CloStrength = 208125;
                                                                                                                                                                                                                                                                                                                                   (s as any).CloThinness = 4;

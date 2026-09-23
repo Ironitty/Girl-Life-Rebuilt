@@ -423,7 +423,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
     if (((st as any).artemQW ?? 0)?.['confidence'] < 15) {
       scene.text('Artem pulls out of you, but clearly isn\'t ready to take the imitative and just stands there looking lost.');
       scene.text('"Come on Katja, take my place" you say and get down on the floor next to the chair.');
-      // TODO-QSP: dynamic text: She does as she''s told, but clearly looking '+iif(npc_vag['A14'] = 0, 'very', '...
+      // TODO-QSP: dynamic text: 'She does as she''s told, but clearly looking '+iif(npc_vag['A14'] = 0, 'very', ...
       scene.text('She does as she\'s told, but clearly looking ' + ((((st as any).npc_vag ?? 0)?.['A14'] === 0) ? ('very') : ('a little')) + ' nervous. "Don\'t worry, Katja. Artem will be very careful, won\'t you?" you say, looking at Artem to make sure he understands.');
       if (((st as any).artemQW ?? 0)?.['confidence'] < 10) {
         if (((st as any).npc_vag ?? 0)?.['A14'] === 0) {
@@ -519,7 +519,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: Artem pulls out of you. "Come and take <<$pcs_nickname>>''s place, Katja. I''ll ...
       scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname ?? '')}'s place, Katja. I'll show you a great first time". You get down on the floor next to the chair to give Katja some space.`);
-      // TODO-QSP: dynamic text: She does as she''s told, but clearly looking '+iif(npc_vag['A14'] = 0, 'very', '...
+      // TODO-QSP: dynamic text: 'She does as she''s told, but clearly looking '+iif(npc_vag['A14'] = 0, 'very', ...
       scene.text('She does as she\'s told, but clearly looking ' + ((((st as any).npc_vag ?? 0)?.['A14'] === 0) ? ('very') : ('a little')) + ' nervous.');
       scene.text('"Don\'t worry, Katja. Artem will be very careful, won\'t you?" you say while looking at Artem.');
       scene.text('"You\'re in good hands, Katja!" he quickly replies. "I\'ll do anything so that it feels pleasant and not painful."');
@@ -679,7 +679,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Artem pulls out of you. "Come and take <<$pcs_nickname>>''s place, Katja. I want...
       scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname ?? '')}'s place, Katja. I want to try your tight pussy."`);
       scene.text('You get down on the floor next to the chair to give Katja space.');
-      // TODO-QSP: dynamic text: "Great. '+iif( katjaQW['slut'] > 80 , 'My extremely wet pussy need to be filled ...
+      // TODO-QSP: dynamic text: '"Great. '+iif( katjaQW['slut'] > 80 , 'My extremely wet pussy need to be filled...
       scene.text('"Great. ' + ((((st as any).katjaQW ?? 0)?.['slut'] > 80) ? ('My extremely wet pussy need to be filled by something hard,') : ('Let\'s get to it,')) + '" she says and takes your place on the chair.');
       if (((st as any).artemQW ?? 0)?.['artem_dom'] > 4) {
         ((st as any).artemQW = (st as any).artemQW ?? {})['artem_dom'] = ((st as any).artemQW['artem_dom'] ?? 0) + (1);
@@ -829,7 +829,7 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstTimeRide(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/first_time_11.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.text('"You go first," Katja says and you climb onto his still extremely hard cock.');
   } else {
     scene.text('"Let\'s change position," Katja says, "Great, because I\'m getting tired!" Artem answers with a smile.');
@@ -950,7 +950,7 @@ function enterFirstTimeRide(s: GameState, scene: SceneBuilder): void {
           scene.text('"That was great. You managed not only to make my first time with a boy very good, but you also gave me a fantastic orgasm. I could not have wished for a better experience," Katja says.');
         }
       } else {
-        // TODO-QSP: dynamic text: "That was great. You''re a great lover Artem, '+iif(katjaQW['simultanous_boys'] ...
+        // TODO-QSP: dynamic text: '"That was great. You''re a great lover Artem, '+iif(katjaQW['simultanous_boys']...
         scene.text('"That was great. You\'re a great lover Artem, ' + ((((st as any).katjaQW ?? 0)?.['simultanous_boys'] === 1) ? ('not that I have that much much experience.') : (' and I have some experience')) + ' with men," Katja says.');
       }
     } else {
@@ -1480,8 +1480,8 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
         if (((st as any).artemQW ?? 0)?.['confidence'] < 20) {
           scene.text('Artem puts his laptop away and says, "Nice, very nice."');
         } else {
-          // TODO-QSP: dynamic text: Artem puts his laptop away and says, "That''s it, show me what you got. '+iif($b...
-          scene.text('Artem puts his laptop away and says, "That\'s it, show me what you got. \'+iif($braworntype =\'none\', \'No bras for me, very considerate.\', \'Why don\'t you also lose your bra, ' + ((st as any).pcs_nickname ?? '') + '?\')+\'"');
+          // TODO-QSP: dynamic text: 'Artem puts his laptop away and says, "That''s it, show me what you got. '+iif($...
+          scene.text('Artem puts his laptop away and says, "That\'s it, show me what you got. ' + ((((st as any).braworntype ?? 0) ==='none') ? ('No bras for me, very considerate.') : ('Why don\'t you also lose your bra, ' + ((st as any).pcs_nickname ?? '') + '?')) + '"');
         }
       }
     }
@@ -1529,7 +1529,8 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Involve Artem', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_5' + ((((st as any).katjaQW ?? 0)?.['slut'] >= 100) ? ('b') : ('a')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/artem/sex...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_5` + ((((st as any).katjaQW ?? 0)?.['slut'] >= 100) ? ('b') : ('a')) + '.jpg"></center>');
     if (((st as any).artemQW ?? 0)?.['confidence'] >= 20) {
       scene.text('"Okay, I think that it\'s time you two get over here. My cock needs some attention, too," Artem commands.');
     } else {
@@ -1642,7 +1643,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_9.jpg');
-  // TODO-QSP: dynamic text: You and Katja take off your skirts'+iif($pantyworntype ! 'none', ' and panties,'...
+  // TODO-QSP: dynamic text: 'You and Katja take off your skirts'+iif($pantyworntype ! 'none', ' and panties,...
   scene.text('You and Katja take off your skirts' + ((((s as any).pantyworntype ?? 0) !== 'none') ? (' and panties,') : (',')) + ' "Lay down on the bed with your head at the edge," she tells you.');
   scene.text('You do as she says and she gets on top of you in thr 69 position, putting her very wet pussy just in front of your mouth.');
   scene.text('She starts to lick your pussy, and you return the favor. For a couple of minutes, you eat each other out while Artem gets ready.');
@@ -1829,7 +1830,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
         { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: "That''s a great boyfrind you have, '+iif(katjaQW['slut'] >= 100, 'He hammered m...
+      // TODO-QSP: dynamic text: '"That''s a great boyfrind you have, '+iif(katjaQW['slut'] >= 100, 'He hammered ...
       scene.text('"That\'s a great boyfrind you have, ' + ((((st as any).katjaQW ?? 0)?.['slut'] >= 100) ? ('He hammered my pussy so good, I came until I saw stars.') : ('He made me feel great, and I had a huge orgasm')) + ' We should invite him again some other time," Katja says.');
       scene.text('"I\'m aware that you came very hard. In fact, I think that all of Pav knows you had an orgasm with all your screaming," you tease.');
       if (((st as any).katjaQW ?? 0)?.['slut'] >= 100) {

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -8,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'reset_CloVars');
-  if (hasLocation('$attributes_' + Number((s as any).locArgs?.[0] ?? 0))) {
+  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')))) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }
   if ((!((s as any).CloQuality ?? 0))) {
@@ -66,10 +64,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).CloMaxStrength = ((s as any).CloStrength ?? 0);
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0))) {
-    // TODO-QSP: dynamic "
-    (s as any).CloDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[((s as any).locArgs?.[1] ?? 0)]", { location: "clothing_attributes" });
-    (s as any).CloStrength = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_h[((s as any).locArgs?.[1] ?? 0)]", { location: "clothing_attributes" });
-    // TODO-QSP: "
   }
   scene.build();
 }

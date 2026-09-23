@@ -198,7 +198,7 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
   scene.text(`Albina leans over into Julia's face. "${((s as any).pcs_nickname ?? '')} and I were just going to have a little fun is all. I know you would <i>love</i> to watch that..."`);
   scene.text('Julia blushes and looks around for a way out as Albina smiles. "Don\'t be shy, Julia. I know you love staring at my ass, and who can blame you? It\'s so <i>big</i> and <i>firm</i> and you\'d just love to feel it in your hands and give it a good squeeze, wouldn\'t you?"');
   scene.text('Julia blushes and squirms even more as she looks at the floor. "I, I... What are you... Talking about?"');
-  // TODO-QSP: dynamic text: "Don''t be like that, Julia! I''d like it, no <i>love</i> it, if you played with...
+  // TODO-QSP: dynamic text: '"Don''t be like that, Julia! I''d like it, no <i>love</i> it, if you played wit...
   scene.text('"Don\'t be like that, Julia! I\'d like it, no <i>love</i> it, if you played with my ass right here, right now. \'+iif(func(\'pcs_has_attr\', \'OR\', \'body_ass_big\', \'body_ass_heart\', \'body_ass_bubble\'),\'I bet you\'d love to have a feel of ' + ((s as any).pcs_nickname ?? '') + '\'s ass as well, wouldn\'t you?\',\')+\'"');
   // TODO-QSP: end
   scene.actions([

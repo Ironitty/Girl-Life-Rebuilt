@@ -131,7 +131,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 0;
     // TODO-QSP: :loop_sort_pass
     if (((s as any).temp_i ?? 0) < ((s as any).temp_allday_count ?? 0) - 1) {
-      if (((s as any).allday_spans ?? 0)[((s as any).temp_i ?? 0) + ', length'] < ((s as any).allday_spans ?? 0)[((s as any).temp_i ?? 0)+1 + ', length']) {
+      if (((s as any).allday_spans ?? 0)[(((s as any).temp_i ?? 0)) + ', length'] < ((s as any).allday_spans ?? 0)[(((s as any).temp_i ?? 0)+1) + ', length']) {
         (s as any).temp_swap = ((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)];
         // TODO-QSP: $allday_events_week[temp_i] = $allday_events_week[temp_i+1]
         // TODO-QSP: $allday_events_week[temp_i+1] = $temp_swap

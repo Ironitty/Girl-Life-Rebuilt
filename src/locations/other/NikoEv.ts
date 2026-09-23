@@ -248,7 +248,8 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     (st as any).NikoPayback_Sex = ((st as any).daystart ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
     scene.text('You walk up to Niko and place your hand on his crotch. "I know that I already paid you in money, but I want to give you another special payment."');
     scene.text('Niko\'s eyes light up. "Well, there\'s no way I\'d say no to that. Let\'s get going." He gives your ass a firm smack as you both head toward the less used restroom.');
     scene.actions([
@@ -692,7 +693,8 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A189', (Math.floor(Math.random() * 6) + 5));
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/disco/dance' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikomisc/disco/dance` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     scene.text('He takes your hand and leads you to the dance floor, where you both spend the next few minutes dancing together.');
     scene.actions([
       { label: 'Finish dancing', goto: ['pav_disco', ''] },
@@ -758,7 +760,8 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
     (st as any).NikoPayback_Sex = ((st as any).daystart ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
     scene.text('You walk up to Niko and place your hand on his crotch. "I know that I already paid you in money, but I want to give you another special payment."');
     scene.text('His eyes light up. "Well, there\'s no way I\'d say no to that! Let\'s get going."');
     scene.text('He gives your ass a firm smack as you both head toward the mens restroom.');
@@ -931,7 +934,8 @@ function enterDiscoBreakup2(s: GameState, scene: SceneBuilder): void {
 function enterFedor(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoVsFedor = 1;
   qspCall(s, 'stat', '');
-  scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/niko` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You walk up to Niko and his eyes light up as he sees you. "Greetings <<$pcs_firs...
   scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname ?? '')}, I hope you're ready to have a good time."`);
   scene.text('You\'re about to respond when you suddenly feel a hand gently but firmly grab onto your arm.');
@@ -981,7 +985,8 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'See what happens', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/niko` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: Niko chuckles as he raises his hands, "I was just helping <<$pcs_firstname>> fin...
     scene.text(`Niko chuckles as he raises his hands, "I was just helping ${((st as any).pcs_firstname ?? '')} find the person spreading mean rumors about her."`);
     scene.text('"What rumors?" Vitek asks and Niko smiles.');

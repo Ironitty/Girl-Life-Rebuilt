@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('Your bathroom is new and in good condition. The suite is modern, your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is perfect and everything looks clean and fresh.');
     }
   }
-  // TODO-QSP: dynamic text: Your ' + iif(pcs_hairbsh < 1, '<a href="exec:gt ''mirror'',''brush''">brush</a>'...
+  // TODO-QSP: dynamic text: 'Your ' + iif(pcs_hairbsh < 1, '<a href="exec:gt ''mirror'',''brush''">brush</a>...
   scene.text('Your ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' sits on the small shelf, below the mirror.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');

@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.text('You\'re taking a break.');
-  // TODO-QSP: dynamic text: There''s a vending machine in the corner you can buy '+iif(func('money', 'can_af...
+  // TODO-QSP: dynamic text: 'There''s a vending machine in the corner you can buy '+iif(func('money', 'can_a...
   scene.text('There\'s a vending machine in the corner you can buy ' + ((qspFunc(s, 'money', 'can_afford', 100, 'cash')) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().100 ?? /u0027/u0027)); return false;">snacks</a>') : ('snacks' + qspFunc(s, 'money', 'get_cost_string', 100, 'cash'))) + ' from and a fridge stocked with <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027water/u0027); return false;">bottled water</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027juice/u0027); return false;">juice</a> for masseuses to enjoy, as well as a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027coffee/u0027); return false;">coffee machine</a>.');
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
     if (((s as any).masseuse ?? 0)?.['meet_lei'] === 0) {
@@ -263,7 +263,7 @@ function enterLeiTalkSelf(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"Would you ever want to keep working her? Like Xian?"');
     scene.text('"No way!" she says, wrinkling her nose in disgust. "Don\'t get me wrong, I don\'t mind working here now, but that\'s just because it helps fund what I\'ve going on. As soon as I\'m done with uni, I\'m getting out of here. Maybe move to Moscow. I hear it\'s nice there."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -276,25 +276,25 @@ function enterLeiTalkSelf(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"You never really answered my question. Do you like working here? How do you feel about being a whore?"');
     scene.text('"Ehh, I don\'t really mind," she says nonchalantly. "The sex is hit or miss, but when it\'s good it\'s nice. Not a bad way to make money, especially if you do some stripping on the side. I guess I don\'t really care one way or the other. But it beats waiting tables."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'What do you use the money for?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"What do you do with the money you make here?"');
     scene.text('"Mostly it just goes to paying for uni. But it does also allow me to have a few extra luxuries here and there. Sexy clothes, drinks at the club, some nice shoes every once in a while. But I don\'t splurge often. I put it in my savings when I can. I know I can\'t keep fucking guys here forever."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'What do you do for fun?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"What do you do for fun??"');
     scene.text('"Oh, the usual. Go to the movies, go shopping, hang out at parties, have drunken wild monkey sex with a classmate or two, browse Twatter, all that. The usual hobbies for girls my age."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'What\'s your sex life like?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"What\'s your sex life like?"');
     scene.text('"I assume you mean outside of work," she says with a twist of her mouth. "Ironically, it\'s actually pretty similar. Mostly just a string of one night stands and group sex at parties, though I do have a fuckbuddy or two who I occasionally booty call. No boyfriend or girlfriend or anything like that, I\'m just not interested in anything serious right now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkSelf(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -316,7 +316,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
     scene.text('"Xian, at the front desk. She\'s my seventh oldest sister. Used to be a whore here and was pretty popular with the boys if I remember it, but she\'s got good people skills so she stepped up to be a manager after a while. It was her idea to start diversifying and bringing in local girls like you join the ranks. Also her idea to start allowing part timers and getting male whores for female customers. That last one apparently doubled the store\'s profits. This city is really sex crazed for some reason."');
     scene.text('"How many sisters do you have?"');
     scene.text('"Fourteen. I\'m the youngest."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -333,7 +333,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
     scene.text('"Some… but most of my extended relatives are…" She gestures towards herself. You look at her in confusion, not sure that you understand before it suddenly clicks.');
     scene.text('"Oh. Like…"');
     scene.text('"Yeah," she says, giving you a confirmational wink. "My eldest sisters weren\'t very good with birth control either. Me? I\'m not taking any chances. I get the shot every 3 months. Last thing I want is some random kid messing up my enjoyable student life just because I got drunk one night and forgot to take some stupid pill."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -349,7 +349,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"So, you said this was a family business?"');
     scene.text('"Yeah. Mom started it but now she kind of just ascended into \'the madam\' these days. So hiring the laundry services, keeping the lights on, paying off the cops, all that stuff. She leaves the day to day to the managers. The place became a sort of rite of passage for me and my sisters though cause mom doesn\'t give handouts. We all started working here to get some pocket money once we were old enough and then some of us move on whenever we\'re ready. Not any time soon for me though. I need to pay through uni."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeiTalkFamily(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

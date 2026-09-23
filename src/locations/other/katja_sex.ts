@@ -306,14 +306,14 @@ function enterMarcusWait(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14', 'a');
   scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/marcuswait1.jpg');
   if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) {
-    // TODO-QSP: dynamic text: You call Marcus and tell him the address, and he sounds very excited to finally ...
+    // TODO-QSP: dynamic text: 'You call Marcus and tell him the address, and he sounds very excited to finally...
     scene.text('You call Marcus and tell him the address, and he sounds very excited to finally meet the mysterious girl ' + ((((s as any).katjaQW ?? 0)?.['QWstage'] > 5) ? ('whose virginity he will be taking') : ('he will have sex with')) + '. He says he will be there in 10 minutes.');
   } else {
     scene.text('You call Marcus, and he almost too eagerly agrees to join you and Katja again for a threesome. He says he will be there in 10 minutes.');
   }
-  // TODO-QSP: dynamic text: You tell Katja that he will be here soon and suggest that you greet him in your ...
+  // TODO-QSP: dynamic text: 'You tell Katja that he will be here soon and suggest that you greet him in your...
   scene.text('You tell Katja that he will be here soon and suggest that you greet him in your underwear. Katja' + ((((s as any).katjaQW ?? 0)?.['slut'] < 80) ? (' hesitantly') : (' eagerly')) + ' agrees and you strip each other down and sit on the bed.');
-  // TODO-QSP: dynamic text: While you wait, you getly stroke Katja''s body to keep her'+iif(npc_vag['A14'] +...
+  // TODO-QSP: dynamic text: 'While you wait, you getly stroke Katja''s body to keep her'+iif(npc_vag['A14'] ...
   scene.text('While you wait, you getly stroke Katja\'s body to keep her' + ((((s as any).npc_vag ?? 0)?.['A14'] + 5 < ((s as any).npc_dick ?? 0)?.['A146']  ||  ((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) ? (' nerves down.') : (' excited.')) + ' Finally, after what seems like an eternity, you hear the doorbell ring.');
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID1 ?? 0));
   qspCall(s, 'stat', '');
@@ -625,7 +625,7 @@ function enterMarcusAftermatch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/katafter.jpg');
   scene.text('Marcus starts getting dressed as you and Katja clean yourselves up. She slumps back on the bed and closes her eyes while playing with her pussy.');
-  // TODO-QSP: dynamic text: "That was '+iif( katjaQW['QWstage'] = 5, 'amazing and a great honor to be Katja'...
+  // TODO-QSP: dynamic text: '"That was '+iif( katjaQW['QWstage'] = 5, 'amazing and a great honor to be Katja...
   scene.text('"That was ' + ((((s as any).katjaQW ?? 0)?.['QWstage'] === 5) ? ('amazing and a great honor to be Katja\'s first. If you ever want to repeat this') : ('great as always girls. If you feel the urge again just')) + ' give me a call." Katja doesn\'t respond, so you answer. "Yeah, this was fun. We might repeat it another time. You should get going before Vicky gets back. We don\'t want her sticking her nose in our business."');
   scene.text('"See you around," he says and leaves while you start putting your clothes back on. After a few minutes, Katja finally gets up from the bed and starts getting dressed in silence.');
   if (((s as any).mey_vika ?? 0)?.['key'] === 1) {

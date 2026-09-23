@@ -49,7 +49,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/resident/Anna/annacorridor1.jpg');
@@ -76,7 +76,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     scene.text('"I-i.." You stammer a little taken aback… did she ask if you want to learn more about what she was doing?');
     scene.text('"No need to answer now. Come visit me if you are interested. I\'m sure it is something new for you so I understand your concern, and I assure it will be a simple chit-chat. Do you know for example that what you have seen is more common than you think? You can learn something useful maybe I have some tips for your spying hobby too." She smiles.');
     scene.text('Did she say shit? "I don\'t know. It\'s a lot to take in. I was worried about my job and now you are talking about teaching me about… Whatever this all is."');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I''m not going to say anything about your peeking to anyone ...
+    // TODO-QSP: dynamic text: '"<<$pcs_nickname>>, I''m not going to say anything about your peeking to anyone...
     scene.text(`"${((st as any).pcs_nickname ?? '')}, I'm not going to say anything about your peeking to anyone whatever happens. I should have locked the door so that is my fault, I was playing a game of risk. Knowing someone might open the door at any time it is thrilling and dangerous." She pauses. "You can come to visit me here on Mondays and Tuesdays at 20:00 if you decide you want to learn. We'll chit-chat a little and maybe come to some other arrangements in the future to satisfy your curiosity.".`);
     scene.text('"I\'m grateful Miss Igorevna, I will have to think about it."');
     // TODO-QSP: dynamic text: "I''m glad you came and please, call me Anna. Now I have things to do so you''ll...
@@ -89,7 +89,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === 2) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
@@ -113,7 +113,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     scene.text('You wait for her reaction. She tries not to but breaks out in a huge smile close to laughing "Wow! To be so innocent again. No, i\'m not convinced you know what that even is. I don\'t do this for money. Sometimes I will sell my services, that\'s true, but that can be very limiting. You have to stick to what you have agreed in the price and cannot always stop people from doing what they want. This is a Lifestyle for me and for my community, we willingly do what we like."');
     scene.text('"And this lifestyle is…?"');
     scene.text('"The BDSM lifestyle. BDSM stands for: Bondage, Domination or Discipline, Submission or Sadism and Masochism. It comes in many forms, and there are a lot of disciplines; possibilities are nearly endless. BDSM can be both fictional and practical, mental and physical. From an erotic spanking or a vanilla roleplay, from giving or accepting verbal commands or a simple dirty talk, through to a complex and intense full session. Limits are discussed and although they may be pushed, hard limits are never overstepped; as a matter of fact if something goes wrong we use a "safe word", usually "Red" to stop immediately. In short, we look out for each other."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'A perverted game?', handler: (st: GameState) => {
     ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['dom'] = ((st as any).AnnaQW['dom'] ?? 0) + (1);
@@ -125,7 +125,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmmm… What do you know about BDSM?"');
     scene.text('"The things you have done in this room…"');
     scene.text('"Sort of, but this is very reductive. BDSM is a popular acronym, it stands for: Bondage, Domination or Discipline, Submission or Sadism and Masochism. Those activities are obviously a part of it but not even close to the whole. It\'s a lifestyle, and there\'s no need to fulfil all of the criteria for you to be considered a BDSM practitioner; also a lot of "vanilla" activities are actually BDSM practices. It can be both fictional and practical, mental and physical. From an erotic spanking or a vanilla roleplay, from giving or accepting verbal commands or a simple dirty talk, through to a complex and intense full session. Limits are discussed and although they may be pushed, hard limits are never overstepped; as the matter of fact if something goes wrong we use a "safe word", usually "Red" to stop immediately. In short, we look out for each other."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I saw nothing!', handler: (st: GameState) => {
     ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['switch'] = ((st as any).AnnaQW['switch'] ?? 0) + (1);
@@ -138,7 +138,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Hahaha, I'm joking ${((st as any).pcs_nickname ?? '')}, don't worry. I don't like to judge, and don't care if someone else judges me, so feel free to speak openly with me: what you saw is a lifestyle."`);
     scene.text('"And this lifestyle is…?"');
     scene.text('"The BDSM lifestyle. BDSM stands for: Bondage, Domination or Discipline, Submission or Sadism and Masochism. It comes in many forms, and there are a lot of disciplines; possibilities are nearly endless. BDSM can be both fictional and practical, mental and physical. From an erotic spanking or a vanilla roleplay, from giving or accepting verbal commands or a simple dirty talk, through to a complex and intense full session. Limits are discussed and although they may be pushed, hard limits are never overstepped; as a matter of fact if something goes wrong we use a "safe word", usually "Red" to stop immediately. In short, we look out for each other."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -147,7 +147,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
 
 function enter2a(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 3) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     ((s as any).AnnaQW = (s as any).AnnaQW ?? {})['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -170,7 +170,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
     scene.text('"Seriously? You saw me naked! OK, fine I\'ll cover a little, my puppies will stay in place. It\'s better for you to focus on the session. Anna covers herself up a little.');
     scene.text('"Good, let\'s start then. In BDSM we use a lot of furniture, some are fixed, some not and some are semi-fixed. I cannot bring fixed furniture for obvious reasons, so we only have furniture that is not fixed and toys. Today we\'ll look at some toys, next time furniture and restraining. The toys i\'m showing you today can be used alone or with other toys. Some toys are for pain and pleasure in general, but others can be used to increase the sensations experienced during sexual acts. I can demonstrate one with you but wait until the end before you decide if you want a demonstration, first I\'ll show you the items then you can make an informed choice, shall we start?" You nod trying to not look at her body.');
     scene.text('Oh! About drugs, they are strictly forbidden due to the nature of BDSM itself, we cannot trust our judgement or that of someone else if they are pissed or stoned it could be dangerous and it can damage the relationship, which would undermine everything. That\'s not to say those in a BDSM relationship cannot drink or do drugs, only that they should not be whipping each other when they do."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Wow! You got two really big boobs!', handler: (st: GameState) => {
     (st as any).annaToy = 2;
@@ -184,7 +184,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't mind me ${((st as any).pcs_nickname ?? '')}, the main thing is that you listen"`);
     scene.text('"In BDSM we use a lot of furniture, some are fixed, some not and some are semi-fixed. I cannot bring fixed furniture for obvious reasons, so we only have furniture that is not fixed and toys. Today we\'ll look at some toys, next time furniture and restraining. The toys i\'m showing you today can be used alone or with other toys. Some toys are for pain and pleasure in general, but others can be used to increase the sensations experienced during sexual acts. I can demonstrate one with you but wait until the end before you decide if you want a demonstration, first I\'ll show you the items then you can make an informed choice, shall we start?" You nod.');
     scene.text('Oh! About drugs, they are strictly forbidden due to the nature of BDSM itself, we cannot trust our judgement or that of someone else if they are pissed or stoned it could be dangerous and it can damage the relationship, which would undermine everything. That\'s not to say those in a BDSM relationship cannot drink or do drugs, only that they should not be whipping each other when they do."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Stare at her boobs', handler: (st: GameState) => {
     (st as any).annaToy = 3;
@@ -198,7 +198,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do not worry the main thing is that you listen to me"');
     scene.text('"In BDSM we use a lot of furniture, some are fixed, some not and some are semi-fixed. I cannot bring fixed furniture for obvious reasons, so we only have furniture that is not fixed and toys. Today we\'ll look at some toys, next time furniture and restraining. The toys i\'m showing you today can be used alone or with other toys. Some toys are for pain and pleasure in general, but others can be used to increase the sensations experienced during sexual acts. I can demonstrate one with you but wait until the end before you decide if you want a demonstration, first I\'ll show you the items then you can make an informed choice, shall we start?" You nod.');
     scene.text('Oh! About drugs, they are strictly forbidden due to the nature of BDSM itself, we cannot trust our judgement or that of someone else if they are pissed or stoned it could be dangerous and it can damage the relationship, which would undermine everything. That\'s not to say those in a BDSM relationship cannot drink or do drugs, only that they should not be whipping each other when they do."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter3a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -300,7 +300,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
   scene.text('Back to the warm up phase this in itself can extremely intense and to aid that we have sensation play. The Wattenburg wheel and cupping can be part of that. Sensation play allows us to increase the perception of a good pain instead of a bad pain, I know that sounds strange but linking the pain to pleasure makes the pain feel like pleasure. These concepts are a bit advanced so maybe we\'ll cover it in more detail another time.');
   scene.text('We also have toys that can be used purely for sexual pleasure such as the butt plug or my Hitachi vibrator."');
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === 4) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr0.jpg');
@@ -319,7 +319,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
     scene.text('"It seems to be working great, perhaps you should see if it works for someone else to make sure it is safe?"');
     scene.text('Are you asking to try it? I told you, you cannot, it has to be tested."');
     scene.text('It\'s clear you are not going to get to use it but you are still intrigued "OK, so how should it be used?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'She is the leader', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -328,7 +328,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr1.jpg');
     scene.text('"I understand you are the leader here."');
     scene.text('"The leader… hahaha… maybe a \'mentor\' but not a leader. I\'m not making any political movements. Anyway I\'ll give you few tips on fisting and the swing… they have a role in BDSM after all.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'A swing for fisting? Come on', handler: (st: GameState) => {
     ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['dom'] = ((st as any).AnnaQW['dom'] ?? 0) + (1);
@@ -337,7 +337,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr1.jpg');
     scene.text('"You don\'t need a swing for fisting another woman."');
     scene.text('"You are right, but the usual fisting depends completely on the fister\'s decisions. Anyway I assume you know something about fisting but I\'ll go over it with you just to make sure."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4a(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -409,7 +409,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
   scene.text('It is not cheap though. BDSM gear can cost a lot especially elaborate furniture. That is not a worry if you get it as a gift though" She smiles. "Now for the restriction part, the fisting swing can be used to pose a sub not without a need to fist them, the pose can be very exposing making them available for various sex acts or simply to be admired.');
   scene.text('OK enough about my fabulous new swing let\'s talk about restriction and again I ask you to wait until the end where I\'ll give you a choice for a demonstration."');
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+  if (String((s as any).locArgs?.[0] ?? '') === 5) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -538,7 +538,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+  if (String((s as any).locArgs?.[0] ?? '') === 6) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -749,7 +749,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
   scene.text(`Well ${((s as any).pcs_firstname ?? '')}, I wonder if you did this because you wanted to be punished of if you simply don't listen. Either way I gave you fair warning so get on my knee. Now!"`);
   scene.text('Anna has sat down and Jeanie is standing right behind you, her breath on your neck. It doesn\'t look like you have a choice.');
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+  if (String((s as any).locArgs?.[0] ?? '') === 7) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract19.jpg');
@@ -833,7 +833,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
         if (((st as any).PCloDress ?? 0) === 1) {
           scene.text('As you move toward Anna, Jeanie grabs the hem of your dress and pulls it over your head leaving you exposed.');
         } else {
-          // TODO-QSP: dynamic text: As you move toward Anna, Jeanie grabs your ' + iif(PCloSkirt > 0, 'skirt and pul...
+          // TODO-QSP: dynamic text: 'As you move toward Anna, Jeanie grabs your ' + iif(PCloSkirt > 0, 'skirt and pu...
           scene.text('As you move toward Anna, Jeanie grabs your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt and pulls it') : ('pants and pulls them')) + ' down, leaving you exposed.');
         }
       }
@@ -843,7 +843,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
         if (((st as any).PCloDress ?? 0) === 1) {
           scene.text('As you move toward Anna, Jeanie grabs the hem of your dress and pulls it over your head leaving you in just your underwear.');
         } else {
-          // TODO-QSP: dynamic text: As you move toward Anna, Jeanie grabs your ' + iif(PCloSkirt > 0, 'skirt and pul...
+          // TODO-QSP: dynamic text: 'As you move toward Anna, Jeanie grabs your ' + iif(PCloSkirt > 0, 'skirt and pu...
           scene.text('As you move toward Anna, Jeanie grabs your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt and pulls it') : ('pants and pulls them')) + ' down, leaving your panties exposed.');
         }
       }
@@ -889,7 +889,7 @@ function enterDresscontest(s: GameState, scene: SceneBuilder): void {
     scene.text('"That dress makes you look like professional Domme, I have to resist the urge to knee in front of you and await your instructions." She says joking but you do feel like you are more assertive than normal.');
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+  if (String((s as any).locArgs?.[0] ?? '') === 8) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -903,7 +903,7 @@ function enterDresscontest(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['hotel_anna_sex', 'slaveM'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+  if (String((s as any).locArgs?.[0] ?? '') === 9) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg');

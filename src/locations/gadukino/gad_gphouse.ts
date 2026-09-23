@@ -109,7 +109,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go outside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -182,7 +182,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go outside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -255,7 +255,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go outside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -328,7 +328,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go outside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gad_gpyard', 'start']; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

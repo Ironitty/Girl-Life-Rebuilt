@@ -326,7 +326,7 @@ function enterLateForSchool(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'shortgs', 'calendar_display');
     scene.text('Oh <i>fuck!</i> You need to get to school!');
     if (((st as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLateSchoolNotAtHome(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLateSchoolNotAtHome(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Get up!', handler: (st: GameState) => {
@@ -583,7 +583,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -596,7 +596,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -609,7 +609,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -623,7 +623,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     // TODO-QSP: dynamic text: You break the kiss from <<$npcdesc>>''s lips and start trailing them down his ne...
     scene.text(`You break the kiss from ${((st as any).npcdesc ?? '')}'s lips and start trailing them down his neck and then his chest and then his stomach and soon you have your lips wrapped around his morning wood.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -756,7 +756,7 @@ function enterCumshotWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/sleep/cumshot_wake2.mp4');
     scene.text('"Ugh, again?!" you moan, allowing the salty sperm to slip into your mouth.');
     scene.text('"You know you love it. Come here, clean me off," he says, pushing his cock towards your lips.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -770,7 +770,7 @@ function enterCumshotWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You were so hot lying there," ${((st as any).npcdesc ?? '')} snickers, a lewd grin smeared across his face. "I got hard just looking at you."`);
     scene.text('"So you thought it would be a good idea to cum on my face?!"');
     scene.text('"Come on, don\'t be like that. Here, clean me off. Get the rest out." He lowers his cock, pushing it towards your lips.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Take it in stride', handler: (st: GameState) => {
     scene.img('images/shared/sex/sleep/cumshot_wake2.mp4');
@@ -780,12 +780,12 @@ function enterCumshotWakeup1(s: GameState, scene: SceneBuilder): void {
       { label: 'Guess that means no morning BJ', handler: (st: GameState) => {
     scene.text('"Guess that means it\'s too late for a morning blowjob," you snicker.');
     scene.text('"No it\'s not," he grins back and pushes his cock towards your lips.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'At least I haven\'t put on makeup', handler: (st: GameState) => {
     scene.text('"At least I haven\'t put on my makeup yet," you giggle.');
     scene.text('"Clean me off too," he insists, pushing his cock towards your lips.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupClean2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -808,7 +808,7 @@ function enterCumshotWakeupClean1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Before you can make any more protest, <<$npcdesc>>''s cock pushes into your mout...
     scene.text(`Before you can make any more protest, ${((st as any).npcdesc ?? '')}'s cock pushes into your mouth. Your eyes accuse him of being a jerk but your lips suck obediently, drawing the last drops of cum from his shaft.`);
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupBj(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupBj(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -829,7 +829,7 @@ function enterCumshotWakeupClean2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Oh fiiiine," you say, mock frowning as <<$npcdesc>>''s cock pushes past your li...
     scene.text(`"Oh fiiiine," you say, mock frowning as ${((st as any).npcdesc ?? '')}'s cock pushes past your lips and you subserviently suck out the last drops of cum from it.`);
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupBj(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumshotWakeupBj(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -960,11 +960,11 @@ function enterForgotBcPill(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '', labelFn: (s: GameState) => String(((st as any).sex_ev ?? 0)?.['forgot_bc_act'] ?? '' ?? ''), handler: (st: GameState) => {
     if (((st as any).pharmacy_timers ?? 0)?.['birth_control'] > 0) {
-      // TODO-QSP: dynamic text: <<$npcdesc>> didn''t come inside you yesterday, so you''re not in any real dange...
-      scene.text('' + ((st as any).npcdesc ?? '') + ' didn\'t come inside you yesterday, so you\'re not in any real danger of getting pregnant right this second.\' + iif(sex_ev[\'no_condom\'] = 0, \' Besides, you used condoms.\', \' \') + \'But this breaks your streak. Aunt Luda said you need to take it every day or it won\'t work. So if you take it now, does that mean you\'re still not safe?');
+      // TODO-QSP: dynamic text: '<<$npcdesc>> didn''t come inside you yesterday, so you''re not in any real dang...
+      scene.text(`${((st as any).npcdesc ?? '')} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second.` + ((((st as any).sex_ev ?? 0)?.['no_condom'] === 0) ? (' Besides, you used condoms.') : (' ')) + 'But this breaks your streak. Aunt Luda said you need to take it every day or it won\'t work. So if you take it now, does that mean you\'re still not safe?');
     } else {
-      // TODO-QSP: dynamic text: <<$npcdesc>> didn''t come inside you yesterday, so you''re not in any real dange...
-      scene.text('' + ((st as any).npcdesc ?? '') + ' didn\'t come inside you yesterday, so you\'re not in any real danger of getting pregnant right this second.\' + iif(sex_ev[\'no_condom\'] = 0, \' Besides, you used condoms.\', \' \') + \'But does this mean you\'ll need to wait a few days to build up the birth control in your system again? If you take your next pill now, does that mean you\'re still not safe?');
+      // TODO-QSP: dynamic text: '<<$npcdesc>> didn''t come inside you yesterday, so you''re not in any real dang...
+      scene.text(`${((st as any).npcdesc ?? '')} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second.` + ((((st as any).sex_ev ?? 0)?.['no_condom'] === 0) ? (' Besides, you used condoms.') : (' ')) + 'But does this mean you\'ll need to wait a few days to build up the birth control in your system again? If you take your next pill now, does that mean you\'re still not safe?');
     }
     qspGoto(st, 'sex_ev_wakeup', 'forgot_bc_pill2');
   } },
@@ -1126,9 +1126,9 @@ function enterCheatNoGuilt1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lover_stat ?? 0)?.['fighting_flag'] === 1) {
     scene.actions([
       { label: 'Serves them right', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: <i>Serves </i>' + iif($sex_ev['cheat'] = 'boyfriend', '<i>him</i>', '<i>her</i>'...
+    // TODO-QSP: dynamic text: '<i>Serves </i>' + iif($sex_ev['cheat'] = 'boyfriend', '<i>him</i>', '<i>her</i>...
     scene.text('<i>Serves </i>' + ((((st as any).sex_ev ?? 0)?.['cheat'] === 'boyfriend') ? ('<i>him</i>') : ('<i>her</i>')) + '<i>right,</i> you think, taking a perverse satisfaction in cheating on ' + ((((st as any).sex_ev ?? 0)?.['cheat'] === 'boyfriend') ? ('him') : ('her')) + ' after your recent fight.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissWake(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: '<i>Yawn</i>', goto: ['sex_ev_wakeup', 'yawn_wake'] },
     ]);
@@ -1141,7 +1141,7 @@ function enterCheatNoGuilt1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <i>Oops,</i> you think. <i>I think I just cheated on my <<$sex_ev[''cheat'']>>.<...
     scene.text(`<i>Oops,</i> you think. <i>I think I just cheated on my ${((st as any).sex_ev ?? 0)?.['cheat'] ?? ''}.</i>`);
     scene.text('The realization brings with it no guilt, to you this moment just as much of an oopsie as dropping a pencil.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissWake(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissWake(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: '<i>Yawn</i>', goto: ['sex_ev_wakeup', 'yawn_wake'] },
     ]);
@@ -1205,7 +1205,7 @@ function enterGuiltStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltProstitution1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltProstitution1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1320,7 +1320,7 @@ function enterCheatGuilt1(s: GameState, scene: SceneBuilder): void {
       }
       // TODO-QSP: dynamic text: Your thoughts wander through your night with <<$npcdesc>>...
       scene.text(`Your thoughts wander through your night with ${((st as any).npcdesc ?? '')}...`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(st, scene); (st as any).locArgs = __savedLocArgs; }
       if (((st as any).sex_ev ?? 0)?.['prostitution_flag'] === 'prostitution') {
         scene.text('<i>And what for? Money...?</i>');
       }
@@ -1330,7 +1330,7 @@ function enterCheatGuilt1(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit up, throwing your legs over the side of the bed as the shame flows through you.');
       scene.text('It\'s nothing you haven\'t felt before. This isn\'t the first time you\'ve cheated. It\'s not the second time. It\'s not even the tenth time. You\'ve lost count by now. But somehow, the crippling guilt always feels the same.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuiltExcuses(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuiltExcuses(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1347,7 +1347,7 @@ function enterCheatGuiltExcuses(s: GameState, scene: SceneBuilder): void {
       scene.text('<i>It\'s not my fault,</i> you try to rationalize. <i>I have needs. Sexual needs. He preyed on that. He seduced me. I\'m a victim here...</i>');
     }
     scene.text('All your excuses ring hollow in your ears.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuilt2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuilt2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s just sex', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/wakeup_shock2.mp4');
@@ -1365,7 +1365,7 @@ function enterCheatGuiltExcuses(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<i>It\'s just sex...</i>');
     scene.text('Only you can decide whether or not you believe yourself.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuilt2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCheatGuilt2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re a whore', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/wakeup_shock3.mp4');
@@ -1475,7 +1475,7 @@ function enterGuiltProstitution1(s: GameState, scene: SceneBuilder): void {
     scene.text('You sit up, taking deep breaths as the guilt and shame course through your body as the memories of last night wash over you.');
     scene.text('<i>I fucked someone for money...</i> you think.');
     scene.text('You took his money and spread your legs...');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('Something so important and you just gave it away...');
     scene.text('For what? Money...?');
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
@@ -1491,7 +1491,7 @@ function enterGuiltProstitution1(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit up', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/wakeup_shock2.mp4');
     scene.text('You sit up, taking deep breaths as the guilt and shame course through your body as the memories of last night wash over you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltActRecount(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('For what? So you could earn a few more rubles...?');
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -1524,7 +1524,7 @@ function enterGuiltVirginity1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Something so important and you just gave it away...');
     scene.text('For what? Money...?');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginity2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginity2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1539,13 +1539,13 @@ function enterGuiltVirginity2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/wakeup_shock3.mp4');
     scene.text('<i>You\'re nothing but a filthy whore...</i>');
     scene.text('The moment as you think it, you can\'t escape. Shame fills your entire body and you can barely breathe as the thought buries itself in your heart and you can\'t help but think it over and over and over again.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginityEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginityEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Your mother', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/wakeup_shock3.mp4');
     scene.text('<i>You <b>filthy</b> whore!</i>');
     scene.text('The moment as you think it, you can\'t escape. Shame fills your entire body and you can barely breathe as the image of your mother condemning you buries itself in your heart and you can\'t help but think it over and over and over again.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginityEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGuiltVirginityEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

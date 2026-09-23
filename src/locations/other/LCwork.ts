@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart1(s: GameState, scene: SceneBuilder): void {
-  (s as any).horand = (Math.floor(Math.random() * 100) + 1)+ 40;
+  (s as any).horand = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'dinSex', 'std_trigger');
   (s as any).randLCpay = 1000;
@@ -104,7 +104,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart3(s: GameState, scene: SceneBuilder): void {
-  (s as any).horand = (Math.floor(Math.random() * 100) + 1) + 20;
+  (s as any).horand = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
   qspCall(s, 'npcgeneratec', '', 0, 'A John', 0, 0, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcgeneratec', '', 0, 'A John', 0, 0, 1);

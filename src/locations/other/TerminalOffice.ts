@@ -10,7 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterTerminalOfficeScreen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('wrap', 'header b center', $ARGS[1])
-  scene.img('images/locations/city/industrial/terminal/\'+$ARGS[2]+\'.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/industrial/terminal/'+$AR...
+  scene.text(`'<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/industrial/terminal/'+$ARGS[2]+'.jpg"></center>'`);
   // TODO-QSP: end
   scene.build();
 }
@@ -52,7 +53,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     (st as any).YouNotOpenDoorDir = 0;
     qspCall(st, 'stat', '');
     scene.text('"Excuse me, I wonder if I could meet your supervisor?" you ask.');
-    // TODO-QSP: dynamic text: The Manager grins, "Yuri is usually here every Monday through Friday, between '+...
+    // TODO-QSP: dynamic text: 'The Manager grins, "Yuri is usually here every Monday through Friday, between '...
     scene.text('The Manager grins, "Yuri is usually here every Monday through Friday, between 9:00 and 18:00 except lunch between 13:00 and 14:00."');
     scene.actions([
       { label: 'Leave', goto: ['TerminalOffice', '11'] },
@@ -66,7 +67,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     (st as any).YouNotOpenDoorBuh = 0;
     qspCall(st, 'stat', '');
     scene.text('"Excuse me, I wonder if I could meet your accountant?" you ask.');
-    // TODO-QSP: dynamic text: The Manager grins, "Elizabeth is usually here Monday through Friday, between '+f...
+    // TODO-QSP: dynamic text: 'The Manager grins, "Elizabeth is usually here Monday through Friday, between '+...
     scene.text('The Manager grins, "Elizabeth is usually here Monday through Friday, between 9:00 and 20:00 except lunch between 13:00 and 14:00."');
     scene.actions([
       { label: 'Leave', goto: ['TerminalOffice', '11'] },
@@ -112,8 +113,8 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     scene.text('There is no more free space at home.');
   } else {
     (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
-    // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You...
-    scene.text('You have \' + mc_inventory[\'trinkets_home\'] + \' trinkets stored in your home. You\'re only able to store ' + ((s as any).TovarLimitHomeRepository ?? '') + ' trinkets.');
+    // TODO-QSP: dynamic text: 'You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. Yo...
+    scene.text('You have ' + ((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? '' + ` trinkets stored in your home. You're only able to store ${((s as any).TovarLimitHomeRepository ?? '')} trinkets.`);
     (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
@@ -121,8 +122,8 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       scene.text('There is no space in the garage.');
     } else {
       (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
-      // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. ...
-      scene.text('You have \' + mc_inventory[\'trinkets_garage\'] + \' trinkets stored in the garage. You\'re only able to store ' + ((s as any).TovarLimitGarageRepository ?? '') + ' trinkets.');
+      // TODO-QSP: dynamic text: 'You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage....
+      scene.text('You have ' + ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] ?? '' + ` trinkets stored in the garage. You're only able to store ${((s as any).TovarLimitGarageRepository ?? '')} trinkets.`);
       (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0);
     }
   }
@@ -132,10 +133,10 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'The small trinkets cost ' + String(qspFunc(s, 'money', 'string_price', 100) ?? '') + '. Please put in how many trinkets you want to purchase.', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 13;
-    (st as any).BuyQuantity = 0;
+    // TODO-QSP: BuyQuantity = input("How many trinkets do you want to buy for <<$func('money', 'string_price', 100)>> apiece?")
     if (((st as any).BuyQuantity ?? 0) > (((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0))) {
-      // TODO-QSP: dynamic text: <b><font color=red>You have nowhere to store the surplus <<BuyQuantity-(MaxQuant...
-      scene.text('<b><font color=red>You have nowhere to store the surplus ' + ((st as any).BuyQuantity ?? '')-(((st as any).MaxQuantityHome ?? '') + ((st as any).MaxQuantityGarage ?? '')) + ' \' + iif(BuyQuantity - (MaxQuantityHome + MaxQuantityGarage) = 1, \'trinket\', \'trinkets\') + \'.</front></b>');
+      // TODO-QSP: dynamic text: '<b><font color=red>You have nowhere to store the surplus <<BuyQuantity-(MaxQuan...
+      scene.text(`<b><font color=red>You have nowhere to store the surplus ${((st as any).BuyQuantity ?? '')-(((st as any).MaxQuantityHome ?? '') + ((st as any).MaxQuantityGarage ?? ''))} ` + ((((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0)) === 1) ? ('trinket') : ('trinkets')) + '.</front></b>');
       scene.actions([
         { label: 'Leave', goto: ['TerminalOffice', '11'] },
       ]);
@@ -298,7 +299,7 @@ function enter31(s: GameState, scene: SceneBuilder): void {
         { label: 'Talk', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
     (st as any).AboutBussines = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I was told to come and see you about a business proposal…" you start.');
     scene.text('"I heard there was a possibility of a good, legitimate and profitable trade business going on…" you continue.');
     scene.text('The man puts the phone to his side and irritably answers, "Can\'t you see I\'m in middle of a phone call? Leave!"');
@@ -310,7 +311,7 @@ function enter31(s: GameState, scene: SceneBuilder): void {
         { label: 'Give him the documents', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
     (st as any).AboutDocs = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You walk up to the desk. You\'re ignored by the man, but you refuse to turn back, you have an important assignment from the boss.');
     scene.text('"I was told by Anatoly Chubais from the company "OOO Bystroushka limited" to hand over these documents to you."');
     scene.text('The man stops talking on the phone, frowns, and, pointing towards the door, asserts, "You need to head over to the accountant\'s office."');

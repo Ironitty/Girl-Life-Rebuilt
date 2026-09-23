@@ -12,7 +12,7 @@ function enterMetro(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/waiting_metro.jpg');
   qspCall(s, 'katja_meynold_schedule', '');
-  // TODO-QSP: dynamic text: You walk to the Metro station '+iif(func('money', 'can_afford', 16) = 1, 'and pa...
+  // TODO-QSP: dynamic text: 'You walk to the Metro station '+iif(func('money', 'can_afford', 16) = 1, 'and p...
   scene.text('You walk to the Metro station ' + ((qspFunc(s, 'money', 'can_afford', 16) === 1) ? ('and pay the fare.') : ('but don\'t have any money, so Katja pays the fare for you.')) + ' You then go down to the platform and chat while you wait for the train.');
   if (qspFunc(s, 'money', 'can_afford', 16) === 1) {
     qspCall(s, 'money', 'pay', 16);
@@ -109,7 +109,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
       }
       if (qspFunc(s, 'money', 'can_afford', 250) === 1) {
         qspCall(s, 'money', 'pay', 250);
-        // TODO-QSP: dynamic text: You pay the ' + $func('money', 'string_price', 250) + ' entrance fee and head in...
+        // TODO-QSP: dynamic text: 'You pay the ' + $func('money', 'string_price', 250) + ' entrance fee and head i...
         scene.text('You pay the 250₽ entrance fee and head into the club.');
       } else {
         scene.text('You don\'t have enough to pay the entrance fee, so Katja pays for you.');
@@ -274,8 +274,8 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
     (st as any).loop_counter = ((st as any).loop_counter ?? 0) + (1);
     if (((st as any).loop_counter ?? 0) === 600) {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
-      // TODO-QSP: dynamic text: You try to put on what Katja brought you, but it''s ' + iif(pcs_bmi < 25, 'way t...
-      scene.text('You try to put on what Katja brought you, but it\'s \' + iif(pcs_bmi < 25, \'way too loose and will fall off\', \'so tight you can\'t get into it\') + \' so you give up. "Sorry ' + ((st as any).pcs_nickname ?? '') + ', seems I\'ve miscalculated your size. Let me get something else," she says.');
+      // TODO-QSP: dynamic text: 'You try to put on what Katja brought you, but it''s ' + iif(pcs_bmi < 25, 'way ...
+      scene.text('You try to put on what Katja brought you, but it\'s ' + ((((st as any).pcs_bmi ?? 0) < 25) ? ('way too loose and will fall off') : ('so tight you can\'t get into it')) + ` so you give up. "Sorry ${((st as any).pcs_nickname ?? '')}, seems I've miscalculated your size. Let me get something else," she says.`);
       scene.text('You stop her before she runs out. "Hey don\'t be sorry, it\'s not your fault. Try what I picked out first."');
       scene.actions([
         { label: 'Katja tries the clothes you picked', goto: ['katja_city', 'pussy_cat_outfit' + (Math.floor(Math.random() * 4) + 0) + ''] },
@@ -319,7 +319,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
             { label: 'Tell her that you like it', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'love');
     scene.text('"This is really nice. As always, your fashion sense is impeccable," you say and her face lights up like a Christmas tree.');
-    // TODO-QSP: dynamic text: You look at the price tag and see that it costs ' + $func('money', 'string_price...
+    // TODO-QSP: dynamic text: 'You look at the price tag and see that it costs ' + $func('money', 'string_pric...
     scene.text('You look at the price tag and see that it costs \' + $func(\'money\', \'string_price\', price) + \'.');
     if (qspFunc(s, 'money', 'can_afford', ((st as any).price ?? 0))) {
       scene.actions([
@@ -392,7 +392,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
             { label: 'Tell her that you like it', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'love');
     scene.text('"This is really nice. As always, your fashion sense is impeccable," you say and her face lights up like a Christmas tree.');
-    // TODO-QSP: dynamic text: You look at the price tag and see that it costs ' + $func('money', 'string_price...
+    // TODO-QSP: dynamic text: 'You look at the price tag and see that it costs ' + $func('money', 'string_pric...
     scene.text('You look at the price tag and see that it costs \' + $func(\'money\', \'string_price\', price) + \'.');
     if (qspFunc(s, 'money', 'can_afford', ((st as any).price ?? 0))) {
       scene.actions([
@@ -639,9 +639,9 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
         scene.text('"Well, then you\'re going to try several new things today," you say and hand her the butt plug.');
       } else {
         if (((st as any).katjaQW ?? 0)?.['masturbates'] + ((st as any).npc_ass ?? 0)?.['A14'] === 1) {
-          // TODO-QSP: dynamic text: "I''ve never used the '+iif(katjaQW['masturbates'] = 1, 'butt plug', 'vibrator')...
+          // TODO-QSP: dynamic text: '"I''ve never used the '+iif(katjaQW['masturbates'] = 1, 'butt plug', 'vibrator'...
           scene.text('"I\'ve never used the ' + ((((st as any).katjaQW ?? 0)?.['masturbates'] === 1) ? ('butt plug') : ('vibrator')) + '." she says.');
-          // TODO-QSP: dynamic text: "So you''ve used the '+iif(katjaQW['masturbates'] = 1, 'vibrator', 'butt plug')+...
+          // TODO-QSP: dynamic text: '"So you''ve used the '+iif(katjaQW['masturbates'] = 1, 'vibrator', 'butt plug')...
           scene.text('"So you\'ve used the ' + ((((st as any).katjaQW ?? 0)?.['masturbates'] === 1) ? ('vibrator') : ('butt plug')) + '? You\'re going to try something new today," you say and hand her the butt plug.');
         } else {
           scene.text('She doesn\'t say anything, but her face is becoming even more red than before. "So you <i>have</i> been using them, you dirty girl!" you say with a smile. "Show me how you use them," you say as you hand her the butt plug.');
@@ -686,7 +686,7 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Masturbate while you watch', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_10.jpg');
-    // TODO-QSP: dynamic text: You put you hand down your '+iif(CloSkirtShortness > 0, 'skirt', 'pants')+' and ...
+    // TODO-QSP: dynamic text: 'You put you hand down your '+iif(CloSkirtShortness > 0, 'skirt', 'pants')+' and...
     scene.text('You put you hand down your ' + ((((st as any).CloSkirtShortness ?? 0) > 0) ? ('skirt') : ('pants')) + ' and start rubbing your clit as you watch Katja. She starts really getting into it, and seems to have a hard time keeping her voice down. After a few minutes, she starts convulsing and has a powerful orgasm. Afterwards, she just lies in the chair, catching her breath.');
     qspCall(st, 'arousal', 'foreplay', 3);
     qspCall(st, 'arousal', 'clit_finger', (-3), 'masturbate');
@@ -932,9 +932,9 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, then you\'re going to try several new things today," you say and hand her the butt plug.');
     } else {
       if (((s as any).katjaQW ?? 0)?.['masturbates'] + ((s as any).npc_ass ?? 0)?.['A14'] === 1) {
-        // TODO-QSP: dynamic text: "I''ve never used the '+iif(katjaQW['masturbates'] = 1, 'butt plug', 'vibrator')...
+        // TODO-QSP: dynamic text: '"I''ve never used the '+iif(katjaQW['masturbates'] = 1, 'butt plug', 'vibrator'...
         scene.text('"I\'ve never used the ' + ((((s as any).katjaQW ?? 0)?.['masturbates'] === 1) ? ('butt plug') : ('vibrator')) + '." she says.');
-        // TODO-QSP: dynamic text: "So you''ve used the '+iif(katjaQW['masturbates'] = 1, 'vibrator', 'butt plug')+...
+        // TODO-QSP: dynamic text: '"So you''ve used the '+iif(katjaQW['masturbates'] = 1, 'vibrator', 'butt plug')...
         scene.text('"So you\'ve used the ' + ((((s as any).katjaQW ?? 0)?.['masturbates'] === 1) ? ('vibrator') : ('butt plug')) + '? You\'re going to try something new today," you say and hand her the butt plug.');
       } else {
         scene.text('She doesn\'t say anything, but her face is becoming even more red than before. "So you <i>have</i> been using them, you dirty girl!" you say with a smile. "Show me how you use them," you say as you hand her the butt plug.');
@@ -979,7 +979,7 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Masturbate while you watch', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_9.jpg');
-    // TODO-QSP: dynamic text: You put your hand down your '+iif(CloSkirtShortness > 0, 'skirt', 'pants')+' and...
+    // TODO-QSP: dynamic text: 'You put your hand down your '+iif(CloSkirtShortness > 0, 'skirt', 'pants')+' an...
     scene.text('You put your hand down your ' + ((((st as any).CloSkirtShortness ?? 0) > 0) ? ('skirt') : ('pants')) + ' and start rubbing your clit while you watch Katja. She starts really getting into it and seems to have a hard time keeping her voice down. After a few minutes, she starts convulsing and has a powerful orgasm. Afterwards, she just lies in the chair, catching her breath.');
     qspCall(st, 'arousal', 'foreplay', 3);
     qspCall(st, 'arousal', 'clit_finger', (-3), 'masturbate');

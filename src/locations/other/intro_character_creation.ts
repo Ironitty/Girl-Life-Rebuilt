@@ -15,7 +15,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_functions', 'set_default', 'birthday');
   }
   qspCall(s, 'time', 'init_monthnames');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'link') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'link') {
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
       (s as any).startdob = 'Her birthday: <b>' + (String(100 + ((s as any).birthday ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).birthmonth ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + ((s as any).birthyear ?? 0) + '</b> (DD/MM/YYYY)';
     } else {
@@ -28,7 +28,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
       scene.img('images/system/1_openings/4_csb/16.jpg');
     } else {
-      scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "intro_character_creation" })}`);
+      scene.img(`${qspFunc(s, '$$face_image')}`);
     }
     scene.text('<center>Choose your date of birth:</center>');
     if (((s as any).birthmonth ?? 0) === 2) {
@@ -124,7 +124,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRandom(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'daystart') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'daystart') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
       if ((!((s as any).temp_rand ?? 0))) {
@@ -148,7 +148,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'location') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'location') {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
         (s as any).result = (Math.floor(Math.random() * 4) + 0);
         if (((s as any).knowpreg ?? 0) === 1  ||  ((s as any).kid ?? 0) > 0) {
@@ -169,7 +169,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     if (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none') {
     }
     (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
@@ -184,22 +184,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcstatic3', '');
     // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 1
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
         // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 2
       } else {
         if (((s as any).pcs_firstname ?? 0) === '') {
           qspCall(s, 'intro_functions', 'set_default', 'name');
         }
-        (s as any).temp = 0;
+        (s as any).temp = window.prompt("What is your first name? (Leave blank for \"<<$pcs_firstname>>\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_firstname = ((s as any).temp ?? 0);
         }
-        (s as any).temp = 0;
+        (s as any).temp = window.prompt("What is your family name? (Leave blank for \"<<$pcs_lastname>>\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_lastname = ((s as any).temp ?? 0);
         }
-        (s as any).temp = 0;
+        (s as any).temp = window.prompt("What is your nickname? (Leave blank for \"<<$pcs_nickname>>\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_nickname = ((s as any).temp ?? 0);
         }
@@ -217,16 +217,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text(`Your ${((s as any).npc_usedname ?? 0)?.['A30'] ?? ''} lives in the same building as you do, though you rarely see her except when you pass her in the stairwell. She is your mother's older sister. ${((s as any).npc_usedname ?? 0)?.['A54'] ?? ''}, as everyone calls him, is best friends with your stepfather. ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A11'] ?? ''}, your childhood friend, is the same age as you and grew up living in the same apartment building on the floor above yours. His father, ${((s as any).npc_firstname ?? 0)?.['A112'] ?? ''}, is an old friend of your mother.`);
         }
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 2
-  } },
-          { label: 'Re-enter name', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 1
-  } },
+          { label: 'Continue', goto: ['intro_character_creation', 'start', 'ARGS[1]', '2'] },
+          { label: 'Re-enter name', goto: ['intro_character_creation', 'start', 'ARGS[1]', '1'] },
         ]);
       }
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         qspCall(s, 'npcstatic4', '');
         qspCall(s, 'npcstatic5', '');
         qspCall(s, 'npcstatic6', '');
@@ -296,7 +292,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart3(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_dest = ((Number((s as any).locArgs?.[1] ?? 0) === '') ? ('charselect') : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_dest = ((String((s as any).locArgs?.[1] ?? '') === '') ? ('charselect') : (((s as any).locArgs?.[1] ?? 0)));
   scene.img('images/system/1_openings/shared/pre_3.jpg');
   scene.text('In the Gadukino start, you\'re visiting your grandparent\'s house in the small farming village of Gadukino.');
   scene.actions([
@@ -318,9 +314,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     (st as any).start_location = 3;
     scene.actions([
       { label: 'Confirm location', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', ((st as any).temp_dest ?? '')); } },
-      { label: 'Change location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
-  } },
+      { label: 'Change location', goto: ['intro_character_creation', 'start3', 'ARGS[1]'] },
     ]);
   } },
       ]);
@@ -333,9 +327,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     (st as any).start_location = 0;
     scene.actions([
       { label: 'Confirm location', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', ((st as any).temp_dest ?? '')); } },
-      { label: 'Change location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
-  } },
+      { label: 'Change location', goto: ['intro_character_creation', 'start3', 'ARGS[1]'] },
     ]);
   } },
       { label: 'Renting in Pushkin', handler: (st: GameState) => {
@@ -345,14 +337,10 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     (st as any).start_location = 2;
     scene.actions([
       { label: 'Confirm location', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', ((st as any).temp_dest ?? '')); } },
-      { label: 'Change location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
-  } },
+      { label: 'Change location', goto: ['intro_character_creation', 'start3', 'ARGS[1]'] },
     ]);
   } },
-      { label: 'Change location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
-  } },
+      { label: 'Change location', goto: ['intro_character_creation', 'start3', 'ARGS[1]'] },
     ]);
   } },
 { label: 'Gadukino Start', handler: (st: GameState) => {
@@ -362,9 +350,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     (st as any).start_location = 1;
     scene.actions([
       { label: 'Confirm location', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', ((st as any).temp_dest ?? '')); } },
-      { label: 'Change location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
-  } },
+      { label: 'Change location', goto: ['intro_character_creation', 'start3', 'ARGS[1]'] },
     ]);
   } },
 ]);
@@ -378,7 +364,7 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
   (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   (s as any).temp_verb = ((((s as any).tsg ?? 0)) ? ('am') : ('was'));
   (s as any).temp_have = ((((s as any).tsg ?? 0)) ? ('have') : ('had'));
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     scene.img('images/system/1_openings/shared/pre_4.jpg');
     scene.text('Select your personality/social group. Your social group will have a major defining impact upon your life in school and will determine your starting friends, traits and overall look. While you can always change groups later, it takes time and effort, so choose wisely.');
     scene.actions([
@@ -391,99 +377,57 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
       { label: 'Random personality', goto: ['intro_character_creation', 'random_start'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'cool') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'cool') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cool']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' a lot of friends', handler: (st: GameState) => {
     qspCall(st, 'intro_character_creation', 'group_desc', 'cool', 'socialite');
   } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' beautiful', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'beauti...
-  } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' just hanging in there', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'anorex...
-  } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' like, bubbly and hot', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'bimbo'
-  } },
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' beautiful', goto: ['intro_character_creation', 'group_desc', 'cool', 'beautiful'] },
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' just hanging in there', goto: ['intro_character_creation', 'group_desc', 'cool', 'anorexic'] },
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' like, bubbly and hot', goto: ['intro_character_creation', 'group_desc', 'cool', 'bimbo'] },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'jock') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'jock') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'jock']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid volleyball player', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'volley...
-  } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid dancer', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'dancer...
-  } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid runner', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'runner...
-  } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid football player', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'footba...
-  } },
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid volleyball player', goto: ['intro_character_creation', 'group_desc', 'jock', 'volleyball'] },
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid dancer', goto: ['intro_character_creation', 'group_desc', 'jock', 'dancer'] },
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid runner', goto: ['intro_character_creation', 'group_desc', 'jock', 'runner'] },
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid football player', goto: ['intro_character_creation', 'group_desc', 'jock', 'football'] },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'nerd') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nerd']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the Queen of the Nerds!', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'nerdqu...
-  } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good student', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'goodst...
-  } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a computer geek', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'comput...
-  } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid chess player', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'chessp...
-  } },
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the Queen of the Nerds!', goto: ['intro_character_creation', 'group_desc', 'nerd', 'nerdqueen'] },
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good student', goto: ['intro_character_creation', 'group_desc', 'nerd', 'goodstudent'] },
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a computer geek', goto: ['intro_character_creation', 'group_desc', 'nerd', 'computergeek'] },
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid chess player', goto: ['intro_character_creation', 'group_desc', 'nerd', 'chessplayer'] },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'gopnik') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'gopnik') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gopnik']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).tsg ?? 0)) {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' ' + String(((s as any).npc_nickname ?? 0)?.['A9'] ?? '' ?? '') + '\'s girlfriend', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'vite...
-  } },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' ' + String(((s as any).npc_nickname ?? 0)?.['A9'] ?? '' ?? '') + '\'s girlfriend', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'vitekgf'] },
               ]);
             }
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a gopnik', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'gopn...
-  } },
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a punk or troublemaker', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'trou...
-  } },
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an alternative, party girl or rebel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'alte...
-  } },
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a gopnik', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'gopnikstart'] },
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a punk or troublemaker', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'troublemaker'] },
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an alternative, party girl or rebel', goto: ['intro_character_creation', 'group_desc', 'gopnik', 'alternative'] },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'outcast') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'outcast') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'outcast']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' no friends', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'fri...
-  } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an ugly duckling', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'ugl...
-  } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good girl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'goo...
-  } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a slut', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'slu...
-  } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the resident goth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'got...
-  } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the poor kid', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'poo...
-  } },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' no friends', goto: ['intro_character_creation', 'group_desc', 'outcast', 'friendless'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an ugly duckling', goto: ['intro_character_creation', 'group_desc', 'outcast', 'uglyduckling'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good girl', goto: ['intro_character_creation', 'group_desc', 'outcast', 'goodgirl'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a slut', goto: ['intro_character_creation', 'group_desc', 'outcast', 'slut'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the resident goth', goto: ['intro_character_creation', 'group_desc', 'outcast', 'goth'] },
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the poor kid', goto: ['intro_character_creation', 'group_desc', 'outcast', 'poor'] },
               ]);
             }
           }
@@ -491,7 +435,7 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     scene.actions([
       { label: 'Return to starting options', goto: ['intro_character_creation', 'charselect'] },
     ]);
@@ -502,14 +446,14 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'cool') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'cool') {
+    if (String((s as any).locArgs?.[2] ?? '') === '') {
       scene.text('<center><b>Popular</b></center>');
       scene.img('images/system/1_openings/2_sg/popular_0.jpg');
       // TODO-QSP: dynamic text: You spent most of your childhood outdoors, playing with other boys and girls. As...
       scene.text(`You spent most of your childhood outdoors, playing with other boys and girls. As a result, you're quite healthy and have a keen understanding about how to get yourself out of trouble (or shifting the blame to someone else). You were never very interested in school or sports, however, and are only a sub-par student. Your popularity has negatively impacted your relationship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}, and ${((((s as any).tsg ?? 0)) ? ('you\'re not') : ('you weren\'t'))} as close as you once were. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were popular because'))}...`);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'socialite') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'socialite') {
         scene.text('<center><b>Sociable</b></center>');
         scene.img('images/system/1_openings/2_sg/popular_1.jpg');
         // TODO-QSP: dynamic text: <<iif(tsg, "You''re", "You were")>> friends with all of the important kids at sc...
@@ -519,7 +463,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
           scene.text('Now you find yourself in the big city and you no longer feel like the big important fish in a small pond. Everyone is more busy and there is just so many more people.');
         }
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'beautiful') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'beautiful') {
           scene.text('<center><b>Beautiful</b></center>');
           scene.img('images/system/1_openings/2_sg/popular_2.jpg');
           // TODO-QSP: dynamic text: You might not <<iif(tsg, "be", "have been")>> the smartest, the most social, the...
@@ -530,14 +474,14 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             scene.text('Now that you are in the city, you are still better looking than most, but you can\'t help but notice the occasional girl that is even better looking than you. It seems the boys are also not as impressed at your looks as they once were.');
           }
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'anorexic') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'anorexic') {
             scene.text('<center><b>Barely Hanging on</b></center>');
             scene.img('images/system/1_openings/2_sg/popular_3.jpg');
             scene.text('You had good looks growing up and naturally ended up falling in with the cool crowd. You enjoyed being the center of attention and became obsessed with looking like the models you\'d seen on social media and in magazines. You started dieting, but took it too far and ended up losing a lot of weight, which caused some of your fellow students to start talking about you and make the odd joke at your expense. This led to a vicious cycle and as your looks deteriorated, the jokes got worse, which only spurred you on further.');
             // TODO-QSP: dynamic text: Your family and some of your friends, especially <<$npc_nickname[''A15'']>> and ...
             scene.text(`Your family and some of your friends, especially ${((s as any).npc_nickname ?? 0)?.['A15'] ?? ''} and ${((s as any).npc_nickname ?? 0)?.['A148'] ?? ''}, became concerned and with their support, you were able to start recovering. You now have a good relationship with your mother and sister, as well as ${((s as any).npc_nickname ?? 0)?.['A15'] ?? ''} and ${((s as any).npc_nickname ?? 0)?.['A148'] ?? ''}, who defended you and prevented you from becoming an outcast. ${((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? ('You\'re') : ('When you left school you were'))} still a member of your clique, albeit only barely.`);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'bimbo') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'bimbo') {
               scene.text('<center><b>Simply Stunning</b></center>');
               scene.img('images/system/1_openings/2_sg/popular_4.jpg');
               // TODO-QSP: dynamic text: In your younger years, you loved playing with dolls and dressing them up in your...
@@ -553,14 +497,14 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'jock') {
-      if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'jock') {
+      if (String((s as any).locArgs?.[2] ?? '') === '') {
         scene.text('<center><b>Jock</b></center>');
         scene.img('images/system/1_openings/2_sg/jock_0.jpg');
         // TODO-QSP: dynamic text: While you were growing up, you spent virtually all of your free time outdoors. Y...
         scene.text(`While you were growing up, you spent virtually all of your free time outdoors. You loved playing sports, running, biking and hiking. This has kept you in fairly good shape, as well as socially active in a variety of team sports over the years. Doing this, however, negatively impacted your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}. As you grew up, he became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. From all the sports available, you ${((((s as any).tsg ?? 0)) ? ('are') : ('were'))} an...`);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'volleyball') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'volleyball') {
           scene.text('<center><b>Volleyball player</b></center>');
           scene.img('images/system/1_openings/2_sg/jock_1.jpg');
           // TODO-QSP: dynamic text: Ever since you first played volleyball, you have been in love with the sport. Yo...
@@ -572,7 +516,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             scene.text('Now that you are in the big city, it seems your talent for volleyball is less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
           }
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'dancer') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'dancer') {
             scene.text('<center><b>Avid dancer</b></center>');
             scene.img('images/system/1_openings/2_sg/jock_2.jpg');
             // TODO-QSP: dynamic text: You fell in love with dancing at an early age and never looked back. You spent a...
@@ -585,7 +529,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
               scene.text('You were good friends with Albina Barlovskaya, a girl who was even more passionate about dancing than you. Now that you are in the big city, it seems your dancing talent is less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
             }
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'runner') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'runner') {
               scene.text('<center><b>Track runner</b></center>');
               scene.img('images/system/1_openings/2_sg/jock_3.jpg');
               // TODO-QSP: dynamic text: Ever since you first tried track, you have been in love with the sport. When you...
@@ -594,7 +538,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                 scene.text('Now that you are in the big city, it seems your running talents are less respected. Perhaps it\'s time to find something other than sports to be passionate about?');
               }
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'football') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'football') {
                 scene.text('<center><b>Football player</b></center>');
                 scene.img('images/system/1_openings/2_sg/jock_4.jpg');
                 // TODO-QSP: dynamic text: Ever since your first football game, you have been in love with the sport. You s...
@@ -608,15 +552,15 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd') {
-        if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'nerd') {
+        if (String((s as any).locArgs?.[2] ?? '') === '') {
           scene.text('<center><b>Nerd</b></center>');
           scene.img('images/system/1_openings/2_sg/nerd_0.jpg');
           scene.text('Growing up, you spent virtually all of your free time at home, pursuing various cerebral pursuits. These might have included reading comics, fantasy or sci-fi books, learning about chess or computers or playing cards, board games and RPGs with the other nerds, in addition to faithfully going to school. While you gained a huge amount of knowledge from this, your lack of interest in exercising as a child has left your body a little frail.');
           // TODO-QSP: dynamic text: The long nights of trying to read in poor light have also taken a toll on your e...
           scene.text(`The long nights of trying to read in poor light have also taken a toll on your eyesight and you now require glasses. Your cerebral pursuits also had somewhat of a negative impact on your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} as you grew up. He became a gopnik and the two of you slowly started hanging out less often, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends. On the plus side, doing well in school has made your parents happy and left you with some extra spending money as a reward for your hard work. ${((((s as any).tsg ?? 0)) ? ('Now') : ('You were'))}...`);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'nerdqueen') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'nerdqueen') {
             scene.text('<center><b>Queen of the nerds</b></center>');
             scene.img('images/system/1_openings/2_sg/nerd_1.jpg');
             // TODO-QSP: dynamic text: While you love all things nerdy or geeky, what you <<iif(tsg, "love", "loved")>>...
@@ -624,7 +568,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: By nerd standards, you <<iif(tsg, "are", "were")>> confident, dynamic and attrac...
             scene.text(`By nerd standards, you ${((((s as any).tsg ?? 0)) ? ('are') : ('were'))} confident, dynamic and attractive and this has led to you being the leader of your group of friends. You're more acceptable to other social groups as a result, especially the cool kids, who ${((((s as any).tsg ?? 0)) ? ('seem') : ('seemed'))} to respect your social skills and looks.`);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'goodstudent') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'goodstudent') {
               scene.text('<center><b>Good student</b></center>');
               scene.img('images/system/1_openings/2_sg/nerd_2.jpg');
               // TODO-QSP: dynamic text: You just <<iif(tsg, "love", "loved")>> school, and your grades <<iif(tsg, "are",...
@@ -637,7 +581,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                 scene.text('Now you are in the big city with a whole new world to absorb, although a part of you already misses school.');
               }
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'computergeek') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'computergeek') {
                 scene.text('<center><b>Computer geek</b></center>');
                 scene.img('images/system/1_openings/2_sg/nerd_3.jpg');
                 // TODO-QSP: dynamic text: You were always into computers, whether it be by playing video games, taking com...
@@ -648,7 +592,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                   scene.text('Now you are on your own in the big city, and you will need most of your money to live on instead.');
                 }
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'chessplayer') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'chessplayer') {
                   scene.text('<center><b>Avid chess player</b></center>');
                   scene.img('images/system/1_openings/2_sg/nerd_4.jpg');
                   scene.text('You were always into chess as a child, and have studied all the great chess masters. You can name them all, as well as their favorite strategies! You find nothing more interesting than matching your wits against someone else\'s in a game of chess. It has left you with the ability to often see the consequences of your actions better than most as you are used to looking several moves ahead.');
@@ -663,15 +607,15 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'gopnik') {
-          if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'gopnik') {
+          if (String((s as any).locArgs?.[2] ?? '') === '') {
             scene.text('<center><b>Gopnik</b></center>');
             scene.img('images/system/1_openings/2_sg/gopnik_0.jpg');
             scene.text('You spent most of your childhood outdoors, playing with the other boys and girls. As a result, you\'re quite healthy. As you got older, you lost any interest you might have once had with fitting in - now you do your own thing, and you\'re ready to tell anyone where they can stick it if they have a problem with that.');
             // TODO-QSP: dynamic text: As you and <<$npc_firstname[''A11'']>> walked a similar path, your bond of frien...
             scene.text(`As you and ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''} walked a similar path, your bond of friendship only deepened. This has had some repercussions on your school performance; you're a sub-par student. It has also had some less than enjoyable consequences, leading you into more than your fair share of fights, into all sorts of problems at home, and landing you in trouble at school. You've even had a few run-ins with the local police. Most people consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} you...`);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'gopnikstart') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'gopnikstart') {
               scene.text('<center><b>Gopnik</b></center>');
               scene.img('images/system/1_openings/2_sg/gopnik_1.jpg');
               // TODO-QSP: dynamic text: You <<iif(tsg, "are", "were")>> a gopnik<<iif(tsg, "", " in school")>>. While yo...
@@ -682,7 +626,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                 scene.text('Now you\'re in the big city, a whole new playground to find trouble in.');
               }
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'troublemaker') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'troublemaker') {
                 scene.text('<center><b>Troublemaker</b></center>');
                 scene.img('images/system/1_openings/2_sg/gopnik_2.jpg');
                 // TODO-QSP: dynamic text: You <<iif(tsg, "are", "were")>> a troublemaker<<iif(tsg, "", " in school")>>. No...
@@ -695,7 +639,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                   scene.text('Now you\'re in the big city, a whole new playground to find trouble in.');
                 }
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'alternative') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'alternative') {
                   scene.text('<center><b>Alternative</b></center>');
                   scene.img('images/system/1_openings/2_sg/gopnik_4.jpg');
                   // TODO-QSP: dynamic text: You <<iif(tsg, "march", "marched")>> to your own tune. You <<iif(tsg, "do", "did...
@@ -708,7 +652,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                     scene.text('That doesn\'t matter now since you\'re out in the city on your own, ready to do as you please.');
                   }
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) === 'vitekgf') {
+                  if (String((s as any).locArgs?.[2] ?? '') === 'vitekgf') {
                     scene.text('<center><b>Vitek\'s girlfriend</b></center>');
                     scene.img('images/system/1_openings/2_sg/gopnik_3.jpg');
                     // TODO-QSP: dynamic text: You are <<$npc_nickname[''A9'']>>''s girlfriend. You love the thrill and danger ...
@@ -722,8 +666,8 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'outcast') {
-            if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'outcast') {
+            if (String((s as any).locArgs?.[2] ?? '') === '') {
               scene.text('<center><b>Outcast</b></center>');
               scene.img('images/system/1_openings/2_sg/outcast_0.jpg');
               // TODO-QSP: dynamic text: You never really fit in. You''re just one of those individuals who, by choice or...
@@ -731,7 +675,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: Being an outcast has also had a somewhat negative impact on your friendship with...
               scene.text(`Being an outcast has also had a somewhat negative impact on your friendship with ${((s as any).npc_firstname ?? 0)?.['A11'] ?? ''}. As you grew up, he became a gopnik and the two of you slowly started hanging out less and less, although you still consider${((((s as any).tsg ?? 0)) ? ('') : ('ed'))} each other to be friends - if just barely. You ${((((s as any).tsg ?? 0)) ? ('have') : ('had'))} no other real friends, and you ${((((s as any).tsg ?? 0)) ? ('get') : ('were'))} bullied and made fun of all the time because...`);
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'friendless') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'friendless') {
                 scene.text('<center><b>Friendless</b></center>');
                 scene.img('images/system/1_openings/2_sg/outcast_1.jpg');
                 // TODO-QSP: dynamic text: You were never very social and never learned how to make friends<<iif(tsg, ", so...
@@ -742,7 +686,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                   scene.text('Now that you have moved to the city, you have a chance to do things differently and make new friends.');
                 }
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'uglyduckling') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'uglyduckling') {
                   scene.text('<center><b>Ugly duckling</b></center>');
                   scene.img('images/system/1_openings/2_sg/outcast_2.jpg');
                   // TODO-QSP: dynamic text: Some girls blossom early and others have natural good looks - you got neither. I...
@@ -756,7 +700,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                     scene.text('Now that you have moved to the city, you\'re hoping that is all about to change.');
                   }
                 } else {
-                  if (Number((s as any).locArgs?.[2] ?? 0) === 'goodgirl') {
+                  if (String((s as any).locArgs?.[2] ?? '') === 'goodgirl') {
                     scene.text('<center><b>Good girl</b></center>');
                     scene.img('images/system/1_openings/2_sg/outcast_3.jpg');
                     // TODO-QSP: dynamic text: You <<iif(tsg, "are", "were")>> a good girl - the kind parents, teachers and adu...
@@ -767,7 +711,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                       scene.text('Now you are in the big city and have suddenly found there are no teachers or adults to impress. In fact, it seems buttering up to the adults your entire life has become something of a hindrance.');
                     }
                   } else {
-                    if (Number((s as any).locArgs?.[2] ?? 0) === 'slut') {
+                    if (String((s as any).locArgs?.[2] ?? '') === 'slut') {
                       scene.text('<center><b>Slut</b></center>');
                       scene.img('images/system/1_openings/2_sg/outcast_4.jpg');
                       scene.text('You became curious about sex far sooner than other kids your age. You started masturbating long before the others in your year and loved the sensation so much that you wanted to find out how good sex would feel, becoming the first girl in your year to lose your virginity.');
@@ -778,7 +722,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                         scene.text('However, your resultant addiction to sex made you a social pariah, and you were constantly mocked by your peers. Now you are in the big city where nobody knows you, giving you a chance to either start over or continue your life of debauchery.');
                       }
                     } else {
-                      if (Number((s as any).locArgs?.[2] ?? 0) === 'goth') {
+                      if (String((s as any).locArgs?.[2] ?? '') === 'goth') {
                         scene.text('<center><b>Goth</b></center>');
                         scene.img('images/system/1_openings/2_sg/outcast_5.jpg');
                         // TODO-QSP: dynamic text: Every school has their oddball, in your case - You. You never felt like you fit ...
@@ -790,7 +734,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
                           scene.text('With school over, you\'ve moved to the city, where you feel a lot more accepted, although people still give you the odd stare.');
                         }
                       } else {
-                        if (Number((s as any).locArgs?.[2] ?? 0) === 'poor') {
+                        if (String((s as any).locArgs?.[2] ?? '') === 'poor') {
                           scene.text('<center><b>Poor</b></center>');
                           scene.img('images/system/1_openings/2_sg/outcast_6.jpg');
                           scene.text('You found living at home difficult as you struggled with your Mother\'s domineering attitude. Consequently you rebelled and constantly argued with her. Not only that but you started getting into fights and frequently came home bruised and battered. This led to your relationship with both her and your step-father becoming very strained. Sometimes your sister had to pull you away to stop things escalating too far and talked to you especially in the evenings, probably because she struggled with your mother as well. You have a good relationship with your sister. Your brother generally kept out of the way so you don\'t really have a relationship with him.');
@@ -813,7 +757,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== ''  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== ''  &&  String((s as any).locArgs?.[2] ?? '') !== '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterSetupPersonality(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
@@ -967,7 +911,7 @@ function enterAppearanceHub(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Allows you to alter hair and eyes, use to match fixed profile picture if in use.</b></center>');
   if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).face_style ?? 0)?.['type'] === 1) {
-      scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "intro_character_creation" })}`);
+      scene.img(`${qspFunc(s, '$$face_image')}`);
       scene.text('She looks exactly like the picture she sent you.');
     } else {
       scene.img('images/system/1_openings/shared/character_creation_2.jpg');

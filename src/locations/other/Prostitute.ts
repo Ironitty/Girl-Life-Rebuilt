@@ -167,7 +167,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           if (((st as any).ProsMoney ?? 0) > 0) {
             scene.actions([
               { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'money', 'string_profit', ((st as any).ProsMoney ?? '') * 100) ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitute', 'work1', iif(proseventrand <= 8, 'blow job', iif(proseventrand <= 14, 'sex', 'anal'...
+    qspGoto(st, 'prostitute', 'work1', 'iif(proseventrand <= 8', 'blow job');
   } },
             ]);
           }
@@ -175,7 +175,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Walk away from him', goto: ['prostitute', 'start'] },
             { label: 'Change the price', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    (st as any).ProsMoney = 0;
+    // TODO-QSP: ProsMoney = input("Enter a number below, which will be multiplied by <<$func('money', 'string_profit', 100)>>")
     if (((st as any).ProsMoney ?? 0) < 1) {
       scene.text('"Are you making a joke or something? I\'m not in the mood for jokes!" the customer sighs wearily. He starts his car again and drives away without saying another word.');
       scene.text('The price you set was too low for the man to take you seriously.');
@@ -312,13 +312,13 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'prostitute', 'work2', $ARGS[1]
     }
     if ((Math.floor(Math.random() * 31) + 0) < ((s as any).vnpr ?? 0)) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'blow job') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'blow job') {
         (s as any).KlientMON = (Math.floor(Math.random() * 10) + 1);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'sex') {
         (s as any).KlientMON = (Math.floor(Math.random() * 23) + 3);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
         (s as any).KlientMON = (Math.floor(Math.random() * 36) + 5);
       }
       if (((s as any).KlientMON ?? 0) >= ((s as any).ProsMoney ?? 0)) {
@@ -327,13 +327,13 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         // TODO-QSP: dynamic text: The client smiles and offers: "I only have <<KlientMON * 100>>… what do you say?...
         scene.text(`The client smiles and offers: "I only have ${((s as any).KlientMON ?? '') * 100}… what do you say?"`);
-        // TODO-QSP: dynamic "
-        // TODO-QSP: "
         scene.actions([
-{ label: 'Agree', handler: (st: GameState) => {
+          { label: 'Agree', handler: (st: GameState) => {
     (st as any).ProsMoney = ((st as any).KlientMON ?? 0);
     qspGoto(st, 'prostitute', 'work2', '' + ((st as any).locArgs?.[1] ?? 0) + '');
   } },
+        ]);
+        scene.actions([
 { label: 'Refuse', handler: (st: GameState) => {
     qspGoto(st, 'prostitute', 'start');
   } },
@@ -381,7 +381,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       scene.img(`images/shared/sex/blowjob/bjp${((st as any).picrand ?? '')}.jpg`);
     }
     scene.text('You put a condom between your lips and slowly guide your mouth to his penis, you gently roll it down using only your lips. You can tell the guy is really impressed with your skills.');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'blow job') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'blow job') {
       // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
       scene.text('You proceed to give him a blowjob, licking and sucking his condom-clad penis. The taste of the rubber is a bit unpleasant, but you do a good job regardless. In no time the guy groans loudly.');
       scene.text('When you feel his cock finally soften between your lips, you pull your head back. The man ties a knot in the condom and tosses it out of the window carelessly, then he gives you the money he owes you.');
@@ -392,7 +392,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         { label: 'Get out of the car', goto: ['prostitute', 'start'] },
       ]);
     } else {
-      if (Number((st as any).locArgs?.[1] ?? 0) === 'sex') {
+      if (String((st as any).locArgs?.[1] ?? '') === 'sex') {
         scene.text('The client is so turned on, he doesn\'t want any foreplay. Now that he has a condom on, he wants to fuck you.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -427,7 +427,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((st as any).locArgs?.[1] ?? 0) === 'anal') {
+        if (String((st as any).locArgs?.[1] ?? '') === 'anal') {
           scene.text('The client is so turned on, he doesn\'t want any foreplay. Now that he has a condom on, he wants to fuck your ass.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
@@ -482,7 +482,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck on his cock', handler: (st: GameState) => {
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'blow job') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'blow job') {
       (st as any).bjrand = (Math.floor(Math.random() * 100) + 1);
       // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
       if (((st as any).bjrand ?? 0) <= 50) {
@@ -564,7 +564,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         { label: 'Get out of his car', goto: ['prostitute', 'start'] },
       ]);
     } else {
-      if (Number((st as any).locArgs?.[1] ?? 0) === 'sex') {
+      if (String((st as any).locArgs?.[1] ?? '') === 'sex') {
         scene.text('After you suck him off for a while, the guy reminds you that that\'s not why you\'re here. He\'s ready to fuck you now.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -604,7 +604,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((st as any).locArgs?.[1] ?? 0) === 'anal') {
+        if (String((st as any).locArgs?.[1] ?? '') === 'anal') {
           scene.text('After you suck him off for a while, the guy reminds you that that\'s not why you\'re here. He\'s ready to fuck your ass now.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {

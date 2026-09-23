@@ -1061,7 +1061,7 @@ function enterCabHome(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('You call a taxi to take you back to town.');
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 'no_clean') {
+  if (String((s as any).locArgs?.[1] ?? '') !== 'no_clean') {
     (s as any).cumspclnt = 20;
     qspCall(s, 'cum_cleanup', '');
     scene.text('While waiting for the taxi, you gather up your clothes and enter the bathroom. You clean yourself up at the sink as best as you can before getting dressed.');

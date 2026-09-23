@@ -54,13 +54,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Nice to meet you, ${((st as any).pcs_firstname ?? '')}. You look like the sort of person who would be interested in a quality camera. In fact, judging by the sort of person I see before me, I have just the camera right here that would be perfect for you. Only ${qspFunc(s, 'money', 'string_price', 20000)}!"`);
       scene.text('"Well, I <i>have</i> been thinking about getting into photography… It might be worth it," you reply and he immediately launches into a long-winded discussion about the joys you can have with a camera.');
       scene.text('He talks about what the camera in question can do, along with all it\'s features. It does sound like the perfect camera for someone that\'s serious about getting into photography, but is that you?');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'first']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'first']; enterCameraOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).photographyEv ?? 0) === 1) {
         scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
         scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname ?? '')}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'repeat']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'repeat']; enterCameraOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
         scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname ?? '')}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
@@ -88,7 +88,7 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'first') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'first') {
       scene.text('You consider it for a moment. You\'d love to buy it, but you know you don\'t have enough money for it right now. "Maybe some other time? I can\'t really afford it, but thank you for taking the time to explain things to me."');
       scene.text('He smiles. "It was my pleasure, young lady. I hope to see you again soon."');
     } else {
@@ -110,7 +110,7 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'first') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'first') {
       scene.text('You consider it for a moment, but decide against it. "Maybe some other time, but thank you for taking the time to explain things to me."');
       scene.text('He smiles. "It was my pleasure young lady. If you change your mind, you know where to find me."');
     } else {

@@ -40,11 +40,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/church/kazan.jpg');
   scene.text('Kazan Cathedral, also known as the Cathedral of Our Lady of Kazan. It\'s old, but well maintained by the worshipers of the parish.');
   scene.text('');
-  // TODO-QSP: dynamic text: You can attend confession every weekday between '+func('time', 'get_time_string'...
+  // TODO-QSP: dynamic text: 'You can attend confession every weekday between '+func('time', 'get_time_string...
   scene.text('You can attend confession every weekday between 7:00 and 9:00 or 16:00 and 18:00, and on the weekend between 16:00 and 18:00.');
-  // TODO-QSP: dynamic text: Vigil is held on Saturdays at '+func('time', 'get_time_string', 19, 0)+'.
+  // TODO-QSP: dynamic text: 'Vigil is held on Saturdays at '+func('time', 'get_time_string', 19, 0)+'.'
   scene.text('Vigil is held on Saturdays at 19:00.');
-  // TODO-QSP: dynamic text: The Divine Liturgy is on Sundays between '+func('time', 'get_time_string', 9, 0)...
+  // TODO-QSP: dynamic text: 'The Divine Liturgy is on Sundays between '+func('time', 'get_time_string', 9, 0...
   scene.text('The Divine Liturgy is on Sundays between 9:00 and 12:00.');
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -74,7 +74,8 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/church/church'+ rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/church/church` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('The candles dim as the sermon begins. You listen intently to the priest as he preaches the word of god. You study his teachings, feeling enlightened until you reach the end of the sermon.');
   // TODO-QSP: end
   scene.actions([
@@ -103,7 +104,8 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
-  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/church/church'+ rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/church/church` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You attend the vigil and reflect on the recent events in your life. The harmonies as the hymns and psalms are sung sweep aside some of the worries in your heart, although you know they will return once you leave this holy place. You still enjoy the rest of the vigil as the sweet scent of incense tickles your nose.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -116,7 +118,8 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
     qspCall(st, 'fame', 'church_reduction', 'city', 2);
-    scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 2) + 9) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/church/church'+ rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/church/church` + (Math.floor(Math.random() * 2) + 9) + '.jpg"></center>');
     scene.text('You decide to stay for the Rite of Mutual Forgiveness and feel much better afterwards.');
     scene.actions([
       { label: 'Return to the Narthex', goto: ['city_church', 'Narthex'] },
@@ -141,7 +144,8 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'church_reduction', 'city', 1);
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
-  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/church/church'+ rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/church/church` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
   scene.text('You join the congregation for the Divine Liturgy. You see mostly older people around, but there are some people around your age present as well. You participate in the singing, but that\'s about it. Your presence seems to go largely unnoticed and you have the chance to rest. You feel a lot better.');
   qspCall(s, 'exp_gain', 'vokal', (Math.floor(Math.random() * 4) + 0));
   qspCall(s, 'stat', '');
@@ -180,21 +184,21 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/ch_candle.jpg');
   if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  (!((s as any).owechurch ?? 0))) {
     qspCall(s, 'money', 'pay', 10, 'cash');
-    // TODO-QSP: dynamic text: You approach the deacon and hand over the ' + $func('money', 'string_price', 10)...
+    // TODO-QSP: dynamic text: 'You approach the deacon and hand over the ' + $func('money', 'string_price', 10...
     scene.text('You approach the deacon and hand over the 10₽ for a candle.');
   } else {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0  &&  ((s as any).owechurch ?? 0) === 1) {
       (s as any).owechurch = 0;
       qspCall(s, 'money', 'pay', 10, 'cash');
       qspCall(s, 'mood', 'lower', 'small');
-      // TODO-QSP: dynamic text: You approach the deacon and hope that he doesn''t recognize you since you couldn...
+      // TODO-QSP: dynamic text: 'You approach the deacon and hope that he doesn''t recognize you since you could...
       scene.text('You approach the deacon and hope that he doesn\'t recognize you since you couldn\'t pay for your last candle. You give him 10₽ and he hands you a candle. You hustle away from the counter while guilt gnaws at you.');
     } else {
       if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 1  &&  ((s as any).owechurch ?? 0) === 1) {
         (s as any).owechurch = 0;
         qspCall(s, 'money', 'pay', 20, 'cash');
         qspCall(s, 'mood', 'raise', 'tiny');
-        // TODO-QSP: dynamic text: You approach the deacon. He is confused when you hand him ' + $func('money', 'st...
+        // TODO-QSP: dynamic text: 'You approach the deacon. He is confused when you hand him ' + $func('money', 's...
         scene.text('You approach the deacon. He is confused when you hand him 20₽ before smiling in understanding. You feel relieved that the debt is paid.');
       } else {
         if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {

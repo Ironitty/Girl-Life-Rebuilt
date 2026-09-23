@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
     dynamicGoto(s, 'prevLoc');
   }
   scene.text('<center><b>Nicholas\' Living Room</b></center>');
@@ -129,7 +129,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
     dynamicGoto(s, 'prevLoc');
   }
   scene.text('<center><b>Nicholas\' Living Room</b></center>');
@@ -247,7 +247,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
     dynamicGoto(s, 'prevLoc');
   }
   scene.text('<center><b>Nicholas\' Living Room</b></center>');
@@ -424,7 +424,8 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) > 5) {
     (s as any).nichTemp = 8;
   }
-  scene.img('images/locations/city/citycenter/nichApartment/breakfast' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/citycenter/nichApartment/...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/citycenter/nichApartment/breakfast` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
   if (((s as any).hour ?? 0) < ((s as any).nichTemp ?? 0)  ||  (((s as any).hour ?? 0) === ((s as any).nichTemp ?? 0)  &&  ((s as any).minut ?? 0) <= 15)) {
     scene.text('You have enough time to prepare breakfast. You make coffee, collect the newspaper from the mailbox and place everything on the dinner table.');
     scene.text('When the family members arrive one by one the breakfast table is prepared perfectly and you stand ready to fulfill additional requests.');
@@ -550,7 +551,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).nichGentleclubE1 ?? 0) === 0  &&  ((s as any).nichPerformance ?? 0) >= 60  &&  ((s as any).nichStatMsg ?? 0) === ''  &&  (((s as any).nichRand ?? 0) <= 40  ||  ((s as any).nichDebug ?? 0) === 1)  &&  ((s as any).nichDebug ?? 0) === 1) {
                           scene.text('The family members are chatting with each other about topics of little interest to you.');
-                          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I have an important guest tonight. I need you to attend us a...
+                          // TODO-QSP: dynamic text: '"<<$pcs_nickname>>, I have an important guest tonight. I need you to attend us ...
                           scene.text(`"${((s as any).pcs_nickname ?? '')}, I have an important guest tonight. I need you to attend us at 18:00in my study."`);
                           scene.text('"Of course, Master Nicholas." You reply as is expected of you.');
                           (s as any).nichGentleclubE1 = 1;

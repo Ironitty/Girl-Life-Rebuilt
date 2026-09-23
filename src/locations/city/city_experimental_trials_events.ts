@@ -52,7 +52,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   }
   return;
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[0] ?? '') !== '') {
     // TODO-QSP: exit
   }
   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_cyan') {
@@ -519,7 +519,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
         (s as any).min_arousal = Math.min(((s as any).min_arousal ?? 0) + 10, 50);
       }
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-      qspCall(s, 'arousal_funcs', 'stretch', 'anal', (Math.floor(Math.random() * 6) + 5) + (3 - (((s as any).experimentQW ?? {})?.['trial_duration'] ?? 0)));
+      qspCall(s, 'arousal_funcs', 'stretch', 'anal', (Math.floor(Math.random() * (10 - 5 + 1)) + (5)));
       if (((s as any).pcs_ass ?? 0) > 30) {
         (s as any).pcs_ass = 30;
       }
@@ -531,7 +531,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ashrinkdays ?? 0) > 10) {
         (s as any).ashrinkdays = 10;
       }
-      ((s as any).agape = (s as any).agape ?? {})[4] = ((s as any).agape[4] ?? 0) + ((Math.floor(Math.random() * 6) + 5) + (3 - (((s as any).experimentQW ?? {})?.['trial_duration'] ?? 0)));
+      ((s as any).agape = (s as any).agape ?? {})[4] = ((s as any).agape[4] ?? 0) + ((Math.floor(Math.random() * (10 - 5 + 1)) + (5)));
       if (((s as any).agape ?? 0)[4] > 60) {
         ((s as any).agape = (s as any).agape ?? {})[4] = 60;
       }

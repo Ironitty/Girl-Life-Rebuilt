@@ -84,14 +84,14 @@ function enterAddWod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecordstring(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     (s as any).result = 'No score yet';
   } else {
     (s as any).wod_score = ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] + (((s as any).wod_max_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] - ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)]) * ((s as any).locArgs?.[2] ?? 0) / 100;
-    if (((s as any).wod_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'for_time') {
+    if (((s as any).wod_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'for_time') {
       (s as any).result = '' + ((s as any).wod_score ?? 0)/60 + ' minutes and ' + ((s as any).wod_score ?? 0) - (((s as any).wod_score ?? 0)/60)*60 + ' seconds';
     }
-    if (((s as any).wod_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'for_rounds') {
+    if (((s as any).wod_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'for_rounds') {
       (s as any).result = '' + ((s as any).wod_score ?? 0)/100 + ' rounds and ' + ((s as any).wod_score ?? 0) - (((s as any).wod_score ?? 0)/100)*100 + '% of the last one';
     }
   }

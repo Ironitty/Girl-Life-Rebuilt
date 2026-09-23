@@ -335,7 +335,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).fuckerrand = (Math.floor(Math.random() * 4) + 1);
     (st as any).gmember = ((st as any).fuckerrand ?? 0);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(st, scene); (st as any).locArgs = __savedLocArgs; }
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: Suddenly the cock you''re currently sucking on is pulled away from you, and <<$b...
       scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((st as any).boydesc ?? '')} pushes you onto your back saying he wants to try another hole now.`);
@@ -418,7 +418,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPoisk(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: All of a sudden, <<$boydesc>> slows down and tells you to get on all fours, sayi...
@@ -508,7 +508,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPoisk(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> pushes you onto your back saying he wants to try another hole now.
@@ -715,7 +715,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 9) + 1) + (Math.floor(Math.random() * 9) + 1)) / 2 + 10 * (Math.floor(Math.random() * 2) + 0) + '');
   } else {
     qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 19) + 1) + (Math.floor(Math.random() * 19) + 1)) / 2 + '');

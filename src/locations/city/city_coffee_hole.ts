@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
   scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
-  // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
+  // TODO-QSP: dynamic text: 'Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('...
   scene.text('Opening hours are 7:00 to 23:00.');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
     scene.actions([
@@ -28,7 +28,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
   scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
-  // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
+  // TODO-QSP: dynamic text: 'Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('...
   scene.text('Opening hours are 7:00 to 23:00.');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
     scene.actions([
@@ -57,7 +57,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['katja'] === 30  &&  (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')) {
     (s as any).temp_familiar_here = 1;
-    // TODO-QSP: dynamic text: You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW['...
+    // TODO-QSP: dynamic text: 'You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW[...
     scene.text('You see your' + ((((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies'  &&  ((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1) ? (' ') : (' former ')) + 'classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_chat/u0027, /u0027coffee_hole/u0027); return false;">Katja</a> sitting at a table with a pile of books, a cup of coffee and a plate of food.');
   }
   if ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((s as any).AlbinaQW ?? 0)?.['coffee_meet'] !== ((s as any).daystart ?? 0)) {

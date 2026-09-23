@@ -398,7 +398,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: jump 'pha_XOR_killvar'
             }
             (s as any).result = 0;
-            if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+            if (String((s as any).locArgs?.[1] ?? '') === 0) {
               (s as any).pha_i = 1;
               (s as any).pha_target = 1;
             } else {

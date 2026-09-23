@@ -18,20 +18,20 @@ function enterEligibleForUniversity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrepclass(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'cost') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'cost') {
     (s as any).result = 15000;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'enroll') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'enroll') {
     qspCall(s, 'money', 'pay', qspFunc(s, 'uniutil', 'prepclass', 'cost'));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_enrolled', 1]; enterPrepclass(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_count', 0]; enterPrepclass(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'unenroll') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'unenroll') {
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_this_month') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_this_month') {
     (s as any).result = ((s as any).month ?? 0) <= qspFunc(s, 'uniutil', 'entrance_exam', 'month');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_today') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_today') {
     (s as any).result = qspFunc(s, 'uniutil', 'entrance_exam', 'offered_this_month')  &&  ((s as any).week ?? 0) < 6;
   }
   return;
@@ -74,7 +74,7 @@ function enterCheckSemesterVsDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStudent(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'status') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'status') {
     if (((s as any).student ?? 0) > 0) {
       (s as any).uni_semvdateres = qspFunc(s, 'uniutil', 'check_semester_vs_date');
       if (((s as any).uni_semvdateres ?? 0) < 0) {
@@ -92,10 +92,10 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).result = ((s as any).student ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_status') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_status') {
     (s as any).student = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'enroll') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'enroll') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'unenroll']; enterPrepclass(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_status', 1]; enterStudent(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 1]; enterSemester(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -106,12 +106,12 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAssignmentsDone(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'unenroll') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'unenroll') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'unenroll']; enterPrepclass(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).student ?? 0) > 0) {
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'expel') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'expel') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'medium', 'Expelled from university');
     if (qspFunc(s, 'uniutil', 'semester_result', 'is_failed')) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'unenroll']; enterStudent(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -126,26 +126,26 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'graduate') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'graduate') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'unenroll']; enterStudent(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_obtained']; enterDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'expelled_for_failing') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'expelled_for_failing') {
     (s as any).result = qspFunc(s, 'uniutil', 'student', 'status') === -1;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'expelled_for_skipping') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'expelled_for_skipping') {
     (s as any).result = qspFunc(s, 'uniutil', 'student', 'status') === -2;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'expelled_for_other_reason') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'expelled_for_other_reason') {
     (s as any).result = qspFunc(s, 'uniutil', 'student', 'status') === -3;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'enrolled') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'enrolled') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'student', 'status') > 0", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'not_enrolled') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'not_enrolled') {
     (s as any).result = qspFunc(s, 'uniutil', 'student', 'enrolled') === 0;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'semesters_to_graduate') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'semesters_to_graduate') {
     (s as any).result = 2;
   }
   return;
@@ -154,25 +154,25 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiploma(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).university ?? 0)?.['diploma'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).university = (s as any).university ?? {})['diploma'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_obtained') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_obtained') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 1]; enterDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (qspFunc(s, 'uniutil', 'fake_diploma', 'aware_needed')) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterFakeDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_unobtained') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_unobtained') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (qspFunc(s, 'uniutil', 'fake_diploma', 'aware_needed')) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterFakeDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'obtained') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'obtained') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'diploma', 'get') > 0", { location: "uniutil" });
   }
   return;
@@ -181,25 +181,25 @@ function enterDiploma(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFakeDiploma(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).university ?? 0)?.['fakediplom'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).university = (s as any).university ?? {})['fakediplom'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_aware_needed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_aware_needed') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 2]; enterFakeDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_obtained') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_obtained') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 1]; enterFakeDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterFakeDiploma(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'aware_needed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'aware_needed') {
     (s as any).result = qspFunc(s, 'uniutil', 'fake_diploma', 'get') === 2;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'obtained') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'obtained') {
     (s as any).result = qspFunc(s, 'uniutil', 'fake_diploma', 'get') === 1;
   }
   return;
@@ -215,25 +215,25 @@ function enterAppearToHaveGraduated(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAttendance(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['lectures_attendad'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['lectures_attendad'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     // TODO-QSP: gs 'uniutil', 'attendance', 'set', func('uniutil', 'attendance', 'get') + 1
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterAttendance(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_great') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_great') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'attendance', 'get') > 55", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_ok') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_ok') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'attendance', 'get') > 40", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_bad') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_bad') {
     (s as any).result = qspFunc(s, 'uniutil', 'attendance', 'is_ok') === 0;
   }
   return;
@@ -242,22 +242,22 @@ function enterAttendance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignment_progress'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['assignment_progress'] = ((Number((s as any).locArgs?.[2] ?? 0) <= 100) ? (((s as any).locArgs?.[2] ?? 0)) : (100));
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
+    ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['assignment_progress'] = ((String((s as any).locArgs?.[2] ?? '') <= 100) ? (((s as any).locArgs?.[2] ?? 0)) : (100));
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0) / 10 - ((s as any).pcs_intel ?? 0) / 20 + 1)) + (((s as any).pcs_intel ?? 0) / 20))]; enterAssignmentProgress(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterAssignmentProgress(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_finished') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_finished') {
     (s as any).result = qspFunc(s, 'uniutil', 'assignment_progress', 'get') >= 100;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_not_finished') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_not_finished') {
     (s as any).result = qspFunc(s, 'uniutil', 'assignment_progress', 'is_finished') === 0;
   }
   return;
@@ -266,29 +266,29 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignments_done'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['assignments_done'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAssignmentProgress(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: gs 'uniutil', 'assignments_done', 'set', func('uniutil', 'assignments_done', 'get') + 1
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterAssignmentsDone(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'great_num') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'great_num') {
     (s as any).result = 11;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'min_num') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'min_num') {
     (s as any).result = 1;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'did_great_num') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'did_great_num') {
     (s as any).result = qspFunc(s, 'uniutil', 'assignments_done', 'get') >= qspFunc(s, 'uniutil', 'assignments_done', 'great_num');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'did_min_num') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'did_min_num') {
     (s as any).result = qspFunc(s, 'uniutil', 'assignments_done', 'get') >= qspFunc(s, 'uniutil', 'assignments_done', 'min_num');
   }
   return;
@@ -297,19 +297,19 @@ function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScholarship(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['scholarship'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['scholarship'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterScholarship(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_active') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_active') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['scholarship'] > 0  &&  qspFunc(s, 'uniutil', 'semester', 'is_active');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'honors_value') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'honors_value') {
     (s as any).result = 1200;
   }
   return;
@@ -318,35 +318,35 @@ function enterScholarship(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLecture(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'start_hour') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'start_hour') {
     (s as any).result = 8;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'length') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'length') {
     (s as any).result = 6;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'start_month') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'start_month') {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       (s as any).result = 9;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         (s as any).result = 2;
       } else {
         (s as any).result = 13;
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'end_month') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'end_month') {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       (s as any).result = 11;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         (s as any).result = 4;
       } else {
         (s as any).result = 0;
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_this_month') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_this_month') {
     (s as any).unilect_sm = qspFunc(s, 'uniutil', 'lecture', 'start_month', qspFunc(s, 'uniutil', 'semester', 'get'));
     (s as any).unilect_em = qspFunc(s, 'uniutil', 'lecture', 'end_month', qspFunc(s, 'uniutil', 'semester', 'get'));
     if (((s as any).unilect_sm ?? 0) <= ((s as any).unilect_em ?? 0)) {
@@ -355,16 +355,16 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).month ?? 0) >= ((s as any).unilect_sm ?? 0)  ||  ((s as any).month ?? 0) <= ((s as any).unilect_em ?? 0);
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_today') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_today') {
     (s as any).result = qspFunc(s, 'uniutil', 'lecture', 'offered_this_month')  &&  ((s as any).week ?? 0) < 6;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'in_session') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'in_session') {
     (s as any).result = qspFunc(s, 'uniutil', 'lecture', 'offered_today')  &&  ((s as any).hour ?? 0) < qspFunc(s, 'uniutil', 'lecture', 'start_hour');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'print_start_month') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'print_start_month') {
     (s as any).result = qspUntranslated(s, "monthName[func('uniutil', 'lecture', 'start_month', ARGS[2])]", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'print_months') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'print_months') {
     (s as any).unilect_idx = qspFunc(s, 'uniutil', 'lecture', 'start_month', ((s as any).locArgs?.[2] ?? 0));
     (s as any).unilect_end = qspFunc(s, 'uniutil', 'lecture', 'end_month', ((s as any).locArgs?.[2] ?? 0));
     // TODO-QSP: :lectureprintmonthsloop
@@ -381,24 +381,24 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExam(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'month') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'month') {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       (s as any).result = 12;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === 2) {
         (s as any).result = 5;
       } else {
         (s as any).result = 0;
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_this_month') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_this_month') {
     (s as any).result = qspUntranslated(s, "month = func('uniutil', 'exam', 'month', func('uniutil', 'semester', 'get'))", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'offered_today') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'offered_today') {
     (s as any).result = qspFunc(s, 'uniutil', 'exam', 'offered_this_month')  &&  ((s as any).week ?? 0) < 6;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'print_month') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'print_month') {
     (s as any).result = qspUntranslated(s, "monthName[func('uniutil', 'exam', 'month', ARGS[2])]", { location: "uniutil" });
   }
   return;
@@ -407,35 +407,35 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSemester(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['num'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['num'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'next') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'next') {
     (s as any).result = (qspFunc(s, 'uniutil', 'semester', 'get') % qspFunc(s, 'uniutil', 'semester', 'total')) + 1;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'total') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'total') {
     (s as any).result = 2;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'semester', 'next')]; enterSemester(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get_year') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get_year') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['year'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update_year') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update_year') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['year'] = ((s as any).year ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_active') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_active') {
     (s as any).result = qspFunc(s, 'uniutil', 'lecture', 'offered_this_month')  ||  qspFunc(s, 'uniutil', 'exam', 'offered_this_month');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'print_months') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'print_months') {
     (s as any).result = 'Semester ' + ((s as any).locArgs?.[2] ?? 0) + ' lectures: ' + qspFunc(s, 'uniutil', 'lecture', 'print_months', ((s as any).locArgs?.[2] ?? 0)) + '.<br>';
     // TODO-QSP: $result += 'Semester ' + ARGS[2] + ' exams: ' + func('uniutil', 'exam', 'print_month', ARGS[2]) + '....
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'print_all_months') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'print_all_months') {
     (s as any).unisemester_idx = 1;
     // TODO-QSP: :semesterprintmonthsloop
     // TODO-QSP: $result += func('uniutil', 'semester', 'print_months', unisemester_idx)
@@ -450,25 +450,25 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSemesterResult(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['is_passed'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['is_passed'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_passed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_passed') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 1]; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_failed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_failed') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', (-1)]; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_passed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_passed') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'semester_result', 'get') > 0", { location: "uniutil" });
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'is_failed') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'is_failed') {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'semester_result', 'get') < 0", { location: "uniutil" });
   }
   return;
@@ -480,11 +480,11 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAssignmentProgress(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAssignmentsDone(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAttendance(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'passed_honors') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'passed_honors') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_passed']; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'scholarship', 'honors_value')]; enterScholarship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'passed') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'passed') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_passed']; enterSemesterResult(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterScholarship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
@@ -498,13 +498,13 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPassedSemesters(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'get') {
     (s as any).result = (((s as any).unisemestrstats ?? {})?.['prev_passed_count'] ?? 0) + ((qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0));
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['prev_passed_count'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'update') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'passed_semesters', 'get')]; enterPassedSemesters(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;

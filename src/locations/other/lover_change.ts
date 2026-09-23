@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -271,51 +269,51 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :alreadyGotPierLoop
     (st as any).randchan = (Math.floor(Math.random() * 8) + 0);
     if (((st as any).randchan ?? 0) === 0  &&  ((st as any).pcs_piercings ?? 0)?.['ears'] === 0) {
-      qspCall(st, 'piercing_management', 'add', 'ears', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'ears'))", { location: "lover_change" }));
+      qspCall(st, 'piercing_management', 'add', 'ears', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'ears') - 1 + 1)) + (1)));
       qspCall(st, 'pain', '', 7, 'ears', 'pierce');
       scene.img(`${qspFunc(s, 'piercing_management', 'ears_image')}`);
       scene.text('The artist takes a look at your unpierced ears, and with a quick sharp pain, pierces them.');
     } else {
       if (((st as any).randchan ?? 0) === 1  &&  ((st as any).pcs_piercings ?? 0)?.['tongue'] === 0) {
-        qspCall(st, 'piercing_management', 'add', 'tongue', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'tongue'))", { location: "lover_change" }));
+        qspCall(st, 'piercing_management', 'add', 'tongue', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'tongue') - 1 + 1)) + (1)));
         qspCall(st, 'pain', '', 7, 'tongue', 'pierce');
         scene.img(`${qspFunc(s, 'piercing_management', 'tongue_image')}`);
         scene.text('He asks you to stick out your tongue. You comply and then start to regret it as he pierces your tongue.');
       } else {
         if (((st as any).randchan ?? 0) === 2  &&  ((st as any).pcs_piercings ?? 0)?.['lip'] === 0) {
-          qspCall(st, 'piercing_management', 'add', 'lip', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'lip'))", { location: "lover_change" }));
+          qspCall(st, 'piercing_management', 'add', 'lip', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'lip') - 1 + 1)) + (1)));
           qspCall(st, 'pain', '', 7, 'lips', 'pierce');
           scene.img(`${qspFunc(s, 'piercing_management', 'lip_image')}`);
           scene.text('The artist gently holds your lip as he drives the needle through to pierce it.');
         } else {
           if (((st as any).randchan ?? 0) === 3  &&  ((st as any).pcs_piercings ?? 0)?.['nose'] === 0) {
-            qspCall(st, 'piercing_management', 'add', 'nose', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'nose'))", { location: "lover_change" }));
+            qspCall(st, 'piercing_management', 'add', 'nose', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'nose') - 1 + 1)) + (1)));
             qspCall(st, 'pain', '', 7, 'nose', 'pierce');
             scene.img(`${qspFunc(s, 'piercing_management', 'nose_image')}`);
             scene.text('You feel a sharp pain in your nose as he pierces your nose.');
           } else {
             if (((st as any).randchan ?? 0) === 4  &&  ((st as any).pcs_piercings ?? 0)?.['brow'] === 0) {
-              qspCall(st, 'piercing_management', 'add', 'brow', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'brow'))", { location: "lover_change" }));
+              qspCall(st, 'piercing_management', 'add', 'brow', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'brow') - 1 + 1)) + (1)));
               qspCall(st, 'pain', '', 7, 'eyebrows', 'pierce');
               scene.img(`${qspFunc(s, 'piercing_management', 'brow_image')}`);
               scene.text('The artist moves to above your eyes and quickly pierces your eyebrow.');
             } else {
               if (((st as any).randchan ?? 0) === 5  &&  ((st as any).pcs_piercings ?? 0)?.['navel'] === 0) {
-                qspCall(st, 'piercing_management', 'add', 'navel', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'navel'))", { location: "lover_change" }));
+                qspCall(st, 'piercing_management', 'add', 'navel', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'navel') - 1 + 1)) + (1)));
                 qspCall(st, 'pain', '', 7, 'tummy', 'pierce');
                 (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
                 scene.img(`${qspFunc(s, 'piercing_management', 'navel_image')}`);
                 scene.text('He positions himself to pierce your belly button. You feel a sharp pain through your navel as he pierces it.');
               } else {
                 if (((st as any).randchan ?? 0) === 6  &&  ((st as any).pcs_piercings ?? 0)?.['nipples'] === 0) {
-                  qspCall(st, 'piercing_management', 'add', 'nipples', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'nipples'))", { location: "lover_change" }));
+                  qspCall(st, 'piercing_management', 'add', 'nipples', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'nipples') - 1 + 1)) + (1)));
                   qspCall(st, 'pain', '', 7, 'nipples', 'pierce');
                   (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
                   scene.img(`${qspFunc(s, 'piercing_management', 'nipples_image')}`);
                   scene.text('He motions for you to lift up your shirt. After you do the man grabs your breasts rather softly and carefully pierces each nipple.');
                 } else {
                   if (((st as any).randchan ?? 0) === 7  &&  ((st as any).pcs_piercings ?? 0)?.['pussy'] === 0) {
-                    qspCall(st, 'piercing_management', 'add', 'pussy', qspUntranslated(s, "rand(1, func('piercing_management', 'get_total', 'pussy'))", { location: "lover_change" }));
+                    qspCall(st, 'piercing_management', 'add', 'pussy', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'pussy') - 1 + 1)) + (1)));
                     qspCall(st, 'pain', '', 7, 'pubic', 'pierce');
                     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (7);
                     scene.img(`${qspFunc(s, 'piercing_management', 'pussy_image')}`);
@@ -548,92 +546,92 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :tattoo_loop
     (st as any).randchan = (Math.floor(Math.random() * 18) + 0);
     if (((st as any).randchan ?? 0) === 0  &&  ((st as any).pcs_tattoos ?? 0)?.['arm'] <= 0) {
-      qspCall(st, 'tattoo_management', 'add', 'arm', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'arm'))", { location: "lover_change" }));
+      qspCall(st, 'tattoo_management', 'add', 'arm', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'arm') - 1 + 1)) + (1)));
       scene.img(`${qspFunc(s, 'tattoo_management', 'arm_image')}`);
       scene.text('He gives you a tattoo on your arm.');
     } else {
       if (((st as any).randchan ?? 0) === 1  &&  ((st as any).pcs_tattoos ?? 0)?.['ass'] <= 0) {
-        qspCall(st, 'tattoo_management', 'add', 'ass', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'ass'))", { location: "lover_change" }));
+        qspCall(st, 'tattoo_management', 'add', 'ass', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'ass') - 1 + 1)) + (1)));
         scene.img(`${qspFunc(s, 'tattoo_management', 'ass_image')}`);
         scene.text('He gives you a tattoo on your ass.');
       } else {
         if (((st as any).randchan ?? 0) === 2  &&  ((st as any).pcs_tattoos ?? 0)?.['back'] === 0) {
-          qspCall(st, 'tattoo_management', 'add', 'back', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'back'))", { location: "lover_change" }));
+          qspCall(st, 'tattoo_management', 'add', 'back', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'back') - 1 + 1)) + (1)));
           scene.img(`${qspFunc(s, 'tattoo_management', 'back_image')}`);
           scene.text('He gives you a tattoo on your back.');
         } else {
           if (((st as any).randchan ?? 0) === 3  &&  ((st as any).pcs_tattoos ?? 0)?.['belly'] === 0) {
-            qspCall(st, 'tattoo_management', 'add', 'belly', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'belly'))", { location: "lover_change" }));
+            qspCall(st, 'tattoo_management', 'add', 'belly', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'belly') - 1 + 1)) + (1)));
             scene.img(`${qspFunc(s, 'tattoo_management', 'belly_image')}`);
             scene.text('He gives you a tattoo on your belly.');
           } else {
             if (((st as any).randchan ?? 0) === 4  &&  ((st as any).pcs_tattoos ?? 0)?.['breast'] === 0) {
-              qspCall(st, 'tattoo_management', 'add', 'breast', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'breast'))", { location: "lover_change" }));
+              qspCall(st, 'tattoo_management', 'add', 'breast', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'breast') - 1 + 1)) + (1)));
               scene.img(`${qspFunc(s, 'tattoo_management', 'breast_image')}`);
               scene.text('He gives you a tattoo on your breasts.');
             } else {
               if (((st as any).randchan ?? 0) === 5  &&  ((st as any).pcs_tattoos ?? 0)?.['chest'] === 0) {
-                qspCall(st, 'tattoo_management', 'add', 'chest', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'chest'))", { location: "lover_change" }));
+                qspCall(st, 'tattoo_management', 'add', 'chest', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'chest') - 1 + 1)) + (1)));
                 scene.img(`${qspFunc(s, 'tattoo_management', 'chest_image')}`);
                 scene.text('He gives you a tattoo on your chest.');
               } else {
                 if (((st as any).randchan ?? 0) === 6  &&  ((st as any).pcs_tattoos ?? 0)?.['face'] === 0) {
-                  qspCall(st, 'tattoo_management', 'add', 'face', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'face'))", { location: "lover_change" }));
+                  qspCall(st, 'tattoo_management', 'add', 'face', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'face') - 1 + 1)) + (1)));
                   scene.img(`${qspFunc(s, 'tattoo_management', 'face_image')}`);
                   scene.text('He gives you a tattoo on your face.');
                 } else {
                   if (((st as any).randchan ?? 0) === 7  &&  ((st as any).pcs_tattoos ?? 0)?.['ankle'] === 0) {
-                    qspCall(st, 'tattoo_management', 'add', 'ankle', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'ankle'))", { location: "lover_change" }));
+                    qspCall(st, 'tattoo_management', 'add', 'ankle', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'ankle') - 1 + 1)) + (1)));
                     scene.img(`${qspFunc(s, 'tattoo_management', 'ankle_image')}`);
                     scene.text('He gives you a tattoo on your ankles.');
                   } else {
                     if (((st as any).randchan ?? 0) === 8  &&  ((st as any).pcs_tattoos ?? 0)?.['hand'] === 0) {
-                      qspCall(st, 'tattoo_management', 'add', 'hand', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'hand'))", { location: "lover_change" }));
+                      qspCall(st, 'tattoo_management', 'add', 'hand', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'hand') - 1 + 1)) + (1)));
                       scene.img(`${qspFunc(s, 'tattoo_management', 'hand_image')}`);
                       scene.text('He gives you a tattoo on your hand.');
                     } else {
                       if (((st as any).randchan ?? 0) === 9  &&  ((st as any).pcs_tattoos ?? 0)?.['leg'] === 0) {
-                        qspCall(st, 'tattoo_management', 'add', 'leg', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'leg'))", { location: "lover_change" }));
+                        qspCall(st, 'tattoo_management', 'add', 'leg', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'leg') - 1 + 1)) + (1)));
                         scene.img(`${qspFunc(s, 'tattoo_management', 'leg_image')}`);
                         scene.text('He gives you a tattoo on your legs.');
                       } else {
                         if (((st as any).randchan ?? 0) === 10  &&  ((st as any).pcs_tattoos ?? 0)?.['lip'] === 0) {
-                          qspCall(st, 'tattoo_management', 'add', 'lip', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'lip'))", { location: "lover_change" }));
+                          qspCall(st, 'tattoo_management', 'add', 'lip', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'lip') - 1 + 1)) + (1)));
                           scene.img(`${qspFunc(s, 'tattoo_management', 'lip_image')}`);
                           scene.text('He gives you a tattoo on your bottom lip.');
                         } else {
                           if (((st as any).randchan ?? 0) === 11  &&  ((st as any).pcs_tattoos ?? 0)?.['neck'] === 0) {
-                            qspCall(st, 'tattoo_management', 'add', 'neck', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'neck'))", { location: "lover_change" }));
+                            qspCall(st, 'tattoo_management', 'add', 'neck', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'neck') - 1 + 1)) + (1)));
                             scene.img(`${qspFunc(s, 'tattoo_management', 'neck_image')}`);
                             scene.text('He gives you a tattoo on your neck.');
                           } else {
                             if (((st as any).randchan ?? 0) === 12  &&  ((st as any).pcs_tattoos ?? 0)?.['pussy'] === 0) {
-                              qspCall(st, 'tattoo_management', 'add', 'pussy', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'pussy'))", { location: "lover_change" }));
+                              qspCall(st, 'tattoo_management', 'add', 'pussy', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'pussy') - 1 + 1)) + (1)));
                               scene.img(`${qspFunc(s, 'tattoo_management', 'pussy_image')}`);
                               scene.text('He gives you a tattoo above your cunt.');
                             } else {
                               if (((st as any).randchan ?? 0) === 13  &&  ((st as any).pcs_tattoos ?? 0)?.['shoulder'] === 0) {
-                                qspCall(st, 'tattoo_management', 'add', 'shoulder', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'shoulder'))", { location: "lover_change" }));
+                                qspCall(st, 'tattoo_management', 'add', 'shoulder', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'shoulder') - 1 + 1)) + (1)));
                                 scene.img(`${qspFunc(s, 'tattoo_management', 'shoulder_image')}`);
                                 scene.text('He gives you a tattoo on your shoulder.');
                               } else {
                                 if (((st as any).randchan ?? 0) === 14  &&  ((st as any).pcs_tattoos ?? 0)?.['side'] === 0) {
-                                  qspCall(st, 'tattoo_management', 'add', 'side', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'side'))", { location: "lover_change" }));
+                                  qspCall(st, 'tattoo_management', 'add', 'side', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'side') - 1 + 1)) + (1)));
                                   scene.img(`${qspFunc(s, 'tattoo_management', 'side_image')}`);
                                   scene.text('He gives you a tattoo on your sides.');
                                 } else {
                                   if (((st as any).randchan ?? 0) === 15  &&  ((st as any).pcs_tattoos ?? 0)?.['tramp'] === 0) {
-                                    qspCall(st, 'tattoo_management', 'add', 'tramp', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'tramp'))", { location: "lover_change" }));
+                                    qspCall(st, 'tattoo_management', 'add', 'tramp', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'tramp') - 1 + 1)) + (1)));
                                     scene.img(`${qspFunc(s, 'tattoo_management', 'tramp_image')}`);
                                     scene.text('He gives you a tramp stamp.');
                                   } else {
                                     if (((st as any).randchan ?? 0) === 16  &&  ((st as any).pcs_tattoos ?? 0)?.['under'] === 0) {
-                                      qspCall(st, 'tattoo_management', 'add', 'under', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'under'))", { location: "lover_change" }));
+                                      qspCall(st, 'tattoo_management', 'add', 'under', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'under') - 1 + 1)) + (1)));
                                       scene.img(`${qspFunc(s, 'tattoo_management', 'under_image')}`);
                                       scene.text('He gives you a tattoo under your breasts.');
                                     } else {
                                       if (((st as any).randchan ?? 0) === 17  &&  ((st as any).pcs_tattoos ?? 0)?.['wrist'] === 0) {
-                                        qspCall(st, 'tattoo_management', 'add', 'wrist', qspUntranslated(s, "rand(1, func('tattoo_management', 'get_total', 'wrist'))", { location: "lover_change" }));
+                                        qspCall(st, 'tattoo_management', 'add', 'wrist', (Math.floor(Math.random() * (qspFunc(s, 'tattoo_management', 'get_total', 'wrist') - 1 + 1)) + (1)));
                                         scene.img(`${qspFunc(s, 'tattoo_management', 'wrist_image')}`);
                                         scene.text('He gives you a tattoo on your wrists.');
                                       } else {

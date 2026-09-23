@@ -936,7 +936,7 @@ function enterBossSlut_10(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'jobs', 'set_employed', 'city_diner_secretary');
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes a...
+    // TODO-QSP: dynamic text: 'You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes ...
     scene.text('You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes a copy of your passport and diploma, and tells you. "Come to work here every weekday, no later than 9:00, you must wear an office outfit. You will receive calls, take letters, and copy documents, and you have to do any other general office work as required. You will work until 17:00, your salary will be paid into your bank account every month."');
     scene.actions([
       { label: 'Leave', goto: ['burger', 'start'] },

@@ -24,13 +24,13 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
 
 function enterPubes(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 'images/pc/body/pussy/';
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 0) {
     (s as any).temp_pubes = 0;
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[2] ?? '') !== 0) {
     (s as any).temp_pubecol = 0;
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[3] ?? '') !== 0) {
     (s as any).temp_pubestyle = 0;
   }
   if ((!((s as any).temp_pubecol ?? 0))) {
@@ -132,13 +132,13 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
 
 function enterPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 'images/pc/body/pussy/';
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 0) {
     (s as any).temp_pubes = 0;
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[2] ?? '') !== 0) {
     (s as any).temp_pubecol = 0;
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) !== 0) {
+  if (String((s as any).locArgs?.[3] ?? '') !== 0) {
     (s as any).temp_pubestyle = 0;
   }
   if ((!((s as any).temp_pubecol ?? 0))) {

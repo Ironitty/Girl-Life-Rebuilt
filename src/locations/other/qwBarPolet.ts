@@ -40,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bar "Rabotnik"</b></center>');
   scene.img('images/locations/city/industrial/bar/bar.jpg');
   scene.text('As you enter the bar, you see that about a dozen regular tables and stools take up most of the room. A bar counter, right in front of you, dominates the center of the establishment. At the far end of it, near a door leading to the toilet, a doorway with a curtain leads to the obligatory pool table that rounds off the furniture.');
-  // TODO-QSP: dynamic text: This place has a rowdy air about it: The smell of spilled beer, schnaps, and a h...
+  // TODO-QSP: dynamic text: 'This place has a rowdy air about it: The smell of spilled beer, schnaps, and a ...
   scene.text('This place has a rowdy air about it: The smell of spilled beer, schnaps, and a hint of vomit and blood are hard to miss, and some of the stools and billiard cues look like they\'ve been used in fights before. It is obviously a worker pub and not trying to be anything fancier than that, but that gives it an odd charm and coziness of its own' + ((((s as any).hour ?? 0) >= 16) ? (', and despite the hints of shadiness, you can hear plenty of laughter and friendly conversation') : ('')) + '. You doubt you\'ll get a fancy cocktail in here, though.');
   // TODO-QSP: end
   scene.actions([
@@ -286,8 +286,8 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
     if (((s as any).alko ?? 0) >= 6) {
       // TODO-QSP: iif(knowMartin=1, 'Martin', 'The burly barman') + ' musters you. "I think you''ve had enough."'
       scene.text('"I\'m fine", you assure him with a hint of a slur, "Just gimme one."');
-      // TODO-QSP: dynamic text: "You can barely stand-up straight, ' + iif(knowMartin=1, '<<$pcs_firstname>>', '...
-      scene.text('"You can barely stand-up straight, \' + iif(knowMartin=1, \'' + ((s as any).pcs_firstname ?? '') + '\', \'girl\') + \'. And I sure as hell don\'t want a young woman like yourself to pass out in my bar. Go home, or at least sober up a bit."');
+      // TODO-QSP: dynamic text: '"You can barely stand-up straight, ' + iif(knowMartin=1, '<<$pcs_firstname>>', ...
+      scene.text('"You can barely stand-up straight, ' + ((((s as any).knowMartin ?? 0)===1) ? ('' + ((s as any).pcs_firstname ?? '') + '') : ('girl')) + '. And I sure as hell don\'t want a young woman like yourself to pass out in my bar. Go home, or at least sober up a bit."');
       scene.actions([
         { label: 'Can I have some water?', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 35) === 0) {

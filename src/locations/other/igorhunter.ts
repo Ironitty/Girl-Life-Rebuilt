@@ -43,7 +43,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt2.' + (Math.floor(Math.random() * 3) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 3) + 4) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['IgorQW'] = ((st as any).hunterVars['IgorQW'] ?? 0) + (1);
     qspCall(st, 'stat', '');
@@ -169,7 +170,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 0) {
             scene.actions([
               { label: 'Flirt', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt1....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
     if (((st as any).hunterVars ?? 0)?.['IgorQW'] <= 35  &&  ((st as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
@@ -248,7 +250,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_horny ?? 0) >= 60) {
               scene.actions([
                 { label: 'Have sex', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterflirt2.' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterflirt2....
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterflirt2.` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['IgorQW'] = ((st as any).hunterVars['IgorQW'] ?? 0) + (1);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['Igorsex'] = ((st as any).hunterVars['Igorsex'] ?? 0) + ((Math.floor(Math.random() * 25) + 12));
     qspCall(st, 'arousal', 'foreplay', 10);
@@ -280,7 +283,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Spend time together', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/hanterlove1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/hanterlove1.'...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/hanterlove1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     (st as any).minut = ((st as any).minut ?? 0) + 120;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
     qspCall(st, 'mood', 'raise', 'small');
@@ -306,7 +310,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Chat (0:30)', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/talk1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/talk1.'+rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/talk1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     if (((st as any).hunterVars ?? 0)?.['IgorQW'] >= 0) {
     }
     (st as any).minut = ((st as any).minut ?? 0) + 30;

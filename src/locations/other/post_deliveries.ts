@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick up the bag. It has a bit of weight to it, but still feels fairly light.');
     } else {
       scene.text('"We\'re swamped today, so I hope you\'re wearing your running shoes!" he smirks. You can tell he feels bad for giving you so much work, but still expects you to get it done on time.');
-      // TODO-QSP: dynamic text: Your bag is so heavy that you have to carry it with both hands. You might have t...
+      // TODO-QSP: dynamic text: 'Your bag is so heavy that you have to carry it with both hands. You might have ...
       scene.text('Your bag is so heavy that you have to carry it with both hands. You might have to use some shortcuts if you want to finish by 15:00!');
     }
   }
@@ -37,7 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The first half hour is easy as you work your way through the streets near the post office. As you get further away from the center, you take a look in your bag and ponder how you\'re going to handle your round today.');
     if (((st as any).post_vars ?? 0)?.['load'] === 0) {
       (st as any).minut = ((st as any).minut ?? 0) + 25;
-      // TODO-QSP: dynamic text: Your bag feels fairly light, and you don''t see that many items left in it. You ...
+      // TODO-QSP: dynamic text: 'Your bag feels fairly light, and you don''t see that many items left in it. You...
       scene.text('Your bag feels fairly light, and you don\'t see that many items left in it. You could easily make it back before 15:00, and would even have time to relax and take breaks!');
     } else {
       if (((st as any).post_vars ?? 0)?.['load'] === 1) {
@@ -46,7 +46,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         (st as any).minut = ((st as any).minut ?? 0) + 45;
         scene.text('Your bag still feels very full, and you realize there\'s no way you\'ll make it back on time if you stick to the predetermined route!');
-        // TODO-QSP: dynamic text: You could stick to the safe roads, but the postmaster won''t like you returning ...
+        // TODO-QSP: dynamic text: 'You could stick to the safe roads, but the postmaster won''t like you returning...
         scene.text('You could stick to the safe roads, but the postmaster won\'t like you returning late. Alternatively, you could push your luck and hopefully get all your deliveries done by 15:00 by cutting through areas where you might get into trouble.');
       }
     }
@@ -92,7 +92,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('You have more than enough time to finish your round, even with you taking it slowly.');
     } else {
       if (((st as any).post_vars ?? 0)?.['load'] === 1) {
-        // TODO-QSP: dynamic text: You figure you have enough time to stick to your predetermined route and be done...
+        // TODO-QSP: dynamic text: 'You figure you have enough time to stick to your predetermined route and be don...
         scene.text('You figure you have enough time to stick to your predetermined route and be done on time, so that\'s what you do. You won\'t have time to stop for anything or talk to anyone for very long, but will finish just around 15:00 as expected.');
       } else {
         scene.text('After another half hour, you take another look in your bag and see that there\'s still a lot left to deliver! There\'s no way you\'ll be able to finish your round on time if you keep this up.');
@@ -148,14 +148,14 @@ function enterResume(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('You deliver the last few pieces of mail without anything of note happening, and nod contently to yourself after you hand off the last parcel. You\'re all done for the day.');
     if (((s as any).hour ?? 0) < 15) {
-      // TODO-QSP: dynamic text: You check the time and see that it''s not even ' + func('time', 'get_time_string...
+      // TODO-QSP: dynamic text: 'You check the time and see that it''s not even ' + func('time', 'get_time_strin...
       scene.text('You check the time and see that it\'s not even 15:00 yet. The postmaster will be pleased!');
     } else {
       if (((s as any).hour ?? 0) === 15  &&  ((s as any).minut ?? 0) <= 15) {
-        // TODO-QSP: dynamic text: You check the time and see it''s around ' + func('time', 'get_time_string', 15, ...
+        // TODO-QSP: dynamic text: 'You check the time and see it''s around ' + func('time', 'get_time_string', 15,...
         scene.text('You check the time and see it\'s around 15:00 still. You\'re done just in time to not get into trouble! Phew...');
       } else {
-        // TODO-QSP: dynamic text: You check the time and see it''s already well past ' + func('time', 'get_time_st...
+        // TODO-QSP: dynamic text: 'You check the time and see it''s already well past ' + func('time', 'get_time_s...
         scene.text('You check the time and see it\'s already well past 15:00. The postmaster won\'t be happy...');
       }
     }
@@ -205,7 +205,7 @@ function enterResume(s: GameState, scene: SceneBuilder): void {
 function enterBandits(s: GameState, scene: SceneBuilder): void {
   if (((s as any).post_vars ?? 0)?.['bandit'] === 0) {
     scene.text('"New at the job? Most of you know to avoid this area unless you\'re looking to play!" he grins at you as his friend rummages through your bag. "Anything good?" he asks.');
-    // TODO-QSP: dynamic text: "Nice, someone sent money to Nikolai!" the other laughs. "That bastard owed me '...
+    // TODO-QSP: dynamic text: '"Nice, someone sent money to Nikolai!" the other laughs. "That bastard owed me ...
     scene.text('"Nice, someone sent money to Nikolai!" the other laughs. "That bastard owed me ' + qspFunc(s, 'money', 'format', 5000) + '! I thought I was never going to see that money again. Guess he just paid me back... Thanks, Nikolai! Asshole..."');
     scene.text('He pockets the money and tosses the envelope away.');
     scene.actions([
@@ -658,7 +658,7 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).post_vars ?? 0)?.['late'] >= 12  &&  ((s as any).post_vars ?? 0)?.['late'] < 15) {
               scene.text('"You\'re late yet again!" the postmaster scoffs when you enter the post office, but your remark that you delivered everything falls on deaf ears.');
-              // TODO-QSP: dynamic text: "I don''t care! Everyone knows that mail is delivered before ' + func('time', 'g...
+              // TODO-QSP: dynamic text: '"I don''t care! Everyone knows that mail is delivered before ' + func('time', '...
               scene.text('"I don\'t care! Everyone knows that mail is delivered before 15:00! You may be getting lucky with people still being home after that, but your luck won\'t last," he remarks, mumbling something about how you make the postal service look bad before his voice grows louder. "I will not stand for this! If you\'re late one more time, you\'re fired! You hear me?"');
               scene.text('Knowing it\'s no use arguing, you just nod.');
             } else {
@@ -685,7 +685,7 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
     scene.text('"I better let Aleksiy know he needs to come in on Saturdays again. I knew I shouldn\'t have trusted you!" he sighs while shaking his head in disappointment as he walks away. Guess you\'re not getting paid for the day...');
   } else {
     qspCall(s, 'jobs', 'paycheck', 'pav_mailgirl');
-    // TODO-QSP: dynamic text: You receive your ' + func('money', 'string_profit', 450) + ' pay for the day.
+    // TODO-QSP: dynamic text: 'You receive your ' + func('money', 'string_profit', 450) + ' pay for the day.'
     scene.text('You receive your ' + qspFunc(s, 'money', 'string_profit', 450) + ' pay for the day.');
   }
   if (((s as any).post_vars ?? 0)?.['qw_1'] === 2) {
@@ -933,7 +933,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Say you\'ll be back when you\'re done', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Deal. I''ll come back once I''m done," you reply. "I should be done around ' + ...
+    // TODO-QSP: dynamic text: '"Deal. I''ll come back once I''m done," you reply. "I should be done around ' +...
     scene.text('"Deal. I\'ll come back once I\'m done," you reply. "I should be done around 15:00."');
     scene.text('"Heh... I can\'t wait. I have a feeling we\'re going to be good friends," he grins as he signs for his parcel. "See you then."');
     scene.actions([
@@ -1068,7 +1068,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     scene.text('You cast a quick glance at your phone and realize you have some time to spare.');
   }
   if (((s as any).post_vars ?? 0)?.['load'] === 1) {
-    // TODO-QSP: dynamic text: You cast a quick glance at your phone and realize you''d roughly be back at the ...
+    // TODO-QSP: dynamic text: 'You cast a quick glance at your phone and realize you''d roughly be back at the...
     scene.text('You cast a quick glance at your phone and realize you\'d roughly be back at the post office by 15:00. You can\'t stick around for too long though...');
   }
   if (((s as any).post_vars ?? 0)?.['load'] === 2) {

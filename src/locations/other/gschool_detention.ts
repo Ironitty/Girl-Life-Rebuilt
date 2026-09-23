@@ -149,8 +149,8 @@ function enterWedgie(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You glare at her. "Just you wait… You\'ll pay for this!"');
     scene.text('She snorts at your threat. "I\'m right here, bitch! Do it now, you fucking pussy!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBackDown(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'random']; enterReturnFavor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBackDown(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'random']; enterReturnFavor(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -170,8 +170,8 @@ function enterAnushkaWedgie(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You glare at her. "Just you wait… You\'ll pay for this!"');
     scene.text('She snorts at you in amusement. "Calm down, it was just a joke."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBackDown(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anushka']; enterReturnFavor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBackDown(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'anushka']; enterReturnFavor(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -214,7 +214,7 @@ function enterBackDown(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'random'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'random'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     if (((s as any).grupTipe ?? 0) === 2  ||  ((s as any).grupTipe ?? 0) === 4) {
       scene.actions([
         { label: 'Return the favor', handler: (st: GameState) => {
@@ -230,7 +230,7 @@ function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'anushka') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'anushka') {
       scene.actions([
         { label: 'Return the favor', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
@@ -250,7 +250,7 @@ function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
     scene.text(`The teacher speaks again. "Miss ${((st as any).pcs_lastname ?? '')}, please take your seat. That goes for all of you. Except for you, Miss Konstantinov. You're coming with me."`);
     scene.text('He grabs Anushka roughly by the arm and drags her out of the library as you take your seat and try to pluck your underwear out of your ass crack. It\'s all stretched out of shape and might even be ruined.');
     scene.text('About fifteen minutes later, the teacher returns alone and takes a seat. He keeps a watchful eye on everyone for the rest of detention.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSittingEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSittingEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -510,7 +510,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
 function enterChatWith___randGirl__(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rand_girlrel_jump
   qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 1, 1, 1, 0);
-  if (((s as any).npc_rel ?? 0)['A' + ((s as any).r ?? 0)] < 50  &&  ((s as any).counter_girl ?? 0) < 1000) {
+  if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_girl ?? 0) < 1000) {
     (s as any).counter_girl = ((s as any).counter_girl ?? 0) + (1);
     // TODO-QSP: jump 'rand_girlrel_jump'
   }
@@ -533,7 +533,7 @@ function enterChatWith___randGirl__(s: GameState, scene: SceneBuilder): void {
 function enterChatWith___randBoy__(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rand_boyrel_jump
   qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 1, 1, 1, 0);
-  if (((s as any).npc_rel ?? 0)['A' + ((s as any).r ?? 0)] < 50  &&  ((s as any).counter_boy ?? 0) < 1000) {
+  if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_boy ?? 0) < 1000) {
     (s as any).counter_boy = ((s as any).counter_boy ?? 0) + (1);
     // TODO-QSP: jump 'rand_boyrel_jump'
   }
@@ -1222,7 +1222,7 @@ function enterNothing(s: GameState, scene: SceneBuilder): void {
     { label: 'Go back to the front', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You decide to just go back to the front of the library and wait it out at one of the tables.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSittingEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSittingEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/sex/mast.mp4');
@@ -1346,7 +1346,8 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'gschool_events', 'rand_teacher_arg');
-  scene.img('images/locations/pavlovsk/school/detention/sex/doggy' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/detention/sex/doggy` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('As you walk around, you hear some soft moaning coming from further back and quietly move forward to peek around one of the bookshelves.');
   scene.text('In the middle of a pair of shelves is Lena, down on all fours with Lavrenti kneeling behind her, pounding her hard. By the look on her face, she seems to be enjoying every second of it and you briefly wonder if Vitek knows Lavrenti is screwing his sister.');
   scene.text('You bite your lip as you watch, feeling your own arousal mounting.');
@@ -1355,7 +1356,8 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/school/detention/sex/doggy' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/detention/sex/doggy` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     scene.text('You watch them as they go at it for some time. She\'s fighting to stop herself from screaming out as she starts to spasm.');
     scene.text('He keeps it up through her whole orgasm and hammers away at her for a few more minutes before pulling out and shooting his load all over her ass.');
     scene.text('Afterwards, they get cleaned up and dressed before exchanging a few quiet words and heading back to the front of the library.');

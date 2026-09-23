@@ -1790,7 +1790,7 @@ function enterSuburbsGraveyard(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, the bus stops at the graveya...
   scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, the bus stops at the graveyard bus station.`);
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'get_bus_image') {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'get_bus_image') {
     // TODO-QSP: killvar 'temp_transportVars'
   }
   scene.actions([

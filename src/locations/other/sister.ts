@@ -102,7 +102,7 @@ function enterPavCommcenter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'anya') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'anya') {
     if (((s as any).mesec ?? 0) > 0  ||  ((s as any).pcs_mood ?? 0) < 25  ||  ((s as any).alko ?? 0) >= 3  ||  ((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
       ((s as any).sisterQW = (s as any).sisterQW ?? {})['party'] = (-1);
       if (((s as any).mesec ?? 0) > 0) {
@@ -163,7 +163,7 @@ function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'rex') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'rex') {
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 250  ||  ((s as any).cumloc ?? 0)[11] === 1  ||  (((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)) {
         (s as any).rex_breakup = 1;
         (s as any).reksLike = 0;
@@ -642,7 +642,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sisterQW = (st as any).sisterQW ?? {})['party'] = 1;
     scene.img('images/characters/pavlovsk/resident/anya/community/anyaroma1.jpg');
     scene.text('You agree to go to the party.');
-    // TODO-QSP: dynamic text: "Awesome! It''ll be fun. Just be here before ' + func('time', 'get_time_string',...
+    // TODO-QSP: dynamic text: '"Awesome! It''ll be fun. Just be here before ' + func('time', 'get_time_string'...
     scene.text('"Awesome! It\'ll be fun. Just be here before 18:00, otherwise we\'ll leave without you."');
     scene.text('Anya gives Roma a dirty look, but he just shrugs it off.');
     scene.actions([
@@ -677,7 +677,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).sisterAge = ((s as any).year ?? 0) - (((((s as any).npc_dob ?? {})?.['A33'] ?? 0) - ((((s as any).npc_dob ?? {})?.['A33'] ?? 0) % 10000)) / 10000);
   (s as any).sisterLocationTitle = qspFunc(s, 'wrap', 'header h1 center', 'Anya');
   qspCall(s, 'stat', '');
-  scene.img('images/characters/pavlovsk/resident/anya/sister' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/anya/sister...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/anya/sister` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: Your sister Anya is a little older than you at <<sisterAge>> years old. She grad...
   scene.text(`Your sister Anya is a little older than you at ${((s as any).sisterAge ?? '')} years old. She graduated from school but, much to your mother's disappointment, didn't go to the university and ended up working at Pavlovsk's local supermarket instead.`);
   qspCall(s, 'sister_chat', 'checks');

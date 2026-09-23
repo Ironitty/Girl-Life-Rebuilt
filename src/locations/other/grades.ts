@@ -10,23 +10,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCreateclass(s: GameState, scene: SceneBuilder): void {
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_max'] = 10 * (((s as any).locArgs?.[3] ?? 0) * (1 + ((s as any).locArgs?.[4] ?? 0)) + ((s as any).locArgs?.[8] ?? 0));
-  if (Number((s as any).locArgs?.[6] ?? 0) === 'yes') {
+  if (String((s as any).locArgs?.[6] ?? '') === 'yes') {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_max'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_max'] ?? 0) + (50);
   }
-  if (Number((s as any).locArgs?.[5] ?? 0) === 'yes') {
-    if (Number((s as any).locArgs?.[6] ?? 0) === 'yes') {
+  if (String((s as any).locArgs?.[5] ?? '') === 'yes') {
+    if (String((s as any).locArgs?.[6] ?? '') === 'yes') {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_breakeven_point'] = Math.min(10 * ((s as any).locArgs?.[3] ?? 0) + 25, 5 * ((s as any).locArgs?.[3] ?? 0) + 50);
     } else {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_breakeven_point'] = 10 * ((s as any).locArgs?.[3] ?? 0);
     }
   } else {
-    if (Number((s as any).locArgs?.[6] ?? 0) ==='yes') {
+    if (String((s as any).locArgs?.[6] ?? '') ==='yes') {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_breakeven_point'] = 50;
     } else {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_weekly_grade_gain_breakeven_point'] = 5 * ((s as any).locArgs?.[8] ?? 0);
     }
   }
-  ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_homework'] = ((Number((s as any).locArgs?.[6] ?? 0) === 'yes') ? (1) : (0));
+  ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_homework'] = ((String((s as any).locArgs?.[6] ?? '') === 'yes') ? (1) : (0));
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'] = 10 * ((s as any).locArgs?.[8] ?? 0);
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_use_computer'] = ((s as any).locArgs?.[7] ?? 0);
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap'] = 100;
@@ -39,7 +39,7 @@ function enterCreateclass(s: GameState, scene: SceneBuilder): void {
 
 function enterGradeCap(s: GameState, scene: SceneBuilder): void {
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap'] = ((s as any).locArgs?.[3] ?? 0);
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_grade'] > Number((s as any).locArgs?.[3] ?? 0)) {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade'] > String((s as any).locArgs?.[3] ?? '')) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = ((s as any).locArgs?.[3] ?? 0);
   }
   // TODO-QSP: end
@@ -168,7 +168,7 @@ function enterClassActivityAttributes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  Number((s as any).locArgs?.[3] ?? 0) === 'yes') {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 0  ||  String((s as any).locArgs?.[3] ?? '') === 'yes') {
     if (((s as any).pcs_stam ?? 0) <= 0) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
         ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (5);
@@ -227,7 +227,7 @@ function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 1) {
       if (((s as any).pcs_stam ?? 0) <= 0) {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
           ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (3);
@@ -287,7 +287,7 @@ function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
   }
   // TODO-QSP: end
@@ -296,7 +296,7 @@ function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
 
 function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  Number((s as any).locArgs?.[3] ?? 0) === 'yes') {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 0  ||  String((s as any).locArgs?.[3] ?? '') === 'yes') {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).locArgs?.[4] ?? 0)) / 400);
     } else {
@@ -315,7 +315,7 @@ function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 1) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
         ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).locArgs?.[4] ?? 0)) / 400);
       } else {
@@ -335,7 +335,7 @@ function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
   }
   // TODO-QSP: end
@@ -344,7 +344,7 @@ function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
 
 function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  Number((s as any).locArgs?.[3] ?? 0) === 'yes') {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 0  ||  String((s as any).locArgs?.[3] ?? '') === 'yes') {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).locArgs?.[4] ?? 0)) / 400);
     } else {
@@ -363,7 +363,7 @@ function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void
       }
     }
   } else {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_use_computer'] === 1) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
         ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).locArgs?.[4] ?? 0)) / 400);
       } else {
@@ -383,7 +383,7 @@ function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void
       }
     }
   }
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_optional_weekly_max']) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
   }
   // TODO-QSP: end
@@ -393,13 +393,13 @@ function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void
 function enterHomework(s: GameState, scene: SceneBuilder): void {
   (s as any).lernHome = ((s as any).lernHome ?? 0) - (((s as any).locArgs?.[3] ?? 0));
   (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
-  if (Number((s as any).locArgs?.[4] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[4] ?? '') === 2) {
     (s as any).temp_grades_modifier = Math.max(((s as any).npc_intel ?? 0)?.[((s as any).locArgs?.[5] ?? 0)], 50);
   } else {
-    if (Number((s as any).locArgs?.[4] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[4] ?? '') === 1) {
       (s as any).temp_grades_modifier = Math.max(qspUntranslated(s, "npc_intel[\u00000\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0)) + Math.max(10 + Math.min(((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)] - ((s as any).pcs_intel ?? 0), ((s as any).pcs_intel ?? 0) - ((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)]), 0) * (100 - Math.max(qspUntranslated(s, "npc_intel[\u00003\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0))) / 50;
     } else {
-      if (Number((s as any).locArgs?.[4] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[4] ?? '') === 3) {
         (s as any).temp_grades_modifier = ((s as any).locArgs?.[5] ?? 0);
       } else {
         (s as any).temp_grades_modifier = ((s as any).pcs_intel ?? 0);
@@ -408,9 +408,9 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :homework_loop
-  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_homework'] === 1) {
-      if (Number((s as any).locArgs?.[2] ?? 0) === '!') {
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_homework'] === 1) {
+      if (String((s as any).locArgs?.[2] ?? '') === '!') {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
           // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 5 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
         } else {
@@ -459,10 +459,10 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
 
 function enterGradeAward(s: GameState, scene: SceneBuilder): void {
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] ?? 0) + (((s as any).locArgs?.[3] ?? 0));
-  if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_grade'] < 0) {
+  if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade'] < 0) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = 0;
   } else {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_grade'] > ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_grade_cap']) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_grade_cap']) {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap'];
     }
   }
@@ -470,7 +470,7 @@ function enterGradeAward(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_n = 0;
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :grade_loop
-  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
     (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade']);
     (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
   }
@@ -488,15 +488,15 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_n = 0;
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :grade_loop1
-  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain'] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain'] ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_optional_weekly_grade_gain']);
     ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_optional_weekly_grade_gain'] = 0;
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain'] < ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain'] < ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
       // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] -= (5 - 5 * class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] / class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
     } else {
       // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] += 3 * (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point']) / (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_max'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
     }
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade'] > ((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade_cap']) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade'] > ((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade_cap']) {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade_cap'];
     }
     (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade']);
@@ -515,7 +515,7 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
 function enterAssignGradeDescription(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :assign_grade_loop
-  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
     (s as any).temp_var_name = '' + ((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade';
     if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 10) {
       // TODO-QSP: $class_grade_desc[$temp_var_name] = '1'
@@ -579,8 +579,8 @@ function enterGradeAbove(s: GameState, scene: SceneBuilder): void {
   ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grades_above_' + String(((s as any).locArgs?.[2] ?? 0))] = 0;
   (s as any).temp_grades_i = 0;
   // TODO-QSP: :grade_above_loop
-  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
-    if (((s as any).class ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade'] >= Number((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
+    if (((s as any).class ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade'] >= String((s as any).locArgs?.[2] ?? '')) {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grades_above_' + String(((s as any).locArgs?.[2] ?? 0))] = ((s as any).class[String(((s as any).locArgs?.[1] ?? 0)) + '_grades_above_' + String(((s as any).locArgs?.[2] ?? 0))] ?? 0) + (1);
     }
   }

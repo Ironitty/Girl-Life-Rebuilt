@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[0] ?? 0) === 80) {
+  if (String((s as any).locArgs?.[0] ?? '') === 80) {
     scene.text('When one of your loyal viewers speaks up, you feel a weird knot in your throat. He\'s usually making rather insensitive comments and seems to enjoy watching you squirm, but he pays well.');
     scene.text('"I want to really see you suffer today", he types. "I\'ll give you a lot of tokens if you do this, but it will hurt: Find a hook and stick it inside your cunt. Then puncture your perineum with it, so it comes out your anus again."');
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
@@ -56,7 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 81) {
+    if (String((s as any).locArgs?.[0] ?? '') === 81) {
       scene.text('One of the regulars says: "I\'ve always been curious what the inside of a girl\'s ass looks like. How about you show me? I\'ve got a bunch of tokens with your name on it! ;)"');
       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -77,7 +77,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do', handler: (st: GameState) => {
     qspCall(st, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
-    scene.img('images/pc/items/accessories/computer/camwhore82,' + (Math.floor(Math.random() * 10) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore82...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore82,` + (Math.floor(Math.random() * 10) + 0) + '.jpg"></center>');
     scene.text('That request sounds simple enough! You dutifully turn your back to the computer and slip two fingers inside your well-used ass, carefully pulling your asshole open.');
     scene.text('"More! We want to see more!" the chat encourages you, and you smile obediently while you do as they ask, pulling your sphincter wide open. The promises of donations make you go through with it, even when you feel a cool breeze in your rectum.');
     scene.text('The pain in your ass is unbearable for a while, but the viewer is true to his word. He donates a decent amount of tokens and lets you know that he hopes to meet an anal queen like you one day. You\'re not sure if you can carry on with your show, though… that hurt a lot more than you thought it would.');
@@ -95,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 82) {
+      if (String((s as any).locArgs?.[0] ?? '') === 82) {
         scene.text('One of the regulars asks: "You know, I really love it when girls stick something in their urethra! Could you do that for me? It doesn\'t have to be big!"');
         qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -133,7 +134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 83) {
+        if (String((s as any).locArgs?.[0] ?? '') === 83) {
           scene.text('One of the viewers asks you: "Fuck yourself with something! But not a dildo… be creative! Use your imagination and surprise us!"');
           qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -179,7 +180,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 84) {
+          if (String((s as any).locArgs?.[0] ?? '') === 84) {
             if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
               scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina and fuck yourself with it? That would be so hot…"');
             } else {
@@ -219,7 +220,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 85) {
+            if (String((s as any).locArgs?.[0] ?? '') === 85) {
               // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
               scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
@@ -285,7 +286,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore' ...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore` + ((st as any).img_source ?? '') + '.jpg"></center>');
       scene.text('In your drunken stupor you find some rope and rubber bands and begin to bind your breasts, using the helpful advice of the chat to guide you.');
       scene.text('Your senses have been dulled by the excessive amount of alcohol you drank, but you\'re still conscious enough to make sure you don\'t bind your breasts too tightly.');
       scene.text('A few minutes later you decide your poor boobs have had enough, and untie them again. Your chat enjoyed seeing you like that, and you receive a few donations while you carefully rub some feeling back into your tingling breasts.');
@@ -388,7 +390,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 ]);
               }
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 86) {
+              if (String((s as any).locArgs?.[0] ?? '') === 86) {
                 scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina? That would be so hot…"');
                 scene.text('You immediately jump up from your chair, forgetting to even ask for tokens. "I\'ll go get one! I don\'t normally do this, but… only today, and only for you!" you wink at the camera in a slightly slurry voice.');
                 scene.actions([
@@ -411,7 +413,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 87) {
+                if (String((s as any).locArgs?.[0] ?? '') === 87) {
                   scene.text('One of the viewers challenges you: "Put something in your vagina. Anything. Impress me."');
                   qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -449,7 +451,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                   ]);
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 88) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 88) {
                     scene.text('One of the viewers has a rather unusual request: "Time for you to quiet down for a while! Gag yourself by putting your panties into your mouth…"');
                     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -490,7 +492,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                     ]);
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 89) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 89) {
                       scene.text('One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your asshole to him…');
                       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -524,7 +526,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore' ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore` + ((st as any).img_source ?? '') + '.jpg"></center>');
     if (((st as any).analPlugIn ?? 0) === 1) {
       scene.text('You smile to yourself, he\'s going to love what you have in store for him!');
       scene.text('"I\'m sorry," you tell him, explicitly mentioning his username as well. "That\'s going to be a bit difficult…"');

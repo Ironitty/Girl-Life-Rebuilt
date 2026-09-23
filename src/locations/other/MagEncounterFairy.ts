@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -151,7 +153,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     (st as any).fairychat = ((st as any).fairychat ?? 0) + (1);
     (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) + (25 * ((st as any).pcs_magik ?? 0));
     qspCall(st, 'mood', 'raise', 'small');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFairychattopic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFairychattopic(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((st as any).fairyQW ?? 0)?.['day'] !== ((st as any).daystart ?? 0)  &&  (!((st as any).fairyshoo ?? 0))) {
       if (((st as any).pcs_skin ?? 0) <= 990) {
         (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + (10);
@@ -359,9 +361,7 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $tpRand[1] = 'PushkinPark'
     // TODO-QSP: $tpRand[2] = 'Village'
     scene.actions([
-      { label: 'See where the Fairy teleports you to', handler: (st: GameState) => {
-    // TODO-QSP: gt 'treeCircle', $tpRand[rand(0, 2)]
-  } },
+      { label: 'See where the Fairy teleports you to', goto: ['treeCircle', 'tpRand[rand(0', 'qspUntranslated(s, "2)]", { location: "MagEncounterFairy" })'] },
     ]);
   }
   // TODO-QSP: end

@@ -14,7 +14,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   if (((s as any).crossfit_random_choice ?? 0) < ((s as any).daystart ?? 0)  ||  ((s as any).todays_crossfit_wod ?? 0) === '') {
     qspCall(s, 'havana_crossfit_funcs', 'setup_wod');
-    (s as any).todays_crossfit_wod = ((s as any).crossfit_wods ?? 0)?.[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('crossfit_wods') - 1)];
+    (s as any).todays_crossfit_wod = ((s as any).crossfit_wods ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))];
     (s as any).crossfit_random_choice = ((s as any).daystart ?? 0);
   }
   if (((s as any).previous_record_holder ?? 0) !== ''  &&  ((s as any).last_crossfit_workout ?? 0) < ((s as any).daystart ?? 0)) {
@@ -127,9 +127,9 @@ function enterViewRecords(s: GameState, scene: SceneBuilder): void {
   (s as any).crossfit_wod = ((s as any).crossfit_wods ?? 0)?.[String((s as any).record_table_counter ?? 0)];
   // TODO-QSP: dynamic text: <tr><td><<$crossfit_wod>></td>
   scene.text(`<tr><td>${((s as any).crossfit_wod ?? '')}</td>`);
-  // TODO-QSP: dynamic text: <td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, personal_wo...
+  // TODO-QSP: dynamic text: '<td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, personal_w...
   scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod ?? ''), ((s as any).personal_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
-  // TODO-QSP: dynamic text: <td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, box_wod_rec...
+  // TODO-QSP: dynamic text: '<td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, box_wod_re...
   scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod ?? ''), ((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
   // TODO-QSP: dynamic text: <td><<$box_wod_record_holder[$crossfit_wod]>></td></tr>
   scene.text(`<td>${((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? ''}</td></tr>`);

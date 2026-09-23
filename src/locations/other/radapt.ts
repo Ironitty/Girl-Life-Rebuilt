@@ -250,7 +250,8 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Leave', goto: ['pav_complex', 'start'] },
                             { label: 'Enter', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/rgirl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ra...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/radapt/rads_girls/rgirl` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and a girl with dyed hair and punk rock style clothing walks out of his room. She pauses when she sees you before smirking. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     scene.text('A moment later, Radomir steps out and smiles when he sees you. He then slaps the girl on the ass, which makes her giggle. "See you later, doll."');
@@ -268,7 +269,8 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                             scene.actions([
                               { label: 'Leave', goto: ['pav_complex', 'start'] },
                               { label: 'Enter', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/girl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ra...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/radapt/rads_girls/girl` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and a girl you\'ve never seen before walks out of his room. She pauses when she sees you and blushes. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     scene.text('A moment later, Radomir steps out and smiles when he sees you. He then slaps the girl on the ass, which makes her giggle. "See you later, doll."');
@@ -679,7 +681,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).radfood_day = ((st as any).daystart ?? 0);
     (st as any).radbeer_count = ((st as any).radbeer_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You take a bottle of beer from the fridge and drink it, which quenches your thirst.');
     scene.actions([
       { label: 'Continue', goto: ['radapt', 'fridge'] },
@@ -695,7 +698,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).radfood_day = ((st as any).daystart ?? 0);
     (st as any).radvodka_count = ((st as any).radvodka_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You pour some vodka into a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['radapt', 'fridge'] },
@@ -709,7 +713,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'drugs', 'alcohol', 'vodka');
         (st as any).radvodka_count = ((st as any).radvodka_count ?? 0) - (1);
         qspCall(st, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is strong!');
       }
     }

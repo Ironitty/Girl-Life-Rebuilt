@@ -138,7 +138,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinPredlogDimaBj(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: '"And you promise not to tell anyone?"', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -147,7 +147,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     scene.text('You ask Dimka. You\'re really not sure if you want to do this but you also don\'t want him to think that you are a prude. You are fun… right? And as long as nobody finds out, as long as only he knows…');
     scene.text('');
     scene.text('Dimka gives you a gentle smile and reassuringly touches your cheek. "No, of course I wouldn\'t tell anybody. You\'ll be my girlfriend - why would I tell somebody about what we are doing when we\'re together?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinPredlogDimaBj(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

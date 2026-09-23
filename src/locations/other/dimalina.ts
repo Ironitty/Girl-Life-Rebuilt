@@ -289,7 +289,7 @@ function enterWatch(s: GameState, scene: SceneBuilder): void {
       if (((st as any).pcs_mood ?? 0) > 5) {
         qspCall(st, 'mood', 'lower', 'small');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'pain', '', 3, 'throat', 'choke');
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
       (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
@@ -487,7 +487,7 @@ function enterCums1(s: GameState, scene: SceneBuilder): void {
       scene.text('The groan must be louder than you expected, as Lina turns her cum covered face in your direction. You freeze, thinking what Dimka is going to do to you. Lina quickly leaves to the restroom, leaving a satisfied Dimka alone. She doesn\'t seem to return and after a while it\'s evident that she left the house. With a puzzled expression, Dimka opens the closet.');
       scene.text('"Fuck… That was great! She\'s so much better than you. This is why you\'re just the slut and she\'s my girlfriend." Dimka laughs down at you. "It was worth it taking my time to get her to this point, definitely worth the wait." He starts to unchain you and remove the gag, but it doesn\'t help much. You can barely stand, numbness in your limbs making the task nearly impossible. "Alright, get dressed and get out." Dimka doesn\'t even stop to see you redress as he beings to look through his new collection.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).pcs_mood ?? 0) > 5) {
       qspCall(st, 'mood', 'lower', 'small');
     }
@@ -624,7 +624,7 @@ function enterLinadefiled(s: GameState, scene: SceneBuilder): void {
     scene.text('He doesn\'t seem at all bothered with what has just happened. He actually seems quite happy with himself as he quickly removes your chains and gag.');
     scene.text('"Ok Slut, a deal is a deal. You\'ve been a good girl so I\'ll have a treat for you, but for now I\'m done playing with you, so get out."');
     scene.text('Silently you redress and leave.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'voyeur_sex', 10, 'bound');
     if (((st as any).pcs_mood ?? 0) > 10) {
       qspCall(st, 'mood', 'lower', 'small');
@@ -1114,7 +1114,7 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Thanks <<$pcs_firstname>>"
     scene.text(`"Thanks ${((st as any).pcs_firstname ?? '')}"`);
     qspCall(st, 'pain', '', 3, 'throat', 'choke');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'vaginal']; enterSexpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'vaginal']; enterSexpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).pcs_mood ?? 0) > 5) {
       qspCall(st, 'mood', 'lower', 'small');
     }
@@ -1230,7 +1230,7 @@ function enterBindpain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexpain(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'vaginal') {
     if (((s as any).pcs_vag ?? 0) < 10  &&  ((s as any).sucskill ?? 0) < 4) {
       qspCall(s, 'pain', '', 7, 'vaginal', 'ache');
     } else {
@@ -1241,7 +1241,7 @@ function enterSexpain(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
       if (((s as any).pcs_ass ?? 0) < 10  &&  ((s as any).sucskill ?? 0) < 4) {
         qspCall(s, 'pain', '', 7, 'asshole', 'ache');
       } else {
@@ -1318,7 +1318,7 @@ function enterSuccubusdimka(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'pain', '', 2, 'hair', 'pull');
     qspCall(st, 'pain', '', 2, 'cheeks', 'slap');
     qspCall(st, 'pain', '', 2, 'mouth', 'bind');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) - (20);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1452,7 +1452,7 @@ function enterLinaundress(s: GameState, scene: SceneBuilder): void {
     scene.text('Breathless, Lina opens her mouth, just in time to receive a full face of Dimka\'s slimy jizz before falling to the floor sobbing. After some minutes of Lina crying while he sits back with a smile to catch his breath, Dimka gets up and unchains you.');
     scene.text('"Clean her up and get her out of here."');
     scene.text('He leaves for the bathroom and you help Lina redress and walk her out of this house.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'pain', '', 2, 'mouth', 'bind');
     if (((st as any).pcs_mood ?? 0) > 5) {
       qspCall(st, 'mood', 'lower', 'small');

@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Community center</b></center>');
   scene.img('images/locations/pavlovsk/community/gym/gdksport.jpg');
   scene.text('The community center sports club offers lessons in <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gdksport/u0027, /u0027racing1/u0027); return false;">Racing</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gdksport/u0027, /u0027dance1/u0027); return false;">Dance</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gdksport/u0027, /u0027vball1/u0027); return false;">Volleyball</a>.');
-  // TODO-QSP: dynamic text: Volleyball and Racing lessons start before '+func('time', 'get_time_string', 18,...
+  // TODO-QSP: dynamic text: 'Volleyball and Racing lessons start before '+func('time', 'get_time_string', 18...
   scene.text('Volleyball and Racing lessons start before 18:00, while dancing must start before 15:00.');
   if ((((s as any).temper ?? 0) < 15  ||  ((s as any).sunWeather ?? 0) !== 1)  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).bbpickupDay ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).fbpickupDay ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('As you pass by the sports field, you notice that most of the jocks have gathered around the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bbgamein/u0027, /u0027start/u0027); return false;">basketball court</a>.');
@@ -80,7 +80,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Sportswear is required for all available classes and activities.');
   }
-  // TODO-QSP: dynamic text: In the locker room is a <a href="exec: gt ''mirror'',''start''">mirror</a>, wher...
+  // TODO-QSP: dynamic text: 'In the locker room is a <a href="exec: gt ''mirror'',''start''">mirror</a>, whe...
   scene.text('In the locker room is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   if (((s as any).PSport ?? 0) === 1  &&  ((s as any).hour ?? 0) < 18) {
     if (((s as any).gsAboBeg ?? 0) > 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A131'] === 0) {
@@ -228,7 +228,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterRacing1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: Race training costs ' + $func('money', 'string_price', 300) + ' for 30 lessons.
+  // TODO-QSP: dynamic text: 'Race training costs ' + $func('money', 'string_price', 300) + ' for 30 lessons....
   scene.text('Race training costs 300₽ for 30 lessons.');
   if (((s as any).gsAboBeg ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<gsAboBeg>> lessons remaining.
@@ -260,7 +260,7 @@ function enterRacing1(s: GameState, scene: SceneBuilder): void {
 
 function enterDance1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: Dance lessons cost ' + $func('money', 'string_price', 300) + ' for 30 lessons.
+  // TODO-QSP: dynamic text: 'Dance lessons cost ' + $func('money', 'string_price', 300) + ' for 30 lessons.'
   scene.text('Dance lessons cost 300₽ for 30 lessons.');
   if (((s as any).gsAboDance ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<gsAboDance>> lessons remaining.
@@ -310,7 +310,7 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
 
 function enterVball1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: Volleyball lessons cost ' + $func('money', 'string_price', 300) + ' for 30 lesso...
+  // TODO-QSP: dynamic text: 'Volleyball lessons cost ' + $func('money', 'string_price', 300) + ' for 30 less...
   scene.text('Volleyball lessons cost 300₽ for 30 lessons.');
   if (((s as any).vballVars ?? 0)?.['lessons_remaining'] > 0) {
     // TODO-QSP: dynamic text: You have <<vballVars[''lessons_remaining'']>> lessons remaining.
@@ -454,8 +454,8 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).kotovVSprohorov ?? 0) === 1  ||  (((s as any).IvanShowerQW ?? 0) === 2  &&  (Math.floor(Math.random() * 4) + 0) === 1))  &&  ((s as any).ShowerIvan ?? 0) < 3) {
       scene.text('You enter the shower and turn the water on. As you lather your body with a washcloth, you suddenly hear the door creak open and remember that you forgot to lock it.');
-      // TODO-QSP: dynamic text: You look around and see Ivan standing in the doorway looking at you. "Hi <<$pcs_...
-      scene.text('You look around and see Ivan standing in the doorway looking at you. "Hi ' + ((s as any).pcs_nickname ?? '') + '. Can I join you? The men\'s shower is full\' + iif(IvanShowerQW = 2, \' again\', \') + \'."');
+      // TODO-QSP: dynamic text: 'You look around and see Ivan standing in the doorway looking at you. "Hi <<$pcs...
+      scene.text(`You look around and see Ivan standing in the doorway looking at you. "Hi ${((s as any).pcs_nickname ?? '')}. Can I join you? The men's shower is full` + ((((s as any).IvanShowerQW ?? 0) === 2) ? (' again') : ('')) + '."');
       (s as any).kotovVSprohorov = 2;
       (s as any).IvanShowerQW = 2;
       qspCall(s, 'willpower', 'bj', 'resist');

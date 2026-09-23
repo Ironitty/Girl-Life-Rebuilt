@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locat ?? 0)?.['A23'] === 32  &&  ((s as any).AlbinaQW ?? 0)?.['boutique'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' an...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' a...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027moncheri/u0027); return false;">Albina</a>')) + ' browsing through the various clothes that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -33,7 +33,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(st, 'clothing', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -61,7 +61,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(st, 'clothing', 'strip');
     qspCall(st, 'underwear', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -88,7 +88,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).locat ?? 0)?.['A23'] === 32  &&  ((s as any).AlbinaQW ?? 0)?.['boutique'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' an...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' a...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027moncheri/u0027); return false;">Albina</a>')) + ' browsing through the various clothes that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -96,7 +96,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(st, 'clothing', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -124,7 +124,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(st, 'clothing', 'strip');
     qspCall(st, 'underwear', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -134,7 +134,7 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'changingroom');
   (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.text('As you walk through the store you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you go look at some clothes and grab several items to try on before heading into one of the changing rooms.');
   } else {
     scene.img('images/locations/city/citycenter/mall/fashionista/changingroom.jpg');

@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -42,7 +44,7 @@ function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 85) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_hallway', 'foyer_event_' + (Math.floor(Math.random() * 5) + 1) + '');
+  qspGoto(s, 'bdsm_hallway', qspUntranslated(s, "''foyer_event_<<rand(1'", { location: "bdsm_hallway" }), '5)>>');
   // TODO-QSP: end
   scene.build();
 }

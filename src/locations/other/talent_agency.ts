@@ -221,17 +221,13 @@ function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/aurora/auditions/room.jpg');
     scene.text('He frowns, seemingly puzzled. "I thought you were told what this shoot is about. So you need to get naked. Unless you wanted to do it in the street?"');
     scene.actions([
-      { label: '"Oh… Right…"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'talent_agency', iif(pcs_inhib < 50, 'SMTV_shy', 'SMTV_co...
-  } },
+      { label: '"Oh… Right…"', handler: (st: GameState) => { qspGoto(st, 'talent_agency', ((((st as any).pcs_inhib ?? 0) < 50) ? ('SMTV_shy') : ('SMTV_confident'))); } },
     ]);
   } },
       ]);
     }
     scene.actions([
-      { label: '"Okay"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'talent_agency', iif(pcs_inhib < 50, 'SMTV_shy', 'SMTV_co...
-  } },
+      { label: '"Okay"', handler: (st: GameState) => { qspGoto(st, 'talent_agency', ((((st as any).pcs_inhib ?? 0) < 50) ? ('SMTV_shy') : ('SMTV_confident'))); } },
     ]);
   } },
   ]);

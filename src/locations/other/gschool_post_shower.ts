@@ -18,7 +18,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     { label: 'Get dressed', goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out the other girls', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/gym/locker/peekdress' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/gym/locker/pee...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/locker/peekdress` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You let your eyes wander around the room, checking out the other girls. Some are almost finished dressing, a few are in their underwear and a few are still naked. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
     qspCall(st, 'arousal', 'erotic_nudity', 2);
     qspCall(st, 'stat', '');
@@ -1243,7 +1244,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
 function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'gschool_post_shower';
   (s as any).menu_arg = 'post_shower2';
-  scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/gym/shower/pos...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/shower/postphyssho` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   scene.text('You let your eyes wander around the room, checking out the other girls as they chat and shower. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
   // TODO-QSP: end
   scene.actions([

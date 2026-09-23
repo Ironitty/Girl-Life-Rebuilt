@@ -128,7 +128,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((st as any).month ?? 0) === 12  ||  ((st as any).month ?? 0) < 3) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },
@@ -174,7 +174,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((st as any).month ?? 0) === 12  ||  ((st as any).month ?? 0) < 3) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },
@@ -243,7 +243,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((st as any).month ?? 0) === 12  ||  ((st as any).month ?? 0) < 3) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIcePlunge(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },
@@ -621,7 +621,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['pav_lake_nude', ''] },
       ]);
     } else {
-      scene.img('images/locations/pavlovsk/lake/secluded_beach/self/nudebeachself' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/secluded_beach/s...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/secluded_beach/self/nudebeachself` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('You want to watch for nudists, but suddenly start to feel weird.<br><dh>"Probably spying too much."</dh> you think to yourself and look straight ahead.');
       scene.actions([
         { label: 'Continue', goto: ['pav_lake_nude', ''] },
@@ -650,7 +651,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
     if ((((st as any).PSwim ?? 0) === 1)  &&  ((st as any).pcs_hips ?? 0) <= 90) {
-      scene.img('images/locations/pavlovsk/lake/lake.walk.bikini0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk.bikini...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk.bikini0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     } else {
       if ((((st as any).PSwim ?? 0) === 1)  &&  ((st as any).pcs_hips ?? 0) >= 90  &&  ((st as any).pcs_hips ?? 0) <= 110) {
         scene.img('images/locations/pavlovsk/lake/lake.walk.bikini.fat0,0.jpg');
@@ -665,7 +667,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/pavlovsk/lake/walknude.jpg');
             (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
           } else {
-            scene.img('images/locations/pavlovsk/lake/lake.walk0,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk0,' + r...
+            scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk0,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
           }
         }
       }

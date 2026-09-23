@@ -66,7 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do it', handler: (st: GameState) => {
     (st as any).selfplaytime = ((st as any).selfplaytime ?? 0) + (15);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).husID ?? 0) !== ''  &&  ((st as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((st as any).loc ?? 0) === 'bedr') {
       qspGoto(st, 'husbsex', 'husb_mastr_vtor');
     }
@@ -75,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/mast/dildo.jpg');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: <<$AnyaMsg>>
     scene.text(`${((st as any).AnyaMsg ?? '')}`);
@@ -87,7 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       (st as any).selfplaytime = ((st as any).selfplaytime ?? 0) + (15);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(st, scene); (st as any).locArgs = __savedLocArgs; }
       if (((st as any).husID ?? 0) !== ''  &&  ((st as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((st as any).loc ?? 0) === 'bedr') {
         qspGoto(st, 'husbsex', 'husb_mastr_vtor');
       }
@@ -96,7 +96,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.img('images/shared/sex/mast/dildo.jpg');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVagmastDildoStart(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: <<$AnyaMsg>>
       scene.text(`${((st as any).AnyaMsg ?? '')}`);
@@ -512,7 +512,7 @@ function enterDildoOptions(s: GameState, scene: SceneBuilder): void {
 function enterBrushplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'D1');
   scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj17.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'brush_keepgoing') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'brush_keepgoing') {
     scene.text('You keep fucking your pussy with the brush handle, speeding up or slowing down and trying different angles or depths as your arousal builds. You let out soft moans and little gasps as you find just the right spots, adding to the stimulation by rubbing a finger over your clit.');
     qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbate');
     qspCall(s, 'stat', '');
@@ -655,10 +655,10 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {
     (s as any).assslutmessage = ' As you enjoy the feeling of the dildo sliding in and out of your pussy, you wonder briefly if you should have stuck it up your ass instead. The pleasure chases that thought away quickly though… You may be a assslut, but it\'s still fun for your pussy to be played with too.';
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'vag_keepgoing') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'vag_keepgoing') {
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+        // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
         scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this rubber cock. You\'re pounding your pussy, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd sounds of the toy smacking against your snatch.');
         (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the rubber cock inside your pussy. You moan and gasp, grinding the base against your pussy as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).vgape ?? 0))) {
@@ -666,7 +666,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+          // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
           scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this big rubber cock. You\'re pounding your pussy, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the large toy sliding in and out of your sloppy pussy.');
           (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo all the way up inside you and climax hard all over it. Your walls squeeze tight and you can feel the entire shape of the large toy inside your pussy. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).vgape ?? 0) === 1) {
@@ -678,7 +678,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+            // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
             scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your pussy with this massive rubber cock. You\'re pounding your pussy, again and again and again. Slamming the heavy dildo in and out of your hole at increasing speeds, grabbing at your breasts or flicking your clit' + ((((s as any).trait_vars ?? 0)?.['buttslut'] > 1) ? (', even rubbing a finger against your sensitive asshole') : ('')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the massive toy sliding in and out of your sloppy, wide stretched cunt.');
             (s as any).orgasm_txt = 'Pleasure and heat build between your legs until finally you slam the dildo as deep as it can go for the final time. You cum explosively, your widely stretched walls squeezing even tighter around it, almost making the massive toy feel even larger inside you. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you collapse in exhausted bliss.';
             if (((s as any).vgape ?? 0) === 2) {
@@ -1039,10 +1039,10 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {
     (s as any).assslutmessage = 'You pause for a moment as you enjoy the feeling of having your slutty asshole stretched and stuffed by the toy fully seated between your ass cheeks…';
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'anal_keepgoing') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'anal_keepgoing') {
     if (((s as any).pcs_horny ?? 0) >= 85) {
       if (((s as any).dildonumber ?? 0) < 3) {
-        // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+        // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
         scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this rubber cock. You\'re pounding your ass, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd sounds of the toy smacking up between your cheeks.');
         (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam the dildo all the way up inside your ass and finally climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks. You moan and gasp, grinding down on it even harder as you ride out your orgasm, trying to make it last as long as possible before the overstimulation makes you stop.';
         if ((!((s as any).agape ?? 0))) {
@@ -1050,7 +1050,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dildonumber ?? 0) >= 3  &&  ((s as any).dildonumber ?? 0) < 5) {
-          // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+          // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
           scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this big rubber cock. You\'re pounding your ass, again and again and again. Slamming the dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the large toy sliding in and out of your well fucked ass.');
           (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam the large dildo all the way up inside your ass and finally climax, hard. Your asshole clamps down tight and you focus on the feel of the toy rubbing between your ass cheeks and filling up your insides. Gasping, quivering, and clenching, you ride out your orgasm while impaled by the big rubber cock.';
           if (((s as any).agape ?? 0) === 1) {
@@ -1062,7 +1062,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).dildonumber ?? 0) > 5) {
-            // TODO-QSP: dynamic text: You keep going. You''re so horny right now, it feels like you can''t think of an...
+            // TODO-QSP: dynamic text: 'You keep going. You''re so horny right now, it feels like you can''t think of a...
             scene.text('You keep going. You\'re so horny right now, it feels like you can\'t think of anything besides fucking your ass with this massive rubber cock. You\'re pounding your ass, again and again and again. Slamming the heavy dildo in and out of your hole at increasing speeds, grabbing at your breasts and pinching your nipples' + ((((s as any).trait_vars ?? 0)?.['buttslut'] < 2) ? (' or sliding a hand between your legs to rub your pussy') : (', ignoring your pussy and focussing on what your slutty ass is feeling')) + ' as you chase down an orgasm. Your eyes are closed as you gasp and moan loudly, accompanied by the lewd squelching sounds of the massive toy sliding in and out of your well fucked ass.');
             (s as any).orgasm_txt = 'Pleasure and heat build between your legs until you slam yourself down, taking the huge dildo balls deep up inside your ass again and finally climax. You cum explosively, your widely stretched asshole clamping down as tight as it can around the rubber monster, head thrown back and eyes rolled up as the full length bulges out your stomach. Gasping, quivering, and clenching, you ride out your orgasm, every twitch making it last longer before you ' + (((Math.floor(Math.random() * 3) + 0) === 1) ? ('collapse to the side in exhausted bliss, the toy slipping out of your hole with a lewd pop.') : ('settle back in exhausted bliss.'));
             if (((s as any).agape ?? 0) === 2) {
@@ -1641,9 +1641,9 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
     { label: 'Finish masturbating [+iif(dildo_type = 1, \' and unmount your d...]', handler: (st: GameState) => {
     (st as any).dildo_timer = 0;
     if (((st as any).dildo_type ?? 0) >= 1  &&  ((st as any).dildo_type ?? 0) < 4) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathtubSuctionDildoRemove(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathtubSuctionDildoRemove(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerSuctionDildoRemove(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerSuctionDildoRemove(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     qspCall(st, 'arousal', 'end');
     if (((st as any).dildo_type ?? 0) !== 1) {
@@ -1871,7 +1871,7 @@ function enterFingering2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'misc', 'self', 'medium');
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFingering3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFingering3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -2009,7 +2009,7 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'misc', 'self', 'hard');
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSelfFisting_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSelfFisting_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -2156,10 +2156,10 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
       (s as any).analPlugOut = 1;
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === 2) {
     scene.text('You pull both fingers out of your ass and wait for the immediate pain to subside. You then slowly start pushing just a single digit back into your asshole.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       if (((s as any).pcs_ass ?? 0) >= 5) {
         scene.text('You keep fucking your asshole with one finger. It slides in quite easily.');
         if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {
@@ -2205,10 +2205,10 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/2.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === 2) {
     scene.text('You pull the three fingers out of your ass and wait for the immediate pain to subside. You then slowly start pushing one and then a second back into your asshole.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       if (((s as any).pcs_ass ?? 0) >= 10) {
         scene.text('You keep fucking your asshole with two fingers. They\'re sliding in fairly easily.');
         if (((s as any).agape ?? 0) < 1) {
@@ -2293,10 +2293,10 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/3.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === 2) {
     scene.text('You pull two fingers out of your ass, letting your hole clench back around the remaining two as you wait for the immediate pain to subside. You then slowly start pushing a third digit back into your asshole.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       if (((s as any).pcs_ass ?? 0) >= 15) {
         scene.text('You keep fucking your ass with three fingers. Your asshole is fairly loose and you manage to slide all three fingers in and out without much effort.');
         if (((s as any).agape ?? 0) < 2) {
@@ -2384,10 +2384,10 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/4.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === 2) {
     scene.text('You pull two fingers out of your ass, letting your hole clench back around the remaining two as you wait for the immediate pain to subside. You then slowly start pushing a third digit back into your asshole.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       if (((s as any).pcs_ass ?? 0) >= 20) {
         scene.text('You keep fucking your ass with four fingers. Your asshole is feeling fairly loose around them, and you manage to slide all four fingers in and out without much effort.');
         if (((s as any).agape ?? 0) < 3) {
@@ -2477,7 +2477,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 9;
   scene.img('images/shared/sex/mast/5.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if (((s as any).pcs_ass ?? 0) >= 25) {
       scene.text('You keep shoving your hand up your ass. There\'s still some resistance, but your experienced asshole lets you move your fist backwards and forwards fairly easily by now. The feeling of being stretched so much and the rubbing inside your ass is blissful.');
       if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {

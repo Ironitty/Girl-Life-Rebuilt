@@ -687,7 +687,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -712,7 +712,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -738,7 +738,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -764,7 +764,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -788,7 +788,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_dildo', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -814,7 +814,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'vaginal_finger', 10, 'sub', 'humiliation', 'masturbate');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -826,7 +826,8 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fist yourself', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj19,' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/gym/sex/christ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/sex/christina/dildobj19,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('You nod and get comfortable, before squeezing your fingers together tightly. Several girls spit on your fingers for you and you push them against your vagina, slowly rotating your wrist as you work them in deeper and deeper. Taking deep breaths, you eventually manage to get your entire hand inside your snatch.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
       qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
@@ -843,7 +844,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_fist', 10, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'vaginal_finger', (-10), 'sub', 'humiliation', 'lesbian');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -855,7 +856,8 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj20,' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/gym/sex/christ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/sex/christina/dildobj20,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('It\'s been so long, you barely even remember why you\'re doing this any more. Obeying Christina in front of the other girls after gym class has become your second nature, it\'s just part of your daily duties… and you wouldn\'t have it any other way. You quickly drop to your knees and crawl your way over to her, sexily waving your ass back and forth to the girls behind you. When you arrive at Christina\'s feet, you rise up and obediently run your tongue over her folds, tasting her sweet juices as you begin to lick away at her snatch.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
       qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
@@ -867,7 +869,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'cuni_give', 20, 'sub', 'humiliation', 'lesbian');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFinished(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

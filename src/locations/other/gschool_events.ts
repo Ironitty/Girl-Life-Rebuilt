@@ -303,7 +303,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Not even breaking your stride, you call over your shoulder.');
     // TODO-QSP: '"You''ll have to spank me harder than that if you want to get up to my standards!" you say as you f...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -334,7 +334,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text(`The moment the hand makes contact with your ass, you jump mid-stride and squeal at the stinging pain. You whip around and glare furiously at ${((st as any).rand_boy ?? '')}, who is standing right behind you with a shit eating grin on his face.`);
     scene.text('"What the fuck do you think you\'re doing, you fucking perv?!" you scream in his face before swinging your hand, your smack causing a resounding clap that is echoed by the "Ooooh!" of your classmates.');
     // TODO-QSP: 'Before giving him a chance to respond, you storm off in the direction you were originally headed'+i...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -359,7 +359,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text(`You turn to face ${((st as any).rand_boy ?? '')}, who is standing there with a huge grin on his face. You step towards him and, with a sultry smile, move your lips up to his ear.`);
     scene.text('"If you wanted to cop a feel, all you had to do was ask…" you whisper as your hand gently slides up his thigh to caress his now rapidly stiffening member through his trousers. As the word "ask" leaves your lips, you give a gentle blow into his ear before quickly turning back and cheerfully continuing down the hallway before he can even respond, lifting your skirt slightly to show off your hip.');
     // TODO-QSP: 'Observant individuals might notice the slight skip in your step and '+iif(PCloSkirt > 0 and $pantyw...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -371,7 +371,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (3);
     scene.img('images/locations/pavlovsk/school/events/ignore.jpg');
     scene.text('After a brief shock and a slight jump on the moment of impact, you decide that such an act does not even dignify a response from you and continue walking as if nothing happened, although your cheeks are visibly flushed.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -418,7 +418,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('"You threatening me, bitch? I should beat the shit out of you for that!" he growls as you struggle in his grip, but his friends notice everyone starting to stare and grab him by the arm.');
     scene.text('"Come on Vitek, we can deal with the bitch later! Let\'s go!" He jerks free from them, but does let you go and you collapse to the floor, gasping for air.');
     scene.text('"This isn\'t over, bitch!" He storms off just as one of the teachers takes notice that something was going on, but seeing that whatever it was is over, they lose interest. You get up slowly, rubbing your bruised throat and wondering if you just made a huge mistake.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
           }
@@ -445,7 +445,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "That was great, <<$pcs_firstname>>. I see you''ve certainly earned your reputat...
     scene.text(`"That was great, ${((st as any).pcs_firstname ?? '')}. I see you've certainly earned your reputation. We'll definitely be doing this more often, maybe next time I'll make sure the other boys can have a turn as well. We'll come find you when we want you. Understood?"`);
     scene.text('You\'re not looking forward to the prospect, but not knowing what else to do, you just nod. After the guys leave the bathroom you quickly have a drink, trying to wash the nasty taste of his cum out of your mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -481,7 +481,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'fame', 'pav', 'sex', (-2));
       scene.text('You\'re outraged by the suggestion and he quickly turns and leaves, running as fast as he can as your cussing echoes through the hallway.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
           }
@@ -509,7 +509,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/toilet.jpg');
     scene.text('You walk to the restroom and carefully look inside, making sure not to draw any attention to yourself. You see Sonia resting on her knees, a cock deep down her throat. She must\'ve had a lot of practice, because it looks like she has no gag reflex whatsoever.');
     scene.text('Just around the corner are two more gopniks stroking their dicks, getting them hard for when it\'s their turn. You watch Sonia\'s head bob up and down the cock for a few minutes before you decide to leave while you still can.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
               { label: 'Quickly leave', goto: ['gschool_events', 'leave_break_events2'] },
             ]);
@@ -539,7 +539,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'fame', 'pav', 'sex', (-2));
       scene.text('You\'re outraged by the suggestion and let him know just that! When he notices your angry face he quickly turns and leaves, running as fast as he can while your cussing echoes through the hallway.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                 ]);
               }
@@ -594,7 +594,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('The other boys laugh loudly. This is the best entertainment they\'ve had during the break in a long time.');
       scene.text('After rubbing his face, he looks at you in disbelief. "Sorry, I was just messing with you…"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                   ]);
                 }
@@ -618,7 +618,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy8.jpg');
     scene.text('You kick Feofan in the balls, sending him and all of his classmates the message that you will not put up with this kind of behavior.');
     scene.text('You watch him writhe in pain on the floor for a second before collecting your things and making your way to your next class.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                   ]);
                 }
@@ -643,10 +643,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 1);
     qspCall(st, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
-    // TODO-QSP: dynamic text: You pretend the other boys aren''t there and step closer. "Come on Feofan, you k...
+    // TODO-QSP: dynamic text: 'You pretend the other boys aren''t there and step closer. "Come on Feofan, you ...
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Feofan, you know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt. He looks down, eyes wide. Just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward, giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                   ]);
                 }
@@ -681,7 +681,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You start sliding your skirt slowly up your thighs, but just before it gets high enough to show them anything, you let it go and it drops back in place.');
     scene.text('"Which is nothing," you say with a giggle.');
     scene.text('As you walk away, you hear one of the boys talking to his friend. "God, so close! She\'s such a tease…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -696,14 +696,14 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     scene.text('You turn away and keep walking, ignoring what just happened.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                   { label: 'Slap him playfully', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A152', 2);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
     scene.text('You give him a playful slap in the face. It\'s not hard enough to really hurt him, but enough to send a message.');
     scene.text('The other boys laugh loudly. This is the best entertainment they\'ve had during the break in a long time.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                 ]);
               } else {
@@ -743,7 +743,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('The other boys laugh loudly. This is the best entertainment they\'ve had during the break in a long time.');
       scene.text('After rubbing his face, he looks at you in disbelief. "What the fuck was that for?! I was just messing with you!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   }
@@ -767,7 +767,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy8.jpg');
     scene.text('You kick Lazar in the balls, sending him and all of his classmates the message that you will not put up with this kind of behavior.');
     scene.text('You watch him writhe in pain on the floor for a second before collecting your things and making your way to your next class.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   }
@@ -793,10 +793,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Lazar, you know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
-    // TODO-QSP: dynamic text: He grins expectantly at you, confident you''re going to show him the goods. Just...
+    // TODO-QSP: dynamic text: 'He grins expectantly at you, confident you''re going to show him the goods. Jus...
     scene.text('He grins expectantly at you, confident you\'re going to show him the goods. Just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward, giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   }
@@ -831,7 +831,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You start sliding your skirt slowly up your thighs, but just before it gets high enough to show them anything, you let it go and it drops back in place.');
     scene.text('"Which is nothing," you say with a giggle.');
     scene.text('As you walk away, you hear one of the boys talking to his friend. "God, so close! She\'s such a tease…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -846,14 +846,14 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big149.jpg');
     scene.text('You turn away and keep walking, ignoring what just happened.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     { label: 'Slap him playfully', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A149', 2);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
     scene.text('You give him a playful slap in the face. It\'s not hard enough to really hurt him, but enough to send a message.');
     scene.text('The other boys laugh loudly. This is the best entertainment they\'ve had during the break in a long time.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                   ]);
                 } else {
@@ -891,7 +891,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('He blinks at you, seemingly surprised you slapped him, then backhands you across the face, nearly knocking you off your feet. Your face stings in pain and he gets right up in your face, his eyes hard.');
       scene.text('"Don\'t ever fucking slap me, bitch!" he snarls before storming off.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                       ]);
                     }
@@ -917,10 +917,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', (-5));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other boys aren\'t there and step closer. "Come on Roman, you know you only have to ask if you want to see more…" you smile sweetly as you slowly begin to lift your skirt.');
-    // TODO-QSP: dynamic text: He grins expectantly at you, confident you''re going to show him the goods, but ...
+    // TODO-QSP: dynamic text: 'He grins expectantly at you, confident you''re going to show him the goods, but...
     scene.text('He grins expectantly at you, confident you\'re going to show him the goods, but just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip backward, giggling.');
     scene.text('"Pfft! You really thought I was gonna give everyone a show like that? Keep dreaming!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                       ]);
                     }
@@ -955,7 +955,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You start sliding your skirt slowly up your thighs, but just before it gets high enough to show them anything, you let it go and it drops back in place.');
     scene.text('"Which is nothing," you say with a giggle.');
     scene.text('As you walk away, you hear one of the boys talking to his friend. "God, so close! She\'s such a tease…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -970,14 +970,14 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     scene.text('You turn away from him and keep walking, ignoring what just happened.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                       { label: 'Slap him playfully', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A157', 2);
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy2.jpg');
     scene.text('You give him a playful slap in the face. It\'s not hard enough to really hurt him, but enough to send a message. The other boys laugh loudly. This is the best entertainment they\'ve had during the break in a long time.');
     scene.text('As you turn to walk away, he shoves you hard against the lockers before storming off. You try to pass it off as nothing as you walk the other way.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   } else {
@@ -1012,10 +1012,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy3.jpg');
     scene.text('You pretend the other people aren\'t there and sweetly smile at them.');
     scene.text('"Come on boys, you know you only have to ask if you want to see more…" you tease as you slowly start to lift your skirt. The boys just stare at you in disbelief, surprised that their ploy worked.');
-    // TODO-QSP: dynamic text: Just before your skirt is high enough to reveal '+iif($pantyworntype ! 'none', '...
+    // TODO-QSP: dynamic text: 'Just before your skirt is high enough to reveal '+iif($pantyworntype ! 'none', ...
     scene.text('Just before your skirt is high enough to reveal ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('your panties') : ('your pussy')) + ', you drop it and skip back, giggling. "Just kidding, you perverts!"');
     scene.text('You give them all a cute wink as their faces all become flustered.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                         ]);
                       }
@@ -1050,7 +1050,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You start sliding your skirt slowly up your thighs, but just before it gets high enough to show anything, you let it go and it drops back in place.');
     scene.text('"Which is nothing!" you say with a giggle.');
     scene.text('You hear one of the boys saying to his friend. "God, so close! She\'s such a tease…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1064,7 +1064,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/pc/reactions/glare.jpg');
     scene.text('You look at the guys and give them the stink eye, then turn away and keep walking, ignoring what just happened.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                       ]);
                     } else {
@@ -1088,7 +1088,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Flip him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/afterschool/teasefo.mp4');
     scene.text('You turn around and suck on your fingers before flipping him off.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1114,7 +1114,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/lunch/hallflirt.jpg');
     scene.text('You shake your head. "Maybe some other time? I really need to run. Talk to you later."');
     scene.text('You quickly hurry away, leaving him unsure if this was a good or bad thing.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1135,7 +1135,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/lunch/flipoff.mp4');
     scene.text('"No! What kind of girl do you think I am?! Whatever, I don\'t even want to know."');
     scene.text('You quickly turn and storm off, leaving him behind.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1250,7 +1250,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you, Christina. The janitor must have removed it. I left it there so others knew who I belong to…"');
     scene.text('She gives you a long stare. "Hmmm. I\'ll accept it this time, but if it happens again, then I\'ll assume you\'re lying and will punish you." She then gives you a smirk. "Later, Pet."');
     scene.text('You quickly hurry off to your next class.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                                                 ]);
                                               } else {
@@ -1264,7 +1264,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Somebody took the artwork off your locker, so I added it...
     scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}. Somebody took the artwork off your locker, so I added it back for you. No need to thank me."`);
     scene.text('You hurry away before she does anything else.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                                                   { label: 'Yell at her', handler: (st: GameState) => {
     ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (2);
@@ -1274,7 +1274,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh, hey ${((st as any).pcs_nickname ?? '')}. Somebody took the artwork off your locker, so I added it back for you. No need to thank me." She gives you a dangerous look despite the calm tone in her voice.`);
     scene.text('Curling your hands into fists causes her to drop her marker and do the same, but before either of you can throw a punch, a teacher\'s voice calls out demanding to know what\'s happening.');
     scene.text('Christina melts into the crowd that\'s rapidly dispersing, a dark promise in her eyes.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeaveBreakEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                                                 ]);
                                               }
@@ -1581,7 +1581,8 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'end');
         } else {
           if (((s as any).break_rand ?? 0) === 4) {
-            scene.img('images/locations/pavlovsk/school/events/afterschool/nakedgirl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/events/aftersc...
+            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/events/afterschool/nakedgirl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
             scene.text('As you walk down the hallway, you\'re greeted by an unusual sight. A girl from your brother\'s class walking around the hallway naked. When she sees you, she lets out a squeal and runs off before you can ask her what she\'s doing.');
             scene.text('Not feeling like trying to chase a naked girl around school and since it\'s really not your business anyway, you continue on your way.');
             qspCall(s, 'arousal', 'erotic_nudity', 5);
@@ -2045,7 +2046,8 @@ function enterAfterschoolClassroomEvents(s: GameState, scene: SceneBuilder): voi
     qspCall(s, 'arousal', 'end');
   } else {
     if (((s as any).break_rand ?? 0) === 2) {
-      scene.img('images/locations/pavlovsk/school/events/afterschool/classroom/nudegirl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/events/aftersc...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/events/afterschool/classroom/nudegirl` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       scene.text('You step over to the classroom door, look up and down the hallway and see no one around. You gently pull the door open just a crack and peek inside.');
       scene.text('You see a girl from your brother\'s class sitting at a desk completely naked, talking softly to someone out of view. You can\'t tell what they\'re talking about, but she seems happy about it.');
       scene.text('You decide you\'d rather not get caught spying, so you gently close the door and hurry away.');
@@ -2110,7 +2112,8 @@ function enterAfterschoolClassroomEvents(s: GameState, scene: SceneBuilder): voi
                       { label: 'See what\'s happening', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 5);
     qspCall(st, 'arousal', 'end');
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.teach0,' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.teach0,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('You carefully look around the corner, trying to see inside the classroom. You see Sonia and Mr. Ivanov, both half naked. Sonia did her best to look the part, even wearing glasses to complete her look as a desperate schoolgirl in need of help.');
     scene.text('Her good grades in his class suddenly make perfect sense; Mr. Ivanov doesn\'t miss his chance to take advantage of the school slut in exchange for a decent grade. Sonia is currently giving him a very skillful blowjob, really giving it her all; you can see Mr. Ivanov\'s cock glistening with saliva all the way from where you\'re standing.');
     scene.actions([
@@ -2144,7 +2147,7 @@ function enterAfterschoolClassroomEvents(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterSweet(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'normal'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'normal'  ||  String((s as any).locArgs?.[1] ?? '') === '') {
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
       (s as any).sweet_talk = 10;
     } else {
@@ -2206,7 +2209,7 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
       (s as any).sweet_talk = ((s as any).sweet_talk ?? 0) + ((((s as any).pcs_hotcat ?? 0) - 5) * 5);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'sex') {
       if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
         (s as any).sweet_talk = (-20);
       } else {
@@ -2341,7 +2344,7 @@ function enterRandomPers(s: GameState, scene: SceneBuilder): void {
   (s as any).tmpArrIdx = 0;
   // TODO-QSP: :rand_pers_fill_loop
   (s as any).school_static_num = ((s as any).school_static_num ?? 0)?.[String((s as any).tmpArrIdx ?? 0)];
-  if (((s as any).schoolenable ?? 0)?.[String((s as any).school_static_num ?? 0)] === 1  &&  (Number((s as any).locArgs?.[1] ?? 0) === -1  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[1] ?? 0))  &&  (((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[2] ?? 0)  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[3] ?? 0)*2  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[4] ?? 0)*3  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[5] ?? 0)*4  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[6] ?? 0)*5  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === Number((s as any).locArgs?.[7] ?? 0)*6)) {
+  if (((s as any).schoolenable ?? 0)?.[String((s as any).school_static_num ?? 0)] === 1  &&  (String((s as any).locArgs?.[1] ?? '') === -1  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[1] ?? ''))  &&  (((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[2] ?? '')  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[3] ?? '')*2  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[4] ?? '')*3  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[5] ?? '')*4  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[6] ?? '')*5  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[7] ?? '')*6)) {
     // TODO-QSP: $tmpCandidateArr[] = $school_static_num
   }
   (s as any).tmpArrIdx = ((s as any).tmpArrIdx ?? 0) + (1);

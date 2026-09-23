@@ -172,7 +172,7 @@ function enterYbathroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).ymanrem ?? 0)[5] === 2) {
-    // TODO-QSP: dynamic text: The ornate room holds a shower, toilet, sink, <a href="exec:gt ''mirror'',''star...
+    // TODO-QSP: dynamic text: 'The ornate room holds a shower, toilet, sink, <a href="exec:gt ''mirror'',''sta...
     scene.text('The ornate room holds a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a bath tub.');
     qspCall(s, 'selfplay', 'suction_dildo');
     qspCall(s, 'din_van', 'private');
@@ -228,8 +228,8 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
         (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
       }
-      // TODO-QSP: dynamic text: There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inve...
-      scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot ?? '') + '');
+      // TODO-QSP: dynamic text: 'There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inv...
+      scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
         scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'boys') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'boys') {
     scene.text('<center><b>Ira and Lena</b></center>');
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_3_2.mp4');
@@ -53,7 +53,7 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'girls') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'girls') {
     qspCall(s, 'npcStat', 'A259');
     qspCall(s, 'npcStat', 'A258', 'a');
     scene.text('<center><b>Ira and Lena</b></center>');
@@ -328,7 +328,7 @@ function enterRexSex(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: stroke it, bitch, he asked with a vicious smile.'
   scene.text('You took his head into your mouth and started sucking, after a few moments Rex started pushing his penis forcing you to swallow it even deeper. You were almost choking on his dick.');
-  // TODO-QSP: dynamic text: You keep sucking his dick. ' + iif( rex_love = 0, 'Rex', 'Your lover') + ' looks...
+  // TODO-QSP: dynamic text: 'You keep sucking his dick. ' + iif( rex_love = 0, 'Rex', 'Your lover') + ' look...
   scene.text('You keep sucking his dick. ' + (((!((s as any).rex_love ?? 0))) ? ('Rex') : ('Your lover')) + ' looks at you and you can see in his eyes that he is ready for the next step.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -883,7 +883,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_19.jpg');
-    // TODO-QSP: dynamic text: The guys soon are unable to withstand just watching, decide to join the fun. The...
+    // TODO-QSP: dynamic text: 'The guys soon are unable to withstand just watching, decide to join the fun. Th...
     scene.text('The guys soon are unable to withstand just watching, decide to join the fun. The guys walk up in front of you girls and unbutton their pants, pulling out their hard dicks. You and the other pretty girls look at each other and decide to go with it. You kneel down in front of ' + (((!((s as any).rex_love ?? 0))) ? ('one of the guys') : ('Rex')) + ' and happily begin to suck his already rock-hard member. After you and the girls make the guys cum, each of you swallowing down the sperm, you continue with the fun.');
     qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'gangbang');
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0));
@@ -1309,7 +1309,7 @@ function enterBoobsYes(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boys_party_gost_4_2.mp4');
     }
-    // TODO-QSP: dynamic text: Surrounded by the guys you let out a silly laugh. ' + iif(rex_love = 0, 'Rex', '...
+    // TODO-QSP: dynamic text: 'Surrounded by the guys you let out a silly laugh. ' + iif(rex_love = 0, 'Rex', ...
     scene.text('Surrounded by the guys you let out a silly laugh. ' + (((!((st as any).rex_love ?? 0))) ? ('Rex') : ('One of the guys')) + ' already has a bulge in his pants and turns his attention to your erect nipples. He then invites you to say hello to his friend.');
     scene.actions([
       { label: 'Take a closer look', handler: (st: GameState) => {
@@ -1330,7 +1330,7 @@ function enterBoobsYes(s: GameState, scene: SceneBuilder): void {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boys_party_gost_6.mp4');
-    // TODO-QSP: dynamic text: The beautiful view of his erect cock gets you very excited. As soon as your lips...
+    // TODO-QSP: dynamic text: 'The beautiful view of his erect cock gets you very excited. As soon as your lip...
     scene.text('The beautiful view of his erect cock gets you very excited. As soon as your lips wrap around his cock, ' + (((!((st as any).rex_love ?? 0))) ? ('Rex') : ('the guy')) + ' begins to furiously fuck your mouth. After a while he slows down, pulls his dick out and tells you to bend over…');
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
@@ -1339,9 +1339,9 @@ function enterBoobsYes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(st, 'stat', '');
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_boys_party_gost_7_${(Math.floor(Math.random() * 2) + 1)}.mp4`);
-    // TODO-QSP: dynamic text: You are happy to fulfill his wish and he immediately thrusts his hard cock insid...
+    // TODO-QSP: dynamic text: 'You are happy to fulfill his wish and he immediately thrusts his hard cock insi...
     scene.text('You are happy to fulfill his wish and he immediately thrusts his hard cock inside your wet pussy. The two of you start fucking wildly, getting cheered on by the crowd of friends and acquaintances standing around you. ' + (((!((st as any).rex_love ?? 0))) ? ('Rex') : ('The guy')) + ' is clearly excited and fucks you with vengeance.');
-    // TODO-QSP: dynamic text: Suddenly ' + iif(rex_love = 0, 'Rex', 'the guy') + ' hastily pulls out his dick,...
+    // TODO-QSP: dynamic text: 'Suddenly ' + iif(rex_love = 0, 'Rex', 'the guy') + ' hastily pulls out his dick...
     scene.text('Suddenly ' + (((!((st as any).rex_love ?? 0))) ? ('Rex') : ('the guy')) + ' hastily pulls out his dick, and you realize, that he is about to cum.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'stat', '');

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).KFOnLineReaga ?? 0) > 0) {
     scene.text('Welcome to Vertep World!');
-    // TODO-QSP: dynamic text: You can play for <<KFOnLineReaga>> more days, but can extend the duration of you...
+    // TODO-QSP: dynamic text: 'You can play for <<KFOnLineReaga>> more days, but can extend the duration of yo...
     scene.text(`You can play for ${((s as any).KFOnLineReaga ?? '')} more days, but can extend the duration of your playtime at any time via online banking (1000₽ for 30 days)`);
     if (((s as any).KGOLpers ?? 0) > 0) {
       scene.text('You can enter the game with your current character, or delete them.');
@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You can now create a character!');
       scene.actions([
         { label: 'Create a character', handler: (st: GameState) => {
-    (st as any).KGOLname = 0;
+    (st as any).KGOLname = window.prompt("Enter your character name") ?? '';
     if (((st as any).KGOLname ?? 0) === '') {
       // TODO-QSP: msg 'Please enter a valid name!'
       qspGoto(st, 'KGstart', '');
@@ -61,7 +61,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (st as any).KGOLdonat = 0;
+      (st as any).KGOLdonat = window.prompt("How many coins do you wish to purchase?") ?? '';
       if (((st as any).KGOLdonat ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((st as any).KGOLdonat ?? 0), 'bank') === 0) {
       } else {
         qspCall(st, 'money', 'pay', ((st as any).KGOLdonat ?? 0), 'bank');
@@ -73,7 +73,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('Welcome to Vertep World!');
-    // TODO-QSP: dynamic text: To access this game, you must have a valid subscription paid via online banking ...
+    // TODO-QSP: dynamic text: 'To access this game, you must have a valid subscription paid via online banking...
     scene.text('To access this game, you must have a valid subscription paid via online banking (1000₽ for 30 days)');
     scene.actions([
       { label: 'Pay for access', handler: (st: GameState) => {

@@ -15,34 +15,34 @@ function enterClotTypePrefTmp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
-      // TODO-QSP: dynamic text: <<$npcdesc>> says, "I like the type of clothing you are wearing <<$pcs_nickname>...
-      scene.text('' + ((s as any).npcdesc ?? '') + ' says, "I like the type of clothing you are wearing ' + ((s as any).pcs_nickname ?? '') + '. I think girls look amazing in \' + iif($ngpPrefResult[\'HasPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' clothing."');
+      // TODO-QSP: dynamic text: '<<$npcdesc>> says, "I like the type of clothing you are wearing <<$pcs_nickname...
+      scene.text(`${((s as any).npcdesc ?? '')} says, "I like the type of clothing you are wearing ${((s as any).pcs_nickname ?? '')}. I think girls look amazing in ` + ((((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' clothing."');
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-        // TODO-QSP: dynamic text: <<$npcdesc>> says, "I think girls who wear ' + iif($ngpPrefResult['HasPos'] = 'c...
-        scene.text('' + ((s as any).npcdesc ?? '') + ' says, "I think girls who wear \' + iif($ngpPrefResult[\'HasPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' clothing look amazing. I\'m glad you chose that type of clothing."');
+        // TODO-QSP: dynamic text: '<<$npcdesc>> says, "I think girls who wear ' + iif($ngpPrefResult['HasPos'] = '...
+        scene.text(`${((s as any).npcdesc ?? '')} says, "I think girls who wear ` + ((((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' clothing look amazing. I\'m glad you chose that type of clothing."');
       } else {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 1));
-        // TODO-QSP: dynamic text: <<$npcdesc>> says, "<<$pcs_nickname>>, you look fucking hot in ' + iif($ngpPrefR...
-        scene.text('' + ((s as any).npcdesc ?? '') + ' says, "' + ((s as any).pcs_nickname ?? '') + ', you look fucking hot in \' + iif($ngpPrefResult[\'HasPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' clothes. It looks amazing on you!"');
+        // TODO-QSP: dynamic text: '<<$npcdesc>> says, "<<$pcs_nickname>>, you look fucking hot in ' + iif($ngpPref...
+        scene.text(`${((s as any).npcdesc ?? '')} says, "${((s as any).pcs_nickname ?? '')}, you look fucking hot in ` + ((((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' clothes. It looks amazing on you!"');
       }
     }
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-        // TODO-QSP: dynamic text: <<$npcdesc>> says nerviously, "I don''t mean to be rude <<$pcs_nickname>>, but I...
-        scene.text('' + ((s as any).npcdesc ?? '') + ' says nerviously, "I don\'t mean to be rude ' + ((s as any).pcs_nickname ?? '') + ', but I don\'t think ' + ((s as any).clothingworntype ?? '') + ' clothing looks nice on girls. I like girls who wear \' + iif($ngpPrefResult[\'NotPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' clothing."');
+        // TODO-QSP: dynamic text: '<<$npcdesc>> says nerviously, "I don''t mean to be rude <<$pcs_nickname>>, but ...
+        scene.text(`${((s as any).npcdesc ?? '')} says nerviously, "I don't mean to be rude ${((s as any).pcs_nickname ?? '')}, but I don't think ${((s as any).clothingworntype ?? '')} clothing looks nice on girls. I like girls who wear ` + ((((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' clothing."');
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
-          // TODO-QSP: dynamic text: <<$npcdesc>> says cafefully, "<<$pcs_nickname>> to be honest, I don''t think <<$...
-          scene.text('' + ((s as any).npcdesc ?? '') + ' says cafefully, "' + ((s as any).pcs_nickname ?? '') + ' to be honest, I don\'t think ' + ((s as any).clothingworntype ?? '') + ' clothing looks good on you. I think \' + iif($ngpPrefResult[\'NotPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' clothing would look better on you."');
+          // TODO-QSP: dynamic text: '<<$npcdesc>> says cafefully, "<<$pcs_nickname>> to be honest, I don''t think <<...
+          scene.text(`${((s as any).npcdesc ?? '')} says cafefully, "${((s as any).pcs_nickname ?? '')} to be honest, I don't think ${((s as any).clothingworntype ?? '')} clothing looks good on you. I think ` + ((((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' clothing would look better on you."');
         } else {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * ((-1) - (-2) + 1)) + ((-2))));
-          // TODO-QSP: dynamic text: <<$npcdesc>> says rather rudely, "I think girls who wear <<$clothingworntype>> t...
-          scene.text('' + ((s as any).npcdesc ?? '') + ' says rather rudely, "I think girls who wear ' + ((s as any).clothingworntype ?? '') + ' type clothing looks like shit. Girls who wear \' + iif($ngpPrefResult[\'NotPos\'] = \'clothes_style_wealthy\', \'formal\', \'fetish\') + \' turn me on much more."');
+          // TODO-QSP: dynamic text: '<<$npcdesc>> says rather rudely, "I think girls who wear <<$clothingworntype>> ...
+          scene.text(`${((s as any).npcdesc ?? '')} says rather rudely, "I think girls who wear ${((s as any).clothingworntype ?? '')} type clothing looks like shit. Girls who wear ` + ((((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'clothes_style_wealthy') ? ('formal') : ('fetish')) + ' turn me on much more."');
         }
       }
     }
@@ -114,17 +114,17 @@ function enterClotTopPrefTmp(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
-      // TODO-QSP: dynamic text: <<$npcdesc>> says with a blush <<$Xe>> likes that you are wearing clothes with '...
-      scene.text(`${((s as any).npcdesc ?? '')} says with a blush ${((s as any).Xe ?? '')} likes that you are wearing clothes with ' + $temp_text[0] + 'cleavage."`);
+      // TODO-QSP: dynamic text: '<<$npcdesc>> says with a blush <<$Xe>> likes that you are wearing clothes with ...
+      scene.text(`'${((s as any).npcdesc ?? '')} says with a blush ${((s as any).Xe ?? '')} likes that you are wearing clothes with ' + $temp_text[0] + 'cleavage."'`);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
-        // TODO-QSP: dynamic text: <<$npcdesc>> looks at your cleavage and says <<$Xe>> is glad you wear clothes wi...
-        scene.text(`${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} is glad you wear clothes with ' + $temp_text[0] + ' cleavage."`);
+        // TODO-QSP: dynamic text: '<<$npcdesc>> looks at your cleavage and says <<$Xe>> is glad you wear clothes w...
+        scene.text(`'${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} is glad you wear clothes with ' + $temp_text[0] + ' cleavage."'`);
       } else {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-        // TODO-QSP: dynamic text: <<$npcdesc>> looks at your cleavage and says <<$Xe>> likes that you wear clothes...
-        scene.text(`${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} likes that you wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is trash."`);
+        // TODO-QSP: dynamic text: '<<$npcdesc>> looks at your cleavage and says <<$Xe>> likes that you wear clothe...
+        scene.text(`'${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} likes that you wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is trash."'`);
       }
     }
   } else {
@@ -156,17 +156,17 @@ function enterClotTopPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-        // TODO-QSP: dynamic text: <<$npcdesc>> says shyly that <<$Xe>> likes girls who wear clothes with ' + $temp...
-        scene.text(`${((s as any).npcdesc ?? '')} says shyly that ${((s as any).Xe ?? '')} likes girls who wear clothes with ' + $temp_text[0] + ' cleavage, and you kind of have ' + $temp_text[1] + ' ${((s as any).Xyr ?? '')} taste."`);
+        // TODO-QSP: dynamic text: '<<$npcdesc>> says shyly that <<$Xe>> likes girls who wear clothes with ' + $tem...
+        scene.text(`'${((s as any).npcdesc ?? '')} says shyly that ${((s as any).Xe ?? '')} likes girls who wear clothes with ' + $temp_text[0] + ' cleavage, and you kind of have ' + $temp_text[1] + ' ${((s as any).Xyr ?? '')} taste."'`);
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-          // TODO-QSP: dynamic text: <<$npcdesc>> says <<$Xe>> likes girls that wear clothes with ' + $temp_text[0] +...
-          scene.text(`${((s as any).npcdesc ?? '')} says ${((s as any).Xe ?? '')} likes girls that wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is way ' + $temp_text[1] + '."`);
+          // TODO-QSP: dynamic text: '<<$npcdesc>> says <<$Xe>> likes girls that wear clothes with ' + $temp_text[0] ...
+          scene.text(`'${((s as any).npcdesc ?? '')} says ${((s as any).Xe ?? '')} likes girls that wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is way ' + $temp_text[1] + '."'`);
         } else {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
-          // TODO-QSP: dynamic text: <<$npcdesc>> looks at your cleavage and says <<$Xe>> likes girls that wear cloth...
-          scene.text(`${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} likes girls that wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is trash."`);
+          // TODO-QSP: dynamic text: '<<$npcdesc>> looks at your cleavage and says <<$Xe>> likes girls that wear clot...
+          scene.text(`'${((s as any).npcdesc ?? '')} looks at your cleavage and says ${((s as any).Xe ?? '')} likes girls that wear clothes with ' + $temp_text[0] + ' cleavage, and anything else is trash."'`);
         }
       }
     }

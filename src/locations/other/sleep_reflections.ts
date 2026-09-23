@@ -34,7 +34,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTestReflection(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     // TODO-QSP: gt 'sleep_reflections', $ARGS[0], 1
   }
   scene.text('This is a test reflection!');
@@ -72,7 +72,7 @@ function enterTestReflection(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnushkaLove(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     // TODO-QSP: gt 'sleep_reflections', $ARGS[0], 1
   }
   ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);
@@ -112,7 +112,7 @@ function enterAnushkaLove(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemLove(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     // TODO-QSP: gt 'sleep_reflections', $ARGS[0], 1
   }
   ((s as any).artemQW = (s as any).artemQW ?? {})['sleep_reflection_day'] = ((s as any).daystart ?? 0);

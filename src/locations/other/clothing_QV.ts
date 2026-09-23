@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
     if (((s as any).ward_list_file ?? 0) === 'clothing') {
@@ -31,7 +31,7 @@ function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
     if (((s as any).ward_list_file ?? 0) === 'clothing') {
@@ -60,7 +60,7 @@ function enterCloFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFiltersBase(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shop') {
     qspCall(s, 'clothing_view', 'shop_filter');
   } else {
     qspCall(s, 'clothing_view', 'home_filter');
@@ -77,7 +77,7 @@ function enterViewClothingList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothingList(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'clothing_view', 'view_grid', $ARGS[1]
+  qspGoto(s, 'clothing_view', 'view_grid', '$ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -191,7 +191,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = '';
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  Number((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
     scene.text('A hessian sack the hunters gave you.');
   } else {
     if (((s as any).swimwear_description ?? 0) === '') {
@@ -236,13 +236,13 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1) {
     scene.text('This outfit is a gym outfit.');
   }
-  if (((s as any).clothingworntype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).clothingworntype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).clothingwornnumber ?? 0) === String((s as any).locArgs?.[2] ?? '')) {
     scene.text('You are wearing this outfit.');
   } else {
     if (((s as any).CloInhibit ?? 0) > ((s as any).pcs_inhib ?? 0)) {
       scene.text('You don\'t feel confident enough to wear an outfit this revealing.');
     } else {
-      if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(Number((s as any).locArgs?.[2] ?? 0)) : -1) >= 0) {
+      if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(String((s as any).locArgs?.[2] ?? '')) : -1) >= 0) {
         scene.text('You lost these clothes somewhere, maybe you can find them again?.');
       } else {
         if (((s as any).CloInhibit ?? 0) > 10) {

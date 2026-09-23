@@ -130,7 +130,7 @@ function enterBuyfood_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
-  (s as any).portion = 0;
+  (s as any).portion = window.prompt("How many servings would you like to buy?") ?? '';
   if (((s as any).portion ?? 0) <= 0) {
     (s as any).portion = 1;
   }
@@ -164,7 +164,7 @@ function enterBuyfood2(s: GameState, scene: SceneBuilder): void {
 
 function enterBuyfood2_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).portion = 0;
+  (s as any).portion = window.prompt("How many servings would you like to buy?") ?? '';
   if (((s as any).portion ?? 0) <= 0) {
     (s as any).portion = 1;
   }

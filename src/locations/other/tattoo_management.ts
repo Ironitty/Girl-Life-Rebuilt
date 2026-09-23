@@ -10,58 +10,58 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetTotal(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'ankle') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'ankle') {
     (s as any).result = 25;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'arm') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'arm') {
       (s as any).result = 77;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'ass') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'ass') {
         (s as any).result = 25;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'back') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'back') {
           (s as any).result = 61;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'belly') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'belly') {
             (s as any).result = 21;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'breast') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'breast') {
               (s as any).result = 11;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'chest') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'chest') {
                 (s as any).result = 15;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 'face') {
+                if (String((s as any).locArgs?.[1] ?? '') === 'face') {
                   (s as any).result = 8;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 'hand') {
+                  if (String((s as any).locArgs?.[1] ?? '') === 'hand') {
                     (s as any).result = 9;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 'leg') {
+                    if (String((s as any).locArgs?.[1] ?? '') === 'leg') {
                       (s as any).result = 47;
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 'lip') {
+                      if (String((s as any).locArgs?.[1] ?? '') === 'lip') {
                         (s as any).result = 9;
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 'neck') {
+                        if (String((s as any).locArgs?.[1] ?? '') === 'neck') {
                           (s as any).result = 30;
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 'pussy') {
+                          if (String((s as any).locArgs?.[1] ?? '') === 'pussy') {
                             (s as any).result = 53;
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 'shoulder') {
+                            if (String((s as any).locArgs?.[1] ?? '') === 'shoulder') {
                               (s as any).result = 25;
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) === 'side') {
+                              if (String((s as any).locArgs?.[1] ?? '') === 'side') {
                                 (s as any).result = 23;
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) === 'tramp') {
+                                if (String((s as any).locArgs?.[1] ?? '') === 'tramp') {
                                   (s as any).result = 32;
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) === 'under') {
+                                  if (String((s as any).locArgs?.[1] ?? '') === 'under') {
                                     (s as any).result = 22;
                                   } else {
-                                    if (Number((s as any).locArgs?.[1] ?? 0) === 'wrist') {
+                                    if (String((s as any).locArgs?.[1] ?? '') === 'wrist') {
                                       (s as any).result = 51;
                                     }
                                   }
@@ -94,36 +94,36 @@ function enterTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  (s as any).result = (((s as any).pcs_tattoos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  (s as any).result = (((s as any).pcs_tattoos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).result = (((s as any).pcs_tattoos ?? 0)?.['total'] > 0);
   } else {
-    (s as any).result = (((s as any).pcs_tattoos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0);
+    (s as any).result = (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0);
   }
   return;
   // TODO-QSP: end
@@ -137,18 +137,18 @@ function enterImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
+  if (String((s as any).locArgs?.[2] ?? '') <= 0) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'tattoo_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) < Number((s as any).locArgs?.[2] ?? 0)) {
+  if (qspFunc(s, 'tattoo_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) < String((s as any).locArgs?.[2] ?? '')) {
     // TODO-QSP: exit
   }
-  if (((s as any).pcs_tattoos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['any'] = 1;
   // TODO-QSP: pcs_tattoos[$ARGS[1]] = ARGS[2]
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'face'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'lip'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'neck'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'back'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'shoulder'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'chest'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'side'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'belly'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'arm'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'wrist'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'hand'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'leg'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'ankle') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'face'  ||  String((s as any).locArgs?.[1] ?? '') === 'lip'  ||  String((s as any).locArgs?.[1] ?? '') === 'neck'  ||  String((s as any).locArgs?.[1] ?? '') === 'back'  ||  String((s as any).locArgs?.[1] ?? '') === 'shoulder'  ||  String((s as any).locArgs?.[1] ?? '') === 'chest'  ||  String((s as any).locArgs?.[1] ?? '') === 'side'  ||  String((s as any).locArgs?.[1] ?? '') === 'belly'  ||  String((s as any).locArgs?.[1] ?? '') === 'arm'  ||  String((s as any).locArgs?.[1] ?? '') === 'wrist'  ||  String((s as any).locArgs?.[1] ?? '') === 'hand'  ||  String((s as any).locArgs?.[1] ?? '') === 'leg'  ||  String((s as any).locArgs?.[1] ?? '') === 'ankle') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Got a visible tattoo');
     qspCall(s, 'archetypes', 'gain', 'goth', 'tiny', 'Got a visible tattoo');
   }
@@ -158,7 +158,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_tattoos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).pcs_tattoos ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: exit
   }
   ((s as any).pcs_tattoos = (s as any).pcs_tattoos ?? {})['total'] = ((s as any).pcs_tattoos['total'] ?? 0) - (1);
@@ -250,10 +250,10 @@ function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterBuy(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[3] ?? '') === 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 4) {
@@ -269,10 +269,10 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnkleImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['ankle'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/foot/tatankle' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -282,10 +282,10 @@ function enterAnkleImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArmImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['arm'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/arms/tatarm' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -295,10 +295,10 @@ function enterArmImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAssImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['ass'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/ass/tatass' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -308,10 +308,10 @@ function enterAssImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['back'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/back/tatback' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -321,10 +321,10 @@ function enterBackImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBellyImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['belly'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/belly/tatblly' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -334,10 +334,10 @@ function enterBellyImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBreastImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['breast'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/breasts/tatbrst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -347,10 +347,10 @@ function enterBreastImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChestImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['chest'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/chest/tatchst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -360,10 +360,10 @@ function enterChestImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFaceImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['face'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/face/tatfce' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -373,10 +373,10 @@ function enterFaceImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHandImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['hand'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/hand/tathnd' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -386,10 +386,10 @@ function enterHandImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLegImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['leg'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/legs/tatleg' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -399,10 +399,10 @@ function enterLegImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLipImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['lip'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/lip/tatlip' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -412,10 +412,10 @@ function enterLipImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeckImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['neck'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/neck/tatnck' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -425,10 +425,10 @@ function enterNeckImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPussyImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['pussy'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/pubic/tatvag' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -438,10 +438,10 @@ function enterPussyImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShoulderImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['shoulder'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/shoulder/tatshldr' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -451,10 +451,10 @@ function enterShoulderImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSideImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['side'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/side/tatside' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -464,10 +464,10 @@ function enterSideImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrampImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['tramp'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/trampStamp/tatlowbck' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -477,10 +477,10 @@ function enterTrampImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUnderImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['under'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/underBreast/tatundbreast' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -490,10 +490,10 @@ function enterUnderImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWristImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['wrist'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/tattoos/wrists/tatwrst' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';

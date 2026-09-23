@@ -9,27 +9,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModify(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     (s as any).npcRelSetVal = ((s as any).locArgs?.[2] ?? 0);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'like') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'like') {
       (s as any).npcRelSetVal = (Math.floor(Math.random() * 2) + 1);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'love') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'love') {
         (s as any).npcRelSetVal = (Math.floor(Math.random() * 2) + 3);
         qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 2) + 0));
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'adore') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'adore') {
           (s as any).npcRelSetVal = (Math.floor(Math.random() * 2) + 5);
           qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 2) + 1));
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'dislike') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'dislike') {
             (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 1);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'hate') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'hate') {
               (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 3);
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'loathe') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'loathe') {
                 (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 5);
               } else {
                 (s as any).npcRelSetVal = 0;
@@ -54,24 +54,24 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcRelSetVal ?? 0) < 0) {
     (s as any).npcRelSetVal = 0;
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) > 0) {
-    if (Number((s as any).locArgs?.[3] ?? 0) > ((s as any).npc_rel_daily ?? 0)[Number((s as any).locArgs?.[1] ?? 0)+Number((s as any).locArgs?.[4] ?? 0)]) {
+  if (String((s as any).locArgs?.[3] ?? '') > 0) {
+    if (String((s as any).locArgs?.[3] ?? '') > ((s as any).npc_rel_daily ?? 0)[String((s as any).locArgs?.[1] ?? '')+String((s as any).locArgs?.[4] ?? '')]) {
       // TODO-QSP: npc_rel_daily[$ARGS[1]+$ARGS[4]] += 1
     } else {
       (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'A1') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'A1') {
     if (((((s as any).dimaRevenge ?? 0) === 6  &&  (((s as any).dimaRevChoice ?? 0) === 3  ||  ((s as any).dimaRevChoice ?? 0) === 5  ||  ((s as any).dimaRevChoice ?? 0) === 6))  ||  (((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 2)  ||  (((s as any).dimaRevenge ?? 0) === 8  &&  (((s as any).dimaRevChoice ?? 0) === 1  ||  ((s as any).dimaRevChoice ?? 0) === 4)))) {
       (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'A18') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'A18') {
       if (((s as any).npcRelSetVal ?? 0) > 20) {
         (s as any).npcRelSetVal = 20;
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'A23') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'A23') {
         if (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).npcRelSetVal ?? 0) > 20) {
           (s as any).npcRelSetVal = 20;
         }
@@ -103,22 +103,22 @@ function enterModifyExact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSet(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     (s as any).npcRelSetVal = ((s as any).locArgs?.[2] ?? 0);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'unknown') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'unknown') {
       (s as any).npcRelSetVal = 0;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'acquaintance') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'acquaintance') {
         (s as any).npcRelSetVal = 20;
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'friend') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'friend') {
           (s as any).npcRelSetVal = 50;
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'bestie') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'bestie') {
             (s as any).npcRelSetVal = 70;
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'loved') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'loved') {
               (s as any).npcRelSetVal = 90;
             } else {
               (s as any).npcRelSetVal = 0;
@@ -178,7 +178,7 @@ function enterDefaultFamilyFriends(s: GameState, scene: SceneBuilder): void {
 function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :socialgroup_loop
-  if (((s as any).sg_setting_gend ?? 0) === 0  ||  ((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).sg_setting_gend ?? 0)-1) {
+  if (((s as any).sg_setting_gend ?? 0) === 0  ||  ((s as any).npc_gender ?? 0)['A' + (((s as any).r ?? 0))] === ((s as any).sg_setting_gend ?? 0)-1) {
     (s as any).i = ((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).r ?? 0))];
     if (((s as any).i ?? 0) > 0) {
       if (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] !== 0) {
@@ -218,7 +218,7 @@ function enterSocialgroupSettingGirls(s: GameState, scene: SceneBuilder): void {
 function enterDefaultfriendship(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 5  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 6) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 5  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 6) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
@@ -232,7 +232,7 @@ function enterDefaultfriendship(s: GameState, scene: SceneBuilder): void {
 function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop2
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 0) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);

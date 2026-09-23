@@ -159,7 +159,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sounds tempting, but only a blowjob.', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkabjhome.jpg');
-    // TODO-QSP: dynamic text: Mitka takes you to '+iif(GadBoy['first_drink'] > 1, 'the familiar old trailer', ...
+    // TODO-QSP: dynamic text: 'Mitka takes you to '+iif(GadBoy['first_drink'] > 1, 'the familiar old trailer',...
     scene.text('Mitka takes you to ' + ((((st as any).GadBoy ?? 0)?.['first_drink'] > 1) ? ('the familiar old trailer') : ('an old trailer')) + ' in the woods.');
     scene.text('Mitka sits down on a couch as you kneel in front of him. You take his cock out of his pants and start to suck…');
     qspCall(st, 'npc_relationship', 'modify', 'A63', 5);
@@ -264,7 +264,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/gadukino/sex/mitka/mitka2.jpg');
     }
-    // TODO-QSP: dynamic text: Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer'...
+    // TODO-QSP: dynamic text: 'Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer...
     scene.text('Mitka takes you to ' + ((((st as any).GadBoy ?? 0)?.['first_drink'] > 1) ? ('the familiar old trailer') : ('an old trailer')) + ' in the woods.');
     scene.text('He has you lie down on the bed and begins removing your clothes.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
@@ -318,7 +318,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Sure, sounds like fun', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkabjhome.jpg');
-    // TODO-QSP: dynamic text: Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer'...
+    // TODO-QSP: dynamic text: 'Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer...
     scene.text('Mitka takes you to ' + ((((st as any).GadBoy ?? 0)?.['first_drink'] > 1) ? ('the familiar old trailer') : ('an old trailer')) + ' in the woods.');
     scene.text('Mitka sits down on a couch as you kneel in front of him. You take his cock out of his pants and start to suck…');
     qspCall(st, 'npc_relationship', 'modify', 'A63', 1);
@@ -427,7 +427,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: dynamic text: Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer'...
+    // TODO-QSP: dynamic text: 'Mitka takes you to ' + iif(GadBoy['first_drink'] > 1, 'the familiar old trailer...
     scene.text('Mitka takes you to ' + ((((st as any).GadBoy ?? 0)?.['first_drink'] > 1) ? ('the familiar old trailer') : ('an old trailer')) + ' in the woods.');
     scene.text('He has you lie down on the bed and begins removing your clothes. Once undressed, he bends you over prepares to penetrate your ass.');
     if ((!((st as any).pcs_ass ?? 0))) {

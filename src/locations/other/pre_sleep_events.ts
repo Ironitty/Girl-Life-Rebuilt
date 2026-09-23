@@ -88,11 +88,11 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+  if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
   qspGoto(s, 'pre_sleep_events', 'event_end');
@@ -135,10 +135,10 @@ function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     qspGoto(s, 'nichBedroomServant', 'sleepEvents', '100');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     }
@@ -187,7 +187,7 @@ function enterSucchoiceNO(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to sleep', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -257,12 +257,12 @@ function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
     { label: 'Nice, I wish my breasts really would grow.', handler: (st: GameState) => {
     (st as any).magf2bdo = 1;
     (st as any).magtarcup = ((st as any).magtarcup ?? 0) + (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Eh, I don\'t like them like that.', handler: (st: GameState) => {
     (st as any).magf2bdo = 0;
     (st as any).mgf2bnocnt = ((st as any).mgf2bnocnt ?? 0) + (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEventEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

@@ -32,7 +32,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 function enterExit(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'city_artisan_quarter', 'start');
   // TODO-QSP: end
-  if (((s as any).ARGS ?? 0) === 'hall'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'start') {
+  if (((s as any).ARGS ?? 0) === 'hall'  ||  String((s as any).locArgs?.[0] ?? '') === 'start') {
     ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
     scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'mariinsky_hall');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hall']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -125,7 +125,7 @@ function enterToiletsWomen(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).location_type = 'restroom';
   (s as any).locclass = 'restroom';
-  // TODO-QSP: dynamic text: You walk into the opulent women''s restroom. You see some sinks and <a href="exe...
+  // TODO-QSP: dynamic text: 'You walk into the opulent women''s restroom. You see some sinks and <a href="ex...
   scene.text('You walk into the opulent women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');

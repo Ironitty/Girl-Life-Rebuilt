@@ -19,14 +19,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/library/library.jpg');
   scene.text('One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.');
   if (((s as any).locat ?? 0)?.['katja'] === 29) {
-    // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+    // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
     scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_uni/u0027, /u0027library/u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
   }
   if (((s as any).locat ?? 0)?.['A144'] === 12) {
     scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027anushka/u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 15) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
   }
   if (((s as any).week ?? 0) <= 4  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
@@ -89,14 +89,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/library/library.jpg');
   scene.text('One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.');
   if (((s as any).locat ?? 0)?.['katja'] === 29) {
-    // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+    // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
     scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_uni/u0027, /u0027library/u0027); return false;">Katja</a>')) + ' sitting at one of the desks with a laptop and a pile of books.');
   }
   if (((s as any).locat ?? 0)?.['A144'] === 12) {
     scene.text('You see your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027anushka/u0027); return false;">Anushka</a> sitting at one of the tables studying some books.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 15) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_library/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' searching the shelves for books.');
   }
   if (((s as any).week ?? 0) <= 4  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 17) {
@@ -151,13 +151,14 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   (s as any).sexloc = 'uni_library';
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
-  scene.img('images/locations/city/island/university/library/study' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   scene.text('You spend some time collecting some books on your subjects and grab one of the library\'s laptops before finding a quiet place to sit.');
   if (((s as any).university ?? 0)?.['semester_week'] > 0) {
     (s as any).i = 0;
     // TODO-QSP: :study_loop
-    if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
-      if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] + '_optional_weekly_max']) {
+    if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
+      if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
         // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
       } else {
         // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
@@ -172,7 +173,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).university ?? 0)?.['exam_week'] > 0) {
       (s as any).i = 0;
       // TODO-QSP: :exam_loop
-      if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
+      if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
         if (qspFunc(s, 'uni_programs', 'exam', 'is_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
           // TODO-QSP: dynamic '  act ''Study intensely for your <<$class_list_name[i]>> exam (30 minutes)'': gt ''uni_libr...
         }
@@ -210,7 +211,8 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'optional_activity_attribute', '' + ((s as any).locArgs?.[1] ?? 0) + '', '' + ((s as any).locArgs?.[2] ?? 0) + '', 'yes', Math.min(((s as any).pcs_intel ?? 0)+10, 100));
   qspCall(s, 'stat', '');
   scene.text('<center><b>The University Library</b></center>');
-  scene.img('images/locations/city/island/university/library/study' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> class. The library i...
   scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} class. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it is a good environment to study in and you can see a number of other students studying as well.`);
   if ((0 as any) < (0 as any)) {
@@ -243,7 +245,8 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
 
 function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The University Library</b></center>');
-  scene.img('images/locations/city/island/university/library/study' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
   // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
   (s as any).minut = ((s as any).minut ?? 0) + 30;

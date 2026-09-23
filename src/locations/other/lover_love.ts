@@ -75,7 +75,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Marry husband', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0)]; enterMarry(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0)]; enterMarry(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('The wedding reception takes place at a cafe. There aren\'t many guests since neither you nor the groom have that many friends or family members. There is a lot of congratulations, toasts, merrymaking and crying. By the evening, everybody is drunk and you and your husband stagger into a taxi, which takes you home.');
     scene.actions([
       { label: 'Wedding night', goto: ['husbsex', 'room'] },
@@ -86,7 +86,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Marry wife', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0)]; enterMarry(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0)]; enterMarry(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('The wedding reception takes place at a cafe. There aren\'t many guests since neither you nor the bride have that many friends or family members. There is a lot of congratulations, toasts, merrymaking and crying. By the evening, everybody is drunk and you and your wife stagger into a taxi, which takes you home.');
     scene.actions([
       { label: 'Wedding night', goto: ['bedr', ''] },
@@ -106,7 +106,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterMarry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  ||  ((s as any).wifID ?? 0) !== '') {
   } else {
-    if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3) {
+    if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
       qspCall(s, 'lover', 'add_husband', ((s as any).locArgs?.[1] ?? 0));
       ((s as any).stat = (s as any).stat ?? {})['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) - (1);
       ((s as any).stat = (s as any).stat ?? {})['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);

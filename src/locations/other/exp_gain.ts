@@ -16,15 +16,15 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'exp_notification', 'track_exp', 'inhib', ARGS[1]
   return;
   // TODO-QSP: end
-  if (((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + Number((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
+  if (((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + (String((s as any).locArgs?.[0] ?? '')) + ';'))) + 1) > 0) {
     ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = 'vball';
     ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
   } else {
-    if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(Number((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
+    if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[0] ?? '')) : -1) >= 0) {
       ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
       ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     } else {
-      if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(Number((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
+      if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[0] ?? '')) : -1) >= 0) {
         ((s as any).expgainVars = (s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
         ((s as any).expgainVars = (s as any).expgainVars ?? {})['attrArray'] = '';
       } else {
@@ -118,45 +118,19 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).expgainVars ?? 0)?.['statName'] === 'magik') {
       (s as any).magik_adj = ((s as any).magik_adj ?? 0) + (((s as any).expgainVars ?? 0)?.['exp_gain']);
-    } else {
-      // TODO-QSP: dynamic "<<$expgainVars['statName']>>_exp += <<expgainVars['exp_gain']>>"
-    }
-    // TODO-QSP: gs 'exp_notification', 'track_exp', $expgainVars['statName'], expgainVars['exp_gain']
-    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_bonus') : -1) < 0) {
-    }
-    if (((s as any).expgainVars ?? 0)?.['attrArray'] !== '') {
-      ((s as any).expgainVars = (s as any).expgainVars ?? {})['i'] = 0;
-      ((s as any).expgainVars = (s as any).expgainVars ?? {})['maxi'] = 0;
-      if (((s as any).expgainVars ?? 0)?.['maxi'] > 0) {
-        // TODO-QSP: :attrib_loop
-        ((s as any).expgainVars = (s as any).expgainVars ?? {})['attr'] = 0;
-        if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).expgainVars ?? 0)?.['attr']) : -1) >= 0) {
-          // TODO-QSP: dynamic "
-          if (((s as any)[((s as any).expgainVars ?? {})['attr'] + '_lvl'] ?? 0) < 100 + ((s as any)[((s as any).expgainVars ?? {})['attr'] + '_muta'] ?? 0)) {
-            // TODO-QSP: <<$expgainVars['attr']>>_exp_skill_derived += 40 * <<expgainVars['exp_gain']>> / expgainVars['maxi']
-          } else {
-            qspCall(s, 'exp_deg', '', '' + ((s as any).expgainVars ?? 0)?.['attr'] + '', 'reset');
-          }
-          // TODO-QSP: "
-        }
-        ((s as any).expgainVars = (s as any).expgainVars ?? {})['i'] = ((s as any).expgainVars['i'] ?? 0) + (1);
-        if (((s as any).expgainVars ?? 0)?.['i'] < ((s as any).expgainVars ?? 0)?.['maxi']) {
-          // TODO-QSP: jump 'attrib_loop'
-        }
-      }
     }
   }
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (String((s as any).locArgs?.[1] ?? '') <= 0) {
     // TODO-QSP: exit
   }
   if (((s as any).no_exp_gain ?? 0) === 1) {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'stren_plus'  &&  ((s as any).stren_plus_lvl ?? 0) >= 50  &&  ((s as any).drugVars ?? 0)?.['steroids_dose'] === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === 'stren_plus'  &&  ((s as any).stren_plus_lvl ?? 0) >= 50  &&  ((s as any).drugVars ?? 0)?.['steroids_dose'] === 0) {
     return;
   }
   const arg = s.locArg;

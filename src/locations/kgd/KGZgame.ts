@@ -107,7 +107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).KGZVars ?? 0)?.['place'] === 1) {
-      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
       scene.text('<center><b>City Streets</b></center>');
       scene.text('Corpses and abandoned vehicles litter the streets of this once bustling city.');
       if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -137,7 +137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).KGZVars ?? 0)?.['place'] === 2) {
-        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+        ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
         scene.text('<center><b>Abandoned Store</b></center>');
         scene.text('The stale air from spoiled food and rotten flesh overwhelms you as you enter this abandoned store.');
         if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -167,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).KGZVars ?? 0)?.['place'] === 3) {
-          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+          ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
           scene.text('<center><b>Abandoned Hospital</b></center>');
           scene.text('The floor is littered with multiple dead bodies. Once a place of healing, it now stinks of death.');
           if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -197,7 +197,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).KGZVars ?? 0)?.['place'] === 4) {
-            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
             scene.text('<center><b>Boulevard</b></center>');
             scene.text('Wrecked vehicles and rotten corpses litter the streets of the boulevard.');
             if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -227,7 +227,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).KGZVars ?? 0)?.['place'] === 5) {
-              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
               scene.text('<center><b>Wrecked Hunting Store</b></center>');
               scene.text('This hunting gear store has been looted for almost everything it once contained. The display shelves and counters have been smashed and flipped and a few corpses are strewn around.');
               if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -251,7 +251,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             } else {
               if (((s as any).KGZVars ?? 0)?.['place'] === 6) {
-                ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+                ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
                 scene.text('<center><b>Overrun Police Station</b></center>');
                 scene.text('The bodies of both civilians and police officers alike are scattered across the floor, with overturned tables used as makeshift barricades.');
                 scene.text('This former bastion of justice was once a safe haven for survivors and one of the last holdouts against the zombie hordes, but was eventually overwhelmed by the dead and later looted by the living.');
@@ -276,7 +276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).KGZVars ?? 0)?.['place'] === 7) {
-                  ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+                  ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
                   scene.text('<center><b>Ransacked Drug Store</b></center>');
                   scene.text('This drug store was one of the first places to be looted in the early days of the outbreak. There is barely anything left on the ransacked shelves.');
                   if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -331,7 +331,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).KGZVars ?? 0)?.['place'] === 9) {
-                      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+                      ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
                       scene.text('<center><b>Abandoned Gas Station</b></center>');
                       scene.text('This abandoned gas station has long been looted of its fuel supply and anything else valuable. It now serves as nothing more than a milemarker landmark on the road.');
                       if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -679,7 +679,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           }
                                         } else {
                                           if (((s as any).KGZVars ?? 0)?.['place'] === 200) {
-                                            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+                                            ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 2 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
                                             scene.text('<center><b>Forest</b></center>');
                                             scene.text('The haunting sounds of animals and the wind whistle through the trees of this forest.');
                                             if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {
@@ -703,7 +703,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             }
                                           } else {
                                             if (((s as any).KGZVars ?? 0)?.['place'] === 201) {
-                                              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 3 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0)));
+                                              ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 3 - ((s as any).KGZVars ?? 0)?.['day'] + 1)) + (((s as any).KGZVars ?? 0)?.['day']));
                                               scene.text('<center><b>Farm</b></center>');
                                               scene.text('A large, sturdy fence surrounds this deceptively quaint farm. Any animals that once resided here have long since disappeared.');
                                               if (((s as any).KGZVars ?? 0)?.['batl'] === 0) {

@@ -42,7 +42,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   (s as any).i2 = 0;
   // TODO-QSP: :discopop_loop
-  if ((((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1  ||  ((s as any).npc_nickname ?? 0)['A' + ((s as any).i ?? 0)] === 'Natasha')  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
+  if ((((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1  ||  ((s as any).npc_nickname ?? 0)['A' + (((s as any).i ?? 0))] === 'Natasha')  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
     if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
@@ -64,7 +64,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 1;
   // TODO-QSP: :discojock_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
     if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
@@ -109,7 +109,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     (s as any).table_disco = '<center><table>';
     (s as any).i = 1;
     // TODO-QSP: :discogop_loop
-    if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
       (s as any).loopname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
       (s as any).loopname = (String(((s as any).loopname ?? 0)).toLowerCase());
       if ((!((s as any).i2 ?? 0))) {

@@ -17,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
   // TODO-QSP: dynamic text: Stepping into the station building, you''re greeted by a large waiting room wher...
   scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_train_hall_events/u0027, /u0027manager/u0027); return false;">station manager\'s office</a>. The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_train_hall/u0027, /u0027toilet/u0027); return false;">toilets</a> are located at the back of the building.');
-  // TODO-QSP: dynamic text: The long-distance trains are at the station platforms between '+func('time', 'ge...
+  // TODO-QSP: dynamic text: 'The long-distance trains are at the station platforms between '+func('time', 'g...
   scene.text('The long-distance trains are at the station platforms between 11:00-11:30 and 18:00-18:30.');
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
     if (((s as any).OluQW ?? 0)?.['met'] === 0) {
@@ -82,7 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).hour ?? 0) === 11  ||  ((s as any).hour ?? 0) === 18)  &&  ((s as any).minut ?? 0) <= 30) {
-    // TODO-QSP: dynamic text: The ' + func('time', 'get_time_string', hour, 30) + ' long-distance train is cur...
+    // TODO-QSP: dynamic text: 'The ' + func('time', 'get_time_string', hour, 30) + ' long-distance train is cu...
     scene.text('The ' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), 30) + ' long-distance train is currently ' + (((!((s as any).minut ?? 0))) ? ('approaching') : (((((s as any).minut ?? 0) < 30) ? ('waiting at') : ('leaving')))) + ' the platform.');
     scene.text('The platform is bustling with passengers entering or leaving the currently waiting train, carrying their heavy bags with them. Several police officers are patrolling the platforms, keeping an eye out for any unruly activities.');
     if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
@@ -134,7 +134,7 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Pavlovsk station platforms</h2></center>');
   scene.img('images/locations/shared/train/pavplat.jpg');
-  // TODO-QSP: dynamic text: Since Pavlovsk attracts a fair amount of tourists, the station can be quite busy...
+  // TODO-QSP: dynamic text: 'Since Pavlovsk attracts a fair amount of tourists, the station can be quite bus...
   scene.text('Since Pavlovsk attracts a fair amount of tourists, the station can be quite busy at times. The busiest times on the platforms are between 11:00 and 11:30, and between 18:00 and 18:30 when the long-distance trains are ready for boarding.');
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   // TODO-QSP: 'The next train to St. Petersburg ' + iif(transportVars['train_wait_center'] = 0, 'is leaving now!',...

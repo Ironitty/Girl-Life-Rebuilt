@@ -83,7 +83,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
-    // TODO-QSP: dynamic text: You take Vitek by the hand and almost feel like he''s showing you off, ' + iif($...
+    // TODO-QSP: dynamic text: 'You take Vitek by the hand and almost feel like he''s showing you off, ' + iif(...
     scene.text('You take Vitek by the hand and almost feel like he\'s showing you off, ' + ((((st as any).loc ?? 0)==='gkafe') ? ('when he walks you to the exit of the cafe. You take a little walk') : ('when you walk across the park square towards the exit. You leave the park')) + ' and Vitek guides you to where he lives. It\'s a rather worn-down house from the outside, and the inside doesn\'t look much better. Crumpled heaps of clothes lie everywhere, and the floor is littered with empty bottles.');
     scene.actions([
       { label: 'Continue', goto: ['kotovSex', ''] },
@@ -400,7 +400,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/beer3.jpg');
-    // TODO-QSP: dynamic text: The guys cheer and pour out a beer for you. Vasily gives you ' + iif($loc = 'gka...
+    // TODO-QSP: dynamic text: 'The guys cheer and pour out a beer for you. Vasily gives you ' + iif($loc = 'gk...
     scene.text('The guys cheer and pour out a beer for you. Vasily gives you ' + ((((st as any).loc ?? 0) === 'gkafe') ? ('a glass') : ('the cup')) + ' while the others propose a toast, already having beers in their hands. You happily join them in their toast, and spend the next 15 minutes chatting with them and having sips of your cold beer.');
     if (((st as any).hour ?? 0) === 20) {
       if (((st as any).week ?? 0) === 5  ||  ((st as any).week ?? 0) === 6) {
@@ -522,13 +522,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Be a nice little slut', handler: (st: GameState) => {
     scene.text('You don\'t want to anger Dan any further, and decide to back down. You softly say: "Relax, Dan… I\'m sorry, I didn\'t mean to insult you or your friends. I\'ll do it."');
     scene.text('Dan smirks at you: "I forgive you, slut… I guess you just didn\'t know what to do yet, when someone asks you for your whore mouth. We\'ll teach you what you need to know about your place in the world. Get down before me and start sucking!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       { label: '"Well, maybe… just don\'t tell anyone!"', handler: (st: GameState) => {
     scene.text('Dan grins at you while he reaches for his pants: "Your secret is safe with us, baby. Now get down on your knees and take my cock in your mouth!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -547,14 +547,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: Dan reaches for his pants and exposes his hard cock: "Enough talk! I think it''s...
     scene.text(`Dan reaches for his pants and exposes his hard cock: "Enough talk! I think it's time ${((st as any).pcs_nickname ?? '')} shows us what a good little slut she is. Take it in your mouth!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
                   { label: '"No, that\'s a lie!"', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You pretend to be insulted at the mere notion, but Dan gets angry: "<<$pcs_nickn...
     scene.text(`You pretend to be insulted at the mere notion, but Dan gets angry: "${((st as any).pcs_nickname ?? '')}, you're a slut! I know it, you know it, the whole fucking town knows it! Don't be a stuck up bitch and start sucking!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTripleBlow(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                 ]);
               }

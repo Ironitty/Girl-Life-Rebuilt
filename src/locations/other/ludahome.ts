@@ -119,7 +119,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "I thought I could invite someone if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "Yes, more the better. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   }
@@ -535,7 +535,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWatchtv(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     if (((s as any).locat ?? 0)?.['Mother'] === 20) {
       qspCall(s, 'npc_relationship', 'modify', 'A55', 'like');
@@ -551,12 +551,10 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-      { label: 'Keep watching TV (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ludahome', 'watchtv', iif(locat['Mother'] = 20, 'Olu', '...
-  } },
+      { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'TODO', 'Olu'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'Olu') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'Olu') {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       qspCall(s, 'npc_relationship', 'modify', 'A55', 'like');
       qspCall(s, 'stat', '');
@@ -578,7 +576,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'OluLuda') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'OluLuda') {
         (s as any).minut = ((s as any).minut ?? 0) + 30;
         qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');
         qspCall(s, 'npc_relationship', 'modify', 'A55', 'like');
@@ -658,7 +656,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).LudaLoc = 4;
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (10);
@@ -683,7 +681,7 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       qspCall(s, 'npc_relationship', 'modify', 'A29', 'like');
       qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');

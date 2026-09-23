@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli.jpg');
   scene.text('A well-known homeless shelter in a run-down building. Looking above the entrance you can see a sign saying, Mercy Clinic.');
   scene.text('There is a note by the entrance.');
-  // TODO-QSP: dynamic text: Working hours: '+func('time', 'get_time_string', 9, 0)+' to '+func('time', 'get_...
+  // TODO-QSP: dynamic text: 'Working hours: '+func('time', 'get_time_string', 9, 0)+' to '+func('time', 'get...
   scene.text('Working hours: 9:00 to 17:00');
   (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
@@ -310,9 +310,9 @@ function enterStol(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli_stol.jpg');
   scene.text('There\'s a large canteen with lots of tables and chairs with loads of space. This is probably the biggest room in the building.');
   scene.text('There is a sign by the entrance:');
-  // TODO-QSP: dynamic text: Breakfast: '+func('time', 'get_time_string', 8, 0)+' - '+func('time', 'get_time_...
+  // TODO-QSP: dynamic text: 'Breakfast: '+func('time', 'get_time_string', 8, 0)+' - '+func('time', 'get_time...
   scene.text('Breakfast: 8:00 - 9:30');
-  // TODO-QSP: dynamic text: Dinner: '+func('time', 'get_time_string', 17, 0)+' - '+func('time', 'get_time_st...
+  // TODO-QSP: dynamic text: 'Dinner: '+func('time', 'get_time_string', 17, 0)+' - '+func('time', 'get_time_s...
   scene.text('Dinner: 17:00 - 19:00');
   // TODO-QSP: end
   scene.actions([

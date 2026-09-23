@@ -1102,12 +1102,12 @@ function enterMaidJobReHire(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
   scene.text('Your memory leads you to a very expensive looking apartment building you once grew accustomed to. A porter stands at the door, inspecting you while you come closer.');
-  // TODO-QSP: dynamic text: "Hi," you greet the familiar man. "Is '+$npc_nickname['A52']+' home?"
-  scene.text('"Hi," you greet the familiar man. "Is \'+$npc_nickname[\'A52\']+\' home?"');
+  // TODO-QSP: dynamic text: '"Hi," you greet the familiar man. "Is '+$npc_nickname['A52']+' home?"'
+  scene.text('\'"Hi," you greet the familiar man. "Is \'+$npc_nickname[\'A52\']+\' home?"\'');
   // TODO-QSP: dynamic text: The man''s eyes light up as he reckognises you. "Hello, Miss <<$pcs_lastname>>! ...
   scene.text(`The man's eyes light up as he reckognises you. "Hello, Miss ${((s as any).pcs_lastname ?? '')}! What brings you here?"`);
-  // TODO-QSP: dynamic text: "I am here to see if '+$npc_nickname['A52']+' still needs a maid," you answer po...
-  scene.text('"I am here to see if \'+$npc_nickname[\'A52\']+\' still needs a maid," you answer politely.');
+  // TODO-QSP: dynamic text: '"I am here to see if '+$npc_nickname['A52']+' still needs a maid," you answer p...
+  scene.text('\'"I am here to see if \'+$npc_nickname[\'A52\']+\' still needs a maid," you answer politely.\'');
   scene.text('"I see. Master Nicholas is currently in his study. I am sure he will be glad to see you," he replies as he lets you in.');
   // TODO-QSP: end
   scene.actions([

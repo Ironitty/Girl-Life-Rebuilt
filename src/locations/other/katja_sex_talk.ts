@@ -350,7 +350,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     scene.text('"I\'m not into girls," you reply.');
-    // TODO-QSP: dynamic text: "Really?" Katja says in surprise. "Too bad. You''re really missing out on someth...
+    // TODO-QSP: dynamic text: '"Really?" Katja says in surprise. "Too bad. You''re really missing out on somet...
     scene.text('"Really?" Katja says in surprise. "Too bad. You\'re really missing out on something. Making love to girls is really something. They\'re ' + ((((st as any).katjaQW ?? 0)?.['knows_sex'] +((st as any).katjaQW ?? 0)?.['knows_BJ'] + ((st as any).katjaQW ?? 0)?.['knows_anal'] > 0) ? ('much more tender than boys') : ('so tender')) + '."');
     scene.text('"I really think that you should give it a thought," she continues, seemingly a little disappointed in your response. She then changes the subject.');
     scene.actions([
@@ -406,9 +406,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
-    // TODO-QSP: dynamic text: You tell Katja how you '+iif(stat['self_fisting'] = 1, 'once', 'sometimes')+' pu...
+    // TODO-QSP: dynamic text: 'You tell Katja how you '+iif(stat['self_fisting'] = 1, 'once', 'sometimes')+' p...
     scene.text('You tell Katja how you ' + ((((st as any).stat ?? 0)?.['self_fisting'] === 1) ? ('once') : ('sometimes')) + ' put your whole fist into your pussy, and how it felt doing it.');
-    // TODO-QSP: dynamic text: Katja looks '+iif(katjaQW['knows_self_fisting'] = 0, 'completely shocked, but', ...
+    // TODO-QSP: dynamic text: 'Katja looks '+iif(katjaQW['knows_self_fisting'] = 0, 'completely shocked, but',...
     scene.text('Katja looks ' + ((((st as any).katjaQW ?? 0)?.['knows_self_fisting'] === 0) ? ('completely shocked, but') : ('excited, and')) + ' her face turns even redder as she bites her lip.');
     if (((st as any).katjaQW ?? 0)?.['knows_self_fisting'] === 0) {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['knows_self_fisting'] = 1;
@@ -616,7 +616,7 @@ function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Yeah, I\'ve given a few," you admit.');
     scene.text('"What\'s it like?" she asks, eyes wide with excitement.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {

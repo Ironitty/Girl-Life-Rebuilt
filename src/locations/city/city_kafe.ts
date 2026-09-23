@@ -164,7 +164,7 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
   scene.text(`"I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}," you tell him. "I was wondering if you have any waitress jobs available?"`);
   scene.text('His smile broadens and he looks a little less tired. "Ah, so you want to work here? Well why wouldn\'t you? Rockabilly music, the greaser subculture, Cadillacs, motorcycles and hamburgers! I love this period of American culture, it\'s so vibrant and exciting! I\'ve put every ruble I have into making this place the perfect recreation of an American diner from 1958. Who doesn\'t love that?"');
   scene.text('A glance around the place shows you that the diner is barely half full, and most of those dining are eating Russian food rather than American. Fabi is still raving about America in the 1950s, talking about Elvis Presley, someone called Carl Perkins, and cheeseburgers and French fries. His enthusiasm is honest and infectious, but you came here for a reason, so you clear your throat. "Fabi? About the job?"');
-  // TODO-QSP: dynamic text: He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you about...
+  // TODO-QSP: dynamic text: 'He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you abou...
   scene.text(`He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you about the job. We're open every day except Monday from 12:00 to 20:00 and you'd be working five days a week, Tuesday through Saturday. You'll be expected to arrive between 11:00 and 12:00 to help get the place ready - if you're late then you won't work that day. You don't work, you don't get paid. Pay is ${qspFunc(s, 'money', 'string_profit', 600)} per shift plus whatever you get in tips, and you get paid on the 25th of each month."`);
   scene.text('"So… Are you interested?"');
   // TODO-QSP: end
@@ -174,7 +174,7 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_cafe_waitress') === 1) {
       qspCall(st, 'jobs', 'set_employed', 'city_cafe_waitress');
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: "Good! Now remember, you have to be here between '+func('time', 'get_time_string...
+      // TODO-QSP: dynamic text: '"Good! Now remember, you have to be here between '+func('time', 'get_time_strin...
       scene.text('"Good! Now remember, you have to be here between 11:00 and noon, Tuesday through Saturday."');
     } else {
       qspCall(st, 'stat', '');
@@ -360,7 +360,8 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
 
 function enterLunchAlone(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/food/food_'+rand(1, 4)+'.jpg"></c...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/food/food_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You take your time eating your meal and playing on your phone. It''s just a ligh...
   scene.text(`You take your time eating your meal and playing on your phone. It's just a light lunch, but it's quite tasty and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end

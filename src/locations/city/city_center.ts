@@ -46,7 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>City Center</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Day or night, the city center is alive and bustling, so whether you\'re looking to shop, hit the gym or get some cheap food, you\'ll find it hard not to have your needs satisfied.');
-  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'mom_check'  &&  ((s as any).cumloc ?? 0)[11] === 0) {
+  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  String((s as any).locArgs?.[1] ?? '') !== 'mom_check'  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
@@ -69,7 +69,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027The Ruch kiosk is closed and will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">kiosk</a>';
   }
-  // TODO-QSP: dynamic text: The neon green sign of a <<$desc_txt1>> catches your eye. It''s open between '+f...
+  // TODO-QSP: dynamic text: 'The neon green sign of a <<$desc_txt1>> catches your eye. It''s open between '+...
   scene.text(`The neon green sign of a ${((s as any).desc_txt1 ?? '')} catches your eye. It's open between 8:00 and 22:00 and sells cheap magazines and cigarettes.`);
   if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) >= 30) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -184,13 +184,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_church/u0027, /u0027start/u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
   if (((s as any).nichHotelReferral ?? 0) === 2  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).nichWork ?? 0) !== 4) {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
-      // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
+      // TODO-QSP: dynamic text: 'You could go to the apartment of a man named Nicholas to apply for a job as a l...
       scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between 16:00 and 21:00.');
     } else {
       if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22) {
         scene.text('You could go to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027jobInterview/u0027); return false;">apartment of a man named Nicholas</a> to apply for a job as a live-in maid.');
       } else {
-        // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
+        // TODO-QSP: dynamic text: 'You could go to the apartment of a man named Nicholas to apply for a job as a l...
         scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too late for that. You should come back between 16:00 and 21:00.');
       }
     }
@@ -305,7 +305,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>City Center</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Day or night, the city center is alive and bustling, so whether you\'re looking to shop, hit the gym or get some cheap food, you\'ll find it hard not to have your needs satisfied.');
-  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'mom_check'  &&  ((s as any).cumloc ?? 0)[11] === 0) {
+  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  String((s as any).locArgs?.[1] ?? '') !== 'mom_check'  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
     return;
   }
@@ -328,7 +328,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027The Ruch kiosk is closed and will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">kiosk</a>';
   }
-  // TODO-QSP: dynamic text: The neon green sign of a <<$desc_txt1>> catches your eye. It''s open between '+f...
+  // TODO-QSP: dynamic text: 'The neon green sign of a <<$desc_txt1>> catches your eye. It''s open between '+...
   scene.text(`The neon green sign of a ${((s as any).desc_txt1 ?? '')} catches your eye. It's open between 8:00 and 22:00 and sells cheap magazines and cigarettes.`);
   if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) >= 30) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -443,13 +443,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_church/u0027, /u0027start/u0027); return false;">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
   if (((s as any).nichHotelReferral ?? 0) === 2  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).nichWork ?? 0) !== 4) {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
-      // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
+      // TODO-QSP: dynamic text: 'You could go to the apartment of a man named Nicholas to apply for a job as a l...
       scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between 16:00 and 21:00.');
     } else {
       if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22) {
         scene.text('You could go to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027jobInterview/u0027); return false;">apartment of a man named Nicholas</a> to apply for a job as a live-in maid.');
       } else {
-        // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
+        // TODO-QSP: dynamic text: 'You could go to the apartment of a man named Nicholas to apply for a job as a l...
         scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too late for that. You should come back between 16:00 and 21:00.');
       }
     }

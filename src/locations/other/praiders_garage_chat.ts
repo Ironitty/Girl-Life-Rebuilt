@@ -109,7 +109,8 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ga...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/garage/band/hangout` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You quickly push his hand away. "What the fuck are you doing, Rad?!"');
     scene.text('"What? Just relax, I know you want it." He moves his hand further up, almost touching your groin.');
     scene.text('He\'s clearly not understanding. Just before his hand ends up touching you, you slam your foot against his and he pulls his hand way with a huge smile. "Hey, no need for that! We both know you want it, but if you need to pretend you don\'t, then I get it." He leans back in close, almost touching you. "You\'ll be wet and begging for it soon enough…" He then gets up and walks over to grab a beer.');
@@ -142,7 +143,8 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ga...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/garage/band/hangout` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You nearly give in, but grab his hand and push it away from your crotch. "Maybe some other time," you mutter before quickly getting up and walking away to rejoin the rest of the party.');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -168,7 +170,8 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
         { label: 'Tease him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
-    scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ga...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/garage/band/hangout` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('Not wanting to let him get the best of you, you decide to play around with him. As his hand starts moving up your thigh, you let your hand slip down and rub his bulge.');
     scene.text('Radomir lets out a grunt. "Oh, you want to play that way?"');
     scene.text('You nod and grab even harder. He flinches a little as you smile. "I really want to unbutton your pants right now…" you say teasingly while biting your lip.');
@@ -402,7 +405,7 @@ function enterChatAnushka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).gopnikbandQW ?? 0)?.['nushob'] === 3) {
         scene.text('She goes quiet all of a sudden, like she\'s crashing from a high. She\'s wearing sunglasses and looks like she\'s had a rough go of it lately, like she might still be hungover or something. You give her a slight nudge and she groans and shifts slowly in her seat before stirring to life. "Huh? What?"');
         scene.text('"You okay, Anushka?" you ask as you watch her squirm and stretch. She lifts her sunglasses to rub her eyes and you notice that it looks like she hasn\'t slept in a while.');
-        // TODO-QSP: dynamic text: "Oh dude… Lav had us out partying until like, '+func('time', 'get_time_string', ...
+        // TODO-QSP: dynamic text: '"Oh dude… Lav had us out partying until like, '+func('time', 'get_time_string',...
         scene.text('"Oh dude… Lav had us out partying until like, 5:00. I don\'t know what the fuck he gave us, but I think I\'m still hearing colors." The two of you talk, mostly about the drug hazed party they had last night, which she seems to not fully remember.');
         scene.text('Your conversation with Anushka starts winding down and you seem to be running out of small talk. Now seems like a good time to ask her about something specific.');
         scene.actions([

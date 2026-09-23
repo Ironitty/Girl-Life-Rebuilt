@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -150,12 +150,12 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: dynamic "
-    // TODO-QSP: act ""Buy a <<$CarName>> (<<$func('money', 'string_price', CarPrice)>>)"":
-    // TODO-QSP: gt 'autosalonF', 'buy', <<ARGS[1]>>
+    scene.actions([
+      { label: '', labelFn: (s: GameState) => '"Buy a ' + String(((s as any).CarName ?? '') ?? '') + ' (' + String(qspFunc(s, 'money', 'string_price', ((s as any).CarPrice ?? '')) ?? '') + ')"', handler: (st: GameState) => {
+    qspGoto(st, 'autosalonF', 'buy', '' + ((st as any).locArgs?.[1] ?? 0) + '');
+  } },
+    ]);
   }
-  // TODO-QSP: "
-  // TODO-QSP: end
   // TODO-QSP: end
   scene.build();
 }

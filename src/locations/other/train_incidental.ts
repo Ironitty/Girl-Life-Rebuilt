@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -10,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'train_incidental', 'event' + (Math.floor(Math.random() * 27) + 1) + '');
+  qspGoto(s, 'train_incidental', qspUntranslated(s, "''event<<rand(1'", { location: "train_incidental" }), '27)>>');
   // TODO-QSP: end
   scene.build();
 }
@@ -30,7 +32,8 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent2(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/sex/finger' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/train/s...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/sex/finger` + (Math.floor(Math.random() * 2) + 1) + '.mp4" ></video></center>');
   scene.text('A young couple sits down a little way away from you. The boy keeps trying to feel the girl up, and she keeps pushing his hands away, glancing nervously around the car.');
   scene.text('Eventually, she gives in to his persistence, and they\'re soon kissing passionately as one of his hands slides up her skirt. You try your best to give them privacy, but her loud moans are very distracting.');
   scene.text('By the next stop, her moans reach a crescendo, followed by her shuddering in the boy\'s arms and growing quiet. When she notices your eyes on them, she blushes bright red and pushes his hands away while whispering at him.');
@@ -178,7 +181,8 @@ function enterEvent13(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent14(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/boobflash' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/boobflash'+ rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/boobflash` + (Math.floor(Math.random() * 2) + 1) + '.jpg" ></center>');
   scene.text('About halfway through the journey, you hear some whistles and clapping. You look up and see another young girl, not much older than you are, flashing her breasts at everyone on the train, which is appreciated by most of the passengers, though a few of the women and elders seem to disapprove.');
   scene.text('Either way, she sure looks like she\'s loving the attention.');
   scene.actions([
@@ -239,7 +243,8 @@ function enterEvent18(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent19(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/nakedb' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/nakedb'+ rand(1, ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/nakedb` + (Math.floor(Math.random() * 2) + 1) + '.jpg" ></center>');
   scene.text('As you take your seat, you glance up to see a naked boy standing in the middle of the carriage. Many of the other passengers are staring at him, but he seems completely unconcerned. He never takes a seat and simply rides the train while standing as if there\'s nothing wrong.');
   scene.text('Before you can figure out why he\'s naked, he gets off at the next stop.');
   scene.actions([
@@ -251,7 +256,8 @@ function enterEvent19(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent20(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/nakedg' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/nakedg'+ rand(1, ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/nakedg` + (Math.floor(Math.random() * 6) + 1) + '.jpg" ></center>');
   scene.text('As you take your seat, you glance up to see a naked girl standing in the middle of the car. Many of the other passengers are staring at her, but she seems completely unconcerned. She\'s smiling, seemingly enjoying the attention she\'s getting.');
   scene.text('She makes no attempt to ever cover herself and just rides the train like any other passenger before she gets off at her stop and heads into the train station.');
   scene.actions([
@@ -263,7 +269,8 @@ function enterEvent20(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent21(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/nipslip' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/nipslip'+ rand(1,...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/nipslip` + (Math.floor(Math.random() * 2) + 1) + '.jpg" ></center>');
   scene.text('The ride has been fairly boring so far, so you start looking around at your fellow passengers, and that\'s when you notice it.');
   scene.text('A woman is distracted and seems to be completely unaware that her shirt has ridden down and left her breast and nipple exposed for all to see. You\'re about to say something to her when another woman gets her attention.');
   scene.text('She blushes and quickly tucks her breast back in.');
@@ -289,7 +296,8 @@ function enterEvent22(s: GameState, scene: SceneBuilder): void {
 
 function enterEvent23(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 3) + 0) !== 0) {
-    scene.img('images/locations/shared/train/pussyflash' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/pussyflash'+ rand...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/pussyflash` + (Math.floor(Math.random() * 2) + 1) + '.jpg" ></center>');
   } else {
     scene.img('images/locations/shared/train/pussyflash.mp4');
   }
@@ -316,7 +324,8 @@ function enterEvent24(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent25(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/shared/train/sex/bj' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/train/s...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/sex/bj` + (Math.floor(Math.random() * 2) + 1) + '.mp4" ></video></center>');
   scene.text('A couple sits across from you and a few minutes pass by before the man suddenly pulls his cock out of his pants and grabs the woman\'s head.');
   scene.text('He shoves her face down towards his crotch as she obediently opens her mouth and starts sucking his cock.');
   scene.text('As time passes, he grabs her hair and starts forcing her head down while thrusting his hips up until he finally groans loudly.');
@@ -357,7 +366,7 @@ function enterEvent27(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'train_incidental', 'end' + (Math.floor(Math.random() * 1) + 1) + '');
+  qspGoto(s, 'train_incidental', qspUntranslated(s, "''end<<rand(1'", { location: "train_incidental" }), '1)>>');
   // TODO-QSP: end
   scene.build();
 }

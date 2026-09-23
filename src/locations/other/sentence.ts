@@ -60,7 +60,7 @@ function enterHearing(s: GameState, scene: SceneBuilder): void {
       { label: 'Stand in front of the judge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
-    // TODO-QSP: gt 'court_sentence_events', 'judge_start', $policeQW_courthearing_subjects[0]
+    qspGoto(st, 'court_sentence_events', 'judge_start', '$policeQW_courthearing_subjects[0]');
   } },
     ]);
   } },

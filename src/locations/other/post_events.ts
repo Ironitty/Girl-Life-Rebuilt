@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -92,7 +92,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Give him a blowjob he\'ll never forget', goto: ['post_events', '1-1'] },
+      { label: 'Give him a blowjob he\'ll never forget', handler: (st: GameState) => { qspGoto(st, 'post_events', 1-1); } },
     ]);
   } },
       ]);
@@ -218,7 +218,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('Within minutes, you feel a slight buzz in your head and Jenya starts kissing you again. She starts off slowly, but her kisses become more and more passionate, and you struggle to keep the mug straight.');
     scene.text('Realizing you need to get rid of the mug, you decide to just gulp down the rest and let yourself fall back down on the bed, where Jenya immediately climbs on top of you. After a few minutes, she refills the mug and hands it to you again.');
     scene.actions([
-      { label: 'Close your eyes and enjoy her touch', goto: ['post_events', '2-1'] },
+      { label: 'Close your eyes and enjoy her touch', handler: (st: GameState) => { qspGoto(st, 'post_events', 2-1); } },
     ]);
   } },
       { label: 'Ask about the camera', handler: (st: GameState) => {
@@ -261,7 +261,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('Within minutes, you feel a slight buzz in your head and Jenya begins to kiss you again. She starts off slowly, but her kisses become more and more passionate, and you struggle to keep the mug straight.');
     scene.text('Realizing you need to get rid of the mug, you decide to just gulp down the rest and let yourself fall back down on the bed, where Jenya immediately climbs on top of you. After a few minutes, she refills the mug and hands it to you again.');
     scene.actions([
-      { label: 'Close your eyes and enjoy her touch', goto: ['post_events', '2-1'] },
+      { label: 'Close your eyes and enjoy her touch', handler: (st: GameState) => { qspGoto(st, 'post_events', 2-1); } },
     ]);
   } },
     ]);
@@ -307,7 +307,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('Within minutes, you feel a slight buzz in your head and Jenya starts kissing you again. She starts off slowly, but her kisses become more and more passionate, and you struggle to keep the mug straight.');
     scene.text('Realizing you need to get rid of the mug, you decide to just gulp down the rest and let yourself fall back down on the bed, where Jenya immediately climbs on top of you again. After a few minutes, she refills the mug and hands it to you again.');
     scene.actions([
-      { label: 'Close your eyes and enjoy her touch', goto: ['post_events', '2-1'] },
+      { label: 'Close your eyes and enjoy her touch', handler: (st: GameState) => { qspGoto(st, 'post_events', 2-1); } },
     ]);
   } },
       { label: 'That sounds fair', handler: (st: GameState) => {
@@ -317,7 +317,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('You do as she says and smile for the camera as Maksim starts taking photos. Hopefully no one you know will see these…');
     scene.text('"That\'s it. Get that cock nice and hard," Arsen orders.');
     scene.actions([
-      { label: 'Continue', goto: ['post_events', '2-2'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'post_events', 2-2); } },
     ]);
   } },
     ]);
@@ -617,14 +617,14 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     scene.text('When you\'re about to object, he continues. "You have sex with men and they give you something in return. That sounds like a whore to me."');
     scene.text('The man laughs when he sees your reaction. "Don\'t worry, I\'m not judging you. I love whores who know what they\'re doing. Make me happy and I\'ll make it worth your while. Show me what you can do with your mouth. Only your mouth, no hands."');
     scene.actions([
-      { label: 'Please him with your mouth', goto: ['post_events', '3-1'] },
+      { label: 'Please him with your mouth', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-1); } },
     ]);
   } },
     { label: '"I love cocks!"', handler: (st: GameState) => {
     scene.text('"I love cocks!"');
     scene.text('"Hah! My favourite type of girl!" he laughs, not expecting such a direct answer from you. "In that case: impress me. Take care of me and you\'ll get all the cock you want. And I\'ll take care of you. I love spoiling my little sluts. Go on. Show me what you can do with your mouth. Only your mouth, no hands."');
     scene.actions([
-      { label: 'Please him with your mouth', goto: ['post_events', '3-1'] },
+      { label: 'Please him with your mouth', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-1); } },
     ]);
   } },
     { label: '"I like being told what to do."', handler: (st: GameState) => {
@@ -633,7 +633,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do you, now?" he grins evilly. "In that case, let\'s make this a little bit more interesting. Close your eyes, turn around and put your hands behind your back."');
     scene.text('You hear him rummaging in the nightstand drawer before you feel the cold touch of metal on your wrists. "Those are not coming off until you get me off. Start sucking."');
     scene.actions([
-      { label: 'Please him with your mouth', goto: ['post_events', '3-1'] },
+      { label: 'Please him with your mouth', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-1); } },
     ]);
   } },
   ]);
@@ -654,7 +654,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('"That was amazing!" he grins. "Even better than the last girl I had, and that was after months of training! You\'re definitely paying me a visit more often…"');
     scene.actions([
-      { label: 'Continue', goto: ['post_events', '3-2'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-2); } },
     ]);
   } else {
     if (((s as any).stat ?? 0)?.['bj'] > 15) {
@@ -666,7 +666,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('"That… was decent," he says. "I\'ve had better, but we can make a good cocksucker out of you yet."');
       scene.actions([
-        { label: 'Continue', goto: ['post_events', '3-2'] },
+        { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-2); } },
       ]);
     } else {
       scene.text('You swallow nervously when you see his cock dangling in front of you. It\'s bigger than you thought it would be!');
@@ -697,7 +697,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Look at me!" he groans and a warm load of his cum fills your mouth seconds later. "That was better I guess, but rather half-hearted. Swallow," he orders as he strokes your hair with his hand. You do so without hesitation.');
     scene.text('"You have a lot to learn, but it\'ll be worth it!" he sighs contently. "You could become a good little slut for me, with some training."');
     scene.actions([
-      { label: 'Continue', goto: ['post_events', '3-2'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-2); } },
     ]);
   } },
         ]);
@@ -713,7 +713,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('"Don\'t feel bad, you did good!" he pants as he undoes the gag. "Not the blowjob itself, obviously. That was terrible, but you\'re not afraid to get a little kinky and continued to try and please me even when you were having a rough time. You\'re exactly the kind of girl I\'m looking for!"');
     scene.actions([
-      { label: 'Continue', goto: ['post_events', '3-2'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'post_events', 3-2); } },
     ]);
   } },
       ]);

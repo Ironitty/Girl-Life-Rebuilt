@@ -465,10 +465,10 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t say anything, but just cuddle with him for a while. You can tell it means a lot to him.');
   }
   scene.text('You get up and start getting dressed and cleaned up. "I should probably get going," you tell him.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'cp') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'cp') {
     qspCall(s, 'cum_call', '', '', 'A2', 1);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'facial') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'facial') {
       qspCall(s, 'cum_call', 'face', 'A2', 1);
     }
   }

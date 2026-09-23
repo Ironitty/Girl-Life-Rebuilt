@@ -1440,7 +1440,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).anushfood_day = ((st as any).daystart ?? 0);
     (st as any).anushbeer_count = ((st as any).anushbeer_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You take a bottle of beer from the fridge and drink it, which quenches your thirst.');
     scene.actions([
       { label: 'Continue', goto: ['anushapt', 'fridge'] },
@@ -1456,7 +1457,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).anushfood_day = ((st as any).daystart ?? 0);
     (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You pour some vodka in a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['anushapt', 'fridge'] },
@@ -1470,7 +1472,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'drugs', 'alcohol', 'vodka');
         (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
         qspCall(st, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is strong!');
       }
     }

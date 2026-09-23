@@ -246,7 +246,8 @@ function enterAfterOutsideImage(s: GameState, scene: SceneBuilder): void {
         if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
           scene.img('images/locations/pavlovsk/pavres.jpg');
         } else {
-          scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_' + rand(1, 2...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         }
       }
     }
@@ -465,7 +466,7 @@ function enterDateSexAsk(s: GameState, scene: SceneBuilder): void {
   } },
     { label: '"Let\'s make love"', handler: (st: GameState) => {
     if (((st as any).date_ev ?? 0)?.['at_home'] === 0) {
-      // TODO-QSP: dynamic text: "I don''t want the ' + iif(hour >= 19 or daystage >= 4, 'night', 'day') + ' to e...
+      // TODO-QSP: dynamic text: '"I don''t want the ' + iif(hour >= 19 or daystage >= 4, 'night', 'day') + ' to ...
       scene.text('"I don\'t want the ' + ((((st as any).hour ?? 0) >= 19  ||  ((st as any).daystage ?? 0) >= 4) ? ('night') : ('day')) + ' to end," you whisper in his ear, voice rough and breathy. "<i>Let\'s make love</i>."');
       if (((st as any).home ?? 0)?.['region'] !== ((st as any).region ?? 0)  &&  ((st as any).npc_residence ?? 0)?.[String((st as any).npcID ?? 0)] !== 'region') {
         ((st as any).date_ev = (st as any).date_ev ?? {})['hotel_sex'] = 1;
@@ -557,7 +558,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "My mom has been such a bitch lately and...
     scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "My mom has been such a bitch lately and I don't want to see her."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -568,7 +569,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "If I go home now, my mom will chew me o...
     scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "If I go home now, my mom will chew me out for coming back too late. She'll still chew me out later, but I don't want to deal with it right now."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -579,7 +580,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "It''s late and I don''t want to go."
     scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "It's late and I don't want to go."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -589,7 +590,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "My boyfriend''s been pissing me off lat...
     scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "My boyfriend's been pissing me off lately and I don't want to go home to that."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I don\'t want to see my boyfriend(guilt)' }, // TODO-QSP: empty action body
       ]);
@@ -599,7 +600,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'bed_room_img');
     // TODO-QSP: dynamic text: <<$date_ev[''spend_night_question'']>>. "I don''t feel like going home tonight."
     scene.text(`${((st as any).date_ev ?? 0)?.['spend_night_question'] ?? ''}. "I don't feel like going home tonight."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpendNight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -621,7 +622,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('"Ugh. <i>Bitch!</i>"');
         scene.text('"Yeah, I know. Sucks."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).date_ev ?? 0)?.['loc'] === 'npc_home') {
           scene.text('"Sure, my girlfriend isn\'t gonna be around. You can hang for a while."');
@@ -642,7 +643,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
         scene.text('"Sorry, can\'t. I have something to do and I can\'t leave you here alone."');
         scene.text('"Ugh, really?"');
         scene.text('"Yeah, I know. Sucks."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).npc_girlfriend ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  ((st as any).hour ?? 0) < 20  &&  ((st as any).hour ?? 0) > 16) {
           ((st as any).date_ev = (st as any).date_ev ?? {})['cant_stay'] = 1;
@@ -650,7 +651,7 @@ function enterStayAsk(s: GameState, scene: SceneBuilder): void {
           scene.text('"Sorry, my girlfriend is coming over soon. Can\'t let her catch you here."');
           scene.text('"Ugh, really?"');
           scene.text('"Yeah, I know. Sucks."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterDate(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"Sure, I\'m not doing anything so you can hang out for a while."');
           scene.actions([
@@ -735,25 +736,25 @@ function enterHangoutAsk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'You\'re tired', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterOutsideImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterOutsideImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     if ((Math.floor(Math.random() * 3) + 1) === 1  &&  ((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'perverted') {
       scene.text('"Maybe we could just spend some time at your place? I\'m bushed."');
       if (((st as any).npc_know_pubes ?? 0)?.[String((st as any).npcID ?? 0)] !== '') {
         if (((st as any).pube_style ?? 0)?.['word'] === 'untrimmed') {
-          // TODO-QSP: dynamic text: "Bushed? More like forested, eh?" <<$npcdesc>> smirks, glancing ' + iif(PCloDres...
-          scene.text('"Bushed? More like forested, eh?" ' + ((st as any).npcdesc ?? '') + ' smirks, glancing \' + iif(PCloDress = 0, \'down at the crotch of your pants \', \'down at the skirt flowing between your legs \') + \'to make his meaning clear.');
+          // TODO-QSP: dynamic text: '"Bushed? More like forested, eh?" <<$npcdesc>> smirks, glancing ' + iif(PCloDre...
+          scene.text(`"Bushed? More like forested, eh?" ${((st as any).npcdesc ?? '')} smirks, glancing ` + (((!((st as any).PCloDress ?? 0))) ? ('down at the crotch of your pants ') : ('down at the skirt flowing between your legs ')) + 'to make his meaning clear.');
         } else {
           if (((st as any).pube_style ?? 0)?.['word'] === 'bush') {
-            // TODO-QSP: dynamic text: "Yeah you are," <<$npcdesc>> smirks, glancing ' + iif(PCloDress = 0, 'down at th...
-            scene.text('"Yeah you are," ' + ((st as any).npcdesc ?? '') + ' smirks, glancing \' + iif(PCloDress = 0, \'down at the crotch of your pants \', \'down at the skirt flowing between your legs \') + \'to make his meaning clear.');
+            // TODO-QSP: dynamic text: '"Yeah you are," <<$npcdesc>> smirks, glancing ' + iif(PCloDress = 0, 'down at t...
+            scene.text(`"Yeah you are," ${((st as any).npcdesc ?? '')} smirks, glancing ` + (((!((st as any).PCloDress ?? 0))) ? ('down at the crotch of your pants ') : ('down at the skirt flowing between your legs ')) + 'to make his meaning clear.');
           } else {
             if (((st as any).pube_style ?? 0)?.['word'] === 'trimmed') {
-              // TODO-QSP: dynamic text: "More like a lawn than a bush, isn''t it?" <<$npcdesc>> says with a smirk and a ...
-              scene.text('"More like a lawn than a bush, isn\'t it?" ' + ((st as any).npcdesc ?? '') + ' says with a smirk and a raised eyebrow, looking \' + iif(PCloDress = 0, \'down at the crotch of your pants \', \'down at the skirt flowing between your legs \') + \'to make his meaning clear.');
+              // TODO-QSP: dynamic text: '"More like a lawn than a bush, isn''t it?" <<$npcdesc>> says with a smirk and a...
+              scene.text(`"More like a lawn than a bush, isn't it?" ${((st as any).npcdesc ?? '')} says with a smirk and a raised eyebrow, looking ` + (((!((st as any).PCloDress ?? 0))) ? ('down at the crotch of your pants ') : ('down at the skirt flowing between your legs ')) + 'to make his meaning clear.');
             } else {
               if (((st as any).pube_style ?? 0)?.['word'] === 'shaved') {
-                // TODO-QSP: dynamic text: "Bushed? Isn''t that the opposite of what you are?" <<$npcdesc>> smirks, glancin...
-                scene.text('"Bushed? Isn\'t that the opposite of what you are?" ' + ((st as any).npcdesc ?? '') + ' smirks, glancing \' + iif(PCloDress = 0, \'down at the crotch of your pants \', \'down at the skirt flowing between your legs \') + \'to make his meaning clear.');
+                // TODO-QSP: dynamic text: '"Bushed? Isn''t that the opposite of what you are?" <<$npcdesc>> smirks, glanci...
+                scene.text(`"Bushed? Isn't that the opposite of what you are?" ${((st as any).npcdesc ?? '')} smirks, glancing ` + (((!((st as any).PCloDress ?? 0))) ? ('down at the crotch of your pants ') : ('down at the skirt flowing between your legs ')) + 'to make his meaning clear.');
               } else {
                 scene.text('Error. $pube_style[\'word\'] is not set.');
               }
@@ -787,8 +788,8 @@ function enterHangoutAsk(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        // TODO-QSP: dynamic text: "Bushed huh? Didn''t know that''s what you''re rocking down there," <<$npcdesc>>...
-        scene.text('"Bushed huh? Didn\'t know that\'s what you\'re rocking down there," ' + ((st as any).npcdesc ?? '') + ' says with a smirk and a raised eyebrow, looking \' + iif(PCloDress = 0, \'down at the crotch of your pants \', \'down at the skirt flowing between your legs \') + \'to make his meaning clear.');
+        // TODO-QSP: dynamic text: '"Bushed huh? Didn''t know that''s what you''re rocking down there," <<$npcdesc>...
+        scene.text(`"Bushed huh? Didn't know that's what you're rocking down there," ${((st as any).npcdesc ?? '')} says with a smirk and a raised eyebrow, looking ` + (((!((st as any).PCloDress ?? 0))) ? ('down at the crotch of your pants ') : ('down at the skirt flowing between your legs ')) + 'to make his meaning clear.');
         scene.text('"Yeah, sure. We can go back to my place and hang out for a little bit."');
         scene.actions([
           { label: 'Smirk', handler: (st: GameState) => {
@@ -1084,7 +1085,7 @@ function enterSpendNightOffer(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['cant_stay'] = 1;
     qspCall(st, 'date_ev', 'hall_img');
     scene.text('"Thanks but no thanks," you say, wistfully heading towards the door. "I really need to get home tonight."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Well...', handler: (st: GameState) => {
     scene.text('"Well..." you pause for a moment, considering. You <i>could</i> stay over tonight. Maybe you don\'t <i>have</i> to go...');
@@ -1093,7 +1094,7 @@ function enterSpendNightOffer(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['cant_stay'] = 1;
     qspCall(st, 'date_ev', 'hall_img');
     scene.text('"... no," you sigh. "I really shouldn\'t. I want to, but I can\'t."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I guess I could...', handler: (st: GameState) => {
     qspCall(st, 'date_ev', 'kitchen_img');
@@ -1112,7 +1113,7 @@ function enterSpendNightOffer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/cuddle1.jpg');
     // TODO-QSP: dynamic text: You slip back into bed and cuddle up with <<$npcdesc>>, resting your naked body ...
     scene.text(`You slip back into bed and cuddle up with ${((st as any).npcdesc ?? '')}, resting your naked body on top of his. He wraps his arms around you in return and the two of your relax, listening to the sound of each other's breathing.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSleepOver(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSleepOver(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1123,7 +1124,7 @@ function enterSpendNightOffer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'date_ev', 'dress_loop');
     // TODO-QSP: dynamic text: "I wish I could but I really have to go," you say, <<$date_ev[''dress_describe''...
     scene.text(`"I wish I could but I really have to go," you say, ${((st as any).date_ev ?? 0)?.['dress_describe'] ?? ''}. "Just not an option for me tonight."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcHomeLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1203,7 +1204,7 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Accept happily', handler: (st: GameState) => {
     if (((st as any).npc_dirty_lover ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
-      // TODO-QSP: dynamic text: Your eyes meet his as your lips curl into a smirk and you step closer. His hands...
+      // TODO-QSP: dynamic text: 'Your eyes meet his as your lips curl into a smirk and you step closer. His hand...
       scene.text('Your eyes meet his as your lips curl into a smirk and you step closer. His hands squeeze your ass cheeks, momentarily spreading them through your ' + ((((st as any).PCloSkirtShortness ?? 0) > 0) ? ('skirt. ') : ('pants. ')) + 'Both of you stumble towards the bedroom.');
     } else {
       if (((st as any).npc_sensual_lover ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -1359,7 +1360,7 @@ function enterNpcHomeLeave(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
-  if ((((s as any).date_ev ?? 0)?.['mad'] === 1  ||  ((s as any).date_ev ?? 0)?.['angry_after'])  &&  Number((s as any).locArgs?.[1] ?? 0) === 'inside') {
+  if ((((s as any).date_ev ?? 0)?.['mad'] === 1  ||  ((s as any).date_ev ?? 0)?.['angry_after'])  &&  String((s as any).locArgs?.[1] ?? '') === 'inside') {
     scene.actions([
       { label: 'Leave angrily', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart1.mp4');
@@ -1381,14 +1382,14 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Text me any time', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Text me any time you want some company';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
         scene.actions([
           { label: '"Text me"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Text me';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -1396,7 +1397,7 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '"See you soon"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'See you soon';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -1404,14 +1405,14 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: '"See you tomorrow"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'See you tomorrow';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
           scene.actions([
             { label: '"Till next time"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Till next time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -1419,7 +1420,7 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"Let\'s do this again"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Let\'s do this again sometime';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1427,22 +1428,22 @@ function enterLeavingDialogueChoices(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Don\'t forget the money', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Just make sure you have the money ready for next time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: '"Bye"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'Bye';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '"See ya"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'See ya';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '"I had a really good time"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = 'I had a really good time';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1566,7 +1567,7 @@ function enterPcHomeLeave(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "This was fun, but you should probably go," you say to <<$npcdesc>>, who nods an...
         scene.text(`"This was fun, but you should probably go," you say to ${((st as any).npcdesc ?? '')}, who nods and moves to start picking up his clothes and get dressed.`);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingAction(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingAction(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
@@ -1582,13 +1583,13 @@ function enterPcHomeLeavingAction(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev_exit = (st as any).date_ev_exit ?? {})['loc'] = 'bedroom';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action1'] = 'You stay sat on the bed, demurely pulling the sheets up around you to preserve some modesty as you watch ' + ((st as any).npcdesc ?? 0) + ' get dressed. As he finishes, you say,';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action2'] = 'He flashes you a quick smile and then gathers the rest of his stuff to leave, closing the door behind him.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Stay in bed (covers off)', handler: (st: GameState) => {
     ((st as any).date_ev_exit = (st as any).date_ev_exit ?? {})['loc'] = 'bedroom';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action'] = 'You stay sat on the bed, casually laying nude atop the sheets as you watch ' + ((st as any).npcdesc ?? 0) + ' get dressed. He throws more than a few admiring glances your way as he does and when he finishes you say,';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action2'] = 'He flashes you a quick smile and then gathers the rest of his stuff to leave, closing the door behind him.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1598,7 +1599,7 @@ function enterPcHomeLeavingAction(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev_exit = (st as any).date_ev_exit ?? {})['loc'] = 'bedroom';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action'] = 'You sit on the bed, waiting patiently for ' + ((st as any).npcdesc ?? 0) + ' to get dressed. Once he\'s finished you move over to him and give him a gentle kiss on the lips, saying,';
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action2'] = 'He flashes you a quick smile and then gathers the rest of his stuff to leave, closing the door behind him.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => 'See ' + String(((s as any).npcdesc ?? '') ?? '') + ' to the door', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -1609,7 +1610,7 @@ function enterPcHomeLeavingAction(s: GameState, scene: SceneBuilder): void {
       ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action'] = 'You sit on the bed, waiting patiently for ' + ((st as any).npcdesc ?? 0) + ' to get dressed. Once he\'s finished you move to take him to the door. As he steps out, you say,';
       ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action2'] = 'He flashes you a quick smile in return before stepping off. You watch him go for a few moments before heading back inside and closing the door behind you.';
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => 'Kiss ' + String(((s as any).npcdesc ?? '') ?? '') + ' at the door', handler: (st: GameState) => {
     ((st as any).date_ev_exit = (st as any).date_ev_exit ?? {})['loc'] = 'hallway';
@@ -1624,7 +1625,7 @@ function enterPcHomeLeavingAction(s: GameState, scene: SceneBuilder): void {
       ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action'] = 'You sit on the bed, waiting patiently for ' + ((st as any).npcdesc ?? 0) + ' to get dressed. Once he\'s finished you move to take him to the door, making no move to get dressed yourself. Just as ' + ((st as any).npcdesc ?? 0) + ' steps out, you grab hold of his shirt to pull him into a passionate kiss. After several long seconds, you break the kiss, saying,';
       ((st as any).date_ev = (st as any).date_ev ?? {})['leave_action2'] = 'You pull ' + ((st as any).npcdesc ?? 0) + ' back in for another kiss, but softer and quicker. He flashes you a quick smile in return before stepping off. You watch him go for a few moments before heading back inside and closing the door behind you.';
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingDialogue(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1636,14 +1637,14 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"Wanna do this again?"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['invite_today'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       scene.actions([
         { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['invite_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1652,7 +1653,7 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"See you soon"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"See you soon."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1660,18 +1661,18 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '"See you tomorrow"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"See you tomorrow."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
         scene.actions([
           { label: '"Till next time"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"Till next time."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: '"Wanna do this again?"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['invite_today'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -1679,11 +1680,11 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '"Text me"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"Text me."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '"Wanna do this again? tomorrow?"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['invite_tomorrow'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1696,11 +1697,11 @@ function enterPcHomeLeavingDialogue(s: GameState, scene: SceneBuilder): void {
     } else {
       ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"Thanks for coming over. It was fun."';
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '"See ya"', handler: (st: GameState) => {
     ((st as any).date_ev = (st as any).date_ev ?? {})['leave_dialogue'] = '"See ya."';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcHomeLeavingEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

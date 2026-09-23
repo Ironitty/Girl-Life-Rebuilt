@@ -161,7 +161,7 @@ function enterDancebreak(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResEvents(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'introductions') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'introductions') {
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You enter the communal area and are greeted by a gaggle of excited girls who imm...
     scene.text(`You enter the communal area and are greeted by a gaggle of excited girls who immediately call out and surround you. You spot a small group sitting down to take a selfie, as well as Madame ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''} watching over the proceedings.`);
@@ -190,7 +190,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_ballet_res', 'hallway'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'kitchen_birthday') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'kitchen_birthday') {
     ((s as any).birthday_party = (s as any).birthday_party ?? {})['events'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
@@ -208,13 +208,11 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('"Contacts and money, sadly. She comes from one of the unmentionable families."');
     scene.text('"Oh," you reply, realizing that this is a touchy topic. You start to collect plates and glasses to take through to the communal area.');
     scene.actions([
-      { label: 'Help out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'birthday' , 'prep'
-  } },
+      { label: 'Help out', goto: ['pushkin_ballet_evt', 'res_events', 'birthday', 'prep'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'birthday') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'card') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'birthday') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'card') {
       ((s as any).birthday_party = (s as any).birthday_party ?? {})['events'] = 1;
       scene.img('images/locations/pushkin/ballet_residence/gasha_card.jpg');
       // TODO-QSP: dynamic text: You enter the halls after classes, and <<$npc_firstname[''A279'']>> sees you, gr...
@@ -244,7 +242,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A279', 'like');
       qspCall(st, 'npc_relationship', 'modify', 'A280', 'like');
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: You dig out your purse and put ' + $func('money', 'string_price', 500) + ' insid...
+      // TODO-QSP: dynamic text: 'You dig out your purse and put ' + $func('money', 'string_price', 500) + ' insi...
       scene.text(`You dig out your purse and put 500₽ inside the card, and hand it back to ${((st as any).npc_firstname ?? 0)?.['A279'] ?? ''}. She notices you've put something inside and opens the card to find the money.`);
       // TODO-QSP: dynamic text: "Why <<$pcs_nickname>>? I''m aware your parents are poor, and I didn''t expect y...
       scene.text(`"Why ${((st as any).pcs_nickname ?? '')}? I'm aware your parents are poor, and I didn't expect you to give her a gift," she says with a surprised voice.`);
@@ -254,7 +252,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('"The school tries to think of everything, doesn\'t it?"');
       scene.text('"It tries. It helped me adapt to the life here when my mother got the job. The first year was brutally tough at the local school with the kids bullying me for being a villager. The ballet school became my refuge."');
       scene.text('"This is why you\'re organizing the party?"');
-      // TODO-QSP: dynamic text: "Yes, I want to cheer her up, and your present is going to go a long way toward ...
+      // TODO-QSP: dynamic text: '"Yes, I want to cheer her up, and your present is going to go a long way toward...
       scene.text('"Yes, I want to cheer her up, and your present is going to go a long way toward showing how welcome she is here. I need to get on with preparing the food, but let me say thank you so much for this." With that, she gives you a quick hug and a warm smile, then hurries away to the kitchen. As she leaves, she shouts out, "Remember the communal room at 18:30. Don\'t miss it!", she shouts."');
       scene.actions([
         { label: 'Follow her into the kitchen', goto: ['pushkin_ballet_evt', 'res_events', 'kitchen_birthday'] },
@@ -270,7 +268,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     scene.text(`You hand the card back to ${((st as any).npc_firstname ?? 0)?.['A279'] ?? ''} after signing it, and she looks at you. "Thank you, ${((st as any).pcs_nickname ?? '')}, hopefully this helps her feel welcome here. She's been struggling to cope with being away from home for the first time."`);
     // TODO-QSP: dynamic text: "Think nothing of it, <<$npc_firstname[''A279'']>>. If it makes her feel better,...
     scene.text(`"Think nothing of it, ${((st as any).npc_firstname ?? 0)?.['A279'] ?? ''}. If it makes her feel better, that's great," you say.`);
-    // TODO-QSP: dynamic text: "Yeah, look, I need to start cooking the food for tonight. Will you come to the ...
+    // TODO-QSP: dynamic text: '"Yeah, look, I need to start cooking the food for tonight. Will you come to the...
     scene.text('"Yeah, look, I need to start cooking the food for tonight. Will you come to the communal room after 18:30?" You nod your head in a non-committal way as she leaves.');
     scene.actions([
       { label: 'Return to the hallway', goto: ['pushkin_ballet_res', 'hallway'] },
@@ -278,7 +276,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'prep') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'prep') {
         ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
         scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/communal.jpg');
         qspCall(s, 'core_library', 'stage_title');
@@ -300,7 +298,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave room', goto: ['pushkin_ballet_res', 'hallway'] },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'party') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'party') {
           ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
           scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + '/ballet_residence/gasha_birthday.jpg');
           qspCall(s, 'core_library', 'stage_title');
@@ -342,7 +340,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'homesick') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'homesick') {
     // TODO-QSP: dynamic text: You enter the communal area and see <<$npc_firstname[''A280'']>> holding a textb...
     scene.text(`You enter the communal area and see ${((s as any).npc_firstname ?? 0)?.['A280'] ?? ''} holding a textbook with a sad expression. "Hello ${((s as any).npc_firstname ?? 0)?.['A280'] ?? ''}, everything okay?" you ask.`);
     // TODO-QSP: dynamic text: She looks up to you from the book, "I''m okay, <<$pcs_nickname>>, I''m just not ...
@@ -361,16 +359,16 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'tanis_bully') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'tanis_bully') {
     scene.text('WIP - tbc');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'tanis_gasha') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'tanis_gasha') {
     scene.text('WIP - tbc');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'tanis_showdown') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'tanis_showdown') {
     scene.text('WIP - tbc');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'kima_gossip') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'kima_gossip') {
     scene.text('WIP - tbc');
   }
   // TODO-QSP: end
@@ -573,7 +571,7 @@ function enterRudolphqw(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '0') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'The Chess Match';
     scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_events/chess.jpg');
     qspCall(s, 'core_library', 'stage_title');
@@ -583,13 +581,13 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === '1') {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'TV Night';
       scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_events/chess.jpg');
       // TODO-QSP: dynamic text: You enter the common room and see <<$npc_firstname[''A280'']>> relaxing in front...
       scene.text(`You enter the common room and see ${((s as any).npc_firstname ?? 0)?.['A280'] ?? ''} relaxing in front of the TV watching a ballet rehearsal. She is nibbling a small plate of fruit pieces and looks towards you as you enter.`);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === '2') {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.text('You enter the Conservatory and see some girls practicing the various ballet forms and stretches. At the back is a pair of girls from another class performing barre exercises.');
         // TODO-QSP: dynamic text: Hi, you come to join us?", one of the girls asks, whilst the other girl says, "S...
         scene.text(`Hi, you come to join us?", one of the girls asks, whilst the other girl says, "She's in ${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''}'s class", her eyes light up, "can you help teach us? We'd love to learn from you!"`);
@@ -614,10 +612,10 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === '3') {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           scene.text('WIP - tbc');
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === '4') {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'TV Night';
             // TODO-QSP: dynamic text: You enter the communal room and see <<$npc_firstname[''A280'']>> at her favorite...
             scene.text(`You enter the communal room and see ${((s as any).npc_firstname ?? 0)?.['A280'] ?? ''} at her favorite place watching TV. She looks at you nervously as you enter and you ask if you could join her.`);
@@ -657,19 +655,19 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === '5') {
+            if (String((s as any).locArgs?.[1] ?? '') === '5') {
               scene.text('WIP - tbc');
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === '6') {
+              if (String((s as any).locArgs?.[1] ?? '') === '6') {
                 scene.text('WIP - tbc');
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === '7') {
+                if (String((s as any).locArgs?.[1] ?? '') === '7') {
                   scene.text('WIP - tbc');
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === '8') {
+                  if (String((s as any).locArgs?.[1] ?? '') === '8') {
                     scene.text('WIP - tbc');
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === '9') {
+                    if (String((s as any).locArgs?.[1] ?? '') === '9') {
                       scene.text('WIP - tbc');
                     }
                   }

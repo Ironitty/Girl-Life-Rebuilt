@@ -50,7 +50,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('The strip club is closed to the public, but employees can still enter through the back.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEmployeeEntrance(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        // TODO-QSP: dynamic text: The strip club is closed. The sign on the door states that business hours are be...
+        // TODO-QSP: dynamic text: 'The strip club is closed. The sign on the door states that business hours are b...
         scene.text('The strip club is closed. The sign on the door states that business hours are between 18:00 and 3:00.');
       }
     }
@@ -102,7 +102,7 @@ function enterEmployeeEntrance(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0) < ((st as any).result_arrival ?? 0)) {
-              // TODO-QSP: dynamic text: "Your shift isn''t until later. Come back between '+func('time', 'get_time_strin...
+              // TODO-QSP: dynamic text: '"Your shift isn''t until later. Come back between '+func('time', 'get_time_stri...
               scene.text('"Your shift isn\'t until later. Come back between 17:00 and 18:00," the bouncer reminds you.');
             } else {
               scene.text('"You\'re too late for your shift. Come back on your next scheduled night," the bouncer says while shaking his head.');
@@ -172,7 +172,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).strip_club ?? 0)?.['id_check'] !== 0) {
       scene.text('Recognizing you from your previous visit, the bouncer nods and stands aside to let you enter.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('You try to enter the club, but the bouncer stops you at the door.');
       scene.text('"Hold up. I\'m gonna need to see some ID."');
@@ -185,7 +185,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
     scene.text('You begrudingly rummage through your purse and pull out your passport. The bouncer takes a look at it and nods.');
     scene.text('"Nice picture," he laughs as he hands it back to you. "I was just messing with you. You\'re free to come in."');
     scene.text('You just roll your eyes at him as you stuff your passport back in your bag.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -195,7 +195,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
     ((st as any).strip_club = (st as any).strip_club ?? {})['id_check'] = 1;
     scene.text('You rummage through your purse and pull out your passport, showing him you\'re of legal age. The bouncer takes a look at it and nods.');
     scene.text('"Okay, you check out."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
@@ -205,7 +205,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
     ((st as any).strip_club = (st as any).strip_club ?? {})['id_check'] = 1;
     scene.text('You rummage through your purse and pull out your fake passport, showing him you\'re of "legal age." The bouncer takes a long look at it before he nods.');
     scene.text('"Okay, you check out."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPayEnter(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
           } else {
@@ -229,7 +229,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
 
 function enterPayEnter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strip_club ?? 0)?.['pay_fee'] === 0) {
-    // TODO-QSP: dynamic text: He stops you just as you''re about to walk past him. "Not so fast. There''s a ' ...
+    // TODO-QSP: dynamic text: 'He stops you just as you''re about to walk past him. "Not so fast. There''s a '...
     scene.text('He stops you just as you\'re about to walk past him. "Not so fast. There\'s a 300₽ cover charge."');
     scene.actions([
       { label: 'Seriously?!', handler: (st: GameState) => {
@@ -298,7 +298,7 @@ function enterMainFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Strip Club</b></center>');
   scene.img('images/locations/city/redlight/stripclub/stripclub_interior.jpg');
-  // TODO-QSP: dynamic text: As you enter the club, you see a half naked girl performing on the stage to the ...
+  // TODO-QSP: dynamic text: 'As you enter the club, you see a half naked girl performing on the stage to the...
   scene.text('As you enter the club, you see a half naked girl performing on the stage to the loud, booming music as others walk around trying to entice customers into buying a private dance. You notice a sign stating that private dances cost 1000₽.');
   if (((s as any).hour ?? 0) < 2  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 45)) {
     scene.actions([
@@ -376,11 +376,11 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).week ?? 0) < 5) {
     scene.img('images/locations/city/redlight/stripclub/lev.jpg');
-    // TODO-QSP: dynamic text: You head over to the bar, where ' + iif($job_status['city_strip_bargirl'] <> '',...
+    // TODO-QSP: dynamic text: 'You head over to the bar, where ' + iif($job_status['city_strip_bargirl'] <> ''...
     scene.text('You head over to the bar, where ' + ((((s as any).job_status ?? 0)?.['city_strip_bargirl'] !== '') ? ('Lev') : ('the bartender')) + ' is taking orders while checking out the girl on stage. You decide what you want to drink as you wait your turn.');
   } else {
     scene.img('images/locations/city/redlight/stripclub/nadia.jpg');
-    // TODO-QSP: dynamic text: You head over to the bar, where ' + iif($job_status['city_strip_bargirl'] <> '',...
+    // TODO-QSP: dynamic text: 'You head over to the bar, where ' + iif($job_status['city_strip_bargirl'] <> ''...
     scene.text('You head over to the bar, where ' + ((((s as any).job_status ?? 0)?.['city_strip_bargirl'] !== '') ? ('Nadia') : ('a girl wearing a skimpy outfit')) + ' is taking orders, her large breasts drawing your attention as they jiggle with each of her movements. You decide what you want to drink as you wait your turn.');
   }
   // TODO-QSP: end
@@ -465,7 +465,7 @@ function enterPrivateDance(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).privrand ?? 0))) {
     scene.img('images/locations/city/redlight/stripclub/sex/private_dance.jpg');
     scene.text('You order a private dance from one of the strippers and she leads you to a private room, where you\'re joined by another girl. They seem to enjoy the female company as they give you a double dance and you can feel your pussy growing slightly wet.');
-    // TODO-QSP: dynamic text: When they finish their dance, one of them climbs onto your lap and whispers in y...
+    // TODO-QSP: dynamic text: 'When they finish their dance, one of them climbs onto your lap and whispers in ...
     scene.text('When they finish their dance, one of them climbs onto your lap and whispers in your ear. "2000₽ and I\'ll eat your pussy, right here, right now…"');
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
@@ -497,15 +497,15 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
     { label: 'Watch the show', handler: (st: GameState) => {
     qspCall(st, 'schedule', 'A23');
     if ((Math.floor(Math.random() * 4) + 0) === 0  &&  ((st as any).AlbinaQW ?? 0)?.['seen_strip'] === 0  &&  ((st as any).locat ?? 0)?.['A23'] === 22) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaFirstDance1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaFirstDance1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if ((Math.floor(Math.random() * 4) + 0) === 0  &&  ((st as any).AlbinaQW ?? 0)?.['seen_strip'] === 1  &&  ((st as any).locat ?? 0)?.['A23'] === 22) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaRecurrentDance(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaRecurrentDance(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         qspCall(st, 'stat', '');
         scene.img('images/locations/city/redlight/stripclub/stripclub_show1.mp4');
         scene.text('You decide to take a seat and watch the upcoming show.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetGirl(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetGirl(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.text('The music booms as the scantily clad girl struts out onto the stage to loud cheers and whistles.');
         scene.text('She then starts her performance, slowly stripping down as she dances on the pole. The men in the crowd throw fistfuls of rubles on the stage while hooting and hollering.');
         scene.actions([
@@ -517,7 +517,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'money', 'pay', 100, 'cash');
       scene.img('images/locations/city/redlight/stripclub/stripclub_show2.mp4');
-      // TODO-QSP: dynamic text: You stick '+$func('money', 'string_price', 100)+' in her thong and she invitingl...
+      // TODO-QSP: dynamic text: 'You stick '+$func('money', 'string_price', 100)+' in her thong and she inviting...
       scene.text('You stick 100₽ in her thong and she invitingly starts shaking her ass and swinging around the pole in front of you. You feel yourself slowly getting excited.');
       scene.text('The girl soon finishes her show and gathers up her clothing and tips before walking off stage as the men cheer at her.');
       scene.actions([
@@ -654,7 +654,7 @@ function enterHire2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stripping', handler: (st: GameState) => {
     scene.text('"I want to be a stripper," you reply.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStripperTryout1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStripperTryout1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Waitressing', handler: (st: GameState) => {
     scene.text('"I want to be a waitress," you reply.');
@@ -700,7 +700,7 @@ function enterHire3(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"Did you have any questions for me?" he asks.');
   scene.text('"Just two," you reply. "When do I work and what do I get paid?"');
-  // TODO-QSP: dynamic text: He chuckles. "Straight to the point I see. The club operates between '+func('tim...
+  // TODO-QSP: dynamic text: 'He chuckles. "Straight to the point I see. The club operates between '+func('ti...
   scene.text('He chuckles. "Straight to the point I see. The club operates between 18:00 and 3:00, and bargirls need to show up between 17:00 and18:00.');
   scene.text('He pulls up a list of some kind. "I currently have two shift patterns open: Wednesday and Thursday nights, or Friday and Saturday nights. You get paid weekly plus tips. Interested?"');
   // TODO-QSP: end
@@ -908,10 +908,10 @@ function enterStripperTryout3(s: GameState, scene: SceneBuilder): void {
 function enterStripperAccept1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/manager_office.jpg');
   scene.text('You dance sensually and he\'s clearly smitten by you before he asks you to sit down.');
-  // TODO-QSP: dynamic text: "Our business hours are '+func('time', 'get_time_string', 18, 0)+' to '+func('ti...
+  // TODO-QSP: dynamic text: '"Our business hours are '+func('time', 'get_time_string', 18, 0)+' to '+func('t...
   scene.text('"Our business hours are 18:00 to 3:00 and we operate two six hour shifts - 18:00 to midnight and 21:00 to 3:00. Shift priority is first come, first served. A whiteboard with the schedule is available backstage."');
   scene.text('He pulls some papers out of a cabinet behind him.');
-  // TODO-QSP: dynamic text: "Any tips you get are yours, but we''re not paying you hourly. Think of it as an...
+  // TODO-QSP: dynamic text: '"Any tips you get are yours, but we''re not paying you hourly. Think of it as a...
   scene.text('"Any tips you get are yours, but we\'re not paying you hourly. Think of it as an incentive to perform well. If a customer wants a private lap dance, then it\'s \'+$func(\'money\', \'string_profit\', 1000)+\' <i>per</i> dance. You get 40% and the rest goes to the club."');
   scene.text('He then sits up in his chair and gives you a serious look. "Some clients may want to pay extra for a \'happy ending\' to their dance; this is strictly limited to a blowjob at most. We are <i>not</i> a brothel, so you <i>will</i> refuse <i>any</i> requests for sex, no matter how much they offer to pay you. If they get pushy, then call Viktor. Now sign here."');
   // TODO-QSP: end
@@ -931,7 +931,7 @@ function enterStripperAccept1(s: GameState, scene: SceneBuilder): void {
     scene.text('He then leads you to the dressing room and tells a woman responsible for the outfits that you\'re going to join the club. He also introduces you to the chief of security, who takes your picture and makes you sign some documents before walking you back to his office.');
     scene.text('"Our girls don\'t perform under their real names for obvious reasons. We have a bit of a gemstone theme going on, but you can choose whatever stage name you want. You <i>would</i> stand out if you go against the theme though, which could be a good <i>or</i> a bad thing for your reputation."');
     scene.text('He then pulls out a list of some kind. "If you want to use a gemstone name yourself, then know that Amber, Jade, Onyx, Emerald, Amythest, Diamond, Azul, Opal and Ruby are already taken. So what will your name be?"');
-    (st as any).pcs_strippername = 0;
+    (st as any).pcs_strippername = window.prompt("What name would you like to use at the strip club? (Leave blank for Sapphire)") ?? '';
     if (((st as any).pcs_strippername ?? 0) === 'Amber'  ||  ((st as any).pcs_strippername ?? 0) === 'Jade'  ||  ((st as any).pcs_strippername ?? 0) === 'Onyx'  ||  ((st as any).pcs_strippername ?? 0) === 'Emerald'  ||  ((st as any).pcs_strippername ?? 0) === 'Amythest'  ||  ((st as any).pcs_strippername ?? 0) === 'Diamond'  ||  ((st as any).pcs_strippername ?? 0) === 'Azul'  ||  ((st as any).pcs_strippername ?? 0) === 'Opal'  ||  ((st as any).pcs_strippername ?? 0) === 'Ruby') {
       scene.text('That name is not available.');
     } else {
@@ -970,7 +970,7 @@ function enterManagerJobChange(s: GameState, scene: SceneBuilder): void {
     scene.text('"Are you sure?" he asks. "It would be a lot busier than you have now, but one of the other bargirls would happily swap so she has the weekend off instead."');
     scene.text('"I\'m sure," you nod.');
     qspCall(st, 'jobs', 'change_schedule', 'city_strip_bargirl', 1);
-    // TODO-QSP: dynamic text: "Okay then," he smiles. "I''ll make the changes. Be ready to come back to work o...
+    // TODO-QSP: dynamic text: '"Okay then," he smiles. "I''ll make the changes. Be ready to come back to work ...
     scene.text('"Okay then," he smiles. "I\'ll make the changes. Be ready to come back to work on Friday and Saturday nights, and arrive between 17:00 and 18:00."');
     scene.text('You thank him before leaving the office.');
     scene.actions([
@@ -988,7 +988,7 @@ function enterManagerJobChange(s: GameState, scene: SceneBuilder): void {
     scene.text('"Are you sure?" he asks. "It would be a lot quieter than you have now, so one of the other bargirls would happily swap so she has the extra money."');
     scene.text('"I\'m sure," you nod.');
     qspCall(st, 'jobs', 'change_schedule', 'city_strip_bargirl', 0);
-    // TODO-QSP: dynamic text: "Okay then," he smiles. "I''ll make the changes. Be ready to come back to work o...
+    // TODO-QSP: dynamic text: '"Okay then," he smiles. "I''ll make the changes. Be ready to come back to work ...
     scene.text('"Okay then," he smiles. "I\'ll make the changes. Be ready to come back to work on Wednesday and Thursday nights, and arrive between 17:00 and 18:00."');
     scene.text('You thank him before leaving the office.');
     scene.actions([
@@ -1095,7 +1095,7 @@ function enterAlbinaFirstDance1(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/redlight/stripclub/albina_show.mp4');
-      // TODO-QSP: dynamic text: You throw '+$func('money', 'string_price', 100)+' onto the stage in front of her...
+      // TODO-QSP: dynamic text: 'You throw '+$func('money', 'string_price', 100)+' onto the stage in front of he...
       scene.text('You throw 100₽ onto the stage in front of her and she gives you a wink before moving back into the middle of the stage, enticing the crowd with her moves as they throw piles of rubles onto the stage.');
       scene.text('She finishes her show by teasingly tugging at her thong and slowly peeling it off, much to the delight of the patrons around you, who ogle and cheer at her as she rolls around naked on the stage. She then gathers her clothes and tips up before strutting off the stage as the men hoot and holler.');
       scene.text('A few minutes later, she walks out onto the floor and immediately grabs you by the arm before dragging you into a private room.');
@@ -1113,7 +1113,7 @@ function enterAlbinaFirstDance1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/albina_show.mp4');
-    // TODO-QSP: dynamic text: You watch in silence as '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['...
+    // TODO-QSP: dynamic text: 'You watch in silence as '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type[...
     scene.text('You watch in silence as ' + ((((st as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((st as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((st as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('the brunette') : ('Albina')) + ' entices the crowd with her moves as she strips down to the music, shaking her ass in their faces as they throw piles of rubles onto the stage.');
     scene.text('She finishes her show by teasingly tugging at her thong and slowly peeling it off, much to the delight of the patrons around you, who ogle and cheer at her as she rolls around naked on the stage. She then gathers her clothing and tips before strutting off stage without even looking in your direction.');
     scene.text('A few minutes later, she walks out onto the floor and immediately grabs you by the arm before dragging you into a private room.');
@@ -1129,7 +1129,7 @@ function enterAlbinaFirstDance1(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 100);
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: You throw '+$func('money', 'string_price', 100)+' onto the stage in front of her...
+      // TODO-QSP: dynamic text: 'You throw '+$func('money', 'string_price', 100)+' onto the stage in front of he...
       scene.text('You throw 100₽ onto the stage in front of her, but she just rolls her eyes and moves over to dance in front of a group of men offering her far more generous tips.');
       scene.text('She finishes her show by teasingly tugging at her thong and slowly peeling it off, much to the delight of the patrons around you, who ogle and cheer at her as she rolls around naked on the stage. She then gathers her clothing and tips before strutting off stage without even looking in your direction.');
       scene.text('A few minutes later, she walks out onto the floor and immediately grabs you by the arm before dragging you into a private room.');
@@ -1163,7 +1163,7 @@ function enterAlbinaRecurrentDance(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/redlight/stripclub/albina_show.mp4');
-      // TODO-QSP: dynamic text: You throw '+$func('money', 'string_price', 100)+' onto the stage in front of her...
+      // TODO-QSP: dynamic text: 'You throw '+$func('money', 'string_price', 100)+' onto the stage in front of he...
       scene.text('You throw 100₽ onto the stage in front of her and she gives you a wink before moving back into the middle of the stage, enticing the crowd with her moves as they throw piles of rubles onto the stage.');
       scene.text('She slowly strips from her outfit and dances on the pole before teasingly tugging at her thong and slowly peeling it off, much to the delight of the patrons around you, who ogle and cheer at her as she rolls around naked on the stage.');
       scene.text('Her show over, the music stops and she gathers her clothes and tips up before strutting off the stage, swaying her hips and showing off her naked ass as the men hoot and holler.');
@@ -1195,7 +1195,7 @@ function enterAlbinaRecurrentDance(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'stat', '');
       scene.img('images/locations/city/redlight/stripclub/albina_show.mp4');
-      // TODO-QSP: dynamic text: You throw '+$func('money', 'string_price', 100)+' onto the stage in front of her...
+      // TODO-QSP: dynamic text: 'You throw '+$func('money', 'string_price', 100)+' onto the stage in front of he...
       scene.text('You throw 100₽ onto the stage in front of her, but she just rolls her eyes and moves over to dance in front of a group of rowdy men offering her far more generous tips.');
       scene.text('She slowly strips from her outfit and dances on the pole before teasingly tugging at her thong and slowly peeling it off, much to the delight of the patrons around you, who ogle and cheer at her as she rolls around naked on the stage.');
       scene.text('Her show over, the music stops and she gathers her clothes and tips up before strutting off the stage, swaying her hips and showing off her naked ass as the men hoot and holler.');

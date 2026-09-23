@@ -132,7 +132,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
 function enterWeeklyGradeUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).week ?? 0) === 1  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     if (((s as any).lernHome ?? 0) > 0  &&  ((s as any).petkaQW ?? 0)?.['homework'] === 1) {
-      qspCall(s, 'grades', 'homework', 'school', 'yes', 0, 2, 'A6');
+      qspCall(s, 'grades', 'homework', 'school', 'yes', (Math.floor(Math.random() * (((s as any).lernHome ?? 0) - 0 + 1)) + (0)), 2, 'A6');
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) - (Math.min(((s as any).lernHome ?? 0), 5));
     if (((s as any).lernHome ?? 0) <= 1) {

@@ -23,7 +23,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if ((Number((s as any).locArgs?.[0] ?? 0) === 'gad_gpbarn'  &&  ((s as any).BikeLoc ?? 0) === 1)  ||  (Number((s as any).locArgs?.[0] ?? 0) === 'gad_forest'  &&  ((s as any).BikeLoc ?? 0) === 2)  ||  (Number((s as any).locArgs?.[0] ?? 0) === 'gad_swamp_yard'  &&  ((s as any).BikeLoc ?? 0) === 3)) {
+  if ((String((s as any).locArgs?.[0] ?? '') === 'gad_gpbarn'  &&  ((s as any).BikeLoc ?? 0) === 1)  ||  (String((s as any).locArgs?.[0] ?? '') === 'gad_forest'  &&  ((s as any).BikeLoc ?? 0) === 2)  ||  (String((s as any).locArgs?.[0] ?? '') === 'gad_swamp_yard'  &&  ((s as any).BikeLoc ?? 0) === 3)) {
     scene.actions([
       { label: 'Ride your bicycle', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -156,7 +156,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).BikeLoc = 1;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You jump onto your bike and ride to your grandparents\' barn.');
     scene.actions([
       { label: 'Finish your ride', goto: ['gad_gpbarn', ''] },
@@ -192,7 +192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).BikeLoc = 2;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You jump onto your bike and ride to the edge of the forest.');
     scene.actions([
       { label: 'Finish your ride', goto: ['gad_forest', 'forest_edge'] },
@@ -229,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).BikeLoc = 3;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You jump onto your bike and ride to the hunters\' cabin.');
     scene.actions([
       { label: 'Finish your ride', goto: ['gad_swamp_yard', 'start'] },

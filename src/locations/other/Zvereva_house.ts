@@ -181,7 +181,7 @@ function enterBathr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/christina_home/bathroom.jpg');
-  // TODO-QSP: dynamic text: The stylish room has a large glass shower, toilet, sink, and a <a href="exec:gt ...
+  // TODO-QSP: dynamic text: 'The stylish room has a large glass shower, toilet, sink, and a <a href="exec:gt...
   scene.text('The stylish room has a large glass shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   if (((s as any).locat ?? 0)?.['Christina'] === 13) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house_events/u0027, /u0027chris_shower/u0027); return false;">Christina</a> is here, taking a shower.');

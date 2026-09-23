@@ -43,20 +43,20 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'arts') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'arts') {
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'island') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'island') {
       qspGoto(s, 'city_island', '');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'industrial') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'industrial') {
         qspGoto(s, 'city_industrial', '');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'residential') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'residential') {
           qspGoto(s, 'city_suburbs', 'start');
         } else {
           // TODO-QSP: gt $ARGS[1], $ARGS[2]
@@ -83,7 +83,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'residential'
+    dynamicGoto(st, 'prevLoc', 'exit', 'residential');
   } },
     ]);
   } },
@@ -99,7 +99,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'island'
+    dynamicGoto(st, 'prevLoc', 'exit', 'island');
   } },
     ]);
   } },
@@ -115,7 +115,7 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'industrial'
+    dynamicGoto(st, 'prevLoc', 'exit', 'industrial');
   } },
     ]);
   } },
@@ -135,14 +135,14 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Leave the canals', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+    dynamicGoto(st, 'prevLoc', 'exit', 'loc_history');
   } },
     ]);
   } else {
     scene.text('You can\'t take a boat trip in the winter. The Canal ways are frozen over.');
     scene.actions([
       { label: 'Leave the canals', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+    dynamicGoto(st, 'prevLoc', 'exit', 'loc_history');
   } },
     ]);
   }
@@ -165,7 +165,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'residential'
+    dynamicGoto(st, 'prevLoc', 'exit', 'residential');
   } },
     ]);
   } },
@@ -181,7 +181,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'island'
+    dynamicGoto(st, 'prevLoc', 'exit', 'island');
   } },
     ]);
   } },
@@ -197,7 +197,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', 'industrial'
+    dynamicGoto(st, 'prevLoc', 'exit', 'industrial');
   } },
     ]);
   } },
@@ -217,14 +217,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Leave the canals', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+    dynamicGoto(st, 'prevLoc', 'exit', 'loc_history');
   } },
     ]);
   } else {
     scene.text('You can\'t take a boat trip in the winter. The Canal ways are frozen over.');
     scene.actions([
       { label: 'Leave the canals', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+    dynamicGoto(st, 'prevLoc', 'exit', 'loc_history');
   } },
     ]);
   }
@@ -241,7 +241,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 100);
       (st as any).canals_ticket = ((st as any).daystart ?? 0);
-      // TODO-QSP: dynamic text: You pay the boatman ' + $func('money', 'string_price', 100) + ' for your ticket.
+      // TODO-QSP: dynamic text: 'You pay the boatman ' + $func('money', 'string_price', 100) + ' for your ticket...
       scene.text('You pay the boatman 100₽ for your ticket.');
       qspGoto(st, 'city_canals', 'start');
     }

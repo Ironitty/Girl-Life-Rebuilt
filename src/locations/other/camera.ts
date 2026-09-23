@@ -69,8 +69,8 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckPerson(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).photographyEv ?? 0) >= 2  &&  ((s as any).camera_people ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
-    if (((s as any).camera_found ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 1  &&  ((s as any).camera_requirement ?? 0) === -1) {
+  if (((s as any).photographyEv ?? 0) >= 2  &&  ((s as any).camera_people ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
+    if (((s as any).camera_found ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1  &&  ((s as any).camera_requirement ?? 0) === -1) {
       // TODO-QSP: dynamic ' act ''Ask to take a photo'': camera_found["<<$ARGS[1]>>"] = 1 & gt ''camera'', $camera_eve...
     }
   }
@@ -353,7 +353,7 @@ function enterPavLake(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'describe') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'describe') {
     scene.text('You notice a girl sunbathing topless and realize that it\'s Sonia. You wonder if she would make a good subject, a take on how innocence can be lost in a cruel world.');
   }
   // TODO-QSP: end

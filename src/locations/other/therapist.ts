@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,7 +14,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  // TODO-QSP: gt $ARGS[1], $ARGS[2]
+  dynamicGoto(s, 'ARGS[1]', 'ARGS[2]');
   // TODO-QSP: end
   scene.build();
 }
@@ -56,7 +56,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Permanently disable the therapist', handler: (st: GameState) => {
     ((st as any).therapistQW = (st as any).therapistQW ?? {})['met'] = (-1);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_clinic']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_clinic']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -64,7 +64,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give up and try again later', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_clinic']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_clinic']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -137,7 +137,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
       scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((st as any).pcs_lastname ?? '')}?`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -160,7 +160,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
       scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((st as any).pcs_lastname ?? '')}?`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -174,12 +174,12 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/therapist/gropePussy.jpg');
     // TODO-QSP: dynamic text: "Very good Miss <<$pcs_lastname>>. What was it you needed help with today?"
     scene.text(`"Very good Miss ${((st as any).pcs_lastname ?? '')}. What was it you needed help with today?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
           scene.text('"Now what was it you needed help with today?"');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -209,7 +209,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
       scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((st as any).pcs_lastname ?? '')}?`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -248,7 +248,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -376,7 +376,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
     (st as any).therapy = 'school troubles';
     (st as any).therapyTalkMessage = 'You talk about your troubles at school';
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve been having some trouble fitting in at school. I would like some he...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -386,19 +386,19 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
     (st as any).therapy = 'mood';
     (st as any).therapyTalkMessage = 'You talk about your troubles';
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve been feeling a little down lately. I would like some help in raisin...
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Raise your confidence', handler: (st: GameState) => {
     (st as any).therapy = 'confidence';
     (st as any).therapyTalkMessage = 'You talk about your confidence issues';
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve not been very confident lately. Can you help?"'
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'d like to be more charming, likable and sociable', handler: (st: GameState) => {
     (st as any).therapy = 'charm';
     (st as any).therapyTalkMessage = 'You talk about issues with getting along with others';
     // TODO-QSP: $therapyTalkMessage[1] = '"I would like some help being more sociable," you say.'
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyMethod(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -548,7 +548,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((st as any).var1 ?? 0) + 1)) + (((st as any).var1 ?? 0))) + 3);
+      (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((st as any).var1 ?? 0) + 1)) + (((st as any).var1 ?? 0))));
       if (((st as any).hypnoTime ?? 0) < 15) {
         if (((st as any).hypnoStrength ?? 0) >= 20) {
           (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) - (20);
@@ -725,7 +725,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHypno3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHypno3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -928,7 +928,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).hypnoStage = 1;
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${(Math.floor(Math.random() * 2) + 1)}.jpg`);
-    // TODO-QSP: dynamic text: When you finish, Dr. Pavlov tells you to sit back on the couch. ' + $func('wrap'...
+    // TODO-QSP: dynamic text: 'When you finish, Dr. Pavlov tells you to sit back on the couch. ' + $func('wrap...
     scene.text('When you finish, Dr. Pavlov tells you to sit back on the couch. "Now I\'m going to ask you a series of questions and you will answer them with complete honesty. You will give your answer first and finish by addressing me as <i>Master</i>. First question. How old are you?"');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'I\'m ' + String(qspFunc(s, 'shortgs', 'num2txt', ((st as any).age ?? '')) ?? '') + ' years old, <i>Master</i>', handler: (st: GameState) => {
@@ -945,7 +945,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Yes, <i>Master</i>', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${(Math.floor(Math.random() * 2) + 1)}.jpg`);
-    // TODO-QSP: dynamic text: "A virgin school girl, very rare these days. I''m going to enjoy you, <i>Cunt</i...
+    // TODO-QSP: dynamic text: '"A virgin school girl, very rare these days. I''m going to enjoy you, <i>Cunt</...
     scene.text('"A virgin school girl, very rare these days. I\'m going to enjoy you, <i>Cunt</i>. I will fill every hole you have, every day. You will bear my children and you won\'t even know how it happened. You will think they belong to your boyfriend He caresses your leg as he says this.');
     scene.text('This will be all for today, <i>Cunt</i>. You may dress now."');
     scene.actions([
@@ -1326,7 +1326,7 @@ function enterSleepProblems(s: GameState, scene: SceneBuilder): void {
         (st as any).var1 = 9;
       }
     }
-    (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((st as any).var1 ?? 0) + 1)) + (((st as any).var1 ?? 0))) + 3);
+    (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((st as any).var1 ?? 0) + 1)) + (((st as any).var1 ?? 0))));
     if (((st as any).hypnoTime ?? 0) < 15) {
       if (((st as any).hypnoStrength ?? 0) >= 20) {
         (st as any).hypnoStrength = ((st as any).hypnoStrength ?? 0) - (20);
@@ -1636,7 +1636,7 @@ function enterFuck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((s as any).var1 ?? 0) + 1)) + (((s as any).var1 ?? 0))) + 3);
+  (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - ((s as any).var1 ?? 0) + 1)) + (((s as any).var1 ?? 0))));
   if (((s as any).hypnoTime ?? 0) < 15) {
     if (((s as any).hypnoStrength ?? 0) >= 20) {
       (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) - (20);
@@ -2234,7 +2234,7 @@ function enterHypnoRandom(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/sittingClothed.jpg');
     ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_key'] = 1;
-    // TODO-QSP: dynamic text: You finish getting dressed and the doctor hands you something. It''s a keychain ...
+    // TODO-QSP: dynamic text: 'You finish getting dressed and the doctor hands you something. It''s a keychain...
     scene.text('You finish getting dressed and the doctor hands you something. It\'s a keychain with a single key, a tiny bunny plush, and a tag for the Hotel by Pavlovsk market with a room number on it. "I want you to show up to this room every Saturday night from 20:00. There you will find me, waiting for you. Once a week, you will be my wife. You will do whatever I ask of you and you will do it without question. This will all be automatic for you. You will not be under hypnosis for this and you will do it because you WANT to do it" he says. "Soon, you will be my wife for real and when that day comes, you must know what is expected of you, Understand?" he states.');
     qspCall(st, 'willpower', 'misc', 'resist', 'hard');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -2577,7 +2577,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
           scene.text('"I live at my cottage in the cooperative farm, <i>Master</i>."');
           scene.text('You have a cottage?"');
           scene.text('"Yes, <i>Master</i>."');
-          // TODO-QSP: dynamic text: "Okay then… ' + $func('wrap', 'hypno', 'You will sell your cottage to me for a s...
+          // TODO-QSP: dynamic text: '"Okay then… ' + $func('wrap', 'hypno', 'You will sell your cottage to me for a ...
           scene.text('"Okay then… You will sell your cottage to me for a single ruble. I will take you to an agency and they will officiate the sale. You will agree with everything I say while we are there. Understand"');
           scene.text('"Yes, <i>Master</i>."');
           scene.text('"Good, put on your clothes and come with me."');
@@ -2968,7 +2968,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).hypnoProstRubles ?? 0)[2] > 100) {
-              ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = ((s as any).hypnoProstRubles[2] ?? 0) - ((Math.floor(Math.random() * 9) + 1) * 10);
+              ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = ((s as any).hypnoProstRubles[2] ?? 0) - ((Math.floor(Math.random() * (9 - 1 + 1)) + (1)));
             }
             if (((s as any).hypnoProstRubles ?? 0)[2] < 100) {
               ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = 100;
@@ -3069,7 +3069,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).hypnoProstRubles ?? 0)[2] > 100) {
-                ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = ((s as any).hypnoProstRubles[2] ?? 0) - ((Math.floor(Math.random() * 9) + 1) * 10);
+                ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = ((s as any).hypnoProstRubles[2] ?? 0) - ((Math.floor(Math.random() * (9 - 1 + 1)) + (1)));
               }
               if (((s as any).hypnoProstRubles ?? 0)[2] < 100) {
                 ((s as any).hypnoProstRubles = (s as any).hypnoProstRubles ?? {})[2] = 100;

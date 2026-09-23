@@ -102,7 +102,8 @@ function enterKendraRoom_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
   (s as any).location_type = 'event';
   ((s as any).kendraQW = (s as any).kendraQW ?? {})['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
-  scene.img('images/characters/city/university/girl/kendra/femdom/femdom2_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/university/girl/kendra/f...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/university/girl/kendra/femdom/femdom2_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('She walks over and sits on the couch. "Come here and clean my boots, slave." You walk over and kneel next to the couch before grabbing some tissue to clean her boots, but she stops you. "No! Use your tongue."');
   scene.text('You nod. "Yes, mistress." You start licking her boots clean as she smacks you on the head and points out any spots you\'ve missed.');
   scene.text('Once you\'ve finally finished cleaning her boots, she looks them over before pointing to the door. "Good girl. Now leave, slave."');

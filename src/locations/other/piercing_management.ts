@@ -9,28 +9,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTotal(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'ears') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'ears') {
     (s as any).result = 24;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'nose') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'nose') {
       (s as any).result = 7;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'brow') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'brow') {
         (s as any).result = 2;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'lip') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'lip') {
           (s as any).result = 7;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'tongue') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'tongue') {
             (s as any).result = 4;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'navel') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'navel') {
               (s as any).result = 4;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'nipples') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'nipples') {
                 (s as any).result = 7;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 'pussy') {
+                if (String((s as any).locArgs?.[1] ?? '') === 'pussy') {
                   (s as any).result = 10;
                 }
               }
@@ -53,46 +53,46 @@ function enterTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  (s as any).result = (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_owned'] !== 0);
+  (s as any).result = (((s as any).pcs_piercings ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_owned'] !== 0);
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsPierced(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  (s as any).result = ((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0;
+  (s as any).result = ((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 0;
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  (s as any).result = (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).result = (((s as any).pcs_piercings ?? 0)?.['total'] > 0);
   } else {
-    (s as any).result = (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0);
+    (s as any).result = (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0);
   }
   return;
   // TODO-QSP: end
@@ -120,7 +120,7 @@ function enterSetManageAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPierce(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 0) {
     // TODO-QSP: exit
   }
   if (qspFunc(s, 'piercing_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) === 0) {
@@ -134,20 +134,20 @@ function enterPierce(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
+  if (String((s as any).locArgs?.[2] ?? '') <= 0) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'piercing_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) < Number((s as any).locArgs?.[2] ?? 0)) {
+  if (qspFunc(s, 'piercing_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) < String((s as any).locArgs?.[2] ?? '')) {
     // TODO-QSP: exit
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterPierce(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_owned'] = 1;
   // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], ARGS[2]
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'brow'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'nose'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'lip'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'tongue') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'brow'  ||  String((s as any).locArgs?.[1] ?? '') === 'nose'  ||  String((s as any).locArgs?.[1] ?? '') === 'lip'  ||  String((s as any).locArgs?.[1] ?? '') === 'tongue') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Facial piercing');
     qspCall(s, 'archetypes', 'gain', 'goth', 'tiny', 'Facial piercing');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'navel') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'navel') {
       qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Navel piercing');
     }
   }
@@ -157,16 +157,16 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[2] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = -((s as any).locArgs?.[2] ?? 0);
   }
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_' + Number((s as any).locArgs?.[2] ?? 0) + '_owned'] === 0) {
+  if (((s as any).pcs_piercings ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_' + (String((s as any).locArgs?.[2] ?? '')) + '_owned'] === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 0) {
     ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
   }
   // TODO-QSP: pcs_piercings[$ARGS[1]] = ARGS[2]
@@ -176,7 +176,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWearLast(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] >= 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] >= 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], -pcs_piercings[$ARGS[1]]
@@ -186,7 +186,7 @@ function enterWearLast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: exit
   }
   ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) - (1);
@@ -272,16 +272,16 @@ function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterBuy(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).price ?? 0);
   }
-  if (((s as any).pcs_piercings ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     scene.img(`${0}_image', ARGS[2])>>`);
     // TODO-QSP: dynamic text: The tattooist disinfects the area, pierces your <<$ARGS[1]>> and inserts your ch...
     scene.text(`The tattooist disinfects the area, pierces your ${((s as any).locArgs?.[1] ?? '')} and inserts your chosen piercing.`);
@@ -540,7 +540,7 @@ function enterEars(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'ears');
   (s as any).pmm_i = 1;
   // TODO-QSP: :loopears
-  if (((s as any).pcs_piercings ?? 0)['ears_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['ears_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''ears'', <<pmm_i>> & gt ''...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027ears/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'ears_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -557,10 +557,10 @@ function enterEars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEarsImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['ears'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/c' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -573,7 +573,7 @@ function enterNose(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'nose');
   (s as any).pmm_i = 1;
   // TODO-QSP: :loopnose
-  if (((s as any).pcs_piercings ?? 0)['nose_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['nose_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''nose'', <<pmm_i>> & gt ''...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027nose/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'nose_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -590,10 +590,10 @@ function enterNose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoseImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nose'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/d' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -606,7 +606,7 @@ function enterBrow(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'brow');
   (s as any).pmm_i = 1;
   // TODO-QSP: :loopbrow
-  if (((s as any).pcs_piercings ?? 0)['brow_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['brow_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''brow'', <<pmm_i>> & gt ''...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027brow/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'brow_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -623,10 +623,10 @@ function enterBrow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBrowImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['brow'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/e' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -639,7 +639,7 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'lip');
   (s as any).pmm_i = 1;
   // TODO-QSP: :looplip
-  if (((s as any).pcs_piercings ?? 0)['lip_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['lip_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''lip'', <<pmm_i>> & gt ''p...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027lip/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'lip_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -656,10 +656,10 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLipImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['lip'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/b' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -672,7 +672,7 @@ function enterTongue(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'tongue');
   (s as any).pmm_i = 1;
   // TODO-QSP: :looptongue
-  if (((s as any).pcs_piercings ?? 0)['tongue_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['tongue_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''tongue'', <<pmm_i>> & gt ...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027tongue/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'tongue_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -689,10 +689,10 @@ function enterTongue(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTongueImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['tongue'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/a' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -705,7 +705,7 @@ function enterNavel(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'navel');
   (s as any).pmm_i = 1;
   // TODO-QSP: :loopnavel
-  if (((s as any).pcs_piercings ?? 0)['navel_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['navel_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''navel'', <<pmm_i>> & gt '...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027navel/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'navel_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -722,10 +722,10 @@ function enterNavel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNavelImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['navel'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/n' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -738,7 +738,7 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'nipples');
   (s as any).pmm_i = 1;
   // TODO-QSP: :loopnipples
-  if (((s as any).pcs_piercings ?? 0)['nipples_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['nipples_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''nipples'', <<pmm_i>> & gt...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027nipples/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'nipples_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -755,10 +755,10 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNipplesImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nipples'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/f' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';
@@ -771,7 +771,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).pmm_total = qspFunc(s, 'piercing_management', 'get_total', 'pussy');
   (s as any).pmm_i = 1;
   // TODO-QSP: :looppussy
-  if (((s as any).pcs_piercings ?? 0)['pussy_' + ((s as any).pmm_i ?? 0) + '_owned'] === 1) {
+  if (((s as any).pcs_piercings ?? 0)['pussy_' + (((s as any).pmm_i ?? 0)) + '_owned'] === 1) {
     // TODO-QSP: dynamic text: <a href="exec: gs ''piercing_management'', ''wear'', ''pussy'', <<pmm_i>> & gt '...
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027wear/u0027, /u0027pussy/u0027); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', 'pussy_image', ((s as any).pmm_i ?? ''))}"></a>`);
   }
@@ -788,10 +788,10 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPussyImage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['pussy'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = -((s as any).locArgs?.[1] ?? 0);
   }
   (s as any).result = 'images/pc/body/piercings/g' + ((s as any).locArgs?.[1] ?? 0) + '.jpg';

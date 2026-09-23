@@ -13,7 +13,7 @@ function enterOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).help_from_curloc = ((s as any).curloc ?? 0);
   (s as any).help_from_loc_arg = ((s as any).loc_arg ?? 0);
   (s as any).help_from_location_type = ((s as any).location_type ?? 0);
-  // TODO-QSP: gt 'help', iif($ARGS[1] <> '', $ARGS[1], 'show')
+  qspGoto(s, 'help', 'iif($ARGS[1] <> \'', '$ARGS[1]', '\'show\')');
   // TODO-QSP: end
   scene.build();
 }
@@ -44,10 +44,10 @@ function enterDefGroup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_toc_page[$ARGS[2]] = ''
   // TODO-QSP: $help_toc_loc[$ARGS[2]] = 'help'
   // TODO-QSP: help_toc_is_group[$ARGS[2]] = 1
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: $help_toc_sections[] = $ARGS[2]
   } else {
-    if (((s as any).help_toc_children ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
+    if (((s as any).help_toc_children ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
       // TODO-QSP: $help_toc_children[$ARGS[1]] = $ARGS[2]
     } else {
       // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
@@ -58,7 +58,7 @@ function enterDefGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefChild(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).help_toc_children ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
+  if (((s as any).help_toc_children ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
     // TODO-QSP: $help_toc_children[$ARGS[1]]  = $ARGS[2]
   } else {
     // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]

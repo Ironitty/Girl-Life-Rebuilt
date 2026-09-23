@@ -235,7 +235,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
     scene.text(`Anastasia suddenly grows very serious."${((st as any).model ?? 0)?.['firstname'] ?? ''}, you should know that as a model and a young woman, a balanced diet is one of the most important things you can have. That is why I take the time to cook all my own food and make sure that I am getting all my nutrients."`);
     scene.text('You nod in understanding. She\'s right, maybe you should be paying more attention to what you eat.');
     scene.text('"Young Mari hasn\'t been telling you to go to that burger joint has she?" she says in an admonishing tone.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Ask how she stays in shape', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
@@ -255,7 +255,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
       scene.text('"Like I said, I rarely have time to go to the gym, fitting my exercise in with my work is one of the best ways to get it in. A woman can burn more than 150 calories per hour during sex, it\'s a great way to stay in shape. Even more if you\'re being vigorous in the cowgirl position. That one really helps tone your core you know."');
       ((st as any).anastasia = (st as any).anastasia ?? {})['exercise'] = 1;
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -266,7 +266,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh my!"');
     scene.text('Your eyes go wide in shock. As open as Anastasia is about sex, you certainly did not expect her to say something like that. She reads the surprise in your expression and keeps going, with a twinkle in her eye.');
     scene.text('"That, or it\'s the lie she told my grandfather after having an affair with a black man. I\'m somewhat inclined to believe it\'s the latter, both because of my own taste for black cock and that I have heard many tales indicating my babushka was quite the floozy in her home town. A little place called Pavlovsk, just outside the city limits. Have you heard of it?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChatPersonal(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -281,7 +281,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"You must always stay calm, confident, and in control when modelling," she says, suddenly striking a pose. "Remember, you are a beautiful and graceful young woman. As long as you maintain confidence in yourself, that same confidence will shine through to your posture.');
     scene.text('You thank her for her advice and you\'ll try to keep it in mind.');
     qspCall(st, 'exp_gain', 'mdlng', 4);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -307,7 +307,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/3.jpg');
     scene.text('"Wow Anastasia… That was quite the story."');
     scene.text('She smiles at you and says, "I\'m glad I wasn\'t too boring for you."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -328,7 +328,7 @@ function enterSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s your favorite thing to do in sex?" you ask Anastasia.');
     scene.text('"Well, I am naturally more of a giver than a receiver. I get off knowing that the other person is getting off," she smiles warmly. "So most times, I ask them what they want and I give it to them, gaining satisfaction that way. Blowjobs, titjobs, and doggy style tend to be the most popular requests.');
     scene.text('"But if I\'m being honest, I love it when a man knows how to eat pussy. Sex is wonderful and nothing can substitute the feeling of a nice, hard, cock inside you, but when a man knows what he\'s doing down there- oh my! I could practically make him drown in it."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

@@ -22,7 +22,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     (s as any).i2 = 0;
     // TODO-QSP: :beachcool_loop
-    if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_beach += '<tr>'
       }
@@ -39,7 +39,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).i = 1;
     // TODO-QSP: :beachjock_loop
-    if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  &&  ((s as any).i ?? 0) !== 141) {
+    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).i ?? 0) !== 141) {
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_beach += '<tr>'
       }
@@ -862,7 +862,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) {
             scene.text('Katja smiles as you approach and you have a lively conversation about your favorite subjects and her plans for going to university after school. "I want to become a teacher. Helping others achieve their potential just sounds like the perfect job!" she gleefully states.');
           } else {
-            // TODO-QSP: dynamic text: Lying next to Katja, you have a lively conversation looking back at your favorit...
+            // TODO-QSP: dynamic text: 'Lying next to Katja, you have a lively conversation looking back at your favori...
             scene.text('Lying next to Katja, you have a lively conversation looking back at your favorite class in school and about it is going to be for ' + ((((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 1) ? ('her') : ('you')) + ' studying at the university.');
           }
           if (((s as any).university ?? 0)?.['student'] === 1  &&  ((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
@@ -1080,9 +1080,9 @@ function enterMarcus_KatjaTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['marcus_asked'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/marcus/beach_chat.jpg');
   scene.text('"So you know how we sometimes have fun together?" you ask him.');
-  // TODO-QSP: dynamic text: "Yeah?" he answers and you smile. "Well, I have this friend who''s ' + iif(katja...
+  // TODO-QSP: dynamic text: '"Yeah?" he answers and you smile. "Well, I have this friend who''s ' + iif(katj...
   scene.text('"Yeah?" he answers and you smile. "Well, I have this friend who\'s ' + ((((s as any).katjaQW ?? 0)?.['QWstage'] > 5) ? ('a little shy and don\'t have a boyfriend so I was wondering if you were up for a threesome?') : ('never been with a boy before, but would like to try it. So I was wondering if you were up for helping me give her an amazing first time?')) + ' She\'s ' + ((((s as any).pcs_hotcat ?? 0) < ((s as any).npc_hotcat ?? 0)?.['A14']) ? ('even hotter than I am,') : ('totally hot,')) + ' so you won\'t regret it."');
-  // TODO-QSP: dynamic text: "Are you asking me if I want to have a threesome with two beautiful girls' + iif...
+  // TODO-QSP: dynamic text: '"Are you asking me if I want to have a threesome with two beautiful girls' + ii...
   scene.text('"Are you asking me if I want to have a threesome with two beautiful girls' + ((((s as any).katjaQW ?? 0)?.['QWstage'] > 5) ? (', with one of them even being a virgin?') : ('?')) + '" he asks with a surprised look on his face. "Of course I\'m up for this!" he exclaims as his face turns into a huge grin.');
   scene.text('"Great," you answer. "I\'ll call you with her address when we are ready. But you have to be discreet, we don\'t want any rumors spread around!" you tell him and he smiles. "Of course, I\'m a gentleman and gentlemen never kiss and tell. I look forward to your call."');
   // TODO-QSP: end

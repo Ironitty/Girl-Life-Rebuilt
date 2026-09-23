@@ -120,7 +120,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 5  &&  ((s as any).hour ?? 0) < 20) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: dynamic text: It''s past '+func('time', 'get_time_string', 5, 0)+', and too late to find any w...
+    // TODO-QSP: dynamic text: 'It''s past '+func('time', 'get_time_string', 5, 0)+', and too late to find any ...
     scene.text('It\'s past 5:00, and too late to find any work now. You can try again after 20:00.');
     scene.actions([
       { label: 'Leave', goto: ['street_walker', 'end'] },
@@ -158,7 +158,8 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/workingw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/working' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/worki...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/working` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       scene.text('You walk along the street trying to entice the drivers of cars that pass by, but are unable to get anyone to stop.');
       scene.actions([
@@ -177,7 +178,8 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
   } else {
-    scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   }
   scene.text('As you walk along the street trying to entice one of the slower moving cars, you spot some other girls working the streets as well. It doesn\'t look like they\'re having any luck either.');
   // TODO-QSP: end
@@ -190,7 +192,8 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       scene.text('You walk over and smile at the other girls, but are met with dark and dangerous stares.');
       scene.text('"What the fuck do you want, bitch?" one of them asks.');
@@ -215,7 +218,8 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/hooke...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/hookers` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
       }
       if (((st as any).ruslan_pimp ?? 0) === 2) {
         scene.text('You walk over and introduce yourself to the other girls. One of them starts off bitchy, but the other one tells her you work for Ruslan too, which quickly calms her down.');
@@ -349,7 +353,8 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/barginw1.jpg');
   } else {
-    scene.img('images/locations/city/shared/streetwalker/bargin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/shared/streetwalker/bargi...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/shared/streetwalker/bargin` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   }
   scene.text('A car slows down and pulls up to the curb where you\'re walking, so you walk over to him. As you do, he rolls down his window. You bend over and practically lean into his window. "You looking to party, handsome?"');
   scene.text('He looks you over as best he can and licks his lips. "How much?"');

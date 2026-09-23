@@ -22,7 +22,7 @@ function enterStage_1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 120));
     qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 5) + 6));
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/pc/activities/photography/job/tank.jpg');
     scene.text('You arrive at the Experience Center and spend the next two hours taking as many pictures of the experience as you can. The group is clearly enjoying the event; They get to ride in military vehicles across rough terrain and fire weapons at the shooting range.');
     // TODO-QSP: dynamic text: Once the day is over, you remove your SD card and hand it to the representative,...
@@ -68,7 +68,7 @@ function enterStage_3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 90));
     qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 5) + 6));
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/pc/activities/photography/job/wedding.jpg');
     scene.text('You meet the bride and groom and help direct them into a number of framed situations for you to take some beautiful photos of them together.');
     scene.text('Once you have enough, you spend the rest of the day in the background taking a number of photos of the wedding. Once it\'s over, you meet back up with the relative who takes the SD card from you.');
@@ -97,7 +97,7 @@ function enterStage_4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 61) + 180));
     qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 7) + 9));
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPhotojobPay(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/pc/activities/photography/job/motorsport.jpg');
     scene.text('You\'re dropped off at the employee entrance and directed to the pit area as the teams get their vehicles prepared.');
     scene.text('You start off by getting shots of the teams in the build-up to the race, showcasing the tension and focus as the countdown approaches zero.');
@@ -217,7 +217,7 @@ function enterJob_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === "((s as any).evt_stage ?? 0)"  ||  Number((s as any).locArgs?.[0] ?? 0) === '') {
+  if (String((s as any).locArgs?.[0] ?? '') === "((s as any).evt_stage ?? 0)"  ||  String((s as any).locArgs?.[0] ?? '') === '') {
     ((s as any).photography = (s as any).photography ?? {})['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
     // TODO-QSP: gs 'money', 'earn', evtVars['wage']
     qspCall(s, 'stat', '');

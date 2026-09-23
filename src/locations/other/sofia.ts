@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -32,7 +34,7 @@ function enterSpying(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
-  qspGoto(s, 'sofia', 'spying_sex' + (Math.floor(Math.random() * 6) + 1) + '');
+  qspGoto(s, 'sofia', qspUntranslated(s, "''spying_sex<<rand(1'", { location: "sofia" }), '6)>>');
   // TODO-QSP: end
   scene.build();
 }
@@ -58,8 +60,8 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia is on all fours giving <<$sexpartner>> a loud and sloppy blowjob. His cock...
-  scene.text('Sofia is on all fours giving ' + ((s as any).sexpartner ?? '') + ' a loud and sloppy blowjob. His cock is \'+iif( npc_dick[\'A261\'] < pcs_vag, \'not that impressive.\', \'average-sized.\')+\'');
+  // TODO-QSP: dynamic text: 'Sofia is on all fours giving <<$sexpartner>> a loud and sloppy blowjob. His coc...
+  scene.text(`Sofia is on all fours giving ${((s as any).sexpartner ?? '')} a loud and sloppy blowjob. His cock is ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not that impressive.') : ('average-sized.')) + '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
@@ -121,8 +123,8 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia gets on her back and props herself up with her arms, biting her lip as <<$...
-  scene.text('Sofia gets on her back and props herself up with her arms, biting her lip as ' + ((s as any).sexpartner ?? '') + ' moves in between her legs. He gropes her perky breasts as he slides his \'+iif( npc_dick[\'A261\'] < pcs_vag, \'not so impressive\', \'average\')+\' cock into her pussy and starts fucking her hard.');
+  // TODO-QSP: dynamic text: 'Sofia gets on her back and props herself up with her arms, biting her lip as <<...
+  scene.text(`Sofia gets on her back and props herself up with her arms, biting her lip as ${((s as any).sexpartner ?? '')} moves in between her legs. He gropes her perky breasts as he slides his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock into her pussy and starts fucking her hard.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
@@ -152,8 +154,8 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia is on all fours moaning loudly as <<$sexpartner>> pounds her hard doggysty...
-  scene.text('Sofia is on all fours moaning loudly as ' + ((s as any).sexpartner ?? '') + ' pounds her hard doggystyle with his \'+iif( npc_dick[\'A261\'] < pcs_vag, \'not so impressive\', \'average\')+\' cock.');
+  // TODO-QSP: dynamic text: 'Sofia is on all fours moaning loudly as <<$sexpartner>> pounds her hard doggyst...
+  scene.text(`Sofia is on all fours moaning loudly as ${((s as any).sexpartner ?? '')} pounds her hard doggystyle with his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
@@ -184,8 +186,8 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia is bouncing up and down on <<$sexpartner>>''s '+iif( npc_dick['A261'] < pc...
-  scene.text('Sofia is bouncing up and down on ' + ((s as any).sexpartner ?? '') + '\'s \'+iif( npc_dick[\'A261\'] < pcs_vag, \'not so impressive\', \'average\')+\' cock, riding him hard cowgirl style while moaning loudly.');
+  // TODO-QSP: dynamic text: 'Sofia is bouncing up and down on <<$sexpartner>>''s '+iif( npc_dick['A261'] < p...
+  scene.text(`Sofia is bouncing up and down on ${((s as any).sexpartner ?? '')}'s ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock, riding him hard cowgirl style while moaning loudly.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave before you get caught', handler: (st: GameState) => {
@@ -215,8 +217,8 @@ function enterSpyingSex6(s: GameState, scene: SceneBuilder): void {
     (s as any).spyscenefirst = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpyingSexIntrodesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  // TODO-QSP: dynamic text: Sofia sits on all fours on the bed, presenting her big round ass to <<$sexpartne...
-  scene.text('Sofia sits on all fours on the bed, presenting her big round ass to ' + ((s as any).sexpartner ?? '') + ', who jerks his \'+iif( npc_dick[\'A261\'] < pcs_vag, \'not so impressive\', \'average\')+\' cock over it.');
+  // TODO-QSP: dynamic text: 'Sofia sits on all fours on the bed, presenting her big round ass to <<$sexpartn...
+  scene.text(`Sofia sits on all fours on the bed, presenting her big round ass to ${((s as any).sexpartner ?? '')}, who jerks his ` + ((((s as any).npc_dick ?? 0)?.['A261'] < ((s as any).pcs_vag ?? 0)) ? ('not so impressive') : ('average')) + ' cock over it.');
   scene.text('He finally squirts a small amount of cum over her ass while yelling very loudly, as if he was letting loose a fire hose of it.');
   scene.text('Sofia does cheer him on, so you\'re not sure if she\'s aware of how little cum he actually delivered.');
   // TODO-QSP: end

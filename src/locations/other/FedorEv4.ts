@@ -289,7 +289,8 @@ function enterMovieAction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino' + (Math.floor(Math.random() * 2) + 2) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino` + (Math.floor(Math.random() * 2) + 2) + '.mp4"></video></center>');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
   // TODO-QSP: end
   scene.actions([
@@ -302,7 +303,8 @@ function enterMovieSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You and Fedor begin watching a variety of different sports channels while occasionally discussing your favorite teams and fighters.');
   // TODO-QSP: end
   scene.actions([
@@ -315,7 +317,8 @@ function enterMovieFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You and Fedor begin watching a family/drama while occasionally discussing your favorite characters.');
   // TODO-QSP: end
   scene.actions([
@@ -329,7 +332,8 @@ function enterMoviePorn(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('You and Fedor begin watching a variety of different adult films while occasionally discussing your favorite pornstars and positions.');
   // TODO-QSP: end
   scene.actions([
@@ -766,7 +770,7 @@ function enterPicture(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-  scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv4" }) + '');
+  scene.img('' + qspFunc(s, '$$face_image') + '');
   scene.text('Fedor has framed the picture he took of you and placed it by his bed with your name on the frame. After seeing the picture by his bed, you can\'t help but think to yourself. "That\'s so sweet. I must mean a lot to him… ohh Fedor." you then place the picture back.');
   // TODO-QSP: end
   scene.actions([
@@ -945,7 +949,8 @@ function enterTVAction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 15));
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino' + (Math.floor(Math.random() * 2) + 2) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino` + (Math.floor(Math.random() * 2) + 2) + '.mp4"></video></center>');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
   // TODO-QSP: end
   scene.actions([
@@ -959,7 +964,8 @@ function enterTVGeographic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 6) + 5));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
   scene.text('You change to the geographic channel. You study what you see to have a better understanding of the world around you.');
   // TODO-QSP: end
   scene.actions([
@@ -973,7 +979,8 @@ function enterTVSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 10));
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You begin cycling through sports channels, enjoying the athletes competing in various sports.');
   // TODO-QSP: end
   scene.actions([
@@ -987,7 +994,8 @@ function enterTVFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 15));
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('You change to the family channel and begin watch an animated movie with cute cuddly animals.');
   // TODO-QSP: end
   scene.actions([
@@ -1002,7 +1010,8 @@ function enterTVPorn(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
   scene.text('You begin cycling through adult channels watching various sexual acts being performed by professional pornstars…');
   // TODO-QSP: end
   scene.actions([
@@ -1733,7 +1742,7 @@ function enterHomeEntrance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorShelter ?? 0) === 2) {
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv4" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     scene.text('You place the key into the door lock then turn it, unlocking the door then making your way inside.');
     scene.actions([
       { label: 'Enter house', goto: ['FedorEv4', 'Hallway'] },

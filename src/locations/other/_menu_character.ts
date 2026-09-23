@@ -31,7 +31,7 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $tabsname[7] = 'Magic'
     // TODO-QSP: $tabsaction[7] = "menu_page = 7 & gt '$menu_character', 'magic'"
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_character" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
@@ -649,7 +649,7 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
 function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp = (s as any).temp ?? {})['skl_name'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).temp = (s as any).temp ?? {})['skl_popup'] = ((s as any).locArgs?.[2] ?? 0);
-  if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[3] ?? '') !== '') {
     ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).temp = (s as any).temp ?? {})['skl_only'] = ((s as any).locArgs?.[4] ?? 0);
     ((s as any).temp = (s as any).temp ?? {})['no_exp'] = ((s as any).locArgs?.[5] ?? 0);
@@ -2402,11 +2402,11 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
 function enterArchetypes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', 'Archetypes');
   scene.text('<center><h2>Archetypes</h2></center>');
-  qspCall(s, 'archetypes', 'arch_tabs', ((Number((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('main')));
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'catalog') {
+  qspCall(s, 'archetypes', 'arch_tabs', ((String((s as any).locArgs?.[1] ?? '') !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('main')));
+  if (String((s as any).locArgs?.[1] ?? '') === 'catalog') {
     qspCall(s, 'archetypes', 'cause_catalog');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'history') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'history') {
       qspCall(s, 'archetypes', 'history_page');
     } else {
       // TODO-QSP: dynamic text: $settings['table_start']

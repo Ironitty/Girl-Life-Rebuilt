@@ -88,7 +88,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure, that sounds fun and I just so happen to have some time to kill." You say with a wink.');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
@@ -176,7 +176,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
     scene.text('You give her a hard look and eye her up and down. "Fine I\'m fucking bored anyways, but you\'re paying."');
     scene.text('"Good, I expected no other outcome." she says. "I\'ll give it to you to decide what we should do?".');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -227,7 +227,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You think about it a moment and figure why not "Sure I would love to out with you."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
@@ -302,7 +302,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Stop, you\'re making me blush again. Sure, sounds like fun, I would love to."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do gorgeous?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do gorgeous?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));

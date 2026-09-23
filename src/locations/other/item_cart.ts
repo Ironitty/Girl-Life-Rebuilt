@@ -23,7 +23,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 1;
   // TODO-QSP: :loopshopping_cart
-  if (((s as any).item_curr_aisle ?? 0)[((s as any).i ?? 0)] !== '') {
+  if (((s as any).item_curr_aisle ?? 0)[(((s as any).i ?? 0))] !== '') {
     (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
     (s as any).cart_tmp = ((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))];
     (s as any).item_line = '<TR bgcolor=' + ((s as any).temp_bcolor ?? 0) + '>';
@@ -31,14 +31,14 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $item_line += '<td><<mc_inventory[$cart_tmp]>></td>'
     // TODO-QSP: $item_line += '<td><<quantity_curr_aisle[''<<i>>'']>></td>'
     // TODO-QSP: $item_line += '<td>' + $func('money', 'string_price', cost_curr_aisle['<<i>>']) + '</td>'
-    if (((s as any).cart_curr_quantity ?? 0)[((s as any).i ?? 0)] > 0) {
+    if (((s as any).cart_curr_quantity ?? 0)[(((s as any).i ?? 0))] > 0) {
       // TODO-QSP: $item_line += '<td valign="center" align="center" width="6%"><a href="exec:gt ''item_cart'', ''remov...
       // TODO-QSP: $item_line += '<td valign="center" align="center" width="6%"><a href="exec:gt ''item_cart'', ''remov...
     } else {
       // TODO-QSP: $item_line += '<td></td><td></td>'
     }
     // TODO-QSP: $item_line += '<td align="center"><<cart_curr_quantity[''<<i>>'']>></td>'
-    if (((s as any).cart_curr_quantity ?? 0)[((s as any).i ?? 0)] + ((s as any).mc_inventory ?? 0)?.[String((s as any).cart_tmp ?? 0)] < ((s as any).max_curr_aisle ?? 0)[((s as any).i ?? 0)]  ||  ((s as any).max_curr_aisle ?? 0)[((s as any).i ?? 0)] === 0) {
+    if (((s as any).cart_curr_quantity ?? 0)[(((s as any).i ?? 0))] + ((s as any).mc_inventory ?? 0)?.[String((s as any).cart_tmp ?? 0)] < ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))]  ||  ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))] === 0) {
       // TODO-QSP: $item_line += '<td valign="center" align="center" width="6%"><a href="exec:gt ''item_cart'', ''add''...
       // TODO-QSP: $item_line += '<td valign="center" align="center" width="6%"><a href="exec:gt ''item_cart'', ''add''...
     } else {
@@ -68,10 +68,10 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((((s as any).max_curr_aisle ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '']]), ((s as any).locArgs?.[2] ?? 0))) : (((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((((s as any).max_curr_aisle ?? 0)[(String((s as any).locArgs?.[1] ?? ''))] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '']]), ((s as any).locArgs?.[2] ?? 0))) : (((s as any).locArgs?.[2] ?? 0)));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * ((s as any).locArgs?.[2] ?? 0));
   ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
-  if (((s as any).event_curr_aisle ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).event_curr_aisle ?? 0)[(String((s as any).locArgs?.[1] ?? ''))] !== '') {
     // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
   }
   dynamicGoto(s, 'loc_s', 'args_s');
@@ -87,7 +87,7 @@ function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCartTotal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...
+  // TODO-QSP: dynamic text: '<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs",...
   scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? ''))}"><td>&nbsp;<b>Total cost of items in cart: ' + $func('money', 'string_price', cart_tally) + '</b>&nbsp;</td></table></center>`);
   // TODO-QSP: dynamic text: '<center><table border=5 cellspacing=0 cellpadding=5 bgcolor='+$func("shortgs", ...
   scene.text('<center><table border=5 cellspacing=0 cellpadding=5 bgcolor=\'+$func("shortgs", "rgb_to_hex", bcolor)+\'><tr>');

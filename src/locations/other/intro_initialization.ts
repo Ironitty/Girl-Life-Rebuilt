@@ -11,27 +11,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'clothing') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'clothing') {
     (s as any).temp_type = ((s as any).locArgs?.[2] ?? 0);
   } else {
     (s as any).temp_type = (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('_'))) + 1) - 1)));
   }
   // TODO-QSP: gs $ARGS[1], 'add_item', $temp_type, ARGS[3]
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'clothing') {
-    if (Number((s as any).locArgs?.[4] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'clothing') {
+    if (String((s as any).locArgs?.[4] ?? '') > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] = <<ARGS[4]>>'
     }
-    if (Number((s as any).locArgs?.[5] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[5] ?? '') > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_b[<<ARGS[3]>>] = <<ARGS[5]>>'
     }
-    if (Number((s as any).locArgs?.[6] ?? 0) > 0) {
+    if (String((s as any).locArgs?.[6] ?? '') > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] += rand(-<<ARGS[6]>>, <<ARGS[6]>>)'
     }
-    if (Number((s as any).locArgs?.[6] ?? 0) < 0) {
+    if (String((s as any).locArgs?.[6] ?? '') < 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] += rand(<<ARGS[6]>>, 0)'
     }
   }
-  if (Number((s as any).locArgs?.[7] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[7] ?? '') === 1) {
     // TODO-QSP: gs $ARGS[1], 'wear', $temp_type, ARGS[3]
   }
   return;
@@ -50,7 +50,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tot_sum = 0;
   (s as any).temp_gr_ind = 1;
   // TODO-QSP: :generate_random_loop
-  if (((s as any).temp_gr_ind ?? 0) <= Number((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).temp_gr_ind ?? 0) <= String((s as any).locArgs?.[1] ?? '')) {
     ((s as any).temp_rand = (s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2)));
     (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
@@ -58,7 +58,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: :generate_random_stat_loop
   if (((s as any).temp_tot_sum ?? 0) > 0) {
-    (s as any).temp_rand = 0;
+    (s as any).temp_rand = (Math.floor(Math.random() * (((s as any).locArgs?.[1] ?? 0) - 1 + 1)) + (1));
     if (((s as any).temp_rand ?? 0)?.[String((s as any).temp_rand ?? 0)] > -2) {
       ((s as any).temp_rand = (s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] = ((s as any).temp_rand[String((s as any).temp_rand ?? 0)] ?? 0) - (1);
       (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) - (1);
@@ -66,7 +66,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'generate_random_stat_loop'
   } else {
     if (((s as any).temp_tot_sum ?? 0) < 0) {
-      (s as any).temp_rand = 0;
+      (s as any).temp_rand = (Math.floor(Math.random() * (((s as any).locArgs?.[1] ?? 0) - 1 + 1)) + (1));
       if (((s as any).temp_rand ?? 0)?.[String((s as any).temp_rand ?? 0)] < 2) {
         ((s as any).temp_rand = (s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] = ((s as any).temp_rand[String((s as any).temp_rand ?? 0)] ?? 0) + (1);
         (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (1);
@@ -180,7 +180,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMid(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.showMenu();
+  // TODO-QSP: showstat 1
   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 1;
   // TODO-QSP: showobjs cfg_vars['debug']
   qspCall(s, 'obj_din', 'old');
@@ -385,7 +385,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'init');
   qspCall(s, 'traits', 'daily');
   qspCall(s, 'stat', '');
-  scene.hideMenu();
+  // TODO-QSP: showstat 0
   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 0;
   // TODO-QSP: showobjs cfg_vars['debug']
   if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {

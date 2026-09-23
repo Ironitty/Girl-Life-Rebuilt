@@ -483,9 +483,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Find a place to sit', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
-  } },
+        { label: 'Find a place to sit', goto: ['uni_lessons1', 'ARGS[1]'] },
       ]);
     }
   }
@@ -497,7 +495,7 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 4) + 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/albina_bj.jpg');
     if (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-      // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+      // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
       scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see a white girl kneeling on a sofa next to ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ', gagging loudly as she sucks on his monstrous dick, trying to take as much of it into her mouth as she can. She lets out a muffled moan when he roughly spanks her ass.');
       scene.text('"You white girls sure love sucking black cock!" he moans as he gropes and paws at her ass.');
       scene.text('She then suddenly pulls herself up so only the tip is still in her mouth and glances over at the door. Shit. Did she hear you?!');
@@ -505,13 +503,13 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 0) {
         ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['know_ermias_sex'] = 1;
-        // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+        // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
         scene.text('You turn the handle and gently push the door open just wide enough to look inside and are shocked to see Albina kneeling on a sofa next to ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ', gagging loudly as she sucks on his monstrous dick, trying to take as much of it into her mouth as she can. She lets out a muffled moan when he roughly spanks her ass.');
         scene.text('"You white girls sure love sucking black cock!" he moans as he gropes and paws at her ass.');
         scene.text('She then suddenly pulls herself up so only the tip is still in her mouth and glances over at the door. Shit. Did she hear you?!');
         scene.text('You quickly close the door before you\'re caught. You wonder if you should even mention this to Albina…');
       } else {
-        // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+        // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
         scene.text('You turn the handle and gently push the door open just wide enough to look inside and see Albina sucking on ' + (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias\'s') : ('the same black guy as last time\'s')) + ' monstrous dick, causing her to gag as drool drips from her mouth.');
         scene.text('"You might be the best dick sucker in the whole dorm!" he grunts as he gropes and paws at her ass.');
         scene.text('She suddenly glances in your direction, so you quickly close the door before you\'re caught, although not without sneaking a last, somewhat jealous glance at the massive, drool covered cock in front of you.');
@@ -521,7 +519,7 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 4) + 0) === 1) {
       scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/albina_vag.jpg');
       if (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-        // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+        // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
         scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see a white girl and ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' on a sofa, the girl moaning loudly as she rides his monstrous dick while he roughly spanks and squeezes her ass.');
         scene.text('"You like getting your little white pussy fucked by a big black cock?" he grunts. "Ride it, slut!"');
         scene.text('The girl cries out in pleasure and starts begging him to fuck her even harder, so you quickly close the door before you\'re caught.');
@@ -529,12 +527,12 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 0) {
           ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['know_ermias_sex'] = 1;
-          // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+          // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
           scene.text('You turn the handle and gently push the door open just wide enough to look inside and are shocked to see Albina and ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' on a sofa, Albina moaning loudly as she rides his monstrous dick and he roughly spanks and squeezes her ass.');
           scene.text('"You like getting your little white pussy fucked by a big black cock, slut?" he grunts.');
           scene.text('She cries out in pleasure and starts begging him to fuck her even harder, so you quickly close the door before you\'re caught. You wonder if you should even mention this to Albina…');
         } else {
-          // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+          // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
           scene.text('You turn the handle and gently push the door open just wide enough to look inside and see Albina riding ' + (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the same black guy as last time')) + ' on the sofa. You watch as he firmly grabs her waist and pulls her down while thrusting his hips upwards, his monstrous dick slowly sinking almost balls deep into her pussy.');
           scene.text('"<i>Fuuuuuccckkk</i>… I can feel it in my stomach!" she cries out as she shivers in pleasure. "Feel… So… Full!"');
           scene.text('"Your little white pussy will not be so tight when I am done stretching it out!" he grunts and smacks her ass. "Now ride it, slut!"');
@@ -545,18 +543,18 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 4) + 0) === 2) {
         scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/albina_anal.jpg');
         if (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-          // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+          // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
           scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see a naked white girl on her back on the sofa, moaning loudly as ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' very roughly pounds her ass with his monstrous dick.');
           scene.text('The girl cries out in pleasure and starts rubbing her clit while begging him to fuck her even harder, so you quickly close the door before you\'re caught.');
           scene.text('That girl was very pretty, and you can\'t help but feel like you should recognize her face. Maybe you\'ve seen her somewhere before?');
         } else {
           if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 0) {
             ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['know_ermias_sex'] = 1;
-            // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+            // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
             scene.text('You turn the handle and gently push the door open just wide enough to look inside and are shocked to see Albina on her back on the sofa, moaning loudly as ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' very roughly pounds her ass with his monstrous dick.');
             scene.text('She cries out in pleasure and starts rubbing her clit while begging him to fuck her even harder, so you quickly close the door before you\'re caught. You wonder if you should even mention this to Albina…');
           } else {
-            // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+            // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
             scene.text('You turn the handle and gently push the door open just wide enough to look inside and see Albina on her back on the sofa, moaning loudly as ' + (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the same black guy as last time')) + ' fucks her ass.');
             scene.text('"Do all white girls like taking black cocks up the ass as much as you?" he grunts.');
             scene.text('Albina starts rubbing her clit while begging him to fuck her harder, so you quickly close the door before you\'re caught, although not without sneaking a last, somewhat jealous glance at the massive black cock in front of you.');
@@ -566,7 +564,7 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
         if ((Math.floor(Math.random() * 4) + 0) === 3  &&  (((s as any).hour ?? 0) === 20  &&  ((s as any).minut ?? 0) > 30)) {
           scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/albina_facial.jpg');
           if (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-            // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+            // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
             scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see a naked white girl quickly getting down on her knees and sticking her tongue out as ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' stands over her while stroking his monstrous dick.');
             scene.text('The girl gazes lustfully at his huge cock while begging him to cum over her face. A few seconds later, he grunts loudly as he reaches climax, plastering the girl\'s face and tongue with a huge load of thick cum. When he finally finishes, she gazes up at him with a happy smile before making a show of swallowing the cum in her mouth.');
             scene.text('She then takes the thick tip of his cock into her mouth and greedily sucks on it as his cum drips from her chin onto her breasts.');
@@ -574,12 +572,12 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 0) {
               ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['know_ermias_sex'] = 1;
-              // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+              // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
               scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see Albina quickly getting down on her knees and sticking her tongue out as ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('a black guy')) + ' stands over her while stroking his monstrous dick.');
               scene.text('She gazes lustfully at his huge cock while begging him to cum over her face. A few seconds later, he grunts loudly as he reaches climax, plastering her face and tongue with a huge load of thick cum. When he finally finishes, she gazes up at him with a happy smile before making a show of swallowing the cum in her mouth.');
               scene.text('She then takes the thick tip of his cock into her mouth and greedily sucks on it as his cum drips from her chin onto her breasts. You wonder if you should even mention this to Albina…');
             } else {
-              // TODO-QSP: dynamic text: You turn the handle and gently push the door open just wide enough to look insid...
+              // TODO-QSP: dynamic text: 'You turn the handle and gently push the door open just wide enough to look insi...
               scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see Albina getting on her knees and sticking her tongue out as ' + (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the same black guy as last time')) + ' stands over her while stroking his monstrous dick.');
               scene.text('"I am going to cover your pretty little face with my cum!" he grunts before he suddenly reaches climax and plasters Albina\'s face and tongue with a huge load of thick cum. When he finally finishes, she gazes up at him with a happy smile before making a show of swallowing the cum in her mouth.');
               scene.text('She then takes the thick tip of his cock into her mouth and greedily sucks on it as his cum drips from her chin onto her breasts.');

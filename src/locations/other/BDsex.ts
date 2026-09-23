@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -678,7 +678,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
           scene.text(`${((s as any).npcdesc ?? '')} politely says goodbye and leaves.`);
           scene.actions([
 { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt $home['entrance'], $home['entrance_arg']
+    dynamicGoto(st, (((st as any).home ?? {})['entrance']), (((st as any).home ?? {})['entrance_arg']));
   } },
 ]);
           return;

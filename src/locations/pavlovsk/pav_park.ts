@@ -883,13 +883,15 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'arousal', 'end');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 3) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/flash'+rand(3, 4)+...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 3) + '.jpg"></center>');
     } else {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/park/fl...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool air against your warm skin causes you to shiver.');
     scene.text('Almost immediately, your nipples start to harden, a mixed reaction from the air hitting them and your growing excitement.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

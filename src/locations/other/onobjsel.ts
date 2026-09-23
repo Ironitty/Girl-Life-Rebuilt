@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Console</center>') {
-    (s as any).dynamicCommand = 0;
+    (s as any).dynamicCommand = window.prompt("Enter command to execute.") ?? '';
     if (((s as any).dynamicCommand ?? 0) === '') {
       // TODO-QSP: exit
     }
@@ -26,14 +26,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   if (((s as any).selobj ?? 0) === '<center>Add Debug Variable</center>') {
-    (s as any).tmpVar = 0;
+    (s as any).tmpVar = window.prompt("Enter the variable name") ?? '';
     if (((s as any).tmpVar ?? 0) !== '') {
       qspCall(s, 'obj_din', 'AddDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Delete Debug Variable</center>') {
-    (s as any).tmpVar = 0;
+    (s as any).tmpVar = window.prompt("Enter the variable name to delete") ?? '';
     if (((s as any).tmpVar ?? 0) !== '') {
       qspCall(s, 'obj_din', 'DeleteDebugVar', ((s as any).tmpVar ?? 0));
       qspCall(s, 'stat', '');
@@ -45,7 +45,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) > 0) {
     (s as any).tmpPos = ((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) - 1;
     (s as any).tmpVar = (String(((s as any).selobj ?? 0)).slice((1)-1, ((1)-1)+(((s as any).tmpPos ?? 0))));
-    (s as any).tmpVal = 0;
+    (s as any).tmpVal = window.prompt("Enter a value for <<$tmpVar>>") ?? '';
     if (((s as any).tmpVal ?? 0) !== '') {
       if (((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1) === 1) {
         // TODO-QSP: dyneval('<<$tmpVar>> = "<<$tmpVal>>"')

@@ -161,7 +161,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     ((s as any).ballet_daily_score = (s as any).ballet_daily_score ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
     ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0)=== 'grade') {
+  if (String((s as any).locArgs?.[1] ?? '')=== 'grade') {
     ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['total'] = 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0) + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
     if (((s as any).ballet_grade_score ?? 0)?.['total'] <= 40) {
       ((s as any).balletqw = (s as any).balletqw ?? {})['school'] = 0;
@@ -286,7 +286,7 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<b>Open Debug Menu</b>', handler: (st: GameState) => {
     (st as any).debug_menu = 'open';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebugMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebugMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

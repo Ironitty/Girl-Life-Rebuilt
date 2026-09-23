@@ -14,10 +14,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 2;
   // TODO-QSP: :party_loop
-  if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 0) {
+  if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 0) {
     (s as any).i = 7;
   }
-  if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 1) {
     // TODO-QSP: dynamic text: <table><tr><td><<$KGD[''name_<<i>>'']>>:</td><td>Level: <<KGD[''lvl_<<i>>'']>> <...
     scene.text(`<table><tr><td>${qspUntranslated(s, "KGD['name_<<i", { location: "KGDparty" })}']>>:</td><td>Level: ${qspUntranslated(s, "KGD['lvl_<<i", { location: "KGDparty" })}']>> </td><td>HP: ${qspUntranslated(s, "KGD['HP_<<i", { location: "KGDparty" })}']>> </td><td>Damage: ${qspUntranslated(s, "KGD['damage_<<i", { location: "KGDparty" })}']>>.</td></tr></table>`);
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -25,8 +25,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) <= 6) {
     // TODO-QSP: jump 'party_loop'
   }
-  // TODO-QSP: dynamic text: you have '+iif(KGD['Infantrie'] > 0, 'No', '<<KGD[''Infantrie'']>>')+' Infantrie...
-  scene.text('you have \'+iif(KGD[\'Infantrie\'] > 0, \'No\', \'' + ((s as any).KGD ?? 0)?.['Infantrie'] ?? '' + '\')+\' Infantrie, \'+iif(KGD[\'Cavalry\'] > 0, \'No\', \'' + ((s as any).KGD ?? 0)?.['Cavalry'] ?? '' + '\')+\' Cavalry and \'+iif(KGD[\'Archers\'] > 0, \'No\', \'' + ((s as any).KGD ?? 0)?.['Archers'] ?? '' + '\')+\' Archers.');
+  // TODO-QSP: dynamic text: 'you have '+iif(KGD['Infantrie'] > 0, 'No', '<<KGD[''Infantrie'']>>')+' Infantri...
+  scene.text('you have ' + ((((s as any).KGD ?? 0)?.['Infantrie'] > 0) ? ('No') : ('' + ((s as any).KGD ?? 0)?.['Infantrie'] ?? '' + '')) + ' Infantrie, ' + ((((s as any).KGD ?? 0)?.['Cavalry'] > 0) ? ('No') : ('' + ((s as any).KGD ?? 0)?.['Cavalry'] ?? '' + '')) + ' Cavalry and ' + ((((s as any).KGD ?? 0)?.['Archers'] > 0) ? ('No') : ('' + ((s as any).KGD ?? 0)?.['Archers'] ?? '' + '')) + ' Archers.');
   ((s as any).KGD = (s as any).KGD ?? {})['BP_Lvl'] = ((((s as any).KGD ?? {})?.['lvl'] ?? 0) + (((s as any).KGD ?? {})?.['lvl_2'] ?? 0) + (((s as any).KGD ?? {})?.['lvl_3'] ?? 0) + (((s as any).KGD ?? {})?.['lvl_4'] ?? 0) + (((s as any).KGD ?? {})?.['lvl_5'] ?? 0) + (((s as any).KGD ?? {})?.['lvl_6'] ?? 0))/2;
   ((s as any).KGD = (s as any).KGD ?? {})['BP_HP'] = ((((s as any).KGD ?? {})?.['HP'] ?? 0)+ (((s as any).KGD ?? {})?.['HP_2'] ?? 0) + (((s as any).KGD ?? {})?.['HP_3'] ?? 0) + (((s as any).KGD ?? {})?.['HP_4'] ?? 0) + (((s as any).KGD ?? {})?.['HP_5'] ?? 0) + (((s as any).KGD ?? {})?.['HP_6'] ?? 0)) * ((((((s as any).KGD ?? {})?.['Infantrie'] ?? 0)+1)/5)+(((((s as any).KGD ?? {})?.['Cavalry'] ?? 0)+1)/10)+(((((s as any).KGD ?? {})?.['Archers'] ?? 0)+1)/15));
   ((s as any).KGD = (s as any).KGD ?? {})['BP_Damage'] = (((s as any).KGD ?? {})?.['HP'] ?? 0) + (((s as any).KGD ?? {})?.['damage_2'] ?? 0) + (((s as any).KGD ?? {})?.['damage_3'] ?? 0) + (((s as any).KGD ?? {})?.['damage_4'] ?? 0) + (((s as any).KGD ?? {})?.['damage_5'] ?? 0) + (((s as any).KGD ?? {})?.['damage_6'] ?? 0) * ((((((s as any).KGD ?? {})?.['Infantrie'] ?? 0)+1)/15)+(((((s as any).KGD ?? {})?.['Cavalry'] ?? 0)+1)/10)+(((((s as any).KGD ?? {})?.['Archers'] ?? 0)+1)/5));

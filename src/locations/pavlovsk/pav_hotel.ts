@@ -19,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = 0;
   }
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'skip_resepevent') {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'skip_resepevent') {
     if (((s as any).hour ?? 0) === 0  &&  ((s as any).hotresepQW_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hotresepQW ?? 0) < 3  ||  (((s as any).hotresepQW ?? 0) === 3  &&  (Math.floor(Math.random() * 10) + 1) === 10))) {
       if (((s as any).HotelRoom ?? 0)?.['pav'] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
         qspGoto(s, 'pav_hotel', 'resep_event1');
@@ -144,7 +144,7 @@ function enterSkipResepevent(s: GameState, scene: SceneBuilder): void {
     ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = 0;
   }
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'skip_resepevent') {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'skip_resepevent') {
     if (((s as any).hour ?? 0) === 0  &&  ((s as any).hotresepQW_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hotresepQW ?? 0) < 3  ||  (((s as any).hotresepQW ?? 0) === 3  &&  (Math.floor(Math.random() * 10) + 1) === 10))) {
       if (((s as any).HotelRoom ?? 0)?.['pav'] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
         qspGoto(s, 'pav_hotel', 'resep_event1');

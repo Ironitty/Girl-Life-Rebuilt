@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -54,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
-    // TODO-QSP: dynamic text: You are greeted by '+iif(npc_QW['A64'] = 0, 'Mira''s father', 'Afanasiy')+' and ...
+    // TODO-QSP: dynamic text: 'You are greeted by '+iif(npc_QW['A64'] = 0, 'Mira''s father', 'Afanasiy')+' and...
     scene.text('You are greeted by ' + ((((st as any).npc_QW ?? 0)?.['A64'] === 0) ? ('Mira\'s father') : ('Afanasiy')) + ' and politely inquire about his health.  He responds with a smile and says, "All is well, little lady."');
     if (((st as any).npc_QW ?? 0)?.['A64'] === 0) {
       scene.text('Mira\'s father continues, "I\'m glad Mira has finally found a friend here in the village. It will be good for her to have another girl around. By the way, you can call me Afanasiy."');
@@ -251,7 +251,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('Mira\'s father tells you that she\'s not home. She said she was going to visit you.');
         scene.actions([
           { label: 'Go to your grandparents house', handler: (st: GameState) => {
-    // TODO-QSP: gt $locat['A60_loc'], $locat['A60_arg']
+    dynamicGoto(st, (((st as any).locat ?? {})['A60_loc']), (((st as any).locat ?? {})['A60_arg']));
   } },
         ]);
       } else {
@@ -262,7 +262,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('Mira\'s father tells you that she\'s not home. She said she was going to the church.');
             scene.actions([
               { label: 'Go to the church', handler: (st: GameState) => {
-    // TODO-QSP: gt $locat['A60_loc'], $locat['A60_arg']
+    dynamicGoto(st, (((st as any).locat ?? {})['A60_loc']), (((st as any).locat ?? {})['A60_arg']));
   } },
             ]);
           } else {
@@ -282,7 +282,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   scene.text('Mira\'s father tells you that she\'s not home. She said she was going to the river.');
                   scene.actions([
                     { label: 'Go to the river', handler: (st: GameState) => {
-    // TODO-QSP: gt $locat['A60_loc'], $locat['A60_arg']
+    dynamicGoto(st, (((st as any).locat ?? {})['A60_loc']), (((st as any).locat ?? {})['A60_arg']));
   } },
                   ]);
                 } else {

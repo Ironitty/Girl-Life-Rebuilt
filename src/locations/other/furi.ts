@@ -169,8 +169,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get into the truck', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: gt 'furisex', 100
-  } },
+  }, goto: ['furisex', '100'] },
     ]);
   } },
     ]);

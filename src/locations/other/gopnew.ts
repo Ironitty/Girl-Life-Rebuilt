@@ -340,7 +340,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
           { label: 'Give him the money ( [2000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2000, 'cash');
     (st as any).gopopusday = ((st as any).daystart ?? 0);
-    // TODO-QSP: dynamic text: You offer him the ' + $func('money', 'string_price', 2000) + ' he expects from y...
+    // TODO-QSP: dynamic text: 'You offer him the ' + $func('money', 'string_price', 2000) + ' he expects from ...
     scene.text('You offer him the 2000₽ he expects from you. He counts it quickly and gives you an affirmative grunt.');
     if (((st as any).GLust ?? 0) > 0) {
       scene.text('He rubs his groin awkwardly while he tells you: "I\'m horny, and you\'re going to help me with that. Come on, be a good whore and follow me."');
@@ -404,7 +404,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
             { label: 'Give him the money ( [2000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2000, 'cash');
     (st as any).gopopusday = ((st as any).daystart ?? 0);
-    // TODO-QSP: dynamic text: You offer him the ' + $func('money', 'string_price', 2000) + ' he expects from y...
+    // TODO-QSP: dynamic text: 'You offer him the ' + $func('money', 'string_price', 2000) + ' he expects from ...
     scene.text('You offer him the 2000₽ he expects from you. He counts it quickly and gives you an affirmative grunt.');
     if (((st as any).GLust ?? 0) > 0) {
       scene.text('He rubs his groin awkwardly while he tells you: "I\'m horny, and you\'re going to help me with that. Come on, be a good whore and follow me."');
@@ -1587,7 +1587,8 @@ function enterDegrading(s: GameState, scene: SceneBuilder): void {
     (s as any).serisex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
-  scene.img('images/locations/city/residential/street/sex/deg' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/street/sex/de...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/street/sex/deg` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
   scene.text('The guys drive you to a nearby building and drag you inside, forcing you to undress. They spend the next two hours degrading you in every way imaginable: they slap your face and tits, they spit in your face, but most of the time they try to force large objects into your vagina and ass. By the time you\'re exhausted, they pick you up and dump you in the back yard with your clothes. When you catch your breath again, you slowly put your clothes on and try to find your way back to the main streets.');
   qspCall(s, 'arousal', 'vaginal', 120, 'sub', 'humiliation', 'gangbang', 'rape');
   qspCall(s, 'arousal', 'anal', (-120), 'sub', 'humiliation', 'gangbang', 'rape');

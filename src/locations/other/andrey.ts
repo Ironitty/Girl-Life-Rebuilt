@@ -46,7 +46,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('He barely glances your way as he shuffles some papers around. "Oh yeah I forgot about that… well, the job is still open. I need an extra worker around the store, and it needs to be a girl… a young girl," he says before suddenly dropping the papers to look at you accusingly. "Before you start with that gender equality crap, I had a guy working here, and all he cared about was getting into the pants of female customers rather than their wallets. I\'m saving myself from another headache…<i>hopefully</i>."');
-    // TODO-QSP: dynamic text: You''re at a loss for words. This wasn''t how you imagined the interview would g...
+    // TODO-QSP: dynamic text: 'You''re at a loss for words. This wasn''t how you imagined the interview would ...
     scene.text(`You're at a loss for words. This wasn't how you imagined the interview would go, but your silence goes unnoticed as the store manager continues to talk. "The salary is ${qspFunc(s, 'money', 'string_profit', 205)} a hour alright? Trust me, no one is fighting you for the chance to work here, but don't think that means you can slack off. Miss work three times, and you're fired… no questions. I have two part-time positions that are from 16:00 until 20:00 Monday through Friday or the weekend shift between 9:00 and 15:00."`);
     scene.text('He seems to have found what he was looking for, which is the employment documents, "You\'ll need to sign these to start work here." He holds them out to you, "So, are you interested?"');
     if (((st as any).job_status ?? 0)?.['city_pussycats_clerk'] === ''  &&  qspFunc(s, 'jobs', 'check_employment_possible', 'city_pussycats_clerk', 0) === 1) {
@@ -55,7 +55,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'set_employed', 'city_pussycats_clerk');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('You find the conditions suitable, and without batting an eye, you sign the documents.');
-    // TODO-QSP: dynamic text: You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is ...
+    // TODO-QSP: dynamic text: 'You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Monday at 15:00.');
     scene.actions([
       { label: 'Continue', goto: ['shop_pussycats', 'start'] },
@@ -70,7 +70,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'change_schedule', 'city_pussycats_clerk', 1);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('You find the conditions suitable, and without batting an eye, you sign the documents.');
-    // TODO-QSP: dynamic text: You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is ...
+    // TODO-QSP: dynamic text: 'You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Saturday at 9:00.');
     scene.actions([
       { label: 'Continue', goto: ['shop_pussycats', 'start'] },
@@ -111,8 +111,8 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).job_miss_acknowledged ?? 0)?.['city_pussycats_clerk'] === ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk']  &&  ((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] > 0) {
         scene.text('"Came to get your pay," he asks quickly to which you nod yes. He beckons you closer, and you oblige. He digs around in his desk drawer for your money. As you wait, you catch a glimpse of his computer screen and see an image of a naked woman. He must think you can\'t see the screen from where you are. "Here you go," Mr. Sobulyagin says as he holds out a white envelope with the money inside.');
-        // TODO-QSP: dynamic text: "You have missed work <<job_booking_debt[''city_pussycats_clerk'']>> '+iif(job_b...
-        scene.text('"You have missed work ' + ((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] ?? '' + ' \'+iif(job_booking_debt[\'city_pussycats_clerk\'] = 1, \'time\', \'times\')+\'," he reminds you. "Don\'t make a habit out of it. If you miss work 3 times, I will fire you.');
+        // TODO-QSP: dynamic text: '"You have missed work <<job_booking_debt[''city_pussycats_clerk'']>> '+iif(job_...
+        scene.text(`"You have missed work ${((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] ?? ''} ` + ((((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] === 1) ? ('time') : ('times')) + '," he reminds you. "Don\'t make a habit out of it. If you miss work 3 times, I will fire you.');
       } else {
         ((s as any).job_miss_acknowledged = (s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
         scene.text('He gives you a hard look when he see\'s it\'s you. "You missed work. Do you remember what I said about missing work?"');
@@ -153,10 +153,10 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'jobs', 'change_schedule', 'city_pussycats_clerk', ((st as any).temp_switch_to ?? 0));
     if (((st as any).temp_switch_to ?? 0) === 1) {
-      // TODO-QSP: dynamic text: "Alright, you''re on weekend shifts now. Starting Saturday at ' + $func('time', ...
+      // TODO-QSP: dynamic text: '"Alright, you''re on weekend shifts now. Starting Saturday at ' + $func('time',...
       scene.text('"Alright, you\'re on weekend shifts now. Starting Saturday at 9:00."');
     } else {
-      // TODO-QSP: dynamic text: "Alright, you''re back on evening shifts. Starting Monday at ' + $func('time', '...
+      // TODO-QSP: dynamic text: '"Alright, you''re back on evening shifts. Starting Monday at ' + $func('time', ...
       scene.text('"Alright, you\'re back on evening shifts. Starting Monday at 15:00."');
     }
     scene.actions([
@@ -326,7 +326,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
-    // TODO-QSP: dynamic text: "You''re right, I''ve skipped out on work too many times, but I''m not doing tha...
+    // TODO-QSP: dynamic text: '"You''re right, I''ve skipped out on work too many times, but I''m not doing th...
     scene.text('"You\'re right, I\'ve skipped out on work too many times, but I\'m not doing that ' + ((((st as any).pussycats_fired_count ?? 0) === 6) ? ('') : ('anymore ')) + 'to keep my job." Mr. Sobulyagin scowls at you, but puts his dick away and pulls out a document from his desk drawer to begin filling in the blanks. A few minutes later he hands you some papers and you sign them without a word.');
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     if (((st as any).temp_pay ?? 0) > 0) {
@@ -417,7 +417,7 @@ function enterReapply(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'cleanup_job', 'city_pussycats_clerk');
     qspCall(st, 'jobs', 'set_employed', 'city_pussycats_clerk');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: dynamic text: You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is ...
+    // TODO-QSP: dynamic text: 'You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Monday at 15:00.');
     qspGoto(st, 'shop_pussycats', 'start');
   } },
@@ -430,7 +430,7 @@ function enterReapply(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'set_employed', 'city_pussycats_clerk');
     qspCall(st, 'jobs', 'change_schedule', 'city_pussycats_clerk', 1);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: dynamic text: You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is ...
+    // TODO-QSP: dynamic text: 'You got a job in the youth clothing store ''Pussy-Cats''. Your first workday is...
     scene.text('You got a job in the youth clothing store \'Pussy-Cats\'. Your first workday is on Saturday at 9:00.');
     qspGoto(st, 'shop_pussycats', 'start');
   } },

@@ -133,7 +133,7 @@ function enterVolleyballMenu(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).vballVars ?? 0)?.['last_match_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 18) {
-              // TODO-QSP: dynamic text: As you look around, you don''t see anyone from the team. You suddenly realize th...
+              // TODO-QSP: dynamic text: 'As you look around, you don''t see anyone from the team. You suddenly realize t...
               scene.text('As you look around, you don\'t see anyone from the team. You suddenly realize that there was a tournament game today and you were supposed to be here at 18:00! You missed the bus and the coach is going to be furious!');
               qspCall(s, 'npc_relationship', 'modify', 'A69', (-20));
               ((s as any).vballVars = (s as any).vballVars ?? {})['last_match_day'] = ((s as any).daystart ?? 0);
@@ -544,8 +544,8 @@ function enterBlockPractice(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img(`images/pc/activities/volleyball/team_practice/${(Math.floor(Math.random() * 3) + 3)}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
-    ((s as any).vballVars = (s as any).vballVars ?? {})['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + ((Math.floor(Math.random() * 3) + 0) / 2);
-    ((s as any).vballVars = (s as any).vballVars ?? {})['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + ((Math.floor(Math.random() * 3) + 0) / 2);
+    ((s as any).vballVars = (s as any).vballVars ?? {})['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + ((Math.floor(Math.random() * (2 - 0 + 1)) + (0)));
+    ((s as any).vballVars = (s as any).vballVars ?? {})['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + ((Math.floor(Math.random() * (2 - 0 + 1)) + (0)));
     scene.text('You spend your free time practicing various maneuvres with the team.');
   } else {
     scene.text('You practice various maneuvres with some of the other girls around the community centre.');
@@ -785,11 +785,11 @@ function enterArrival(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vballVars ?? 0)?.['opponent'] === 0) {
     scene.text('You will be playing against a low tier team today. The coach gathers everyone around and tells you "This should be easy, just play like we trained. Don\'t let me down!".');
   } else {
-    if (((s as any).vballVars ?? 0)['match_result_' + ((s as any).vballVars ?? 0)?.['opponent']] === 'defeat') {
+    if (((s as any).vballVars ?? 0)['match_result_' + (((s as any).vballVars ?? 0)?.['opponent'])] === 'defeat') {
       // TODO-QSP: dynamic text: You''ll have a rematch against the "<<$vballVars[''opponent_name'']>>" today. Th...
       scene.text(`You'll have a rematch against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" today. The coach gathers everyone to hold his pre-game speech. "They may have beat us last time, but we trained for this day. Show them what you're made of!"`);
     } else {
-      if (((s as any).vballVars ?? 0)['match_result_' + ((s as any).vballVars ?? 0)?.['opponent']] === 'victory') {
+      if (((s as any).vballVars ?? 0)['match_result_' + (((s as any).vballVars ?? 0)?.['opponent'])] === 'victory') {
         // TODO-QSP: dynamic text: You will be playing against the "<<$vballVars[''opponent_name'']>>" again. The c...
         scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" again. The coach gathers everyone to hold his pre-game speech. "We beat them before, we can do it again. Let's go girls!"`);
       } else {
@@ -991,7 +991,7 @@ function enterReceiveStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 1);
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-  ((s as any).vballVars = (s as any).vballVars ?? {})['rec'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
+  ((s as any).vballVars = (s as any).vballVars ?? {})['rec'] = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
   // TODO-QSP: end
   scene.build();
@@ -1005,7 +1005,7 @@ function enterBlock(s: GameState, scene: SceneBuilder): void {
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 2) + 2);
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust'] = ((st as any).vballVars['exhaust'] ?? 0) + (((st as any).vballVars ?? 0)?.['exhaust_temp']);
     (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - ((((st as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 4);
-    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     if ((Math.floor(Math.random() * 50) + 1) + ((st as any).vballVars ?? 0)?.['opp_att_result'] < ((st as any).vballVars ?? 0)?.['team_defense'] - 40) {
       if ((Math.floor(Math.random() * 50) + 1) + ((st as any).vballVars ?? 0)?.['team_defense'] + ((st as any).pcs_vball_block ?? 0) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result']) {
         qspGoto(st, 'volleyball_ev', 'block3_win');
@@ -1111,7 +1111,7 @@ function enterBlockFollow(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Follow-up in case of block', handler: (st: GameState) => {
     qspCall(st, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
-    ((st as any).vballVars = (st as any).vballVars ?? {})['block_follow'] = (Math.floor(Math.random() * 100) + 1) + ((st as any).pcs_vball_rec ?? 0) / 4 - (((st as any).vballVars ?? {})?.['exhaust'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['block_follow'] = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
     if ((Math.floor(Math.random() * 50) + 1) + ((st as any).vballVars ?? 0)?.['team_attack'] > ((st as any).vballVars ?? 0)?.['opp_defense']) {
       scene.img(`images/pc/activities/volleyball/wait${(Math.floor(Math.random() * 2) + 1)}.jpg`);
       scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
@@ -1125,7 +1125,7 @@ function enterBlockFollow(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/activities/volleyball/receive/1.jpg');
         scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
         scene.text('And a good thing that you did. Your opponents manage to get up a block in time and the ball bounces right off it, coming back towards your side of the court. You quickly move in, bumping it high into the air, trying to give your team another opportunity to attack.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike(st, scene); (st as any).locArgs = __savedLocArgs; }
         qspCall(st, 'volleyball_ev', 'fake_spike');
       } else {
         if (((st as any).vballVars ?? 0)?.['block_follow'] > 50) {
@@ -1175,12 +1175,12 @@ function enterReceiveStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The serve comes up and flies over the net, directly towards you!');
     scene.actions([
       { label: 'Receive!', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
     if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((st as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
       scene.img('images/pc/activities/volleyball/receive/1.mp4');
       scene.text('You lunge forward, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((st as any).vballVars ?? 0)?.['opp_att_result']) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -1226,7 +1226,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Dig to receive (bump)', handler: (st: GameState) => {
     qspCall(st, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
-    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     if (((st as any).vballVars ?? 0)?.['opp_att_result'] < ((st as any).vballVars ?? 0)?.['team_defense']) {
       ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/receive/${(Math.floor(Math.random() * 3) + 1)}_win.jpg`);
@@ -1237,14 +1237,14 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/receive/1.mp4');
         scene.text('Your opponents jump up for their spike and you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result']) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1254,7 +1254,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
             ]);
           } else {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
             ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
             scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
@@ -1264,7 +1264,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           if (((st as any).vballVars ?? 0)?.['service'] === 1) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['service'] = 0;
           }
@@ -1288,7 +1288,7 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Receive the spike', handler: (st: GameState) => {
     qspCall(st, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
-    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     if (((st as any).vballVars ?? 0)?.['opp_att_result'] < ((st as any).vballVars ?? 0)?.['team_defense']) {
       ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/block/${(Math.floor(Math.random() * 3) + 1)}_win.jpg`);
@@ -1299,14 +1299,14 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/block/1.mp4');
         scene.text('Obviously put off balance by your serve, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result']) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1325,7 +1325,7 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
           if (((st as any).vballVars ?? 0)?.['service'] === 1) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['service'] = 0;
@@ -1349,7 +1349,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Receive the spike', handler: (st: GameState) => {
     qspCall(st, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
-    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     if (((st as any).vballVars ?? 0)?.['opp_att_result'] < ((st as any).vballVars ?? 0)?.['team_defense']) {
       ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/block/${(Math.floor(Math.random() * 3) + 1)}_win.jpg`);
@@ -1360,14 +1360,14 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/receive/1.mp4');
         scene.text('Despite how well they did receiving the ball, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlockFollow(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpike2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((st as any).vballVars ?? 0)?.['exhaust'] > ((st as any).vballVars ?? 0)?.['opp_att_result']) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['team_points'] = ((st as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1386,7 +1386,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceiveStats(st, scene); (st as any).locArgs = __savedLocArgs; }
           if (((st as any).vballVars ?? 0)?.['service'] === 1) {
             ((st as any).vballVars = (st as any).vballVars ?? {})['service'] = 0;
           }
@@ -1408,7 +1408,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
 function enterServeStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
   ((s as any).vballVars = (s as any).vballVars ?? {})['service'] = 1;
-  ((s as any).vballVars = (s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
+  ((s as any).vballVars = (s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * (75 - 1 + 1)) + (1));
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 3);
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1434,14 +1434,14 @@ function enterServeStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).vballVars ?? 0)?.['serve'] > ((st as any).vballVars ?? 0)?.['opp_defense']) {
         ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_penalty'] = ((st as any).vballVars['opp_att_penalty'] ?? 0) + (20);
-        ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+        ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
         scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
         scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).vballVars ?? 0)?.['serve'] > ((st as any).vballVars ?? 0)?.['opp_defense'] - 20) {
           scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive3(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive3(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
           if (((st as any).vballVars ?? 0)?.['service'] === 1) {
@@ -1470,7 +1470,7 @@ function enterServeStart(s: GameState, scene: SceneBuilder): void {
 
 function enterServe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 3) + 3));
-  ((s as any).vballVars = (s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
+  ((s as any).vballVars = (s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * (75 - 1 + 1)) + (1));
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 3);
   ((s as any).vballVars = (s as any).vballVars ?? {})['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1502,14 +1502,14 @@ function enterServe(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).vballVars ?? 0)?.['serve'] > ((st as any).vballVars ?? 0)?.['opp_defense']) {
         ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_penalty'] = ((st as any).vballVars['opp_att_penalty'] ?? 0) + (20);
-        ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((st as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
+        ((st as any).vballVars = (st as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
         scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
         scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).vballVars ?? 0)?.['serve'] > ((st as any).vballVars ?? 0)?.['opp_defense'] - 20) {
           scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive3(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive3(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
           if (((st as any).vballVars ?? 0)?.['service'] === 1) {
@@ -1539,7 +1539,7 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Prepare to set', handler: (st: GameState) => {
     scene.img(`images/pc/activities/volleyball/set/${(Math.floor(Math.random() * 3) + 1)}.jpg`);
-    ((st as any).vballVars = (st as any).vballVars ?? {})['set'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['team_attack'] ?? 0) + (Math.floor(Math.random() * (((st as any).pcs_vball_set ?? 0) - 20 + 1)) + (20)) - (((st as any).vballVars ?? {})?.['exhaust'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['set'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 2);
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust'] = ((st as any).vballVars['exhaust'] ?? 0) + (((st as any).vballVars ?? 0)?.['exhaust_temp']);
     (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - ((((st as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1576,7 +1576,7 @@ function enterSpike(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((st as any).vballVars ?? {})?.['exhaust'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * (75 - 1 + 1)) + (1));
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 2);
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust'] = ((st as any).vballVars['exhaust'] ?? 0) + (((st as any).vballVars ?? 0)?.['exhaust_temp']);
     (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - ((((st as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1600,8 +1600,8 @@ function enterSpike(s: GameState, scene: SceneBuilder): void {
       if (((st as any).vballVars ?? 0)?.['spike'] > ((st as any).vballVars ?? 0)?.['opp_defense'] - 20) {
         scene.img(`images/pc/activities/volleyball/wait${(Math.floor(Math.random() * 2) + 1)}.jpg`);
         scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img(`images/pc/activities/volleyball/block/${(Math.floor(Math.random() * 3) + 1)}_win.jpg`);
@@ -1623,7 +1623,7 @@ function enterSpike2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((st as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((st as any).vballVars ?? {})?.['exhaust'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * (75 - 1 + 1)) + (1));
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 2);
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust'] = ((st as any).vballVars['exhaust'] ?? 0) + (((st as any).vballVars ?? 0)?.['exhaust_temp']);
     (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - ((((st as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1643,8 +1643,8 @@ function enterSpike2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).vballVars ?? 0)?.['spike'] > ((st as any).vballVars ?? 0)?.['opp_defense'] - 20) {
         scene.img(`images/pc/activities/volleyball/wait${(Math.floor(Math.random() * 2) + 1)}.jpg`);
         scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img(`images/pc/activities/volleyball/receive/${(Math.floor(Math.random() * 3) + 1)}_win.jpg`);
@@ -1666,7 +1666,7 @@ function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fake a spike, provide distraction', handler: (st: GameState) => {
-    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 50) + 1) + (((st as any).vballVars ?? {})?.['team_attack'] ?? 0) + (Math.floor(Math.random() * (((st as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((st as any).vballVars ?? {})?.['exhaust'] ?? 0);
+    ((st as any).vballVars = (st as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * (50 - 1 + 1)) + (1));
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust_temp'] = (Math.floor(Math.random() * 3) + 2);
     ((st as any).vballVars = (st as any).vballVars ?? {})['exhaust'] = ((st as any).vballVars['exhaust'] ?? 0) + (((st as any).vballVars ?? 0)?.['exhaust_temp']);
     (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - ((((st as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
@@ -1687,8 +1687,8 @@ function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
         scene.img(`images/pc/activities/volleyball/wait${(Math.floor(Math.random() * 2) + 1)}.jpg`);
         scene.text('You fling yourself into the empty air, fully taking a spiker\'s form as if the ball really were coming to you. Your jump manages to fool one of the defenders and your teammate spikes it past the others, but they still manage to get a good receive in, bumping the ball high into the air over their side.');
         scene.text('The ball is coming back! How are you going to try to stop it?');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBlock(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReceive(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         ((st as any).vballVars = (st as any).vballVars ?? {})['opp_points'] = ((st as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img('images/pc/activities/volleyball/receive/3_win.jpg');

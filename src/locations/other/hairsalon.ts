@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -28,26 +26,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec:gt ''hairsalon'', '...
+  // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec:gt ''hairsalon'', ...
   scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 750) === 1) ? ('"exec:gt \'hairsalon\', \'cuthair\'"') : ('')) + '>Get a haircut - 750₽</a>');
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', '...
+  // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', ...
   scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 500) === 1) ? ('"exec:gt \'hairsalon\', \'curlhair\'"') : ('')) + '>Get your hair curled - 500₽</a>');
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', '...
+  // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', ...
   scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 500) === 1) ? ('"exec:gt \'hairsalon\', \'straighthair\'"') : ('')) + '>Get your hair straightened - 500₽</a>');
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 1000) = 1, '"exec:gt ''hairsalon'', ...
+  // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 1000) = 1, '"exec:gt ''hairsalon'',...
   scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 1000) === 1) ? ('"exec:gt \'hairsalon\', \'dyehair\'"') : ('')) + '>Get your hair dyed - 1000₽</a>');
   if (((s as any).nathcol ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
     if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
-      // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', '...
+      // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 500) = 1, '"exec:gt ''hairsalon'', ...
       scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 500) === 1) ? ('"exec:gt \'hairsalon\', \'touchup\'"') : ('')) + '>Touch up hair colour - 500₽</a>');
     } else {
       if ((!((s as any).dyefade ?? 0))) {
-        // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 1000) = 1, '"exec:gt ''hairsalon'', ...
+        // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 1000) = 1, '"exec:gt ''hairsalon'',...
         scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 1000) === 1) ? ('"exec:gt \'hairsalon\', \'touchup2\'"') : ('')) + '>Re-dye your existing hair colour - 1000₽</a>');
       }
     }
   }
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 1250) = 1, '"exec:gt ''hairsalon'', ...
+  // TODO-QSP: dynamic text: '<a href=' + iif(func('money', 'can_afford', 1250) = 1, '"exec:gt ''hairsalon'',...
   scene.text('<a href=' + ((qspFunc(s, 'money', 'can_afford', 1250) === 1) ? ('"exec:gt \'hairsalon\', \'braidhair\'"') : ('')) + '>Get your hair braided - 1250₽</a>');
   // TODO-QSP: end
   scene.actions([
@@ -62,7 +60,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['scrunchies'] = ((st as any).mc_inventory['scrunchies'] ?? 0) + (10);
       qspCall(st, 'stat', '');
       scene.text('"Only scrunchies today please!" you tell the cashier.');
-      // TODO-QSP: dynamic text: "That''ll be ' + $func('money', 'string_price', 100) + '!" the receptionist repl...
+      // TODO-QSP: dynamic text: '"That''ll be ' + $func('money', 'string_price', 100) + '!" the receptionist rep...
       scene.text('"That\'ll be 100₽!" the receptionist replies back.');
       scene.text('You pay for the scrunchies as you are handed a little box.');
       scene.actions([
@@ -78,7 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['kirbygrips'] = ((st as any).mc_inventory['kirbygrips'] ?? 0) + (10);
       qspCall(st, 'stat', '');
       scene.text('"Only hair pins today please!" you tell the cashier.');
-      // TODO-QSP: dynamic text: "That''ll be ' + $func('money', 'string_price', 120) + '!" the receptionist repl...
+      // TODO-QSP: dynamic text: '"That''ll be ' + $func('money', 'string_price', 120) + '!" the receptionist rep...
       scene.text('"That\'ll be 120₽!" the receptionist replies back.');
       scene.text('You pay for the hair pins as you are handed a little box.');
       scene.actions([
@@ -106,7 +104,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairlng = 10;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done and what\'s left from you former hairstyle is a very short buzzcut.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -136,7 +134,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. And with that you have a new hairstyle, which barely reaches your earlobes.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -150,7 +148,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. And with that you have a new hairstyle, which barely reaches your earlobes.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -164,7 +162,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. And with that you have a new hairstyle, which barely reaches your earlobes.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -195,7 +193,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your new hairstyle goes down to your chin-line and you have a fringe, covering your forehead.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -209,7 +207,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your new hairstyle goes down to you chin-line.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -223,7 +221,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your new hairstyle goes down to you chin-line.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -254,7 +252,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your hair now goes just to your shoulders and you have a fringe, covering your forehead.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -268,7 +266,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your hair now goes just to your shoulders.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -282,7 +280,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. Your hair now goes just to your shoulders.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -313,7 +311,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the line where your bra sits, in addition she made you a fringe, covering your forehead, as requested.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -327,7 +325,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the line where your bra sits.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -341,7 +339,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the line where your bra sits.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -372,7 +370,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to the small of your back, in addition she made you a fringe, covering your forehead, as requested.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -386,7 +384,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to the small of your back.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -400,7 +398,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to the small of your back.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -431,7 +429,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the top of your hips, in addition she made you a fringe, covering your forehead, as requested.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -445,7 +443,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the top of your hips.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -459,7 +457,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. She cut your hair back to about the top of your hips.');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -490,7 +488,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She just cuts the tips of your, barely making it shorter and as requested, she cut you a nice fringe, which now covers your forehead.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -504,7 +502,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_hairbsh = 1;
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About half an hour passes as the hairdresser is done cutting your hair. She just cuts the tips of your, barely making it shorter.');
     scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
@@ -518,7 +516,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_hairbsh = 1;
       qspCall(st, 'money', 'pay', 750);
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About half an hour passes as the hairdresser is done cutting your hair. She just cuts the tips of your, barely making it shorter. ');
       scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
       scene.actions([
@@ -562,11 +560,11 @@ function enterStraighthair(s: GameState, scene: SceneBuilder): void {
     (st as any).curly = 0;
     qspCall(st, 'stat', '');
     if ((!((st as any).defcurly ?? 0))) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About twenty minutes pass as your braids were removed and your hair was straightened back to its original shape, "You can pay at the reception, hun." the hairdresser tells you before heading off…');
     } else {
       (st as any).straight = (Math.floor(Math.random() * 8) + 14);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About twenty minutes pass as your braids were removed and your hair was straightened back to its original shape, "You can pay at the reception, hun." the hairdresser tells you before heading off…');
     }
     qspCall(st, 'stat', '');
@@ -625,11 +623,11 @@ function enterCurlhair(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).defcurly ?? 0))) {
       (st as any).curly = (Math.floor(Math.random() * 8) + 14);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About twenty minutes pass as your braids are removed and your hair got curled, "You can pay at the reception, hun." the hairdresser tells you before heading off…');
     } else {
       (st as any).curly = 2147483647;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About twenty minutes pass as your braids are removed and your hair got curled, "You can pay at the reception, hun." the hairdresser tells you before heading off…');
     }
     qspCall(st, 'stat', '');
@@ -684,7 +682,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'pay', 1000);
     (st as any).pcs_haircol = ((st as any).nathcol ?? 0);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -708,7 +706,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -732,7 +730,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -756,7 +754,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -780,7 +778,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -806,7 +804,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Move away', goto: ['hairsalon', 'start'] },
@@ -832,7 +830,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -858,7 +856,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -884,7 +882,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -910,7 +908,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -935,7 +933,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Move away', goto: ['hairsalon', 'start'] },
@@ -961,7 +959,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -987,7 +985,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1013,7 +1011,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1039,7 +1037,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1065,7 +1063,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1091,7 +1089,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1117,7 +1115,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1143,7 +1141,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1169,7 +1167,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1195,7 +1193,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1221,7 +1219,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1247,7 +1245,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1273,7 +1271,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 750);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later your hair is dyed and dried as the hairdresser removes the dryer hood, "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1309,7 +1307,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTouchup2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: The receptionist smiles apologetically, "Sorry, but you''re going to need a comp...
+  // TODO-QSP: dynamic text: 'The receptionist smiles apologetically, "Sorry, but you''re going to need a com...
   scene.text('The receptionist smiles apologetically, "Sorry, but you\'re going to need a completely new dye job to cover that up. We can help you out with it if you want? It\'s only 1000₽."');
   // TODO-QSP: end
   scene.actions([
@@ -1319,7 +1317,7 @@ function enterTouchup2(s: GameState, scene: SceneBuilder): void {
     (st as any).collength = ((st as any).pcs_hairlng ?? 0);
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('About an hour later, everything should be dried up. The hairdresser removes the dryer hood. "And we\'re all done. It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
     scene.actions([
       { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
@@ -1364,7 +1362,7 @@ function enterBraidhair(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).pcs_hairlng ?? 0)/20);
     (st as any).hbraids = 30;
     qspCall(st, 'money', 'pay', 1250);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMixed(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: About <<pcs_hairlng/20>> minutes pass as your braids are done, "You can pay at t...
     scene.text(`About ${((st as any).pcs_hairlng ?? '')/20} minutes pass as your braids are done, "You can pay at the reception, hun." the hairdresser tells you before heading off…`);
     scene.actions([
@@ -1380,7 +1378,7 @@ function enterBraidhair(s: GameState, scene: SceneBuilder): void {
 function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
-  scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "hairsalon" })}`);
+  scene.img(`${qspFunc(s, '$$face_image')}`);
   scene.text('You take a long look at your new hairstyle in the mirror. You\'re really pleased with the work that the hairdresser did.');
   // TODO-QSP: end
   scene.actions([

@@ -162,7 +162,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20)  ||  ((s as any).preg ?? 0) === 2) {
     scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_clinic/u0027, /u0027start/u0027); return false;">clinic</a> is also nearby.');
   } else {
-    // TODO-QSP: dynamic text: The clinic is closed. It will open at '+func('time', 'get_time_string', 8, 0)+'.
+    // TODO-QSP: dynamic text: 'The clinic is closed. It will open at '+func('time', 'get_time_string', 8, 0)+'...
     scene.text('The clinic is closed. It will open at 8:00.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 9  &&  ((s as any).military ?? 0) === 1  &&  ((s as any).week ?? 0) === 6) {
@@ -170,7 +170,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('There is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027Military/u0027, /u0027start/u0027); return false;">military bus</a> waiting on the other side of the street.');
   } else {
     if (((s as any).military ?? 0) === 1) {
-      // TODO-QSP: dynamic text: The military bus will wait between '+func('time', 'get_time_string', 6, 0)+' and...
+      // TODO-QSP: dynamic text: 'The military bus will wait between '+func('time', 'get_time_string', 6, 0)+' an...
       scene.text('The military bus will wait between 6:00 and 9:00 on Saturdays.');
     }
   }
@@ -197,7 +197,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 4) {
         scene.text('You can hear some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnew/u0027, /u0027start/u0027); return false;">gopniks</a> laughing and swearing in the parking lot of the Roadhouse diner. The diner itself is currently closed.');
       } else {
-        // TODO-QSP: dynamic text: The Roadhouse diner is currently closed. It''s open between '+func('time', 'get_...
+        // TODO-QSP: dynamic text: 'The Roadhouse diner is currently closed. It''s open between '+func('time', 'get...
         scene.text('The Roadhouse diner is currently closed. It\'s open between 12:00 and 20:00 every day except Monday.');
       }
     }
@@ -413,7 +413,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20)  ||  ((s as any).preg ?? 0) === 2) {
     scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_clinic/u0027, /u0027start/u0027); return false;">clinic</a> is also nearby.');
   } else {
-    // TODO-QSP: dynamic text: The clinic is closed. It will open at '+func('time', 'get_time_string', 8, 0)+'.
+    // TODO-QSP: dynamic text: 'The clinic is closed. It will open at '+func('time', 'get_time_string', 8, 0)+'...
     scene.text('The clinic is closed. It will open at 8:00.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 9  &&  ((s as any).military ?? 0) === 1  &&  ((s as any).week ?? 0) === 6) {
@@ -421,7 +421,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('There is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027Military/u0027, /u0027start/u0027); return false;">military bus</a> waiting on the other side of the street.');
   } else {
     if (((s as any).military ?? 0) === 1) {
-      // TODO-QSP: dynamic text: The military bus will wait between '+func('time', 'get_time_string', 6, 0)+' and...
+      // TODO-QSP: dynamic text: 'The military bus will wait between '+func('time', 'get_time_string', 6, 0)+' an...
       scene.text('The military bus will wait between 6:00 and 9:00 on Saturdays.');
     }
   }
@@ -448,7 +448,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 4) {
         scene.text('You can hear some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gopnew/u0027, /u0027start/u0027); return false;">gopniks</a> laughing and swearing in the parking lot of the Roadhouse diner. The diner itself is currently closed.');
       } else {
-        // TODO-QSP: dynamic text: The Roadhouse diner is currently closed. It''s open between '+func('time', 'get_...
+        // TODO-QSP: dynamic text: 'The Roadhouse diner is currently closed. It''s open between '+func('time', 'get...
         scene.text('The Roadhouse diner is currently closed. It\'s open between 12:00 and 20:00 every day except Monday.');
       }
     }

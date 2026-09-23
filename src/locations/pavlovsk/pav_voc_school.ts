@@ -11,7 +11,7 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Community Center</b></center>');
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20) {
     scene.img('images/locations/pavlovsk/community/dk.jpg');
-    // TODO-QSP: dynamic text: From ' + $func('time', 'get_time_string', 20, 0) + ' to ' + $func('time', 'get_t...
+    // TODO-QSP: dynamic text: 'From ' + $func('time', 'get_time_string', 20, 0) + ' to ' + $func('time', 'get_...
     scene.text('From 20:00 to 23:00, the community center hosts a dance. The entrance fee is 25₽.');
   } else {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23) {
@@ -216,7 +216,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.text('<center><b>Personnel Department</b></center>');
         scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-        // TODO-QSP: dynamic text: "Hello!" The Human Resources employee welcomes you. She tells you that they need...
+        // TODO-QSP: dynamic text: '"Hello!" The Human Resources employee welcomes you. She tells you that they nee...
         scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is \'+$func(\'money\', \'string_profit\', 300)+\' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
         if (((st as any).university ?? 0)?.['diploma'] === 1  ||  ((st as any).university ?? 0)?.['fakediplom'] === 1) {
           scene.actions([
@@ -225,7 +225,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Human Resources Department</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-    // TODO-QSP: dynamic text: After passing the oral interview, you leave a copy of your '+iif(university['dip...
+    // TODO-QSP: dynamic text: 'After passing the oral interview, you leave a copy of your '+iif(university['di...
     scene.text('After passing the oral interview, you leave a copy of your ' + ((((st as any).university ?? 0)?.['diploma'] > 0) ? ('') : ('forged ')) + 'diploma and other documents with the personnel department, who tell you that you can start working.');
     scene.actions([
       { label: 'Become a teacher', handler: (st: GameState) => {
@@ -337,7 +337,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.text('<center><b>Personnel Department</b></center>');
         scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-        // TODO-QSP: dynamic text: "Hello!" The Human Resources employee welcomes you. She tells you that they need...
+        // TODO-QSP: dynamic text: '"Hello!" The Human Resources employee welcomes you. She tells you that they nee...
         scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from 14:00 to 16:00. The pay is \'+$func(\'money\', \'string_profit\', 300)+\' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
         if (((st as any).university ?? 0)?.['diploma'] === 1  ||  ((st as any).university ?? 0)?.['fakediplom'] === 1) {
           scene.actions([
@@ -346,7 +346,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Human Resources Department</b></center>');
     scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
-    // TODO-QSP: dynamic text: After passing the oral interview, you leave a copy of your '+iif(university['dip...
+    // TODO-QSP: dynamic text: 'After passing the oral interview, you leave a copy of your '+iif(university['di...
     scene.text('After passing the oral interview, you leave a copy of your ' + ((((st as any).university ?? 0)?.['diploma'] > 0) ? ('') : ('forged ')) + 'diploma and other documents with the personnel department, who tell you that you can start working.');
     scene.actions([
       { label: 'Become a teacher', handler: (st: GameState) => {

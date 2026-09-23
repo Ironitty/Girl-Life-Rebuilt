@@ -85,22 +85,22 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['finish_time'] = ((s as any).totminut ?? 0);
   // TODO-QSP: $npc_last_sex_enjoyment[$npcID] = $sex_ev['fuck_enjoyment']
   ((s as any).npc_last_orgasm_count = (s as any).npc_last_orgasm_count ?? {})[String((s as any).npcID ?? 0)] = ((s as any).sex_ev ?? 0)?.['orgasm_count'];
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'unhappy') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'unhappy') {
     ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'unsatisfied') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'unsatisfied') {
       ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 1 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'okay') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'okay') {
         ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 2 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'good') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'good') {
           ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 3 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'great') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'great') {
             ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 4 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'fucked_dry') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'fucked_dry') {
               ((s as any).npc_last_sex_score = (s as any).npc_last_sex_score ?? {})[String((s as any).npcID ?? 0)] = 5 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
             }
           }
@@ -120,7 +120,7 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 3) {
           // TODO-QSP: $npc_last_sex_quality[$npcID] = 'good'
         } else {
-          if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 4  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'fucked_dry') {
+          if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 4  &&  String((s as any).locArgs?.[1] ?? '') !== 'fucked_dry') {
             // TODO-QSP: $npc_last_sex_quality[$npcID] = 'great'
           } else {
             // TODO-QSP: $npc_last_sex_quality[$npcID] = 'fucked_dry'
@@ -134,13 +134,13 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStartingMood(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reluctant') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reluctant') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_mood'] = 'reluctant';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'consensual') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'consensual') {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_mood'] = 'consensual';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'excited') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'excited') {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_mood'] = 'excited';
       } else {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['starting_mood'] = 'consensual';
@@ -232,7 +232,7 @@ function enterNoBirthControlKnow(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_know_bc = (s as any).npc_know_bc ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).npc_know_bc_not_effective = (s as any).npc_know_bc_not_effective ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_tell'] = 1;
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'catholic') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'catholic') {
     // TODO-QSP: npc_know_catholic[$npcID]
   }
   // TODO-QSP: end
@@ -276,7 +276,7 @@ function enterProstitutionPayCalc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterProstitutionPayCode(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[1] ?? '') > 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_owed'] = ((s as any).sex_ev['prostitution_owed'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterProstitutionPayCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -389,7 +389,7 @@ function enterPcUseLubeVag(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestrictFunc(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'creampie') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'creampie') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_restrict'] = 1;
   }
   // TODO-QSP: end
@@ -398,12 +398,12 @@ function enterRestrictFunc(s: GameState, scene: SceneBuilder): void {
 
 function enterPositionTracker(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['position'] = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).sex_ev ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_fuck'] === 0) {
+  if (((s as any).sex_ev ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_fuck'] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_fuck'] = 1;
   }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['speed'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = '' + ((s as any).locArgs?.[1] ?? 0) + '' + ((s as any).locArgs?.[2] ?? 0) + '';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['kiss'] = ((Number((s as any).locArgs?.[3] ?? 0) === 'kiss') ? (1) : (0));
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['kiss'] = ((String((s as any).locArgs?.[3] ?? '') === 'kiss') ? (1) : (0));
   // TODO-QSP: end
   scene.build();
 }
@@ -443,7 +443,7 @@ function enterCumFacial(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
     (s as any).pcs_makeup = 0;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pc_jerk') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pc_jerk') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_facial_jerk'] = ((s as any).sex_ev['pc_facial_jerk'] ?? 0) + (1);
   }
   // TODO-QSP: end
@@ -455,12 +455,12 @@ function enterCumMouth(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_choice'] = 'mouth';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum'] = 'mouth';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_mouth'] = ((s as any).sex_ev['cum_mouth'] ?? 0) + (1);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'swallow') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'swallow') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['swallow'] = 1;
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['swallow_count'] = ((s as any).sex_ev['swallow_count'] ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'spit') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'spit') {
       qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['spit'] = 1;
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['spit_count'] = ((s as any).sex_ev['spit_count'] ?? 0) + (1);
@@ -481,10 +481,10 @@ function enterCumMouthFacial(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
     (s as any).pcs_makeup = 0;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pc_jerk') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pc_jerk') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_facial_jerk'] = ((s as any).sex_ev['pc_facial_jerk'] ?? 0) + (1);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'spit') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'spit') {
       qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
       qspCall(s, 'cum_call', 'hair', ((s as any).npcID ?? 0), 1);
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['spit_count'] = ((s as any).sex_ev['spit_count'] ?? 0) + (1);
@@ -501,10 +501,10 @@ function enterCumSwallow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'face_mouth') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['facial_swallow'] = ((s as any).sex_ev['facial_swallow'] ?? 0) + (1);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'disgust') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'disgust') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['hide_swallow_disgust'] = 1;
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'gag') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'gag') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['mouth_cum_gross'] = 1;
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['gag'] = 1;
   }
@@ -518,10 +518,10 @@ function enterCumTits(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum'] = 'tits';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_count'] = ((s as any).sex_ev['cum_count'] ?? 0) + (1);
   qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 1);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pc_jerk') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pc_jerk') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['pc_titcum_jerk'] = 1;
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'tits') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'tits') {
       qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 1);
     }
   }

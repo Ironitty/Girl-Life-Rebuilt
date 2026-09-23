@@ -9,22 +9,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateRate(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'love') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'love') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'improve']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
     ((s as any).date_ev = (s as any).date_ev ?? {})['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'love');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'like') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'like') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'improve']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).date_ev = (s as any).date_ev ?? {})['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (1);
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'dislike') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'dislike') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'worsen']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
         ((s as any).date_ev = (s as any).date_ev ?? {})['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (1);
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'hate') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'hate') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'worsen']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
           ((s as any).date_ev = (s as any).date_ev ?? {})['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (3);
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'hate');
@@ -37,7 +37,7 @@ function enterDateRate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateMood(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'improve') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'improve') {
     if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'awkward') {
       ((s as any).date_ev = (s as any).date_ev ?? {})['talk_mood'] = 'good';
     } else {
@@ -52,7 +52,7 @@ function enterDateMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'worsen') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'worsen') {
       if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'awkward') {
         ((s as any).date_ev = (s as any).date_ev ?? {})['talk_mood'] = 'bad';
       } else {
@@ -128,7 +128,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateTracker(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).date_ev ?? 0)?.['tracker'] !== Number((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).date_ev ?? 0)?.['tracker'] !== String((s as any).locArgs?.[1] ?? '')) {
     ((s as any).date_ev = (s as any).date_ev ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: stat[$ARGS[1]] += 1
     if (((String(((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';' + ((s as any).locArgs?.[1] ?? 0) + ';'))) + 1) <= 0) {

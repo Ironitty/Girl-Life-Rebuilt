@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClose(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
-  // TODO-QSP: dynamic text: On one side you spot a stand where' + iif(hunterVars['were_met'] = 1, ' the hunt...
+  // TODO-QSP: dynamic text: 'On one side you spot a stand where' + iif(hunterVars['were_met'] = 1, ' the hun...
   scene.text('On one side you spot a stand where' + ((((s as any).hunterVars ?? 0)?.['were_met'] === 1) ? (' the hunters are ') : (' ')) + 'selling <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027gad_market/u0027, /u0027hunter_stand/u0027); return false;">dried goods</a>.');
   // TODO-QSP: dynamic text: You spot a stand filled with <a href="exec:minut += 1 & gt ''gad_market'', ''clo...
   scene.text('You spot a stand filled with <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027gad_market/u0027, /u0027clothing_stand/u0027); return false;">cheap clothing</a>.');
@@ -329,7 +329,7 @@ function enterSellMushrooms(s: GameState, scene: SceneBuilder): void {
     (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) - (1);
     qspCall(st, 'stat', '');
     scene.img(`images/locations/gadukino/market/sale${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You sell 1 kg of stored mushrooms');
     scene.actions([
       { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
@@ -352,7 +352,7 @@ function enterSellBerries(s: GameState, scene: SceneBuilder): void {
     (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) - (1);
     qspCall(st, 'stat', '');
     scene.img(`images/locations/gadukino/market/sale${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You sell 1 kg of stored berries');
     scene.actions([
       { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
@@ -375,7 +375,7 @@ function enterSellFish(s: GameState, scene: SceneBuilder): void {
     (st as any).fish_stored = ((st as any).fish_stored ?? 0) - (1);
     qspCall(st, 'stat', '');
     scene.img(`images/locations/gadukino/market/sale${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeeStored(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You sell 1 kg of preserved fish');
     scene.actions([
       { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },

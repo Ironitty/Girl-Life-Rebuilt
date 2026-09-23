@@ -1602,10 +1602,10 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'city_residential') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'city_residential') {
     qspGoto(s, 'city_residential', '');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'cafe') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'cafe') {
       qspGoto(s, 'parkKafe', 'start');
     } else {
       qspGoto(s, 'city_park', 'start');

@@ -71,22 +71,24 @@ Do NOT report "done" until all steps pass.
 ### Comprehensive Audit
 `npx tsx scripts/comprehensive-audit.ts` — 3-phase (static, render, interaction). Requires `npx vite build` first. Port 4174. Give it **7200000 ms timeout**.
 
-Flags: `--skip-static`, `--skip-render`, `--skip-interaction`, `--filter <regex>`, `--start-after <loc>`, `--check-todo`, `--verbose`.
+**Default: continue on failure** — tests all targets, reports every failure at the end. Use `--stop-on-fail` to stop at the first failure (old behavior).
+
+Flags: `--skip-static`, `--skip-render`, `--skip-interaction`, `--filter <regex>`, `--start-after <loc>`, `--check-todo`, `--verbose`, `--stop-on-fail`.
 
 `--start-after <loc>` is phase-specific: without `--skip-render` → Phase 2 resumes; with `--skip-render` → Phase 3 resumes.
 
 Exclusion sets at top of file: `EXCLUDE_EXEC_DATA`, `EXCLUDE_FUNC_LITERAL`, `EXCLUDE_EXPR`, `EXCLUDE_BG`, `EXCLUDE_NO_ACTIONS`, `EXCLUDE_JS_ERRORS`, `EXCLUDE_UNTRANSLATED`.
 
-**Audit failure triage (mandatory)**: Classify each failure into exactly one category and act:
-1. **Missing TEST_STATE variable** → add to TEST_STATE + `initialState` in `store.ts`, rebuild, resume.
-2. **Transpiler bug** (`qspFunc` unresolved, backslash paths, `qspUntranslated` in image path, `ARGS[N]` misread) → **STOP.** Grep all generated files for the pattern, fix the transpiler pipeline (`generator.ts`, `parser.ts`, or `qspBridge.ts` runtime dispatcher), regenerate (`npx tsx scripts/qsp-transpile/index.ts transpile --force --all`), rebuild, resume.
-3. **Genuinely special case** (no `act` commands in QSP source, missing asset that never existed) → add to exclusion set with a comment.
+**Audit failure triage (mandatory)**: The audit reports ALL failures at once (default). Classify each into exactly one category and batch-fix:
+1. **Missing TEST_STATE variable** → add to TEST_STATE + `initialState` in `store.ts`, rebuild, re-run.
+2. **Transpiler bug** (`qspFunc` unresolved, backslash paths, `qspUntranslated` in image path, `ARGS[N]` misread) → Grep all generated files for the pattern, fix the transpiler pipeline (`generator.ts`, `parser.ts`, or `qspBridge.ts` runtime dispatcher), regenerate (`npx tsx scripts/qsp-transpile/index.ts transpile --force --all`), rebuild, re-run.
+3. **Genuinely special case** (no `act` commands in QSP source, missing asset that never existed, state-dependent redirect chains, QSP source bugs) → add to exclusion set with a comment.
 
 **Anti-pattern: "Sweep Mode."** Do NOT triage-and-exclude in a loop "for later." If you say "transpiler bug," you must fix it before resuming.
 
 **No reclassification.** `qspFunc` unresolved is ALWAYS Category 2, even if the root cause is in the runtime dispatcher (`qspBridge.ts`) rather than the transpiler source. The transpiler chose to emit a runtime call instead of resolving inline — fixing the dispatcher IS fixing the transpiler's output. Do NOT downgrade to Category 3 by arguing "this is a runtime issue, not a transpiler bug."
 
-**Stop-and-fix rule.** Any Category 2 failure, even a single instance, requires stopping the sweep and fixing the root cause before resuming. Do NOT exclude a single instance and move on — if the same signature appears again later, you've already paid the cost twice.
+**Stop-and-fix rule.** Any Category 2 failure, even a single instance, requires fixing the root cause before resuming. Do NOT exclude a single instance and move on — if the same signature appears again later, you've already paid the cost twice. Since the audit reports all failures at once, fix ALL instances of a given pattern in one pass.
 
 **Exclusion Discipline.** Before adding ANY location to an exclusion set, rule out Category 1 and 2:
 - `'undefined' in text` → check missing TEST_STATE vars (Cat 1) or handler `s`/`st` bug (Cat 2)

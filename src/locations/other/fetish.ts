@@ -25,7 +25,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).fetishes ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] !== 0) {
+  if (((s as any).fetishes ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_pref_bonus'] !== 0) {
     ((s as any).temp = (s as any).temp ?? {})['j'] = 0;
     // TODO-QSP: :fetish_cikl_loop1
     ((s as any).temp = (s as any).temp ?? {})['link'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'];
@@ -50,7 +50,7 @@ function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckForTraits(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).fetish_trait ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).fetish_trait ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
     // TODO-QSP: dynamic $fetish_trait[$ARGS[1]]
   }
   return;
@@ -59,14 +59,14 @@ function enterCheckForTraits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddExp(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'add_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_exp'] += ARGS[2]
@@ -78,10 +78,10 @@ function enterAddExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetExp(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'set_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -91,10 +91,10 @@ function enterSetExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetExp(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'get_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -104,14 +104,14 @@ function enterGetExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddPref(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'add_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_pref'] += ARGS[2]
@@ -124,10 +124,10 @@ function enterAddPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetPref(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'set_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -138,10 +138,10 @@ function enterSetPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPref(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'get_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }

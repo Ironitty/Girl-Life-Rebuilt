@@ -104,7 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterMilit(s: GameState, scene: SceneBuilder): void {
   (s as any).military = 1;
   scene.text('Kat turns to you. "Listen, I\'m scheduled to work this weekend, but I have plans. Here\'s the deal: war games are often held not far from the city and, well, according to the rules, they need doctors on site before they can begin.');
-  // TODO-QSP: dynamic text: She notices your reaction. "Don''t worry, you''ll have a doctor with you, so the...
+  // TODO-QSP: dynamic text: 'She notices your reaction. "Don''t worry, you''ll have a doctor with you, so th...
   scene.text(`She notices your reaction. "Don't worry, you'll have a doctor with you, so the most you'll need to do is apply some bandages. If you feel up to it, you can catch a bus at the clinic on Saturday between 6:00 and 9:00. Oh yeah, I almost forgot! The pay for two days is ${qspFunc(s, 'money', 'string_profit', 5000)}. So what do you say?"`);
   // TODO-QSP: end
   scene.actions([
@@ -150,14 +150,14 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     (st as any).picrand = 11;
     (st as any).sexpartkno = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: $boy[1] = $boy
     // TODO-QSP: $boydesc[1] = $boydesc
     if (((st as any).docfuck ?? 0)?.[String((st as any).randdoc ?? 0)] === 1) {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
     // TODO-QSP: :docloop
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).boydesc ?? 0) === ((st as any).boydesc ?? 0)[1]) {
       ((st as any).docfuck = (st as any).docfuck ?? {})[String((st as any).randdoc ?? 0)] = ((st as any).docfuck[String((st as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop'
@@ -205,7 +205,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go along with it', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).picrand = 12;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).docfuck ?? 0)?.[String((st as any).randdoc ?? 0)] === 1) {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
@@ -229,14 +229,14 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Play with them', handler: (st: GameState) => {
     (st as any).sexpartkno = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: $boy[1] = $boy
     // TODO-QSP: $boydesc[1] = $boydesc
     if (((st as any).docfuck ?? 0)?.[String((st as any).randdoc ?? 0)] === 1) {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
     // TODO-QSP: :docloop2
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).boydesc ?? 0) === ((st as any).boydesc ?? 0)[1]) {
       ((st as any).docfuck = (st as any).docfuck ?? {})[String((st as any).randdoc ?? 0)] = ((st as any).docfuck[String((st as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop2'
@@ -313,7 +313,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['lesbian_count'] = ((st as any).stat['lesbian_count'] ?? 0) + (1);
     (st as any).picrand = 13;
     (st as any).sexpartkno = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRanddoc(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).docfuck ?? 0)?.[String((st as any).randdoc ?? 0)] === 1) {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
     }

@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).week ?? 0) < 6) {
       scene.text('The door to the<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_trademission/u0027, /u0027/u0027); return false;">Trade Mission</a> is open.');
     } else {
-      // TODO-QSP: dynamic text: The door of the trade mission is closed. There''s a note on the door, Open hours...
+      // TODO-QSP: dynamic text: 'The door of the trade mission is closed. There''s a note on the door, Open hour...
       scene.text('The door of the trade mission is closed. There\'s a note on the door, Open hours: Saturday and Sunday 8:00--16:00');
     }
   }
@@ -115,8 +115,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You put your hand on his crotch and feel his erection harden. Your thin fingers slide over his hardon and find the zipper. You unzip him and get his cock out of his pants. Sasha relaxes on the couch waiting for you to continue what you started.');
     qspCall(st, 'arousal', 'foreplay', 5);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrhj(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbj(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrhj(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbj(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -128,9 +128,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You smile and Sasha pours more vodka, not stopping his caressing of your buttocks.');
     if (((st as any).pcs_horny ?? 0) < 50) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -206,9 +206,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey! What are you doing?" you ask.');
     scene.text('"Relax, it was merely an accident." Sasha starts muttering as he pours another shot, "Let\'s have a drink."');
     if (((st as any).pcs_horny ?? 0) < 50) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -219,9 +219,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You continue on as usual, trying not to pay attention to it, since it was only a casual touch. Sasha pours more vodka and says, "The second shot always tastes better." as he takes another quaff.');
     if (((st as any).pcs_horny ?? 0) < 50) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -372,7 +372,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
 { label: 'You\'re ashamed of me?', handler: (st: GameState) => {
     scene.text('You let go off your cleaning stuff and look straight into Yuri\'s eyes, asking him, "Are you ashamed of me?"');
-    // TODO-QSP: dynamic text: Yuri stammers, "I-I''m not embarrassed by you being a cleaner, but you must unde...
+    // TODO-QSP: dynamic text: 'Yuri stammers, "I-I''m not embarrassed by you being a cleaner, but you must und...
     scene.text('Yuri stammers, "I-I\'m not embarrassed by you being a cleaner, but you must understand, I\'m a manager, and you\'re the cleaning lady. We must not be seen together. But I want you to keep seeing you. You know where I live, come by my place after 16:00."');
     qspCall(st, 'willpower', 'misc', 'self');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -483,7 +483,7 @@ function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_smalloffice', 'start'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachDrink(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -510,7 +510,7 @@ function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_smalloffice', 'start'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachSex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachSex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -524,8 +524,8 @@ function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     qspCall(st, 'stat', '');
     scene.text('You drink and eat some more cheese, you realize that you are happily drunk. The guard\'s hand does not stop caressing your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo2(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachSex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachNo2(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBorodachSex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -574,9 +574,9 @@ function enterOhrhj(s: GameState, scene: SceneBuilder): void {
     scene.text('You start stroking his cock with your delicate hands. Quickly Sasha groans, "I can\'t hold on much longer."');
     qspCall(st, 'arousal', 'hj', 5, 'dom');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbj(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrhjcum(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbj(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrhjcum(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -610,8 +610,8 @@ function enterOhrbj(s: GameState, scene: SceneBuilder): void {
     scene.text(`You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbjcum(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrbjcum(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOhrsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

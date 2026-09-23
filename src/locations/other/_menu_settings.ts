@@ -29,7 +29,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tabsaction[5] = "menu_page = <<i>> & gt '$menu_settings', 'mods'"
   // TODO-QSP: $tabsname[6] = 'Information'
   // TODO-QSP: $tabsaction[6] = "menu_page = <<i>> & gt '$menu_settings', 'explanation_start'"
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_settings" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
@@ -57,8 +57,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   }, goto: ['import_export', 'import'] },
       { label: 'Emergency Exit', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'menu_exit');
-    dynamicGoto(st, 'menu_settings', 'emergency');
-  } },
+  }, goto: ['$menu_settings', 'emergency'] },
       { label: 'Exit the menu', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'menu_exit');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
@@ -71,18 +70,18 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
 
 function enterSwap(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_arr = ((s as any).locArgs?.[1] ?? 0);
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0  &&  Number((s as any).locArgs?.[3] ?? 0) === 'up') {
+  if (String((s as any).locArgs?.[2] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === 'up') {
     // TODO-QSP: jump 'swap_cleanup'
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  Number((s as any).locArgs?.[3] ?? 0) === 'down') {
+  if (String((s as any).locArgs?.[2] ?? '') === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  String((s as any).locArgs?.[3] ?? '') === 'down') {
     // TODO-QSP: jump 'swap_cleanup'
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) === 'up') {
+  if (String((s as any).locArgs?.[3] ?? '') === 'up') {
     (s as any).temp_stat_feature = 0;
     // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] - 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
     // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
   } else {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 'down') {
+    if (String((s as any).locArgs?.[3] ?? '') === 'down') {
       (s as any).temp_stat_feature = 0;
       // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] + 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
       // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
@@ -97,10 +96,10 @@ function enterSwap(s: GameState, scene: SceneBuilder): void {
 function enterSwapGrpMember(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sgm_base = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_sgm_i = ((s as any).locArgs?.[3] ?? 0);
-  if (Number((s as any).locArgs?.[4] ?? 0) === 'up'  &&  ((s as any).temp_sgm_i ?? 0) > 0) {
+  if (String((s as any).locArgs?.[4] ?? '') === 'up'  &&  ((s as any).temp_sgm_i ?? 0) > 0) {
     (s as any).temp_sgm_j = ((s as any).temp_sgm_i ?? 0) - 1;
   } else {
-    if (Number((s as any).locArgs?.[4] ?? 0) === 'down') {
+    if (String((s as any).locArgs?.[4] ?? '') === 'down') {
       (s as any).temp_sgm_j = ((s as any).temp_sgm_i ?? 0) + 1;
     } else {
       // TODO-QSP: jump 'swap_gm_cleanup'
@@ -208,7 +207,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic 'temp_tms_cur = ' + $ARGS[2]
   (s as any).temp_tms_i = 0;
   (s as any).temp_tms_matched = 0;
-  if (Number((s as any).locArgs?.[6] ?? 0) !== ''  &&  ((s as any).temp_tms_cur ?? 0) === -99) {
+  if (String((s as any).locArgs?.[6] ?? '') !== ''  &&  ((s as any).temp_tms_cur ?? 0) === -99) {
     (s as any).temp_tms_matched = 1;
   }
   // TODO-QSP: :toggle_menu_sym_loop
@@ -227,7 +226,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_tms_i = ((s as any).temp_tms_i ?? 0) + (1);
     // TODO-QSP: jump 'toggle_menu_sym_loop'
   }
-  if (Number((s as any).locArgs?.[4] ?? 0) !== ''  &&  Number((s as any).locArgs?.[5] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[4] ?? '') !== ''  &&  String((s as any).locArgs?.[5] ?? '') !== '') {
     scene.text('&nbsp;|&nbsp;');
     if ((!((s as any).temp_tms_matched ?? 0))) {
       // TODO-QSP: dynamic '$temp_tms_custom_val = $str(' + $ARGS[4] + ')'
@@ -239,7 +238,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
       scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).temp_tms_custom_exec ?? '')} */ return s; }); return false;">Custom</a>`);
     }
   }
-  if (Number((s as any).locArgs?.[6] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[6] ?? '') !== '') {
     scene.text('&nbsp;|&nbsp;');
     if (((s as any).temp_tms_cur ?? 0) === -99) {
       // TODO-QSP: dynamic text: '<b>' + $ARGS[6] + '</b>'
@@ -269,12 +268,12 @@ function enterToggleMenuShowHide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[3] ?? 0) === 'pack') {
+  if (String((s as any).locArgs?.[3] ?? '') === 'pack') {
     (s as any).temp_func = ' \'pack\',';
   } else {
     (s as any).temp_func = '';
   }
-  if (((s as any).calendar_show ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).calendar_show ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>> Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: ...
     scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')} Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calendar_show ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027/u0027); return false;">Show</a><br>'`);
   } else {
@@ -287,7 +286,7 @@ function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).calCycleOpts ?? 0)['show_' + Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).calCycleOpts ?? 0)['show_' + String((s as any).locArgs?.[1] ?? '')] === 0) {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>>:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calCycl...
     scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')}:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calCycleOpts ??= {})/u0027show_${((s as any).locArgs?.[1] ?? '')}/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027cycle_rebuild/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Show</a><br>'`);
   } else {
@@ -885,8 +884,7 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).menu_page = 2;
-    dynamicGoto(st, 'menu_settings', 'display');
-  } },
+  }, goto: ['$menu_settings', 'display'] },
     { label: 'Presets', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'theme_presets');
   } },
@@ -899,9 +897,9 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'rgb') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'rgb') {
     (s as any).result = ((s as any).locArgs?.[3] ?? 0);
-    (s as any).temp_input = (String((String(qspUntranslated(s, "input(\u00000\u0000)", { location: "_menu_settings" })).trim())).toUpperCase());
+    (s as any).temp_input = (String((String(window.prompt("\u00000\u0000") ?? '').trim())).toUpperCase());
     if (((s as any).temp_input ?? 0) !== '') {
       if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
         if (parseFloat(((s as any).temp_input ?? 0)) < 0  ||  parseFloat(((s as any).temp_input ?? 0)) > 255) {
@@ -916,22 +914,22 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (Object.keys((s as any).temp_result ?? {}).length === 1) {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'red') {
-        (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).temp_result ?? 0));
+      if (String((s as any).locArgs?.[2] ?? '') === 'red') {
+        (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-256))  ||  ((s as any).temp_result ?? 0));
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'green') {
-          (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).temp_result ?? 0) * 256));
+        if (String((s as any).locArgs?.[2] ?? '') === 'green') {
+          (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-65281))  ||  (((s as any).temp_result ?? 0) * 256));
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
-            (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).temp_result ?? 0) * 65536));
+          if (String((s as any).locArgs?.[2] ?? '') === 'blue') {
+            (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-16711681))  ||  (((s as any).temp_result ?? 0) * 65536));
           }
         }
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'hex') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'hex') {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
-      (s as any).temp_input = (String((String(qspUntranslated(s, "input('Enter color in ABC  ||  AABBCC format')", { location: "_menu_settings" })).trim())).toUpperCase());
+      (s as any).temp_input = (String((String(window.prompt("Enter color in ABC  ||  AABBCC format") ?? '').trim())).toUpperCase());
       if (((s as any).temp_input ?? 0) !== '') {
         (s as any).temp_input = (String(((s as any).temp_input ?? 0)).split('#').join(undefined));
         (s as any).temp_length = (String(((s as any).temp_input ?? 0)).length);
@@ -967,7 +965,7 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter Font name:')", { location: "_menu_settings" })).trim());
+  (s as any).temp_input = (String(window.prompt("Enter Font name:") ?? '').trim());
   if (((s as any).temp_input ?? 0) !== '') {
     ((s as any).custom_theme = (s as any).custom_theme ?? {})['fname'] = ((s as any).temp_input ?? 0);
   }
@@ -976,7 +974,7 @@ function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter Font size:')", { location: "_menu_settings" })).trim());
+  (s as any).temp_input = (String(window.prompt("Enter Font size:") ?? '').trim());
   if (((s as any).temp_input ?? 0) !== '') {
     if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       ((s as any).custom_theme = (s as any).custom_theme ?? {})['fsize'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 9) ? (9) : (parseFloat(((s as any).temp_input ?? 0))));
@@ -987,7 +985,7 @@ function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter increment:')", { location: "_menu_settings" })).trim());
+  (s as any).temp_input = (String(window.prompt("Enter increment:") ?? '').trim());
   if (((s as any).temp_input ?? 0) !== '') {
     if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       ((s as any).custom_theme = (s as any).custom_theme ?? {})['increment'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 1) ? (1) : (parseFloat(((s as any).temp_input ?? 0))));
@@ -999,7 +997,7 @@ function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): v
 
 function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_hsi = (String((String(qspUntranslated(s, "input(\u00000\u0000)", { location: "_menu_settings" })).trim())).toUpperCase());
+  (s as any).temp_hsi = (String((String(window.prompt("\u00000\u0000") ?? '').trim())).toUpperCase());
   if (((s as any).temp_hsi ?? 0) !== '') {
     (s as any).temp_hsi = (String(((s as any).temp_hsi ?? 0)).split('#').join(undefined));
     (s as any).temp_hsi_len = (String(((s as any).temp_hsi ?? 0)).length);
@@ -1025,14 +1023,14 @@ function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void
 }
 
 function enterExtractColorComponent(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'red') {
-    (s as any).result = (Number((s as any).locArgs?.[2] ?? 0)  &&  255);
+  if (String((s as any).locArgs?.[1] ?? '') === 'red') {
+    (s as any).result = (String((s as any).locArgs?.[2] ?? '')  &&  255);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'green') {
-      (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0)  &&  65280) / 256);
+    if (String((s as any).locArgs?.[1] ?? '') === 'green') {
+      (s as any).result = ((String((s as any).locArgs?.[2] ?? '')  &&  65280) / 256);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
-        (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0)  &&  16711680) / 65536);
+      if (String((s as any).locArgs?.[2] ?? '') === 'blue') {
+        (s as any).result = ((String((s as any).locArgs?.[2] ?? '')  &&  16711680) / 65536);
       }
     }
   }
@@ -1041,17 +1039,17 @@ function enterExtractColorComponent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeIncrement(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'rgb') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'rgb') {
     (s as any).result = qspFunc(s, '$menu_settings', '', 'extract_color_component', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)) + ((s as any).locArgs?.[4] ?? 0);
     (s as any).result = ((((s as any).result ?? 0) > 255) ? (((s as any).result ?? 0) - 256) : (((((s as any).result ?? 0) < 0) ? (256 + ((s as any).result ?? 0)) : (((s as any).result ?? 0)))));
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'red') {
-      (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).result ?? 0));
+    if (String((s as any).locArgs?.[2] ?? '') === 'red') {
+      (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-256))  ||  ((s as any).result ?? 0));
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'green') {
-        (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).result ?? 0) * 256));
+      if (String((s as any).locArgs?.[2] ?? '') === 'green') {
+        (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-65281))  ||  (((s as any).result ?? 0) * 256));
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
-          (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).result ?? 0) * 65536));
+        if (String((s as any).locArgs?.[2] ?? '') === 'blue') {
+          (s as any).result = ((String((s as any).locArgs?.[3] ?? '')  &&  (-16711681))  ||  (((s as any).result ?? 0) * 65536));
         } else {
           (s as any).result = ((s as any).locArgs?.[2] ?? 0);
         }
@@ -1242,13 +1240,13 @@ function enterStatus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFonts(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_args1 = ((s as any).locArgs?.[1] ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[2] ?? '') !== '') {
     (s as any).temp_args2 = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[3] ?? '') !== '') {
     (s as any).temp_args3 = ((s as any).locArgs?.[3] ?? 0);
   }
   // TODO-QSP: $fontList[] = 'Default'
@@ -1507,7 +1505,7 @@ function enterDisplayModTable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInstallNewMod(s: GameState, scene: SceneBuilder): void {
-  (s as any).mod_temp = 0;
+  (s as any).mod_temp = window.prompt("input mod name (as for the example image above, input <b>isample</b>)") ?? '';
   qspCall(s, 'mod_system', 'add_mod', ((s as any).mod_temp ?? 0));
   dynamicGoto(s, 'menu_settings');
   // TODO-QSP: end
@@ -1515,7 +1513,7 @@ function enterInstallNewMod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).input ?? 0)('Are you sure you want to delete ' + ((s as any).mod_name ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + '? (type anything to confirm)') !== '') {
+  if (((s as any).input ?? 0)('Are you sure you want to delete ' + (((s as any).mod_name ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + '? (type anything to confirm)') !== '') {
     // TODO-QSP: gs 'mod_system', 'delete_mod', ARGS[1]
     dynamicGoto(s, 'menu_settings');
   }
@@ -1652,11 +1650,11 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center>Introduction and Icons</center>');
   scene.text('We will go through the stat display, which is the window that your QSP-player probably calls additional description. ');
-  // TODO-QSP: dynamic text: It starts with an image of the weather ' + $weatherImage + ' followed by the cur...
-  scene.text('It starts with an image of the weather \' + $weatherImage + \' followed by the current temperature in Celsius. If you click on the picture you will get a pop-up with a more detailed description.');
+  // TODO-QSP: dynamic text: 'It starts with an image of the weather ' + $weatherImage + ' followed by the cu...
+  scene.text('\'It starts with an image of the weather \' + $weatherImage + \' followed by the current temperature in Celsius. If you click on the picture you will get a pop-up with a more detailed description.\'');
   scene.text('Below the weather image is a line that gives the current time and date, maybe followed by a line saying if you have vacation and how long time until the vacation ends.');
   scene.img('images/system/icons/menu/icon_character.png');
-  // TODO-QSP: dynamic text: The Character description have ' + iif($start_type['magic'] <> 'nomagic' , '6', ...
+  // TODO-QSP: dynamic text: 'The Character description have ' + iif($start_type['magic'] <> 'nomagic' , '6',...
   scene.text('The Character description have ' + ((((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') ? ('6') : ('7')) + ' different tabs. The first tab "Character" gives a general overview of your character\'s looks and physique. The second tab is "Skills". We will explain skills later in this introduction.');
   // TODO-QSP: dynamic text: The third tab "Statistics" lists several achievements that <<$pcs_firstname>> ha...
   scene.text(`The third tab "Statistics" lists several achievements that ${((s as any).pcs_firstname ?? '')} has made in the game. The fourth tab "Pain" has a detailed description of any pain ${((s as any).pcs_firstname ?? '')} is experiencing.`);
@@ -1665,8 +1663,10 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bag ?? 0) > 0) {
     scene.img('images/system/icons/menu/icon_purse.png');
   }
-  scene.img(`images/system/icons/menu/${((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_phone.png') : ('icon_phone_sms.gif'))}`);
-  scene.img(`images/system/icons/menu/${((s as any).journalIcon ?? '')}`);
+  // TODO-QSP: dynamic text: 'The ' + iif(bag > 0, 'fourth', 'third') + ' icon is the phone <img title="Your ...
+  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fourth') : ('third')) + ` icon is the phone <img title="Your phone" height = ${((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? ''} src="images/system/icons/menu/${((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_phone.png') : ('icon_phone_sms.gif'))}"> which you can open if you receive messages or calls, to send messages and to take selfies.`);
+  // TODO-QSP: dynamic text: 'The ' + iif(bag > 0, 'fifth', 'fourth') + ' icon is your journal <img title="<<...
+  scene.text('The ' + ((((s as any).bag ?? 0) > 0) ? ('fifth') : ('fourth')) + ` icon is your journal <img title="${((s as any).journal_tooltip ?? '')}" height = ${((s as any).stat_cfg ?? 0)?.['menu_icon_height'] ?? ''} src="images/system/icons/menu/${((s as any).journalIcon ?? '')}"> which has many important tabs.`);
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     scene.text('  The first tab there is very important, since you can use it to cast spells once you learn them.');
   }

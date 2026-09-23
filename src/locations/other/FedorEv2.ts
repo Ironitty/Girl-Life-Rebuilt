@@ -17,7 +17,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.text(`<center><b>${'Vasily [Shulga] Shulgin'}</b></center>`);
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You and Fedor follow the laughing to find a clearly drunk Vasily dancing in fron...
     scene.text(`You and Fedor follow the laughing to find a clearly drunk Vasily dancing in front of Vitek and Dan as they cheer him on. Dan shouts "Keep going and remember if you fall over then you owe us ${qspFunc(s, 'money', 'format', 300)} " as he records Shulgin's drunken dance on his phone. Fedor laughs "It seems like they are having fun. We should probably go before they notice us because I'm sure that having you by my side will only make those poor guys jealous" you lower your head and feel yourself getting flushed as you reply, "I'm sure you say that to all the girls" he then responds, "Only if they were as beautiful as you ${((st as any).pcs_firstname ?? '')}" after a few moments of silence Fedor chuckles as he takes you by the hand and leads you back down the main path.`);
     scene.actions([
@@ -40,7 +41,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.text(`<center><b>${'Vasily [Shulga] Shulgin'}</b></center>`);
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You and Fedor follow the laughing to find a clearly drunk Vasily dancing in fron...
     scene.text(`You and Fedor follow the laughing to find a clearly drunk Vasily dancing in front of Vitek and Dan as they cheer him on. Dan shouts "Keep going and remember if you fall over then you owe us ${qspFunc(s, 'money', 'format', 300)} " as he records Shulgin's drunken dance on his phone. Fedor laughs "It seems like they are having fun. We should probably go before they notice us because I'm sure that having you by my side will only make those poor guys jealous" you lower your head and feel yourself getting flushed as you reply, "I'm sure you say that to all the girls" he then responds, "Only if they were as beautiful as you ${((st as any).pcs_firstname ?? '')}" after a few moments of silence Fedor chuckles as he takes you by the hand and leads you back down the main path.`);
     scene.actions([
@@ -315,8 +317,8 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
     (st as any).FedorLuv = ((st as any).FedorLuv ?? 0) + (3);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/hj.jpg');
-    // TODO-QSP: dynamic text: Feeling his warm penis in your hand and seeing his expression just fills you wit...
-    scene.text('Feeling his warm penis in your hand and seeing his expression just fills you with excitement and a sense of power as you are in full control his pleasure. You continue to jerk him off as you admire the look of pleasure in his face and the slow throbbing of his cock. Soon Fedor\'s head slams back in his chair and he lets out a muffled groan as his cock starts rapidly throbbing and erupting squirt after squirt of semen on your \'+ iif(PCloskirt = 0, \'pants\', \'skirt\') +\' and hand. Fedor lays back motionlessly for a few seconds then turns to you with a very satisfied look on his face, he leans toward you and kiss you on the cheek as he whispers "Wow ' + ((st as any).pcs_nickname ?? '') + ', You are the best." then leans back in his chair, zipping his pants.');
+    // TODO-QSP: dynamic text: 'Feeling his warm penis in your hand and seeing his expression just fills you wi...
+    scene.text('Feeling his warm penis in your hand and seeing his expression just fills you with excitement and a sense of power as you are in full control his pleasure. You continue to jerk him off as you admire the look of pleasure in his face and the slow throbbing of his cock. Soon Fedor\'s head slams back in his chair and he lets out a muffled groan as his cock starts rapidly throbbing and erupting squirt after squirt of semen on your ' + (((!((st as any).PCloskirt ?? 0))) ? ('pants') : ('skirt')) + ` and hand. Fedor lays back motionlessly for a few seconds then turns to you with a very satisfied look on his face, he leans toward you and kiss you on the cheek as he whispers "Wow ${((st as any).pcs_nickname ?? '')}, You are the best." then leans back in his chair, zipping his pants.`);
     qspCall(st, 'arousal', 'hj', 5, 'dom');
     qspCall(st, 'cum_call', 'clothes_hidden', ((st as any).boy ?? 0), 1);
     qspCall(st, 'cum_call', 'hands', ((st as any).boy ?? 0), 1);
@@ -669,7 +671,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((st as any).pcs_firstname ?? '')}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((st as any).pcs_nickname ?? '')} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((st as any).pcs_nickname ?? '')}] ${((st as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorEv2" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     scene.actions([
       { label: 'Walk Home', handler: (st: GameState) => {
     (st as any).fedorkozqw = 5;

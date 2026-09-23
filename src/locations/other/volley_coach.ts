@@ -161,7 +161,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask him about his personal life', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I don''t think that''s any of your business <<$pcs_lastname>>."
     scene.text(`"I don't think that's any of your business ${((st as any).pcs_lastname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -175,7 +175,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: You decide to talk to him about the rumours that he played on the European champ...
     scene.text(`You decide to talk to him about the rumours that he played on the European championship winning team, but the subject seems to be painful. "${((st as any).pcs_lastname ?? '')}, I won't dredge up the past just to satisfy your curiosity," he tells you.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -186,7 +186,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).vballVars = (st as any).vballVars ?? {})['trainer_home'] = 1;
     scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener6.jpg');
     scene.text('He lives in the residential district in a one bedroom apartment by himself.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -196,7 +196,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener6.jpg');
     ((st as any).vballVars = (st as any).vballVars ?? {})['coach_wife'] = 1;
     scene.text('He tells you he has a wife he\'s separated from. They\'re still legally married, but they no longer live together or interact. You sense it\'s an uncomfortable subject for him.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -215,7 +215,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
       scene.text('"I\'m not afraid, and I doubt she is prettier than me," you retort, making Mikhail smile.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -286,7 +286,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Bring up Ivan', handler: (st: GameState) => {
     ((st as any).vballVars = (st as any).vballVars ?? {})['last_seduce'] = ((st as any).daystart ?? 0);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeduceCoach1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSeduceCoach1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -490,7 +490,7 @@ function enterJoinTeam1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Mikhail smiles at you, gives a thumbs up, and says, "${((st as any).pcs_lastname ?? '')}, I want to congratulate you, I think. I've decided to make you a first string regular. From now on, you'll be starting."`);
     scene.text('"But," he adds, shaking his finger at you admonishingly. "You still need to keep practicing, and less drinking!"');
     scene.text('You squeal happily and threw your arms around the Mikhail\'s neck. "Now we have them… I always… Yes we like…" The excitement of the unexpected announcement left you unable to speak and Mikhail just smiles at you and says "Go."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -645,7 +645,7 @@ function enterNormalMassageStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You do as he says, laying face down on the table.');
     scene.text('He comes up behind you and you can feel his hands on your shoulders.');
     scene.text('"Just try and relax…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalMassage1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNormalMassage1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -816,7 +816,7 @@ function enterNudeMassageStart1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take off your clothes', handler: (st: GameState) => {
     ((st as any).vballVars = (st as any).vballVars ?? {})['massage_react'] = 'relaxed';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/massage/before1.jpg');
     scene.text('You do as he says, taking off your clothes and laying belly down on the table.');
     scene.actions([
@@ -832,7 +832,7 @@ function enterNudeMassageStart2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take off your clothes first', handler: (st: GameState) => {
     ((st as any).vballVars = (st as any).vballVars ?? {})['massage_react'] = 'relaxed';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/undress/top1.mp4');
     scene.text('While his back is turned, you pull your top over your head and let it fall to the ground. Coach Mikhail turns back and freezes in shock as soon as he lays his eyes on your bare breasts.');
     // TODO-QSP: dynamic text: "W-what are you doing <<$pcs_lastname>>?" he stammers, belatedly turning his hea...
@@ -840,7 +840,7 @@ function enterNudeMassageStart2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Act innocent', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/panties_off.mp4');
-    // TODO-QSP: dynamic text: "What do you mean?" you ask, playing dumb, just before tucking your thumbs into ...
+    // TODO-QSP: dynamic text: '"What do you mean?" you ask, playing dumb, just before tucking your thumbs into...
     scene.text('"What do you mean?" you ask, playing dumb, just before tucking your thumbs into your waistband and ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('pull down your pants and panties together in one smooth motion. ') : ('pull down your pants in one smooth motion, revealing your lack of anything underneath. ')) + '"You told me to get on the table. Massages like these are usually done naked, aren\'t they?"');
     scene.text('Apparently unable to resist, his eyes turns turn back to take the ever so smallest peek. What he sees causes them to bulge. You look back innocently before casually climbing atop the table and closing your eyes.');
     scene.text('Several long moments pass in silence… before you hear him approach the table. You quietly smile with your eyes still shut as you feel his hands start spreading oil on your bare skin.');
@@ -888,12 +888,12 @@ function enterBackRub(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).vballVars ?? 0)?.['coachsex'] < 3) {
       if (((st as any).vballVars ?? 0)?.['coach_nude_massage'] === 1) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFullBody(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFullBody(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInnerThigh(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInnerThigh(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPussyTouch(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPussyTouch(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -969,9 +969,9 @@ function enterPussyTouch(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).vballVars ?? 0)?.['coachsex'] >= 4  ||  ((st as any).vballVars ?? 0)?.['coach_lust'] > 60) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOrgasmMassageEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOrgasmMassageEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -987,9 +987,9 @@ function enterPussyTouch(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).vballVars ?? 0)?.['coachsex'] >= 4  ||  ((st as any).vballVars ?? 0)?.['coach_lust'] > 60) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOrgasmMassageEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOrgasmMassageEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1020,11 +1020,11 @@ function enterAfterMassageBj1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Tiredly obey', handler: (st: GameState) => {
     scene.text('Your head is still swimming from the intense orgasm but you obey your coach, tiredly taking his cock in your hand to guide into your mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Enthusiastically obey', handler: (st: GameState) => {
     scene.text('Tired as you are, that orgasm only increased your appetite for more. Your pussy practically <i>aches</i> with desire. With hips squirming in uncontrollable arousal, you eagerly grab your coach\'s cock with your hand to guide it into your mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBj2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1039,7 +1039,7 @@ function enterAfterMassageBj2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/massage/bj5.mp4');
     scene.text('You blow him.');
     if (((st as any).vballVars ?? 0)?.['coachsex'] < 5  &&  ((st as any).vballVars ?? 0)?.['coach_lust'] < 80) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBjCum1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterMassageBjCum1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Continue', goto: ['volley_coach', 'massage_fuck_pre'] },
@@ -1083,17 +1083,17 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I feel great <<$npc_nickname[''A69'']>>. Maybe I could…" you step in close to h...
     scene.text(`"I feel great ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}. Maybe I could…" you step in close to him, putting your hands on his chest. "… do something for you now…?"`);
     if (((st as any).vballVars ?? 0)?.['coachsex'] === 3) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).vballVars ?? 0)?.['coachsex'] >= 4) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).vballVars ?? 0)?.['coach_lust'] >= 60  &&  ((st as any).npc_rel ?? 0)?.['A69'] >= 80) {
           scene.text('"Like what?"');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).vballVars ?? 0)?.['coach_lust'] >= 40  &&  ((st as any).npc_rel ?? 0)?.['A69'] >= 80) {
             scene.text('You see him hesitate, seriously considering doing something with you. A moment later, he puts his hands on your shoulders and gently pushes you away.');
@@ -1161,8 +1161,8 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
       scene.text('Mikhail\'s body tenses up but he doesn\'t move. It gives you a great opportunity to feel his rock hard erection beneath his clothes.');
       scene.text('"I want you," you whisper under your breath. "Don\'t you want me too?"');
       scene.text('"I… This is…" He hesitates.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
             ]);
@@ -1197,13 +1197,13 @@ function enterReliefHandjob1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Feel better now?" you smile at <<$npc_nickname[''A69'']>>.
     scene.text(`"Feel better now?" you smile at ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}.`);
     scene.text('"Much better…" he says, leaning down to kiss you one more time. Then he grabs your ass without warning, eliciting a gasp from you. "Now clean that up and get out of my office before somebody finds us like this."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjobCum(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefHandjobCum(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Switch to your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley_coach/massage_room.jpg');
     scene.text('You suddenly break the kiss off, pulling away with a teasing smile.');
     scene.text('"For such a good coach, I don\'t think that I\'m doing a very good job at returning the favor. How about I do something better instead?" you say and kneel down before him…');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1255,7 +1255,7 @@ function enterReliefBlowjob1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/blowjob/kotovbj2.mp4');
     // TODO-QSP: dynamic text: You kneel in front of <<$npc_nickname[''A69'']>>, pulling his pants with you on ...
     scene.text(`You kneel in front of ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}, pulling his pants with you on your way down to reveal a fully erect ${((st as any).dick ?? '')}cm cock.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1275,7 +1275,7 @@ function enterReliefBlowjob2(s: GameState, scene: SceneBuilder): void {
     scene.text('Whatever you were planning on doing apparently doesn\'t factor into the equation as without warning, Coach Mikhail grabs your head and pulls you all the way down to the base of his cock.');
     scene.text('Thick salty liquid spurts into the back of your throat, flooding your mouth with so much you can feel it overflowing past your lips.');
     scene.text('Coach holds you there for a long time until his cock stops pulsating in your mouth and finally releases his grasp, allowing you to pull your head off his dick.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjCumMouthEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjCumMouthEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1435,12 +1435,12 @@ function enterMassageCondomTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Be amused', handler: (st: GameState) => {
     scene.text('"Check for yourself if you don\'t believe me," you smirk. "Pills are in my bag."');
     scene.text('Your coach actually does, scrounging through your things until he finds your popped pill cases. He looks back at you, grins, and tosses the condom over his shoulder. You grin back as he climbs back up on the table with you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Get offended', handler: (st: GameState) => {
     scene.text('"Check for yourself if you don\'t believe me," you scowl. "I keep my birth control in my bag."');
     scene.text('Your coach actually does, scrounging through your things until he finds your popped pill cases. The fact that after everything he still won\'t take your word irks you so much you can practically feel a vein pop in your forehead. Though he doesn\'t seem to mind. He looks back at you grinning and tosses the condom over his shoulder as he climbs back up on the table with you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1450,22 +1450,22 @@ function enterMassageCondomTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him put it on', handler: (st: GameState) => {
     scene.text('Wait for him to put the condom on.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'He doesn\'t need it (you don\'t mind)', handler: (st: GameState) => {
     scene.text('"You don\'t have to use a rubber," you smile sweetly. "I don\'t mind."');
     scene.text('"I mind," he grunts back, ignoring you and rolling it onto his cock. "I don\'t want to take chances."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'He doesn\'t need it (you want it raw)', handler: (st: GameState) => {
     scene.text('"Don\'t put that on," you moan huskily. "I want you <i>raw inside me</i>."');
     scene.text('"Can\'t do it raw," he grunts back, ignoring your request and rolling the rubber onto his cock. "I don\'t take chances."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'He doesn\'t need it (you trust him)', handler: (st: GameState) => {
     scene.text('"You don\'t have to use a rubber," you smile sweetly. "I trust you to pull out."');
     scene.text('"I don\'t," he grunts back, ignoring you and rolling it onto his cock. "I don\'t want to take chances."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1531,9 +1531,9 @@ function enterMassageFuckStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyFuckStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyFuckStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1699,16 +1699,16 @@ function enterMissCreampieStride(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/shared/sex/massage/creampie${(Math.floor(Math.random() * 2) + 5)}.mp4`);
     // TODO-QSP: dynamic text: With a sigh of satisfaction, <<$npc_usedname[$npcID]>> lets his cock slip from y...
     scene.text(`With a sigh of satisfaction, ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} lets his cock slip from your used pussy, a slurry of juice, massage oil, and cum trickling out after it.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       // TODO-QSP: dynamic text: After the initial surprise, you let yourself relax, riding out <<$npc_usedname[$...
       scene.text(`After the initial surprise, you let yourself relax, riding out ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s orgasm with his cock pulsing inside the rubber inside you. Eventually you feel his grip loosen up and you assume he's finished climaxing.`);
       if (((st as any).condom_break ?? 0) > 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -1734,7 +1734,7 @@ function enterMissCumTogether(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/shared/sex/massage/creampie${(Math.floor(Math.random() * 2) + 5)}.mp4`);
     // TODO-QSP: dynamic text: With a sigh of satisfaction, <<$npc_usedname[$npcID]>> lets his cock slip from i...
     scene.text(`With a sigh of satisfaction, ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} lets his cock slip from inside you. You can't help but shudder as you feel a slurry of juice, massage oil, and cum trickle out of your well-used pussy.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1746,9 +1746,9 @@ function enterMissCumTogether(s: GameState, scene: SceneBuilder): void {
         scene.text(`The pulses of his cock inside you send a thrill through your body and you find yourself suddenly coming. Coming <i>with</i> ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}, pussy spasming around the rubber being filled inside of you.`);
       }
       if (((st as any).condom_break ?? 0) > 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
     (st as any).orgasm_or = 'yes';
@@ -1843,15 +1843,15 @@ function enterDoggyCreampieStride(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/creampie2.mp4');
     scene.text('Coach pulls out and his cum leaks from inside you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       scene.text('You take it in stride as he cums in the condom inside you.');
       if (((st as any).condom_break ?? 0) > 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -1873,7 +1873,7 @@ function enterDoggyCumTogether(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/vagcreampie/doggy2.jpg');
     // TODO-QSP: dynamic text: With a sigh of satisfaction, <<$npc_usedname[$npcID]>> lets his cock slip from i...
     scene.text(`With a sigh of satisfaction, ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} lets his cock slip from inside you. You can't help but shudder as you feel a slurry of juice, massage oil, and cum trickle out of your well-used pussy.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1887,9 +1887,9 @@ function enterDoggyCumTogether(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).condom_break ?? 0) > 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreak(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
@@ -1920,7 +1920,7 @@ function enterFacialLickLips(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Lick your lips', handler: (st: GameState) => {
     scene.text('You lick your cum covered lips.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFacialAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFacialAfter2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1936,7 +1936,7 @@ function enterFacialCleanCock(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You suck his cock, cleaning off his cum.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFacialAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFacialAfter2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -2048,7 +2048,7 @@ function enterCondomBreakReact(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t worry," you smile softly, trying to reassure him. "It\'s a safe day in my cycle. I won\'t get pregnant."');
     scene.text('He shakes his head.');
     scene.text('"I don\'t want to take chances."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -2058,7 +2058,7 @@ function enterCondomBreakReact(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t worry," you smile softly, trying to reassure him. "It\'s a very risky day in my cycle. I\'m pretty sure I won\'t get pregnant."');
     scene.text('He shakes his head.');
     scene.text('"I don\'t want to take chances."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -2072,7 +2072,7 @@ function enterCondomBreakReact(s: GameState, scene: SceneBuilder): void {
       scene.text('"I think I might be ovulating soon," you mumble anxiously.');
     }
     scene.text('"Shit!" he swears again.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -2097,12 +2097,12 @@ function enterCondomBreakReact(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'You\'ll buy a morning after pill', handler: (st: GameState) => {
     scene.text('"It\'s okay," you say calmly. "I\'ll get a morning after pill."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Ask him for a morning after pill', handler: (st: GameState) => {
     scene.text('"You don\'t happen to have a morning after pill on you, do you?" you ask wryly.');
     scene.text('"No, but…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBreakPill2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -2176,7 +2176,7 @@ function enterMassageFuckEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageRedress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageRedress(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).vballVars ?? 0)?.['coachsex'] < 6) {
       ((st as any).vballVars = (st as any).vballVars ?? {})['coachsex'] = 6;
     }
@@ -2237,7 +2237,7 @@ function enterCatchBreath(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/massage/after2.jpg');
     scene.text('Finished fucking, you let your head slump back and hit the table, taking heaving breaths and legs falling limp over the side, feeling thoroughly worn out. Feeling <i>used</i>. But in a good way.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2273,7 +2273,7 @@ function enterGetSoGood(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"The same way you get good at volleyball," he smirks. "Lots of practice."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageFuckEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2297,7 +2297,7 @@ function enterComfortSex1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cry', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/undress/undress1.mp4');
     // TODO-QSP: dynamic text: You scream a wordless cry, burying your head into <<$npc_usedname[$npcID]>>''s c...
     scene.text(`You scream a wordless cry, burying your head into ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s chest as he wraps his arms around you, clutching you tight. You cry and cry and cry and cry until something suddenly takes over and then suddenly your lips are on his. Your hands are on his belt. His hands are pulling off your top. And both of you frantically undress one another as you stumble into the massage room behind his office.`);
@@ -2317,7 +2317,7 @@ function enterComfortSex1(s: GameState, scene: SceneBuilder): void {
       scene.img(`images/shared/sex/massage/miss${(Math.floor(Math.random() * 3) + 3)}.mp4`);
     }
     scene.text('The sex is passionate and wild. Time passes in a blur of bodies smashing together. Both of you wrestling each other into different positions. No love making. Just <i>hard fucking.</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterComfortSexCum1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterComfortSexCum1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -2393,7 +2393,7 @@ function enterComfortSexCum1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: It''s with an animalistic fever that you open your mouth as wide as it can go as...
     scene.text(`It's with an animalistic fever that you open your mouth as wide as it can go as ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} blasts his cum all over your face. Across your tongue. On your cheeks. Smeared into your hair.`);
     scene.text('When he\'s finally done, you collapse back onto the table.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterComfortSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterComfortSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2497,7 +2497,7 @@ function enterVictorySex1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Clothes. Off.', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMassageUndress(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/undress/undress1.mp4');
     scene.text('And suddenly you\'re frantically undressing each another. Clothes fly off as you stumble into the massage room behind his office.');
     scene.actions([
@@ -2516,7 +2516,7 @@ function enterVictorySex1(s: GameState, scene: SceneBuilder): void {
       scene.img(`images/shared/sex/massage/miss${(Math.floor(Math.random() * 3) + 3)}.mp4`);
     }
     scene.text('The sex is passionate and wild. Time passes in a blur of bodies smashing together. Both of you wrestling each other into different positions. No love making. Just <i>hard fucking.</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexCum1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexCum1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -2592,7 +2592,7 @@ function enterVictorySexCum1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: It''s with an animalistic fever that you open your mouth as wide as it can go as...
     scene.text(`It's with an animalistic fever that you open your mouth as wide as it can go as ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} blasts his cum all over your face. Across your tongue. On your cheeks. Smeared into your hair.`);
     scene.text('When he\'s finally done, you collapse back onto the table.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2622,7 +2622,7 @@ function enterVictorySexReact(s: GameState, scene: SceneBuilder): void {
       scene.text(`"That was… almost… as good as winning…" you pant, grinning at ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}.`);
     }
     scene.text('"Well, I can\'t deny that," he grins, hauling himself off the massage table. "After all, it\'s the winning that makes you feel alive, makes you want to procreate."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Perfect way to end the day', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/after2.jpg');
@@ -2634,7 +2634,7 @@ function enterVictorySexReact(s: GameState, scene: SceneBuilder): void {
       scene.text(`"That… was a perfect end… to a perfect day…" you pant, grinning at ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}.`);
     }
     scene.text('"Nothing quite like victory sex, is there?" he grins, hauling himself off the massage table. "After all, it\'s the winning that makes you feel alive, makes you want to procreate."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVictorySexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Much better', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/after2.jpg');

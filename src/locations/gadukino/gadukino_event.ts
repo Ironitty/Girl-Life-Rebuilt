@@ -842,17 +842,17 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/gadukino/village/2boys.2.jpg');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === '1') {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).GadBoy = (s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
     ((s as any).GadBoy = (s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
     scene.text('Walking through the village, you meet Mitka and Kolyamba. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === '2') {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       ((s as any).GadBoy = (s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
       ((s as any).GadBoy = (s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
       scene.text('Walking through the village, you meet Mitka and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === '3') {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         ((s as any).GadBoy = (s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
         ((s as any).GadBoy = (s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
         scene.text('Walking through the village, you meet Kolyamba and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
@@ -1014,17 +1014,17 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/gadukino/village/2boys.2.jpg');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     ((s as any).GadBoy = (s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
     ((s as any).GadBoy = (s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
     scene.text('Walking with Mira in the village, you meet Mitka and Kolyamba. Seeing you both, they smile at each other and drag you both into the bushes.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       ((s as any).GadBoy = (s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
       ((s as any).GadBoy = (s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
       scene.text('Walking with Mira in the village, you meet Mitka and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         ((s as any).GadBoy = (s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
         ((s as any).GadBoy = (s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
         scene.text('Walking with Mira in the village, you meet Kolyamba and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
@@ -1041,15 +1041,15 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    if (Number((st as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((st as any).locArgs?.[1] ?? '') === 1) {
       qspCall(st, 'npc_relationship', 'modify', 'A63', (-3));
       qspCall(st, 'npc_relationship', 'modify', 'A61', (-3));
     } else {
-      if (Number((st as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((st as any).locArgs?.[1] ?? '') === 2) {
         qspCall(st, 'npc_relationship', 'modify', 'A63', (-3));
         qspCall(st, 'npc_relationship', 'modify', 'A62', (-3));
       } else {
-        if (Number((st as any).locArgs?.[1] ?? 0) === 3) {
+        if (String((st as any).locArgs?.[1] ?? '') === 3) {
           qspCall(st, 'npc_relationship', 'modify', 'A61', (-3));
           qspCall(st, 'npc_relationship', 'modify', 'A62', (-3));
         }
@@ -1067,9 +1067,7 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with them', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'forest2', $ARGS[1]
-  } },
+    { label: 'Go with them', goto: ['mitkasex', 'forest2', 'ARGS[1]'] },
   ]);
   scene.build();
 }

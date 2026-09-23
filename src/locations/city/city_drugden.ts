@@ -70,7 +70,7 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Local drug den</b></center>');
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
-  // TODO-QSP: dynamic text: "That''ll be ' + $func('money', 'string_price', 80) + ' per pill," he says.
+  // TODO-QSP: dynamic text: '"That''ll be ' + $func('money', 'string_price', 80) + ' per pill," he says.'
   scene.text('"That\'ll be 80₽ per pill," he says.');
   // TODO-QSP: dynamic text: You have <<mc_inventory[''amphetamine'']>> pills.
   scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['amphetamine'] ?? ''} pills.`);
@@ -123,7 +123,7 @@ function enterJoints(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Local drug den</b></center>');
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
-  // TODO-QSP: dynamic text: "Weed for five joints will be ' + $func('money', 'string_price', 250) + '," he s...
+  // TODO-QSP: dynamic text: '"Weed for five joints will be ' + $func('money', 'string_price', 250) + '," he ...
   scene.text('"Weed for five joints will be 250₽," he says.');
   // TODO-QSP: dynamic text: You have enough weed for <<mc_inventory[''joints'']>> joints.
   scene.text(`You have enough weed for ${((s as any).mc_inventory ?? 0)?.['joints'] ?? ''} joints.`);
@@ -176,7 +176,7 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Local drug den</b></center>');
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
-  // TODO-QSP: dynamic text: "A line will set you back ' + $func('money', 'string_price', 360) + '," he says.
+  // TODO-QSP: dynamic text: '"A line will set you back ' + $func('money', 'string_price', 360) + '," he says...
   scene.text('"A line will set you back 360₽," he says.');
   // TODO-QSP: dynamic text: You have enough cocaine for <<mc_inventory[''cocaine'']>> lines.
   scene.text(`You have enough cocaine for ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} lines.`);
@@ -229,7 +229,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Local drug den</b></center>');
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
-  // TODO-QSP: dynamic text: "That''ll be ' + $func('money', 'string_price', 420) + '," he says.
+  // TODO-QSP: dynamic text: '"That''ll be ' + $func('money', 'string_price', 420) + '," he says.'
   scene.text('"That\'ll be 420₽," he says.');
   if (qspFunc(s, 'money', 'can_afford', 420, 'cash') === 0  &&  ((s as any).drugVars ?? 0)?.['heroin_need'] > 0) {
     scene.actions([
@@ -510,8 +510,7 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '', labelFn: (s: GameState) => String(((st as any).bobtext ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: drugVars['heroin_whore'] += 1
-    // TODO-QSP: gt 'city_bobka', bobrand
-  } },
+  }, goto: ['city_bobka', ((st as any).bobrand ?? 0)] },
     ]);
   } },
     ]);

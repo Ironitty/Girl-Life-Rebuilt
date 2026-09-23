@@ -56,7 +56,7 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Sauna</b></center>');
   scene.img('images/locations/city/residential/sauna/sauna1.jpg');
-  // TODO-QSP: dynamic text: A one hour session costs ' + $func('money', 'string_price', 2000) + '.
+  // TODO-QSP: dynamic text: 'A one hour session costs ' + $func('money', 'string_price', 2000) + '.'
   scene.text('A one hour session costs 2000₽.');
   if (((s as any).saunaday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([

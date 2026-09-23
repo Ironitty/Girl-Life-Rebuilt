@@ -40,7 +40,8 @@ function enterPartyDrink(s: GameState, scene: SceneBuilder): void {
   (s as any).alkoParty = ((s as any).alkoParty ?? 0) + (1);
   qspCall(s, 'drugs', 'alcohol', 'vodka');
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_2_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/par...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_2_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   scene.text('Someone hands you a half full bottle of booze. Putting your lips to the mouth of the bottle, you turn it up and gulp down several swigs of strong drink, noticing the effects almost at once.');
   scene.text('The party has just begun, you can still walk through the apartment and find something to do.');
   // TODO-QSP: end
@@ -1028,7 +1029,7 @@ function enterPartyGirlsDance(s: GameState, scene: SceneBuilder): void {
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'stat', '');
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_14_${(Math.floor(Math.random() * 4) + 1)}.jpg`);
-    // TODO-QSP: dynamic text: You have a lot of fun as you dance with the girls under the deafening music. Dur...
+    // TODO-QSP: dynamic text: 'You have a lot of fun as you dance with the girls under the deafening music. Du...
     scene.text('You have a lot of fun as you dance with the girls under the deafening music. During the dance you are pressed against each other and the other girls touch you in all sorts of places. Suddenly a pair of hands pull up your skirt and bare your ass. One of the girls ' + ((((st as any).pantyworntype ?? 0) !== 'none') ? ('pulls down your panties and ') : ('')) + 'starts to kiss and lick you.');
     if (((st as any).rex_love ?? 0) === 1) {
       scene.text('Rex watches you with interest as you have fun with the girls.');
@@ -1555,7 +1556,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_1_${(Math.floor(Math.random() * 5) + 7)}.jpg`);
-    // TODO-QSP: dynamic text: You seductively wag your ass. ' + iif(rex_love = 0, 'One boy', 'Rex') + ' is sta...
+    // TODO-QSP: dynamic text: 'You seductively wag your ass. ' + iif(rex_love = 0, 'One boy', 'Rex') + ' is st...
     scene.text('You seductively wag your ass. ' + (((!((st as any).rex_love ?? 0))) ? ('One boy') : ('Rex')) + ' is standing right in front of you and you firmly press your buttocks in his palms. He exclaims, "Boys, I think I already know the winner!" You win the competition easily.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
@@ -1597,7 +1598,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Moan', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_6_${(Math.floor(Math.random() * 2) + 6)}.mp4`);
-    // TODO-QSP: dynamic text: Getting touched by ' + iif(rex_love = 0, 'one of the guys', 'Rex') + ' you can''...
+    // TODO-QSP: dynamic text: 'Getting touched by ' + iif(rex_love = 0, 'one of the guys', 'Rex') + ' you can'...
     scene.text('Getting touched by ' + (((!((st as any).rex_love ?? 0))) ? ('one of the guys') : ('Rex')) + ' you can\'t help but to start moaning. When ' + (((!((st as any).rex_love ?? 0))) ? ('the guy') : ('Rex')) + ' notices he begins to caress you even more insistently, grabbing your breasts firmly and licking your nipples. "Hey baby, if you like it so much, maybe we should go further."  Then ' + (((!((st as any).rex_love ?? 0))) ? ('the guy') : ('Rex')) + ' grabs you by the waist…');
     qspCall(st, 'arousal', 'foreplay', 5);
     qspCall(st, 'stat', '');
@@ -1737,12 +1738,12 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     (st as any).party_suck = qspUntranslated(s, "{", { location: "rex_party_smallEvents" });
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_4.jpg');
-      // TODO-QSP: dynamic text: Strong desire clouds your mind, and you grab ' + iif(rex_love = 0, 'the guy''s',...
+      // TODO-QSP: dynamic text: 'Strong desire clouds your mind, and you grab ' + iif(rex_love = 0, 'the guy''s'...
       scene.text('Strong desire clouds your mind, and you grab ' + (((!((st as any).rex_love ?? 0))) ? ('the guy\'s') : ('Rex\'s')) + ' member in full view of all the girls. You gently masturbate it with your hand, then take it in your mouth and begin to suck on its head.');
       // TODO-QSP: iif(rex_love = 0, 'The guy', 'Rex') + ' can''t resist for long and starts…'
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_5.jpg');
-      // TODO-QSP: dynamic text: One of the girls takes the dick in front of her in her mouth. Feeling encouraged...
+      // TODO-QSP: dynamic text: 'One of the girls takes the dick in front of her in her mouth. Feeling encourage...
       scene.text('One of the girls takes the dick in front of her in her mouth. Feeling encouraged you take ' + (((!((st as any).rex_love ?? 0))) ? ('the guy\'s') : ('Rex\'s')) + ' dick and gently masturbate it with your hand. Soon you put it in your mouth and begin to suck on its head, watching the other girl giving head at the same time.');
       // TODO-QSP: iif(rex_love = 0, 'The guy', 'Rex') + ' can''t resist for long and starts…'
     }

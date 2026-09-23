@@ -30,7 +30,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCount(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCount(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'city_industrial', '');
   } },
   ]);
@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCount(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCount(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'city_industrial', '');
   } },
   ]);

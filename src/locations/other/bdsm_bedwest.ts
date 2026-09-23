@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -87,7 +89,8 @@ function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/suburb/bdsm_club/sex/spank' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/suburb/bd...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/bdsm_club/sex/spank` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
   scene.text('As you are walking into the bedroom you accidentally bump into a man walking out. Before you can even say a word he grabs you by the arm. "Watch where you are going little girl."');
   scene.text('You meekly nod your head. "Sorry, I will be more careful in the future."');
   scene.text('"You don\'t sound very sorry, I think I need to teach you a lesson." With that he pulls you into the room and bares your ass, then he pulls off his belt and spanks you until tears are running down your face.');
@@ -118,7 +121,7 @@ function enterCheckGuestEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 96) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_bedwest', 'guest_event_' + (Math.floor(Math.random() * 2) + 1) + '');
+  qspGoto(s, 'bdsm_bedwest', qspUntranslated(s, "''guest_event_<<rand(1'", { location: "bdsm_bedwest" }), '2)>>');
   // TODO-QSP: end
   scene.build();
 }

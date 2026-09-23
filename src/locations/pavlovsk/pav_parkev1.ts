@@ -17,7 +17,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/events/drinkbeerg' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/drinkbeerg` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You take the offered beer and take a swig of it as you listen to the girls talking about their latest ventures, ranging from vandalism, beating some girls up, bullying some of the nerds and outcasts, or what boys they find cute. You occasionally comment, but mostly just listen to them.');
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -40,7 +41,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You grab another beer from the collection the girls have. They don\'t seem to mind, so you keep drinking as you continue listening to them.');
     qspCall(st, 'willpower', 'drink', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -62,7 +64,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You\'re starting to feel the effects of the beers, but are having too much fun, so you grab another beer from the collection the girls have. They don\'t seem to mind, so you keep drinking as you continue listening to them.');
     qspCall(st, 'willpower', 'drink', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -84,7 +87,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: You''re feeling pretty drunk by now, and the girls seem to be amused by just how...
     scene.text(`You're feeling pretty drunk by now, and the girls seem to be amused by just how drunk you are. They exchange a few words that you can't quite make out before Lena speaks up. "Hey ${((st as any).pcs_nickname ?? '')}, you really know how to drink."`);
     scene.text('You nod at the compliment because it\'s coming from them. "Yeah, I do okay."');
@@ -529,7 +533,8 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make bet', handler: (st: GameState) => {
     ((st as any).park = (st as any).park ?? {})['girl_bet'] = ((st as any).park['girl_bet'] ?? 0) + (1);
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You\'re feeling confident. "Fine, you got a bet."');
     scene.text('The girls laugh while Lena hands you and Alyona a beer. "Okay, start drinking when I say."');
     scene.text('When both you and Alyona nod, Lena smirks. "Drink!"');
@@ -634,7 +639,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You grab another beer from the boys\' collection. They don\'t seem to mind, so you keep drinking as you continue listening to them.');
     qspCall(st, 'willpower', 'drink', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -656,7 +662,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     if (((st as any).fame ?? 0)?.['pav_slut'] < 100  &&  ((st as any).grupTipe ?? 0) !== 4) {
       // TODO-QSP: dynamic text: After you drink another beer, you''re starting to feel the effects, but Vasily k...
       scene.text(`After you drink another beer, you're starting to feel the effects, but Vasily keeps you from grabbing another. "It's time for you to go, ${((st as any).pcs_nickname ?? '')}. Good girls don't get wasted like this."`);
@@ -706,7 +713,8 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     if (((st as any).NikoVolkovQW ?? 0) >= 5) {
       if (((st as any).pcs_hotcat ?? 0) >= 5) {
         scene.text('With that, everyone drinks the last of the beers, and you notice the area around you is littered with empty beer bottles. Once the final beer is gone, the talking continues, as it seems the guys are barely tipsy after the drinks they had.');
@@ -1025,7 +1033,8 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     if (((st as any).grupTipe ?? 0) === 4) {
       scene.text('You grab another beer from the collection. As you keep drinking while listening to your fellow gopniks\' wild stories, you only believe about half of them.');
     } else {
@@ -1051,7 +1060,8 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'drugs', 'alcohol', 'beer');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     if (((st as any).fame ?? 0)?.['pav_slut'] < 100  &&  ((st as any).grupTipe ?? 0) !== 4) {
       // TODO-QSP: dynamic text: After you drink another beer, you''re starting to feel the effects, but Vasily k...
       scene.text(`After you drink another beer, you're starting to feel the effects, but Vasily keeps you from grabbing another. "It's time for you to go, ${((st as any).pcs_nickname ?? '')}. Good girls don't get wasted like this."`);
@@ -1100,7 +1110,8 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
           { label: 'Grab another beer', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You can tell things are starting to wind down, so you start nursing your last beer to make it last. As Valentin gets up to take a piss, he bumps into Anushka\'s guitar and almost knocks it over.');
     scene.text('"Hey! Watch it, Val!" she tells him and picks it up before placing it in her lap for safety.');
     scene.text('He puts his hands up. "Sorry, it was an accident!"');
@@ -1321,7 +1332,8 @@ function enterNikoBeer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish your drinks', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/resident/apartment/events/beer' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ev...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/beer` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: You both sit in silence for a few minutes as you both continue drinking. Niko th...
     scene.text(`You both sit in silence for a few minutes as you both continue drinking. Niko then gives you a smile, along with a gentle kiss. "You're an incredible girl, ${((st as any).pcs_firstname ?? '')}, and I'm lucky to have you."`);
     scene.text('Feeling so enamored by his comment, you give Niko a wide smile. "I feel the same way, Niko. My mighty knight."');

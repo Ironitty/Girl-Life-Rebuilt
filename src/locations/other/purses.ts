@@ -172,7 +172,7 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).currentpursetype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).currentpursenumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).currentpursetype ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).currentpursenumber ?? 0) === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
@@ -186,10 +186,10 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'purse_attributes', $ARGS[1], ARGS[2]
@@ -205,20 +205,20 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
     // TODO-QSP: exit
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 0
   // TODO-QSP: "
-  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).currentpursetype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).currentpursenumber ?? 0)) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (String((s as any).locArgs?.[1] ?? '') === ((s as any).currentpursetype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).currentpursenumber ?? 0)) {
+    qspCall(s, 'purses', 'strip');
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornpursetype = 'none';
     (s as any).lastwornpursenumber = 0;
@@ -242,220 +242,14 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 0"
   }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
-  }
-  if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 1"
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
-  }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
-  }
-  if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 2"
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterRemove(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterStrip(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).currentpursetype ?? 0) === '') {
-    (s as any).currentpursetype = 'none';
-    (s as any).currentpursenumber = 0;
-  }
-  (s as any).purselastworntype = ((s as any).currentpursetype ?? 0);
-  (s as any).purselastwornnumber = ((s as any).currentpursenumber ?? 0);
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterStripCode(s: GameState, scene: SceneBuilder): void {
-  (s as any).currentpursetype = 'none';
-  (s as any).currentpursenumber = 0;
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PurseVars(s, scene); (s as any).locArgs = __savedLocArgs; }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PPurseVars(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'outfit', 'set_derived_vars');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterReset_PurseVars(s: GameState, scene: SceneBuilder): void {
-  (s as any).PurseQuality = 0;
-  (s as any).PursePrice = 0;
-  (s as any).PurseStrength = 0;
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterReset_PPurseVars(s: GameState, scene: SceneBuilder): void {
-  (s as any).bag = 0;
-  (s as any).PPurseQuality = 0;
-  (s as any).PPursePrice = 0;
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
-    if (((s as any).purselastworntype ?? 0) === '') {
-      (s as any).purselastworntype = 'none';
-      (s as any).purselastwornnumber = 0;
-    }
-    // TODO-QSP: $ARGS[1] = $purselastworntype
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).purselastwornnumber ?? 0);
-  }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
-    // TODO-QSP: exit
-  }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'purse_attributes', $ARGS[1], ARGS[2]
-  if ((!((s as any).PursePrice ?? 0))) {
-    return;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('check') : -1) > 0) {
-    (s as any).temp_not_wear_reason = qspFunc(s, 'purses', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set');
-    if (((s as any).temp_not_wear_reason ?? 0) !== '') {
-      if (((s as any).temp_not_wear_reason ?? 0) === 'not_owned') {
-      } else {
-        if (((s as any).temp_not_wear_reason ?? 0) === 'not_in_wardrobe') {
-        }
-      }
-      return;
-    }
-  }
-  (s as any).currentpursetype = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).currentpursenumber = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).bag = 1;
-  (s as any).PPurseQuality = ((s as any).PurseQuality ?? 0);
-  (s as any).PPursePrice = ((s as any).PursePrice ?? 0);
-  qspCall(s, 'outfit', 'set_derived_vars');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDescriptions(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'dolls') {
-    scene.text('Let your freak flag fly with this perfect purse for the hot, independent girl that lives the alt lifestyle.');
-  } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'bomba') {
-      scene.text('Yeah you have attitude and with this bag everyone knows it.');
-    } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'coco') {
-        scene.text('A trendy bag for a young adult.');
-      } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'flamingos') {
-          scene.text('You look like the girl about town with this bag.');
-        } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'danilovich') {
-            scene.text('A sports bag for all your junk. Practical and durable but not fashionable');
-          } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'fashionista') {
-              scene.text('A stylish handbag for any fashion-forward female!');
-            } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana') {
-                scene.text('For the geek inside you.');
-              } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 'gm') {
-                  scene.text('A functional, if not too fashionable, handbag for carrying all of the essentials.');
-                } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 'cats') {
-                    scene.text('Is it a bag? Is it a pet? Is it a toy? Who cares you stand out and look cute.');
-                  } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 'moncheri') {
-                      scene.text('A high-fashion handbag for ladies with discerning tastes. Show how classy you are with this expensive accessory.');
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'purse_view', 'init', 'set_exceptions');
-  return;
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterViewPurseList(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterViewPurseItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'purse_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest0(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'purses', 'move_to_wardrobe', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'purses', 'move_to_storage', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDest2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'purses', 'move_to_unwanted', $ARGS[2], ARGS[3]
-  // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -509,51 +303,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
-      break;
-    case 'move_to_storage':
-      enterMoveToStorage(s, scene);
-      break;
-    case 'move_to_unwanted':
-      enterMoveToUnwanted(s, scene);
-      break;
-    case 'remove':
-      enterRemove(s, scene);
-      break;
-    case 'strip':
-      enterStrip(s, scene);
-      break;
-    case 'strip_code':
-      enterStripCode(s, scene);
-      break;
-    case 'reset_PurseVars':
-      enterReset_PurseVars(s, scene);
-      break;
-    case 'reset_PPurseVars':
-      enterReset_PPurseVars(s, scene);
-      break;
-    case 'wear':
-      enterWear(s, scene);
-      break;
-    case 'descriptions':
-      enterDescriptions(s, scene);
-      break;
-    case 'set_shop_display_exceptions':
-      enterSetShopDisplayExceptions(s, scene);
-      break;
-    case 'view_purse_list':
-      enterViewPurseList(s, scene);
-      break;
-    case 'view_purse_item':
-      enterViewPurseItem(s, scene);
-      break;
-    case 'dest0':
-      enterDest0(s, scene);
-      break;
-    case 'dest1':
-      enterDest1(s, scene);
-      break;
-    case 'dest2':
-      enterDest2(s, scene);
       break;
     default:
       enterDefault(s, scene);

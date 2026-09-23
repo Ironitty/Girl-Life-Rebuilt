@@ -4,19 +4,19 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).PirFirst = 3000;
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).PirQuality = 3;
     (s as any).PirPrice = 5750;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).PirQuality = 3;
       (s as any).PirPrice = 5750;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).PirQuality = 3;
         (s as any).PirPrice = 5750;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).PirQuality = 3;
           (s as any).PirPrice = 5750;
         }

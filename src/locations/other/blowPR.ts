@@ -90,7 +90,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
-  scene.img('images/shared/sex/blowjob/bjp' + (Math.floor(Math.random() * 6) + 8) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/blowjob/bjp'+rand(8, 13)+'.jp...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/sex/blowjob/bjp` + (Math.floor(Math.random() * 6) + 8) + '.jpg"></center>');
   scene.text('You close your lips around his member and flick your tongue over the tip of his cock teasingly. It stands at full erection in no time.');
   // TODO-QSP: end
   scene.actions([

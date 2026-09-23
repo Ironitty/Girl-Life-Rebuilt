@@ -45,27 +45,27 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pavlovsk') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pavlovsk') {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspGoto(s, 'road', '0');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'redlight') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'redlight') {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspGoto(s, 'city_redlight', 'start');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'citypark') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'citypark') {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
         qspGoto(s, 'city_park', 'start');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'train') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'train') {
           (s as any).minut = ((s as any).minut ?? 0) + 15;
           qspGoto(s, 'city_industrial_train', 'outside');
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'metro') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'metro') {
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             qspGoto(s, 'metro', 'industrial');
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'canals') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'canals') {
               (s as any).minut = ((s as any).minut ?? 0) + 15;
               qspGoto(s, 'city_canals', 'start');
             } else {
@@ -127,12 +127,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You can see the <a href="exec: minut += 1 & gt ''kiosk'', ''start''">kiosk</a> s...
     scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   } else {
-    // TODO-QSP: dynamic text: The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fun...
+    // TODO-QSP: dynamic text: 'The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fu...
     scene.text('The kiosk is closed between 23:00 and 7:00.');
   }
   scene.text('At the center of the industrial region is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_industrial/u0027, /u0027exit/u0027, /u0027train/u0027); return false;">train station</a>.');
   if (((s as any).week ?? 0) === 3  ||  ((s as any).hour ?? 0) < 16) {
-    // TODO-QSP: dynamic text: The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tells...
+    // TODO-QSP: dynamic text: 'The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tell...
     scene.text('The "Rabotnik" bar is here, but it\'s currently closed. A sign by the door tells you that it\'s open every day except Wednesday between 16:00 and midnight.');
   } else {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''qwBarPolet''">Bar "Rabotnik"</a> seems to b...
@@ -157,7 +157,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''city_commcenter'', ''start''">community cen...
     scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027start/u0027); return false;">community center</a> is currently open.');
   } else {
-    // TODO-QSP: dynamic text: The community center is currently closed. It''s only open during the week betwee...
+    // TODO-QSP: dynamic text: 'The community center is currently closed. It''s only open during the week betwe...
     scene.text('The community center is currently closed. It\'s only open during the week between 9:00 and 17:00.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  ||  ((s as any).bumtolik ?? 0) > 3) {
@@ -171,7 +171,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The parking lot, which is engulfed in bright lights, belongs to a <a href="exec:...
     scene.text('The parking lot, which is engulfed in bright lights, belongs to a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027start/u0027); return false;">supermarket</a>.');
   } else {
-    // TODO-QSP: dynamic text: The empty parking lot, which is engulfed in bright lights, belongs to a supermar...
+    // TODO-QSP: dynamic text: 'The empty parking lot, which is engulfed in bright lights, belongs to a superma...
     scene.text('The empty parking lot, which is engulfed in bright lights, belongs to a supermarket that is open between 8:00 and 20:00.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).fightClubQW ?? 0)?.['story'] === 3) {
@@ -181,7 +181,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the <a href="exec: m...
     scene.text('Above the door to a basement room is a bright neon sign for the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027start/u0027); return false;">Black Dragon Tattoo & Piercing Parlor</a>.');
   } else {
-    // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the Black Dragon Tat...
+    // TODO-QSP: dynamic text: 'Above the door to a basement room is a bright neon sign for the Black Dragon Ta...
     scene.text('Above the door to a basement room is a bright neon sign for the Black Dragon Tattoo & Piercing Parlor. The opening hours are 12:00 to 20:00.');
   }
   if (((s as any).tobiQW ?? 0) >= 1) {
@@ -197,7 +197,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Located far away from the buildings is a <a href="exec: minut += 2 & gt ''lakeca...
     scene.text('Located far away from the buildings is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027lakecafe/u0027, /u0027main/u0027); return false;">barbecue</a>.');
   } else {
-    // TODO-QSP: dynamic text: Located far away from the buildings is a barbecue. It is open between '+func('ti...
+    // TODO-QSP: dynamic text: 'Located far away from the buildings is a barbecue. It is open between '+func('t...
     scene.text('Located far away from the buildings is a barbecue. It is open between 14:00 and 4:00.');
   }
   if (((s as any).jouryResult ?? 0) === 10) {
@@ -267,12 +267,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You can see the <a href="exec: minut += 1 & gt ''kiosk'', ''start''">kiosk</a> s...
     scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   } else {
-    // TODO-QSP: dynamic text: The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fun...
+    // TODO-QSP: dynamic text: 'The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fu...
     scene.text('The kiosk is closed between 23:00 and 7:00.');
   }
   scene.text('At the center of the industrial region is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_industrial/u0027, /u0027exit/u0027, /u0027train/u0027); return false;">train station</a>.');
   if (((s as any).week ?? 0) === 3  ||  ((s as any).hour ?? 0) < 16) {
-    // TODO-QSP: dynamic text: The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tells...
+    // TODO-QSP: dynamic text: 'The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tell...
     scene.text('The "Rabotnik" bar is here, but it\'s currently closed. A sign by the door tells you that it\'s open every day except Wednesday between 16:00 and midnight.');
   } else {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''qwBarPolet''">Bar "Rabotnik"</a> seems to b...
@@ -297,7 +297,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''city_commcenter'', ''start''">community cen...
     scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027start/u0027); return false;">community center</a> is currently open.');
   } else {
-    // TODO-QSP: dynamic text: The community center is currently closed. It''s only open during the week betwee...
+    // TODO-QSP: dynamic text: 'The community center is currently closed. It''s only open during the week betwe...
     scene.text('The community center is currently closed. It\'s only open during the week between 9:00 and 17:00.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  ||  ((s as any).bumtolik ?? 0) > 3) {
@@ -311,7 +311,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The parking lot, which is engulfed in bright lights, belongs to a <a href="exec:...
     scene.text('The parking lot, which is engulfed in bright lights, belongs to a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027start/u0027); return false;">supermarket</a>.');
   } else {
-    // TODO-QSP: dynamic text: The empty parking lot, which is engulfed in bright lights, belongs to a supermar...
+    // TODO-QSP: dynamic text: 'The empty parking lot, which is engulfed in bright lights, belongs to a superma...
     scene.text('The empty parking lot, which is engulfed in bright lights, belongs to a supermarket that is open between 8:00 and 20:00.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).fightClubQW ?? 0)?.['story'] === 3) {
@@ -321,7 +321,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the <a href="exec: m...
     scene.text('Above the door to a basement room is a bright neon sign for the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027start/u0027); return false;">Black Dragon Tattoo & Piercing Parlor</a>.');
   } else {
-    // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the Black Dragon Tat...
+    // TODO-QSP: dynamic text: 'Above the door to a basement room is a bright neon sign for the Black Dragon Ta...
     scene.text('Above the door to a basement room is a bright neon sign for the Black Dragon Tattoo & Piercing Parlor. The opening hours are 12:00 to 20:00.');
   }
   if (((s as any).tobiQW ?? 0) >= 1) {
@@ -337,7 +337,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Located far away from the buildings is a <a href="exec: minut += 2 & gt ''lakeca...
     scene.text('Located far away from the buildings is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027lakecafe/u0027, /u0027main/u0027); return false;">barbecue</a>.');
   } else {
-    // TODO-QSP: dynamic text: Located far away from the buildings is a barbecue. It is open between '+func('ti...
+    // TODO-QSP: dynamic text: 'Located far away from the buildings is a barbecue. It is open between '+func('t...
     scene.text('Located far away from the buildings is a barbecue. It is open between 14:00 and 4:00.');
   }
   if (((s as any).jouryResult ?? 0) === 10) {
@@ -407,12 +407,12 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You can see the <a href="exec: minut += 1 & gt ''kiosk'', ''start''">kiosk</a> s...
     scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   } else {
-    // TODO-QSP: dynamic text: The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fun...
+    // TODO-QSP: dynamic text: 'The kiosk is closed between '+func('time', 'get_time_string', 23, 0)+' and '+fu...
     scene.text('The kiosk is closed between 23:00 and 7:00.');
   }
   scene.text('At the center of the industrial region is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_industrial/u0027, /u0027exit/u0027, /u0027train/u0027); return false;">train station</a>.');
   if (((s as any).week ?? 0) === 3  ||  ((s as any).hour ?? 0) < 16) {
-    // TODO-QSP: dynamic text: The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tells...
+    // TODO-QSP: dynamic text: 'The "Rabotnik" bar is here, but it''s currently closed. A sign by the door tell...
     scene.text('The "Rabotnik" bar is here, but it\'s currently closed. A sign by the door tells you that it\'s open every day except Wednesday between 16:00 and midnight.');
   } else {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''qwBarPolet''">Bar "Rabotnik"</a> seems to b...
@@ -437,7 +437,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''city_commcenter'', ''start''">community cen...
     scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027start/u0027); return false;">community center</a> is currently open.');
   } else {
-    // TODO-QSP: dynamic text: The community center is currently closed. It''s only open during the week betwee...
+    // TODO-QSP: dynamic text: 'The community center is currently closed. It''s only open during the week betwe...
     scene.text('The community center is currently closed. It\'s only open during the week between 9:00 and 17:00.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  ||  ((s as any).bumtolik ?? 0) > 3) {
@@ -451,7 +451,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The parking lot, which is engulfed in bright lights, belongs to a <a href="exec:...
     scene.text('The parking lot, which is engulfed in bright lights, belongs to a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027start/u0027); return false;">supermarket</a>.');
   } else {
-    // TODO-QSP: dynamic text: The empty parking lot, which is engulfed in bright lights, belongs to a supermar...
+    // TODO-QSP: dynamic text: 'The empty parking lot, which is engulfed in bright lights, belongs to a superma...
     scene.text('The empty parking lot, which is engulfed in bright lights, belongs to a supermarket that is open between 8:00 and 20:00.');
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).fightClubQW ?? 0)?.['story'] === 3) {
@@ -461,7 +461,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the <a href="exec: m...
     scene.text('Above the door to a basement room is a bright neon sign for the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pirsingsalon/u0027, /u0027start/u0027); return false;">Black Dragon Tattoo & Piercing Parlor</a>.');
   } else {
-    // TODO-QSP: dynamic text: Above the door to a basement room is a bright neon sign for the Black Dragon Tat...
+    // TODO-QSP: dynamic text: 'Above the door to a basement room is a bright neon sign for the Black Dragon Ta...
     scene.text('Above the door to a basement room is a bright neon sign for the Black Dragon Tattoo & Piercing Parlor. The opening hours are 12:00 to 20:00.');
   }
   if (((s as any).tobiQW ?? 0) >= 1) {
@@ -477,7 +477,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Located far away from the buildings is a <a href="exec: minut += 2 & gt ''lakeca...
     scene.text('Located far away from the buildings is a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027lakecafe/u0027, /u0027main/u0027); return false;">barbecue</a>.');
   } else {
-    // TODO-QSP: dynamic text: Located far away from the buildings is a barbecue. It is open between '+func('ti...
+    // TODO-QSP: dynamic text: 'Located far away from the buildings is a barbecue. It is open between '+func('t...
     scene.text('Located far away from the buildings is a barbecue. It is open between 14:00 and 4:00.');
   }
   if (((s as any).jouryResult ?? 0) === 10) {

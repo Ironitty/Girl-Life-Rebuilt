@@ -7,11 +7,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (String((s as any).locArgs?.[1] ?? '') <= 0) {
     // TODO-QSP: exit
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).rand ?? 0)(((s as any).locArgs?.[1] ?? 0) / 3, 2 * (((s as any).locArgs?.[1] ?? 0)+1) / 3));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + ((Math.floor(Math.random() * (2 * (((s as any).locArgs?.[1] ?? 0)+1) / 3 - ((s as any).locArgs?.[1] ?? 0) / 3 + 1)) + (((s as any).locArgs?.[1] ?? 0) / 3)));
   } else {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   }

@@ -102,7 +102,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "Can\'t say I\'ve had many girls be so eager to have me cum inside them."');
     scene.text('You take another drag as his cum continues trickling from your pussy. "I\'m not like most girls."');
     scene.text('"Clearly," he laughs and you both finish smoking before he offers you some tissues. You clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -116,7 +116,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "Can\'t say I\'ve had many girls be so eager to have me cum inside them."');
     scene.text('You smile as his cum continues trickling from your pussy. "I\'m not like most girls."');
     scene.text('"Clearly," he laughs before handing you some tissues. You clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -140,7 +140,7 @@ function enterFirstSwallow(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "And you fucking swallow!"');
     scene.text('You take another drag and smile as you exhale. "I\'m not like most girls."');
     scene.text('"Clearly," he laughs and you both finish smoking before he offers you some tissues. You clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -154,7 +154,7 @@ function enterFirstSwallow(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "And you fucking swallow!"');
     scene.text('You smile. "I\'m not like most girls..."');
     scene.text('"Clearly," he laughs before handing you some tissues. You clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -178,7 +178,7 @@ function enterFirstPullout(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "Shame I couldn\'t cum inside it."');
     scene.text('You take another drag of your cigarette. "Getting pregnant is the last thing I need right now."');
     scene.text('He doesn\'t say anything as you both finish smoking and he offers you some tissues. You clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -192,7 +192,7 @@ function enterFirstPullout(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was some damn fine fucking pussy, baby girl," he says. "Shame I couldn\'t cum inside it."');
     scene.text('You shake your head at him. "Getting pregnant is the last thing I need right now."');
     scene.text('He doesn\'t say anything as he offers you some tissues and you clean up and get dressed before he turns to you. "Where am I dropping you off?" he asks as he starts the engine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHomeActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -791,7 +791,7 @@ function enterWakeupCleanup(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('You collect your things while he pulls on a shirt and jeans before grabbing his keys, then both of you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -922,7 +922,7 @@ function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('Once you\'re dressed, he grabs his keys and you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -956,7 +956,7 @@ function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d... Thad\'t be great!" you reply through coughs.');
     scene.text('Once you\'re dressed, he grabs his keys and you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -984,7 +984,7 @@ function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/bmw.jpg');
     scene.text('"That\'d be great!" you reply and you collect your things as he quickly gets dressed.');
     scene.text('After making sure everything is in order, you both head outside and climb into his car. "Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1066,7 +1066,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('You collect your things while he grabs his keys, then both of you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1123,7 +1123,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('You collect your things while he grabs his keys, then both of you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1195,7 +1195,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('You collect your things while he grabs his keys, then both of you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1253,7 +1253,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'d be great!" you reply.');
     scene.text('You collect your things while he grabs his keys, then both of you head outside and climb into his car.');
     scene.text('"Where to?" he asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWakeupSetDropoffActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

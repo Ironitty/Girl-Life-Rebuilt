@@ -11,14 +11,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).people ?? 0) <= 5) {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img(`images/locations/pavlovsk/pharmacy/aptekabusy${((s as any).people ?? '')}.jpg`);
-    // TODO-QSP: dynamic text: There is <<people>> ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in ...
-    scene.text('There is ' + ((s as any).people ?? '') + ' \' + iif(people < 2 or people > 4, \'people\' , \'man\' ) + \' in line as you walk up to the counter to check out.');
+    // TODO-QSP: dynamic text: 'There is <<people>> ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in...
+    scene.text(`There is ${((s as any).people ?? '')} ` + ((((s as any).people ?? 0) < 2  ||  ((s as any).people ?? 0) > 4) ? ('people') : ('man')) + ' in line as you walk up to the counter to check out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Wait in line', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 1) * ((st as any).people ?? 0));
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * (4 - 1 + 1)) + (1)));
     (st as any).people = 0;
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_pharmacy', 'shop');
@@ -43,7 +43,8 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     (s as any).pharma_day = ((s as any).daystart ?? 0);
     (s as any).pharma_picrand = (Math.floor(Math.random() * 4) + 1);
   }
-  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pharmacy/apteka_worke...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pharmacy/apteka_worker_` + ((s as any).pharma_picrand ?? '') + '.jpg"></center>');
   scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
   if (((s as any).KandidNapr ?? 0) === 1) {
     scene.actions([
@@ -79,7 +80,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pharma_day = ((s as any).daystart ?? 0);
     (s as any).pharma_picrand = (Math.floor(Math.random() * 4) + 1);
   }
-  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pharmacy/apteka_worke...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pharmacy/apteka_worker_` + ((s as any).pharma_picrand ?? '') + '.jpg"></center>');
   scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
   if (((s as any).KandidNapr ?? 0) === 1) {
     scene.actions([
@@ -108,7 +110,8 @@ function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', 1050);
     (s as any).Kandidoz = 0;
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pharmacy/apteka_worke...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pharmacy/apteka_worker_` + ((s as any).pharma_picrand ?? '') + '.jpg"></center>');
     scene.text('You bought 1 <b>Antifungal medication</b>.');
     scene.text('You put the money on the counter before immediately opening the package and swallowing the tablet. A while later, you start feeling better.');
     scene.actions([

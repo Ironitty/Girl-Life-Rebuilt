@@ -11,17 +11,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrace(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'loc_change') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'loc_change') {
     if (((s as any).debug ?? 0)?.['trace_loc_change'] === 0) {
       // TODO-QSP: exit
     }
     ((s as any).debug = (s as any).debug ?? {})['trace_line'] = '\'' + ((s as any).curloc ?? 0) + '\'';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'direct') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'direct') {
       if (Object.keys((s as any).trace_locations ?? {}).length === 0) {
         // TODO-QSP: exit
       }
-      if ((Array.isArray((s as any).trace_locations) ? ((s as any).trace_locations as any[]).indexOf(Number((s as any).locArgs?.[2] ?? 0)) : -1) === -1) {
+      if ((Array.isArray((s as any).trace_locations) ? ((s as any).trace_locations as any[]).indexOf(String((s as any).locArgs?.[2] ?? '')) : -1) === -1) {
         // TODO-QSP: exit
       }
       ((s as any).debug = (s as any).debug ?? {})['trace_line'] = '\'' + ((s as any).locArgs?.[2] ?? 0) + '\'';

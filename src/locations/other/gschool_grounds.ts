@@ -511,11 +511,11 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('There is a football field near the school with a large track circling around it. Students often use the field and track before and after school.');
   if (((s as any).week ?? 0) === 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 18) {
-    // TODO-QSP: dynamic text: As you pass by the sports field, you hear lots of cheering and yelling coming fr...
+    // TODO-QSP: dynamic text: 'As you pass by the sports field, you hear lots of cheering and yelling coming f...
     scene.text('As you pass by the sports field, you hear lots of cheering and yelling coming from the younger kids on the field. As you approach, you see ' + ((((s as any).socialchg ?? 0)?.['tLazar_day'] !== ((s as any).daystart ?? 0)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tLazar/u0027); return false;">Lazar</a>') : ('Lazar')) + ' on the football field showing off his skills.');
   }
   if ((((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 3)  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 18) {
-    // TODO-QSP: dynamic text: Looking toward what you can barely describe as a running track, you notice '+iif...
+    // TODO-QSP: dynamic text: 'Looking toward what you can barely describe as a running track, you notice '+ii...
     scene.text('Looking toward what you can barely describe as a running track, you notice ' + ((((s as any).socialchg ?? 0)?.['tSvyatoslav_day'] !== ((s as any).daystart ?? 0)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tSvyatoslav/u0027); return false;">Svyatoslav</a>') : ('Svyatoslav')) + ' doing sprints by the football field.');
   }
   if ((!((s as any).PSport ?? 0))) {
@@ -726,7 +726,7 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
         { label: 'Give it your best', handler: (st: GameState) => {
     ((st as any).runnerQW = (st as any).runnerQW ?? {})['result'] = ((st as any).runnerQW['result'] ?? 0) + (10);
     qspCall(st, 'willpower', 'pay', 'self');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolRunResult(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolRunResult(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -879,7 +879,7 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
         { label: 'Give it your best', handler: (st: GameState) => {
     ((st as any).runnerQW = (st as any).runnerQW ?? {})['result'] = ((st as any).runnerQW['result'] ?? 0) + (10);
     qspCall(st, 'willpower', 'pay', 'self');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolRun2Result(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolRun2Result(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -992,7 +992,7 @@ function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'locker';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/lockerroom.jpg');
-  // TODO-QSP: dynamic text: The locker room is accessed through the school gym and is left unlocked until '+...
+  // TODO-QSP: dynamic text: 'The locker room is accessed through the school gym and is left unlocked until '...
   scene.text('The locker room is accessed through the school gym and is left unlocked until 18:30 each day for the use of students using the sports ground for training and events outside school hours. The room is cold, damp and filled with lockers, benches and not much else. You can <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">change your outfit</a> by the lockers here' + ((((s as any).pcs_piercings ?? 0)?.['total'] > 0) ? (', and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027piercing_management/u0027, /u0027main/u0027); return false;">manage your piercings</a>') : ('')) + '.');
   if ((((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) >= 30)  ||  ((s as any).hour ?? 0) > 18) {
     scene.text('The school is closing for the night and you have to leave before you get locked in.');

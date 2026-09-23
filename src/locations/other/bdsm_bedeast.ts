@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -28,7 +30,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_bedeast', 'event_' + (Math.floor(Math.random() * 10) + 1) + '');
+  qspGoto(s, 'bdsm_bedeast', qspUntranslated(s, "''event_<<rand(1'", { location: "bdsm_bedeast" }), '10)>>');
   // TODO-QSP: end
   scene.build();
 }

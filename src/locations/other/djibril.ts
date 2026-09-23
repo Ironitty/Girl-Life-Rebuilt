@@ -25,7 +25,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -70,7 +70,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -103,7 +103,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -134,7 +134,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -228,7 +228,7 @@ function enterDjibrilChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInvite(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

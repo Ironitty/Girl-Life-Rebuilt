@@ -24,8 +24,8 @@ function enterChrisWalkHome(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Listen to her', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big18.jpg');
-    // TODO-QSP: dynamic text: "Ok, here are the rules you will follow, or I will '+iif(christinaQW['fight'] = ...
-    scene.text('"Ok, here are the rules you will follow, or I will \'+iif(christinaQW[\'fight\'] = -1, \'beat you black and blue. Again.\', \'spank the absolute shit out of you.\')+\'"');
+    // TODO-QSP: dynamic text: '"Ok, here are the rules you will follow, or I will '+iif(christinaQW['fight'] =...
+    scene.text('"Ok, here are the rules you will follow, or I will ' + ((((st as any).christinaQW ?? 0)?.['fight'] === -1) ? ('beat you black and blue. Again.') : ('spank the absolute shit out of you.')) + '"');
     scene.text('"1. You will not speak unless spoken to, or otherwise given permission. When you do, you will either call me by name in the presence of others, or Mistress when we are alone."');
     scene.text('"2. You will do anything I say. If I say clean, you will clean. If I say strip and lick my pussy, you will do it. No hesitation."');
     scene.text('"3. If you meet my parents or brothers, you will be polite, demure, and discreet about anything and everything I do. Only Sly knows anything about my personal life, and the only one who lives here with me, full time. My parents are almost always traveling for work, so you will only see them on special occasions."');
@@ -172,8 +172,8 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
     scene.text('"It\'s ok, Mistress. I would understand if you did, he is a good catch, after all."');
     scene.text('Rather than yell at you some more, she bites her lip, seemingly lost in thought.');
-    // TODO-QSP: dynamic text: Satisfied she''s '+iif(christinaQW['fight'] = -1, 'taken the bait', 'considering...
-    scene.text('Satisfied she\'s \'+iif(christinaQW[\'fight\'] = -1, \'taken the bait\', \'considering it\')+\', you step back and stay quiet.');
+    // TODO-QSP: dynamic text: 'Satisfied she''s '+iif(christinaQW['fight'] = -1, 'taken the bait', 'considerin...
+    scene.text('Satisfied she\'s ' + ((((st as any).christinaQW ?? 0)?.['fight'] === -1) ? ('taken the bait') : ('considering it')) + ', you step back and stay quiet.');
     scene.actions([
       { label: 'Continue', goto: ['Zvereva_house_events', 'bed_chat'] },
     ]);
@@ -208,8 +208,8 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
     { label: 'Step away', goto: ['Zvereva_house', 'chris_bedro'] },
     { label: 'Ask about the rules', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/christina/home/bedroom/bed_chat.jpg');
-    // TODO-QSP: dynamic text: "Again? Ok fine, here are the rules you will follow, or I will '+iif(christinaQW...
-    scene.text('"Again? Ok fine, here are the rules you will follow, or I will \'+iif(christinaQW[\'fight\'] = -1, \'beat you black and blue. Again.\', \'spank the absolute shit out of you.\')+\'"');
+    // TODO-QSP: dynamic text: '"Again? Ok fine, here are the rules you will follow, or I will '+iif(christinaQ...
+    scene.text('"Again? Ok fine, here are the rules you will follow, or I will ' + ((((st as any).christinaQW ?? 0)?.['fight'] === -1) ? ('beat you black and blue. Again.') : ('spank the absolute shit out of you.')) + '"');
     scene.text('"1. You will not speak unless spoken to, or otherwise given permission. When you do, you will either call me by name in the presence of others, or Mistress when we are alone."');
     scene.text('"2. You will do anything I say. If I say clean, you will clean. If I say strip and lick my pussy, you will do it. No hesitation."');
     scene.text('"3. If you meet my parents or brothers, you will be polite, demure, and discreet about anything and everything I do. Only Sly knows anything about my personal life, and the only one who lives here with me, full time. My parents are almost always traveling for work, so you will only see them on special occasions."');

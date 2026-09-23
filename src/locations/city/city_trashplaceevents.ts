@@ -206,7 +206,8 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 300);
     (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
     qspCall(st, 'cum_call', 'butt', 'hobo');
-    scene.img('images/locations/city/residential/street/sex/old1,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/street/sex/ol...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/street/sex/old1,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('This isn\'t your first time dealing with such people and you\'ve already learned to overcome any aversion, so you decide to give him something a little better than just a blowjob.');
     scene.text('You take off your panties and throw them at him. A smile appears on his face and after throwing off his pants, the old man moves towards you.');
     scene.text('You get down on all fours and feel the tip of his cock pushing into your pussy. He starts vigorously fucking you, but only lasts a few seconds before he pulls out and splatters his cum over your ass.');
@@ -223,7 +224,8 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
           { label: 'Get on your knees', handler: (st: GameState) => {
     (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/city/residential/street/sex/old0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/street/sex/ol...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/street/sex/old0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('"This is so disgusting…" you think to yourself, but you need the money.');
     scene.text('You get down on your knees in front of him. Amazed by his luck, he leisurely pulls out his filthy cock, which looks and smells like it hasn\'t been washed in months.');
     scene.text('You hold in your gag reflex as you take his cock into your mouth and start sucking.');
@@ -237,7 +239,8 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'earn', 150);
     qspCall(st, 'cum_call', 'mouth_swallow', 'hobo');
-    scene.img('images/shared/sex/cum/mouth/cum1,' + (Math.floor(Math.random() * 11) + 0) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/cum/mouth/cum...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/mouth/cum1,` + (Math.floor(Math.random() * 11) + 0) + '.mp4"></video></center>');
     scene.text('A few seconds later, your mouth fills with nasty tasting cum that you force yourself to quickly swallow. You take your money and quickly leave before someone sees you.');
     qspCall(st, 'arousal', 'bj', 3, 'prostitution');
     qspCall(st, 'arousal', 'end');
@@ -249,7 +252,8 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'money', 'earn', 150);
     qspCall(st, 'cum_call', 'face', 'hobo');
-    scene.img('images/shared/sex/public/cum0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/public/cum0,'+rand(0, 3)+'.jp...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/public/cum0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('A few seconds later, your face is covered in nasty smelling cum. You take your money and quickly leave before someone sees you.');
     qspCall(st, 'arousal', 'end');
     scene.actions([

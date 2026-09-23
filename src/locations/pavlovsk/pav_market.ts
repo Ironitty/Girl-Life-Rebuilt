@@ -32,7 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/pav_market_night.jpg');
     }
   }
-  // TODO-QSP: dynamic text: Pavlovsk''s modest train station is situated near the Pavlovsk Market Square. Yo...
+  // TODO-QSP: dynamic text: 'Pavlovsk''s modest train station is situated near the Pavlovsk Market Square. Y...
   scene.text('Pavlovsk\'s modest train station is situated near the Pavlovsk Market Square. You can enter the central hall of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_train_hall/u0027, /u0027/u0027); return false;">train station</a> from here. Down the street from the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gkafe/u0027, /u0027/u0027); return false;">Borislav\'s cafe</a>' + ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (' where your mother works') : ('')) + '. Next to the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_station/u0027, /u0027station_outside/u0027); return false;">Pavlovsk police station</a>, where you can find Pavlovsk\'s finest.');
   // TODO-QSP: dynamic text: On the other side of the train station is a large square where you can find a <a...
   scene.text('On the other side of the train station is a large square where you can find a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_train_market/u0027, /u0027start/u0027); return false;">market</a> on most days.');
@@ -147,7 +147,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/pav_market_night.jpg');
     }
   }
-  // TODO-QSP: dynamic text: Pavlovsk''s modest train station is situated near the Pavlovsk Market Square. Yo...
+  // TODO-QSP: dynamic text: 'Pavlovsk''s modest train station is situated near the Pavlovsk Market Square. Y...
   scene.text('Pavlovsk\'s modest train station is situated near the Pavlovsk Market Square. You can enter the central hall of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027pav_train_hall/u0027, /u0027/u0027); return false;">train station</a> from here. Down the street from the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027gkafe/u0027, /u0027/u0027); return false;">Borislav\'s cafe</a>' + ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (' where your mother works') : ('')) + '. Next to the train station is the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_station/u0027, /u0027station_outside/u0027); return false;">Pavlovsk police station</a>, where you can find Pavlovsk\'s finest.');
   // TODO-QSP: dynamic text: On the other side of the train station is a large square where you can find a <a...
   scene.text('On the other side of the train station is a large square where you can find a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_train_market/u0027, /u0027start/u0027); return false;">market</a> on most days.');
@@ -301,7 +301,7 @@ function enterKidaloa(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You happily take the box from the girl as the man starts filming. The girl holds the microphone up and invites you to give some shout-outs to relatives and friends while you\'re on TV before she points the microphone at you.');
     scene.text('You gladly accept the invitation and enthusiastically address your friends and family while looking at the camera, sincerely hoping you didn\'t leave anyone out. The man then turns the camera away for a second.');
-    // TODO-QSP: dynamic text: "Unfortunately, the government doesn''t just let us give away items for nothing,...
+    // TODO-QSP: dynamic text: '"Unfortunately, the government doesn''t just let us give away items for nothing...
     scene.text('"Unfortunately, the government doesn\'t just let us give away items for nothing," the girls says. "We\'re legally obligated to have our winners pay VAT over the amount of money their gift is worth. In your case, this comes down to 5000₽."');
     scene.actions([
       { label: 'Pay the VAT and check out your new laptop', handler: (st: GameState) => {
@@ -384,7 +384,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('As you walk across the square towards the station, you notice two well dressed men staring at you. After some brief consideration they start approaching, and you can just about hear what they\'re saying: "Wow, she\'s just the model we need! She has this… Claudia Schiffer feel to her, don\'t you agree?"');
   scene.text('You can see the other man nod just as they get close to you, and one of the men stops you. "Excuse me, miss. We\'re opening a new fashion store in the city and are looking for a model to feature in our advertisements. We\'ve been looking for just the right girl all day and… I think we just found her!"');
-  // TODO-QSP: dynamic text: The second man nods enthusiastically as the first man continues. "We would be ab...
+  // TODO-QSP: dynamic text: 'The second man nods enthusiastically as the first man continues. "We would be a...
   scene.text('The second man nods enthusiastically as the first man continues. "We would be able to offer you 10000₽ for an extensive photoshoot featuring our clothing line."');
   // TODO-QSP: end
   scene.actions([

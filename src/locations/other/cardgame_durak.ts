@@ -84,9 +84,9 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   (s as any).cgdp_pc_state = ((((s as any).cgd_clothes ?? 0)==='') ? ('You are naked!') : ('You are wearing:' + ((s as any).cgd_clothes ?? 0) + '.'));
-  (s as any).cgdp_A11_state = ((((s as any).cgd_clothes ?? 0)?.['A11']==='') ? ('Vasily is naked!') : ('Vasily is wearing:' + ((s as any).cgd_clothes ?? 0)?.[String((s as any).A11 ?? 0)] + '.'));
-  (s as any).cgdp_A10_state = ((((s as any).cgd_clothes ?? 0)?.['A10']==='') ? ('Dan is naked!') : ('Dan is wearing:' + ((s as any).cgd_clothes ?? 0)?.[String((s as any).A10 ?? 0)] + '.'));
-  (s as any).cgdp_A9_state = ((((s as any).cgd_clothes ?? 0)?.['A9']==='') ? ('Vitek is naked!') : ('Vitek is wearing:' + ((s as any).cgd_clothes ?? 0)?.[String((s as any).A9 ?? 0)] + '.'));
+  (s as any).cgdp_A11_state = ((((s as any).cgd_clothes ?? 0)?.['A11']==='') ? ('Vasily is naked!') : ('Vasily is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A11'] + '.'));
+  (s as any).cgdp_A10_state = ((((s as any).cgd_clothes ?? 0)?.['A10']==='') ? ('Dan is naked!') : ('Dan is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A10'] + '.'));
+  (s as any).cgdp_A9_state = ((((s as any).cgd_clothes ?? 0)?.['A9']==='') ? ('Vitek is naked!') : ('Vitek is wearing:' + ((s as any).cgd_clothes ?? 0)?.['A9'] + '.'));
   scene.text('<center><b>You\'re playing strip poker with the guys. The game will continue until one of you is completely naked.</b></center>');
   scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/${((s as any).cgd_cs ?? '')}-${6-(3+(String(((s as any).cgd_clothes ?? '')).length))/7}.jpg`);
   // TODO-QSP: dynamic text: <br><<$cgdp_pc_state>><br><<$cgdp_A11_state>><br><<$cgdp_A10_state>><br><<$cgdp_...
@@ -218,9 +218,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: 'Deal and take it easy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'cardgame_durak', 'card_game_durak_play', -1
-  } },
+          { label: 'Deal and take it easy', goto: ['cardgame_durak', 'card_game_durak_play', '-1'] },
           { label: 'Deal', goto: ['cardgame_durak', 'card_game_durak_play', '0'] },
         ]);
       } else {
@@ -325,13 +323,13 @@ function enterCardGameNosex(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).boy ?? 0) === 'A11') {
     scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
-    // TODO-QSP: dynamic text: '+func('gopsex', 'hide', 'Shulga_var_name')+' ponders for a second, and says: "<...
-    scene.text(`+func('gopsex', 'hide', 'Shulga_var_name')+' ponders for a second, and says: "${((s as any).card_game_texta ?? '')}"`);
+    // TODO-QSP: dynamic text: ''+func('gopsex', 'hide', 'Shulga_var_name')+' ponders for a second, and says: "...
+    scene.text(qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' ponders for a second,  &&  says: "' + (((s as any).card_game_texta ?? 0)) + '"');
     scene.text('"Are you out of your mind!? There\'s absolutely no way I\'m doing that!", you shout, deeply offended by his suggestion.');
     scene.text('He raises his hands defensively and smiles: "Relax, I was just kidding. I just had to try, who knows what kind of party girl you might\'ve been!"');
     scene.text('You sigh and tell him: "Seriously though, what do you want me to do?"');
-    // TODO-QSP: dynamic text: '+func('gopsex', 'hide', 'Shulga_var_name')+' thinks long and hard, and carefull...
-    scene.text(`+func('gopsex', 'hide', 'Shulga_var_name')+' thinks long and hard, and carefully suggests: "${((s as any).pcs_nickname ?? '')}, how about you perform a little dance for us? You know… shake your boobs, show off your body a little?"`);
+    // TODO-QSP: dynamic text: ''+func('gopsex', 'hide', 'Shulga_var_name')+' thinks long and hard, and careful...
+    scene.text(qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' thinks long  &&  hard,  &&  carefully suggests: "' + (((s as any).pcs_nickname ?? 0)) + ', how about you perform a little dance for us? You know… shake your boobs, show off your body a little?"');
     scene.text('You bite your lip while you think for a moment, and then say: "Fine. I\'m naked, so it\'s not like you haven\'t seen it all already anyway. I\'ll do it."');
   } else {
     if (((s as any).boy ?? 0) === 'A10') {
@@ -369,7 +367,8 @@ function enterCardGameNosexDance(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 2));
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/gif/dance' + (Math.floor(Math.random() * 9) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/gif/dance` + (Math.floor(Math.random() * 9) + 1) + '.mp4"></video></center>');
   scene.text('The guys put on a popular track with a lot of bass, and lean back. You realize this is your cue to start moving, and somewhat awkwardly begin to dance for them. After a while you get into the song more and become less hesitant in shaking your hips and boobs, trying to give the guys a good show. They did win, after all.');
   scene.text('They all watch you intently, cheering you on and high-fiving their friend who made this possible.');
   // TODO-QSP: end
@@ -410,7 +409,7 @@ function enterCardGameGroupSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'vaginal_finger', -6, $npcID[3], ' gangbang'
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/gsex/ev1_3.jpg');
-    // TODO-QSP: dynamic text: Well, he''s got you there. With a deep sigh you lie down on your back, and immed...
+    // TODO-QSP: dynamic text: 'Well, he''s got you there. With a deep sigh you lie down on your back, and imme...
     scene.text('Well, he\'s got you there. With a deep sigh you lie down on your back, and immediately ' + qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' and Dan get on their knees next to you, offering their already fully erect cocks to you.');
     scene.text('Vitek moves between your legs, and begins to play with your pussy. He occasionally thrusts a finger inside, but is mostly content to just play with your pussy lips and your clitoris for now.');
     scene.text('You hesitantly lean towards Vasily\'s cock and lick the head of his cock testively, before taking it into your mouth. Meanwhile Dan grabs your wrist and guides your hand to his cock, and he begins to play with your breasts once you get the message and masturbate him gently.');
@@ -485,7 +484,8 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'deepthroat', 'sub');
   qspCall(s, 'stat', '');
   ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/bj' + (Math.floor(Math.random() * 10) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/bj` + (Math.floor(Math.random() * 10) + 1) + '.mp4"></video></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> unceremoniously moves up to you, and thrusts his erect dick into yo...
   scene.text(`${((s as any).boydesc ?? '')} unceremoniously moves up to you, and thrusts his erect dick into your mouth without saying a word.`);
   scene.text('"This is for you, slut", he hisses as he grabs your hair in his hands, and begins to thrust his hips against your face, fucking your throat roughly.');
@@ -495,7 +495,8 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'anal', 10);
     qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/sex1_' + (Math.floor(Math.random() * 10) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/sex1_` + (Math.floor(Math.random() * 10) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: "I want your ass next, bitch", <<$boydesc>> says. "Get on your hands and knees, ...
     scene.text(`"I want your ass next, bitch", ${((st as any).boydesc ?? '')} says. "Get on your hands and knees, and offer yourself to me."`);
     scene.text('You hesitantly do as he says, spreading your buttocks with your hands once you lower yourself to the ground.');
@@ -537,7 +538,8 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID2 ?? 0), 1);
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy2 ?? 0)] = 1;
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID3 ?? 0), 'gangbang');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/sex2_' + (Math.floor(Math.random() * 10) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/sex2_` + (Math.floor(Math.random() * 10) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You were about to get up once <<$boydesc3>> finished in you, but his friends sto...
     scene.text(`You were about to get up once ${((st as any).boydesc3 ?? '')} finished in you, but his friends stop you. "Everyone gets to have a go, slut. I won your ass, so I decide when you're done. Stay down", he orders you.`);
     scene.text('You meekly hang your head and get back in the position, deciding to just get it over with. Getting assfucked like some 50 ruble whore is not how you expected this game to end… but there are three of them, and they\'re all stronger than you. What can you do?');
@@ -557,7 +559,8 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Show them', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'arousal', 'end');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/ass' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sexrough/ass` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     scene.text('You obediently spread your ass cheeks, showing your gaping anus to the boys. That\'s going to take a while before it closes again.');
     scene.text('They look at you for a few minutes, proudly discussing on what a good job they did today.');
     // TODO-QSP: dynamic text: Then <<$boydesc3>> slaps your ass cheek and grins: "Alright, slut. We''ve traine...
@@ -757,7 +760,8 @@ function enterCardGameWonExposeGirl(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).loss_npc_name ?? '')} exits the house, and the rest of you follow him. He does as you ask, and can barely escape when the furious lady chases him all the way down the street.`);
     scene.text('A few minutes later, he returns to you. His face is all red from the running, and he\'s still out of breath when he says: "There… happy? She looked like she wanted to kill me!"');
     scene.text('You grin, and show him the video you shot with your mobile phone:');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/j' + (Math.floor(Math.random() * 12) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/j` + (Math.floor(Math.random() * 12) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: "Why is the camera shaking so much!? This looks like shit!" <<$loss_npc_name>> a...
     scene.text(`"Why is the camera shaking so much!? This looks like shit!" ${((st as any).loss_npc_name ?? '')} asks, clearly frustrated now.`);
     scene.text('His friends are also nearly out of breath, but it\'s from laughing so hard. Finally, one of them manages to say: "I\'m sorry, man! It just looked hilarious! None of us could hold our cameras still, we were laughing so hard!"');
@@ -793,7 +797,8 @@ function enterCardGameWonExposePenis(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).loss_npc_name ?? '')} exits the house, and the rest of you follow him. He does as you ask, and can barely escape when the furious lady chases him all the way down the street.`);
     scene.text('A few minutes later, he returns to you. His face is all red from the running, and he\'s still out of breath when he says: "There… happy? She looked like she wanted to kill me!"');
     scene.text('You grin, and show him the video you shot with your mobile phone:');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/p' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/p` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: "Why is the camera shaking so much!? This looks like shit!" <<$loss_npc_name>> a...
     scene.text(`"Why is the camera shaking so much!? This looks like shit!" ${((st as any).loss_npc_name ?? '')} asks, clearly frustrated now.`);
     scene.text('His friends are also nearly out of breath, but it\'s from laughing so hard. Finally, one of them manages to say: "I\'m sorry, man! It just looked hilarious! None of us could hold our cameras still, we were laughing so hard!"');
@@ -833,14 +838,16 @@ function enterCardGameWonCumOnGirl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After a few minutes, you find someone. "Alright, <<$loss_npc_name>>, come here",...
     scene.text(`After a few minutes, you find someone. "Alright, ${((st as any).loss_npc_name ?? '')}, come here", you whisper to him as you drag him out of view.`);
     scene.text('You quickly drop to your knees and take his cock in your mouth, giving him a skillful blowjob. The other guys are actually a bit jealous when they see you on your knees before your friend, and pull out their phones to record you:');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/bj' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/bj` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: When you lick <<$loss_npc_name>> close to his orgasm, he runs to his victim.
     scene.text(`When you lick ${((st as any).loss_npc_name ?? '')} close to his orgasm, he runs to his victim.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/cum' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/street_event/cum` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: While you idly wipe your lips with the back of your hand and watch <<$loss_npc_n...
     scene.text(`While you idly wipe your lips with the back of your hand and watch ${((st as any).loss_npc_name ?? '')} run, his friends are shooting everything on film with their mobiles.`);
     scene.text('When you watch the video back with the guys, it turns out that the video\'s quality is downright lousy. It\'s very shaky, and there\'s a lot of background noise of the three of you laughing your butts off.');
@@ -887,7 +894,8 @@ function enterCardGameWonLickMyPussy(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'cuni', 8);
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/lick' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/lick` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: For the next ten minutes, <<$boydesc>> does his best to bring you to orgasm with...
     scene.text(`For the next ten minutes, ${((st as any).boydesc ?? '')} does his best to bring you to orgasm with his tongue and lips.`);
     if (((st as any).pcs_horny ?? 0) >= 70) {

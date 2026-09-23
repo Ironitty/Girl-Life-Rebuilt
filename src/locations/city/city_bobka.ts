@@ -236,7 +236,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$tempval>> drop to your knees automatically and quickly pull his pants down wi...
   scene.text(`${((s as any).tempval ?? '')} drop to your knees automatically and quickly pull his pants down without even thinking about it. His cock is still flaccid, but you close your lips around it anyway, doing the best you can to arouse him. You slowly feel his cock grow hard inside your mouth and obediently suck him off until you feel several warm jets of sperm land on the back of your throat.${((s as any).tempval2 ?? '')}`);
-  if (Number((s as any).locArgs?.[0] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === 0) {
     (s as any).dick = 16;
     qspCall(s, 'cum_call', 'mouth', 'A47', 1);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
@@ -246,7 +246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Inject yourself with the drugs', goto: ['city_bobka', 'inject'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'dinSex', 'std_trigger_oral');
     qspCall(s, 'stat', '');
@@ -268,7 +268,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === 2) {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'dinSex', 'std_trigger');
     qspCall(s, 'stat', '');
@@ -290,7 +290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 3) {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     (s as any).tempval = 'You';
@@ -323,7 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Lick his ass enthusiastically', goto: ['city_bobka', 'rimming3'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === 4) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     (s as any).tempval = 'You';

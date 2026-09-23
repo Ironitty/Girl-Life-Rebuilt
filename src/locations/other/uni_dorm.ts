@@ -414,8 +414,6 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'check_total_items');
   if (((s as any).washer_total_wash_count ?? 0) > 0) {
     (s as any).wash_time = Math.min(30 + 5 * (((s as any).washer_total_wash_count ?? 0) / 5), 120);
-    // TODO-QSP: dynamic "
-    // TODO-QSP: "
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Wash clothes (' + String(((s as any).wash_time ?? '') / 60 ?? '') + ':' + String((String(100 + ((s as any).wash_time ?? '') % 60).slice((2)-1, ((2)-1)+(2))) ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).wash_time ?? 0));
@@ -1574,8 +1572,7 @@ function enterDormLounge(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
     { label: 'Watch TV', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
     { label: 'Relax', goto: ['uni_dorm', 'dorm_lounge_relax'] },
   ]);
@@ -1593,9 +1590,7 @@ function enterDormLoungeWatchTv(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a seat on one of the couches to watch something on the TV. There\'s not much on, but it kills a little time.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return to the corridor', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+    { label: 'Return to the corridor', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
     { label: 'Keep watching', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
   ]);
   scene.build();
@@ -1614,8 +1609,7 @@ function enterDormLoungeRelax(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
     { label: 'Keep relaxing', goto: ['uni_dorm', 'dorm_lounge_relax'] },
   ]);
   scene.build();
@@ -1637,10 +1631,10 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $start_type['magic']...
     } else {
       if (((s as any).locat ?? 0)?.['katja'] === 32) {
-        // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+        // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
         scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('Katja')) + ' cooking.');
       } else {
-        // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+        // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
         scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('Katja')) + ' at the table eating her dinner.');
       }
     }
@@ -1654,8 +1648,8 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).edagot = '';
       }
-      // TODO-QSP: dynamic text: Your shelf in the refrigerator holds enough food for <b><<mc_inventory[''food_ba...
-      scene.text('Your shelf in the refrigerator holds enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot ?? '') + '');
+      // TODO-QSP: dynamic text: 'Your shelf in the refrigerator holds enough food for <b><<mc_inventory[''food_b...
+      scene.text(`Your shelf in the refrigerator holds enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ` + ((((s as any).mc_inventory ?? 0)?.['food_basic'] === 1) ? ('serving') : ('servings')) + `. ${((s as any).edagot ?? '')}`);
     } else {
       scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
     }
@@ -1666,8 +1660,7 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
   ]);
   scene.build();
 }
@@ -1687,8 +1680,7 @@ function enterMensRestroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
   ]);
   scene.build();
 }
@@ -1708,8 +1700,7 @@ function enterWomensRestroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
   ]);
   scene.build();
 }
@@ -1735,8 +1726,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
               { label: 'Investigate', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 2);
     qspCall(st, 'stat', '');
@@ -1750,8 +1740,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((st as any).uni_dorm ?? {})[\'floor\'])'] },
     ]);
   } },
             ]);
@@ -1773,8 +1762,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
             { label: 'Investigate', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'voyeur_sex', 2);
     qspCall(st, 'stat', '');
@@ -1788,8 +1776,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((st as any).uni_dorm ?? {})[\'floor\'])'] },
     ]);
   } },
           ]);
@@ -1806,8 +1793,7 @@ function enterDormShowerMen(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
     { label: 'Go to the showers', goto: ['uni_dorm', 'mens_shower'] },
   ]);
   scene.build();
@@ -1830,8 +1816,7 @@ function enterDormShowerWomen(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
+  }, goto: ['uni_dorm', '(((s as any).uni_dorm ?? {})[\'floor\'])'] },
     { label: 'Go to the showers', goto: ['uni_dorm', 'womens_shower'] },
   ]);
   scene.build();

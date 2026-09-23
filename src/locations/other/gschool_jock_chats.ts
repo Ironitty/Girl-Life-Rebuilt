@@ -729,14 +729,14 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"My… my period started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"My… my period started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -745,14 +745,14 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChristinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1077,14 +1077,14 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1093,14 +1093,14 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1331,14 +1331,14 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1347,14 +1347,14 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVeronikaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1581,14 +1581,14 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1597,14 +1597,14 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLinaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1906,14 +1906,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1922,14 +1922,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLariskaTampon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }

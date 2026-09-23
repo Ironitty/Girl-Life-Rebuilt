@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).BraQuality = 3;
     (s as any).BraStrength = 80000;
     (s as any).BraType = 6;
@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).BraPrice = 1150;
     ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 1;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).BraQuality = 2;
       (s as any).BraStrength = 60000;
       (s as any).BraType = 6;
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).BraPrice = 1100;
       ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 2;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).BraQuality = 3;
         (s as any).BraStrength = 80000;
         (s as any).BraType = 6;
@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).BraPrice = 1150;
         ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 3;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).BraQuality = 3;
           (s as any).BraStrength = 80000;
           (s as any).BraType = 6;
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).BraPrice = 1150;
           ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 4;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).BraQuality = 3;
             (s as any).BraStrength = 80000;
             (s as any).BraType = 6;
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).BraPrice = 1150;
             ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 5;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).BraQuality = 2;
               (s as any).BraStrength = 60000;
               (s as any).BraType = 6;
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).BraPrice = 1100;
               ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 6;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).BraQuality = 3;
                 (s as any).BraStrength = 80000;
                 (s as any).BraType = 6;
@@ -73,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).BraPrice = 1150;
                 ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 7;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).BraQuality = 2;
                   (s as any).BraStrength = 60000;
                   (s as any).BraType = 6;

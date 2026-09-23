@@ -594,10 +594,10 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['i'] = 0;
   // TODO-QSP: :_rfl_loop
   ((s as any).ro = (s as any).ro ?? {})['key'] = 0;
-  if (((s as any).ro ?? 0)?.['key'] === Number((s as any).locArgs?.[4] ?? 0)  &&  Number((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+  if (((s as any).ro ?? 0)?.['key'] === String((s as any).locArgs?.[4] ?? '')  &&  String((s as any).locArgs?.[4] ?? '') !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     // TODO-QSP: jump '_rfl_next'
   }
-  if (((s as any).ro ?? 0)?.['key'] === Number((s as any).locArgs?.[5] ?? 0)  &&  Number((s as any).locArgs?.[5] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+  if (((s as any).ro ?? 0)?.['key'] === String((s as any).locArgs?.[5] ?? '')  &&  String((s as any).locArgs?.[5] ?? '') !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     // TODO-QSP: jump '_rfl_next'
   }
   ((s as any).ro = (s as any).ro ?? {})['hidden'] = 0;

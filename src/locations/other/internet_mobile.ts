@@ -13,10 +13,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterTopUpMetered(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: subscription[$ARGS[1]] += ARGS[2]
   ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'metered_calls') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'metered_calls') {
     ((s as any).subscription = (s as any).subscription ?? {})['metered_calls-sms_limit'] = ((s as any).subscription['metered_calls-sms_limit'] ?? 0) + (((s as any).locArgs?.[3] ?? 0));
   }
-  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
+  if (((s as any).subscription ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-type'] === 0) {
     ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-type'] = 2;
   }
   // TODO-QSP: end
@@ -28,7 +28,7 @@ function enterBuySubscription(s: GameState, scene: SceneBuilder): void {
   ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
   ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-price'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'] = ((s as any).locArgs?.[3] ?? 0);
-  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
+  if (((s as any).subscription ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-type'] === 0) {
     ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-type'] = 1;
   }
   // TODO-QSP: end
@@ -42,18 +42,18 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
     (s as any).im_i = 0;
     // TODO-QSP: :home_internet_subscription_loop
     if ((((s as any).property_status ?? 0)?.[String((s as any).im_i ?? 0)] === 1  ||  ((s as any).property_status ?? 0)?.[String((s as any).im_i ?? 0)] === 2)  &&  ((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]] === 1) {
-      if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-date'] === ((s as any).day ?? 0)) {
+      if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-date'] === ((s as any).day ?? 0)) {
         // TODO-QSP: gs 'internet_mobile', 'renew_subscription', $property_code[im_i]
       } else {
-        if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-suspension_day'] > 0) {
-          if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-suspension_day'] >= ((s as any).daystart ?? 0)) {
+        if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-suspension_day'] > 0) {
+          if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-suspension_day'] >= ((s as any).daystart ?? 0)) {
             // TODO-QSP: gs 'internet_mobile', 'renew_subscription', $property_code[im_i]
           } else {
             // TODO-QSP: gs 'internet_mobile', 'suspend_subscription', $property_code[im_i]
           }
         }
       }
-      if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-contract_message'] !== ''  &&  (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-date'] === ((s as any).day ?? 0)  ||  ((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] + '-suspension_day'] > 0)) {
+      if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-contract_message'] !== ''  &&  (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-date'] === ((s as any).day ?? 0)  ||  ((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-suspension_day'] > 0)) {
         // TODO-QSP: $internet_action_messages[] = 'Internet Subscription for <<$property_display[im_i]>>: <<$subscriptio...
       }
     }
@@ -130,11 +130,11 @@ function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
       (s as any).discounttext = qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ' and you had ' + qspFunc(s, 'money', 'string_price', ((s as any).acc_discount ?? 0)) + ' left on your account. After applying ' + qspFunc(s, 'money', 'string_price', ((s as any).app_discount ?? 0)) + ' to your monthly fee, your final payable was ' + qspFunc(s, 'wrap', 'v_pos b', qspFunc(s, 'money', 'string_price', ((s as any).finalfee ?? 0))) + ' and you were left with ' + qspFunc(s, 'money', 'string_price', ((s as any).rem_discount ?? 0)) + ' on your account.';
     }
     ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-contract_message'] = 'Your monthly fee was ' + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (qspFunc(s, 'wrap', 'v_pos b', qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0))) + ' which was taken from your bank account.'));
-    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] > 0) {
+    if (((s as any).subscription ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-suspension_day'] > 0) {
       ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-suspension_day'] = 0;
     }
   } else {
-    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] === 0) {
+    if (((s as any).subscription ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-suspension_day'] === 0) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 5]; enterSetSuspensionDate(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     (s as any).remainingday = ((s as any).subscription ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] - ((s as any).daystart ?? 0);
@@ -170,11 +170,11 @@ function enterCheckAllowedLocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetAccess(s: GameState, scene: SceneBuilder): void {
-  (s as any).subsname = ((Number((s as any).locArgs?.[1] ?? 0) === '') ? (qspFunc(s, 'homes_properties', 'get_property_code')) : (qspFunc(s, 'homes_properties', 'get_property_code', ((s as any).locArgs?.[1] ?? 0))));
+  (s as any).subsname = ((String((s as any).locArgs?.[1] ?? '') === '') ? (qspFunc(s, 'homes_properties', 'get_property_code')) : (qspFunc(s, 'homes_properties', 'get_property_code', ((s as any).locArgs?.[1] ?? 0))));
   if (qspFunc(s, 'homes_properties', 'free_internet_available', ((s as any).subsname ?? 0)) !== 0) {
     ((s as any).access = (s as any).access ?? {})['subscription'] = 'free';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'free') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'free') {
       ((s as any).access = (s as any).access ?? {})['subscription'] = 'free';
     } else {
       if (((s as any).subscription ?? 0)?.[String((s as any).subsname ?? 0)] === 1) {
@@ -193,7 +193,7 @@ function enterGetAccess(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).access ?? 0) !== 'denied') {
-    if (((s as any).subscription ?? 0)[((s as any).access ?? 0)?.['subscription'] + '-type'] === 2) {
+    if (((s as any).subscription ?? 0)[(((s as any).access ?? 0)?.['subscription']) + '-type'] === 2) {
       ((s as any).access = (s as any).access ?? {})['metered'] = 1;
     }
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('noporn') : -1) > 1) {
@@ -221,7 +221,7 @@ function enterRemoveLimitation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLimitationMessage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).access ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).access ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
     // TODO-QSP: $access[$ARGS[1]] = $ARGS[2]
   }
   // TODO-QSP: end
@@ -246,9 +246,9 @@ function enterSendSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUseInternet(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 2) {
+  if (((s as any).subscription ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '-type'] === 2) {
     // TODO-QSP: subscription[$ARGS[1]] -= ARGS[2]
-    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 0) {
+    if (((s as any).subscription ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 0) {
       // TODO-QSP: subscription[$ARGS[1]] = 0
     }
   }
@@ -257,7 +257,7 @@ function enterUseInternet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckInternetAccess(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).subscription ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     (s as any).result = 1;
   }
   // TODO-QSP: end

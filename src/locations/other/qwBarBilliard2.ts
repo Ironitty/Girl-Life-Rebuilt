@@ -84,7 +84,7 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
     scene.text('So, are you willing to take that bet? Would you be willing to strip naked for two guys you barely know in the backroom of a bar, only one thin curtain away from dozens of patrons?');
   } else {
     scene.text('"I\'d like to but I don\'t think I can afford to play for that much," you admit.');
-    // TODO-QSP: dynamic text: "Well, our offer still stands," Artyom reminds you. "You could bet doing a strip...
+    // TODO-QSP: dynamic text: '"Well, our offer still stands," Artyom reminds you. "You could bet doing a stri...
     scene.text('"Well, our offer still stands," Artyom reminds you. "You could bet doing a striptease instead.' + ((((s as any).Jaska_Friend_Bill ?? 0) >= 2) ? ('… maybe even more than that."') : ('')) + '"');
     scene.text('"Right," you say pensively. "That. And I would have to do it…"');
     scene.text('"Here," Victor confirms. "Only if you lose, of course."');

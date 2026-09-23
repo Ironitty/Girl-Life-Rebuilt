@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -301,7 +303,7 @@ function enterCheckLiftEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 31) + 0) >= 7) {
     // TODO-QSP: exit
   }
-  // TODO-QSP: gt 'city_apt_building', 'lift_event_<<rand(1, 7)>>', $ARGS[1]
+  qspGoto(s, 'city_apt_building', qspUntranslated(s, "''lift_event_<<rand(1'", { location: "city_apt_building" }), '7)>>', '$ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -338,7 +340,8 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvent_3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/apartment/stairs/event/elevator4_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sta...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/stairs/event/elevator4_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('When the elevator door opens, you see a naked woman standing in it. She looks at you in panic and begins frantically pressing all of the elevator buttons. You\'re too baffled to do anything as the door closes.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
@@ -352,7 +355,8 @@ function enterLiftEvent_3(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvent_4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/apartment/stairs/event/elevator3_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sta...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/stairs/event/elevator3_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('When the elevator door opens, you see a young man standing it with his limp dick hanging out. He has a huge smile on his face.');
   if (((s as any).pcs_hotcat ?? 0) < 4) {
     scene.text('His smile fades as he looks you over and gives you a disgusted look. "Oh it\'s you… I was hoping for a hot bitch," he whines before reaching over to push one of the elevator buttons. You\'re too baffled and insulted to do anything as the door closes.');
@@ -428,7 +432,8 @@ function enterLiftEvent_7(s: GameState, scene: SceneBuilder): void {
 function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/apartment/stairs/pod_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sta...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/stairs/pod_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_1'] },
@@ -437,7 +442,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor1Events(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'city_apt_building', 'floor1_event_1', $ARGS[1]
+  qspGoto(s, 'city_apt_building', 'floor1_event_1', '$ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -447,7 +452,7 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor1_gop.jpg');
   scene.text('A large group of gopniks are blocking the stairs up to the first floor. You\'ve seen several of them in the building and most of the rest around the neighborhood. You don\'t think most of them live here. You know gopniks can be dangerous, especially in large groups. You could try and walk past them, or just leave.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'from_second_floor') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'from_second_floor') {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -455,7 +460,7 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'from_lift') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'from_lift') {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -784,7 +789,7 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_gop.jpg');
   scene.text('In the stairwell between the floors is a large group of gopniks. You\'ve seen several of them in the building, and most of the rest around the neighborhood. You don\'t think most of them live here. You know gopniks can be dangerous especially in large groups. You could try and walk past them, or just leave.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'from_second_floor') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'from_second_floor') {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -792,7 +797,7 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'from_lift') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'from_lift') {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1121,7 +1126,8 @@ function enterFloor4Event_7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).meet_nudedoor_woman3 = 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/residential/apartment/stairs/event/floor4_shop' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sta...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/stairs/event/floor4_shop` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You see a beautiful woman dressed in nice clothes carrying a shopping bag. You\'ve seen her around before and you know she lives on this floor. Almost every time you see her, she\'s carrying some shopping bags. She either makes plenty of money or someone else buys her a lot of stuff. She smiles at you as she heads towards her apartment.');
   // TODO-QSP: end
   scene.actions([

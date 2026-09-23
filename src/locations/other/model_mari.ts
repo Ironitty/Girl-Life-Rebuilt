@@ -52,7 +52,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('"Good point," you reply, looking down at your naked body.');
       scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMari_1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMari_1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('"Good point," you reply, looking down at your tits, nipples hard in the cold air of the studio.');
       scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to! By the way, did you just come from a topless shoot or something?"');
@@ -119,7 +119,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to say anything, she seems comfortable as is.');
     scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to!"');
     scene.text('Mari doesn\'t appear to be bothered in the slightest that her breasts are completely on display while talking to you. She seems very comfortable with her body.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMari_1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMari_1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -354,7 +354,7 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     // TODO-QSP: dynamic text: "What''s up <<$mari[''used_nickname'']>>?"
     scene.text(`"What's up ${((st as any).mari ?? 0)?.['used_nickname'] ?? ''}?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -469,13 +469,13 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
         scene.text('"Right???"');
         scene.text('The two of you laugh together over your agreement in pubic hair fashion.');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).mari ?? 0)?.['convo'] === 2) {
         scene.img('images/characters/city/models/mari/talking/reading7.jpg');
         scene.text('"Seen any good movies lately Mari?"');
         scene.text('"No, not really. I don\'t go to the movies much. I prefer reading. Besides, half the time there\'s someone getting head in the back row. It\'s really distracting!"');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).mari ?? 0)?.['convo'] === 3) {
           ((st as any).mari = (st as any).mari ?? {})['nudity'] = 1;
@@ -488,18 +488,18 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
             { label: 'Laugh with her', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     scene.text('"Don\'t get me wrong, it\'s not like I would hang around my parents house like this or anything like that, but since coming here, I think I\'ve learned how much I enjoy being naked."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
           if (((st as any).mari ?? 0)?.['convo'] === 4) {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFamilyChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFamilyChat(st, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
             if (((st as any).mari ?? 0)?.['convo'] === 5) {
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariUnderwearChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariUnderwearChat(st, scene); (st as any).locArgs = __savedLocArgs; }
             } else {
               if (((st as any).mari ?? 0)?.['convo'] === 6  &&  ((st as any).mari ?? 0)?.['model_ask'] === 1) {
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariModelAsk(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariModelAsk(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 if (((st as any).mari ?? 0)?.['convo'] === 7) {
                   scene.img('images/characters/city/models/mari/talking/reading5.jpg');
@@ -508,7 +508,7 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
                   scene.text(`"${((st as any).mari ?? 0)?.['used_nickname'] ?? ''}!"`);
                   scene.text('"Hey girl! I\'m just concerned for you! I want you to get that opportunity for that special someone to pop your cherry while we\'re both still young! It\'s like you say, us girls have to stick together don\'t we?"');
                   scene.text('She smiles back at you. "Yeah. We do."');
-                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
                 }
               }
             }
@@ -616,7 +616,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
       scene.text('"Mari!"');
       scene.text('"It <i>is</i> kind of slutty!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -633,13 +633,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"You\'re right," you shrug. "They\'re cheap and affordable. I don\'t have the money to spend on nicer stuff right now."');
     scene.text('"That\'s fair," Mari smiles. "It\'s not like there\'s anything wrong with buying from G&M I guess."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I like them', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I just like them," you shrug. "They\'re cheap and comfortable and have simple designs that I like."');
     scene.text('"They are pretty classic," Mari agrees with you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -652,13 +652,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"They\'re really comfy!" you answer. "Nice soft cotton, elastic that doesn\'t rub or itch. I just feel better when I\'m wearing them."');
     scene.text('"Really? Maybe I should check it out after work," Mari smiles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'They\'re cute', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     scene.text('"They\'re really cute!" you answer. "Cute colors, cute designs, cute cuts-"');
     scene.text('"I get it! They\'re cute!" Mari laughs. "Maybe I\'ll check it out after work."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -668,7 +668,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh yeah? I\'ve never shopped there before. What kind of stuff do they have?"');
     scene.text('"Super stylish and fancy. Very lacy. I really like it."');
     scene.text('"Oh. I\'m not really into lace. A bit uncomfortable for me. Maybe I\'ll try something else. Thanks for the suggestion though!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I mostly wear sports underwear', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
@@ -681,13 +681,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Whaa-? Really?"');
     scene.text('"Yeah! Made of good material and form fitting. Honestly, sometimes I forget I\'m even wearing them!"');
     scene.text('"Well that sounds pretty cool. Maybe I\'ll check it out after work," she says thoughtfully.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Because I exercise?', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Uhh… Cause I do a lot of exercise?" you answer with a sort of "no duh" expression.');
     scene.text('"Oh." Mari laughs. "Of course! Sorry, I thought you had some kind of special reason, but that\'s the most obvious answer isn\'t it?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -732,7 +732,7 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -753,7 +753,7 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey Mari, you think that your old boss is jerking off to pictures of you right now?"');
     scene.text('She blushes even harder going, "Oh no, I do NOT even want to consider that!"');
     scene.text('"Well maybe he\'s jerking off to pictures of me instead? Would you prefer that?" You continue to tease her for a minute, both of you relentlessly giggling before you run out of good ammo to keep it going.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -765,13 +765,13 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"I just really wanted the extra cash so I could buy more stuff. Clothes, makeup, whatever. It\'s not like I really <i>need</i> to be doing this. I\'m just in it for the money."');
     scene.text('"Oh well, I suppose that\'s a fair a reason as any," she says. "I like being able to afford nice things too."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'To make money because I needed it', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"Oh, I just needed the money. Things to buy, bills to pay, you know."');
     scene.text('"Oh yeah, I definitely couldn\'t afford my apartment if I didn\'t work here. But it\'s not a bad job is it?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -788,7 +788,7 @@ function enterMariBookChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading7.jpg');
     scene.text('She says her last sentence with a smile. No sadness. No regret. Just happy to be living her life the way she is and happy she had parents who let her strike out on her own at such a young age.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -804,7 +804,7 @@ function enterMariFoodChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey Mari, do you know any good places to eat around here?"');
     scene.text('"Hmm… There\'s a place near by here that sells really great burgers! But the photographers specifically ask us not to eat there too often or we\'ll get fat and they\'ll fire us."');
     scene.text('You laugh about it together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -818,7 +818,7 @@ function enterMariFitnessChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"How do you stay in such good shape Mari? I\'m struggling to keep this figure."');
     scene.text('"I know right? It\'s so hard!" The nice thing though is that there\'s a fitness center nearby so I can always work out there on my way home from work. Good prices <i>and</i> conveniently placed! There\'s a few perverts there though, so watch out!"');
     scene.text('"Haha, okay Mari!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -939,13 +939,13 @@ function enterMariNametalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"It suits you," you smile. "\'Mari\', I mean."');
     scene.text('"Yeah? I think so too," she smiles back at you. "Ever since I started this job, I think of myself more as \'Mari\'. I introduce myself that way to everyone now. What about you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'You look like a Mariya', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Now that you mention it, you do look like a \'Mariya\'," you remark.');
     scene.text('"What\'s <i>that</i> supposed to mean?" she says, blushing. "Only my family members still call me Mariya. Even Mitka calls me Mari when he sees me. But enough about me. What about you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -963,14 +963,14 @@ function enterMariNametalk2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What <i>about</i> me?" You quizzically tilt your head at Mari.');
     // TODO-QSP: dynamic text: "Your name!" she says, laughing. "Is <<$model[''firstname'']>> your real name?"
     scene.text(`"Your name!" she says, laughing. "Is ${((st as any).model ?? 0)?.['firstname'] ?? ''} your real name?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'My name?', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/face.jpg');
     scene.text('"<i>My</i> name?" you say, taken aback.');
     // TODO-QSP: dynamic text: "Yes! Your name!" she says, laughing. "Is <<$model[''firstname'']>> your real na...
     scene.text(`"Yes! Your name!" she says, laughing. "Is ${((st as any).model ?? 0)?.['firstname'] ?? ''} your real name?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -982,7 +982,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
       { label: 'It is actually', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"It is, actually," you nod.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -991,7 +991,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
         { label: 'It\'s my nickname', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"It is, actually," you nod. "Well, sort of. It\'s a nickname for me, like you."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1005,7 +1005,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "It''s not," you shake your head. "My real name is <<$pcs_firstname>>."
       scene.text(`"It's not," you shake your head. "My real name is ${((st as any).pcs_firstname ?? '')}."`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1015,12 +1015,12 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
     { label: 'I\'d rather not say', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
     scene.text('"I\'d… rather not say," you say hesitantly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'That\'s a secret', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
     scene.text('"That\'s a secret," you say, giving her a smug smirk and a wink.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1044,21 +1044,21 @@ function enterMariNametalk4(s: GameState, scene: SceneBuilder): void {
     if (((st as any).model ?? 0)?.['firstname'] === ((st as any).pcs_firstname ?? 0)) {
       // TODO-QSP: dynamic text: "<<$pcs_firstname>> is my real name," you admit.
       scene.text(`"${((st as any).pcs_firstname ?? '')} is my real name," you admit.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).model ?? 0)?.['firstname'] === ((st as any).pcs_nickname ?? 0)) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>> is my real name," you admit. "Sort of. It''s my nickname."
         scene.text(`"${((st as any).pcs_nickname ?? '')} is my real name," you admit. "Sort of. It's my nickname."`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariSameNametalk(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).pcs_nickname ?? 0) !== ((st as any).pcs_firstname ?? 0)) {
           // TODO-QSP: dynamic text: "My real name is <<$pcs_firstname>>," you admit. "My friends call me <<$pcs_nick...
           scene.text(`"My real name is ${((st as any).pcs_firstname ?? '')}," you admit. "My friends call me ${((st as any).pcs_nickname ?? '')}."`);
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: dynamic text: "My real name is <<$pcs_firstname>>," you admit.
           scene.text(`"My real name is ${((st as any).pcs_firstname ?? '')}," you admit.`);
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariNametalk5(st, scene); (st as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1343,9 +1343,9 @@ function enterMariFirstNude(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask about her nude debut', handler: (st: GameState) => {
     if (((st as any).modelfoto ?? 0)?.['fullnude'] === 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNudeDebutTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNudeDebutTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1363,25 +1363,25 @@ function enterMariFirstNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head.');
     scene.text('"I\'m just curious to know what it was like for you."');
     scene.text('"If you\'re so curious, you haven\'t looked through my portfolio at the front have you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (experience)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I think it might be a good experience for me."');
     scene.text('"You should do it!" Mari says. "I think you\'re right. It was a great experience for me anyways. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. And since I did my debut early on in my career, the majority of my portfolio is filled with nudes now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (career)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I can\'t help but feel like it would be good for my career."');
     scene.text('"That\'s fair," Mari nods. "It was good for mine. Let me get a jump on nude shoots early on so now my portfolio is full of them. It was good exposure and got me a lot more jobs. But more than that, it was just a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. Maybe my nerves just make me laugh," she smiles shyly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (money)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I heard you get double rate for your debut. I could really use the money."');
     scene.text('"That\'s fair," Mari nods. "It gave me enough money for the first deposit to move into my own place. But more than that, it was just a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. Maybe my nerves just make me laugh," she smiles shyly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude2_shave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1410,13 +1410,13 @@ function enterMariFirstNude3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"No," you shake your head. "I haven\'t seen yours."');
     scene.text('"Well, that\'s probably for the best," Mari replies, a faint blush coloring her cheeks. "You\'d probably tease me for looking too cheerful. Honestly? It was a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. It mostly felt… breezy? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs. "But since I did my debut early on in my career, the majority of my portfolio is filled with nudes now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Yeah I\'ve gone through yours."');
     scene.text('"Oh dear!" Mari blushes hard. "Well then you could probably tell I might have been having too much fun. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. It mostly felt… breezy? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs. "But honestly? It was a great experience for me. And since I did it early on in my career the majority of my portfolio is filled with nudes now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1651,7 +1651,7 @@ function enterPcNudeDebutTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"Don\'t be," you reassure her. "I would hate to find out that everyone\'s first nude shoot was like mine."');
       scene.text('You give her a small smile and her own smile begins to peek back out again.');
       scene.text('"I suppose that\'s true. If you\'re asking about my debut, that doesn\'t mean you\'ve seen the cover photo in my portfolio, does it?"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariFirstNude3(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'amazed'  ||  ((st as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'proud') {
         scene.text('Mari smiles brightly back at you.');
@@ -1716,7 +1716,7 @@ function enterWeekendPlans(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((st as any).mari = (st as any).mari ?? {})['weekend_ask'] = ((st as any).daystart ?? 0);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1788,7 +1788,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '"Yeah, I wanted to talk about…"', handler: (st: GameState) => {
     scene.text('"Yeah, actually I wanted to talk about…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1819,7 +1819,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading19.jpg');
     scene.text('"No harm done…" she mutters to herself again with a far-off look.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1827,7 +1827,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading19.jpg');
     scene.text('"Maybe?" you shrug. "The way you act, how kind you are to the other girls here, the way you\'re always hugging me… It might be more affectionate than you realize. But I can\'t be the judge of that. Only you can say if it\'s something more."');
     scene.text('"I guess this is something I\'ll have to think about…" she mumbles with a far-off look.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1857,7 +1857,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((st as any).mari ?? 0)?.['used_nickname'] ?? ''}, we already talked about this! I'm a virgin remember?"`);
     scene.text('"Well… you never know if something… <i>popped</i> up!" you say with a wink.');
     scene.text('She blushes at the inference.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMariChat(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 0  ||  Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 0  ||  String((s as any).locArgs?.[0] ?? '') === 3) {
     // TODO-QSP: $pronounTmp[0] = 'he'
     // TODO-QSP: $pronounTmp[1] = 'He'
     // TODO-QSP: $pronounTmp[2] = 'him'
@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $pronounTmp[8] = 'himself'
     // TODO-QSP: $pronounTmp[9] = 'Himself'
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 2) {
       // TODO-QSP: $pronounTmp[0] = 'she'
       // TODO-QSP: $pronounTmp[1] = 'She'
       // TODO-QSP: $pronounTmp[2] = 'her'
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $pronounTmp[9] = 'Xemself'
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'a') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'a') {
     (s as any).xe1 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
     (s as any).xec1 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
     (s as any).xem1 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).xemself1 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
     (s as any).xemselfc1 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'b') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'b') {
       (s as any).xe2 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
       (s as any).xec2 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
       (s as any).xem2 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).xemself2 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
       (s as any).xemselfc2 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'c') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'c') {
         (s as any).xe3 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
         (s as any).xec3 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
         (s as any).xem3 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });
@@ -77,7 +77,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).xemself3 = qspUntranslated(s, "pronounTmp[8]", { location: "pronouns" });
         (s as any).xemselfc3 = qspUntranslated(s, "pronounTmp[9]", { location: "pronouns" });
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'd') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'd') {
           (s as any).xe4 = qspUntranslated(s, "pronounTmp[0]", { location: "pronouns" });
           (s as any).xec4 = qspUntranslated(s, "pronounTmp[1]", { location: "pronouns" });
           (s as any).xem4 = qspUntranslated(s, "pronounTmp[2]", { location: "pronouns" });

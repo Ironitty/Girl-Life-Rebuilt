@@ -9,34 +9,34 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'add_types') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ears'))) + 1)) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'add_types') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ears'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'ears');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nose'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nose'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nose');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('brow'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('brow'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'brow');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'lip');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tongue'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tongue'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'tongue');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('navel'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('navel'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'navel');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nipples'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nipples'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nipples');
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1)) {
+    if (String((s as any).locArgs?.[2] ?? '') === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'pussy');
     }
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_exceptions') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set_exceptions') {
     return;
   }
   return;
@@ -45,7 +45,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'add') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'add') {
     // TODO-QSP: gs 'piercing_attributes', $ARGS[2], ARGS[3]
     if ((!((s as any).PirQuality ?? 0))) {
       // TODO-QSP: exit
@@ -61,16 +61,16 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'header') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'grid_shop') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'header') {
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'main') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       // TODO-QSP: gs 'piercing_attributes', $ARGS[4], ARGS[5]
       scene.img(`${qspFunc(s, 'piercing_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'footer') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
       return;
     }
     return;

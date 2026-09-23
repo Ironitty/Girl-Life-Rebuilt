@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = 0;
     return;
   }
@@ -31,7 +31,7 @@ function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntDivide(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     return;
   }
   (s as any).result = (((s as any).locArgs?.[1] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 2)) / ((s as any).locArgs?.[2] ?? 0);
@@ -41,7 +41,7 @@ function enterIntDivide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntRound(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     return;
   }
   (s as any).result = ((s as any).locArgs?.[2] ?? 0) * qspFunc(s, 'math', 'int_divide', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
@@ -58,22 +58,22 @@ function enterIntClamp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntPower(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0) {
     (s as any).result = 1;
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) < 0) {
+    if (String((s as any).locArgs?.[2] ?? '') < 0) {
       (s as any).result = 0;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+      if (String((s as any).locArgs?.[2] ?? '') === 1) {
         (s as any).result = ((s as any).locArgs?.[1] ?? 0);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === 2) {
           (s as any).result = ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
+          if (String((s as any).locArgs?.[2] ?? '') === 3) {
             (s as any).result = ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0);
           } else {
-            if ((!(Number((s as any).locArgs?.[2] ?? 0) % 2))) {
+            if ((!(String((s as any).locArgs?.[2] ?? '') % 2))) {
               (s as any).result = qspFunc(s, 'math', 'int_power', ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0) / 2);
             } else {
               (s as any).result = ((s as any).locArgs?.[1] ?? 0) * qspFunc(s, 'math', 'int_power', ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0) / 4);
@@ -89,7 +89,7 @@ function enterIntPower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterConvertToLong(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -98,7 +98,7 @@ function enterConvertToLong(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterConvertToInt(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = parseFloat(((s as any).locArgs?.[1] ?? 0));
   }
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -107,7 +107,7 @@ function enterConvertToInt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrimLong(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -123,12 +123,12 @@ function enterTrimLong(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPadLong(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
   // TODO-QSP: :pad_long_loop
-  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[2] ?? '') > 0) {
     (s as any).result = '0' + ((s as any).result ?? 0);
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).ARGS[2] ?? 0) - (1);
     // TODO-QSP: jump 'pad_long_loop'
@@ -138,10 +138,10 @@ function enterPadLong(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLongAdd(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
@@ -198,10 +198,10 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLongSub(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
@@ -284,10 +284,10 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLongMult(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
@@ -334,10 +334,10 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLongDiv(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = '' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
   if ((!((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('1|2|3|4|5|6|7|8|9'))) + 1))) {

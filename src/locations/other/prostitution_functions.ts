@@ -25,7 +25,7 @@ function enterWlBlock(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 14, 2]; enterSetPavlovskHours(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'block') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'block') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['full_block'] = ((s as any).locArgs?.[1] ?? 0);
   }
   scene.build();
@@ -145,7 +145,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
       if (((s as any).prostitute ?? 0)?.['outfit_is_set'] === 1  &&  qspFunc(s, 'prostitution_functions', 'is_default') === 0) {
         scene.actions([
           { label: 'Replace your default prostitute outfit with the current outfit', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetDefaultOutfit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetDefaultOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         ]);
@@ -153,7 +153,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
         if (((s as any).prostitute ?? 0)?.['outfit_is_set'] === 0) {
           scene.actions([
             { label: 'Set the current as your default prostitute outfit', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetDefaultOutfit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetDefaultOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
@@ -161,7 +161,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Change into regular clothes', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeIntoRegularClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeIntoRegularClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
@@ -198,7 +198,7 @@ function enterProstituteOutfitAtHome(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.actions([
                   { label: 'Change into prostitute outfit', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeIntoProstituteOutfit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeIntoProstituteOutfit(st, scene); (st as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                 ]);
@@ -386,7 +386,7 @@ function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): voi
   // TODO-QSP: gs 'purses', 'wear', $prostitute['currentpursetype'], prostitute['currentpursenumber']
   // TODO-QSP: gs 'coats', 'wear', $prostitute['coatworntype'], prostitute['coatwornnumber']
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'work') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'work') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['changed_for_work'] = 1;
   }
   // TODO-QSP: end
@@ -408,13 +408,13 @@ function enterChangeIntoRegularClothes(s: GameState, scene: SceneBuilder): void 
 
 function enterChangeToWork(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'car') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'car') {
     // TODO-QSP: iif($loc_desc = '', 'You quickly change into your working outfit in your car.', $loc_desc)
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'restroom') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'restroom') {
     // TODO-QSP: iif($loc_desc = '', 'You slip into a stall and quickly change into your working outfit, trying to av...
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'road_side') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'road_side') {
     // TODO-QSP: iif($loc_desc = '', 'You quickly change into your working outfit behind some bushes by the road.', $...
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'work']; enterChangeIntoProstituteOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -429,16 +429,16 @@ function enterChangeToWork(s: GameState, scene: SceneBuilder): void {
 
 function enterChangeBack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'car') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'car') {
     scene.text('You quickly change into your working everyday clothes in your car.');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'restroom') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'restroom') {
     scene.text('You quickly change into your everyday clothes in the men\'s restroom..');
   }
   if (((s as any).loc_arg ?? 0) === 'restroom_women') {
     scene.text('You quickly change into your everyday clothes in the women\'s restroom.');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'road_side') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'road_side') {
     scene.text('You quickly change into your everyday clothes behind some bushes by the road.');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChangeIntoRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -474,7 +474,7 @@ function enterWillUnprotected(s: GameState, scene: SceneBuilder): void {
   if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
     (s as any).will_calc = ((s as any).will_calc ?? 0) + (100);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'resist') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'resist') {
     if (((s as any).pro_stats ?? 0)?.['unprotected'] <= 90) {
       (s as any).will_cost = (10 + (((s as any).pro_stats ?? {})?.['unprotected'] ?? 0) + ((s as any).will_calc ?? 0)) / 10;
     } else {
@@ -494,14 +494,14 @@ function enterWillUnprotected(s: GameState, scene: SceneBuilder): void {
 
 function enterWillRimming(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'self') {
     if (((s as any).stat ?? 0)?.['rimming_give'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['rimming_give'] ?? 0) + ((s as any).will_calc ?? 0)) / 10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0)) / 10;
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'force') {
       if (((s as any).stat ?? 0)?.['rimming_give'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['rimming_give'] ?? 0) + ((s as any).will_calc ?? 0)) / 10;
       } else {
@@ -522,14 +522,14 @@ function enterWillRimming(s: GameState, scene: SceneBuilder): void {
 
 function enterWillAtm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'self') {
     if (((s as any).pro_stats ?? 0)?.['atm'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).pro_stats ?? {})?.['atm'] ?? 0) + ((s as any).will_calc ?? 0)) / 10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0)) / 10;
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'force') {
       if (((s as any).pro_stats ?? 0)?.['atm'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).pro_stats ?? {})?.['atm'] ?? 0) + ((s as any).will_calc ?? 0)) / 10;
       } else {
@@ -600,7 +600,7 @@ function enterYourCondom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHisCondom(s: GameState, scene: SceneBuilder): void {
-  (s as any).bwa_boy = ((Number((s as any).locArgs?.[1] ?? 0) === '') ? (((s as any).boydesc ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).bwa_boy = ((String((s as any).locArgs?.[1] ?? '') === '') ? (((s as any).boydesc ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
@@ -749,7 +749,7 @@ function enterSolicitationEffort(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClientEffort(s: GameState, scene: SceneBuilder): void {
-  (s as any).client_type = ((Number((s as any).locArgs?.[1] ?? 0) === '') ? ('normal') : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).client_type = ((String((s as any).locArgs?.[1] ?? '') === '') ? ('normal') : (((s as any).locArgs?.[1] ?? 0)));
   if (((s as any).client_type ?? 0) === 'nice') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['age_mod'] = ((s as any).prostitute['age_mod'] ?? 0) + (5);
   } else {
@@ -781,7 +781,7 @@ function enterDailyEffects(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayment(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'pav') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'pav') {
     if (((s as any).prostitute ?? 0)?.['pav_scene'] === 'blowjob') {
       ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 425;
     } else {
@@ -794,28 +794,28 @@ function enterPayment(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob') {
       ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 350;
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'condom_no') {
         ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (75);
       }
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'inside_yes') {
         ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (50);
       }
     } else {
       if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
         ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 700;
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'condom_no') {
           ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
         }
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'inside_yes') {
           ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
         }
       } else {
         if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
           ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 900;
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'condom_no') {
             ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (200);
           }
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'inside_yes') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'inside_yes') {
             ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (100);
           }
         }
@@ -839,10 +839,10 @@ function enterPayment(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
     if (((s as any).prostitute ?? 0)?.['dirty_anal_mod'] === 0) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'condom_no') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'condom_no') {
         ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (600);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'condom_yes') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'condom_yes') {
           ((s as any).prostitute = (s as any).prostitute ?? {})['payment_mod'] = ((s as any).prostitute['payment_mod'] ?? 0) - (300);
         }
       }

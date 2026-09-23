@@ -109,7 +109,7 @@ function enterSlutReconcileSchoolCheck(s: GameState, scene: SceneBuilder): void 
   if (((s as any).NatbelQW ?? 0)?.['block_reason'] !== 'slut') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd_chat') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nerd_chat') {
     if (((s as any).daystart ?? 0) < ((s as any).NatbelQW ?? 0)?.['block_day']) {
       // TODO-QSP: exit
     }
@@ -119,7 +119,7 @@ function enterSlutReconcileSchoolCheck(s: GameState, scene: SceneBuilder): void 
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReconcile(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gt 'natbel_friend', 'slut_reconcile_school_event', $ARGS[1]
+  qspGoto(s, 'natbel_friend', 'slut_reconcile_school_event', '$ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -132,7 +132,7 @@ function enterSlutReconcileSchoolEvent(s: GameState, scene: SceneBuilder): void 
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want to have a quick chat with you in private please."
   scene.text(`"${((s as any).pcs_nickname ?? '')}, I want to have a quick chat with you in private please."`);
   scene.text('You wonder what her chat could be about given she previously ended your relationship. You don\'t feel like you want to have another similar discussion so shake your head. "No Natasha I don\'t think there\'s anything more to say. You broke up with me and that\'s that!"');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd_chat') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nerd_chat') {
     // TODO-QSP: dynamic text: Natasha looks like she''s about to cry but holds it together and starts leading ...
     scene.text(`Natasha looks like she's about to cry but holds it together and starts leading you away from your classmates so that it's not possible to be overheard. "Okay ${((s as any).pcs_nickname ?? '')} I guess you've got every right to be cross with me but just 5 minutes. Please…"`);
     scene.text('You don\'t reply but go with her. You both find a quiet spot and wait for Natasha to start.');
@@ -145,7 +145,7 @@ function enterSlutReconcileSchoolEvent(s: GameState, scene: SceneBuilder): void 
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> I''ve reflected on what happened and all I can say is that I'...
   scene.text(`"${((s as any).pcs_nickname ?? '')} I've reflected on what happened and all I can say is that I'm sorry; I should have tried to support and help you and I didn't. I'm so ashamed of that!"`);
   scene.text('You nod in acknowledgement but don\'t say anything.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd_chat') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'nerd_chat') {
     // TODO-QSP: dynamic text: As you don''t respond Natasha takes a deep breath to compose herself and continu...
     scene.text(`As you don't respond Natasha takes a deep breath to compose herself and continues. "Even more than that I really miss you ${((s as any).pcs_nickname ?? '')}.`);
     scene.text('Still unsure of what she\'s trying to say other than apologise you decide to prompt her as she\'s obviously struggling with what she wants to say, "Look Natasha, I don\'t know what you want here, you broke up with me and that\'s your decision. I don\'t need an apology for your doing so. If there\'s anything else please just say it."');
@@ -313,7 +313,7 @@ function enterShoppingSpree(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You approach Natasha, who is admiring herself in the mirror. "So, what do you th...
     scene.text(`You approach Natasha, who is admiring herself in the mirror. "So, what do you think, ${((st as any).pcs_nickname ?? '')}?" she asks, taking a slow heel turn. "Do you like it?"`);
     scene.text('"Natasha, that really suits you," you say. "It looks better than I thought it would from the pictures."');
-    // TODO-QSP: dynamic text: The two of you thank the stylist for his work, and you pay him ' + $func('money'...
+    // TODO-QSP: dynamic text: 'The two of you thank the stylist for his work, and you pay him ' + $func('money...
     scene.text('The two of you thank the stylist for his work, and you pay him 700₽, and you say to him, "Guess I know where to come when I need mine done."');
     scene.text('You turn back to Natasha, "Time to go find you a pretty dress!"');
     scene.actions([
@@ -326,7 +326,7 @@ function enterShoppingSpree(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend several minutes picking and choosing between various outfits until you have a small assortment of clothes that you can both agree on. Finally, Natasha steps into the dressing room to change, showing off each dress.');
     // TODO-QSP: dynamic text: Natasha has difficulty choosing between three outfits and asks you to make the f...
     scene.text(`Natasha has difficulty choosing between three outfits and asks you to make the final choice. Finally, you decide on a lovely party dress. "Okay, ${((st as any).pcs_nickname ?? '')}," she says, smiling. "Then that's the one. It'll look much nicer than what I currently have at home."`);
-    // TODO-QSP: dynamic text: You take the ' + $func('money', 'string_price', 1300) + ' dress and head to the ...
+    // TODO-QSP: dynamic text: 'You take the ' + $func('money', 'string_price', 1300) + ' dress and head to the...
     scene.text('You take the 1300₽ dress and head to the register to pay for it while Natasha gets dressed.');
     scene.actions([
       { label: 'Wait for Natasha', handler: (st: GameState) => {
@@ -419,7 +419,7 @@ function enterLoveJct(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 9;
     if (((st as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
       ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['FriendLover'] = 3;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInitSlutfameCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInitSlutfameCheck(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
     scene.text('You push yourself forward, and your lips meet with Natasha\'s. There\'s a sudden jolt coursing through you, and it must be the same for her; you feel her tense for a brief moment before relaxing into your kiss.');
@@ -584,7 +584,7 @@ function enterDisco_2Cont(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 9;
     if (((st as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
       ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['FriendLover'] = 3;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInitSlutfameCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInitSlutfameCheck(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
     scene.text('Natasha pulls you over to the couch, still holding onto your hand.');
@@ -669,7 +669,7 @@ function enterShoppingTrip(s: GameState, scene: SceneBuilder): void {
     scene.text('She has difficulty choosing between a couple of them and asks for you to make the final choice. You decide on a nice uniform that looks good and is likely to help improve her standing with the cool kids and jocks.');
     // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>," she says, smiling. "Then I''ll go for that one. It''s...
     scene.text(`"Okay, ${((st as any).pcs_nickname ?? '')}," she says, smiling. "Then I'll go for that one. It's much nicer than what I've currently got at home, which was from last year."`);
-    // TODO-QSP: dynamic text: You take the ' + $func('money', 'string_price', 2550) + ' uniform and head to th...
+    // TODO-QSP: dynamic text: 'You take the ' + $func('money', 'string_price', 2550) + ' uniform and head to t...
     scene.text('You take the 2550₽ uniform and head to the register to pay for it while Natasha gets dressed.');
     scene.actions([
       { label: 'Wait for Natasha', handler: (st: GameState) => {
@@ -833,7 +833,7 @@ function enterShoppingTrip2(s: GameState, scene: SceneBuilder): void {
     scene.text('She has difficulty choosing between a couple of them and asks for you to make the final choice. You decide on a nice outfit that you think suits her.');
     // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>," she says, smiling. "Then that''s the one. It''s <i>so...
     scene.text(`"Okay, ${((st as any).pcs_nickname ?? '')}," she says, smiling. "Then that's the one. It's <i>sooo</i> much nicer than anything I have."`);
-    // TODO-QSP: dynamic text: You take the ' + $func('money', 'string_price', 4350) + ' outfit and head to the...
+    // TODO-QSP: dynamic text: 'You take the ' + $func('money', 'string_price', 4350) + ' outfit and head to th...
     scene.text('You take the 4350₽ outfit and head to the register to pay for it while Natasha gets dressed.');
     scene.actions([
       { label: 'Wait for Natasha', handler: (st: GameState) => {
@@ -1754,7 +1754,7 @@ function enterCityDate2Start(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_last_used = '';
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['horny'] = 0;
     (st as any).nat_org = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1772,7 +1772,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
     scene.text('Slowly you begin kissing, licking and sucking them then letting her nipple pop out before recommencing as you keep your eyes focused directly on hers.');
     qspCall(st, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1786,7 +1786,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
     scene.text('You both begin rocking back and forth slowly at first but gradually increasing in speed and intensity bring you both higher and higher.');
     qspCall(st, 'arousal', 'trib', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1802,7 +1802,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
     qspCall(st, 'arousal', 'foreplay_give', (-5), 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1818,7 +1818,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
     scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and at the same time starts to tremble uncontrollably. She grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
     qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCityDate2Morningsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2220,7 +2220,7 @@ function enterEndOfGschool(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Break up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 14, 'uni']; enterBreakup(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 14, 'uni']; enterBreakup(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'npc_relationship', 'set', 'A16', 50);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha3.jpg');

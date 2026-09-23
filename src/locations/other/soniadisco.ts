@@ -58,9 +58,9 @@ function enterDisco0(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'ve heard the rumors that Sonia has started hanging around the gopniks lately; drinking, partying and generally cutting loose. Watching her now though, you can see that she\'s getting totally wasted and is starting to really grind on any and everyone that comes up to dance with her.');
     scene.text('After a while, she\'s barely able to stand up on her own and is hanging onto the guys she\'s grinding into to keep her balance.');
     if (((st as any).soniaQW ?? 0)?.['soniafall'] < 3) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWatchorhelp(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWatchorhelp(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniashowsboobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniashowsboobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -390,7 +390,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
     qspCall(st, 'stat', '');
     (st as any).soniadisco_peerpressuretrigger = 'declinedrink';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -426,7 +426,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
     qspCall(st, 'stat', '');
     (st as any).soniadisco_peerpressuretrigger = 'declinedrink';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -442,7 +442,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     qspCall(st, 'stat', '');
     (st as any).soniadisco_peerpressuretrigger = 'takedrink';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Caution Sonia', handler: (st: GameState) => {
     ((st as any).soniaQW = (st as any).soniaQW ?? {})['help'] = ((st as any).soniaQW['help'] ?? 0) + (1);
@@ -455,7 +455,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A25', 'dislike');
     qspCall(st, 'stat', '');
     (st as any).soniadisco_peerpressuretrigger = 'cautionsonia';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -481,7 +481,7 @@ function enterSoniadrinkmore(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take another drink', handler: (st: GameState) => {
     (st as any).soniadisco_peerpressuretrigger = 'soniadrinkmore';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -492,11 +492,11 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
     ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'declineinvite') {
     scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
     scene.text('A few minutes later, you see them coming back to the disco. Vitek occasionally steadies Sonia when she nearly falls over; you can tell she\'s totally hammered.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'staytoend') {
       scene.text('You go back to the disco with the rest of the group, where ');
     } else {
       scene.text('Not wanting to stick around, you return to the dance. A while later, the rest of the group returns, and ');
@@ -1432,10 +1432,10 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
   ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/cumwalk.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'staytoend') {
     scene.text('Vitek drags a drunken Sonia around like she\'s a trophy on display. She\'s all smiles and looks pretty happy and completely wasted. You follow them inside and stop near the door.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'declineinvite') {
       scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
       scene.text('Half an hour later, you see the boys return, quite rowdy and pleased with themselves. ');
     } else {

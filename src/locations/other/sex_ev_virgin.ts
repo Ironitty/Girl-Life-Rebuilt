@@ -18,8 +18,8 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     scene.text(`With a fast beating heart, you turn to look at ${((st as any).npcdesc ?? '')}.`);
     // TODO-QSP: dynamic text: "<<$npcdesc>>... I want you to take my virginity."
     scene.text(`"${((st as any).npcdesc ?? '')}... I want you to take my virginity."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartFlavor(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartFlavor(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -32,8 +32,8 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"Well..." You bite your lip, heart pounding inside your chest, mulling over what you\'re about to say. "What if... I let you fuck me?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartFlavor(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartFlavor(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStartOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -226,16 +226,16 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Saving it for marriage', handler: (st: GameState) => {
     scene.text('"Sorry," you say, denying him. "I\'ve got to stay a virgin until I get married."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: '', labelFn: (s: GameState) => 'Saving it for marriage (' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' says)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry," you say, denying him. "I''ve got to stay a virgin until I get married. ...
     scene.text(`"Sorry," you say, denying him. "I've got to stay a virgin until I get married. ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s orders."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Waiting for the right guy', handler: (st: GameState) => {
     scene.text('"Nope," you say, denying him. "I\'m waiting for the right guy. Sorry to say but I don\'t think you\'re him."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Well...', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['orgasm'] = ((st as any).orgasm ?? 0);
@@ -258,7 +258,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: You spread your legs for him and moments later, <<$npcdesc>> takes your virginit...
       scene.text(`You spread your legs for him and moments later, ${((st as any).npcdesc ?? '')} takes your virginity.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -393,7 +393,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"No means no!" You snap your legs closed and turn your face away. "Take it for an answer already."');
     scene.text('He pulls back with a sigh.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterChangeMind(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Well...', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['orgasm'] = ((st as any).orgasm ?? 0);
@@ -412,7 +412,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: You spread your legs for him and moments later, <<$npcdesc>> takes your virginit...
       scene.text(`You spread your legs for him and moments later, ${((st as any).npcdesc ?? '')} takes your virginity.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgStart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -436,14 +436,14 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
       // TODO-QSP: $sex_ev['hesitate_describe']
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalInstead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalInstead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Say no', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: "No," you sigh, pushing <<$npcdesc>> away. "I can''t do it."
     scene.text(`"No," you sigh, pushing ${((st as any).npcdesc ?? '')} away. "I can't do it."`);
     qspCall(st, 'sex_ev_foreplay', 'foreplay_choose');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalInstead(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalInstead(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: '"Okay"', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['position'] = 'miss';
@@ -518,12 +518,12 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"I\'m just not sure if I\'m ready," you mumble shyly.');
     if (((st as any).npc_finance ?? 0)?.[String((st as any).npcID ?? 0)] === 2  &&  ((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] !== 1  &&  ((st as any).npc_assertive ?? 0)?.[String((st as any).npcID ?? 0)] !== -1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginity1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginity1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
         scene.text('"Well... we don\'t have to if you\'re not ready. We can do something else."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'If that\'s really okay', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['no_sex'] = 1;
@@ -554,8 +554,8 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
         if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
           // TODO-QSP: dynamic text: "Seriously? We get right here and you''re going to call it quits?" <<$npcdesc>> ...
           scene.text(`"Seriously? We get right here and you're going to call it quits?" ${((st as any).npcdesc ?? '')} seems furious.`);
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(s, scene); (st as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(st, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(st, scene); (st as any).locArgs = __savedLocArgs; }
           scene.actions([
             { label: 'I\'m just scared!', handler: (st: GameState) => {
     scene.text('"I\'m jus-" you try to protest before he interrupts, shouting at you.');
@@ -575,8 +575,8 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npcdesc>> looks down at himself, almost as if contemplating what to do with h...
           scene.text(`${((st as any).npcdesc ?? '')} looks down at himself, almost as if contemplating what to do with his solidly erect dick.`);
           scene.text('"Soooo... you <i>don\'t</i> want to have sex...?');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(s, scene); (st as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantTo(st, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjInstead(st, scene); (st as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -858,8 +858,8 @@ function enterBuyVirginity1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "What the fuck?" You snap your legs closed as you gape at <<$npcdesc>>''s audaci...
     scene.text(`"What the fuck?" You snap your legs closed as you gape at ${((st as any).npcdesc ?? '')}'s audacity. "What do you think I am? Some kind of hooker?"`);
     scene.text('"Only if you say yes," he smirks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNotForSale(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNotForSale(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Try to haggle', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<i>Only</i> <<$func(''money'', ''string_profit'', 5000)>>?" you ask. "Surely my...
@@ -869,7 +869,7 @@ function enterBuyVirginity1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "You make a good point," <<$npcdesc>> grins. "How about <<$func(''money'', ''str...
     scene.text(`"You make a good point," ${((st as any).npcdesc ?? '')} grins. "How about ${qspFunc(s, 'money', 'string_profit', 10000)} then?"`);
     scene.text('He counts out twice as many notes and casually tosses them on the bed.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Not enough', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -910,7 +910,7 @@ function enterNotForSale(s: GameState, scene: SceneBuilder): void {
       scene.text('He counts out twice as many notes and casually tosses them on the bed.');
       // TODO-QSP: dynamic text: "Let me fuck you and <<$func(''money'', ''string_profit'', 10000)>> are yours ri...
       scene.text(`"Let me fuck you and ${qspFunc(s, 'money', 'string_profit', 10000)} are yours right now."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityConsider(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'No means no!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_deny'] = ((st as any).sex_ev['virgin_deny'] ?? 0) + (1);
@@ -979,8 +979,8 @@ function enterBuyVirginityConsider(s: GameState, scene: SceneBuilder): void {
     scene.text('You chew your lip as you start to consider it.');
     // TODO-QSP: dynamic text: <i><<$func(''money'', ''string_profit'', sex_ev[''buy_virginity''] * 1000, 1)>> ...
     scene.text(`<i>${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? {})?.['buy_virginity'] ?? 0) * 1000, 1)} is a lot of money...</i>`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNotForSale(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityAccept(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNotForSale(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyVirginityAccept(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1118,7 +1118,7 @@ function enterNoCondomOffer(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['sex_ev_virgin', 'his_choice'] },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPaidCreampieOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPaidCreampieOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1466,7 +1466,7 @@ function enterMissVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'He\'s big!', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'big';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1474,15 +1474,15 @@ function enterMissVirgNorm1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'It hurts', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'hurt';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m fine', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'fine';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Just hum', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'mmm';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMissVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1498,7 +1498,7 @@ function enterMissVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/vag/miss/blood1.jpg');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2']; enterDefault(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2']; enterDefault(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I\'ll be gentle," he says, and begins to move again.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1671,15 +1671,15 @@ function enterDoggyVirgNorm1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'It hurts', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'hurt';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m fine', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'fine';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Just hum', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['virgin_react'] = 'mmm';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDoggyVirgNorm1_1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1691,7 +1691,7 @@ function enterDoggyVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/blood1.jpg');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2']; enterDefault(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', '' + ((st as any).sex_ev ?? 0)?.['virgin_react'] + '_react2']; enterDefault(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I\'ll be gentle," he says, and begins to move again.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1702,7 +1702,7 @@ function enterDoggyVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['virgin_media']
     // TODO-QSP: dynamic text: As promised, <<$npcdesc>> fucks you very gently, slowly pumping his cock in and ...
     scene.text(`As promised, ${((st as any).npcdesc ?? '')} fucks you very gently, slowly pumping his cock in and out of you. He displays what you can only imagine is incredible patience, as he maintains this slow and gentle pace for several minutes, at which point you think...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1864,7 +1864,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.text('Clenching your jaw, you slowly lift yourself up before sliding back down on his cock. And then again. And again. And again. Your legs feel slick with something running down your thighs, but it doesn\'t feel like your juices. In fact it\'s hard to feel aroused at all right now. Suddenly you realize; it\'s blood. You did just pop your cherry after all...');
     // TODO-QSP: dynamic text: You soldier onwards, continuing to ride <<$npcdesc>>. A few minutes pass and you...
     scene.text(`You soldier onwards, continuing to ride ${((st as any).npcdesc ?? '')}. A few minutes pass and you work yourself up to a slow but steady rhythm, bouncing up and down on his cock. And soon, you realize you...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Go hard, power through', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['pos_speed'] = 'cowgirl3';
@@ -1881,7 +1881,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.text('"SHUT THE FUCK UP!" you scream. "I\'M GONNA FUCK YOU AND I\'M GONNA LIKE IT!"');
     // TODO-QSP: dynamic text: You soldier onwards, continuing to fuck <<$npcdesc>> with relentless fervor, rid...
     scene.text(`You soldier onwards, continuing to fuck ${((st as any).npcdesc ?? '')} with relentless fervor, riding him like your life depends on it. Soon, you realize...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1916,7 +1916,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: Deciding you''re already this far, you let him, slowly lifting yourself up and s...
     scene.text(`Deciding you're already this far, you let him, slowly lifting yourself up and sliding back down on his cock. And then again. And again. And again. A few minutes pass and you've worked yourself up to a steady rhythm, bouncing up and down on ${((st as any).npcdesc ?? '')}'s cock. And soon, you realize you...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Fuck him angrily', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['pos_speed'] = 'cowgirl3';
@@ -1931,7 +1931,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.text('"FINE!" you shout, leaning back and bouncing again. "You want me to take the plunge?! I\'LL FUCKING PLUNGE THEN!"');
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back at you and pulls you back down with equal eagerness, and...
     scene.text(`${((st as any).npcdesc ?? '')} grins back at you and pulls you back down with equal eagerness, and soon you're riding ${((st as any).npcdesc ?? '')} with relentless fervor, fucking him like there's no tomorrow. Somewhere in the back of your mind, you realize your first time is turning into some kind of hate fuck but the anger that burns within refuses to let you back down. Soon, you realize...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1963,7 +1963,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod in response and clench your jaw, slowly lifting yourself up before sliding back down on his cock. You slowly go up and down a few more times when you feel something running down your thighs. It takes you a moment, as you don\'t feel very aroused right now so you figure it can\'t be your juices. And then you realize; it\'s blood. The last mark of your virginity.');
     // TODO-QSP: dynamic text: You soldier onwards, continuing to ride <<$npcdesc>>. A few minutes pass and you...
     scene.text(`You soldier onwards, continuing to ride ${((st as any).npcdesc ?? '')}. A few minutes pass and you work yourself up to a slow but steady rhythm, bouncing up and down on his cock. And soon, you realize you...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Go hard, power through', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['pos_speed'] = 'cowgirl3';
@@ -1980,7 +1980,7 @@ function enterCowgirlVirgNorm1(s: GameState, scene: SceneBuilder): void {
     scene.text('"SHUT THE FUCK UP!" you scream. "You said it\'ll get better if I keep moving right?! So I\'m gonna fucking keep moving!"');
     // TODO-QSP: dynamic text: You pound yourself down on <<$npcdesc>>''s cock, fucking him with reckless aband...
     scene.text(`You pound yourself down on ${((st as any).npcdesc ?? '')}'s cock, fucking him with reckless abandon, riding him like your life depends on it, trying to plow your way past the hard part to the "good part." <i>Whatever that's supposed to feel like,</i> you think to yourself with gritted teeth. Soon, you realize...`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginEnjoyment(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -2379,8 +2379,8 @@ function enterHurtReact2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says. Ju...
     scene.text(`"Let's just take a minute. Give you some time to adjust," ${((s as any).npcdesc ?? '')} says. Just after he says that, you feel something running down the curve of your thigh. <i>What is tha-</i> you start to wonder before it hits you; it's blood from your torn hymen. You've officially lost your virginity.`);
   }
-  // TODO-QSP: dynamic text: After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex_...
-  scene.text('After a minute or two of letting ' + ((s as any).npcdesc ?? '') + '\'s cock stretch your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass,\', \'pussy,\') + \' you nod for him to move again.');
+  // TODO-QSP: dynamic text: 'After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex...
+  scene.text(`After a minute or two of letting ${((s as any).npcdesc ?? '')}'s cock stretch your ` + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' you nod for him to move again.');
   scene.text('"Okay. You can keep going," you grimace, hoping this horrible experience ends soon.');
   // TODO-QSP: end
   scene.build();
@@ -2394,7 +2394,7 @@ function enterFineReact1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFineReact2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: He keeps pushing inside, eliciting more grunts of discomfort from you, until he ...
+  // TODO-QSP: dynamic text: 'He keeps pushing inside, eliciting more grunts of discomfort from you, until he...
   scene.text('He keeps pushing inside, eliciting more grunts of discomfort from you, until he finally stops moving and you think he\'s fully inside you. Having a penis inside you is a decidedly strange experience. You can feel his cock bulging inside your ' + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' stretching it to its limits and straining against them. You feel "full", and you can\'t think of another way to describe it at the moment.');
   if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says.
@@ -2403,8 +2403,8 @@ function enterFineReact2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says. Ju...
     scene.text(`"Let's just take a minute. Give you some time to adjust," ${((s as any).npcdesc ?? '')} says. Just after he says that, you feel something running down the curve of your thigh. <i>What is tha-</i> you start to wonder before it hits you; it's blood from your torn hymen. You've officially lost your virginity.`);
   }
-  // TODO-QSP: dynamic text: After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex_...
-  scene.text('After a minute or two of letting ' + ((s as any).npcdesc ?? '') + '\'s cock stretch your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass,\', \'pussy,\') + \' you signal for him to move again.');
+  // TODO-QSP: dynamic text: 'After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex...
+  scene.text(`After a minute or two of letting ${((s as any).npcdesc ?? '')}'s cock stretch your ` + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' you signal for him to move again.');
   scene.text('"Okay. You can keep going," you nod.');
   // TODO-QSP: end
   scene.build();
@@ -2418,7 +2418,7 @@ function enterMmmReact1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMmmReact2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: He keeps pushing inside, eliciting more grunts of discomfort from you, until he ...
+  // TODO-QSP: dynamic text: 'He keeps pushing inside, eliciting more grunts of discomfort from you, until he...
   scene.text('He keeps pushing inside, eliciting more grunts of discomfort from you, until he finally stops moving and you think he\'s fully inside you. Having a penis inside you is a decidedly strange experience. You can feel his cock bulging inside your ' + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' stretching it to its limits and straining against them. You feel "full", and you can\'t think of another way to describe it at the moment.');
   if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says.
@@ -2427,8 +2427,8 @@ function enterMmmReact2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says. Ju...
     scene.text(`"Let's just take a minute. Give you some time to adjust," ${((s as any).npcdesc ?? '')} says. Just after he says that, you feel something running down the curve of your thigh. <i>What is tha-</i> you start to wonder before it hits you; it's blood from your torn hymen. You've officially lost your virginity.`);
   }
-  // TODO-QSP: dynamic text: After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex_...
-  scene.text('After a minute or two of letting ' + ((s as any).npcdesc ?? '') + '\'s cock stretch your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass,\', \'pussy,\') + \' you signal for him to move again.');
+  // TODO-QSP: dynamic text: 'After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex...
+  scene.text(`After a minute or two of letting ${((s as any).npcdesc ?? '')}'s cock stretch your ` + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' you signal for him to move again.');
   scene.text('"Okay. You can keep going," you nod.');
   // TODO-QSP: end
   scene.build();
@@ -2443,7 +2443,7 @@ function enterBigReact1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"<i>Ahh~!</i>" you gasp, feeling breathless as ${((s as any).npcdesc ?? '')} begins to penetrate you. "You're really <i>-ah-</i> big-!"`);
   }
   if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    // TODO-QSP: dynamic text: "Sorry about that," he mumbles shyly. "Maybe not the best guy to lose your ' + i...
+    // TODO-QSP: dynamic text: '"Sorry about that," he mumbles shyly. "Maybe not the best guy to lose your ' + ...
     scene.text('"Sorry about that," he mumbles shyly. "Maybe not the best guy to lose your ' + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('anal virginity,') : ('virginity')) + ' to. Just hold on a little longer. I\'m almost all the way in."');
   } else {
     if (((s as any).npc_arrogant ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -2458,8 +2458,8 @@ function enterBigReact1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBigReact2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: You barely stifle another gasp as <<$npcdesc>> finishes pushing the entire lengt...
-  scene.text('You barely stifle another gasp as ' + ((s as any).npcdesc ?? '') + ' finishes pushing the entire length of his ' + ((s as any).dick_desc ?? '') + ' cock into your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass.\', \'pussy.\') + \' It makes you feel stuffed, like your stomach is <i>bulging</i> with it inside you. Your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass\', \'pussy\') + \' is crying in protest and sharp pains lance through your uncomfortably stretched sex.');
+  // TODO-QSP: dynamic text: 'You barely stifle another gasp as <<$npcdesc>> finishes pushing the entire leng...
+  scene.text(`You barely stifle another gasp as ${((s as any).npcdesc ?? '')} finishes pushing the entire length of his ${((s as any).dick_desc ?? '')} cock into your ` + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass.') : ('pussy.')) + ' It makes you feel stuffed, like your stomach is <i>bulging</i> with it inside you. Your ' + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass') : ('pussy')) + ' is crying in protest and sharp pains lance through your uncomfortably stretched sex.');
   if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says.
     scene.text(`"Let's just take a minute. Give you some time to adjust," ${((s as any).npcdesc ?? '')} says.`);
@@ -2467,8 +2467,8 @@ function enterBigReact2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let''s just take a minute. Give you some time to adjust," <<$npcdesc>> says. Ju...
     scene.text(`"Let's just take a minute. Give you some time to adjust," ${((s as any).npcdesc ?? '')} says. Just after he says that, you feel something running down the curve of your thigh. <i>What is tha-</i> you start to wonder before it hits you; it's blood from your torn hymen. You've officially lost your virginity.`);
   }
-  // TODO-QSP: dynamic text: After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex_...
-  scene.text('After a minute or two of letting ' + ((s as any).npcdesc ?? '') + '\'s cock stretch your \' + iif($sex_ev[\'position\'] = \'anal\', \'ass,\', \'pussy,\') + \' you nod for him to move again.');
+  // TODO-QSP: dynamic text: 'After a minute or two of letting <<$npcdesc>>''s cock stretch your ' + iif($sex...
+  scene.text(`After a minute or two of letting ${((s as any).npcdesc ?? '')}'s cock stretch your ` + ((((s as any).sex_ev ?? 0)?.['position'] === 'anal') ? ('ass,') : ('pussy,')) + ' you nod for him to move again.');
   scene.text('"Okay. You can keep going," you grunt out.');
   // TODO-QSP: end
   scene.build();
@@ -2687,7 +2687,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
 function enterFirstTimeTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['virgin_talk'] = 1;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['good_for_you'] = 1;
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     scene.text('"So," he asks. "How was your first time?"');
   } else {
     scene.text('"Speaking of which," he asks. "How was your first time?"');
@@ -2786,7 +2786,7 @@ function enterFirstTimeTalk(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "I''m glad I was able to give you a good first time," <<$npcdesc>> smiles back, ...
       scene.text(`"I'm glad I was able to give you a good first time," ${((st as any).npcdesc ?? '')} smiles back, leaning in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     scene.text('You smile and let him press his lips against yours, leaning in to steal another one when he pulls away.');
@@ -2807,7 +2807,7 @@ function enterFirstTimeTalk(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: Perhaps spurred by your words, <<$npcdesc>> quickly moves in to kiss you.
       scene.text(`Perhaps spurred by your words, ${((st as any).npcdesc ?? '')} quickly moves in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     scene.text('You smile and let him. He presses his lips against you passionately and your eyes go wide in surprise when you feel his tongue snake between your lips and press against yours. You push back with your own, enjoying the way it feels, savoring the taste of his mouth. It\'s not as good as the sex you just experienced, but it feels <i>damn</i> nice. You even lean in to steal another kiss when he pulls away.');
@@ -2874,7 +2874,7 @@ function enterNiceLie1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "I''m glad I was able to give you a good first time," <<$npcdesc>> smiles back, ...
       scene.text(`"I'm glad I was able to give you a good first time," ${((st as any).npcdesc ?? '')} smiles back, leaning in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     scene.text('You smile and let him press his lips against yours, leaning in to steal another one when he pulls away. Unlike the experience you just had, this <i>does</i> feel nice.');
@@ -2922,7 +2922,7 @@ function enterNiceLie2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "I''m glad I was able to give you a good first time," <<$npcdesc>> smiles back, ...
       scene.text(`"I'm glad I was able to give you a good first time," ${((st as any).npcdesc ?? '')} smiles back, leaning in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You smile and let <<$npcdesc>> press his lips against yours, gasping into his mo...
@@ -2971,7 +2971,7 @@ function enterAmazingLie1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: Perhaps spurred by your words, <<$npcdesc>> quickly moves in to kiss you.
       scene.text(`Perhaps spurred by your words, ${((st as any).npcdesc ?? '')} quickly moves in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     scene.text('You smile and let him. He presses his lips against you passionately and your eyes go wide in surprise when you feel his tongue snake between your lips and press against yours. You push back with your own, enjoying the way it feels, savoring the taste of his mouth. Unlike the experience you just had, this <i>does</i> feel nice. You even lean in to steal another kiss when he pulls away.');
@@ -3021,7 +3021,7 @@ function enterAmazingLie2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_generous ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: Perhaps spurred by your words, <<$npcdesc>> quickly moves in to kiss you.
       scene.text(`Perhaps spurred by your words, ${((st as any).npcdesc ?? '')} quickly moves in to kiss you.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKissTurnHead(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Kiss him back', handler: (st: GameState) => {
     scene.text('You smile and let him. He presses his lips against you passionately and your eyes go wide in surprise when you feel his tongue snake between your lips and press against yours. You push back with your own, enjoying the way it feels, savoring the taste of his mouth. Then you feel his fingers give your clit another good rub, making you moan directly into his mouth. Unlike the experience you just had, this <i>does</i> feel nice. You bite your lip, letting the pleasure roll through you.');

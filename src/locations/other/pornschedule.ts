@@ -64,12 +64,12 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :fillschedule
   (s as any).porns = 0;
   // TODO-QSP: :moveschedule
-  if (((s as any).porntaken ?? 0)[((s as any).days ?? 0)+1 + ',' + ((s as any).porns ?? 0)] === 0  &&  ((s as any).days ?? 0) >= 14) {
+  if (((s as any).porntaken ?? 0)[(((s as any).days ?? 0)+1) + ',' + (((s as any).porns ?? 0))] === 0  &&  ((s as any).days ?? 0) >= 14) {
     if ((Math.floor(Math.random() * 100) + 1) === 1) {
       ((s as any).pornplan = (s as any).pornplan ?? {})[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))] = 0;
     }
   }
-  if (((s as any).days ?? 0) === ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']  ||  ((s as any).pornplan ?? 0)[((s as any).days ?? 0)+1 + ',' + ((s as any).porns ?? 0)] === 0) {
+  if (((s as any).days ?? 0) === ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']  ||  ((s as any).pornplan ?? 0)[(((s as any).days ?? 0)+1) + ',' + (((s as any).porns ?? 0))] === 0) {
     (s as any).pornvariable = (Math.floor(Math.random() * 91) + 0);
     if (((s as any).pornvariable ?? 0) <= 1) {
       ((s as any).pornplan = (s as any).pornplan ?? {})[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))] = 14;
@@ -95,12 +95,12 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).pornplan = (s as any).pornplan ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = ((s as any).pornplan ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
   ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = ((s as any).porntaken ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
-  if (((s as any).porntaken ?? 0)[((s as any).days ?? 0) + ',' + ((s as any).porns ?? 0)] === 0) {
+  if (((s as any).porntaken ?? 0)[(((s as any).days ?? 0)) + ',' + (((s as any).porns ?? 0))] === 0) {
     if ((Math.floor(Math.random() * (((s as any).days ?? 0)*3/2 - 1 + 1)) + (1)) === 1) {
       ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = 1;
     }
   }
-  if (((s as any).porntaken ?? 0)[((s as any).days ?? 0) + ',' + ((s as any).porns ?? 0)] === 1) {
+  if (((s as any).porntaken ?? 0)[(((s as any).days ?? 0)) + ',' + (((s as any).porns ?? 0))] === 1) {
     if ((Math.floor(Math.random() * 100) + 1) === 1) {
       ((s as any).porntaken = (s as any).porntaken ?? {})[String(((s as any).days ?? 0)) + ',' + String(((s as any).porns ?? 0))] = 0;
     }
@@ -129,11 +129,11 @@ function enterPornTypeSelector(s: GameState, scene: SceneBuilder): void {
   (s as any).num_types = 0;
   // TODO-QSP: :type_loop
   if (((s as any).type_i ?? 0) <= ((s as any).num_types ?? 0)) {
-    if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[((s as any).temp_edit_day ?? 0) + ',' + ((s as any).temp_edit_session ?? 0)]) {
+    if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[(((s as any).temp_edit_day ?? 0)) + ',' + (((s as any).temp_edit_session ?? 0))]) {
       (s as any).selector_html = '<b><font color="yellow">';
     }
     // TODO-QSP: $selector_html += '<a href="exec:pornplan[''<<temp_edit_day>>,<<temp_edit_session>>''] = <<type_i>> ...
-    if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[((s as any).temp_edit_day ?? 0) + ',' + ((s as any).temp_edit_session ?? 0)]) {
+    if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[(((s as any).temp_edit_day ?? 0)) + ',' + (((s as any).temp_edit_session ?? 0))]) {
       // TODO-QSP: $selector_html += ' (Current)</font></b>'
     }
     // TODO-QSP: $selector_html
@@ -226,7 +226,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
     (s as any).nh1 = 1;
   }
   if ((((s as any).weekdayfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) >= 6)  ||  (((s as any).weekendfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) < 6)  ||  (((s as any).weekdayfilter ?? 0) === 0  &&  ((s as any).weekendfilter ?? 0) === 0)  ||  ((s as any).nh1 ?? 0) === 1) {
-    if (((s as any).datefilter ?? 0)[((s as any).selected ?? 0)?.[String((s as any).ps_i ?? 0)]] === 0) {
+    if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).ps_i ?? 0)])] === 0) {
       if (((s as any).nh1 ?? 0) === 1) {
         (s as any).pornofday = '<i><b>National holiday, no shootings!</b></i><br>';
       } else {
@@ -247,7 +247,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_pc_booking ?? 0) !== '') {
             // TODO-QSP: $pornofday += '<<$temp_hour>>: ' + $func('wrap', 'v_pos', '<b><<$porndesc[pornplan[''<<ps_i>>,<<porn...
           } else {
-            if (((s as any).porntaken ?? 0)[((s as any).ps_i ?? 0) + ',' + ((s as any).porns ?? 0)] === 1) {
+            if (((s as any).porntaken ?? 0)[(((s as any).ps_i ?? 0)) + ',' + (((s as any).porns ?? 0))] === 1) {
               if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + ((s as any).ps_i ?? 0)) === 1) {
                 // TODO-QSP: $pornofday += '<<$temp_hour>>: ' + $func('wrap', 'neg', '<<$porndesc[pornplan[''<<ps_i>>,<<porns>>''...
               } else {
@@ -428,7 +428,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
     (s as any).w2 = 1;
   }
   if (((s as any).inversefilter ?? 0) === 1) {
-    if (((s as any).datefilter ?? 0)[((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)]] === 1) {
+    if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] === 1) {
       ((s as any).datefilter = (s as any).datefilter ?? {})[String(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] = 0;
     } else {
       ((s as any).datefilter = (s as any).datefilter ?? {})[String(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] = 1;
@@ -461,7 +461,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + ((s as any).p1 ?? 0)) === 1) {
       (s as any).option = qspFunc(s, 'wrap', 'v_pos', '' + ((s as any).d1 ?? 0) + '');
     } else {
-      if (((s as any).datefilter ?? 0)[((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)]] === 1  ||  (((s as any).weekdayfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) < 6)  ||  (((s as any).weekendfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) >= 6)) {
+      if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] === 1  ||  (((s as any).weekdayfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) < 6)  ||  (((s as any).weekendfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) >= 6)) {
         (s as any).option = '<font color="grey"><del>' + ((s as any).d1 ?? 0) + '</del></font>';
       } else {
         (s as any).option = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.datefilter ??= {})/u0027' + ((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] + '/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">' + ((s as any).d1 ?? 0) + '</a>';

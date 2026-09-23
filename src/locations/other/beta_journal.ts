@@ -96,7 +96,7 @@ function enterGameEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterGametips(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc_id, 'tips_init'
-  (s as any).rnd_tip = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tip_body')-1);
+  (s as any).rnd_tip = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   scene.text('<center><h3>Girl Life Random Tips</h3>');
   // TODO-QSP: $tip_body[rnd_tip]
   scene.text('</center>');
@@ -123,7 +123,7 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   (s as any).entry_counter_i = 1;
   (s as any).entry_counter_j = 1;
   (s as any).table_counter = 0;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).table_columns = 3;
   } else {
     (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
@@ -179,16 +179,16 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFailure(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'id') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'id') {
     ((s as any).debug = (s as any).debug ?? {})['journal'] = 'NPC ID not set, vcard not generated.';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'quest_body') {
       ((s as any).debug = (s as any).debug ?? {})['journal'] = 'Quest body not set, quests details was not set.';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'nav_forward') {
         ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'nav_back') {
           ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
         }
       }

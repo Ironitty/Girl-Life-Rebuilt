@@ -80,7 +80,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 0, 0);
     scene.img('images/locations/pavlovsk/community/library/homework.jpg');
     scene.text('You sit down at one of the tables with a computer and use it to help you do your homework.');
-    // TODO-QSP: dynamic text: After an hour, you''ve ' + iif(lernHome = 0, 'completed', 'done a part of') + ' ...
+    // TODO-QSP: dynamic text: 'After an hour, you''ve ' + iif(lernHome = 0, 'completed', 'done a part of') + '...
     scene.text('After an hour, you\'ve ' + (((!((st as any).lernHome ?? 0))) ? ('completed') : ('done a part of')) + ' your homework.');
     scene.actions([
       { label: 'Get up from the table', goto: ['pav_library', ''] },

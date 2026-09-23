@@ -362,10 +362,11 @@ function enterPosuda(s: GameState, scene: SceneBuilder): void {
     (st as any).sergehelppos_day = ((st as any).daystart ?? 0);
     (st as any).sergehelppos_count = ((st as any).sergehelppos_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/posuda' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/posuda` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('You wash the mountain of dishes that piled up since yesterday. It takes you roughly fifteen minutes to get through.');
     if (((st as any).npc_rel ?? 0)?.['A112'] >= 25) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHelpEv1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHelpEv1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Finish', goto: ['Serge_kuh', ''] },
@@ -382,11 +383,12 @@ function enterPosuda(s: GameState, scene: SceneBuilder): void {
     (st as any).sergehelppol_day = ((st as any).daystart ?? 0);
     (st as any).sergehelppol_count = ((st as any).sergehelppol_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/pol' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/pol` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('You spend the next fifteen minutes on your hands and knees, washing the floors of the apartment.');
     scene.text('Sergey can\'t help but stare at your ass from time to time, when he thinks you\'re not looking.');
     if (((st as any).npc_rel ?? 0)?.['A112'] >= 25) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHelpEv1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHelpEv1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Finish', goto: ['Serge_kuh', ''] },
@@ -425,7 +427,8 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Flirt with Sergey', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/jara' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/jara` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('One quick glimpse at Sergey tells you that you\'re not the only one who\'s a bit worked up from your activities in the kitchen. Sergey looks a bit tired, but at the same time he can\'t stop staring at your ass. When you\'re finished and take a breather, you decide to tease him a little. As soon as you do, you can hear his breathing intensify a little. You keep doing what you\'re doing though, pretending it\'s by accident that you\'re showing off as much as you are.');
     qspCall(st, 'willpower', 'exhib', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -446,7 +449,8 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show him your ass', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/vert' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/vert` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     scene.text('That was fun, but you can do better! When you bend over exaggeratedly and show him your ass, you can\'t help but giggle. Oops!');
     scene.text('Sergey sighs, realizing your game now… and feeling a bit busted at the same time.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, stop tormenting me!" he tells you. "I''m not a robot, I''m a...
@@ -1778,7 +1782,8 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj' + (Math.floor(Math.random() * 11) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj` + (Math.floor(Math.random() * 11) + 1) + '.mp4"></video></center>');
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.text('Sergey roughly strips you, easily overpowering you. He tosses your clothes aside, laughing at your futile attempts to break free.');
   }
@@ -1798,7 +1803,8 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra` + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center>');
     scene.text('Sergey roughly pulls you up, and makes you lean against a kitchen counter. "He\'s going to fuck me now!" you giddily think to yourself. Finally! The rough throat fucking he gave you earlier will be worth it.');
     scene.text('He rubs his cock against your wet slit, with a cruel grin on his face. "Beg", he orders.');
     scene.text('"Please…" you whimper, your cheeks burning with shame.');
@@ -1813,7 +1819,8 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).agape ?? 0) < 2) {
       (st as any).agape = 2;
     }
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra' + (Math.floor(Math.random() * 3) + 5) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra` + (Math.floor(Math.random() * 3) + 5) + '.mp4"></video></center>');
     scene.text('Sergey orders you: "Stand before me with your hands behind your back, and look at the floor!"');
     scene.text('You do as he says, not daring to look back at him. With your eyes cast down, you stand before him obediently.');
     scene.text('Suddenly, he slaps your left boob hard, with the palm of his hand. "Ow! That hurts!" you yell, and try to reach out to massage the pain out of it.');
@@ -1877,7 +1884,8 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
   // TODO-QSP: dynamic text: "You''re such a slut, <<$pcs_nickname>>… you''re not even wearing a bra! Everyon...
   scene.text(`"You're such a slut, ${((s as any).pcs_nickname ?? '')}… you're not even wearing a bra! Everyone can see your nipples poking through your clothes!" Sergey scolds you, making you blush and lower your head in shame.`);
   scene.text('"How big are those tits of yours, anyway?" he asks.');
@@ -1896,7 +1904,8 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'mood', 'raise', 'large');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     scene.text('"But I\'m being selfish, I guess you want to orgasm too?" he grins. Without waiting for an answer he moves his hand between your legs, trying to find your clitoris. You\'re still a bit ashamed of this situation, and squeeze your thighs together, making it more difficult for him.');
     scene.text('A few minutes later he finds it anyway, and you immediately feel a surge through your body once his fingers finds your swollen clit. He twirls his finger across the surface, making you moan with pleasure - if he keeps that up, you\'ll orgasm in no time!');
     scene.text('Mad with lust, you eagerly suck on his cock while Sergey fingers you to an orgasm. You moan around his cock, which he refuses to take out of your mouth, and feel your whole body trembling underneath his.');
@@ -1924,7 +1933,8 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).agape ?? 0) < 1) {
       (st as any).agape = 1;
     }
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj' + (Math.floor(Math.random() * 8) + 4) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj` + (Math.floor(Math.random() * 8) + 4) + '.mp4"></video></center>');
     scene.text('"Actually, I\'m in a good mood", Sergey says. "You\'re being such a good little slut for me today, I\'ll let you lube up my cock before I fuck your ass. With your mouth, of course."');
     scene.text('You smile at him thankfully and quickly drop to your knees before he changes his mind. That will actually help a lot! You eagerly take his cock in your mouth and begin to suck and lick it eagerly.');
     scene.text('"You\'ll never get enough saliva like that", he mutters. "Here, I\'ll help."');
@@ -1939,7 +1949,8 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
     (st as any).pcs_hairbsh = 0;
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra' + (Math.floor(Math.random() * 3) + 6) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra` + (Math.floor(Math.random() * 3) + 6) + '.mp4"></video></center>');
     scene.text('Feeling his cock in your ass, you can\'t resist the urge to masturbate. Sergey\'s rough pounding makes it difficult for you to hold yourself in place and masturbate at the same time, but with some difficulty you manage and let your fingers dart over your clit. Your pussy and clit feel very slippery, probably because of your saliva from the extensive deepthroating earlier.');
     scene.text('You feel Sergey\'s cock rubbing your fingertips several times, when he slips out of your ass. He always immediately slides it back in, making you moan in delight.');
     scene.text('"Uncle Sergey, it feels so good! Fuck me! Fuck me harder!" you encourage him, while you feel yet another orgasm bubbling up deep inside of you.');

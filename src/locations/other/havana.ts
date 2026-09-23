@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/gym/desk.jpg');
   scene.text('This modern and well staffed fitness center features all of the latest equipment, as well as trainers to help you make the most of them.');
   scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027watercooler/u0027); return false;">drinking fountain</a> near the doors to the bathrooms.');
-  // TODO-QSP: dynamic text: You may buy '+iif(abonement > 0, 'a subscription package', 'an additional subscr...
+  // TODO-QSP: dynamic text: 'You may buy '+iif(abonement > 0, 'a subscription package', 'an additional subsc...
   scene.text('You may buy ' + ((((s as any).abonement ?? 0) > 0) ? ('a subscription package') : ('an additional subscription package')) + ' for access to all available facilities at reception.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
@@ -405,7 +405,7 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   scene.text('"Can I have them back please?" you ask while holding out your hand.');
   scene.text('"Nope. You seduced me. I\'ve never been with a girl before, so I think I\'ve earned this as a memento," she replies before she pockets them.');
   scene.text('"I\'m Tanya by the way. I live nearby with my parents. You should come over some time so we can… continue where we left off… I\'m usually home in the late afternoon," she winks before leaving the room.');
-  // TODO-QSP: dynamic text: <i>You can now visit Tanya at her parents home in the Downtown area once a day a...
+  // TODO-QSP: dynamic text: '<i>You can now visit Tanya at her parents home in the Downtown area once a day ...
   scene.text('<i>You can now visit Tanya at her parents home in the Downtown area once a day after 16:00.</i>');
   // TODO-QSP: end
   scene.actions([
@@ -529,7 +529,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Light weights (Build strength)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -546,7 +546,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Heavy weights (Build muscle <font color=red>This can lead to extreme strength at a cost to appearance</font>)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -563,7 +563,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Squats (Tone your butt)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -580,7 +580,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Cross trainer (endurance)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -597,7 +597,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (agility)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -614,7 +614,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (reactions)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -631,7 +631,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Yoga (agility)', handler: (st: GameState) => {
     (st as any).abonement = ((st as any).abonement ?? 0) - (1);
@@ -649,7 +649,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Go to the kickboxing gym', goto: ['havana_kickboxing', 'start'] },
         ]);

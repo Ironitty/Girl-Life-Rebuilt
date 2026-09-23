@@ -42,46 +42,46 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) < 1  ||  Number((s as any).locArgs?.[1] ?? 0) > 10) {
+  if (String((s as any).locArgs?.[1] ?? '') < 1  ||  String((s as any).locArgs?.[1] ?? '') > 10) {
     scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
     scene.text('As you step closer, you can see the albums are of models who work here. Rather than being arranged alphabetically, it looks like they are arranged by ranking.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
       scene.text('Here is the shelf that has the albums of the top 10 models. You saw it before when you first joined the studio, but something has changed. You read the names from left to right and your heart stops when you see the final name.');
       // TODO-QSP: dynamic text: "<<$model[''firstname'']>> <<$mid($model[''lastname''], 1, 1)>>."
       scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}."`);
       scene.text('That\'s your name! You\'re one of the top 10 models of the studio!');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
         scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
         scene.text('Here is the shelf that has the albums of the top 10 models. The albums names have changed yet again. Though the shock is not quite as dramatic as the first time, you take great pleasure in seeing your name has moved up the ranking again to the ninth spot. You\'re higher than Anushka now. You wonder if she\'ll be mad.');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === 3) {
           scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
           scene.text('Here is the shelf that has the albums of the top 10 models. You\'ve taken Mari\'s spot in the rankings. Your name now marks the eighth spot, Mari\'s in the ninth. You don\'t think she\'ll be upset or anything like that, she\'ll probably want to congratulate you if nothing else. She was never one to care about the rankings. You take a moment to be amazed with the two of you, how far a farm girl from Gadukino and a schoolgirl from Pavlovsky have come… ');
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === 4) {
             scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
             scene.text('Here is the shelf that has the albums of the top 10 models. Up the ranks again! Number 7 this time! Maybe your career as a model has more potential than you thought.');
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === 5) {
               scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
               scene.text('Here is the shelf that has the albums of the top 10 models. The albums have changed again and you find yourself taking Lily\'s sixth place seat. You are now more famous as a model than a porn star! Wait, is that a good thing?');
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
+              if (String((s as any).locArgs?.[1] ?? '') === 6) {
                 scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                 scene.text('Here is the shelf that has the albums of the top 10 models. When you started modelling, you never imagined you\'d do this well. Not even in your dreams did you think you could become one of the top five models in St. Petersburg.');
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === 7) {
                   scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                   scene.text('Here is the shelf that has the albums of the top 10 models. Reading the album names, you find that yours has been shifted over yet again! This time to the fourth spot from the left. You\'ve done quite well all things considered. With your new ranking, you\'re pretty sure your career as a model is secure.');
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
                     scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                     scene.text('Here is the shelf that has the albums of the top 10 models. As you read from left to right, you see that your name is now third. You finally took Emily\'s spot! She isn\'t very happy about it, but who cares? You\'ve broken the barrier into being famous!');
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 9) {
                       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                       scene.text('Here is the shelf that has the albums of the top 10 models. You look and you see your name is second, right before Anastasia\'s. Are you really this close? Could you take the number one spot all for yourself?');
                     } else {

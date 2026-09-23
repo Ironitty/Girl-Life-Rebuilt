@@ -27,9 +27,10 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['total_earnings'] = ((s as any).ml_busking['total_earnings'] ?? 0) + (((s as any).ml_tipsearned ?? 0));
-  scene.img('images/pc/activities/music/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
-  // TODO-QSP: dynamic text: You start to play the songs you know, pushing your open guitar case forward a li...
-  scene.text('You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.\' + iif(ml_online[\'account\'] = 1 and ml_online[\'active\'] = 1, \' You also set up the sign with the link to your webprofile.\', \') + \' After playing for an hour you have made ' + ((s as any).ml_tipsearned ?? '') + ' <b>P</b> in tips.');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/activities/music/guitarf'+ rand(1, 2)...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/activities/music/guitarf` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
+  // TODO-QSP: dynamic text: 'You start to play the songs you know, pushing your open guitar case forward a l...
+  scene.text('You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.' + ((((s as any).ml_online ?? 0)?.['account'] === 1  &&  ((s as any).ml_online ?? 0)?.['active'] === 1) ? (' You also set up the sign with the link to your webprofile.') : ('')) + ` After playing for an hour you have made ${((s as any).ml_tipsearned ?? '')} <b>P</b> in tips.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
@@ -60,14 +61,15 @@ function enterCalculateTips(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ml_time_loc_mod = (((s as any).ml_location_mod ?? 0) + ((s as any).ml_time_mod ?? 0));
   (s as any).ml_tipsmax = ((((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*35)) * ((s as any).ml_time_loc_mod ?? 0))/50;
-  (s as any).ml_tipsearned = (Math.max(0, 0)*((s as any).ml_buskingtime ?? 0)) / 60;
+  (s as any).ml_tipsearned = (Math.max((Math.floor(Math.random() * (((s as any).ml_tipsmax ?? 0) - ((s as any).ml_time_loc_mod ?? 0) + 1)) + (((s as any).ml_time_loc_mod ?? 0))), 0)*((s as any).ml_buskingtime ?? 0)) / 60;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAnushka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('images/pc/activities/music/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/activities/music/guitarf'+ rand(1, 2)...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/activities/music/guitarf` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   if (((s as any).pcs_instrmusic ?? 0) > 80) {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'love');
     if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {

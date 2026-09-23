@@ -396,7 +396,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b><font color="DeepSkyBlue">Bathroom</font></b></center>');
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_bathroom.jpg');
   scene.text('The room is clean, and even smells like sage.');
-  // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror</...
+  // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror<...
   scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bath tub.');
   if (((s as any).locat ?? 0)?.['Lariska'] === 13) {
     scene.text('Since <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027bathroom_join_1/u0027); return false;">Lariska</a> didn\'t lock the door, you are able to enter unnoticed. Maybe you can join her…');

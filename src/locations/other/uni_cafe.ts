@@ -16,14 +16,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('The university cafe is a popular spot for students preparing for their exams or just unwinding from their busy schedule.');
   scene.text('It offers a rich variation of reasonably priced food and beverages. You can often overhear students complaining about the free, yet somewhat sub-par quality wi-fi.');
   if (((s as any).locat ?? 0)?.['katja'] === 28) {
-    // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+    // TODO-QSP: dynamic text: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and ...
     scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a cute redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_chat/u0027, /u0027uni_cafe/u0027); return false;">Katja</a>')) + ' sitting at a table eating her lunch.');
   }
   if ((((s as any).start_type ?? 0)?.['loc'] === 'sg'  ||  ((s as any).start_type ?? 0)?.['magic'] !== 'tg'  ||  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 1)  &&  ((s as any).locat ?? 0)?.['A2'] === 'uni_cafe_lunch') {
     scene.text('You see a familiar face sitting at one of the tables having lunch, your former classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_cafe/u0027, /u0027artem/u0027); return false;">Artem.</a>');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 14) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027uni_cafe/u0027); return false;">Albina</a>')) + ' sitting at one of the tables, eating her lunch while texting on her phone.');
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) === 12  &&  ((s as any).minut ?? 0) >= 30) {

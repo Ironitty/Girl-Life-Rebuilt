@@ -137,7 +137,7 @@ function enterDetails(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAuditionSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Pay: <<$func(''money'', ''string_profit'', acting[''pay''])>>
   scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', ((s as any).acting ?? 0)?.['pay'] ?? '')}`);
-  // TODO-QSP: dynamic text: Audition time: '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_ti...
+  // TODO-QSP: dynamic text: 'Audition time: '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_t...
   scene.text(`Audition time: 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day'] ?? ''} of ${((s as any).audition ?? 0)?.['month'] ?? ''}.`);
   // TODO-QSP: end
   scene.build();
@@ -162,7 +162,7 @@ function enterBackShowerGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -183,7 +183,7 @@ function enterSpringBreakFlasher(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -204,7 +204,7 @@ function enterCadaver(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -227,7 +227,7 @@ function enterDildoGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -248,7 +248,7 @@ function enterNakedLockerGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -274,7 +274,7 @@ function enterUndressingLockerGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -296,7 +296,7 @@ function enterModestCheerleader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -319,7 +319,7 @@ function enterUnderwearCheerleader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -343,7 +343,7 @@ function enterToplessCheerleader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -364,7 +364,7 @@ function enterHotShowerGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -386,7 +386,7 @@ function enterWerewolfGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Talk to the receptionist', handler: (st: GameState) => {
@@ -415,12 +415,12 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Try out for this role', handler: (st: GameState) => {
     ((st as any).audition = (st as any).audition ?? {})['role'] = 'Diner Waitress';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -444,12 +444,12 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Try out for this role', handler: (st: GameState) => {
     ((st as any).audition = (st as any).audition ?? {})['role'] = 'Vera';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -472,12 +472,12 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Try out for this role', handler: (st: GameState) => {
     ((st as any).audition = (st as any).audition ?? {})['role'] = 'Slutty Club Girl';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -494,18 +494,18 @@ function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
   scene.text('Casting "Unashamed,"for the lead female role of <b>Yulya Gavrikov (Lead):</b> Female, 18-25');
   scene.text('Synopsis: Unashamed is a comedic drama that follows the Gavrikov family as they struggle through their problems of self image, romance, sexual identity, work and life balance, and most of all what it means to stick together as a family and be able to love each other without shame.');
   scene.text('Role Description: Yulya is a sexually free and uninhibited university student who is constantly getting into trouble with her many hookups. Though constantly getting together with people and desperately wanting some kind of genuine attachment, Yulya fears commitment and tries to cover up the fact by keeping her partners at an emotional arms length through sex and physicality.');
-  // TODO-QSP: dynamic text: Audition: Room <<audition[''room'']>> - '+func('time', 'get_time_string', 16, 0)...
+  // TODO-QSP: dynamic text: 'Audition: Room <<audition[''room'']>> - '+func('time', 'get_time_string', 16, 0...
   scene.text(`Audition: Room ${((s as any).audition ?? 0)?.['room'] ?? ''} - 16:00-18:00, ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day'] ?? ''} of ${((s as any).audition ?? 0)?.['month'] ?? ''}.`);
   scene.text('Filming duration: 2 months');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClearcasting(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'casting', 'callboard');
   } },
     { label: 'Try out for this role', handler: (st: GameState) => {
     ((st as any).audition = (st as any).audition ?? {})['role'] = 'Yulya Gavrikov';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTryout(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_mothername ?? 0) === '') {
-    (s as any).pcs_mothername = 0;
+    (s as any).pcs_mothername = window.prompt("What name do you wish your children to call you by? (Leave it blank for 'Mom')") ?? '';
     if (((s as any).pcs_mothername ?? 0) === '') {
       (s as any).pcs_mothername = 'Mom';
     }
@@ -367,7 +367,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
     if (((st as any).pcs_mothername ?? 0) === '') {
-      (st as any).pcs_mothername = 0;
+      (st as any).pcs_mothername = window.prompt("What name do you wish your children to call you by? (Leave it blank for 'Mom')") ?? '';
       if (((st as any).pcs_mothername ?? 0) === '') {
         (st as any).pcs_mothername = 'Mom';
       }

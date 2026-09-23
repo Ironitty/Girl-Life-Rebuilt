@@ -25,9 +25,9 @@ function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).age ?? 0) < 18) {
       scene.text('"It\'s not…" you say hesitantly. "Strictly speaking… Legal…"');
       scene.text('Her eyes narrow. "Why? What kind of modelling are you doing?" she asks suspiciously.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkProud2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkProud2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'I didn\'t want people to know', handler: (st: GameState) => {
@@ -56,61 +56,61 @@ function enterFirstModelTalkProud2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why didn\'t you tell me sooner?!" she squeals gleefully.');
       // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "And since I''m underage, I have to keep it ...
       scene.text('"It\'s an 18+ agency," you explain. "And since I\'m underage, I have to keep it on the down low. I needed a fake passport just to get registered there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling!" you whisper excitedly. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life. <i>I</i> get to wear that!"');
         scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "Why are you hiding it?"');
         // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
         scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a freaking lingerie model!" you whisper excitedly. "High end bras and panties, brand names like Victoria\'s Secret and Mon Cheri!"');
           scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "You\'re a goddamn supermodel! Why are you hiding it?"');
           // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
           scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).model ?? 0)?.['type'] === 'glamour') {
             if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"I do glamour modelling!" you whisper excitedly. "Sexy shoots with tight or thin clothing, a lot of cleavage and a lot of leg. I\'ve even gone topless!"');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"I do glamour modelling!" you whisper excitedly. "Sexy shoots with tight or thin clothing, a lot of cleavage and a lot of leg. Sometimes my ass too, but never my tits or pussy. They do that kind of modelling there too though."');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((st as any).model ?? 0)?.['type'] === 'fitness') {
               if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"I model a lot of sports clothing," you say proudly. "But I do other stuff too. I\'ve even shown off my tits!"');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"I model a lot of sports clothing," you say proudly. "Sports bras and tight yoga pants and stuff like that. Pretty cool, huh? They do all kinds of modelling there. Even nude modelling."');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((st as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"Nude modelling!" you squeal in a hushed but excited tone.');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 if (((st as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"Erotic nude modelling!" you squeal in a hushed but excited tone.');
-                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((st as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"All kinds of modelling," you say excitedly. "I\'ve even done nudes!"');
-                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"All kinds of modelling," you say excitedly. "I\'ve even gone topless!"');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"All kinds of modelling," you say excitedly. "High end fashion. Lacy lingerie. Tight clothing, thin material. You name it."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
                       // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
                       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -135,61 +135,61 @@ function enterFirstModelTalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why all the secrecy then?" she asks curiously.');
       // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling mostly," you say, shrugging nonchalantly. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life."');
         scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "Why are you hiding it?"');
         // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
         scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a lingerie model," you say, shrugging casually. "High end bras and panties. Sexy stuff, usually made with lace. The kind Katja might buy."');
           scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
           // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
           scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).model ?? 0)?.['type'] === 'glamour') {
             if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"Mostly glamour stuff," you say. "But you can see my tits in some of them. Not exactly something I want to spread around school."');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"It\'s pretty risqué stuff," you say while shrugging. "Thin material. Form fitting. A lot of exposure. Not the kind of stuff I want floating around school. They do other stuff there too. Erotic nudes and all that."');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((st as any).model ?? 0)?.['type'] === 'fitness') {
               if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"Mostly sports related stuff," you say. "But you can see my tits in some of them. Not exactly something I want to spread around school."');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"Mostly sports related stuff," you say while shrugging. "But it\'s pretty risqué. Sports bras and tight yoga pants and stuff like that. Not the kind of stuff I want floating around school. The kind I could imagine most of our classmates jacking off to. They do other stuff there too. Erotic nudes and all that."');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((st as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"Mostly nude modelling," you shrug casually. "You can imagine why I want to keep that on the down low."');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 if (((st as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"Erotic nudes mostly," you admit, shrugging casually. "<i>Really</i> sexual. You can practically see right up my pussy in some of them. Not exactly the kind of stuff I want getting spread around school."');
-                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((st as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"It\'s kind of risqué," you say, shrugging casually. "I\'ve done a few nudes."');
-                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"It\'s kind of risqué," you say, shrugging casually. "You can see my tits in some of the stuff I\'ve done. Not exactly the kind of stuff I want getting spread around school"');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"All kinds of stuff," you say, shrugging casually. "High end fashion. Lacy lingerie. Tight clothing, thin material. You name it."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
                       // TODO-QSP: dynamic text: "It''s an 18+ agency," you explain. "I have a fake passport just to work there. ...
                       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -297,7 +297,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She stops and turns to look at you with a frown. You give her a stare and she stares back.');
     scene.text('"Damn it!" she pouts. "Tell me what to search!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkTell(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Let her search', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -305,7 +305,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why can\'t I find you?!" she grumbles in frustration.');
     scene.text('"I don\'t use my <i>actual</i> name when modelling," you say. "Do you think I\'m crazy?"');
     scene.text('"Come ooooonnn!" she moans. "Tell me what to search!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkTell(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -357,7 +357,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_pubes ?? 0) > 10  &&  ((st as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
       scene.text('"Hey!" she says, zooming in on your pussy. "I thought you didn\'t shave?"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Embarrassed pride', handler: (st: GameState) => {
     scene.text('"I know, right?" you grin. A warm blush spreads through your cheeks despite your pride in your work, unable to help but be a little embarrassed as Albina expands the images to full screen and takes advantage of the high definition to zoom <i>very</i> far in.');
@@ -367,7 +367,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Stay casual', handler: (st: GameState) => {
     scene.text('"Not bad, are they?" you smirk, amused by the look of excitement on Albina\'s face as she rapidly clicks through the photos, often expanding them to full screen to take advantage of the high definition and zoom <i>very</i> far in.');
@@ -377,7 +377,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re just saying that', handler: (st: GameState) => {
     scene.text('"You\'re just saying that," you remark skeptically, even as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -387,7 +387,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck no!" she exclaims. "Why would I lie? Just looking at these makes me want to eat you out right now!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Professional pride', handler: (st: GameState) => {
     scene.text('"It turned out well, didn\'t it?" you smile as she furiously clicks through them, expanding them to full screen and going out of her way to zoom in on your tits and pussy. "It was a big step for me."');
@@ -397,7 +397,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Self centered pride', handler: (st: GameState) => {
     scene.text('"Fuck yeah I do," you grin, even ogling yourself a little as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -407,7 +407,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Modest, aren\'t we?" she snickers. "I can\'t believe you were hiding this from me! These photos are incredible!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -425,7 +425,7 @@ function enterFirstModelTalkNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s it look like I\'m doing?" she replies with a salty smirk. "Saving these so I can schlick off to them later!"');
     scene.text('"You are not!" you gape, horrified.');
     scene.text('"Ab-so-fucking-lutely," she grins in response. "But seriously. What made you go nude?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -560,12 +560,12 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
     scene.text('"Great fucking policy," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wanted to', handler: (st: GameState) => {
     scene.text('"I wanted to," you shrug. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set, so it\'s not like I really had a choice. I guess I just thought that if I was gonna do it, then shaved was sexier."');
     scene.text('"Great choice," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNude2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -581,67 +581,67 @@ function enterFirstModelTalkShy1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why all the secrecy then?" she asks, not letting up.');
       // TODO-QSP: dynamic text: "It''s an… 18+ agency…" you say. "I have a fake passport just to work there. The...
       scene.text('"It\'s an… 18+ agency…" you say. "I have a fake passport just to work there. They do… <i>other</i> stuff there too…"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling mostly," you say, shrugging uncomfortably. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life."');
         scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "Why are you so embarrassed about it?"');
         // TODO-QSP: dynamic text: "It''s an 18+ agency," you say. "I have to use a fake passport just to work ther...
         scene.text('"It\'s an 18+ agency," you say. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a… lingerie model?" you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
           scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
           // TODO-QSP: dynamic text: "It''s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport...
           scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).model ?? 0)?.['type'] === 'glamour') {
             if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
               scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
               // TODO-QSP: dynamic text: "It''s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport...
               scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((st as any).model ?? 0)?.['type'] === 'fitness') {
               if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "I do a lot of fitness related shoots. Sports bras and tight yoga pants and stuff like that."');
                 scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
                 // TODO-QSP: dynamic text: "It''s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport...
                 scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((st as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "Most of the modelling I do is… nude…?"');
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 if (((st as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"It\'s kind of… <i>erotic</i>," you admit uncomfortably. "You can practically see right up my pussy in some of them…"');
-                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((st as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "I\'m… I\'m not wearing any clothes in some of them…"');
-                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((st as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy4(st, scene); (st as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
                       // TODO-QSP: dynamic text: "It''s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport...
                       scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+                      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -676,7 +676,7 @@ function enterFirstModelTalkShy2(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Y-yes… I\'ve done a few…" you admit.');
     scene.text('Her eyes gleam and her lips crack into a wide grin. "Seriously? I can\'t believe it! What made you go nude?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -894,7 +894,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_pubes ?? 0) > 10  &&  ((st as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
       scene.text('"Hey!" she says, zooming in on your pussy lips. "I thought you didn\'t shave?"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Embarrassed pride', handler: (st: GameState) => {
     scene.text('"You really think so?" you ask. You blush furiously as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features," but deep inside your chest you also feel a certain warmth. Something that feels good to be recognized.');
@@ -904,7 +904,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck yes!" she exclaims. "These photos are incredible! I can\'t believe you were hiding them from me!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re just saying that', handler: (st: GameState) => {
     scene.text('"You\'re just saying that," you remark skeptically, even as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -914,7 +914,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck no!" she exclaims. "Why would I lie? These photos are incredible! I can\'t believe you were hiding them from me!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -932,7 +932,7 @@ function enterFirstModelTalkNudeShy2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s it look like I\'m doing?" she replies with a salty smirk. "Saving these so I can schlick off to them later!"');
     scene.text('"You are not!" You gape, horrified.');
     scene.text('"Ab-so-fucking-lutely," she grins in response. "But seriously. What made you go nude?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkShy3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -966,12 +966,12 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
     scene.text('"Great fucking policy," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wanted to', handler: (st: GameState) => {
     scene.text('"I wanted to," you mumble shyly. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set, so it\'s not like I really had a choice. I guess I just thought that if I was gonna do it, then shaved was sexier."');
     scene.text('"Great choice," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1003,12 +1003,12 @@ function enterRecurrentPornTalk1(s: GameState, scene: SceneBuilder): void {
     { label: 'Answer uncomfortably', handler: (st: GameState) => {
     scene.text('"It\'s, uhh, fine…" you reply awkwardly, unable to meet Albina\'s gaze. Not that she\'s doing a good job of maintaining eye contact herself.');
     scene.text('"What have you, uhm, filmed lately…?" she asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalkUncomfortable(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalkUncomfortable(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer casually', handler: (st: GameState) => {
     scene.text('"It\'s going fine," you shrug casually. Albina nods, but it\'s obvious that she can\'t even look at you while talking about this subject.');
     scene.text('"What have you, uhm, filmed lately…?" she asks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalkCasual(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalkCasual(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '"We don\'t have to talk about this"', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['no_porn_talk'] = 1;
@@ -1105,13 +1105,13 @@ function enterRecurrentPornTalk2Menu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t know," you mumble in shame. "Every time I finish a shoot I want to throw up. Every time a guy cums on my face, I feel filthy and no amount of washing up makes me feel clean. When the producers tell me my videos are going live, I\'m terrified that someone I know will see it. It\'s tearing me apart from the inside out…"');
     scene.text('"Then quit," she bluntly replies.');
     scene.text('Turning back to face Albina, you see she\'s practically begging you with just those two words.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2NeedMoney(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2NeedMoney(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Conflicted', handler: (st: GameState) => {
     scene.text('"It\'s not a perfect job," you admit uncomfortably. "But it\'s not that bad either. All things considered, it\'s worth what it pays. I <i>need</i> the money right now."');
     scene.text('"But you could do something else for money too," she replies, practically pleading with you. "It doesn\'t have to be something that exposes your most intimate things all over the internet forever."');
     scene.text('"And what would I do?" you ask. "Be a secretary? Or a nurse? Or a reporter? That\'s all future. I need a uni degree for that. Or should I break my back working shit jobs like cleaning toilets and sweeping hallways, or changing cum-stained sheets in a hotel bedroom? I\'m not doing that. Those are worse than getting paid to fuck on camera."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2End(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2End(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1127,7 +1127,7 @@ function enterRecurrentPornTalk2NeedMoney(s: GameState, scene: SceneBuilder): vo
     scene.text('"Not without a diploma," you say with a shake of your head. "Or a degree. Or a certification. Or working for 40 hours a week for shit pay. I don\'t have that time or experience. For porn, all I have to do is look pretty as I get fucked on camera. This is the best job I can get with what I have."');
     scene.text('Albina\'s eyes mist up with tears and she looks away, rubbing her eyes with the palm of her hand.');
     scene.text('You let the conversation die off and change subjects.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2End(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRecurrentPornTalk2End(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

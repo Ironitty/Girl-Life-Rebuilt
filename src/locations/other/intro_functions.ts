@@ -312,12 +312,12 @@ function enterSetUniNursingCourse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetDefault(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'name') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'name') {
     (s as any).pcs_firstname = 'Svetlana';
     (s as any).pcs_lastname = 'Lebedev';
     (s as any).pcs_nickname = 'Sveta';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'birthday') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'birthday') {
       (s as any).birthday = 1;
       (s as any).birthmonth = 4;
       (s as any).birthyear = 1999;

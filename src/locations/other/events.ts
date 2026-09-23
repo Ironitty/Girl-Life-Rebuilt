@@ -45,7 +45,7 @@ function enterSnkayf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).snkz = (Math.floor(Math.random() * 6) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel4.jpg');
-  // TODO-QSP: dynamic text: As you wake up, it feels like you''ve been hit by a hammer. You realise '+iif(sn...
+  // TODO-QSP: dynamic text: 'As you wake up, it feels like you''ve been hit by a hammer. You realise '+iif(s...
   scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise ' + ((((s as any).snkz ?? 0) === 6) ? ('that you are naked.') : ('that your underwear is missing.')) + ' Unsure of where you are and what has happened, you try to get your bearings.');
   // TODO-QSP: end
   scene.actions([

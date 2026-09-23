@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'world') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'world') {
     (s as any).map_title = 'World Map';
     (s as any).map_img = 'world_klein_russia_areas_labeled.png';
     (s as any).map_nav = '<center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
@@ -103,27 +103,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).map_img = 'pav_market_labeled.png';
                                           (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027pav_park/u0027); return false;">Park</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027pav_commercial/u0027); return false;">Commercial</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027train/u0027); return false;">Train</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
                                         } else {
-                                          if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'gad_'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'gadukino') {
+                                          if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'gad_'  ||  String((s as any).locArgs?.[0] ?? '') === 'gadukino') {
                                             (s as any).map_title = 'Gadukino';
                                             (s as any).map_img = 'gad_forest_labeled.png';
                                             (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027road/u0027); return false;">Highway</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027pushkin_parks/u0027); return false;">Pushkin Park</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 'metro') {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 'metro') {
                                               (s as any).map_title = 'Metro';
                                               (s as any).map_img = 'metro_labeled.png';
                                               (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027city_center/u0027); return false;">City Center</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_grounds/u0027, /u0027/u0027); return false;">University</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 'train') {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 'train') {
                                                 (s as any).map_title = 'Train Station';
                                                 (s as any).map_img = 'train_labeled.png';
                                                 (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027pushkin/u0027); return false;">Pushkin</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027pav_market/u0027); return false;">Market (Pav)</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027city_industrial/u0027); return false;">City Industrial</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 'bus') {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 'bus') {
                                                   (s as any).map_title = 'Bus Terminal';
                                                   (s as any).map_img = 'bus_labeled.png';
                                                   (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027city_suburbs/u0027); return false;">City Suburbs</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027road/u0027); return false;">Highway</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 'road') {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 'road') {
                                                     (s as any).map_title = 'Highway';
                                                     (s as any).map_img = 'road.png';
                                                     (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027bus/u0027); return false;">Bus</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027gadukino/u0027); return false;">Gadukino</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027map_view/u0027, /u0027world/u0027, /u0027/u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">&lt;- Back</a></center>';

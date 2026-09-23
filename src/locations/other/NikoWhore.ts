@@ -56,7 +56,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to remove cuffs', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'flash', 2, 'sub', 'humiliation');
     qspCall(st, 'stat', '');
-    scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "NikoWhore" })}`);
+    scene.img(`${qspFunc(s, '$$face_image')}`);
     scene.text('You squirm for a few seconds, attempting to free yourself from the cuffs until you hear the locker room door open and quickly look up in excitement.');
     scene.actions([
       { label: '???', handler: (st: GameState) => {

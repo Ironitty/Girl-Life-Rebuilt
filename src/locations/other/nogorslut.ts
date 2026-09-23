@@ -13,15 +13,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A<<numnpc>>', pcs_apprnc/8
     }
-    if (((s as any).npc_rel ?? 0)['A' + ((s as any).numnpc ?? 0)] < 20) {
+    if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] < 20) {
       // TODO-QSP: dynamic text: You talk about some random things that happened to you, and <<$npc_firstname[''A...
       scene.text(`You talk about some random things that happened to you, and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> listens with a moderate amount of interest.`);
     } else {
-      if (((s as any).npc_rel ?? 0)['A' + ((s as any).numnpc ?? 0)] < 80) {
+      if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] < 80) {
         // TODO-QSP: dynamic text: You chat about random topics, and <<$npc_firstname[''A<<numnpc>>'']>> happily li...
         scene.text(`You chat about random topics, and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> happily listens to you and shares some thoughts on them.`);
       } else {
-        if (((s as any).npc_rel ?? 0)['A' + ((s as any).numnpc ?? 0)] >= 80) {
+        if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] >= 80) {
           // TODO-QSP: dynamic text: You chat about random topics and <<$npc_firstname[''A<<numnpc>>'']>> happily lis...
           scene.text(`You chat about random topics and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> happily listens to your stories, sharing several new stories and anecdotes as well.`);
           if (((s as any).numnpc ?? 0) === 1) {
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                   ]);
                 } else {
-                  if (((s as any).npc_rel ?? 0)['A' + ((s as any).numnpc ?? 0)] >= 80) {
+                  if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] >= 80) {
                     // TODO-QSP: dynamic text: You chat about random topics and <<$npc_firstname[''A<<numnpc>>'']>> happily lis...
                     scene.text(`You chat about random topics and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> happily listens to your stories, sharing several new stories and anecdotes as well.`);
                     if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).loc ?? 0) !== 'pav_disco') {

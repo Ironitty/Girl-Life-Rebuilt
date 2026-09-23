@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -848,9 +850,7 @@ function enterClothBj(s: GameState, scene: SceneBuilder): void {
       scene.text('After a couple minutes of blowing him he pulls you back and says, "Alright, time for the main course," and begins to undress.');
       scene.actions([
         { label: 'Undress', goto: ['motherkafeboss', 'cloth_pre_fuck'] },
-        { label: 'Undress', handler: (st: GameState) => {
-    // TODO-QSP: gt 'motherkafeboss', 'table_fuck' !}
-  } },
+        { label: 'Undress', goto: ['motherkafeboss', 'qspUntranslated(s, "\'table_fuck\' !}", { location: "motherkafeboss" })'] },
       ]);
     }
   }

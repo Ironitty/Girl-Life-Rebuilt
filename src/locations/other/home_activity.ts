@@ -189,11 +189,11 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((st as any).thinkpreg ?? 0) === 1) {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterThinkPregReact(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterThinkPregReact(st, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
             if ((!((st as any).knowpreg ?? 0))) {
               if (((st as any).daystart ?? 0) - ((st as any).daylastperiod ?? 0) > 35  &&  (Math.floor(Math.random() * 100) + 1) < ((st as any).pcs_intel ?? 0)) {
-                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregScare(s, scene); (st as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregScare(st, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('<i>Ugh, I feel awful! I wonder if I should see a doctor?</i> you think to yourself as you lay there on the floor.');
               }

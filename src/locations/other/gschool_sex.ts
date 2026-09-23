@@ -1705,7 +1705,8 @@ function enterPetkaMagicDickAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Pull out', handler: (st: GameState) => {
-    scene.img('images/pc/magic/penis_envy/guy_butt_cum' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/magic/penis_envy/guy_butt_cum' + rand...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/magic/penis_envy/guy_butt_cum` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
     (st as any).orgasm_or = 'yes';
     (st as any).orgasm_txt = 'You pull out and feel the sudden release as cum starts shooting out of the dildo. You moan loudly as you shoot several loads of your cum all over his ass, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for such an amazing afterglow.';

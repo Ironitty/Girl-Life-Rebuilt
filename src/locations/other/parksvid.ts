@@ -159,8 +159,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Park</b></center>');
   scene.img('images/characters/city/boyfriend/sex/event/park/0.jpg');
-  // TODO-QSP: dynamic text: You go to the park ' + iif($home['town'] = 'pavlovsk', 'in Pavlovsk', 'in St. Pe...
-  scene.text('You go to the park \' + iif($home[\'town\'] = \'pavlovsk\', \'in Pavlovsk\', \'in St. Petersburg\') + \' with ' + ((s as any).telsob ?? '') + '.');
+  // TODO-QSP: dynamic text: 'You go to the park ' + iif($home['town'] = 'pavlovsk', 'in Pavlovsk', 'in St. P...
+  scene.text('You go to the park ' + ((((s as any).home ?? 0)?.['town'] === 'pavlovsk') ? ('in Pavlovsk') : ('in St. Petersburg')) + ` with ${((s as any).telsob ?? '')}.`);
   scene.actions([
     { label: 'Go for a walk', handler: (st: GameState) => {
     if (((st as any).telsob ?? 0) === 'Alla') {

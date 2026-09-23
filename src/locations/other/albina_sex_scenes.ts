@@ -537,7 +537,7 @@ function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): voi
     } else {
       scene.text('"So you\'re officially the one who popped my cherry," you murmur as you nuzzle into her neck. Your eyes flick to the strapon that still has the blood of your virginity running down its shaft. "When boys ask me if I\'m a virgin, should I tell them you\'re the one who took it?"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re really good at fucking', handler: (st: GameState) => {
     if (((st as any).AlbinaQW ?? 0)?.['virgin_fuck_albina'] === 1) {
@@ -552,7 +552,7 @@ function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): voi
     } else {
       scene.text('She bites her lip and remains silent, unable to come up with a suitable counter-argument.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Do real cocks feel different?', handler: (st: GameState) => {
     if (((st as any).AlbinaQW ?? 0)?.['virgin_fuck_albina'] === 1) {
@@ -570,7 +570,7 @@ function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): voi
     scene.text('Her smile suddenly falters. "I\'m sorry that I took your fi-"');
     scene.text('"Stop," you cut her off. "I\'m glad you took my virginity. And now you\'ll always have it."');
     scene.text('You wink at her and she can\'t help but give a shy laugh.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -580,7 +580,7 @@ function enterVirginAlbinaPillowTalkMenu(s: GameState, scene: SceneBuilder): voi
     scene.text('"Albina... You can tell me."');
     scene.text('She takes a deep breath and lets it out slowly. When she finally speaks, she barely manages to get the words out in a choked voice.');
     scene.text('"Doing this with you brings back... memories. My first time was... let\'s just say it wasn\'t good. I won\'t say more than that, but I want you to know that it makes me really happy I could make your\'s special."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVirginAlbinaPillowTalkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Finish', goto: ['albina_sex_scenes', 'leave'] },
   ]);

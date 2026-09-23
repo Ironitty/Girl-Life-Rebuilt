@@ -46,16 +46,16 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $streetev_title
     scene.img('images/locations/shared/street/town/nakedmarket.jpg');
     scene.text('You walk over and look over several of the items she has for sale.');
-    (st as any).tovpay1 = (Math.floor(Math.random() * 6) + 3) * 100;
-    // TODO-QSP: dynamic text: She has some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.
+    (st as any).tovpay1 = (Math.floor(Math.random() * (8 - 3 + 1)) + (3));
+    // TODO-QSP: dynamic text: 'She has some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.'
     scene.text('She has some cosmetics for \' + $func(\'money\', \'string_price\', tovpay1) + \'.');
-    (st as any).tovpay2 = (Math.floor(Math.random() * 7) + 3) * 10;
-    // TODO-QSP: dynamic text: She has lip balm for ' + $func('money', 'string_price', tovpay2) + '.
+    (st as any).tovpay2 = (Math.floor(Math.random() * (9 - 3 + 1)) + (3));
+    // TODO-QSP: dynamic text: 'She has lip balm for ' + $func('money', 'string_price', tovpay2) + '.'
     scene.text('She has lip balm for \' + $func(\'money\', \'string_price\', tovpay2) + \'.');
-    (st as any).tovpay3 = (Math.floor(Math.random() * 4) + 2) * 100;
-    // TODO-QSP: dynamic text: She has some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
+    (st as any).tovpay3 = (Math.floor(Math.random() * (5 - 2 + 1)) + (2));
+    // TODO-QSP: dynamic text: 'She has some vitamins for ' + $func('money', 'string_price', tovpay3) + '.'
     scene.text('She has some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
-    // TODO-QSP: dynamic text: She has a romance novel (' + $func('money', 'string_price', 300) + ')
+    // TODO-QSP: dynamic text: 'She has a romance novel (' + $func('money', 'string_price', 300) + ')'
     scene.text('She has a romance novel (300₽)');
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
       qspCall(st, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 300);
@@ -116,16 +116,16 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $streetev_title
     scene.img('images/locations/shared/street/town/nakedmarket.jpg');
     scene.text('You walk over and look over several of the items they have for sale.');
-    (st as any).tovpay1 = (Math.floor(Math.random() * 6) + 3) * 100;
-    // TODO-QSP: dynamic text: They have some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.
+    (st as any).tovpay1 = (Math.floor(Math.random() * (8 - 3 + 1)) + (3));
+    // TODO-QSP: dynamic text: 'They have some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.'
     scene.text('They have some cosmetics for \' + $func(\'money\', \'string_price\', tovpay1) + \'.');
-    (st as any).tovpay2 = (Math.floor(Math.random() * 7) + 3) * 10;
-    // TODO-QSP: dynamic text: They have lip balm for ' + $func('money', 'string_price', tovpay2) + '.
+    (st as any).tovpay2 = (Math.floor(Math.random() * (9 - 3 + 1)) + (3));
+    // TODO-QSP: dynamic text: 'They have lip balm for ' + $func('money', 'string_price', tovpay2) + '.'
     scene.text('They have lip balm for \' + $func(\'money\', \'string_price\', tovpay2) + \'.');
-    (st as any).tovpay3 = (Math.floor(Math.random() * 4) + 2) * 100;
-    // TODO-QSP: dynamic text: They have some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
+    (st as any).tovpay3 = (Math.floor(Math.random() * (5 - 2 + 1)) + (2));
+    // TODO-QSP: dynamic text: 'They have some vitamins for ' + $func('money', 'string_price', tovpay3) + '.'
     scene.text('They have some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
-    // TODO-QSP: dynamic text: They have a romance novel (' + $func('money', 'string_price', 300) + ')
+    // TODO-QSP: dynamic text: 'They have a romance novel (' + $func('money', 'string_price', 300) + ')'
     scene.text('They have a romance novel (300₽)');
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
       qspCall(st, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 300);

@@ -53,10 +53,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.img('images/locations/pavlovsk/pavres.jpg');
     } else {
-      scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'image') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'image') {
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavreswinter.jpg');
@@ -67,7 +68,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   }
@@ -311,10 +313,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.img('images/locations/pavlovsk/pavres.jpg');
     } else {
-      scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'image') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'image') {
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavreswinter.jpg');
@@ -325,7 +328,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   }

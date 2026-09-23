@@ -156,7 +156,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     } else {
       if ((!((st as any).PSwim ?? 0))) {
-        scene.img('images/locations/pavlovsk/lake/lake.walk0,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk0,'+ran...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk0,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
       } else {
         if (((st as any).pcs_hips ?? 0) >= 110) {
           scene.img('images/locations/pavlovsk/lake/lake.walk.bikini.fat0,1.jpg');
@@ -164,7 +165,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((st as any).pcs_bmi ?? 0) > 24) {
             scene.img('images/locations/pavlovsk/lake/lake.walk.bikini.fat0,0.jpg');
           } else {
-            scene.img('images/locations/pavlovsk/lake/lake.walk.bikini0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/lake.walk.bikini...
+            scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/lake.walk.bikini0,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
           }
         }
         if (((st as any).pcs_inhib ?? 0) < 50) {
@@ -320,7 +322,7 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('You\'re seriously panicking now. "I can\'t find my clothes! I left them right here and now they\'re gone! I don\'t know what to do!" you blurt out and he tries to calm you down.');
         scene.text('"Don\'t worry girl, you\'re going to be fine. Come on, I happen to have some sportswear in my car."');
-        // TODO-QSP: dynamic text: You profusely thank him as he guides you to his car and are relieved to see that...
+        // TODO-QSP: dynamic text: 'You profusely thank him as he guides you to his car and are relieved to see tha...
         scene.text('You profusely thank him as he guides you to his car and are relieved to see that he wasn\'t lying. He pulls out a set of brand new sportswear that looks look like they would fit you. He doesn\'t hand them over though. "Of course, I can\'t just give these away for free… They\'re brand new! They cost me 3000₽, so if you can give me that they\'re all yours."');
         if (qspFunc(s, 'money', 'can_afford', 3000, 'cash')) {
           scene.actions([
@@ -376,7 +378,7 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
             { label: 'Suggest alternative payment', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
-    // TODO-QSP: dynamic text: This is not how you planned for your day to go! Too afraid to look him in the ey...
+    // TODO-QSP: dynamic text: 'This is not how you planned for your day to go! Too afraid to look him in the e...
     scene.text('This is not how you planned for your day to go! Too afraid to look him in the eye, you feebly make a suggestion. "Is there… is there some other way I can pay you? 3000₽ is a lot of money…"');
     scene.text('He\'s been gawking at your naked body the whole time you\'ve been talking, and your suggestion seems to be exactly what he wanted to hear as he starts grinning. "I can think of one way…"');
     scene.text('The growing bulge in his pants does an excellent job of telling exactly what he\'s thinking.');
@@ -390,7 +392,7 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'clothing', 'add_item', 'danilovich_outfits', 1);
       qspCall(st, 'clothing', 'wear', 'danilovich_outfits', 1);
       scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
-      // TODO-QSP: dynamic text: You don''t want to have sex with him, but you also don''t want to go home naked....
+      // TODO-QSP: dynamic text: 'You don''t want to have sex with him, but you also don''t want to go home naked...
       scene.text('You don\'t want to have sex with him, but you also don\'t want to go home naked. Not seeing any other option, you decide to pay him the 3000₽. You quickly put on the clothes as he hands them over. You feel relieved that you won\'t have to go home naked and hope that your clothes turn up later.');
       scene.actions([
         { label: 'Continue', goto: ['pav_lake', ''] },
@@ -624,7 +626,8 @@ function enterSkating(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'agil', 1);
   qspCall(s, 'exp_gain', 'react', 1);
   qspCall(s, 'exp_gain', 'icesktng', 1);
-  scene.img('images/locations/pavlovsk/lake/katok_do0,' + (Math.floor(Math.random() * 8) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/lake/katok_do0,'+rand...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/lake/katok_do0,` + (Math.floor(Math.random() * 8) + 0) + '.jpg"></center>');
   if (((s as any).pcs_icesktng ?? 0) <= 10) {
     qspCall(s, 'mood', 'lower', 'small');
     scene.text('You do your best to ride your skates, but you\'re not very good at it. You fall flat on your ass several times.');

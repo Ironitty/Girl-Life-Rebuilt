@@ -120,7 +120,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
         ((st as any).obekt = (st as any).obekt ?? {})['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4))) + '';
-        if (((st as any).obekt ?? 0)?.['DMN'] === (String(((st as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + (String(((st as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
+        if (((st as any).obekt ?? 0)?.['DMN'] === ((String(((st as any).obekt ?? 0)?.['DMN']).slice((2)-1))) + ((String(((st as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1))))) {
           // TODO-QSP: jump 'markanotherrand'
         }
         if (((st as any).obekt ?? 0)?.['DMN'] === '8809') {
@@ -173,7 +173,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).obekt ?? 0)?.['i'] < 5) {
           // TODO-QSP: jump 'markdnm'
         }
-        ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM'] = 0;
+        // TODO-QSP: obekt['numberOSDM'] = input("<<$obekt['DMN']>> >= ?")
         if (((st as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] !== ((st as any).obekt ?? 0)?.['numdmr']) {
         } else {
           ((st as any).obekt = (st as any).obekt ?? {})['openstateDM1'] = 1;
@@ -236,7 +236,7 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
     scene.text('In another barrel you see a device where you can enter numbers.');
     scene.actions([
       { label: 'Enter the numbers', handler: (st: GameState) => {
-    ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM2'] = 0;
+    ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM2'] = window.prompt("12, 1, 1, 1, 2, 1, 3, ?, ?, ?, ?") ?? '';
     if (((st as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
       ((st as any).obekt = (st as any).obekt ?? {})['openstateDM2'] = 2;
     }

@@ -75,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Approach the owner of the ad', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('Hi, my name is Arthur. I own many stalls here and I need a saleswoman. Want the job?');
-    // TODO-QSP: dynamic text: Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesday...
+    // TODO-QSP: dynamic text: 'Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesda...
     scene.text('Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesdays, Thursdays and Saturdays from 8:00 to 14:00.');
     scene.text('Government insist I have your papers, so it would be your main job.');
     scene.actions([
@@ -159,7 +159,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/market/tailor.jpg');
-  // TODO-QSP: dynamic text: A sign reads, "Jacob Solomonovich Schneersohn, tailor, '+func('time', 'get_time_...
+  // TODO-QSP: dynamic text: 'A sign reads, "Jacob Solomonovich Schneersohn, tailor, '+func('time', 'get_time...
   scene.text('A sign reads, "Jacob Solomonovich Schneersohn, tailor, 8:00-16:00 Monday - Friday"');
   scene.text('An elderly Jewish man is sitting at a table. He pulls his glasses down a little and looks over the top of them as he points at you.');
   if (((s as any).portnoyQW ?? 0) > 0) {
@@ -182,7 +182,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
     scene.text('He jumps up and nimbly removes the tape from his neck and begins to measure your chest, waist and hips.');
     // TODO-QSP: dynamic text: "I can adjust any clothing that doesn''t fit you for <<$func(''money'', ''string...
     scene.text(`"I can adjust any clothing that doesn't fit you for ${qspFunc(s, 'money', 'string_price', 500)} per item."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTailorActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTailorActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

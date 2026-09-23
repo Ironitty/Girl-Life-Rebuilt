@@ -402,7 +402,8 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
     (st as any).guavacoco_day = ((st as any).daystart ?? 0);
     (st as any).guavacoco_count = ((st as any).guavacoco_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/guavacoco' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/guavacoco` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('You take a bottle of guavacoco from the fridge and drink it, quenching your thirst. You wonder if he ever drinks mors or kompot.');
     scene.actions([
       { label: 'Continue', goto: ['rolanapt', 'holodil'] },
@@ -421,7 +422,8 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
     (st as any).kvass_day = ((st as any).daystart ?? 0);
     (st as any).kvass_count = ((st as any).kvass_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kvass' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kvass` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     if ((!((st as any).rolancooklesson ?? 0))) {
       scene.text('You pour some kvass beer in a glass and drink it. You have to reconsider Rolan\'s cooking skills… Maybe you can teach him a thing or two about cooking soup.');
     } else {
@@ -447,7 +449,8 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
       (st as any).kvass_day = ((st as any).daystart ?? 0);
       (st as any).kvass_count = ((st as any).kvass_count ?? 0) - (1);
       qspCall(st, 'stat', '');
-      scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kvass' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kvass` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
       scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is really good!');
     } else {
       scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kvass3.jpg');
@@ -684,7 +687,8 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
     if (((st as any).rollrolan ?? 0) === 1) {
       qspCall(st, 'npc_relationship', 'modify', 'A133', 1);
       qspCall(st, 'stat', '');
-      scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/bread' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/bread` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
       scene.text('"I buy my bread from Pushkin. It is really the best for my kvass beer. What I like to do is…" He suddenly trails off, realizing he doesn\'t want to reveal his secret beer recipe to you.');
       scene.actions([
         { label: 'Continue', goto: ['rolanapt', 'kuh_buh'] },
@@ -693,7 +697,8 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
       if (((st as any).rollrolan ?? 0) === 2) {
         qspCall(st, 'npc_relationship', 'modify', 'A133', 1);
         qspCall(st, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/guavacoco' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/guavacoco` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
         // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, could you bring me a guavacoco? My throath is dry…"
         scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, could you bring me a guavacoco? My throath is dry…"`);
         scene.actions([
@@ -703,7 +708,8 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
         if (((st as any).rollrolan ?? 0) === 3) {
           qspCall(st, 'npc_relationship', 'modify', 'A133', 1);
           qspCall(st, 'stat', '');
-          scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/kvass' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+          scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/kvass` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
           // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, please take some kvass beer, I''m more than happy to sh...
           scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, please take some kvass beer, I'm more than happy to share some with you." You take some kvass beer and go to sit near him. "Lately our courtyard is more crowded than ever…" `);
           scene.actions([
@@ -712,7 +718,8 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(st, 'npc_relationship', 'modify', 'A133', 1);
           qspCall(st, 'stat', '');
-          scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/oven' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+          scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/oven` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
           // TODO-QSP: dynamic text: "Could you check the oven please? I haven''t finished eating." You go to check R...
           scene.text(`"Could you check the oven please? I haven't finished eating." You go to check Rolan's oven and he starts to speak, "Times are strange, Miss ${((st as any).pcs_lastname ?? '')}, times are really strange…"`);
           scene.actions([
@@ -789,7 +796,8 @@ function enterKuhbaz(s: GameState, scene: SceneBuilder): void {
 function enterDrawer(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/drawer/private' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/ap...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/private` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   if (((s as any).rolanpantyfound ?? 0) !== 1  &&  ((s as any).rolanpantyQW ?? 0) >= 5) {
     scene.text('You wonder if your missing panties are in here.');
     scene.actions([
@@ -2167,35 +2175,35 @@ function enterRolanroute(s: GameState, scene: SceneBuilder): void {
       ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[13] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[13] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[13] = (Math.floor(Math.random() * (10 - 9 + 1)) + (9));
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
       ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[14] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[14] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[14] = (Math.floor(Math.random() * (10 - 9 + 1)) + (9));
     }
     ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[15] = (Math.floor(Math.random() * 4) + 4);
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
       ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[16] = (Math.floor(Math.random() * 7) + 2);
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[16] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[16] = (Math.floor(Math.random() * (10 - 9 + 1)) + (9));
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
       ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[17] = (Math.floor(Math.random() * 7) + 2);
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[17] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[17] = (Math.floor(Math.random() * (10 - 9 + 1)) + (9));
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[18] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[18] = (Math.floor(Math.random() * (10 - 9 + 1)) + (9));
     }
     if (((s as any).week ?? 0) !== 6) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[19] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[19] = (Math.floor(Math.random() * (8 - 2 + 1)) + (2));
     }
     if (((s as any).week ?? 0) !== 6) {
-      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[20] = 0;
+      ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[20] = (Math.floor(Math.random() * (8 - 2 + 1)) + (2));
     }
     ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[21] = (Math.floor(Math.random() * 4) + 4);
     ((s as any).RolanLoc = (s as any).RolanLoc ?? {})[22] = 3;

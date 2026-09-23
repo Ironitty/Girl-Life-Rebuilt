@@ -151,10 +151,10 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :grid_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).temp_grid_grouptipe ?? 0)  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     // TODO-QSP: $grid_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
     (s as any).grid_count = ((s as any).grid_count ?? 0) + (1);
-    if (((s as any).grid_count ?? 0) === 6  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === ((s as any).temp_grid_grouptipe ?? 0)) {
+    if (((s as any).grid_count ?? 0) === 6  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)) {
       // TODO-QSP: $grid_text += '</tr><tr>'
       (s as any).grid_count = 0;
     }

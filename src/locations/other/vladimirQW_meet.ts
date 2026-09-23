@@ -170,13 +170,13 @@ function enterQwslavady(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Vladimir</b></center>');
     scene.img('images/characters/city/vladimir/001.jpg');
     scene.text('You move towards Vladimir and give his cheek a brief, chaste, kiss.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwmeetkatdy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwmeetkatdy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Kiss on the lips', handler: (st: GameState) => {
     scene.text('<center><b>Vladimir</b></center>');
     scene.img('images/characters/city/vladimir/001.jpg');
     scene.text('You kiss Vladimir on the mouth, his strong, firm, lips pressing hard against your pliant mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwmeetkatdy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwmeetkatdy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

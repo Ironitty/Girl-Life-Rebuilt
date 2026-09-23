@@ -229,7 +229,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterVideoGameSnob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'mobile_game') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'mobile_game') {
     // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>''s grin turns to a sneer. "I thought you played <i>real</i> g...
     scene.text(`"Oh." ${((s as any).npcdesc ?? '')}'s grin turns to a sneer. "I thought you played <i>real</i> games, not that mobile phone junk."`);
   } else {

@@ -10,7 +10,7 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :teach_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 6  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 6  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     // TODO-QSP: $temp_teach_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href=...
     (s as any).temp_teach_count = ((s as any).temp_teach_count ?? 0) + (1);
     if (((s as any).temp_teach_count ?? 0) === 6) {
@@ -34,7 +34,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :nerd_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 3  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 3  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     (s as any).lcase_nerd = (String(((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]).toLowerCase());
     // TODO-QSP: $nerd_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
     (s as any).nerd_count = ((s as any).nerd_count ?? 0) + (1);
@@ -59,7 +59,7 @@ function enterJocks(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :jock_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     (s as any).lcase_jock = (String(((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]).toLowerCase());
     // TODO-QSP: $jock_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:...
     (s as any).jock_count = ((s as any).jock_count ?? 0) + (1);
@@ -84,7 +84,7 @@ function enterPopular(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :pop_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     (s as any).lcase_pop = (String(((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]).toLowerCase());
     // TODO-QSP: $pop_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:g...
     (s as any).pop_count = ((s as any).pop_count ?? 0) + (1);
@@ -109,7 +109,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :gop_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     (s as any).lcase_gop = (String(((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]).toLowerCase());
     // TODO-QSP: $gop_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:g...
     (s as any).gop_count = ((s as any).gop_count ?? 0) + (1);
@@ -134,7 +134,7 @@ function enterOutcasts(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
   // TODO-QSP: :oc_loop
-  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 5  &&  ((s as any).schoolenable ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 5  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
     (s as any).lcase_oc = (String(((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]).toLowerCase());
     // TODO-QSP: $oc_text += '<td><table bgcolor=<<$theme[''table_bg_alt'']>>><tr><td align="center"><a href="exec:gt...
     (s as any).oc_count = ((s as any).oc_count ?? 0) + (1);

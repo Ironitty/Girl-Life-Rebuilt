@@ -82,7 +82,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     scene.text('You prowl through your fridge looking for things to drink.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -90,7 +90,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get some snacks', handler: (st: GameState) => {
     scene.text('You prowl through your cupboards looking for things to snack on.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -116,7 +116,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
     // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s fridge looking for things to drink.
     scene.text(`You prowl through ${((st as any).npcdesc ?? '')}'s fridge looking for things to drink.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -126,7 +126,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
     // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s cupboards looking for things to snack on.
     scene.text(`You prowl through ${((st as any).npcdesc ?? '')}'s cupboards looking for things to snack on.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -143,7 +143,7 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc ?? '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -154,15 +154,15 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Grab a soda', handler: (st: GameState) => {
     scene.text('You grab a soda and shut the fridge.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Grab a beer', handler: (st: GameState) => {
     scene.text('You grab a beer and shut the fridge.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Grab some vodka', handler: (st: GameState) => {
     scene.text('You grab some vodka and shut the fridge.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -177,7 +177,7 @@ function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc ?? '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -199,7 +199,7 @@ function enterGetDrinks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'date_ev', 'kitchen_img');
     scene.text('You\'re already in the kitchen, might as well grab something to drink while you\'re here.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -215,11 +215,11 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Make some popcorn', handler: (st: GameState) => {
     scene.text('You make some popcorn in the microwave.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Make some sandwiches', handler: (st: GameState) => {
     scene.text('You slice some kolbasa and put it on top of bread.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -242,7 +242,7 @@ function enterGetSnacks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'date_ev', 'kitchen_img');
     scene.text('You\'re already in the kitchen, might as well grab some snacks while you\'re here.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -528,8 +528,8 @@ function enterChillCum(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Finish him with your mouth', handler: (st: GameState) => {
     scene.text('You make him cum in your mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSpitMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSwallowMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSpitMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSwallowMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

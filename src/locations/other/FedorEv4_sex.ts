@@ -1112,7 +1112,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
       { label: 'Pull out', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/sex/kitchen2.jpg');
-    // TODO-QSP: dynamic text: Fedor gives your ass a light smack and then pulls out of you as he begins sprayi...
+    // TODO-QSP: dynamic text: 'Fedor gives your ass a light smack and then pulls out of you as he begins spray...
     scene.text('Fedor gives your ass a light smack and then pulls out of you as he begins spraying his load on your leg. You can feel trickles of Fedor\'s warm cum dripping onto your leg. Fedor gives your ass a gentle rub. "No matter where we go you always know how to show me a good time." You turn to Fedor as you respond, "The only thing we need for a good time is <b>You</b> and <font color="#ff00cc"><b>Me</b></font>." Fedor gives your ass one last smack as he gets up then dresses himself before leaving the kitchen.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum2.mp4');
     qspCall(st, 'cum_call', 'butt', ((st as any).boy ?? 0), 1);
@@ -1431,7 +1431,8 @@ function enterBedroom1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/lick' + (Math.floor(Math.random() * 2) + 2) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/scho...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/lick` + (Math.floor(Math.random() * 2) + 2) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: You stare into Fedor''s eyes as you begin licking the tip of his penis. Fedor le...
     scene.text(`You stare into Fedor's eyes as you begin licking the tip of his penis. Fedor lets out a moan as your tongue hits the very tip of his penis which reveals to you just how sensitive that spot is, so you continue licking his penis in a circular motion, enjoying his body flinch every time your tongue hits his tip. Fedor looks down at you and says, "${((st as any).pcs_nickname ?? '')} you're… driving me crazy doing that. I can't hold on much longer"`);
     qspCall(st, 'arousal', 'rimming', 5, 'dom');

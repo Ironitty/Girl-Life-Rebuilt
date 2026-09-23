@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -459,8 +459,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pornfilmdesc'
     // TODO-QSP: killvar 'porntag'
     (st as any).menu_page = 5;
-    dynamicGoto(st, 'menu_character', 'reputation');
-  } },
+  }, goto: ['$menu_character', 'reputation'] },
   ]);
   scene.build();
 }

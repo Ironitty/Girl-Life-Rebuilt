@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pushkin/apartment/vanr2x.jpg');
-  // TODO-QSP: dynamic text: A <a href="exec:gt ''mirror'',''start''">mirror</a> hangs above the sink where y...
+  // TODO-QSP: dynamic text: 'A <a href="exec:gt ''mirror'',''start''">mirror</a> hangs above the sink where ...
   scene.text('A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> hangs above the sink where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');

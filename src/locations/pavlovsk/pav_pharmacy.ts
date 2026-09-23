@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Pharmacy</b></center>');
   if (((s as any).LudaQW ?? 0)?.['work_hours'] === 1) {
-    if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
+    if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
       qspGoto(s, 'pav_pharmacy', 'luda_free_condoms');
     }
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
@@ -55,9 +55,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).pav_pharma_day = ((s as any).daystart ?? 0);
       (s as any).pav_pharma_picrand = (Math.floor(Math.random() * 4) + 1);
     }
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pav_pharma_picrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pharmacy/apteka_worke...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pharmacy/apteka_worker_` + ((s as any).pav_pharma_picrand ?? '') + '.jpg"></center>');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'return') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'return') {
     scene.text('"Do you need anything else?"');
   } else {
     if (((s as any).LudaQW ?? 0)?.['work_hours'] === 0) {
@@ -145,7 +146,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
         scene.text('She chuckles and pulls out a box of condoms that she was clearly holding right behind the counter.');
         scene.text('"Glad to see you\'re being safer about it this time," she says, adding it to your purchase. "Now, was there anything else you needed?"');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).LudaQW ?? 0)?.['condoms'] === 0  &&  ((st as any).LudaQW ?? 0)?.['knows_sex'] !== 1) {
         ((st as any).LudaQW = (st as any).LudaQW ?? {})['condoms'] = 1;
@@ -165,7 +166,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
           scene.text('She places the box into a paper bag before sliding it across the counter towards you.');
           if ((!((st as any).pharmacyfirstbirthcontrol ?? 0))) {
             scene.text('"We also have birth control pills if you\'d like to start going bareback."');
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((st as any).LudaQW ?? 0)?.['condom_give_day'] - ((st as any).daystart ?? 0) < 7) {
@@ -176,10 +177,10 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
           scene.text('She pulls a box of condoms from behind the counter and adds it to your purchase.');
           if ((!((st as any).pharmacyfirstbirthcontrol ?? 0))) {
             scene.text('"We also have birth control pills if you\'d like to start going bareback."');
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
           }
         }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('"Aunt Luda," you whisper quickly, feeling your face heat up even as you try to rush through the words. "I need some more condoms."');
         if (((st as any).pcs_inhib ?? 0) < 50) {
@@ -211,7 +212,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
         }
         if ((!((st as any).pharmacyfirstbirthcontrol ?? 0))) {
           scene.text('"We also have birth control pills if you\'d like to start going bareback."');
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
         }
         scene.actions([
           { label: 'Continue shopping', handler: (st: GameState) => {
@@ -262,12 +263,12 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
               ]);
             }
           } else {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaStoppedBc(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaStoppedBc(st, scene); (st as any).locArgs = __savedLocArgs; }
           }
         } else {
           if ((!((st as any).pharmacyfirstbirthcontrol ?? 0))) {
             scene.text('"Of course, darling." She rummages around the counter and comes up with a box of condoms. "We also have birth control pills if you prefer bareback. As long as you know your partner is clean, of course."');
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
             scene.text('"Of course, darling!" Luda rummages around under the counter and comes up with a box of condoms, sliding them across to you.');
             scene.text('"Keep coming back," she winks.');
@@ -374,9 +375,9 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, I'm just teasing," she giggles while putting a box of pills into a bag. "I'm not here to judge. It runs in the family; maybe we all carry a slut gene or something."`);
     if (((st as any).LudaQW ?? 0)?.['condoms'] === 0) {
       scene.text('"Since you seem to have a lot of partners, did you want some condoms too? To protect you from STD\'s of course. You can never tell who\'s clean and who isn\'t these days."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -387,7 +388,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I don\'t like using condoms..." you mumble. The admission somehow manages to make your face grow even hotter.');
     scene.text('"Neither do I," Luda giggles before putting a box of pills into a bag. "I think it runs in the family."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -398,8 +399,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I\'m just being safe," you mumble, feeling your face somehow grow even hotter. "I still use condoms, but I don\'t want to rely only on them."');
     scene.text('"I\'m glad my niece is being smart," she nods, putting a box of pills into a bag. "It\'s good to protect yourself from STD\'s too. You never know who\'s clean these days. Since that\'s the case, would you get some more condoms while you\'re here?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -492,8 +493,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Luda takes a small glance backwards as she adds the pills to your purchase.');
     scene.text('"Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -505,8 +506,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I don\'t like using condoms," you blush. "They don\'t feel good."');
     scene.text('"Maybe I should\'ve given you pills from the start," she chuckles, ringing up your purchase. "I know you don\'t like them, but can I interest you in some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -518,8 +519,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I want to see what it feels like without a condom," you admit, blushing. "But I don\'t want to get pregnant either."');
     scene.text('"Oh, it\'s <i>wonderful</i> darling," Luda gushes and your blush deepens. "If you\'re anything like the other girls in our family, you\'ll love it. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -531,8 +532,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"It\'s not the same with a condom," you admit.');
     scene.text('"I agree," she smirks and your blush deepens. "I started to suspect it runs in the family when your sister started the pill for the same reason. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -549,8 +550,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m still using condoms," you blush. "But the pill will provide an extra safety net. I\'m not ready to become a mom."');
       scene.text('"Good," she smiles, ringing up your purchase. "You should enjoy your youth without the responsibility of parenthood. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -653,7 +654,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
       scene.text('"I ran out," you admit. "But the pill seems like less hassle.');
     }
     scene.text('"I\'m glad it went to good use," she chuckles, ringing up your purchase. "Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -665,7 +666,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I\'m sick of using condoms," you say, grimacing. "It\'s just too much of a hassle. I appreciate the gift, but maybe you should\'ve given me a box of pills instead."');
     scene.text('"I suppose that would have been a little easier," she chuckles, ringing up your purchase. "I know you don\'t like them, but can I interest you in some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -677,8 +678,8 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I want to see what it\'s like without a condom," you admit, smiling. "But I don\'t want the risk that comes with it. Not without birth control at least."');
     scene.text('"Oh, it\'s <i>wonderful</i> darling," Luda gushes. "If you\'re anything like the other girls in our family,  you\'ll love it. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDontTell(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -690,7 +691,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"Bareback," you admit, smiling. "It\'s not the same with a condom. I can\'t <i>feel</i> him inside me. I appreciate the gift, but maybe you should\'ve given me a box of pills instead."');
     scene.text('"I probably should have," she chuckles. "I should have guessed it runs in the family when your sister started the pill for the same reason. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -707,7 +708,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m still using condoms," you shrug. "But the pill will provide an extra safety net. I\'m not ready to become a mom."');
       scene.text('"Good," she smiles, ringing up your purchase. "You should enjoy your youth without the responsibility of parenthood. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -1031,7 +1032,7 @@ function enterMorningAfterEmergencyEmbarrassed(s: GameState, scene: SceneBuilder
     scene.text('"You could at least be honest with me," she sighs. "Better to be honest about something bad you did than lie about it and let it get worse. <i>Especially</i> with this sort of thing."');
     scene.text('"Yes Aunt..." you mumble guiltily.');
     scene.text('"Why don\'t you buy some birth control pills while you\'re here?" she insists. "Then you don\'t have to worry about this kind of thing. It takes several weeks to become effective so the sooner you start, the better."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1043,12 +1044,12 @@ function enterMorningAfterEmergencyEmbarrassed(s: GameState, scene: SceneBuilder
     scene.text('"Well that\'s a little worrisome," she responds dryly as she pulls a box off the shelf behind her. "All the morning after pills in the world don\'t matter if you forget they\'re there."');
     scene.text('"Yes Aunt..." you sigh.');
     scene.text('"Why don\'t you buy some birth control pills while you\'re here?" she insists. "Then you don\'t have to worry about this kind of thing. It takes several weeks to become effective so the sooner you start, the better."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Disaster planning', handler: (st: GameState) => {
     scene.text('"I still have it here," you say, smiling sheepishly as you pull it out of your bag to show her. "I\'m just being a little paranoid and planning for disaster."');
     scene.text('"Well at least that puts my fears that you were lying to me to rest," she chuckles. "You\'re clearly taking your personal safety very seriously. But to be extra safe, why don\'t you buy some birth control pills while you\'re here? Then you don\'t have to worry about this kind of thing at all. It takes several weeks to become effective so the sooner you start, the better."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlAddon(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1333,7 +1334,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"That\'s what you said last time," she says dryly. "I\'m not giving you another month\'s worth for free. If you\'re going to have sex, then the least you can do is take responsibility for your own body!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1345,7 +1346,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'contraceptive_pill') + 1
     scene.text('"You\'re right Aunt Luda," you nod apologetically. "I should stop being dumb and taking chances."');
     scene.text('She sighs in relief and retrieves a box of pills for you. "At least you have more sense than your mother did at your age."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1353,7 +1354,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
       { label: 'No thanks', handler: (st: GameState) => {
     scene.text('"I\'ll be okay, Aunt," you say.');
     scene.text('"Not if this is any indication," she replies dryly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I prefer condoms', handler: (st: GameState) => {
     if ((!((st as any).preziktype ?? 0))) {
@@ -1365,7 +1366,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"I actually prefer using condoms," you say.');
     scene.text('"Then <i>use</i> them for goodness sake!" Luda says, pulling a handful of rubbers from behind the counter and exasperatedly throwing them at you. "That\'s on the house as long as you don\'t come back here to buy another pill."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1904,12 +1905,12 @@ function enterLudaStoppedBc(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t like that it messes with my hormones," you explain. "I don\'t think it\'s smart to screw around with my body like that."');
     // TODO-QSP: dynamic text: "I understand <<$pcs_firstname>>, but it''s better than being pregnant! Especial...
     scene.text(`"I understand ${((st as any).pcs_firstname ?? '')}, but it's better than being pregnant! Especially at your age."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaBirthControlWorry2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaBirthControlWorry2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Killing my sex drive', handler: (st: GameState) => {
     scene.text('"It\'s totally killing my sex drive!" you moan loudly. "The whole reason I started it was so I could have sex without worry, but it\'s messing my hormones up so badly that I don\'t even want to have sex anymore!"');
     scene.text('"Oh dear!" She looks taken aback, but nods understandingly right after. "That is a common problem with women who use this kind of birth control. I suppose I understand if you don\'t want to use the pill anymore. But you\'re still being safe, right? No unprotected sex?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaBirthControlWorry2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLudaBirthControlWorry2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
-    // TODO-QSP: dynamic text: The porn studio is currently closed. It is open between '+func('time', 'get_time...
+    // TODO-QSP: dynamic text: 'The porn studio is currently closed. It is open between '+func('time', 'get_tim...
     scene.text('The porn studio is currently closed. It is open between 9:00 and 22:00.');
     return;
   }
@@ -71,12 +71,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'jobs', 'set_fired', 'city_pornstudio_delivery');
       scene.text('Digging through your things, you start to panic. No envelope. You search again, but to your despair, you can\'t find it. You stand there, unable to speak.');
       scene.text('The manager grabs his phone and makes a call. You can\'t hear exactly what he\'s saying because your heart is beating so loud, but he soon hangs up.');
-      // TODO-QSP: dynamic text: "You''re very lucky the boss is in a good mood. He''s given you one week to reco...
+      // TODO-QSP: dynamic text: '"You''re very lucky the boss is in a good mood. He''s given you one week to rec...
       scene.text('"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.');
     } else {
       (st as any).konvert = 0;
       qspCall(st, 'money', 'earn', 5000, 'cash');
-      // TODO-QSP: dynamic text: You give the envelope to the manager and he gives you ' + $func('money', 'string...
+      // TODO-QSP: dynamic text: 'You give the envelope to the manager and he gives you ' + $func('money', 'strin...
       scene.text('You give the envelope to the manager and he gives you \' + $func(\'money\', \'string_profit\', 5000) + \'.');
     }
     scene.actions([
@@ -135,7 +135,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
-    // TODO-QSP: dynamic text: The porn studio is currently closed. It is open between '+func('time', 'get_time...
+    // TODO-QSP: dynamic text: 'The porn studio is currently closed. It is open between '+func('time', 'get_tim...
     scene.text('The porn studio is currently closed. It is open between 9:00 and 22:00.');
     return;
   }
@@ -193,12 +193,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'jobs', 'set_fired', 'city_pornstudio_delivery');
       scene.text('Digging through your things, you start to panic. No envelope. You search again, but to your despair, you can\'t find it. You stand there, unable to speak.');
       scene.text('The manager grabs his phone and makes a call. You can\'t hear exactly what he\'s saying because your heart is beating so loud, but he soon hangs up.');
-      // TODO-QSP: dynamic text: "You''re very lucky the boss is in a good mood. He''s given you one week to reco...
+      // TODO-QSP: dynamic text: '"You''re very lucky the boss is in a good mood. He''s given you one week to rec...
       scene.text('"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.');
     } else {
       (st as any).konvert = 0;
       qspCall(st, 'money', 'earn', 5000, 'cash');
-      // TODO-QSP: dynamic text: You give the envelope to the manager and he gives you ' + $func('money', 'string...
+      // TODO-QSP: dynamic text: 'You give the envelope to the manager and he gives you ' + $func('money', 'strin...
       scene.text('You give the envelope to the manager and he gives you \' + $func(\'money\', \'string_profit\', 5000) + \'.');
     }
     scene.actions([
@@ -268,7 +268,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course! Just give me a minute to register it in the database. So, what would you like to be called?" he replies.');
     scene.actions([
       { label: '"I want to be called…"', handler: (st: GameState) => {
-    (st as any).pfname = 0;
+    (st as any).pfname = window.prompt("Enter the name you want to be known as.") ?? '';
     if (((st as any).pfname ?? 0) === '') {
       (st as any).pfname = 'Lotta Cox';
     }
@@ -367,7 +367,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).films_stop_payment = ((st as any).film ?? 0) * 40000;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: "Seeing as you''re not well known, it''s unlikely anyone would notice. However, ...
+    // TODO-QSP: dynamic text: '"Seeing as you''re not well known, it''s unlikely anyone would notice. However,...
     scene.text('"Seeing as you\'re not well known, it\'s unlikely anyone would notice. However, to remove them you\'d have to cover the loss of the studio\'s profits- 40000₽ per film. That\'s a total of \' + $func(\'money\', \'string_price\', films_stop_payment) + \'."');
     scene.text('"Also, it would piss off your co-stars and director, and likely end your porn career. You should also know that there\'s no guarantee there\'s no other copies out there, so think carefully."');
     scene.actions([
@@ -417,7 +417,7 @@ function enterDelivery(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.text('"We made inquiries about you, and everything seems in order. In short, we give you a thumb drive and you deliver it to the sauna. They give you an envelope and you bring it to us. Immediately."');
-  // TODO-QSP: dynamic text: "Upon delivery of the envolope, you get '+$func('money', 'string_profit', 5000)+...
+  // TODO-QSP: dynamic text: '"Upon delivery of the envolope, you get '+$func('money', 'string_profit', 5000)...
   scene.text('"Upon delivery of the envolope, you get \'+$func(\'money\', \'string_profit\', 5000)+\'. Deliveries are available every Friday, after the studio has opened. If you agree, then visit any Friday, and choose a safe mode of transport."');
   // TODO-QSP: end
   scene.actions([
@@ -609,21 +609,21 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                 if ((!((s as any).firstoffer ?? 0))) {
                   (s as any).firstoffer = 1;
                   if (((s as any).tits ?? 0) >= 4) {
-                    // TODO-QSP: dynamic text: "So you''re the new girl, huh? As luck would have it, we''re looking for someone...
+                    // TODO-QSP: dynamic text: '"So you''re the new girl, huh? As luck would have it, we''re looking for someon...
                     scene.text('"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   } else {
-                    // TODO-QSP: dynamic text: "So you''re the new girl, huh? As luck would have it, we''re looking for someone...
+                    // TODO-QSP: dynamic text: '"So you''re the new girl, huh? As luck would have it, we''re looking for someon...
                     scene.text('"So you\'re the new girl, huh? As luck would have it, we\'re looking for someone fresh for our next shoot. It\'s called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   }
                 } else {
                   if (((s as any).tits ?? 0) >= 4) {
-                    // TODO-QSP: dynamic text: "Hello. Since you''re new, all I can offer you is an introductory movie called '...
+                    // TODO-QSP: dynamic text: '"Hello. Since you''re new, all I can offer you is an introductory movie called ...
                     scene.text('"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you would jerk a guy off and have him cum on your tits. However, in your case, you\'ll be using those puppies instead. Titfucking is a market we want to break into," he says while looking at your well endowed chest.');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   } else {
-                    // TODO-QSP: dynamic text: "Hello. Since you''re new, all I can offer you is an introductory movie called '...
+                    // TODO-QSP: dynamic text: '"Hello. Since you''re new, all I can offer you is an introductory movie called ...
                     scene.text('"Hello. Since you\'re new, all I can offer you is an introductory movie called \'Girls Jerk Guys #36\'. For \'+$func(\'money\', \'string_profit\', 500)+\', you jerk a guy off and have him cum on your tits."');
                     scene.text('"You should also know that this particular shoot is booked with Egor, one of our more… experienced actors. He\'s rather… proud of being in this line of work."');
                   }
@@ -641,7 +641,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     // TODO-QSP: gs 'jobs', 'book_slot', 'city_pornstudio_actress', daystart + 1, 0, '1'
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: "Cool. We shoot tomorrow, so be here between '+$func('time', 'get_time_string', ...
+    // TODO-QSP: dynamic text: '"Cool. We shoot tomorrow, so be here between '+$func('time', 'get_time_string',...
     scene.text('"Cool. We shoot tomorrow, so be here between 9:00 and 10:00. Please don\'t be late."');
     scene.actions([
       { label: 'Leave', goto: ['pornstudio', ''] },
@@ -885,7 +885,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', (-2), 'deepthroat', 'exhibitionism');
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/redlight/studio_porn/casting/casting5.jpg');
-    // TODO-QSP: dynamic text: You continue taking his dick as deep into your throat as you can while trying to...
+    // TODO-QSP: dynamic text: 'You continue taking his dick as deep into your throat as you can while trying t...
     scene.text('You continue taking his dick as deep into your throat as you can while trying to look as sexy as possible. Meanwhile, he fondles one of your breasts with his free hand. "These tits are something else!" ' + ((((st as any).age ?? 0) < 20) ? ('He pinches your nipple, causing you to moan onto his cock. "And on a cute little teen no less!"') : ('He pinches your nipple, causing you to moan onto his cock.')) + '');
     scene.text('After a few minutes, he pulls his dick out of your mouth and you quickly jerk him off, a thick load of cum soon covering your face. He takes a few more pictures of you before returning to his desk and offering you some wipes. You quickly clean yourself, get dressed and sit down.');
     scene.text('"You can call me Dimitri. You\'re going to need a stage name."');
@@ -893,7 +893,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose your name', handler: (st: GameState) => {
     (st as any).firstkasting = 1;
     qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_actress');
-    (st as any).pfname = 0;
+    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for <<$pcs_nickname>> Starr)") ?? '';
     if (((st as any).pfname ?? 0) === '') {
       (st as any).pfname = '' + ((st as any).pcs_nickname ?? 0) + ' Starr';
     }
@@ -941,7 +941,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose your name', handler: (st: GameState) => {
     (st as any).firstkasting = 1;
     qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_actress');
-    (st as any).pfname = 0;
+    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for <<$pcs_nickname>> Starr)") ?? '';
     if (((st as any).pfname ?? 0) === '') {
       (st as any).pfname = '' + ((st as any).pcs_nickname ?? 0) + ' Starr';
     }
@@ -1097,7 +1097,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
     (s as any).pfcash = ((s as any).pcash ?? 0) * ((s as any).fmulti ?? 0);
     qspCall(s, 'jobs', 'bonus_pay', 'city_pornstudio_actress', ((s as any).pfcash ?? 0));
     (s as any).pfcash = qspFunc(s, 'jobs', 'paycheck', 'city_pornstudio_actress', 'cash');
-    // TODO-QSP: dynamic text: Dimitri counts ' + $func('money', 'string_profit', pfcash) + ' out for your film...
+    // TODO-QSP: dynamic text: 'Dimitri counts ' + $func('money', 'string_profit', pfcash) + ' out for your fil...
     scene.text('Dimitri counts \' + $func(\'money\', \'string_profit\', pfcash) + \' out for your film and wishes you good luck.');
   } else {
     (s as any).pfilmNOPAY = 0;

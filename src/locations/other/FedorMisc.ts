@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -96,7 +96,7 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A5'] >= 80) {
     scene.text('You and Fedor have a great relationship.');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 1) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 1) {
     scene.actions([
       { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -105,7 +105,7 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 1) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 1) {
     if (((s as any).numnpc ?? 0) === 5  &&  ((s as any).fedorKozlovQW ?? 0) >= 20) {
       scene.actions([
         { label: 'Let\'s go somewhere private', goto: ['FedorMisc', 'Fedor Chat 2'] },
@@ -150,7 +150,7 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (Number((st as any).locArgs?.[1] ?? 0) !== 1) {
+    if (String((st as any).locArgs?.[1] ?? '') !== 1) {
       scene.actions([
         { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
       ]);
@@ -185,7 +185,7 @@ function enterFedorHate(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b><h4><font color=#FF00FF>${'Fyodor [Masha] Kozlov'}</font></h4></b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorangry.jpg');
   scene.text('Fedor looks at you with hatred as he says, "I have nothing to say to you. Go away!"');
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 1) {
+  if (String((s as any).locArgs?.[1] ?? '') !== 1) {
     scene.actions([
       { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -211,11 +211,11 @@ function enterComb(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor combs your hair for you as you watch him, admiring how handsome he is. After Fedor finishes combing your hair, he says, "There is my beautiful girlfriend. Your hair is too pretty to be all knotted up like that." you give Fedor a kiss on the cheek as he puts his comb away.');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorMisc" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-  scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "FedorMisc" }) + '');
+  scene.img('' + qspFunc(s, '$$face_image') + '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    // TODO-QSP: gt $loc, $loc_arg, ARGS[1]
+    dynamicGoto(st, 'prevLoc', 'prevArg', 'ARGS[1]');
   } },
   ]);
   scene.build();
@@ -588,7 +588,7 @@ function enterFedorWorkout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/gym/fedor.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'workout_date') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'workout_date') {
     scene.text('Fedor gives you a warm smile after he has finished his warm up. "What do you want to do?."');
   } else {
     // TODO-QSP: dynamic text: You can see Fedor on his phone by some of the punching bags and as you approach,...
@@ -663,10 +663,12 @@ function enterFedorWorkout2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).VK = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).VK ?? 0) === 1) {
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/gym/chat' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/fedor/fed...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedormisc/gym/chat` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Fedor pulls 2 water bottle out of his bag and hands you one then guides you to a nearby seat where you both spend a few minutes discussing different workouts you both use to stay in shape.');
   } else {
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/gym/selfie' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/fedor/fed...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedormisc/gym/selfie` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Fedor pulls 2 water bottle out of his bag and hands you one then begins checking out his muscles in the mirror. You slowly approach him and stand beside him as you say, "You look really great." Fedor grins then pulls out his phone to take a picture of both of you using the mirror. You both pose for the camera before getting ready to continue your workout.');
   }
   if (((s as any).FedorWorkout ?? 0) === 1) {
@@ -930,11 +932,13 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
   (s as any).VK = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).VK ?? 0) === 1) {
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/parkalone' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/fedor/fed...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/parkalone` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You walk toward the train tracks to see Fedor, he seems to be lost in thought.');
   } else {
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/parkalone' + (Math.floor(Math.random() * 2) + 4) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/fedor/fed...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/parkalone` + (Math.floor(Math.random() * 2) + 4) + '.jpg"></center>');
     scene.text('You walk toward the train tracks to see Fedor, he seems to be sitting in the grass, reading a book.');
   }
   if (((s as any).fedorKozlovQW ?? 0) === -12) {

@@ -408,7 +408,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[1] ?? '') > 0) {
     (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: :knownloop
     ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;

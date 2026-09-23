@@ -248,14 +248,14 @@ function enterSetReportChoresActs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'barn') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'barn') {
     if (((s as any).grandpaQW ?? 0)?.['chore_fetch_firewood'] === 1) {
       scene.actions([
         { label: 'Gather firewood for Grandpa (0:10)', goto: ['gp_zlatek', 'event_fetchfirewood'] },
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'barn_horse') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'barn_horse') {
       if (((s as any).grandpaQW ?? 0)?.['chore_feed_horse'] === 1) {
         scene.actions([
           { label: 'Feed the horse (0:30)', goto: ['gp_zlatek', 'event_feedhorse'] },
@@ -285,7 +285,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'barn_cow') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'barn_cow') {
         if (((s as any).grandpaQW ?? 0)?.['chore_feed_cow'] === 1) {
           scene.actions([
             { label: 'Feed the cow (0:30)', goto: ['gp_zlatek', 'event_feedcow'] },
@@ -302,14 +302,14 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'boar') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'boar') {
           if (((s as any).grandpaQW ?? 0)?.['chore_feed_boar'] === 1) {
             scene.actions([
               { label: 'Feed the hog (0:30)', goto: ['gp_zlatek', 'event_feedboar'] },
             ]);
           }
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'beach') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'beach') {
             if (((s as any).grandpaQW ?? 0)?.['chore_bathe_horse_prog'] === 1) {
               scene.actions([
                 { label: 'Look at Desperado', goto: ['gp_zlatek', 'event_bathehorse2'] },
@@ -322,7 +322,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'field') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'field') {
               if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6) {
                 scene.text('Grandfather\'s horse <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_field/u0027, /u0027horse/u0027); return false;">Desperado</a> is grazing the field.');
               }
@@ -343,14 +343,14 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
                 }
               }
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'field_horse') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'field_horse') {
                 if (((s as any).hour ?? 0) === 19) {
                   scene.actions([
                     { label: 'Lead the horse home (1:00)', goto: ['gp_zlatek', 'event_leadhorsehome'] },
                   ]);
                 }
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 'yard') {
+                if (String((s as any).locArgs?.[1] ?? '') === 'yard') {
                   if (((s as any).grandpaQW ?? 0)?.['chore_clean_yard'] === 1) {
                     scene.actions([
                       { label: 'Clean up the yard for Grandpa (1:00)', goto: ['gp_zlatek', 'event_cleanyard'] },

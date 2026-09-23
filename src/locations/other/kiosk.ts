@@ -77,8 +77,8 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/kiosk/kiosk123.jpg');
   if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don''...
-    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a snack.</td></tr></table></center>');
+    // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don'...
+    scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a snack.</td></tr></table></center>\'');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'money', 'pay', 100);
@@ -96,8 +96,8 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_breath = 0;
     qspCall(s, 'stat', '');
     scene.img('images/shared/food/food.jpg');
-    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You enjoy...
-    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You enjoy a small and tasty, but somewhat fattening, snack.</td></tr></table></center>');
+    // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You enjo...
+    scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You enjoy a small and tasty, but somewhat fattening, snack.</td></tr></table></center>\'');
     scene.actions([
       { label: 'Buy a snack ( [100₽])...]', handler: (st: GameState) => {
     // TODO-QSP: 05)':
@@ -107,8 +107,8 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
-    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don''...
-    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy water.</td></tr></table></center>');
+    // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don'...
+    scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy water.</td></tr></table></center>\'');
   } else {
     (s as any).frost = 1;
     if (((s as any).alko ?? 0) > 0) {
@@ -129,8 +129,8 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/brothel/barorderwater.jpg');
-    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You enjoy...
-    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You enjoy a drink of water</td></tr></table></center>');
+    // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You enjo...
+    scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You enjoy a drink of water</td></tr></table></center>\'');
     scene.actions([
       { label: 'Buy some water ( [40₽]) ...]', handler: (st: GameState) => {
     // TODO-QSP: 05)':
@@ -140,20 +140,20 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   if (qspFunc(s, 'money', 'can_afford', 100) === 0  &&  ((s as any).mc_inventory ?? 0)?.['newspaper'] === 0) {
-    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don''...
-    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a newspaper.</td></tr></table></center>');
+    // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don'...
+    scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a newspaper.</td></tr></table></center>\'');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['newspaper'] === 1) {
-      // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You alrea...
-      scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You already own today\'s newspaper.</td></tr></table></center>');
+      // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You alre...
+      scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You already own today\'s newspaper.</td></tr></table></center>\'');
     } else {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['newspaper'] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 100);
       qspCall(s, 'stat', '');
       scene.img('images/system/image_needed.png');
-      // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You buy t...
-      scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You buy the weekly newspaper</td></tr></table></center>');
+      // TODO-QSP: dynamic text: '<center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You buy ...
+      scene.text('\'<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You buy the weekly newspaper</td></tr></table></center>\'');
       scene.actions([
         { label: 'Buy a newspaper ( [100₽])...]', handler: (st: GameState) => {
     // TODO-QSP: 05)':
@@ -180,7 +180,7 @@ function enterThemes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/kiosk/kiosk123.jpg');
   scene.img('images/locations/city/shared/kiosk/ruch.jpg');
-  // TODO-QSP: dynamic text: All themes cost ' + $func('money', 'string_price', 500) + '.
+  // TODO-QSP: dynamic text: 'All themes cost ' + $func('money', 'string_price', 500) + '.'
   scene.text('All themes cost 500₽.');
   if (qspFunc(s, 'money', 'can_afford', 500)) {
     (s as any).i = 1;
@@ -233,8 +233,8 @@ function enterThemes(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'phonethemeloop'
     }
   } else {
-    // TODO-QSP: dynamic text: <TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don''t have enough m...
-    scene.text('<TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a phone theme.</td></tr>');
+    // TODO-QSP: dynamic text: '<TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don''t have enough ...
+    scene.text('\'<TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a phone theme.</td></tr>\'');
   }
   // TODO-QSP: end
   scene.actions([

@@ -228,7 +228,7 @@ function enterPussyTaste(s: GameState, scene: SceneBuilder): void {
       { label: 'I lick my fingers after masturbating', handler: (st: GameState) => {
     scene.text('"I like the taste of my pussy too," you slur back. "Sometimes I stick my fingers in my mouf after I masturbate, lick it all off."');
     scene.text('"Oh fuck, I do that too! Suck my dildo fucking clean right after I cum! It always makes me want to rub another one out. <i>Fuuuuck</i>, I wanna rub one out right now!" she moans while unconsciously squeezing her thighs together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -238,7 +238,7 @@ function enterPussyTaste(s: GameState, scene: SceneBuilder): void {
     scene.text('"I like the taste of my pussy too," you slur back. "It tastes even better when it\'s on a dick."');
     // TODO-QSP: dynamic text: "You''re a fuckin'' slut, <<$pcs_nickname>>!" she replies and you nearly choke o...
     scene.text(`"You're a fuckin' slut, ${((st as any).pcs_nickname ?? '')}!" she replies and you nearly choke on your wine as you both burst into laughter.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -247,7 +247,7 @@ function enterPussyTaste(s: GameState, scene: SceneBuilder): void {
       { label: 'I like your taste too', handler: (st: GameState) => {
     scene.text('"I like the taste of your pussy too," you slur back and give her a filthy grin.');
     scene.text('"Nnnngh~!" She rolls her hips while rubbing her thighs together hard. "<i>Fuuuck!</i> Don\'t say that! You make me want to shove your head between my legs right now!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -256,14 +256,14 @@ function enterPussyTaste(s: GameState, scene: SceneBuilder): void {
     { label: 'Super weird', handler: (st: GameState) => {
     scene.text('"That\'s super fucking weird," you slur back.');
     scene.text('"Bullshit!" she shouts even louder than before. "You can\'t tell me you don\'t like the taste of \'ur own brand. I know you do, you filthy slut!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I like mine too', handler: (st: GameState) => {
     scene.text('"I like the taste of my pussy too," you slur back.');
     scene.text('"I fucking knew it!" she shouts triumphantly. "Every girl loves her own juice!"');
     scene.text('"If you knew, then why are you asking if it\'s weird?" you ask, puzzled.');
     scene.text('"I jus\' wanted to see if <i>you</i> were the weird one!" she mumbles into her glass as she takes another sip, her voice echoing off the inside.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -311,13 +311,13 @@ function enterDominateAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why would I do that?" you say, puzzled. "You\'re my friend, I wouldn\'t want to do that to you."');
     scene.text('"I was just being hypothetical.." she responds stiffly before burying her face in her wine glass.');
     scene.text('"I thought you said it was serious?" you ask with a nervous chuckle. You try to talk to her, but she seems a bit pouty for some reason, so you leave it alone.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Am I some sort of pervert?', handler: (st: GameState) => {
     scene.text('"Why would I do that?" you ask. "What am I? Some kind of pervert?"');
     scene.text('"It was just a hypothetical…" she responds stiffly before burying her face in her wine glass.');
     scene.text('"I thought you said it was serious?" you ask with a nervous chuckle. You try to talk to her, but she gives you the silent treatment for the next few minutes.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Bend you over and spank you', handler: (st: GameState) => {
     scene.text('"First, I\'d bend you over my lap," you smile gently, running your fingers through her hair. Something in your voice makes her eyes go wide. She glances to the side as if realizing that her head is exactly where you said you\'d bend her over.');
@@ -325,28 +325,28 @@ function enterDominateAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('Her face flushes red and she swallows reflexively. Looking down her body, you see her nipples are rock-hard and her thighs are practically dripping with girl cum.');
     scene.text('"That…" she gulps. "Would be a pretty good way of doing it…"');
     scene.text('She tears herself away from your gaze and buries her face in her wine glass, taking big desperate gulps.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'d sit on your face', handler: (st: GameState) => {
     scene.text('"I\'d sit on your face," you grin. "Bury your face in my pussy. Force you to lick your way out or drown."');
     scene.text('"Well…" she smiles back. "My head is already here… You could… you know… Just throw one leg over and see what happens…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Force you between my legs', handler: (st: GameState) => {
     scene.text('"I\'d force your head into my crotch and wrap my legs around your head. I\'d keep squeezing harder until you make me cum all over your pretty little face," you tell her with a wicked grin.');
     scene.text('"Well…" she smiles back. "My head is already here… You could, you know, grab my hair and see if I resist…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Grab you by the hair and fuck your ass', handler: (st: GameState) => {
     scene.text('"Well, first thing I would get a nice, <i>big</i>, strapon," you smirk. Albina bites her lip, unconsciously rubbing her thighs together while she waits for your next words. "And then I\'d grab you by the hair, nice and tight, and shove it right up your ass!"');
     scene.text('"<i>Fuck!</i> That\'s good!" she moans, her hand snaking between her legs and shamelessly rubbing her pussy. "Have you been watching me and Lazar or something? That\'s <i>just</i> how I like it," she says, a twinkle in her eye as her fingers come back up wet and sticky. She maintains eye contact as she runs her tongue across them, licking up her own juices.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Tie you down', handler: (st: GameState) => {
     scene.text('"I\'d get some rope and tie you to your own bed," you grin. "And then… I think I\'d do whatever I want to you."');
     scene.text('You let imagination take over for you and it seems to work. Her cheeks immediately flush and her breath grows heavy. Her nipples harden and her thighs rub together as moisture glistens between them.');
     scene.text('"That," she gulps. "Sounds like a pretty good way of doing it…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -367,19 +367,19 @@ function enterMasturbationTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I fuck boys instead', handler: (st: GameState) => {
     scene.text('"I let cock take care of my needs," you say, taking another sip with a smirk. Albina returns it immediately with a sly grin.');
     scene.text('"Oh. Well, I guess if you\'re just gonna slut it up instead…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I fuck girls instead', handler: (st: GameState) => {
     scene.text('"I don\'t need to masturbate because I let other girls take care of that for me instead," you say, taking another sip with a mischievous twinkle in your eye. Albina returns it immediately with a sly grin.');
     scene.text('"Oh. Well, I guess if you\'re just gonna slut it up instead…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       scene.text('"Well I don\'t," you shrug.');
       scene.text('"You\'re a fucking liar!" she says while narrowing her eyes at you.');
       scene.text('"Believe what you want," you say, using your fingers to lick the spilled wine off your chest. "Not everyone\'s a nympho like you."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -393,12 +393,12 @@ function enterMasturbationTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I fuck boys instead', handler: (st: GameState) => {
     scene.text('"I let cock take care of my needs," you say, taking another sip with a smirk. Albina returns it immediately with a sly grin.');
     scene.text('"Oh. Well, I guess if you\'re just gonna slut it up instead…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I fuck girls instead', handler: (st: GameState) => {
     scene.text('"I don\'t need to masturbate because I let other girls take care of that for me instead," you say, taking another sip with a mischievous twinkle in your eye. Albina returns it immediately with a sly grin.');
     scene.text('"Oh. Well, I guess if you\'re just gonna slut it up instead…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -406,7 +406,7 @@ function enterMasturbationTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'No time', handler: (st: GameState) => {
     scene.text('"No, I\'m serious! I would do it more often, but I just don\'t have time," you sigh. "I\'m too busy with other things to masturbate. By the time I get home, I\'m practically asleep."');
     scene.text('She rolls her eyes. "As if it takes more than a few minutes to rub one out. If you have time for other shit, you have time to masturbate!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'No privacy', handler: (st: GameState) => {
     scene.text('"I don\'t have any privacy," you say dryly. "Unlike you, I\'m not an only child in a big ass mansion. I share a room with my sister, have a little brother who doesn\'t respect boundaries, and a mother who loses her mind at the slightest mention of sex! It\'s extremely rare for nobody else to be home so I can rub one out in peace."');
@@ -420,26 +420,26 @@ function enterMasturbationTalk(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "You need to start thinking with your dick, <<$pcs_nickname>>," she giggles gidd...
       scene.text(`"You need to start thinking with your dick, ${((st as any).pcs_nickname ?? '')}," she giggles giddily as she takes another sip of wine.`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It doesn\'t feel good', handler: (st: GameState) => {
     scene.text('"It just doesn\'t feel good," you complain. "So much effort just for a subpar result."');
     scene.text('"You just need practice," she replies. "Schlick off every day for a month and I guarantee you\'ll find what turns your crank."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       { label: 'Regularly', handler: (st: GameState) => {
     scene.text('"A few times a week," you admit before taking another sip of wine. "Whenever I feel like it basically."');
     scene.text('"I figured," she nods. "I\'m like that too. Sometimes I just make do with my fingers when I\'m in a rush, but when I really want to enjoy myself I bend over head down, ass up, and shove my favorite dildo up the back door. How do you masturbate?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMasturbateAnswer2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMasturbateAnswer2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Every day', handler: (st: GameState) => {
     scene.text('"Every day more or less," you admit before taking another sip of wine. "If I don\'t get off at least once a day I feel… weird…"');
     scene.text('"Seriously?" she asks while raising an eyebrow. "I understand the need to get off regularly but, <i>every day</i>? You really flick the bean <i>every</i> day?"');
     scene.text('"More or less," you say again.');
     scene.text('"That sounds exhausting," she says while shaking her head.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -450,7 +450,7 @@ function enterMasturbationTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Oh please! Don''t be such a prude, <<$pcs_nickname>>!" she says as she rolls he...
     scene.text(`"Oh please! Don't be such a prude, ${((st as any).pcs_nickname ?? '')}!" she says as she rolls her eyes. "I know you do it, everyone does. I have to get off when I feel the urge or I just can't concentrate. Even if you don't do it <i>every</i> day, I know you do."`);
     scene.text('You continue to try and elude her responses, though she grows increasingly bold and entertained in her teasing questions about you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -468,7 +468,7 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
         { label: ' I don\'t have a computer', handler: (st: GameState) => {
     scene.text('"Not everybody has a computer with unlimited access to free porn, rich girl," you say irritatedly.');
     scene.text('"Oh." She deflates, suddenly looking a little guilty.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -476,12 +476,12 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'It doesn\'t interest me', handler: (st: GameState) => {
     scene.text('"It\'s not that," you shrug. "I\'m just… not interested."');
     scene.text('"<i>Pruuuuuuude</i>!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I prefer the real thing', handler: (st: GameState) => {
     scene.text('"Why would I watch porn when I can just get the real thing?" you ask.');
     scene.text('"Why not both?" she grins while rubbing her thighs together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -495,33 +495,33 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Blush', handler: (st: GameState) => {
     scene.text('Your face flushes with heat unrelated to the wine.');
     scene.text('"Vanilla? Who the hell likes vanilla?" she rambles, continuing her tirade. "Everybody has some kind of porn kink these days. At least be into anal or like, that weird Japanese shit. <i>Something!</i> Anything!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Pinch her ass', handler: (st: GameState) => {
     scene.text('"Hey!" You pinch her ass, eliciting a yelp. "Don\'t kink shame me just cause I don\'t have any kinks!"');
     scene.text('"Doesn\'t change the fact that you\'re boring," she grumbles into her wine glass. "At least have a spanking fetish or something."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       { label: 'Anal porn', handler: (st: GameState) => {
     scene.text('"I mostly watch anal stuff," you say. "There\'s something I entrancing about watching a girl take it up the ass."');
     scene.text('"I always imagine it\'s me," she says in a husky voice, unconsciously rubbing her thighs together. "Bent over, a big cock stretching my asshole out. <i>Ungh</i>! You wanna watch something right now?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Creampie porn', handler: (st: GameState) => {
     scene.text('"Creampies," you say. "Something about watching a guy\'s load dribble out of a girl\'s pussy after he\'s done fucking her… It\'s so… <i>Nnngh</i>!"');
     scene.text('"That\'s what you\'re into?" She visibly pales at your response, trying to hide it inside her wine glass. "That\'s…"');
     scene.text('"What?" you ask, puzzled by her reaction.');
     scene.text('"Nothing. I just… I didn\'t think that you were into that…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Rough porn', handler: (st: GameState) => {
     scene.text('"I like the rough stuff," you admit. "When it\'s fast and hard, when the girl is getting <i>pounded.</i> When her makeup runs and smears across her face."');
     scene.text('"Fuck, I knew you had good taste," she purrs. "That\'s the good shit. Even better when-"');
     scene.text('"He shoves it up her ass without warning. Yeah yeah, I know," you say, rolling your eyes.');
     scene.text('"What? It <i>is</i>!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Incest porn', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['incest_porn'] = 1;
@@ -539,19 +539,19 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"But you-"');
       scene.text('"Not-! Discussing-!" She cuts you off in a way that prevents further argument.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Lesbian porn', handler: (st: GameState) => {
     scene.text('"I like watching girls," you admit. "It\'s just so much… softer than normal porn."');
     scene.text('"Mmmm…" she hums. "A bit of lesbian porn every now and then is pretty nice…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Interracial', handler: (st: GameState) => {
     scene.text('"Interracial porn," you say. "I love watching a big black cock rail tiny white girls like us."');
     scene.text('She blushes as she gulps down a swig of her wine.');
     scene.text('"What\'s wrong?" you ask.');
     scene.text('"Nothing," she replies. "I sometimes watch porn like that too and like to imagine what it would be like to be in the girl\'s place, but I honestly wouldn\'t know what to think if I saw a monster cock like the ones in those videos."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Gangbangs', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
@@ -573,7 +573,7 @@ function enterPornTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('Without another thought, you wrap your arm around your friend. She doesn\'t acknowledge it, but you do feel her press into you, her hot skin flush against yours.');
     scene.text('"When I eventually woke up, I felt so <i>dirty</i>. I realized then that he was putting me in my place and made sure I knew where that was."');
     scene.text('You pet her hair softly as she continues to weep softly on your lap until a blank look comes over her face. She wipes her eyes, takes a big gulp of her wine and moves on to other topics, pretending like it never happened…');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -681,7 +681,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"At school," you sigh tiredly. "If I don\'t, all the teachers will look up my skirt during class."');
     scene.text('"<i>All</i> of them?!" She looks confused. "I get the males, men are pigs, but the women too? What about Ms. Braakman?"');
     scene.text('"Especially her!" you say, sending you both into fits of laughter.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Disco', handler: (st: GameState) => {
     scene.text('"At the disco," you sigh tiredly. "Everyone will think I\'m a slut if they see me flash on the dance floor."');
@@ -692,14 +692,14 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah… Lemme see dat ass…"');
     scene.text('"Albina, I don\'t wear panties. You can see my ass whenever you want."');
     scene.text('"But with a thong, it\'s…" She trails off. "Fuck… What were we talking about?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'That\'s why I wear pants', handler: (st: GameState) => {
     scene.text('"That\'s why I wear <i>pants</i>," you snort. "No one can tell you\'re going commando when you\'re wearing pants."');
     scene.text('"But don\'t all commandos wear pants?"');
     scene.text('Albina narrows her eyes and looks up at you while you stare down at her.');
     scene.text('"I… Shut up!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -709,14 +709,14 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"No<i>p</i>e!" you say. "Never."');
     scene.text('"Doesn\'t your pussy get cold?"');
     scene.text('"Nyeh," you shrug. "You get used to it. After a while it\'s weirder <i>not</i> to feel the breeze."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I hate them', handler: (st: GameState) => {
     scene.text('"Neverrr!" you say, wrinkling your nose. "I <i>hate</i> wearing them!"');
     scene.text('"Doesn\'t your pussy get itchy when you wear pants?" she asks back.');
     scene.text('"My pussy is tough as nails!" you proclaim proudly. "My pussy doesn\'t need no pussy soft panties to protect it!"');
     scene.text('"What?" She looks confused. "That doesn\'t make any sense at all…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -730,7 +730,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah yeah, whatever you say," she replies before slurping up another gulp of wine. "Skirts only? Someone wants to show off the goods."');
     scene.text('"Bitch," you growl.');
     scene.text('"Slut," she grins back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -738,7 +738,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I just forget sometimes', handler: (st: GameState) => {
     scene.text('"Not <i>never</i>," you slur. "I just… forget to put them on sometimes…"');
     scene.text('"Ha! Slut!" she shouts before taking another slurp of her wine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Rarely', handler: (st: GameState) => {
     scene.text('"Rarely," you mumble.');
@@ -748,7 +748,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"At school," you sigh tiredly. "If I don\'t, all the teachers will look up my skirt during class."');
     scene.text('"<i>All</i> of them?!" She looks confused. "I get the males, men are pigs, but the women too? What about Ms. Braakman?"');
     scene.text('"Especially her!" you say, sending you both into fits of laughter.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Disco', handler: (st: GameState) => {
     scene.text('"At the disco," you sigh tiredly. "Everyone will think I\'m a slut if they see me flash on the dance floor."');
@@ -759,14 +759,14 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah… Lemme see dat ass…"');
     scene.text('"Albina, I\'m already commando most days. You can see my ass whenever you want."');
     scene.text('"But with a thong, it\'s…" She trails off. "Fuck… What were we talking about?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'That\'s why I wear pants', handler: (st: GameState) => {
     scene.text('"That\'s why I wear <i>pants</i>," you retort. "No one can tell you\'re going commando when you\'re wearing pants."');
     scene.text('"But don\'t all commandos wear pants?"');
     scene.text('Albina narrows her eyes and looks up at you while you stare down at her.');
     scene.text('"I… Shut up!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -782,7 +782,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Only sluts forget to wear panties <<$pcs_nickname>>."
     scene.text(`"Only sluts forget to wear panties ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Shut up!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -798,12 +798,12 @@ function enterStripperTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Probably', handler: (st: GameState) => {
     scene.text('"Probably?" you mumble back. "You can dance and love shoving your ass in people\'s faces. Prime stripper qualities. Why do you ask?"');
     scene.text('"I was thinking about how to pay for uni. Mama could probably do it for me, but what if I want some extra cash on the side?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Hell yeah', handler: (st: GameState) => {
     scene.text('"Hell yeah!" you laugh, almost spilling your wine on both yourself and Albina. "You\'d make a killing shaking that big fat ass in guy\'s faces!"');
     scene.text('Albina silently takes a swig of her wine, but you catch a glimpse of the smug grin on her face as she looks up at you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Too bitchy', handler: (st: GameState) => {
     scene.text('"Nah." You wave your hand dismissively. "Too bitchy."');
@@ -814,7 +814,7 @@ function enterStripperTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"…Fuck."');
     scene.text('"See? Bitchy," you smile before smugly sipping your wine.');
     scene.text('"Oh fuck off," she grumbles back and takes a much bigger gulp.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -827,7 +827,7 @@ function enterWineChat2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk_blur.jpg');
     scene.text('Your vision begins to blur and you tilt your head back, slumping against the back of the couch.');
     scene.text('<i>I\'ll just rest my eyes…</i> you think to yourself. <i>For… just a…</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Call her a butt slut', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
@@ -913,7 +913,7 @@ function enterMasturbateAnswer2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I use a dildo too," you say. "But not on my ass."');
     scene.text('"You\'re missing out," she grins and licks her lips lasciviously.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Shower dildo', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
@@ -923,7 +923,7 @@ function enterMasturbateAnswer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmmm…" She rubs her thighs together unconsciously. "I love that too. Except I-"');
     scene.text('"Shove it up your ass, yeah yeah," you interrupt.');
     scene.text('"Aww, you know me so well!" she drunkenly giggles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -933,7 +933,7 @@ function enterMasturbateAnswer2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"Something like what you do," you say. "I like taking my dildo up the ass too."');
     scene.text('"Isn\'t it the best?" she nods vigorously while rubbing her thighs together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -943,19 +943,19 @@ function enterMasturbateAnswer2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I usually just play with my clit," you shrug. "A bit of time alone, a nice massage for the little guy, and I\'m satisfied."');
     scene.text('"I guess that\'s why they call it \'rubbing one out\'," she says, making both of you laugh.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Just my fingers', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I like a little penetration," you say. "But I don\'t really use toys. A few minutes of good finger-banging will usually make me cum."');
     scene.text('"You have no idea what you\'re missing," she mumbles drunkenly. "A big dildo up the back door finds the orgasm button <i>so</i> fast."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Showerhead', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"In the shower usually," you say. "Lots of privacy that means I can take my time, and I can use the showerhead. The pressure on my clit never fails to get me off."');
     scene.text('"A good showerhead is a girl\'s best friend," she nods.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -968,26 +968,26 @@ function enterShaveAnswer1(s: GameState, scene: SceneBuilder): void {
     scene.text('You hum in agreement while you take another sip of wine.');
     scene.text('"I\'s sho itchy," you mumble around the glass.');
     scene.text('"<i>Right?!</i>" she says, sitting up to look at you with wide exasperated eyes before laying her head back down on your lap.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'So unfashionable', handler: (st: GameState) => {
     scene.text('You hum in agreement while you take another sip of wine.');
     scene.text('"I\'s sho ugly," you mumble around the glass. "Don\'t they know how unfashionable bush is?"');
     scene.text('"I don\'t care about shit like that," she says while shaking her head. She goes quiet for a moment and stares down into her glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Easy maintenance', handler: (st: GameState) => {
     scene.text('"Mmmm," you hum in agreement while you take another sip of wine.');
     scene.text('"It\'s definitely easier that way," you mumble around the glass. "I have no patience for styling down there. Easier to shuck it all off. Don\'t know why they all don\'t do the same."');
     scene.text('"Shaving is a pretty annoying chore," she agrees. "But that\'s not what I mean. It\'s just so <i>fucking itchy!</i>"');
     scene.text('She scowls while looking between her legs, seemingly disgusted at the mere thought of hair growing between them.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Shrug', handler: (st: GameState) => {
     scene.text('"Eh," you shrug, taking another sip of wine.');
     scene.text('"\'ey can \'o wha\'e\'er \'ey \'ant down \'ere," you mumble around the glass. "It\'s their pussy. I just shave cause I like it that way."');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -998,22 +998,22 @@ function enterShaveAnswer2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'I\'m lazy', handler: (st: GameState) => {
     scene.text('"Meh," you shrug. "I\'m lazy. I\'ll take care of it… eventually…" You look down at Albina while taking another sip of your wine, who just stares down at her own glass while swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Didn\'t feel like it', handler: (st: GameState) => {
     scene.text('"Meh," you shrug. "Just didn\'t feel like it today. I\'l shave it off tomorrow," you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I was in a rush', handler: (st: GameState) => {
     scene.text('"I was running late for something," you say, shrugging. "I\'ll take care of it later," you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m growing it out', handler: (st: GameState) => {
     scene.text('"Actually I\'ve been growing it out," you say before taking another sip of your wine. "I thought I might try having some bush for a change."');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1028,12 +1028,12 @@ function enterShaveAnswer5(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Meh," you shrug. "I\'m just lazy. Shaving is so much work. Easier just to let it grow," you mumble before taking another sip of your wine. Albina just stares down at her own glass, swirling the dark red liquid around inside it.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I like it this way', handler: (st: GameState) => {
     scene.text('"I like it this way," you say while shrugging. "Easy to maintain, plus I think I look pretty good with a rug. Don\'t you?" you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1042,7 +1042,7 @@ function enterShaveAnswer5(s: GameState, scene: SceneBuilder): void {
         { label: 'I like it this way', handler: (st: GameState) => {
     scene.text('"I like it this way!" you protest. "I got it styled just the way I like it. Don\'t you think it\'s cute?" you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1052,7 +1052,7 @@ function enterShaveAnswer5(s: GameState, scene: SceneBuilder): void {
     { label: 'Maybe I should try shaving', handler: (st: GameState) => {
     scene.text('"Hmmm, you might have a point," you muse. "You look pretty sexy all clean-shaven down there. Maybe I should try it sometime," you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1064,12 +1064,12 @@ function enterShaveAnswer6(s: GameState, scene: SceneBuilder): void {
     { label: 'I\'m lazy', handler: (st: GameState) => {
     scene.text('"Meh," you say while shrugging. "I\'m just lazy. Yeah, sometimes it itches but whenever I think of all the work I\'d have to do to shave it I\'m just like <i>ughhhhhhhh</i>," you mumble before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Doesn\'t bother me', handler: (st: GameState) => {
     scene.text('"Doesn\'t really bother me," you say while shrugging. "Why should I care? Fashion?" you chuckle before taking another sip of your wine.');
     scene.text('She just stares down at her own glass, swirling the dark red liquid around inside it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveElaborate(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1095,11 +1095,11 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I think I look good like this," you say, looking down and smiling at your barren chest. "I can\'t imagine what it would be like to have boobs, even small ones."');
     scene.text('"No way!" she says while shaking her head. "I don\'t believe you! It has to bother you on some level! I\'m not even as small as you and I get jealous as <i>fuck</i> whenever I catch a glimpse of nerdy Natasha\'s tits!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I don\'t care', handler: (st: GameState) => {
     scene.text('"I don\'t care," you shrug before taking a sip of wine. "They\'re her tits. I\'m happy with mine."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1107,15 +1107,15 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I never have to wear a bra," you sigh blissfully. "No sweat rashes, no strap lines, I can just throw on a shirt and go out whenever I feel like it and I don\'t have to worry!"');
     scene.text('"But don\'t you ever feel… lacking?" she mumbles while groping herself self-consciously. "Big boobs are sexy after all…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I don\'t care', handler: (st: GameState) => {
     scene.text('"I don\'t care," you shrug before taking a sip of wine. "As long as I don\'t have to wear a bra, I\'m fine with being flat."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Worth it', handler: (st: GameState) => {
     scene.text('"A small price to pay," you shrug before taking a sip of wine. "As long as I don\'t have to wear a bra, I\'m fine with being flat."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1123,11 +1123,11 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"No back pain," you sigh blissfully. "No pain when I go running and no need for a sports bra. It\'s the best! What\'s not to love?"');
     scene.text('"Well… Guys like big boobs," she mumbles while self-consciously groping herself. "Doesn\'t that bother you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I\'m happy like this', handler: (st: GameState) => {
     scene.text('"I\'m happy like this," you shrug before taking another sip of wine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1135,7 +1135,7 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I love sleeping on my stomach," you smirk. "My sister\'s only about a B but still complains her boobs are sore when she wakes up. But not me!"');
     scene.text('"I do like to sleep on my side or my back because of these," she mumbles while groping herself self-consciously. "But they\'re also too small to be considered sexy…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1151,11 +1151,11 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I like how perky they are," you say, looking down and smiling at your modest chest. "I think they make me look cute."');
     scene.text('"No way!" she says while shaking her head. "I don\'t believe you! It has to bother you on some level! I\'m not even as small as you and I still get jealous as <i>fuck</i> whenever I catch a glimpse of nerdy Natasha\'s tits!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I don\'t care', handler: (st: GameState) => {
     scene.text('"I don\'t care," you shrug before taking a sip of wine. "They\'re her tits. I\'m happy with mine."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1163,15 +1163,15 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"I never have to wear a bra," you sigh blissfully. "No sweat rashes, no strap lines, I can just throw on a shirt and go out whenever I feel like it and I don\'t have to worry!"');
     scene.text('"But don\'t you ever feel… lacking?" she mumbles while groping herself self-consciously. "Guys like big boobs…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I don\'t care', handler: (st: GameState) => {
     scene.text('"I don\'t care," you shrug, taking a sip of wine. "As long as I don\'t have to wear a bra, I\'m fine with being small."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Worth it', handler: (st: GameState) => {
     scene.text('"A small price to pay," you shrug before taking a sip of wine. "As long as I don\'t have to wear a bra, I\'m fine with being small."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1179,11 +1179,11 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"No back pain," you sigh blissfully. "No bounce pain when I go running and no need for a sports bra, but still round enough to look feminine. It\'s the best! What\'s not to love?"');
     scene.text('"Well… Guys like big boobs," she mumbles while self-consciously groping herself. "Doesn\'t that bother you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'I\'m happy like this', handler: (st: GameState) => {
     scene.text('"I\'m happy like this," you shrug before taking another sip of wine.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1201,12 +1201,12 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
       scene.text('"I guess it bothers me a little," you say, frowning in displeasure as you look down at your modest chest. "It would be nice to be a <i>little</i> bigger. Then I\'d be average at least. Why? Does it bother <i>you</i>?"');
     }
     scene.text('"Y-yeah," she stammers, a furious blush spreading through her cheeks. "Whenever I look at the other girls in our class, I get jealous. It\'s bad enough that I have to hang out with Irina and Bella, but even nerdy Natasha has bigger tits than me. It drives me crazy!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Me too', handler: (st: GameState) => {
     scene.text('"Me too," you pout and she starts shouting into the ceiling from your lap.');
     scene.text('"It\'s not fucking fair! Why did all the other girls get bigger boobs? Why not us?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1221,12 +1221,12 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"It\'s the worst when I\'m with Irina and Bella," she mumbles, a furious blush spreading through her cheeks. "But even nerdy Natasha has bigger tits than us. It drives me crazy!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Me too', handler: (st: GameState) => {
     scene.text('"Me too," you pout and she starts shouting into the ceiling from your lap.');
     scene.text('"It\'s not fucking fair! Why did all the other girls get bigger boobs? Why not us?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1234,14 +1234,14 @@ function enterSmallTits(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_cupsize ?? 0) >= 5) {
       scene.text('"Does it really bother you that much?" you ask, your brow scrunched with incomprehension.');
       scene.text('"Yes! How can being flatchested <i>not</i> bother you?! Don\'t you get jealous of the boys always checking out Bella and Irina? I want big tits like them!" she pouts with a loud tantrum.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLikeYourBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLikeYourBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).pcs_cupsize ?? 0) <= 10) {
         scene.text('"Does it really bother you that much?" you ask, your brow scrunched with incomprehension.');
         scene.text('"Yes! How can having such small tits <i>not</i> bother you?! Don\'t you get jealous of the boys always checking out Bella and Irina? I want big tits like them!" she pouts with a loud tantrum.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLikeYourBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLikeYourBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -1256,14 +1256,14 @@ function enterMediumTits(s: GameState, scene: SceneBuilder): void {
     { label: 'Me too', handler: (st: GameState) => {
     scene.text('"Me too," you sigh in return. "I get so jealous of the girls in our class who have big boobs."');
     scene.text('"It\'s not fair!" she moans. "I want big tits! I want them! I want them! I want them!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wish I were smaller', handler: (st: GameState) => {
     scene.text('"I wish I were smaller actually," you sigh in return. "Like you. I feel like your tits are so much cuter than mine!"');
     scene.text('"No way!" she says, looking shocked. "Big tits are so much sexier than small tits! Better to be your size than my size. And even better to be bigger than both of us."');
     scene.text('She looks down at her chest, seemingly almost ashamed of her perky B-cups as a slow blush spreads across her face. Is she… <i>embarrassed</i>? Have you ever seen her embarrassed about anything before?');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1277,8 +1277,8 @@ function enterLargeTits(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wish I were smaller actually," you sigh in return. "Like you. I feel like your tits are so much cuter than mine!"');
     scene.text('"No way!" she says, looking shocked. "Big tits are so much sexier than small tits! Your tits are the best size! Big, bouncy, beautiful, they\'re super sexy! I-"');
     scene.text('She cuts off suddenly and looks away, a slow blush spreading across her face. Is she… <i>embarrassed</i>? Have you ever seen her embarrassed about anything before?');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1289,18 +1289,18 @@ function enterHugeTits(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'It hurts', handler: (st: GameState) => {
     scene.text('"Barely," you grimace. "It really sucks having boobs this big. I think it\'s giving my back problems to be honest."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'A good bra', handler: (st: GameState) => {
     scene.text('"A really good bra," you say, sighing deeply. "If it weren\'t for that, my back would hurt constantly. I even have to wear it at night or it hurts my chest."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wish I were smaller', handler: (st: GameState) => {
     scene.text('"I wish they weren\'t so big," you say, sighing deeply. "If I were like, your size, then I wouldn\'t have to spend all this money on bras, deal with all this back pain and it would be so much more convenient."');
     scene.text('"I wish I were bigger," she mumbles and you watch her face go red. "Maybe not as big as you, but bigger would be nice. A D-cup would make me feel super sexy."');
     scene.text('Shockingly, she seems <i>embarrassed</i> by the admission. Have you ever seen her embarrassed about anything before?');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEachTheirOwn(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1312,11 +1312,11 @@ function enterLikeYourBoobs(s: GameState, scene: SceneBuilder): void {
     { label: 'I like your boobs', handler: (st: GameState) => {
     scene.text('"What\'s with the complaints?" you ask. "I love your boobs! They\'ve got such a nice shape and are still bouncy without being dramatic. Your tits are super hot!"');
     scene.text('"But big boobs are sexier!" she moans. "It\'s not fair! I want big tits!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomBoobs(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Your boobs are perfect', handler: (st: GameState) => {
     scene.text('"Well <i>I</i> think your boobs are perfect," you say above her loud tantrum. "You should learn to love them too."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1331,7 +1331,7 @@ function enterEachTheirOwn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/event/wine_talk.jpg');
     scene.text('"To each their own I guess," you say while shrugging. "Big boob girls aren\'t happy, small boob girls aren\'t happy. Is anybody happy?"');
     scene.text('"Boys with big dicks are happy," she grins while rubbing her thighs together. "Nnngh~! I wish I had a big fat cock up my ass right now! Don\'t you?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1350,7 +1350,7 @@ function enterMomBoobs(s: GameState, scene: SceneBuilder): void {
     scene.text('She sighs deeply. "So… yeah. I guess you could say I\'m a little jealous of my mom\'s boobs."');
     scene.text('"Makes sense," you nod sagely. "But your mom\'s tall? Being short doesn\'t seem to bother you?"');
     scene.text('"That\'s because I found out being short makes it easy to get manhandled in bed," she grins and both of you explode into giggles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWineChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

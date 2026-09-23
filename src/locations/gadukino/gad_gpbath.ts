@@ -84,7 +84,7 @@ function enterSetLeaveActs(s: GameState, scene: SceneBuilder): void {
 function enterAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) >= 6) {
     if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 18) {
-      // TODO-QSP: dynamic text: You put the wood into the stove to feed the fire. The banya will be ready to use...
+      // TODO-QSP: dynamic text: 'You put the wood into the stove to feed the fire. The banya will be ready to us...
       scene.text('You put the wood into the stove to feed the fire. The banya will be ready to use around 19:00.');
     } else {
       if (((s as any).hour ?? 0) > 18  &&  ((s as any).hour ?? 0) < 22) {
@@ -135,13 +135,13 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       } else {
-        // TODO-QSP: dynamic text: The banya is not in use at this time. However, it is available between '+func('t...
+        // TODO-QSP: dynamic text: 'The banya is not in use at this time. However, it is available between '+func('...
         scene.text('The banya is not in use at this time. However, it is available between 19:00 and 22:00 during the weekend.');
       }
     }
   } else {
     if (((s as any).week ?? 0) < 6) {
-      // TODO-QSP: dynamic text: The banya is not used during the week. However, it is usually ready to use from ...
+      // TODO-QSP: dynamic text: 'The banya is not used during the week. However, it is usually ready to use from...
       scene.text('The banya is not used during the week. However, it is usually ready to use from 19:00 during the weekend.');
     }
   }
@@ -205,7 +205,7 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
     scene.text('You watch Mira removing her panties from the corner of your eye.');
     qspCall(st, 'arousal', 'erotic_nudity', 5);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -219,7 +219,7 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
     scene.text('While you undress, you notice Mira removing her panties from the corner of your eye.');
     qspCall(st, 'arousal', 'erotic_nudity', 5);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -256,7 +256,7 @@ function enterWith_MiraCore(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'arousal', 'erotic_nudity', 25);
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLeaveActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

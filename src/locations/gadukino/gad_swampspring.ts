@@ -13,9 +13,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gadukino_event', 'sound');
   scene.text('<center><b>Spring</b></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring.jpg') : ('swampspring_night.jpg')) + '');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring.jpg') : ('swampspring_night.jpg')) + '"></center>');
   } else {
-    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring_winter.jpg') : ('swampspring_winter_night.jpg')) + '');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/'+iif(DayStag...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/hunters/` + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring_winter.jpg') : ('swampspring_winter_night.jpg')) + '"></center>');
   }
   scene.text('You come across a natural spring with pure natural water.');
   qspCall(s, 'stat', '');

@@ -77,11 +77,11 @@ function enterTopicMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk about people', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMaidConversation(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLazarConversation(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterZoyaConversation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMaidConversation(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLazarConversation(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterZoyaConversation(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).NikoPayback ?? 0) === 2  &&  ((st as any).AlbinaQW ?? 0)?.['niko_help'] === 0) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNikoHelpTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNikoHelpTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
@@ -90,11 +90,11 @@ function enterTopicMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Talk about life', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFunTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDietTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPajamaTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothingConversation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFunTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDietTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPajamaTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClothingConversation(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'albina_chat', 'topic_menu');
@@ -114,7 +114,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'Work as a maid', handler: (st: GameState) => {
     scene.text('"I work as a maid at the hotel back in Pavlovsk. It doesn\'t pay much, but it\'s still money."');
     scene.text('She wrinkles her nose in disgust. "Ugh. I avoid Pav like the fucking plague! Do yourself a favor and get a good job in the city."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -124,7 +124,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I work as a lifeguard at the swimming pool back in Pavlovsk. It doesn\'t pay much, but it\'s still money."');
     scene.text('"Isn\'t that place full of pervs creeping on girls?" she asks.');
     scene.text('"Sometimes, but it\'s just part of the job," you reply with a shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -134,12 +134,12 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Who said you have to get a decent job?" she smiles. "You could work at the sex shop and spend all day selling dildos and porno mags to pervs."');
     scene.text('"Of course that\'s what you would suggest!" you reply with a grin. "But I guess it wouldn\'t be too bad working at one of the stores in the mall or something…"');
     scene.text('"Just looking out for my bestie!" she smiles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Odd jobs', handler: (st: GameState) => {
     scene.text('"No, I do odd jobs here and there," you shrug. "There\'s a lot of things to do, both in Pav and in the city. They don\'t pay very much, but it\'s still money."');
     scene.text('She wrinkles her nose in disgust. "Ugh. I avoid Pav like the fucking plague! Do yourself a favor and get a good job in the city."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -151,7 +151,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I work as a maid at the hotel near the train station. It doesn\'t pay much, but it\'s still money."');
     scene.text('She wrinkles her nose in disgust. "Eww. There\'s no amount of money in the world that would get me changing the cum stained sheets in that place!"');
     scene.text('"Somebody needs to do it and I need the money," you reply with a shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -161,7 +161,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I work as a lifeguard at the swimming pool in town. It doesn\'t pay much, but it\'s still money."');
     scene.text('"Isn\'t that place full of pervs creeping on girls?" she asks.');
     scene.text('"Sometimes, but it\'s just part of the job," you reply with a shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -169,13 +169,13 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'My mom', handler: (st: GameState) => {
     scene.text('"I get most of my money from my mom too," you say reluctantly. "Starlets was all the extra money I made too."');
     scene.text('"<i>Fuuuuck</i>," she groans, flipping over to stare at the ceiling in frustration. "What else can I do? I\'m <i>so</i> over getting fucked for money!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Odd jobs', handler: (st: GameState) => {
     scene.text('"Odd jobs here and there," you shrug. "There\'s a lot of things to do around town. They don\'t pay very much, but it gives me some spending money. You could try doing that?"');
     scene.text('She wrinkles her nose in disgust.');
     scene.text('"I don\'t want to <i>work</i> for a living!" she says, sending both of you into giggles.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -190,7 +190,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_strip_stripper'] === 'employed') {
     scene.actions([
       { label: 'I\'m a stripper', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStripperTalk1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStripperTalk1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -217,7 +217,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, but if she ever learned that I dance naked for money, she\'d likely disown me on the spot!" you reply.');
     scene.text('"That would suck, but a girl has to make a living, doesn\'t she?"');
     scene.text('"I guess…" you sigh. "I just wish she would stop treating me like a child."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I don\'t care', handler: (st: GameState) => {
     scene.text('"I don\'t care what she thinks anymore," you shrug. "I\'m an adult now, so she can stop interfering with my life and let me do what I want!"');
@@ -225,7 +225,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s exactly my problem," you reply. "It doesn\'t matter what I do with my life, my mother will always judge me for daring to have sex! It\'s pretty tiresome and I don\'t have the energy for it. If she hates me for being a stripper, then so be it."');
     // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>>, remind me not to get on your bad side!"
     scene.text(`"Damn ${((st as any).pcs_nickname ?? '')}, remind me not to get on your bad side!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -238,21 +238,21 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't be so embarrassed, ${((st as any).pcs_nickname ?? '')}. I'm a stripper too."`);
     scene.text('"Really?" you ask, suddenly feeling a little relieved.');
     scene.text('"Yeah! Strange that we\'ve never seen each other there. Maybe that will change?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Nonchalant', handler: (st: GameState) => {
     scene.text('"I do some strip dancing in the city," you say casually.');
     scene.text('"Wait, you\'re a stripper too?!" she exclaims.');
     scene.text('"Yeah? It\'s easy money for an easy job," you reply. "Wait, what do you mean \'too\'?"');
     scene.text('"I\'m a stripper too!" she excitedly replies. "Strange that we\'ve never seen each other there. Maybe that will change?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Proud', handler: (st: GameState) => {
     scene.text('"I do some strip dancing in the city," you admit, letting a smug smile creep onto your lips.');
     scene.text('"You\'re a stripper too?!" she asks excitedly.');
     scene.text('"Why not? It\'s easy money and it\'s fun," you reply."Wait, what do you mean \'too\'?"');
     scene.text('"I\'m a stripper too!" she excitedly replies. "Strange that we\'ve never seen each other there. Maybe that will change?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -270,13 +270,13 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
         scene.text('"Please don\'t…" you reply uncomfortably and she pats you on the shoulder.');
         // TODO-QSP: dynamic text: "Don''t panic, <<$pcs_nickname>>, I''m just kidding!"
         scene.text(`"Don't panic, ${((st as any).pcs_nickname ?? '')}, I'm just kidding!"`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       scene.text('Her jaw drops. "You\'re a stripper?!"');
       scene.text('You laugh nervously. "Y-Yeah. I needed money and it\'s… an easy job," you reply.');
       scene.text('"Say no more. I\'ve always thought about doing it myself, I just don\'t know what Mama would say about it…"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Nonchalant', handler: (st: GameState) => {
@@ -292,13 +292,13 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
         scene.text('You gasp. "You would not!"');
         scene.text('She smiles even wider. "I would so!"');
         scene.text('She raises her arms in defence as you hit her with a pillow.');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       scene.text('"You\'re a stripper?!" she exclaims and you shrug.');
       scene.text('"Yeah. It\'s easy money for an easy job," you reply.');
       scene.text('"Easy, huh?" She strokes her chin, mulling it over. "It sounds fun but… I don\'t know what Mama would say if she found out…"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Proud', handler: (st: GameState) => {
@@ -313,13 +313,13 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
         scene.text('She grins. "Maybe I\'ll come visit you at work one night…"');
         scene.text('"I\'m not giving you a free show," you smirk.');
         scene.text('She smiles even wider. "Don\'t worry, I\'d happily pay to watch you shake that ass!"');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       scene.text('"You\'re a stripper?!" she asks excitedly.');
       scene.text('"Why not? It\'s easy money and it\'s fun," you reply.');
       scene.text('"I\'ve always wondered what it would be like, but I don\'t know what Mama would say about it…"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -336,21 +336,21 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you mumble, a blush already heating up your face. "I\'ve been uhh… starring in some… <i>adult films</i>…?"');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Casual', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['porn_talk'] = 'casual';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'ve been starring in pornos," you say with a casual shrug of your shoulders.');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Happy', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['porn_talk'] = 'happy';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you say, a smile tugging at the corners of your mouth. "I\'ve been shooting some porn."');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -361,7 +361,7 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you mumble, a blush already heating up your face. "I\'ve been uhh… starring in some… <i>adult films</i>…?"');
     scene.text('She grimaces at you in disgust. "Ew! You\'re doing porn?! Seriously?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Casual', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['porn_talk'] = 'casual';
@@ -369,7 +369,7 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ve been starring in pornos," you say with a casual shrug of your shoulders.');
     scene.text('Her jaw drops and she gives you a look of utter revulsion.');
     scene.text('"Ew! You\'re doing porn?! Seriously?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Happy', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['porn_talk'] = 'happy';
@@ -377,7 +377,7 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Actually I…" you say, a smile tugging at the corners of your mouth. "I\'ve been shooting some porn."');
     scene.text('Her jaw drops and she gives you a look of utter revulsion.');
     scene.text('"Ew! You\'re doing porn?! Seriously?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -436,8 +436,8 @@ function enterPornstarTalk2_1(s: GameState, scene: SceneBuilder): void {
       scene.text('"This is different," you protest. "This is what <i>I</i> want."');
       scene.text('"Yeah? Well, I want to keep money out of my sex life," she says. "It\'s already fucked my life up. I guess if you want to fuck up yours, then that\'s your choice."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -448,7 +448,7 @@ function enterPornstarTalk2_2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'I need the money (ashamed)', handler: (st: GameState) => {
     scene.text('"It\'s not my first choice of job," you admit, a sharp arrow of shame piercing your chest at your friend\'s judgemental tone. "But I really need the money right now…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant1(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('She takes a breath to continue her diatribe, but seeing the expression on your face, she suddenly stops.');
     scene.text('"Sorry…" she mumbles, looking away in shame. "I didn\'t mean to be so harsh. I… I think I was taking this a little too personally. With everything that happened… I guess I just have a problem with sex and money. Mama would probably say I was projecting."');
     scene.text('She gives you a sad smile.');
@@ -458,7 +458,7 @@ function enterPornstarTalk2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Look, you don\'t need to agree with what I\'m doing. I don\'t even know if I agree with myself doing it, but don\'t judge me for it, okay? It really hurts."');
     scene.text('She nods solemnly and you breathe a sigh of relief.');
     scene.text('"Thanks," you say and finally move on to other topics.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -471,9 +471,9 @@ function enterPornstarTalk2_3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I need the money (casual)', handler: (st: GameState) => {
     scene.text('"I need the money," you shrug. "It pays decently well."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -490,9 +490,9 @@ function enterPornstarTalk2_4(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I just want to be able to afford nice things," you shrug. "The pay is pretty good and lets me buy expensive stuff. Is that so wrong?"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant2(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant2(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -507,9 +507,9 @@ function enterPornstarTalk2_5(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"It\'s kind of fun actually," you smirk. "The sex is really good and it kind of makes me feel like a movie star."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant2(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaPornRant2(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk3_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -521,7 +521,7 @@ function enterPornstarTalk3_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Agree to disagree', handler: (st: GameState) => {
     scene.text('"Whatever," you sigh. "Let\'s just talk about something else."');
     scene.text('"Yeah," she mutters and pointedly turns away from you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -545,7 +545,7 @@ function enterPornstarTalk3_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks," you reply softly.');
     scene.text('She gives you a small, guilty smile. "Should we talk about something else now?"');
     scene.text('"Yeah," you smile back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Apologize', handler: (st: GameState) => {
     scene.text('You take a deep breath as your adrenaline comes down.');
@@ -553,7 +553,7 @@ function enterPornstarTalk3_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"No! Don\'t apologize!" she says hurriedly. "It <i>was</i> my fault. I was being a stuck up cunt. Mama would probably tell me I was projecting."');
     scene.text('Her smile takes on a self deprecating tone, but you can see some real humor in there as well and smile back.');
     scene.text('With this little tiff between friends over, you finally move on to other topics.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -571,12 +571,12 @@ function enterPornstarTalk4(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s wrong with doing porn?" you ask, your face heating up with irritation. "You done it yourself, so it can\'t be that bad!"');
     }
     scene.text('"Yeah, and I like I told you before, I regretted it the instant I walked out of that hotel room! I let myself be exploited, and I hate to see it happening to you as well."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_1(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).AlbinaQW ?? 0)?.['porn_talk'] !== 'embarrassed') {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_3(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_3(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -589,7 +589,7 @@ function enterPornstarTalk4_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s not my first choice of job," you admit. "But I really need the money right now…"');
     scene.text('She gives you a sad smile. "But it\'s not the only way you can earn');
     scene.text('"Not any that pay as much as this does," you reply. "I\'d quit if I could, but no other job out can pay me as much as this one does, even if I\'m ashamed to do it."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -602,7 +602,7 @@ function enterPornstarTalk4_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You shrug. "I need the money and it pays decently well."');
     scene.text('"I get that," she replies. "But couldn\'t you find a job that\'s... less demeaning?"');
     scene.text('"I could, but those aren\'t as convenient and don\'t pay nearly as much," you reply. "I need the money, so I do what I must."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -619,7 +619,7 @@ function enterPornstarTalk4_3(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"I though doing that dumb video was fun at first, but I quickly regretted it, and that was just <i>one</i> video. No amount of money will convince me to do it again."');
     scene.text('"Maybe I need the money," you coldly reply.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornstarTalk4_5(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -631,7 +631,7 @@ function enterPornstarTalk4_4(s: GameState, scene: SceneBuilder): void {
     { label: 'Avoid talking about it', handler: (st: GameState) => {
     scene.text('"You sigh. "Let\'s just talk about something else."');
     scene.text('"Yeah," she mutters and pointedly turns away from you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -669,7 +669,7 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"And right now you\'re…"');
     scene.text('"Yeah…" Your cheeks are blazing hot.');
     scene.text('She stares at you for a few seconds. "Slut," she replies as her face breaks into one of the biggest grins you\'ve ever seen her wear.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Casual', handler: (st: GameState) => {
     scene.text('"I don\'t," you shrug.');
@@ -688,7 +688,7 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"Feeling the inside of my pants," you say with an equal lack of emotion.');
     }
     scene.text('She stares at you for a few seconds. "Slut," she replies as her face breaks into one of the biggest grins you\'ve ever seen her wear.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Proud', handler: (st: GameState) => {
     scene.text('"I don\'t wear panties," you smirk.');
@@ -697,7 +697,7 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Never?"');
     scene.text('"Never ever!"');
     scene.text('She stares at you for a few seconds. "Slut," she replies as her face breaks into one of the biggest grins you\'ve ever seen her wear.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -714,13 +714,13 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I''ll have you know I get all my thongs from a seedy sex shop in the red light ...
     scene.text(`"I'll have you know I get all my thongs from a seedy sex shop in the red light district for ${qspFunc(s, 'money', 'string_price', 500)} a pop," she says while turning her nose up at you. "I'm no princess. I'm a dirty little girl who likes her panties cheap and snappable."`);
     scene.text('You both laugh at that.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I like them', handler: (st: GameState) => {
     scene.text('"I just like them," you shrug. "They\'re cheap and comfortable, and I like the designs."');
     // TODO-QSP: dynamic text: "You know what else is cheap?" she replies, eyes twinkling. "Thongs. Lots of tho...
     scene.text(`"You know what else is cheap?" she replies, eyes twinkling. "Thongs. Lots of thongs, all ${qspFunc(s, 'money', 'string_price', 500)} a pop at the sex shop in the city. Easy to replace when someone snaps them right off your pussy," she grins.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -732,12 +732,12 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"They\'re really comfy," you answer. "Nice soft cotton, elastic that doesn\'t rub or itch. I just feel better when I\'m wearing them."');
     scene.text('"Full panties feel too constricting for my fat ass," she replies while wrinkling her nose. "It feels wrong if I\'m not wearing a thong. Plus no V-P-O."');
     scene.text('She punctuates her acronym by drawing an inverted triangle with both her index fingers while smirking and bouncing her eyebrows at you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'They\'re cute', handler: (st: GameState) => {
     scene.text('"I like cute panties," you answer. "Between the cuts, designs and colors, Pussy Kats are the cutest."');
     scene.text('"Sexy is always better than cute," she grins. "You ought to try a thong sometime. One look at your ass in a mirror and you\'ll never go back."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -745,14 +745,14 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"I get most of my underwear from Fashionista," you reply.');
     scene.text('"You\'re into lace like Katja, huh?" she grins.');
     scene.text('"I guess," you shrug. "I just like the way it looks and feels."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Lusso', handler: (st: GameState) => {
     scene.text('"I get most of my underwear from Lusso Intimo," you reply.');
     scene.text('"Look at you, you fancy bitch," she teases. "That\'s where Mama gets her underwear from too."');
     scene.text('"If you\'re gonna wear it, it ought to be nice, don\'t you think?"');
     scene.text('"Quality doesn\'t matter to me as long as it\'s a thong and it looks good. And they don\'t sell thongs there," she grins wickedly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I mostly wear sports underwear', handler: (st: GameState) => {
     scene.text('"I mostly buy sports underwear actually," you reply.');
@@ -761,14 +761,14 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'They\'re comfy', handler: (st: GameState) => {
     scene.text('"Yeah, seriously! They\'re made of good material and form fitting, nice and stretchy. It\'s just comfortable."');
     scene.text('"Got hella V-P-O though," she says while drawing an inverted triangle with both her index fingers and bouncing her eyebrows suggestively.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Good for dancing', handler: (st: GameState) => {
     scene.text('"They\'re good for dancing," you shrug. "Nice and flexible, no chaffing."');
     scene.text('"You\'re still dancing?" she asks seriously. "After Starlets shut down and all I thought you might…"');
     scene.text('"Of course I\'m still dancing! Aren\'t you?"');
     scene.text('"I guess that\'s a fair point," she smiles back, perhaps feeling a little silly for assuming.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -784,12 +784,12 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'Never', handler: (st: GameState) => {
     scene.text('"Nope. Never," you answer.');
     scene.text('"I have to ask… Why?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Only when I have to', handler: (st: GameState) => {
     scene.text('"Only when I have to," you sigh, as if the very thought of putting on panties is a chore.');
     scene.text('"I have to ask… Why?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -798,7 +798,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'Not <i>never</i>', handler: (st: GameState) => {
     // TODO-QSP: '"Not <i>never</i>," you smile wryly. ' + iif(trait_vars['panty_preference'] = 2, '"Just when I feel...
     scene.text('"I have to ask… Why?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -807,7 +807,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'Not in weeks', handler: (st: GameState) => {
     scene.text('"Haven\'t in weeks," you tell her.');
     scene.text('"I have to ask… Why?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCommandoReply(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -827,7 +827,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"HA! I knew it!" she shouts gleefully.');
     scene.text('"I just forgot them today!"');
     scene.text('"Nobody \'just forgets\' their underwear, you slut!" she cackles loudly, gasping for breath and clutching her stomach.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Show her (you\'re not wearing any)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -838,7 +838,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('She blinks in brief surprise before a haughty smile takes over her face.');
     scene.text('"Slut," she says matter-of-factly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -854,7 +854,7 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Nice…" she says, openly leering.');
     scene.text('"Wait, was this all just a scheme for you to look at my panties?"');
     scene.text('"What if it was?" she asks with a teasing smirk.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -883,7 +883,7 @@ function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
         scene.text('"Slut," she says while smirking back at you.');
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It seemed sexy', handler: (st: GameState) => {
     if (((st as any).trait_vars ?? 0)?.['panty_preference'] === 3) {
@@ -898,7 +898,7 @@ function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
         scene.text('"Hoping someone will get a glimpse?" she grins and blatantly ogles your ass.');
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Panty lines', handler: (st: GameState) => {
     if (((st as any).trait_vars ?? 0)?.['panty_preference'] === 3) {
@@ -919,7 +919,7 @@ function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
         scene.text('"I do go through them pretty quickly," she smiles ruefully. "Between wear, general flimsiness, and Lazar snapping them off, my thongs don\'t last very long…"');
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Because of you (dancing)', handler: (st: GameState) => {
     scene.text('"Because of you," you smirk.');
@@ -932,7 +932,7 @@ function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hmmm… Just one thing though…"');
     scene.text('"What\'s that?" you ask.');
     scene.text('"Starlets was only on three times a week…" Her eyes twinkle and a smile tugs at the corner of her lips. "That doesn\'t explain why you skipped out on panties on the other four days…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -962,13 +962,13 @@ function enterPubeTalk(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('She barks a short laugh before swiftly turning the question back on you.');
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPubeTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPubeTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('"I noticed that your pussy is always cleanshaven," you say. "Do you shave every day?"');
       scene.text('"You spying on me or something?" she asks with a raised eyebrow. She\'s giving you a "glare", but you can also see a smirk tugging at the corner of her lips.');
       scene.text('When the full smile finally breaks out, she laughs. "I wax all my body hair, especially my pussy. I used to use a razor, but I can\'t stand the feeling of stubble. Prickly, pokey, ick!"');
       scene.text('She swiftly turns the question back on you.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPubeTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPubeTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -984,14 +984,14 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Yeah," you nod. "I hate bush too. It\'s itchy and scratchy and just makes me feel gross down there. I much prefer being cleanshaven."');
     scene.text('"Fuck yeah!" she cheers, high-fiving you. "Smooth pussy for life!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It\'s stylish', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     // TODO-QSP: dynamic text: "Bush is so unfashionable," you say while rolling your eyes. "So 20th century. I...
     scene.text(`"Bush is so unfashionable," you say while rolling your eyes. "So 20th century. It's ${((st as any).year ?? '')} for goodness' sake! Who the hell still has bush?"`);
     scene.text('"Pfft-! You\'re just like Katja," she snickers. "But I won\'t complain that you see it my way either. Smooth pussy revolution!" she cheers, high-fiving you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Boys like it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1008,7 +1008,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Ha! You slut!" she snickers teasingly, pushing your shoulder lightly before moving on to other topics.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1027,7 +1027,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Doesn\'t it bother you?" she grimaces back at you.');
     scene.text('"Not enough to do it today."');
     scene.text('"Ew. I don\'t know how you can stand it. If I feel even a hint of stubble, I shave it off and then get a wax as soon as I can."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -1037,7 +1037,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, I really need to," you sigh. "I normally do, but I\'ve been busy lately and haven\'t had time to take care of it."');
     scene.text('You wrinkle your nose in discomfort and Albina gives a grimace back to match.');
     scene.text('"Ew. I can\'t even wait a day. If I feel even a hint of stubble, I shave it off and then get a wax as soon as I can."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1051,13 +1051,13 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
           { label: 'It\'s cute', handler: (st: GameState) => {
     scene.text('"I think it\'s cute!" you smile back. "Don\'t you?"');
     scene.text('"I prefer \'hot\' over cute," she smirks back. "And nothing\'s hotter than a smooth pussy."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Shaving makes me feel young', handler: (st: GameState) => {
     scene.text('"I\'ve tried going clean shaven before, but it just made me feel like a little girl. Like I\'m back in primary school." You wrinkle your nose in disgust. "No thanks. Now I always keep a little hair down there."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
     scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian and it doesn't make them any girlier. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -1071,13 +1071,13 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
             { label: 'It\'s classy', handler: (st: GameState) => {
     scene.text('"I think it\'s classy," you smile back wryly. "A more refined, mature look."');
     scene.text('"\'Classy and mature\' is pretty much the exact opposite of what I want," she guffaws. "I want \'hot and dirty.\' Smooth pussy fits that bill."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             { label: 'Shaving makes me feel young', handler: (st: GameState) => {
     scene.text('"I\'ve tried going clean shaven before, but it just made me feel like a little girl. Like I\'m back in primary school." You wrinkle your nose in disgust. "No thanks. I\'ll keep some bush down there like a woman."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
     scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
@@ -1111,12 +1111,12 @@ function enterGrowPubesChat1(s: GameState, scene: SceneBuilder): void {
     { label: 'Growing it out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'m actually growing it out right now," you say.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGrowPubesChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGrowPubesChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Thinking about growing it out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'ve actually been thinking about growing it out lately," you say.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGrowPubesChat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGrowPubesChat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1129,30 +1129,30 @@ function enterGrowPubesChat2(s: GameState, scene: SceneBuilder): void {
     { label: 'Change of pace', handler: (st: GameState) => {
     scene.text('"No reason," you shrug back. "Change of pace I guess. Might feel nice having some hair down there again."');
     scene.text('"That\'s like saying you want to drink piss instead of lemonade for a \'change of pace,\'" she replies, shaking her head in disgust. "Gross."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Too much work', handler: (st: GameState) => {
     scene.text('"It\'s a pain in the ass to stay smooth down there," you sigh. "Shaving is such a hassle. If I have some bush, at least the time between maintaining will increase."');
     scene.text('"You should just start waxing like I do. It hurts a little when it all comes out, but that month of relief is <i>so</i> worth it."');
     scene.text('You eyeball her suspiciously. "How much pain are we talking about here? When you say \'a little bit\', do you mean \'normal people\' little bit or \'Albina who likes to get spanked until she can\'t sit down\' little bit?"');
     scene.text('"You\'ll just have to find out," she smirks back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Feels weird', handler: (st: GameState) => {
     scene.text('"It just feels weird," you say, wrinkling your nose. "Everything all smooth down there. It\'s… unnatural. Gives me weird vibes."');
     scene.text('"You just need to get used to it," she insists. "After a month, you don\'t even notice it anymore."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Makes me feel young', handler: (st: GameState) => {
     scene.text('"It makes me feel like a little girl," you say, wrinkling your nose. "Everything all smooth down there… Ugh. It makes me feel like I\'m back in primary school. I\'m tired of it. I want to feel like a woman instead of a girl, thank you very much."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
     scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Tired of pleasing guys', handler: (st: GameState) => {
     scene.text('"I\'ve never enjoyed having a shaved pussy. I only ever did it because guys liked it," you sigh. "I\'m tired of conforming what I do with <i>my body</i> just to please boys. I\'m going bush and I\'m gonna like it."');
     scene.text('"I guess I can\'t blame you for that," she says with a rueful smile.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1241,7 +1241,7 @@ function enterLazarConversation(s: GameState, scene: SceneBuilder): void {
       scene.text('She <i>really</i> doesn\'t want to have this conversation with you and you know better than to push your luck with her.');
     }
     scene.text('"So what about you? Hooked up with anyone?" she asks, turning the conversation on you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverConversation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverConversation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1344,10 +1344,10 @@ function enterLoverConversation(s: GameState, scene: SceneBuilder): void {
       { label: 'I have a boyfriend', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('She grins at you. "Right, so who are you dating again?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverNikoTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverFedorTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverArtemTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverRexTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverNikoTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverFedorTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverArtemTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverRexTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     (st as any).i = 0;
     // TODO-QSP: :lover_looop
     if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
@@ -1712,7 +1712,7 @@ function enterFunTalk(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1727,7 +1727,7 @@ function enterExerciseTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Dancing is my main exercise, but I try to get in a full body workout on the same day. Lots of squats for my ass," she smirks. "And a good amount of cardio so I won\'t get tired during shows. But I\'ll only work out three or four times a week at most. Rest days are important or I\'ll get hurt and that means no more dancing. Sometimes I\'ll just dance and skip the gym, especially if I hit the pole. You\'d be surprised how much strength it takes, but I do stretches nearly every day to keep me nice and flexible."');
     scene.text('She adds the last part with a sly look of implication."');
     scene.text('"What about you?" she asks. "You keeping fit these days?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseReply(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseReply(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1740,13 +1740,13 @@ function enterExerciseReply(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Not really," you shrug. "Not since Starlets. It was good when I had a goal to work towards, but I just can\'t keep it up for the sake of fitness."');
     scene.text('"You really ought to try though." She nudges you pointedly. "It\'s good for your brain. It keeps you young and sexy," she adds with a smirk.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'A few times a week', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Same as you more or less," you reply. "A few times a week, not more than that."');
     scene.text('"It\'s the best way to do it," she nods.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Every day', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1756,12 +1756,12 @@ function enterExerciseReply(s: GameState, scene: SceneBuilder): void {
       { label: 'No', handler: (st: GameState) => {
     scene.text('"Not really," you admit. "I just do everything."');
     scene.text('"You can\'t do that!" she says. "If you work everything every day, it\'s only a matter of time before an injury happens!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Yeah, I try to do something different every day," you tell her.');
     scene.text('"At least you\'re doing that much," she says with a small smile, looking relieved.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1771,7 +1771,7 @@ function enterExerciseReply(s: GameState, scene: SceneBuilder): void {
     scene.text('"You really ought to program in some rest days," she replies, looking annoyed. "You\'ll hurt yourself keeping that up."');
     scene.text('"It\'s part of my routine this way," you shrug. "I just roll out of bed and get to it."');
     scene.text('"I guess," she huffs.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1784,7 +1784,7 @@ function enterDietTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"What\'s your diet like?" you ask.');
     scene.text('"I burn a lot of calories dancing, so I don\'t watch my intake <i>too</i> much," she tells you. "But I try to keep a healthy balance. Mostly chicken for protein, a good variety of veggies, minimize carbs. I like seeing my abs in the mirror," she smirks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1802,12 +1802,12 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Same reason', handler: (st: GameState) => {
     scene.text('"I sleep naked too," you tell her. "There\'s nothing quite like sheets on bare skin, is there?"');
     scene.text('"You naughty girl," she replies jokingly. "I bet you shower naked too, you slut!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It gets hot', handler: (st: GameState) => {
     scene.text('"I sleep naked too," you tell her. "It gets too hot for me if I\'m wearing clothes under the covers."');
     scene.text('"Hot and bothered?" she grins back jokingly. "Look at you, getting turned on by your own nudity, you naughty girl!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1816,12 +1816,12 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Same reason', handler: (st: GameState) => {
     scene.text('"I like how it feels too," you tell her. "But I still wear panties to bed."');
     scene.text('"Prude," she replies jokingly. "I bet you turn off the lights when you masturbate too."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It gets hot', handler: (st: GameState) => {
     scene.text('"I still wear panties," you tell her. "It\'s too hot for me under the covers if I put on anything more than that."');
     scene.text('"Full nude makes you too \'hot?\'" she grins back, bouncing her eyebrows suggestively.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1830,12 +1830,12 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'It\'s comfy', handler: (st: GameState) => {
     scene.text('"I sleep fully covered," you tell her. "I skip the bra, but I still wear panties and a shirt. I think it\'s comfy."');
     scene.text('"You don\'t know what you\'re missing out on," she grins back. "Try losing the shirt sometime. You won\'t go back."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Sleeping nude is weird', handler: (st: GameState) => {
     scene.text('"I sleep fully covered," you say, giving her a look. "Sleeping naked is <i>weird</i>."');
     scene.text('"Prude," she replies jokingly. "I bet you turn off the lights when you masturbate too."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

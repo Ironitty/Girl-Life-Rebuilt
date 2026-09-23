@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You jump out of your stall and move to open the other one, but it opens before you reach it. Out of it comes a naked middle aged man.');
     // TODO-QSP: dynamic text: "I''ve been watching you, <<$pcs_nickname>> <<$pcs_lastname>>. You think it''s a...
     scene.text(`"I've been watching you, ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}. You think it's a coincidence you are here? I've been planning things out. Preparing.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly sort yourself out and get out of the stall. You try the bathroom door. It\'s locked. There is no handle, and the lock is just a keyhole.');
     scene.text('"It\'s no use. You are trapped," The strange man says.');
     scene.text('A naked middle aged man exits the other stall and walks towards you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

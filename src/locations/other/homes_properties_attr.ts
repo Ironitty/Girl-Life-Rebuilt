@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, hasLocation } from '../_shared/qspBridge';
+import { hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'city_apartment') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'city_apartment') {
     ((s as any).property = (s as any).property ?? {})['id'] = 1;
     ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
     ((s as any).property = (s as any).property ?? {})['name'] = 'City residential apartment';
@@ -33,7 +33,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
     ((s as any).property = (s as any).property ?? {})['internet_enabled'] = 1;
     ((s as any).property = (s as any).property ?? {})['can_be_renovated'] = 1;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'parents_home') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'parents_home') {
       ((s as any).property = (s as any).property ?? {})['id'] = 2;
       ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
       ((s as any).property = (s as any).property ?? {})['name'] = 'Parent\'s home in Pavlovsk';
@@ -51,7 +51,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
       ((s as any).property = (s as any).property ?? {})['type'] = 'permanent_residence';
       ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'village_cottage') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'village_cottage') {
         ((s as any).property = (s as any).property ?? {})['id'] = 3;
         ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
         ((s as any).property = (s as any).property ?? {})['name'] = 'My cottage in the cooperative village';
@@ -70,7 +70,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
         ((s as any).property = (s as any).property ?? {})['price'] = 150000;
         ((s as any).property = (s as any).property ?? {})['internet_enabled'] = 0;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'old_town_apartment') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'old_town_apartment') {
           ((s as any).property = (s as any).property ?? {})['id'] = 4;
           ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
           ((s as any).property = (s as any).property ?? {})['name'] = 'Old town apartment';
@@ -90,7 +90,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
           ((s as any).property = (s as any).property ?? {})['rent'] = 10000;
           ((s as any).property = (s as any).property ?? {})['internet_enabled'] = 1;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'matryona_mansion') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'matryona_mansion') {
             ((s as any).property = (s as any).property ?? {})['id'] = 5;
             ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
             ((s as any).property = (s as any).property ?? {})['name'] = 'Matryona mansion';
@@ -113,7 +113,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
             ((s as any).property = (s as any).property ?? {})['internet_enabled'] = 1;
             ((s as any).property = (s as any).property ?? {})['construction_needed'] = 1;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'pavlovsk_hotel') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'pavlovsk_hotel') {
               ((s as any).property = (s as any).property ?? {})['id'] = 6;
               ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
               ((s as any).property = (s as any).property ?? {})['name'] = 'My hotel room in Pavlovsk';
@@ -131,7 +131,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
               ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
               ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'maid_bedroom') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'maid_bedroom') {
                 ((s as any).property = (s as any).property ?? {})['id'] = 7;
                 ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                 ((s as any).property = (s as any).property ?? {})['name'] = 'Nicholas\' Apartment';
@@ -149,7 +149,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                 ((s as any).property = (s as any).property ?? {})['type'] = 'permanent_residence';
                 ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 'niko_apartment') {
+                if (String((s as any).locArgs?.[1] ?? '') === 'niko_apartment') {
                   ((s as any).property = (s as any).property ?? {})['id'] = 8;
                   ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                   ((s as any).property = (s as any).property ?? {})['name'] = 'Niko\'s apartment';
@@ -166,7 +166,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                   ((s as any).property = (s as any).property ?? {})['bedroom_arg'] = '';
                   ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 'shulga_apartment') {
+                  if (String((s as any).locArgs?.[1] ?? '') === 'shulga_apartment') {
                     ((s as any).property = (s as any).property ?? {})['id'] = 9;
                     ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                     ((s as any).property = (s as any).property ?? {})['name'] = 'Uncle Sergey\'s apartment';
@@ -184,7 +184,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                     ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                     ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 'lyceum_dorm') {
+                    if (String((s as any).locArgs?.[1] ?? '') === 'lyceum_dorm') {
                       ((s as any).property = (s as any).property ?? {})['id'] = 10;
                       ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                       ((s as any).property = (s as any).property ?? {})['name'] = 'Lyceum school';
@@ -202,7 +202,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                       ((s as any).property = (s as any).property ?? {})['type'] = 'permanent_residence';
                       ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 'university_dorm') {
+                      if (String((s as any).locArgs?.[1] ?? '') === 'university_dorm') {
                         ((s as any).property = (s as any).property ?? {})['id'] = 11;
                         ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                         ((s as any).property = (s as any).property ?? {})['name'] = 'University halls';
@@ -220,7 +220,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                         ((s as any).property = (s as any).property ?? {})['type'] = 'permanent_residence';
                         ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 'hunters_lodge') {
+                        if (String((s as any).locArgs?.[1] ?? '') === 'hunters_lodge') {
                           ((s as any).property = (s as any).property ?? {})['id'] = 12;
                           ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                           ((s as any).property = (s as any).property ?? {})['name'] = 'Hunter\'s lodge in Gadukino';
@@ -237,7 +237,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                           ((s as any).property = (s as any).property ?? {})['bedroom_arg'] = 'start';
                           ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 'shared_apartment') {
+                          if (String((s as any).locArgs?.[1] ?? '') === 'shared_apartment') {
                             ((s as any).property = (s as any).property ?? {})['id'] = 13;
                             ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                             ((s as any).property = (s as any).property ?? {})['name'] = 'Shared apartment in Pavlovsk';
@@ -255,7 +255,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                             ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                             ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 'grandparents_house') {
+                            if (String((s as any).locArgs?.[1] ?? '') === 'grandparents_house') {
                               ((s as any).property = (s as any).property ?? {})['id'] = 14;
                               ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                               ((s as any).property = (s as any).property ?? {})['name'] = 'Grandparent\'s house in Gadukino';
@@ -272,7 +272,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                               ((s as any).property = (s as any).property ?? {})['bedroom_arg'] = 'barn_room';
                               ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) === 'city_house') {
+                              if (String((s as any).locArgs?.[1] ?? '') === 'city_house') {
                                 ((s as any).property = (s as any).property ?? {})['id'] = 15;
                                 ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                                 ((s as any).property = (s as any).property ?? {})['name'] = 'City residential house';
@@ -291,7 +291,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                 ((s as any).property = (s as any).property ?? {})['price'] = 800000;
                                 ((s as any).property = (s as any).property ?? {})['internet_enabled'] = 1;
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) === 'meynold_household') {
+                                if (String((s as any).locArgs?.[1] ?? '') === 'meynold_household') {
                                   ((s as any).property = (s as any).property ?? {})['id'] = 16;
                                   ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                                   ((s as any).property = (s as any).property ?? {})['name'] = 'Meynold Household';
@@ -309,7 +309,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                   ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                                   ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) === 'hotel_therapist') {
+                                  if (String((s as any).locArgs?.[1] ?? '') === 'hotel_therapist') {
                                     ((s as any).property = (s as any).property ?? {})['id'] = 17;
                                     ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                                     ((s as any).property = (s as any).property ?? {})['name'] = 'Pavlovsk Hotel Room';
@@ -327,7 +327,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                     ((s as any).property = (s as any).property ?? {})['type'] = 'temporary_residence';
                                     ((s as any).property = (s as any).property ?? {})['free_internet'] = 1;
                                   } else {
-                                    if (Number((s as any).locArgs?.[1] ?? 0) === 'pushkin_ballet_dorm') {
+                                    if (String((s as any).locArgs?.[1] ?? '') === 'pushkin_ballet_dorm') {
                                       ((s as any).property = (s as any).property ?? {})['id'] = 18;
                                       ((s as any).property = (s as any).property ?? {})['code'] = ((s as any).locArgs?.[1] ?? 0);
                                       ((s as any).property = (s as any).property ?? {})['name'] = 'Pushkin Ballet Dorm';
@@ -350,14 +350,6 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                         (s as any).temp_app_loc = ((String((String(((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)]).slice((3)-1))).indexOf(String('\''))) + 1);
                                         (s as any).temp_loc_name = (String(((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)]).slice((2)-1, ((2)-1)+(((s as any).temp_app_loc ?? 0))));
                                         if (hasLocation(((s as any).temp_loc_name ?? 0))) {
-                                          // TODO-QSP: dynamic "gs <<$home_property_attr_calls[i]>>"
-                                        }
-                                        (s as any).i = ((s as any).i ?? 0) + (1);
-                                        if (((s as any).i ?? 0) < Object.keys((s as any).home_property_attr_calls ?? {}).length  &&  ((s as any).property ?? 0)?.['code'] !== Number((s as any).locArgs?.[1] ?? 0)) {
-                                          // TODO-QSP: jump 'mod_get_property_attr_calls_loop'
-                                        }
-                                        if (((s as any).property ?? 0)?.['code'] !== Number((s as any).locArgs?.[1] ?? 0)) {
-                                          // TODO-QSP: killvar 'property'
                                         }
                                       }
                                     }
@@ -378,74 +370,6 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterGetPropertyAttribute(s: GameState, scene: SceneBuilder): void {
-  (s as any).name = ((Number((s as any).locArgs?.[2] ?? 0) === '') ? (((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)]) : (((s as any).home_name ?? 0)?.[((s as any).locArgs?.[2] ?? 0)]));
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).name ?? 0)]; enterGetPropertyAttr(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
-    (s as any).result = ((s as any).property ?? 0)?.[(String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))];
-  } else {
-    (s as any).result = ((s as any).property ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterRegisterModGetPropertyAttributeCall(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_hpac = (String(((s as any).locArgs?.[1] ?? 0)).trim());
-  if ((Array.isArray((s as any).home_property_attr_calls) ? ((s as any).home_property_attr_calls as any[]).indexOf(((s as any).temp_hpac ?? 0)) : -1) < 0) {
-    // TODO-QSP: $home_property_attr_calls[] = $temp_hpac
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterRemoveModGetPropertyAttributeCall(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_hpacVars = (s as any).temp_hpacVars ?? {})['call'] = (String(((s as any).locArgs?.[1] ?? 0)).trim());
-  ((s as any).temp_hpacVars = (s as any).temp_hpacVars ?? {})['pos'] = qspUntranslated(s, "arrpos('home_property_attr_calls', temp_hpacVars['call'])", { location: "homes_properties_attr" });
-  if (((s as any).temp_hpacVars ?? 0)?.['pos'] >= 0) {
-    ((s as any).temp_hpacVars = (s as any).temp_hpacVars ?? {})['loc'] = ((String((String(((s as any).temp_hpacVars ?? 0)?.['call']).slice((3)-1))).indexOf(String('\''))) + 1);
-    ((s as any).temp_hpacVars = (s as any).temp_hpacVars ?? {})['name'] = (String(((s as any).temp_hpacVars ?? 0)?.['call']).slice((2)-1, ((2)-1)+(((s as any).temp_hpacVars ?? 0)?.['loc'])));
-    if (hasLocation(((s as any).temp_hpacVars ?? 0)?.['name'])) {
-      // TODO-QSP: dynamic "gs <<$temp_hpacVars['call']>>"
-      if (((s as any).home ?? 0)?.['current'] === ((s as any).property ?? 0)?.['code']) {
-        qspCall(s, 'homes_properties', 'set_homeless');
-      }
-    }
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterAddNewHomeLocation(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).home_name ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
-  } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  Number((s as any).locArgs?.[3] ?? 0) === '') {
-      // TODO-QSP: $home_name[$ARGS[1]] = ''
-    } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
-        // TODO-QSP: $home_name[$ARGS[1]] = $ARGS[2]
-        if ((Array.isArray((s as any).homes) ? ((s as any).homes as any[]).indexOf(Number((s as any).locArgs?.[2] ?? 0)) : -1) < 0) {
-          // TODO-QSP: $homes[] = $ARGS[2]
-        }
-      } else {
-        // TODO-QSP: $home_name[$ARGS[1]] = $home_name[$ARGS[3]]
-      }
-    }
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterAddNewTrainStation(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).train_station ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
-  } else {
-    // TODO-QSP: $train_station[$ARGS[1]] = "gt '<<$ARGS[2]>>', '<<$ARGS[3]>>'"
-  }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,21 +488,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'get_property_attr':
       enterGetPropertyAttr(s, scene);
-      break;
-    case 'get_property_attribute':
-      enterGetPropertyAttribute(s, scene);
-      break;
-    case 'register_mod_get_property_attribute_call':
-      enterRegisterModGetPropertyAttributeCall(s, scene);
-      break;
-    case 'remove_mod_get_property_attribute_call':
-      enterRemoveModGetPropertyAttributeCall(s, scene);
-      break;
-    case 'add_new_home_location':
-      enterAddNewHomeLocation(s, scene);
-      break;
-    case 'add_new_train_station':
-      enterAddNewTrainStation(s, scene);
       break;
     default:
       enterDefault(s, scene);

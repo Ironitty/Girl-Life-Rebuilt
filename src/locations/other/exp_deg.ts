@@ -7,24 +7,24 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) <= 0  &&  Number((s as any).locArgs?.[2] ?? 0) !== 'reset') {
+  if (String((s as any).locArgs?.[2] ?? '') <= 0  &&  String((s as any).locArgs?.[2] ?? '') !== 'reset') {
     // TODO-QSP: exit
   }
   ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = qspFunc(s, '_difficulty', 'get_deg_loss');
-  if (((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + Number((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
+  if (((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + (String((s as any).locArgs?.[0] ?? '')) + ';'))) + 1) > 0) {
     ((s as any).expdegVars = (s as any).expdegVars ?? {})['statName'] = 'vball';
     ((s as any).expdegVars = (s as any).expdegVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = 75 * (((s as any).expdegVars ?? {})?.['deg_loss_mult'] ?? 0) / 100;
   } else {
-    if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(Number((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
+    if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[0] ?? '')) : -1) >= 0) {
       ((s as any).expdegVars = (s as any).expdegVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
       ((s as any).expdegVars = (s as any).expdegVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
       ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = 75 * (((s as any).expdegVars ?? {})?.['deg_loss_mult'] ?? 0) / 100;
     } else {
-      if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(Number((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
+      if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[0] ?? '')) : -1) >= 0) {
         ((s as any).expdegVars = (s as any).expdegVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
         ((s as any).expdegVars = (s as any).expdegVars ?? {})['attrArray'] = '';
       } else {
@@ -33,10 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reset') {
-    // TODO-QSP: dynamic "
-    // TODO-QSP: <<$expdegVars['statName']>>_deg = max(200, (102 - min(100, <<$expdegVars['statName']>>_lvl) + <<$exp...
-    // TODO-QSP: "
+  if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     return;
   }
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait_index'] = 0;

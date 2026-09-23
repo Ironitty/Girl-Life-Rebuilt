@@ -196,19 +196,19 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
-    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[0] ?? '') === "((s as any).AddDebugVar ?? 0)") {
+    if (String((s as any).locArgs?.[1] ?? '') !== '') {
       (s as any).i = 0;
       // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
-    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[0] ?? '') === "((s as any).DeleteDebugVar ?? 0)") {
+    if (String((s as any).locArgs?.[1] ?? '') !== '') {
       if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
         (s as any).i = 0;
         // TODO-QSP: :DeleteDebugVarLoop
         if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
+          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
             (s as any).i = 0;
           } else {
             (s as any).i = ((s as any).i ?? 0) + (1);
@@ -222,7 +222,7 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWait(s: GameState, scene: SceneBuilder): void {
-  (s as any).waitStr = 0;
+  (s as any).waitStr = window.prompt("How long would you like to wait?<br>(maximum 120 minutes, leave blank or press cancel to wait 15 minutes)<br>Alternatively, input a time to wait until (hh:mm). It is <<$mid(100+hour,2,2)>>:<<$mid(100+minut,2,2)>> now.") ?? '';
   (s as any).waiting = 0;
   if (((s as any).waitStr ?? 0) === '') {
     (s as any).waiting = 15;
@@ -243,7 +243,7 @@ function enterWait(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRest(s: GameState, scene: SceneBuilder): void {
-  (s as any).waiting = parseFloat(0);
+  (s as any).waiting = parseFloat(window.prompt("How long would you like to rest?<br>(Default 15 minutes, maximum 120 minutes)") ?? '');
   if ((!((s as any).waiting ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
   } else {

@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPreset(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'set') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'sims') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'set') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'sims') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-4);
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -28,7 +28,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
       ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
       ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'very easy') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'very easy') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-3);
         ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -46,7 +46,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'easy') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
           ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = (-1);
           ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -64,7 +64,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
           ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
           ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'normal') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'normal') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
             ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 0;
             ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -82,7 +82,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
             ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
             ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'hard') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
               ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 2;
               ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -100,7 +100,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
               ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 0;
               ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 1;
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'very hard') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'very hard') {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
                 ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 3;
                 ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -118,7 +118,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
                 ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 0;
                 ((s as any).cheatVars = (s as any).cheatVars ?? {})['track_period'] = 0;
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'russia') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'russia') {
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
                   ((s as any).cheatVars = (s as any).cheatVars ?? {})['deg_speed_opt'] = 4;
                   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['pos_mult_opt'] = 0;
@@ -143,7 +143,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'get') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'get') {
       (s as any).result = 0;
       if (((s as any).cheatVars ?? 0)?.['deg_speed_opt'] === -4  &&  ((s as any).cheatVars ?? 0)?.['skill_gain'] === 1) {
         if (((s as any).cfg_vars ?? 0)?.['pos_mult_opt'] === 0  &&  ((s as any).cfg_vars ?? 0)?.['neg_mult_opt'] === -4  &&  ((s as any).cheatVars ?? 0)?.['pos_mood_opt'] === 3  &&  ((s as any).cheatVars ?? 0)?.['neg_mood_opt'] === -3  &&  ((s as any).cheatVars ?? 0)?.['wp_cost_opt'] === -3  &&  ((s as any).cheatVars ?? 0)?.['preg_chance'] === -4  &&  ((s as any).cheatVars ?? 0)?.['random_lovers'] === 0  &&  ((s as any).cheatVars ?? 0)?.['random_robbers'] === 1  &&  ((s as any).cheatVars ?? 0)?.['random_snatchers'] === 1  &&  ((s as any).cheatVars ?? 0)?.['random_rapists'] === 1  &&  ((s as any).cheatVars ?? 0)?.['abduction_chance'] === 1  &&  ((s as any).cheatVars ?? 0)?.['tatiana_apprnc_change'] === 0  &&  ((s as any).cheatVars ?? 0)?.['auto_tampons'] === 1  &&  ((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
@@ -201,13 +201,13 @@ function enterSetdifficultyInt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetdifficulty(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'easy peasy') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'easy peasy') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'relaxed') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'relaxed') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'hardcore') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'hardcore') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -283,37 +283,37 @@ function enterSpendmoney(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === -99) {
+  if (String((s as any).locArgs?.[1] ?? '') === -99) {
     (s as any).result = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === 0) {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === 1) {
         (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 5) / 4;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+        if (String((s as any).locArgs?.[1] ?? '') === 2) {
           (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 3) / 2;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+          if (String((s as any).locArgs?.[1] ?? '') === 3) {
             (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 2;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+            if (String((s as any).locArgs?.[1] ?? '') === 4) {
               (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 3;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === -1) {
+              if (String((s as any).locArgs?.[1] ?? '') === -1) {
                 (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 3) / 4;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === -2) {
+                if (String((s as any).locArgs?.[1] ?? '') === -2) {
                   (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 2) / 3;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === -3) {
+                  if (String((s as any).locArgs?.[1] ?? '') === -3) {
                     (s as any).result = ((s as any).locArgs?.[2] ?? 0) / 2;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === -4) {
+                    if (String((s as any).locArgs?.[1] ?? '') === -4) {
                       (s as any).result = ((s as any).locArgs?.[2] ?? 0) / 3;
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 99) {
+                      if (String((s as any).locArgs?.[1] ?? '') === 99) {
                         (s as any).result = (((s as any).locArgs?.[2] ?? 0) * ((s as any).locArgs?.[3] ?? 0)) / 100;
                       }
                     }

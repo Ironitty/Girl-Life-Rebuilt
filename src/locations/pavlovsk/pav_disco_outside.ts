@@ -167,7 +167,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([
       { label: 'Ask his name', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: $npc_usedname[$npcID] = $npc_nickname[$npcID]
     scene.text('"What\'s your name by the way?"');
     // TODO-QSP: dynamic text: "I''m <<$npc_firstname>>," he tells you.
@@ -180,7 +180,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Say goodbye', goto: ['pav_disco_outside', 'chat_end'] },
     { label: 'You go to the disco a lot?', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"So, do you come out here a lot? To the disco I mean."');
     if (((String('I').indexOf(String(((st as any).npc_perstype ?? 0)?.[String((st as any).npcID ?? 0)]))) + 1) > 0) {
       if (((st as any).npc_rel_goal ?? 0)?.[String((st as any).npcID ?? 0)] === 'sex') {
@@ -279,7 +279,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'pav_disco_outside', 'exit_options'
   } },
         { label: 'Give him your number', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "I wouldn''t mind seeing you again, if you want my number?" you offer <<$npcdesc...
     scene.text(`"I wouldn't mind seeing you again, if you want my number?" you offer ${((st as any).npcdesc ?? '')}.`);
     scene.text('He smiles back at you.');
@@ -339,7 +339,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOutsideImg(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'handjob_stop') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'handjob_stop') {
     if (((s as any).temp ?? 0)?.['curr_action'] === 'kissing') {
       // TODO-QSP: dynamic text: With a panicked gasp, you break the kiss and snap your hand away from <<$npcdesc...
       scene.text(`With a panicked gasp, you break the kiss and snap your hand away from ${((s as any).npcdesc ?? '')}'s cock in the same motion.`);
@@ -366,7 +366,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'pav_disco_outside', 'exit_options');
   } },
       { label: 'It\'s okay', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"It\'s okay," you say, taking a deep breath and calming down. "It was just... too fast, y\'know?"');
     // TODO-QSP: dynamic text: "Yeah," <<$npcdesc>> nods emphatically.
     scene.text(`"Yeah," ${((st as any).npcdesc ?? '')} nods emphatically.`);
@@ -394,29 +394,25 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Fucking typical cocktease," <<$npcdesc>> grumbles as he pulls his pants up. "Bl...
     scene.text(`"Fucking typical cocktease," ${((st as any).npcdesc ?? '')} grumbles as he pulls his pants up. "Blueball bitch. Get the fuck out of here."`);
     scene.text('Blushing with everything he\'s called you, you do as he says and leave.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Accept', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('Taking a deep breath, you calm down and consider the offer.');
     // TODO-QSP: dynamic text: "That might be better," you say and <<$npcdesc>> grins back at you.
     scene.text(`"That might be better," you say and ${((st as any).npcdesc ?? '')} grins back at you.`);
     scene.text('"Come on then. Let\'s go."');
     if (((st as any).npc_residence ?? 0)?.[String((st as any).npcID ?? 0)] === 'pav_residential') {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Go back to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sex_ev_start', 'npc_home_start', iif($npc_rel_type[$npcI...
-  } },
+        { label: '', labelFn: (s: GameState) => 'Go back to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'npc_home_start', 'TODO', 'hookup'] },
       ]);
     } else {
       scene.actions([
-        { label: 'Go back to the hotel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sex_ev_start', 'hotel_start', iif($npc_rel_type[$npcID] ...
-  } },
+        { label: 'Go back to the hotel', goto: ['sex_ev_start', 'hotel_start', 'TODO', 'hookup'] },
       ]);
     }
   } },
@@ -431,10 +427,10 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Need to go', handler: (st: GameState) => {
     scene.text('"I need to get out of here," you say, hurrying away.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'It\'s okay', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"It\'s okay," you say, taking a deep breath and calming down. "It was just... too fast, y\'know?"');
     // TODO-QSP: dynamic text: "Yeah," <<$npcdesc>> nods emphatically.
     scene.text(`"Yeah," ${((st as any).npcdesc ?? '')} nods emphatically.`);
@@ -500,7 +496,7 @@ function enterCallitanight(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure," you smile, taking his phone so you can input your number into it.');
     // TODO-QSP: dynamic text: "I hope I''ll see you again soon, <<$pcs_firstname>>," he smiles back as you hea...
     scene.text(`"I hope I'll see you again soon, ${((st as any).pcs_firstname ?? '')}," he smiles back as you head back to the disco.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -523,13 +519,13 @@ function enterPcAsknumber(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "No...?" you reply, bewildered. <<$npcdesc>> shrugs.
     scene.text(`"No...?" you reply, bewildered. ${((st as any).npcdesc ?? '')} shrugs.`);
     scene.text('"Whatever then. Fuck off, I need to find a girl who will actually put out," he says, shoving past you back into the disco.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Okay (add fuckbuddy)', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_fuckbuddy', ((st as any).npcID ?? 0));
     scene.text('"Okay, I guess," you say, taking his phone and adding your number.');
     scene.text('"Nice," he says, looking you up and down as he takes the phone back, as if he\'s staring through your clothes. "I\'ll text you when I want to bust a nut."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -560,7 +556,7 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse', handler: (st: GameState) => {
     scene.text('"No!" you frown. "I said I <i>don\'t</i> want to do that!"');
     scene.text('"Then fuck off. I need to find some real pussy," he says, shoving past you back into the disco.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExitOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'We\'ll see', handler: (st: GameState) => {
     scene.text('"I\'m not saying no, but we\'ll have to see about it first," you reply, a wry smirk on your face.');
@@ -627,8 +623,8 @@ function enterBoysexTitslip(s: GameState, scene: SceneBuilder): void {
 function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp = (s as any).temp ?? {})['curr_action'] = 'titsuck';
   scene.img('images/locations/pavlovsk/community/tits.jpg');
-  // TODO-QSP: dynamic text: <<$npcdesc>> pops your nipple into his mouth and starts sucking, rolling his ton...
-  scene.text('' + ((s as any).npcdesc ?? '') + ' pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from \' + iif(PCloDress > 0, \'your dress \', \'your top \') + \'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.');
+  // TODO-QSP: dynamic text: '<<$npcdesc>> pops your nipple into his mouth and starts sucking, rolling his to...
+  scene.text(`${((s as any).npcdesc ?? '')} pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from ` + ((((s as any).PCloDress ?? 0) > 0) ? ('your dress ') : ('your top ')) + 'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_disco_outside', 'sex_route', 'tit_suck'] },
@@ -721,7 +717,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'pav_disco_sex', 'handjob');
   } },
         { label: 'Sure', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You pull your clothes back into place before letting him drag you away.');
     scene.actions([
       { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
@@ -735,7 +731,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "How about mine instead?" you ask. With a sultry smirk, you lean in to whisper i...
     scene.text(`"How about mine instead?" you ask. With a sultry smirk, you lean in to whisper in ${((st as any).npcdesc ?? '')}'s ear.`);
     scene.text('"<i>My parents aren\'t home tonight...</i>"');
@@ -750,7 +746,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Invite him home (hookup)', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"How about you come back to my place instead?" you ask. "My housemates won\'t mind."');
     scene.text('The look in his eyes is all you need to know and the two of you rush back to the Meynold\'s house together.');
     scene.actions([
@@ -768,7 +764,7 @@ function enterSexRoute(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'pav_disco_sex', 'handjob');
   } },
         { label: 'Sure', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_car ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text('You pull your clothes back into place as he leads you back to his car.');
     } else {
@@ -818,7 +814,7 @@ function enterBlowjobPre(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop!', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Woah!" you yelp, stepping back to get out from under <<$npcdesc>>''s hand. "Wha...
     scene.text(`"Woah!" you yelp, stepping back to get out from under ${((st as any).npcdesc ?? '')}'s hand. "What do you think you're doing?!"`);
     if (((st as any).npc_shy ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -895,7 +891,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop him', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"Hey!" You quickly turn back around, pushing him back. "What do you think you\'re doing?"');
     scene.text('"I just want to fuck you," he says as if that\'s all you needed to know.');
     scene.text('"Well, <i>I</i> don\'t you want to!"');
@@ -907,7 +903,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I don\'t want to have sex', handler: (st: GameState) => {
     ((st as any).gdk = (st as any).gdk ?? {})['fuck'] = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I just don\'t want to!"');
     if (((st as any).pav_disco_bj ?? 0)?.[String((st as any).npcID ?? 0)] >= ((st as any).totminut ?? 0) - 20) {
       // TODO-QSP: dynamic text: "Ugh, fine." <<$npcdesc>> grabs you by the shoulder and pushes you back down to ...
@@ -919,7 +915,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"What?? You think I\'m going to just get down there after the way you\'re acting?"');
     scene.text('"But you said you didn\'t want to fuck!" he snarls.');
     // TODO-QSP: dynamic text: "Ugh, I don''t want to deal with you." You quickly back away from <<$npcdesc>> a...
@@ -932,7 +928,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'This is too public', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"This is too public!" you hiss. "You think I\'ll fuck you where anybody could see?"');
     if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1  ||  ((st as any).pav_disco_bj ?? 0)?.[String((st as any).npcID ?? 0)] > ((st as any).totminut ?? 0) - 20) {
       scene.text('"You were just sucking my dick!" he almost shouts. "Why is it too public to fuck, but it isn\'t to suck my dick?!"');
@@ -1101,7 +1097,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'pav_disco_outside', 'slut_accept_route', 'paid');
   } },
       { label: 'Do it for free', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"No thanks," you push the money away from yourself.');
     if (((st as any).npc_assertive ?? 0)?.[String((st as any).npcID ?? 0)] + ((st as any).npc_pushy ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: "But-!" <<$npcdesc>> starts, before you suddenly step close to him.
@@ -1125,7 +1121,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlutAcceptRoute(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'paid') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'paid') {
     qspCall(s, 'pav_disco_sex', 'disco_sex_fame', 'prostitute');
   }
   if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'blowjob') {
@@ -1142,9 +1138,7 @@ function enterSlutAcceptRoute(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Squat down', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_disco_sex', 'blowjob', $ARGS[1]
-  } },
+      { label: 'Squat down', goto: ['pav_disco_sex', 'blowjob', 'ARGS[1]'] },
     ]);
   } else {
     if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {

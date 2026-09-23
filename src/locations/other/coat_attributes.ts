@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -8,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'reset_CoatVars');
-  if (hasLocation('$attributes_' + Number((s as any).locArgs?.[0] ?? 0) + '_coats')) {
+  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')) + '_coats')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_coats', ARGS[1]
   }
   if ((!((s as any).CoatQuality ?? 0))) {
@@ -16,9 +14,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).CoatMaxStrength = ((s as any).CoatStrength ?? 0);
   if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    // TODO-QSP: dynamic "
-    (s as any).CoatStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_coats_h[((s as any).locArgs?.[2] ?? 0)]", { location: "coat_attributes" });
-    // TODO-QSP: "
   }
   scene.build();
 }

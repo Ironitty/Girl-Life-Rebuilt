@@ -989,7 +989,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       { label: 'Jog through the park (1:00)', handler: (st: GameState) => {
     if (((st as any).daystage ?? 0) === 2  ||  ((st as any).daystage ?? 0) === 3) {
       qspCall(st, 'stat', '');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('You go for a nice long jog through the park.');
       if (((st as any).pcs_inhib ?? 0) >= 35  ||  (((st as any).pcs_inhib ?? 0) >= 25  &&  ((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0)) {
         scene.actions([
@@ -1003,12 +1003,14 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'arousal', 'end');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 3) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/flash'+rand(3, 4)+...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 3) + '.jpg"></center>');
     } else {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/park/fl...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool air against your warm skin causes you to shiver, and almost immediately your nipples start to harden, a mixed reaction from the air hitting them and your growing excitement.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -1023,7 +1025,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 20) + 1) > ((st as any).pcs_hotcat ?? 0)) {
       qspGoto(st, 'park_walkevents', 'run_end');
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('About halfway through your run, you hear a whistle pierce the air.');
       scene.actions([
         { label: 'Turn', handler: (st: GameState) => {
@@ -1045,7 +1047,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ignore him', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You roll your eyes but otherwise ignore him, continuing to run until his hollering is nothing but a distant buzz behind you. And soon enough, there\'s no hollering at all.');
     scene.actions([
       { label: 'Finish your run', goto: ['park_walkevents', 'run_end'] },
@@ -1053,7 +1055,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Ignore him (annoyed)', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['catcall'] = 4;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You grit your teeth and try to ignore him, continuing to run past while he shouts lewd remarks about your body and what he\'d like to do to it. Even once he\'s far behind you, you can\'t stop thinking about it, seething internally and grinding your teeth.');
     scene.text('Fuck! Who does he think he is? Are you just a piece of meat to him? Fuck that guy and fuck everybody like him!');
     scene.actions([
@@ -1141,7 +1143,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     (st as any).fat = ((st as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 0));
     qspCall(st, 'sweat', 'add', 5);
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunningImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You ignore your instincts and start jogging through the park.');
     if (((st as any).pcs_inhib ?? 0) >= 35  ||  (((st as any).pcs_inhib ?? 0) >= 25  &&  ((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0)) {
       scene.actions([
@@ -1155,9 +1157,11 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'arousal', 'end');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 3) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/flash'+rand(3, 4)+...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 3) + '.jpg"></center>');
     } else {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/park/fl...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool night air against your warm skin causes you to shiver and almost immediately your nipples start to harden.');
     if ((Math.floor(Math.random() * 25) + 0) < 7  &&  ((st as any).cheatVars ?? 0)?.['random_rapists'] !== 1) {
@@ -1174,7 +1178,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRunReactions(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);

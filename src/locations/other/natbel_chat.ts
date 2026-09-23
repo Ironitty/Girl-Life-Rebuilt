@@ -66,9 +66,9 @@ function enterEventsChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).NatbelQW ?? 0)?.['FriendLover'] === 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoanEventsChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoanEventsChat(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverEventsChat(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLoverEventsChat(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -135,7 +135,7 @@ function enterLoanEventsChat(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (qspFunc(s, 'money', 'can_afford', qspFunc(s, 'money', 'base_price', 2000)) === 0  ||  ((s as any).NatbelQW ?? 0)?.['QWstage'] === 1) {
-          // TODO-QSP: dynamic text: Suddenly Natasha says: "Hey <<$pcs_nickname>>, you seem to have tons of cash, co...
+          // TODO-QSP: dynamic text: 'Suddenly Natasha says: "Hey <<$pcs_nickname>>, you seem to have tons of cash, c...
           scene.text('Suddenly Natasha says: "Hey ' + ((s as any).pcs_nickname ?? '') + ', you seem to have tons of cash, could you lend me \'+iif(NatbelQW[\'QWstage\'] = 1, $func(\'money\', \'format\', 5000), $func(\'money\', \'format\', 2000))+\', please? I swear I\'ll pay you back before you even miss it."');
           scene.text('You shake your head. "Sorry Natasha, I don\'t have that much money with me."');
           scene.actions([
@@ -918,9 +918,9 @@ function enterJobQuestions(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['StP_trip_daystart'] = ((st as any).daystart ?? 0) + 14 + (13 - ((st as any).week ?? 0)) % 7;
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['shopping'] = 3;
     if (((st as any).temp_runner ?? 0) === 1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobQuestionsRunner(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobQuestionsRunner(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobQuestionsNatbelReturns(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobQuestionsNatbelReturns(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1075,14 +1075,14 @@ function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "One second <<$pcs_nickname>>, I''ll be back in a moment. Just need to go to the...
     scene.text(`"One second ${((st as any).pcs_nickname ?? '')}, I'll be back in a moment. Just need to go to the kitchen quickly. I left something on the stove and it should be cooked by now…"`);
     scene.text('Natasha returns still holding a wooden spoon and sits next to you so you continue.');
-    // TODO-QSP: dynamic text: Shall we go Saturday and we can have a look in some of the shops and maybe see i...
+    // TODO-QSP: dynamic text: 'Shall we go Saturday and we can have a look in some of the shops and maybe see ...
     scene.text('Shall we go Saturday and we can have a look in some of the shops and maybe see if there\'s anything we like? How about I pick you up outside between 12:00 and 14:00? Whilst we\'re there I\'ll tell you where I work and I\'ll get you a ticket so you can watch the race."');
     // TODO-QSP: dynamic text: Natasha''s smile widens. "Oh yes <<$pcs_nickname>>! That''ll be lovely. Umm… How...
     scene.text(`Natasha's smile widens. "Oh yes ${((st as any).pcs_nickname ?? '')}! That'll be lovely. Umm… However, you need to give me a couple of weeks as I want to arrange a small surprise for you as a thank you for all your help."`);
     scene.text('"There\'s really no need for anything special Natasha. I was just thinking about a day out and having a browse."');
     // TODO-QSP: dynamic text: "Yes I know <<$pcs_nickname>> but I want to. I''ll need a couple of weeks if tha...
     scene.text(`"Yes I know ${((st as any).pcs_nickname ?? '')} but I want to. I'll need a couple of weeks if that's okay?"`);
-    // TODO-QSP: dynamic text: "Okay… So how about I pick you up outside between '+func('time', 'get_time_strin...
+    // TODO-QSP: dynamic text: '"Okay… So how about I pick you up outside between '+func('time', 'get_time_stri...
     scene.text('"Okay… So how about I pick you up outside between 12:00 and 14:00 in two weeks? "');
     scene.actions([
       { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
@@ -1112,7 +1112,7 @@ function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree trip to St. Petersburgh', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha33.jpg');
-    // TODO-QSP: dynamic text: "Anyway… As I was saying, I''ve been thinking about what we can do next. So if w...
+    // TODO-QSP: dynamic text: '"Anyway… As I was saying, I''ve been thinking about what we can do next. So if ...
     scene.text('"Anyway… As I was saying, I\'ve been thinking about what we can do next. So if we arrange a trip to St. Petersburg Saturday we can have a look in some of the shops and maybe see if there\'s anything we like. So how about I pick you up outside between 12:00 and 14:00? Whilst we\'re there I\'ll tell you where I work and I\'ll get you a ticket so you can watch the race."');
     // TODO-QSP: dynamic text: Natasha''s smile widens. "Oh yes <<$pcs_nickname>>! That''ll be lovely. Umm… How...
     scene.text(`Natasha's smile widens. "Oh yes ${((st as any).pcs_nickname ?? '')}! That'll be lovely. Umm… However, you need to give me a couple of weeks as I want to arrange a small surprise for you as a thank you for all your help."`);
@@ -1123,7 +1123,7 @@ function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
       { label: 'Slap', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha41.jpg');
-    // TODO-QSP: dynamic text: "Of course Natasha, no problem, how about I pick you up outside between '+func('...
+    // TODO-QSP: dynamic text: '"Of course Natasha, no problem, how about I pick you up outside between '+func(...
     scene.text('"Of course Natasha, no problem, how about I pick you up outside between 12:00 and 14:00 in two weeks." You pause then continue. "Just make sure it doesn…"');
     scene.text('Natasha interrupts. "Yes mother!" She says grinning and rolling her eyes.');
     scene.text('"You cheeky mare! If you keep that up you\'re asking for a butt slap!" You respond laughing.');
@@ -1172,11 +1172,11 @@ function enterJobQuestionsNatbelReturns(s: GameState, scene: SceneBuilder): void
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha33.jpg');
     scene.text('Natasha returns still holding a wooden spoon as you continue.');
     if (Object.keys((st as any).temp_pav_work ?? {}).length > 0) {
-      // TODO-QSP: dynamic text: "Anyway… I''ve been thinking about what we can do next. How about we arrange a t...
+      // TODO-QSP: dynamic text: '"Anyway… I''ve been thinking about what we can do next. How about we arrange a ...
       scene.text('"Anyway… I\'ve been thinking about what we can do next. How about we arrange a trip to St. Petersburg one Saturday and have a look in some of the shops? Maybe see if there\'s anything we like? How about I pick you up outside between 12:00 and 14:00?"');
     } else {
       if (Object.keys((st as any).temp_city_work ?? {}).length > 0) {
-        // TODO-QSP: dynamic text: "Okay… I''ve been thinking about what we can do next. How about we arrange a tri...
+        // TODO-QSP: dynamic text: '"Okay… I''ve been thinking about what we can do next. How about we arrange a tr...
         scene.text('"Okay… I\'ve been thinking about what we can do next. How about we arrange a trip to St. Petersburg one Saturday and have a look in some of the shops? Maybe see if there\'s anything we like. Whilst we\'re there I\'ll tell you where I work. So how about I pick you up outside between 12:00 and 14:00? "');
       }
     }

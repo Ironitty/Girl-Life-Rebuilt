@@ -11,14 +11,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFmtPts(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = '0';
     return;
   }
-  ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['abs'] = ((Number((s as any).locArgs?.[1] ?? 0) < 0) ? (-((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['abs'] = ((String((s as any).locArgs?.[1] ?? '') < 0) ? (-((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['whole'] = (((s as any).temp_fmt ?? {})?.['abs'] ?? 0) / 250;
-  ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['sign'] = ((Number((s as any).locArgs?.[1] ?? 0) > 0) ? ('+') : ('-'));
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'fine') {
+  ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['sign'] = ((String((s as any).locArgs?.[1] ?? '') > 0) ? ('+') : ('-'));
+  if (String((s as any).locArgs?.[2] ?? '') === 'fine') {
     ((s as any).temp_fmt = (s as any).temp_fmt ?? {})['tenths'] = ((((s as any).temp_fmt ?? {})?.['abs'] ?? 0) % 250) * 10 / 250;
     if (((s as any).temp_fmt ?? 0)?.['whole'] === 0  &&  ((s as any).temp_fmt ?? 0)?.['tenths'] === 0) {
       (s as any).result = ((s as any).temp_fmt ?? 0)?.['sign'] + '&lt;0.1';
@@ -49,19 +49,19 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetArchetype(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = 'bimbo';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       (s as any).result = 'preppy';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
         (s as any).result = 'prude';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === 3) {
           (s as any).result = 'punk';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === 4) {
             (s as any).result = 'goth';
           } else {
             (s as any).result = '';
@@ -76,20 +76,20 @@ function enterGetArchetype(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'bimbo') {
-    (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ('prude') : ('punk'));
+  if (String((s as any).locArgs?.[1] ?? '') === 'bimbo') {
+    (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('prude') : ('punk'));
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'preppy') {
-      (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ('punk') : ('goth'));
+    if (String((s as any).locArgs?.[1] ?? '') === 'preppy') {
+      (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('punk') : ('goth'));
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'prude') {
-        (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ('goth') : ('bimbo'));
+      if (String((s as any).locArgs?.[1] ?? '') === 'prude') {
+        (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('goth') : ('bimbo'));
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'punk') {
-          (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ('bimbo') : ('preppy'));
+        if (String((s as any).locArgs?.[1] ?? '') === 'punk') {
+          (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('bimbo') : ('preppy'));
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'goth') {
-            (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ('preppy') : ('prude'));
+          if (String((s as any).locArgs?.[1] ?? '') === 'goth') {
+            (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('preppy') : ('prude'));
           } else {
             (s as any).result = '';
           }
@@ -104,7 +104,7 @@ function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPercentage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['point_cap'] > 0) {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[2] ?? '') === 1) {
       (s as any).temp_gap_gp = Math.max(0, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] - (((s as any).arch_const ?? {})?.['point_min'] ?? 0));
       (s as any).result = Math.min(100, ((s as any).temp_gap_gp ?? 0) * 100 / ((((s as any).arch_const ?? {})?.['point_cap'] ?? 0) - (((s as any).arch_const ?? {})?.['point_min'] ?? 0)));
     } else {
@@ -143,28 +143,28 @@ function enterGain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['archetypes'] === 1  ||  ((s as any).succubusflag ?? 0) === 1) {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[4] ?? 0) > 0  &&  Number((s as any).locArgs?.[3] ?? 0) !== '') {
-    if (((s as any).arch_vars ?? 0)['cooldown_' + Number((s as any).locArgs?.[3] ?? 0)] > 0  &&  ((s as any).daystart ?? 0) - ((s as any).arch_vars ?? 0)['cooldown_' + Number((s as any).locArgs?.[3] ?? 0)] < Number((s as any).locArgs?.[4] ?? 0)) {
+  if (String((s as any).locArgs?.[4] ?? '') > 0  &&  String((s as any).locArgs?.[3] ?? '') !== '') {
+    if (((s as any).arch_vars ?? 0)['cooldown_' + (String((s as any).locArgs?.[3] ?? ''))] > 0  &&  ((s as any).daystart ?? 0) - ((s as any).arch_vars ?? 0)['cooldown_' + (String((s as any).locArgs?.[3] ?? ''))] < String((s as any).locArgs?.[4] ?? '')) {
       return;
     }
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['cooldown_' + String(((s as any).locArgs?.[3] ?? 0))] = ((s as any).daystart ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'tiny') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
     (s as any).temp_points = 250;
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'small') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'small') {
       (s as any).temp_points = 1000;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'medium') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'medium') {
         (s as any).temp_points = 5000;
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'large') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'large') {
           (s as any).temp_points = 15000;
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'huge') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'huge') {
             (s as any).temp_points = 50000;
           } else {
-            (s as any).temp_points = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (1));
+            (s as any).temp_points = ((String((s as any).locArgs?.[2] ?? '') > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (1));
           }
         }
       }
@@ -197,22 +197,22 @@ function enterLose(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['archetypes'] === 1  ||  ((s as any).succubusflag ?? 0) === 1) {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'tiny') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'tiny') {
     (s as any).temp_points = 250;
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'small') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'small') {
       (s as any).temp_points = 1000;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'medium') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'medium') {
         (s as any).temp_points = 5000;
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'large') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'large') {
           (s as any).temp_points = 15000;
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'huge') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'huge') {
             (s as any).temp_points = 50000;
           } else {
-            (s as any).temp_points = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (1));
+            (s as any).temp_points = ((String((s as any).locArgs?.[2] ?? '') > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (1));
           }
         }
       }
@@ -233,7 +233,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['archetypes'] === 1  ||  ((s as any).succubusflag ?? 0) === 1) {
     // TODO-QSP: exit
   }
-  ((s as any).temp_change = (s as any).temp_change ?? {})['mul'] = ((Number((s as any).locArgs?.[6] ?? 0) > 0) ? (((s as any).locArgs?.[6] ?? 0)) : (1));
+  ((s as any).temp_change = (s as any).temp_change ?? {})['mul'] = ((String((s as any).locArgs?.[6] ?? '') > 0) ? (((s as any).locArgs?.[6] ?? 0)) : (1));
   ((s as any).temp_change = (s as any).temp_change ?? {})['bimbo'] = ((s as any).locArgs?.[1] ?? 0) * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
   ((s as any).temp_change = (s as any).temp_change ?? {})['preppy'] = ((s as any).locArgs?.[2] ?? 0) * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
   ((s as any).temp_change = (s as any).temp_change ?? {})['prude'] = ((s as any).locArgs?.[3] ?? 0) * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
@@ -260,7 +260,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_change = (s as any).temp_change ?? {})['opp_prude'] = ((s as any).temp_change['opp_prude'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['goth'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['prude'])));
   }
   if (((s as any).stat_cfg ?? 0)?.['arch_log_enabled'] === 1) {
-    ((s as any).temp_change = (s as any).temp_change ?? {})['cat'] = ((Number((s as any).locArgs?.[7] ?? 0) !== '') ? (((s as any).locArgs?.[7] ?? 0)) : ('unknown'));
+    ((s as any).temp_change = (s as any).temp_change ?? {})['cat'] = ((String((s as any).locArgs?.[7] ?? '') !== '') ? (((s as any).locArgs?.[7] ?? 0)) : ('unknown'));
     if (((s as any).temp_change ?? 0)?.['bimbo'] !== 0) {
       // TODO-QSP: gs 'archetypes', 'log_event', 'bimbo',  $temp_change['cat'], $ARGS[8], temp_change['bimbo']
     }
@@ -343,7 +343,7 @@ function enterFaithGain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_vars ?? 0)?.['main_active'] !== 'prude') {
     // TODO-QSP: exit
   }
-  if (((s as any).faithVars ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_day'] === ((s as any).daystart ?? 0)) {
+  if (((s as any).faithVars ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_day'] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: exit
   }
   // TODO-QSP: faithVars[$ARGS[1] + '_day'] = daystart
@@ -1291,17 +1291,17 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterArchTabs(s: GameState, scene: SceneBuilder): void {
   (s as any).arch_tabs_h = '<center><b><table width="30%" cellspacing="0" cellpadding="0"><tr>';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'main') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'main') {
     // TODO-QSP: $arch_tabs_h += '<th>Main</th>'
   } else {
     // TODO-QSP: $arch_tabs_h += '<th><a href="exec:gt ''$menu_character'', ''archetypes''">Main</a></th>'
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'catalog') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'catalog') {
     // TODO-QSP: $arch_tabs_h += '<th>Catalog</th>'
   } else {
     // TODO-QSP: $arch_tabs_h += '<th><a href="exec:gt ''$menu_character'', ''archetypes'', ''catalog''">Catalog</a><...
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'history') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'history') {
     // TODO-QSP: $arch_tabs_h += '<th>History</th>'
   } else {
     if (((s as any).stat_cfg ?? 0)?.['arch_log_enabled'] === 0) {
@@ -1995,7 +1995,7 @@ function enterLogEvent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['arch_log_enabled'] === 0) {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[4] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[4] ?? '') === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: :tl_trim_loop
@@ -2015,7 +2015,7 @@ function enterLogEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAggregate(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_agg = (s as any).temp_agg ?? {})['window'] = ((Number((s as any).locArgs?.[1] ?? 0) > 0) ? (((s as any).locArgs?.[1] ?? 0)) : (1440));
+  ((s as any).temp_agg = (s as any).temp_agg ?? {})['window'] = ((String((s as any).locArgs?.[1] ?? '') > 0) ? (((s as any).locArgs?.[1] ?? 0)) : (1440));
   ((s as any).temp_agg = (s as any).temp_agg ?? {})['cutoff'] = ((s as any).totminut ?? 0) - (((s as any).temp_agg ?? {})?.['window'] ?? 0);
   ((s as any).temp_agg = (s as any).temp_agg ?? {})['i'] = 0;
   // TODO-QSP: :agg_loop
@@ -2034,7 +2034,7 @@ function enterAggregate(s: GameState, scene: SceneBuilder): void {
 
 function enterTrackArchetype(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: tnotif_archetype_delta[$ARGS[1]] += ARGS[2]
-  if ((Array.isArray((s as any).tnotif_archetype_names) ? ((s as any).tnotif_archetype_names as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).tnotif_archetype_names) ? ((s as any).tnotif_archetype_names as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     // TODO-QSP: $tnotif_archetype_names[] = $ARGS[1]
   }
   return;

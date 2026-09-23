@@ -178,7 +178,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).KGZVars ?? 0)?.['dedrandrun'] === 1) {
           ((st as any).KGZVars = (st as any).KGZVars ?? {})['dist'] = ((st as any).KGZVars['dist'] ?? 0) - (5);
-          ((st as any).KGZVars = (st as any).KGZVars ?? {})['dead'] = ((st as any).KGZVars['dead'] ?? 0) + ((Math.floor(Math.random() * ((((st as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - (((st as any).KGZVars ?? {})?.['dead'] ?? 0) + 1)) + ((((st as any).KGZVars ?? {})?.['dead'] ?? 0))));
+          ((st as any).KGZVars = (st as any).KGZVars ?? {})['dead'] = ((st as any).KGZVars['dead'] ?? 0) + ((Math.floor(Math.random() * ((((st as any).KGZVars ?? {})?.['dead'] ?? 0) * 5 - ((st as any).KGZVars ?? 0)?.['dead'] + 1)) + (((st as any).KGZVars ?? 0)?.['dead'])));
           scene.text('You make a cautious approach, but manage to alert even more zombies.');
           scene.actions([
             { label: 'Fuck!', handler: (st: GameState) => {

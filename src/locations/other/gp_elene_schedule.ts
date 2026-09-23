@@ -31,7 +31,7 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHereCore(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (Number((s as any).locArgs?.[3] ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  Number((s as any).locArgs?.[4] ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (String((s as any).locArgs?.[3] ?? '') === String((s as any).locArgs?.[1] ?? '')  &&  String((s as any).locArgs?.[4] ?? '') === String((s as any).locArgs?.[2] ?? ''));
   return;
   // TODO-QSP: end
   scene.build();
@@ -199,62 +199,62 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLocats(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 100) {
+  if (String((s as any).locArgs?.[1] ?? '') === 100) {
     ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
     ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'gp_room';
     ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 110) {
+    if (String((s as any).locArgs?.[1] ?? '') === 110) {
       ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
       ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'main';
       ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 111) {
+      if (String((s as any).locArgs?.[1] ?? '') === 111) {
         ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
         ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'main';
         ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'reading';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 112) {
+        if (String((s as any).locArgs?.[1] ?? '') === 112) {
           ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
           ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'main';
           ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'watching_tv';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 113) {
+          if (String((s as any).locArgs?.[1] ?? '') === 113) {
             ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
             ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'main';
             ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'repearing_clothes';
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 114) {
+            if (String((s as any).locArgs?.[1] ?? '') === 114) {
               ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
               ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'main';
               ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'knitting';
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 120) {
+              if (String((s as any).locArgs?.[1] ?? '') === 120) {
                 ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
                 ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'kitchen';
                 ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'cooking';
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 121) {
+                if (String((s as any).locArgs?.[1] ?? '') === 121) {
                   ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
                   ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'kitchen';
                   ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = 'reading';
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 200) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 200) {
                     ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gpyard';
                     ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'garden';
                     ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 210) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 210) {
                       ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_gpbath';
                       ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'start';
                       ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 300) {
+                      if (String((s as any).locArgs?.[1] ?? '') === 300) {
                         ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gadukino';
                         ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = '';
                         ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 310) {
+                        if (String((s as any).locArgs?.[1] ?? '') === 310) {
                           ((s as any).locat = (s as any).locat ?? {})['A31_loc'] = 'gad_church';
                           ((s as any).locat = (s as any).locat ?? {})['A31_arg'] = 'start';
                           ((s as any).locat = (s as any).locat ?? {})['A31_arg1'] = '';

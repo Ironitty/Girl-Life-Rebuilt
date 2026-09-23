@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_preferences ?? 0)[Number((s as any).locArgs?.[0] ?? 0)] !== '') {
+  if (((s as any).npc_preferences ?? 0)[String((s as any).locArgs?.[0] ?? '')] !== '') {
   }
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_clear') : -1) < 0) {
   }
@@ -176,32 +176,32 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'choose_pref_loop'
     }
     if (Object.keys((s as any).temp_ngpPrefHasPos ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasPos') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasPos[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefHasInd ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasInd') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasInd[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefHasNeg ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasNeg') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefHasNeg[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['HasNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotPos ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotPos') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotPos[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotInd ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotInd') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotInd[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotNeg ?? {}).length > 0) {
-      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotNeg') - 1);
+      ((s as any).npgVars = (s as any).npgVars ?? {})['i'] = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
       ((s as any).ngpVars = (s as any).ngpVars ?? {})['trait'] = qspUntranslated(s, "temp_ngpPrefNotNeg[npgVars['i']]", { location: "npc_get_preference" });
       ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }

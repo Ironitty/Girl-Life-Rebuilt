@@ -19,7 +19,7 @@ function enterInitFightVars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'spar') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'spar') {
     qspCall(s, 'npcgeneratec', '', 1, 'sparring partner', (Math.floor(Math.random() * 27) + 19));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 10);
@@ -34,8 +34,8 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 16) + 5);
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 16) + 5);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'amateur_fight') {
-      if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === 'amateur_fight') {
+      if (String((s as any).locArgs?.[2] ?? '') <= 0) {
         qspCall(s, 'npcgeneratec', '', 1, 'Useless rival', (Math.floor(Math.random() * 27) + 19));
         qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 10);
@@ -50,7 +50,7 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 10);
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 10);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+        if (String((s as any).locArgs?.[2] ?? '') === 1) {
           qspCall(s, 'npcgeneratec', '', 1, '3rd class rival', (Math.floor(Math.random() * 27) + 19));
           qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 15);
@@ -65,7 +65,7 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 15);
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 15);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+          if (String((s as any).locArgs?.[2] ?? '') === 2) {
             qspCall(s, 'npcgeneratec', '', 1, '2rd class rival', (Math.floor(Math.random() * 27) + 19));
             qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
             ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 20);
@@ -80,7 +80,7 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 30);
             ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 30);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
+            if (String((s as any).locArgs?.[2] ?? '') === 3) {
               qspCall(s, 'npcgeneratec', '', 1, '1st class rival', (Math.floor(Math.random() * 27) + 19));
               qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
               ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 30);
@@ -95,7 +95,7 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 40);
               ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 40);
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 4) {
+              if (String((s as any).locArgs?.[2] ?? '') === 4) {
                 qspCall(s, 'npcgeneratec', '', 1, 'Excellent rival', (Math.floor(Math.random() * 27) + 19));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
                 ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 21) + 40);
@@ -175,16 +175,16 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAttack(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'player') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'jab') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'player') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'jab') {
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 8 - ((s as any).pcs_stren ?? 0) / 12 + 1)) + (((s as any).pcs_stren ?? 0) / 12));
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_jab ?? 0)) * 2;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'punch') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'punch') {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 5 - -((s as any).pcs_stren ?? 0) / 5 + 1)) + (-((s as any).pcs_stren ?? 0) / 5));
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_punch ?? 0));
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'kick') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'kick') {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * ((s as any).pcs_stren ?? 0) + ((s as any).rand ?? 0)(-3 * (((s as any).pcs_stren ?? 0) / 5), 3 * (((s as any).pcs_stren ?? 0) / 5));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_kick ?? 0)) / 2;
         }
@@ -218,16 +218,16 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'enemy') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'jab') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'enemy') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'jab') {
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 8 - (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 12 + 1)) + ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 12));
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_jab'] ?? 0)) * 2;
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'punch') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'punch') {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + (Math.floor(Math.random() * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5 - -(((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5 + 1)) + (-(((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5));
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_punch'] ?? 0));
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'kick') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'kick') {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + ((s as any).rand ?? 0)(-3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5), 3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_kick'] ?? 0)) / 2;
         }

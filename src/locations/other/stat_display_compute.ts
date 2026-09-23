@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sd_qa = (s as any).sd_qa ?? {})['text'] = ((Number((s as any).locArgs?.[2] ?? 0) !== ''  &&  Number((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
+  ((s as any).sd_qa = (s as any).sd_qa ?? {})['text'] = ((String((s as any).locArgs?.[2] ?? '') !== ''  &&  String((s as any).locArgs?.[2] ?? '') !== 'none') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: $sd_alerts[] = $sd_qa['text']
   return;
   // TODO-QSP: end
@@ -19,13 +19,13 @@ function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[3] ?? 0) === 'pos'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'const') {
+  if (String((s as any).locArgs?.[3] ?? '') === 'pos'  ||  String((s as any).locArgs?.[3] ?? '') === 'const') {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon_arg'] = '';
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['row_arg'] = 0;
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['action_arg'] = '';
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['gate'] = ((s as any).locArgs?.[3] ?? 0);
   } else {
-    if (Number((s as any).locArgs?.[5] ?? 0) === 'pos'  ||  Number((s as any).locArgs?.[5] ?? 0) === 'const') {
+    if (String((s as any).locArgs?.[5] ?? '') === 'pos'  ||  String((s as any).locArgs?.[5] ?? '') === 'const') {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon_arg'] = ((s as any).locArgs?.[3] ?? 0);
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['row_arg'] = ((s as any).locArgs?.[4] ?? 0);
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['action_arg'] = '';
@@ -37,7 +37,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['gate'] = ((s as any).locArgs?.[6] ?? 0);
     }
   }
-  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
+  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
   ((s as any).sd_qm = (s as any).sd_qm ?? {})['display'] = ((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = ((s as any).sd_qm ?? 0)?.['action_arg'];
@@ -100,7 +100,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sd_qm ?? 0)?.['display'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 2  ||  ((s as any).sd_qm ?? 0)?.['icon'] === '')) {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((Number((s as any).locArgs?.[2] ?? 0) !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((String((s as any).locArgs?.[2] ?? '') !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
     // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
   }
   return;
@@ -1493,11 +1493,11 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
 
 function enterCondString(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
-  if (Number((s as any).locArgs?.[2] ?? 0) === 0  &&  Number((s as any).locArgs?.[4] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === 0  &&  String((s as any).locArgs?.[4] ?? '') === 0) {
     // TODO-QSP: exit
   }
   ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = '';
-  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[2] ?? '') === 1) {
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_pct'] = Math.min(Math.max(0, ((s as any).locArgs?.[1] ?? 0) / 24), 100);
     if (((s as any).sd_cs ?? 0)?.['dirt_pct'] <= 20) {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_col'] = 'v_pos';
@@ -1510,17 +1510,17 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', ((s as any).sd_cs ?? 0)?.['dirt_col'], '[' + String(((s as any).sd_cs ?? 0)?.['dirt_pct']) + '% dirt]');
   }
-  if (Number((s as any).locArgs?.[4] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[4] ?? '') === 1) {
     if (((s as any).sd_cs ?? 0)?.['out'] !== '') {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (' ');
     }
-    if (Number((s as any).locArgs?.[3] ?? 0) <= 5) {
+    if (String((s as any).locArgs?.[3] ?? '') <= 5) {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'v_neg';
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) <= 15) {
+      if (String((s as any).locArgs?.[3] ?? '') <= 15) {
         ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'neg';
       } else {
-        if (Number((s as any).locArgs?.[3] ?? 0) <= 25) {
+        if (String((s as any).locArgs?.[3] ?? '') <= 25) {
           ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'neutral';
         } else {
           ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'v_pos';

@@ -10,16 +10,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).locArgs?.[1] ?? 0));
-  if (((s as any).npc_last_booty_call ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
+  if (((s as any).npc_last_booty_call ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_std_test ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).npc_std_test ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddStdFree_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (((s as any).npc_booty_call ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
+    if (((s as any).npc_booty_call ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddPrePlanned_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (((s as any).sugar_daddy_call ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+      if (((s as any).sugar_daddy_call ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddNewBootyCall_SMS(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).not_free ?? 0)) {
@@ -47,14 +47,14 @@ function enterStdFree_Tree(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['aa6'] = 'shit, maybe next time then';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab5'] = 'ill come right now ;)';
-  if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
+  if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'as long as you make me cum later';
     }
   } else {
-    if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
+    if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['ab6'] = 'phrasing';
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -142,14 +142,14 @@ function enterPrePlannedBootyCall_Tree(s: GameState, scene: SceneBuilder): void 
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba3'] = 'sorry, I cant. I have stuff to do';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['ba4'] = 'shit, maybe next time then';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb3'] = 'ill come right now ;)';
-  if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'perverted') {
+  if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'perverted') {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'as long as you make me cum later';
     }
   } else {
-    if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'intellectual') {
+    if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'intellectual') {
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         ((s as any).SMSTree = (s as any).SMSTree ?? {})['bb4'] = 'phrasing';
       } else {
@@ -243,39 +243,39 @@ function enterNewBootyCall_Tree1(s: GameState, scene: SceneBuilder): void {
 function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
   if (0) {
   } else {
-    if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
+    if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'sugar_daddy') {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'I want to see you';
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'ive booked a hotel room';
     } else {
-      if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy') {
+      if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'fuckbuddy') {
         ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'ive been thinking about you';
         ((s as any).SMSTree = (s as any).SMSTree ?? {})['a11'] = 'what were you thinking about?';
-        if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
+        if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
           ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'I booked a hotel room in Pav. why dont you come by?';
         } else {
-          if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+          if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
             ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your mouth around my cock';
           } else {
-            if (((s as any).npc_know_virgin ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 1) {
-              if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_bareback ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+            if (((s as any).npc_know_virgin ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1) {
+              if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_bareback ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your pussy filled with my cum';
               } else {
-                if (((s as any).npc_sex_speed ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                if (((s as any).npc_sex_speed ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                   ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'fucking you bowlegged';
                 } else {
-                  if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                  if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                     ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'your pretty face covered in my cum';
                   } else {
-                    if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                    if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                       ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'watching you swallow my cum';
                     } else {
-                      if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                      if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                         ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'my cum all over your tits';
                       } else {
-                        if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                        if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                           ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'pounding you on all fours';
                         } else {
-                          if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                          if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                             ((s as any).SMSTree = (s as any).SMSTree ?? {})['a12'] = 'you riding my cock like crazy';
                           } else {
                             if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -296,32 +296,32 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
           }
         }
         ((s as any).SMSTree = (s as any).SMSTree ?? {})['b11'] = 'me too';
-        if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
+        if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2  &&  qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
           ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I booked a hotel room in Pav. why dont you come by?';
         } else {
-          if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+          if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'blowjob'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
             ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to feel your mouth around my cock';
           } else {
-            if (((s as any).npc_know_virgin ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 1) {
-              if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_bareback ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+            if (((s as any).npc_know_virgin ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1) {
+              if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'creampie'  &&  (((s as any).npc_condom_conscious ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_bareback ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'never_use')  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to pump you full of cum';
               } else {
-                if (((s as any).npc_sex_speed ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                if (((s as any).npc_sex_speed ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                   ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'come over I want to hear you screaming my name';
                 } else {
-                  if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                  if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'facial'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                     ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to cum all over your face';
                   } else {
-                    if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                    if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'mouth'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                       ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to watch you swallow my cum';
                     } else {
-                      if (((s as any).npc_cum_pref ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                      if (((s as any).npc_cum_pref ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'tits'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                         ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'let me glaze your tits with my cum';
                       } else {
-                        if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                        if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'doggy'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                           ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want to pound you on all fours';
                         } else {
-                          if (((s as any).npc_fav_pos ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+                          if (((s as any).npc_fav_pos ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'cowgirl'  &&  (!(Math.floor(Math.random() * 3) + 0))) {
                             ((s as any).SMSTree = (s as any).SMSTree ?? {})['b12'] = 'I want you to ride my cock like there\'s no tomorrow';
                           } else {
                             if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -344,11 +344,11 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((String('boyfriend;girlfriend;husband;wife').indexOf(String(((s as any).npc_rel_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]))) + 1) > 0) {
           if (0) {
-            if (((s as any).npc_dirty_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+            if (((s as any).npc_dirty_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'come home';
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'I want to fuck you senseless';
             } else {
-              if (((s as any).npc_sensual_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+              if (((s as any).npc_sensual_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'are you coming home soon';
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets make love';
               } else {
@@ -357,11 +357,11 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            if (((s as any).npc_dirty_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+            if (((s as any).npc_dirty_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'come over';
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'I want to fuck you senseless';
             } else {
-              if (((s as any).npc_sensual_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+              if (((s as any).npc_sensual_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = 'I want to see you';
                 ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'lets make love';
               } else {
@@ -371,11 +371,11 @@ function enterNewBootyCall_Tree2(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'boyfriend') {
+          if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'boyfriend') {
             ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = '$npc_rel_type = boyfriend!!';
             ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'PLACEHOLDER3';
           } else {
-            if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'girlfriend') {
+            if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'girlfriend') {
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['10'] = '$npc_rel_type = \'girlfriend\'!!';
               ((s as any).SMSTree = (s as any).SMSTree ?? {})['11'] = 'PLACEHOLDER4';
             } else {
@@ -399,14 +399,14 @@ function enterNewBootyCall_Tree3(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['a21'] = 'shit, maybe next time then';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['b20'] = 'ill come right now ;)';
-  if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
+  if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'as long as you make me cum later';
     }
   } else {
-    if (((s as any).npc_humor ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
+    if (((s as any).npc_humor ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['b21'] = 'phrasing';
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -464,7 +464,7 @@ function enterNewRouting1(s: GameState, scene: SceneBuilder): void {
 function enterNewDelayed(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewBootyCall_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  if (Number((s as any).locArgs?.[1] ?? 0) === '1') {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['f2']
     if (qspFunc(s, 'booty_call_sms', 'check_late', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0))) {
       qspCall(s, 'SMStext_builder', 'end');
@@ -501,7 +501,7 @@ function enterNewRouting2(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['10']
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[5]
-  if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy') {
+  if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'fuckbuddy') {
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a11'], 'booty_call_sms', 'new_bootycall', $ARGS[1], $AR...
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['b11'], 'booty_call_sms', 'new_bootycall', $ARGS[1], $AR...
   } else {
@@ -552,10 +552,10 @@ function enterLateApology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'end');
     return;
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === '1') {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['c22'], 'booty_call_sms', 'late_apology', '2', $ARGS[2],...
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === '2') {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['c23'], 'booty_call_sms', 'new_routing3', $ARGS[2], $ARG...
     }
   }
@@ -597,15 +597,15 @@ function enterAcceptBootyCall(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: booty_call_invite[$ARGS[1]] = daystart
   // TODO-QSP: $booty_call_hotel[$ARGS[1]] = ''
   (s as any).temp_town = qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$town', ((s as any).home ?? 0)?.['current']);
-  if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
+  if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'sugar_daddy') {
     if (((s as any).temp_town ?? 0) === 'city') {
       // TODO-QSP: $booty_call_hotel[$ARGS[1]] = 'city'
     } else {
       // TODO-QSP: $booty_call_hotel[$ARGS[1]] = 'pav'
     }
   } else {
-    if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy') {
-      if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2  &&  ((s as any).temp_town ?? 0) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
+    if (((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'casual_date'  ||  ((s as any).npc_rel_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'fuckbuddy') {
+      if (((s as any).npc_finance ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2  &&  ((s as any).temp_town ?? 0) !== 'city'  &&  (String(((s as any).npc_residence ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(4))) === 'city') {
         // TODO-QSP: $booty_call_hotel[$ARGS[1]] = 'pav'
       }
     }
@@ -624,7 +624,7 @@ function enterDeclineBootyCallb(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeclineBootyCallCore(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sugar_daddy_call ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] === 1) {
+  if (((s as any).sugar_daddy_call ?? 0)[String((s as any).locArgs?.[2] ?? '')] === 1) {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).locArgs?.[2] ?? 0), (-2));
     // TODO-QSP: sugar_daddy_call[$ARGS[2]] = 0
     qspCall(s, 'booty_call', 'set_sugar_daddy_schedule', ((s as any).locArgs?.[2] ?? 0));
@@ -665,7 +665,7 @@ function enterNewSexting_Tree(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['a2'] = 'no';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['b1'] = 'next time tiger';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['c1'] = 'im not at home!';
-  if (((s as any).npc_dirty_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).npc_dirty_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       ((s as any).SMSTree = (s as any).SMSTree ?? {})['c2'] = 'hot';
     } else {
@@ -701,7 +701,7 @@ function enterSextingPublic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['c1']
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c2']
-  if (((s as any).npc_dirty_lover ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).npc_dirty_lover ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a1'], 'booty_call_sms', 'sexting_refuse', $ARGS[1], 're...
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['b1'], 'booty_call_sms', 'sexting_refuse', $ARGS[1], 'ne...
     // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['s1'], 'n|b|sh|ft|fa|fp', 'booty_call_sms', 'sexting_s...
@@ -715,7 +715,7 @@ function enterSextingPublic(s: GameState, scene: SceneBuilder): void {
 function enterSextingRefuse(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNewSexting_Tree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'refuse') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'refuse') {
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a2']
     qspCall(s, 'npc_relationship', 'modify', ((s as any).locArgs?.[1] ?? 0), (-1));
   } else {

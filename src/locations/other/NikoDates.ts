@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -737,7 +735,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Talk to Niko', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDates" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     scene.text('"Do you mind if I ask you some more questions about your… family?" you ask as Niko applies the sunscreen. "I\'m really interested in getting to know you better."');
     scene.text('He pauses for a second before replying. "Sure, why not? Ask away."');
     scene.text('"You told me that you had a sister who… passed away, but you never told me what happened to your younger brother or your father."');
@@ -764,7 +762,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('' + qspUntranslated(s, "FUNC('face_image')", { location: "NikoDates" }) + '');
+    scene.img('' + qspFunc(s, '$$face_image') + '');
     scene.text('You spend the next few minutes talking about various topics before Niko interrupts.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_firstname>>, would you consider yourself a daring girl?"
     scene.text(`"Hey ${((st as any).pcs_firstname ?? '')}, would you consider yourself a daring girl?"`);

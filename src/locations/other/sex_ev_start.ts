@@ -49,7 +49,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((String(';dating;fuckbuddy;sugar_daddy;daddy;boyfriend;husband;').indexOf(String(';' + ((s as any).npcRelat ?? 0) + ';'))) + 1) > 0) {
+    if (((String(';dating;fuckbuddy;sugar_daddy;daddy;boyfriend;husband;').indexOf(String(';' + (((s as any).npcRelat ?? 0)) + ';'))) + 1) > 0) {
       // TODO-QSP: xgt 'sex_ev_start', 'lover_initiate', $sex_ev['loc']
     } else {
       if ((String(((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
@@ -66,7 +66,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcstatInit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
   }
   // TODO-QSP: end
@@ -85,7 +85,8 @@ function enterNeighborhoodImage(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/pavres.jpg');
       } else {
-        scene.img('images/locations/pavlovsk/pavresn_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/pavresn_'+ rand(1, 2)...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/pavresn_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       }
     }
   } else {
@@ -232,7 +233,7 @@ function enterLoverInitiate(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npcRelat ?? 0) === 'daddy') {
         ((s as any).sugar_daddy_call = (s as any).sugar_daddy_call ?? {})[String((s as any).npcID ?? 0)] = 1;
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'npc_home') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'npc_home') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoverHomeImgInit(s, scene); (s as any).locArgs = __savedLocArgs; }
         if ((((s as any).booty_call_invite ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  ||  ((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  ||  ((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0))  &&  ((s as any).npc_last_booty_call ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).daystart ?? 0)) {
           if (((s as any).booty_call_hotel ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
@@ -264,7 +265,7 @@ function enterLoverInitiate(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'hotel_room') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'hotel_room') {
           qspCall(s, 'sex_ev_start', '' + ((s as any).region ?? 0) + '_hotel_img_init');
           qspGoto(s, 'sex_ev_start', 'fb_invited_start');
         } else {
@@ -445,7 +446,7 @@ function enterUniquePcHomeStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupPcHomeStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
@@ -458,7 +459,7 @@ function enterHookupPcHomeStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupNpcHomeStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
@@ -471,11 +472,11 @@ function enterHookupNpcHomeStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcHomeStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'hookup') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'hookup') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHookupInitiate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcHomeImgInit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -486,11 +487,11 @@ function enterPcHomeStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcHomeStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'hookup') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'hookup') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHookupInitiate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoverHomeImgInit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -501,7 +502,7 @@ function enterNpcHomeStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupHotelStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
@@ -518,11 +519,11 @@ function enterHookupHotelStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotelStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'prostitute') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'prostitute') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['prostitution_price'] = ((s as any).locArgs?.[3] ?? 0);
     qspCall(s, 'sex_ev_stats', 'prostitution_init');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'hookup') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'hookup') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHookupInitiate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).region ?? 0) === 'pav') {
@@ -619,7 +620,7 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I was working out when you messaged," you shrug.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -627,7 +628,7 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Came from dance', handler: (st: GameState) => {
     scene.text('"I came straight from dance practice," you shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -637,7 +638,7 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Came from volleyball', handler: (st: GameState) => {
     scene.text('"I came straight from volleyball practice," you shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -645,7 +646,7 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I was running', handler: (st: GameState) => {
     scene.text('"I was on a run when I saw your message," you shrug.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFbSweaty(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -681,12 +682,12 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Didn\'t have time', handler: (st: GameState) => {
     scene.text('"I didn\'t have time," you smile. "I came as soon as I saw your message."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckOrWhat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckOrWhat(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'sex_ev_shower', 'before_borrow_shower');
   } },
       { label: 'Came from work', handler: (st: GameState) => {
     scene.text('"I came straight from work," you shrug. "Didn\'t want to go home and clean up first."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckOrWhat(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFuckOrWhat(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'sex_ev_shower', 'before_borrow_shower');
   } },
     ]);
@@ -997,7 +998,7 @@ function enterFbUninvitedStart(s: GameState, scene: SceneBuilder): void {
       }
       qspGoto(st, 'sex_ev_clothing', 'undress_menu');
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Surprise!', handler: (st: GameState) => {
@@ -1007,7 +1008,7 @@ function enterFbUninvitedStart(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well I won\'t say no if that\'s what you want," he smirks, stepping aside to let you in and leering at your ass as you walk past.');
       qspGoto(st, 'sex_ev_clothing', 'undress_menu');
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'I need a good fuck', handler: (st: GameState) => {
@@ -1018,7 +1019,7 @@ function enterFbUninvitedStart(s: GameState, scene: SceneBuilder): void {
       scene.text('A moment passes with you staring into his eyes with a smouldering gaze before he drags you inside, slamming the door behind you.');
       qspGoto(st, 'sex_ev_clothing', 'undress_menu');
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUninvitedDeny(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);

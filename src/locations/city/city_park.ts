@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 9  ||  ((s as any).hour ?? 0) <= 20) {
     scene.text('There is an all year <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_park/u0027, /u0027luna/u0027); return false;">fair</a> at the park which you can visit.');
   } else {
-    // TODO-QSP: dynamic text: There is an all year fair at the park, but it''s currently closed. Opening hours...
+    // TODO-QSP: dynamic text: 'There is an all year fair at the park, but it''s currently closed. Opening hour...
     scene.text('There is an all year fair at the park, but it\'s currently closed. Opening hours are from 9:00 to 21:00.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
@@ -110,7 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 10;
-      (st as any).temp_doses = 0;
+      (st as any).temp_doses = window.prompt("How many doses do you want to buy?") ?? '';
       if (qspFunc(s, 'money', 'can_afford', ((st as any).temp_doses ?? 0) * 360) !== 1  ||  ((st as any).temp_doses ?? 0) <= 0) {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
@@ -214,13 +214,13 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Funfair</b></center>');
   scene.img('images/locations/city/centralpark/luna.jpg');
   scene.text('The funfair sits in the heart of the park and attracts families, people on vacation, and loving couples from all over town. It\'s a popular gathering spot and a place to forget your worries for a few hours.');
-  // TODO-QSP: dynamic text: Opening hours are '+func('time', 'get_time_string', 9, 0)+' to '+func('time', 'g...
+  // TODO-QSP: dynamic text: 'Opening hours are '+func('time', 'get_time_string', 9, 0)+' to '+func('time', '...
   scene.text('Opening hours are 9:00 to 21:00');
   if (((s as any).vladimirQW ?? 0)?.['stage'] === 0  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_loc/u0027, /u0027/u0027); return false;">A strong looking man is staring at you from the fences.</a>.');
   }
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) >= 21) {
-    // TODO-QSP: dynamic text: The fair is now closed. It will reopen at '+func('time', 'get_time_string', 9, 0...
+    // TODO-QSP: dynamic text: 'The fair is now closed. It will reopen at '+func('time', 'get_time_string', 9, ...
     scene.text('The fair is now closed. It will reopen at 9:00.');
     return;
   }
@@ -232,7 +232,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 50);
     qspCall(st, 'mood', 'lower', 'tiny');
     scene.img('images/locations/shared/park/job_flyer.jpg');
-    // TODO-QSP: dynamic text: You spend an hour walking through the park and the funfair, chatting up random v...
+    // TODO-QSP: dynamic text: 'You spend an hour walking through the park and the funfair, chatting up random ...
     scene.text('You spend an hour walking through the park and the funfair, chatting up random visitors and trying to give them one of your flyers. You\'re paid \' + $func(\'money\', \'string_profit\', 50) + \' for your efforts.');
     scene.actions([
       { label: 'Move away', goto: ['city_park', 'luna'] },
@@ -289,7 +289,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'exp_gain', 'sprt', 2);
       qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/centralpark/karusel.jpg');
-      // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', 50) + ' to ride the carousel.
+      // TODO-QSP: dynamic text: 'You pay ' + $func('money', 'string_price', 50) + ' to ride the carousel.'
       scene.text('You pay 50₽ to ride the carousel.');
       scene.actions([
         { label: 'Move away', goto: ['city_park', 'luna'] },
@@ -303,7 +303,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 30;
       qspCall(st, 'money', 'pay', 100);
       scene.img('images/locations/city/centralpark/tir.jpg');
-      // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', 100) + ' for ten bullets. If you''re ...
+      // TODO-QSP: dynamic text: 'You pay ' + $func('money', 'string_price', 100) + ' for ten bullets. If you''re...
       scene.text('You pay 100₽ for ten bullets. If you\'re able to hit all ten targets, you win a teddy bear.');
       scene.actions([
         { label: 'Shoot', handler: (st: GameState) => {
@@ -367,7 +367,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       scene.img('images/locations/city/centralpark/silomer.jpg');
-      // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', 20) + ' to play Ring-The-Bell.
+      // TODO-QSP: dynamic text: 'You pay ' + $func('money', 'string_price', 20) + ' to play Ring-The-Bell.'
       scene.text('You pay 20₽ to play Ring-The-Bell.');
       scene.actions([
         { label: 'Bump', handler: (st: GameState) => {
@@ -399,7 +399,7 @@ function enterAvtomat(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/centralpark/avtomat.jpg');
-  // TODO-QSP: dynamic text: The rules of the game are very simple: throw ' + $func('money', 'string_price', ...
+  // TODO-QSP: dynamic text: 'The rules of the game are very simple: throw ' + $func('money', 'string_price',...
   scene.text('The rules of the game are very simple: throw 5₽ into the slot and pull the lever. With a bit of luck, you can win the jackpot of \' + $func(\'money\', \'string_profit\', 1000) + \'.');
   if (((s as any).hour ?? 0) <= 20) {
     scene.actions([
@@ -427,22 +427,22 @@ function enterAvtomat2(s: GameState, scene: SceneBuilder): void {
   (s as any).avtrand = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).avtrand ?? 0) === 100) {
     qspCall(s, 'money', 'earn', 1000);
-    // TODO-QSP: dynamic text: Jackpot! You win ' + $func('money', 'string_profit', 1000) + '.
+    // TODO-QSP: dynamic text: 'Jackpot! You win ' + $func('money', 'string_profit', 1000) + '.'
     scene.text('Jackpot! You win \' + $func(\'money\', \'string_profit\', 1000) + \'.');
   } else {
     if (((s as any).avtrand ?? 0) >= 95) {
       qspCall(s, 'money', 'earn', 100);
-      // TODO-QSP: dynamic text: You win ' + $func('money', 'string_profit', 100) + '.
+      // TODO-QSP: dynamic text: 'You win ' + $func('money', 'string_profit', 100) + '.'
       scene.text('You win \' + $func(\'money\', \'string_profit\', 100) + \'.');
     } else {
       if (((s as any).avtrand ?? 0) >= 85) {
         qspCall(s, 'money', 'earn', 10);
-        // TODO-QSP: dynamic text: You win ' + $func('money', 'string_profit', 10) + '.
+        // TODO-QSP: dynamic text: 'You win ' + $func('money', 'string_profit', 10) + '.'
         scene.text('You win \' + $func(\'money\', \'string_profit\', 10) + \'.');
       } else {
         if (((s as any).avtrand ?? 0) >= 75) {
           qspCall(s, 'money', 'earn', 5);
-          // TODO-QSP: dynamic text: You win ' + $func('money', 'string_profit', 5) + '.
+          // TODO-QSP: dynamic text: 'You win ' + $func('money', 'string_profit', 5) + '.'
           scene.text('You win \' + $func(\'money\', \'string_profit\', 5) + \'.');
         } else {
           scene.text('Unfortunately, you didn\'t win anything this time.');
@@ -572,7 +572,7 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
         qspCall(st, 'dinSex', 'std_trigger_oral');
         scene.img('images/locations/highway/sex/car.jpg');
-        // TODO-QSP: dynamic text: A car pulls up alongside you and the man sitting behind the wheel asks how much ...
+        // TODO-QSP: dynamic text: 'A car pulls up alongside you and the man sitting behind the wheel asks how much...
         scene.text('A car pulls up alongside you and the man sitting behind the wheel asks how much it would cost for a blowjob. He agrees to your fee of \' + $func(\'money\', \'string_profit\', 500) + \' and opens the passenger door for you.');
         scene.text('You climb inside as he pulls his pants down and exposes his hard cock. Getting down to business, you lean down and wrap your lips tightly around his shaft before you start sucking, trying to take his dick as deep as possible while teasing him with your tongue.');
         scene.text('After just a few seconds, the client suddenly groans and his cock twitches in your mouth as he blows his load of warm cum into your throat.');
@@ -725,9 +725,11 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Expose your breasts', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 3) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/flash'+rand(3, 4)+...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 3) + '.jpg"></center>');
     } else {
-      scene.img('images/locations/shared/park/flash' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/park/fl...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/shared/park/flash` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool air against your warm skin causes you to shiver, and almost immediately your nipples start to harden, a mixed reaction from the air hitting them and your growing excitement.');
     qspCall(st, 'park_walkevents', 'run_reactions');

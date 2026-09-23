@@ -58,7 +58,7 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGossip(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -183,7 +183,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMixed(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -637,7 +637,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                         if (((s as any).chat_rand ?? 0) === 92  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] > 1  &&  (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2)) {
                                                                                                                                                                                           // TODO-QSP: dynamic text: "So I heard <<$pcs_nickname>> joined the cheerleading squad."
                                                                                                                                                                                           scene.text(`"So I heard ${((s as any).pcs_nickname ?? '')} joined the cheerleading squad."`);
-                                                                                                                                                                                          // TODO-QSP: dynamic text: "Well yeah, she is one of them. You know, '+iif(grupTipe = 1, 'popular', 'sporty...
+                                                                                                                                                                                          // TODO-QSP: dynamic text: '"Well yeah, she is one of them. You know, '+iif(grupTipe = 1, 'popular', 'sport...
                                                                                                                                                                                           scene.text('"Well yeah, she is one of them. You know, ' + ((((s as any).grupTipe ?? 0) === 1) ? ('popular') : ('sporty')) + ' enough to pass their judgemental selection process?"');
                                                                                                                                                                                           scene.text('"It\'s pretty harsh I know. I can only imagine Anushka on the team if they allowed it, running around the field flashing everyone during a game."');
                                                                                                                                                                                         } else {
@@ -758,7 +758,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoys(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -1122,7 +1122,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGirls(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/girls_gossip1.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -1434,7 +1434,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLizaveta(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/girls_gossip2.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -1707,7 +1707,7 @@ function enterSoniaDiscoGossip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSvetaDykeRumors(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }

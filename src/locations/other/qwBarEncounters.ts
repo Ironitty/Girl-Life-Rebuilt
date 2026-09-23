@@ -148,7 +148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/pool2.jpg');
     (st as any).billiard_ev_var = 1;
     scene.text('"Alright, let\'s play."');
-    // TODO-QSP: dynamic text: You ' + iif(bag > 0, 'open your purse', 'reach into your pocket') + ' and pull o...
+    // TODO-QSP: dynamic text: 'You ' + iif(bag > 0, 'open your purse', 'reach into your pocket') + ' and pull ...
     scene.text('You ' + ((((st as any).bag ?? 0) > 0) ? ('open your purse') : ('reach into your pocket')) + ' and pull out a few bills and lay them down on the table.');
     scene.text('Your acquaintance gives you a wolfish grin, racks up the balls and lets you break again as he lays his money down on top of yours.');
     qspCall(st, 'qwBarBilliard', 'billiard_engine');

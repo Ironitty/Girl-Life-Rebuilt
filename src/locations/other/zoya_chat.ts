@@ -542,8 +542,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles. "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fee...
-    scene.text('She smiles. "I appreciate that, ' + ((st as any).pcs_firstname ?? '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    // TODO-QSP: dynamic text: 'She smiles. "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fe...
+    scene.text(`She smiles. "I appreciate that, ${((st as any).pcs_firstname ?? '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ` + ((((st as any).npc_had_sex ?? 0)?.['A23']) ? ('Or whatever your relationship with her might be.') : ('')) + '"');
     if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {
@@ -1135,8 +1135,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fe...
-    scene.text('She smiles.  "I appreciate that, ' + ((st as any).pcs_firstname ?? '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    // TODO-QSP: dynamic text: 'She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to f...
+    scene.text(`She smiles.  "I appreciate that, ${((st as any).pcs_firstname ?? '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ` + ((((st as any).npc_had_sex ?? 0)?.['A23']) ? ('Or whatever your relationship with her might be.') : ('')) + '"');
     if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {
@@ -1703,8 +1703,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fe...
-    scene.text('She smiles.  "I appreciate that, ' + ((st as any).pcs_firstname ?? '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    // TODO-QSP: dynamic text: 'She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to f...
+    scene.text(`She smiles.  "I appreciate that, ${((st as any).pcs_firstname ?? '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ` + ((((st as any).npc_had_sex ?? 0)?.['A23']) ? ('Or whatever your relationship with her might be.') : ('')) + '"');
     if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {

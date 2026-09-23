@@ -14,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
   scene.text('The bathroom is very small and unimpressive. Nevertheless, it has everything you need.');
-  // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror</...
+  // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror<...
   scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a bathtub.');
   if ((!((s as any).vanr_lock ?? 0))) {
     scene.text('The door is not locked and does not close properly. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027latch/u0027); return false;">Latch the door</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027perm_latch/u0027); return false;">Always latch the door</a>.');
@@ -362,7 +362,7 @@ function enterStepdadSexCreampie(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepfather stumbles back and his dick slips free of your pussy, splattering cum onto the floor.');
     scene.text('He sheepishly scratches his head, but then flashes a cocky grin. "Sorry, Sunshine, I guess the devil made me do it. I\'m sure nothing will come of it, though."');
     scene.text('Furious, you push him out of the bathroom and toss his clothes out after him. Slamming the door closed, you look down at yourself with a troubled sigh as warm cum drips down your leg. You\'ll need to have another shower.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStepdadSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

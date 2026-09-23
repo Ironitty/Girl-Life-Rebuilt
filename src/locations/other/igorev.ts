@@ -167,14 +167,16 @@ function enterDinSisterkom(s: GameState, scene: SceneBuilder): void {
       { label: 'Try out clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('images/pc/items/coco/dress/' + (Math.floor(Math.random() * 300) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/coco/dress/'+rand(1, 300)+'.jpg...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/coco/dress/` + (Math.floor(Math.random() * 300) + 1) + '.jpg"></center>');
     scene.text('You look in the closet and on the floor and spot many different styles of clothes. Some of them are ugly, but many range from okay to down right lovely. You pick up an outfit off the floor.');
     scene.text('"What do you say? Does this look good on me?" you ask Igor while holding it up and spinning around. Igor nods and smiles.');
     scene.actions([
       { label: 'Keep trying out clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('images/pc/items/coco/dress/' + (Math.floor(Math.random() * 300) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/coco/dress/'+rand(1, 300)+'.jpg...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/coco/dress/` + (Math.floor(Math.random() * 300) + 1) + '.jpg"></center>');
     scene.text('You drop the first outfit and grab another that you want to try on.');
     scene.text('"Okay, I\'m going to try this one on. Turn around. You can look again once I\'m dressed. And you better not try to sneak a peak!" you tell Igor, who dutifully turns around.');
     scene.text('You quickly strip down to your undrewear and start putting on the new outfit. "I said no peeking, you perv!" you tell Igor when you catch him turning for a look.');
@@ -182,14 +184,16 @@ function enterDinSisterkom(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep trying out clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('images/pc/items/coco/dress/' + (Math.floor(Math.random() * 300) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/coco/dress/'+rand(1, 300)+'.jpg...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/coco/dress/` + (Math.floor(Math.random() * 300) + 1) + '.jpg"></center>');
     scene.text('You notice another outfit you think is cute.');
     scene.text('"What do you say about this one? Do you like it?" you continue.');
     scene.actions([
       { label: 'Keep trying out clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('images/pc/items/coco/dress/' + (Math.floor(Math.random() * 300) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/coco/dress/'+rand(1, 300)+'.jpg...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/coco/dress/` + (Math.floor(Math.random() * 300) + 1) + '.jpg"></center>');
     scene.text('"How about this outfit then?" you ask him.');
     scene.text('"You look good in whatever you wear," he answers.');
     scene.actions([
@@ -893,7 +897,7 @@ function enterDimkaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
       ((st as any).IgorQW = (st as any).IgorQW ?? {})['DimaNos_day'] = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 6;
     }
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKruglovDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
     scene.text('"I think you should go! You know you want to!" you slowly start.');
     scene.text('"Why is that?" he asks, surprising you.');
@@ -1064,7 +1068,7 @@ function enterNatashaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'Ask about Diana\'s date') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'Ask about Diana\'s date') {
     if (((s as any).IgorQW ?? 0)?.['DimaNos'] === 2) {
       ((s as any).IgorQW = (s as any).IgorQW ?? {})['DimaNos'] = 3;
       if (((s as any).week ?? 0) > 4) {
@@ -1163,7 +1167,7 @@ function enterNatashaCrossdressWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'How did it all end?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     (st as any).DimaLoveIgor = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKruglovDesc(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKruglovDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/dimdate/cum.jpg');
     scene.text('"So you kept sucking his cock?" you ask. "Did he cum in your mouth?"');

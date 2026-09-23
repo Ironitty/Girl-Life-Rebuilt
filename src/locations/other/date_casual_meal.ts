@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,11 +9,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'together') {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'together') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspGoto(s, 'date_casual_meal', 'arrive_together');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'separate') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'separate') {
       qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspGoto(s, 'date_casual_meal', 'arrive_separate');
@@ -83,10 +83,10 @@ function enterFlashMov(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayCash(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'split') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'split') {
     (s as any).money = ((s as any).money ?? 0) - (((s as any).date_ev ?? 0)?.['meal_cost']);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pc') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pc') {
       (s as any).money = ((s as any).money ?? 0) - ((((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2);
     }
   }
@@ -96,10 +96,10 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayCard(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'split') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'split') {
     (s as any).karta = ((s as any).karta ?? 0) - (((s as any).date_ev ?? 0)?.['meal_cost']);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pc') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pc') {
       (s as any).karta = ((s as any).karta ?? 0) - ((((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2);
     }
   }
@@ -149,10 +149,10 @@ function enterRestaurauntIntImg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestaurantTalkingImg(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.img('images/shared/romance/dates/casual_dining/talking1.jpg');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       scene.img('images/shared/romance/dates/casual_dining/talking2.jpg');
     } else {
       scene.img('images/shared/romance/dates/casual_dining/talking1.jpg');
@@ -285,7 +285,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp ?? 0));
   qspCall(s, 'drugs', 'smoke');
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'phone') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'phone') {
     scene.img('images/shared/misc/light_ciga.jpg');
     scene.text('You dig into your bag and pull out your phone and a cigarette to go with it.');
     scene.actions([
@@ -416,7 +416,7 @@ function enterWaitNotLong(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Not long', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"No, not really," you shake your head. "Wanna head in?"');
     scene.text('"Yeah, let\'s go."');
     scene.actions([
@@ -431,7 +431,7 @@ function enterWaitYoureLate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '"You\'re late!"', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Where''ve you been?" You give <<$npcdesc>> an irritated frown.
     scene.text(`"Where've you been?" You give ${((st as any).npcdesc ?? '')} an irritated frown.`);
     scene.text('"Sorry, I was running late. Want to head inside?"');
@@ -477,7 +477,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, let\'s."');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -492,7 +492,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah, let\'s."');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     } else {
@@ -505,7 +505,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, let\'s."');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -524,7 +524,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
     scene.text(`"It's a school uniform, ${((st as any).npcdesc ?? '')}," you say, rolling your eyes. "I don't think they wanted to encourage teenage hormones when they designed it."`);
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -536,7 +536,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Shut up," you mutter and stomp into the cafe.');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     } else {
@@ -545,7 +545,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
         scene.text('"Shut up," you mutter and stomp into the cafe.');
         scene.actions([
           { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
         ]);
       } else {
@@ -553,7 +553,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
         scene.text('"Yeah, fine," you mumble and follow him inside.');
         scene.actions([
           { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
         ]);
       }
@@ -575,7 +575,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
     scene.text(`"It's a school uniform, ${((st as any).npcdesc ?? '')}," you say, rolling your eyes. "I don't think they wanted to encourage teenage hormones when they designed it."`);
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -588,7 +588,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('You stick your tongue out at him as you head inside.');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     } else {
@@ -596,7 +596,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Whatever."');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     }
@@ -607,7 +607,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe I will..." he mutters as you go past.');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -615,7 +615,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
           ]);
         }
@@ -634,7 +634,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah, let\'s."');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     } else {
@@ -648,7 +648,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
         scene.text('"Yeah, let\'s."');
         scene.actions([
           { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
         ]);
       } else {
@@ -663,14 +663,14 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Yeah, I'm coming in..." You follow ${((st as any).npcdesc ?? '')} inside, noting clearly he doesn't feel like holding the door open for you. It was just a joke...`);
           scene.actions([
             { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
           ]);
         } else {
           scene.text('"Must be a really handsome one if schoolgirls like you want to go on a date with me," he grins back. "Come on, let\'s get a table."');
           scene.actions([
             { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
           ]);
         }
@@ -705,13 +705,13 @@ function enterStyleSlutReply(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, let\'s."');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
     { label: '"You think I look like a slut?!"', handler: (st: GameState) => {
     qspCall(st, 'date_funcs', 'date_rate', 'dislike');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntExtImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You gape at him for a moment, almost speechless. Almost.');
     scene.text('"You think I look like a slut?!"');
     if (((st as any).npc_argumentative ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
@@ -732,7 +732,7 @@ function enterStyleSlutReply(s: GameState, scene: SceneBuilder): void {
     scene.text('You practically spit the word at him and stomp into the cafe.');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -744,7 +744,7 @@ function enterStyleSlutReply(s: GameState, scene: SceneBuilder): void {
     scene.text('You practically spit the word at him and stomp into the cafe.');
     scene.actions([
       { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
     ]);
   } },
@@ -755,7 +755,7 @@ function enterStyleSlutReply(s: GameState, scene: SceneBuilder): void {
       scene.text('You practically spit the word at him and stomp into the cafe.');
       scene.actions([
         { label: 'Get a table', handler: (st: GameState) => {
-    // TODO-QSP: gt $date_ev['cont_loc'], $date_ev['cont_arg']
+    dynamicGoto(st, (((st as any).date_ev ?? {})['cont_loc']), (((st as any).date_ev ?? {})['cont_arg']));
   } },
       ]);
     }
@@ -856,7 +856,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'date_casual_meal', 'food_menu');
   } },
       { label: 'Suggest splitting the bill', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     ((st as any).date_ev = (st as any).date_ev ?? {})['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?" you ask.');
     scene.text('"Yeah," he nods in agreement.');
@@ -976,7 +976,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'salad';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'small';
     scene.text('"I\'ll have the salad, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -987,7 +987,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'sandwich';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'medium';
     scene.text('"I\'ll have a sandwich, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -998,7 +998,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'burger';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'large';
     scene.text('"I\'ll have a burger, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -1009,7 +1009,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'shchi';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'medium';
     scene.text('"I\'ll have the shchi, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -1020,7 +1020,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'borscht';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'medium';
     scene.text('"I\'ll have the Borscht, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -1031,7 +1031,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'pelmeni';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'medium';
     scene.text('"I\'ll have the pelmeni, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -1042,7 +1042,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_order'] = 'stroganoff';
     ((st as any).date_ev = (st as any).date_ev ?? {})['food_size'] = 'large';
     scene.text('"I\'ll have the stroganoff, please."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcOrder(st, scene); (st as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev[''waiter'']>> heads off to kitchen to pu...
     scene.text(`"Okay, coming right up." The ${((st as any).date_ev ?? 0)?.['waiter'] ?? ''} heads off to kitchen to put your orders in.`);
     scene.actions([
@@ -1093,7 +1093,7 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_womanizer ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('He turns back to you with a smile still on his face but starts when he notices your face.');
       scene.text('"Uhh, is there something wrong?"');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWaitressOgle2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWaitressOgle2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('He turns back to you with a smile still on his face, either unaware or uncaring that he did anything wrong.');
       qspGoto(st, 'date_talk', 'talk_menu');
@@ -1409,7 +1409,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Suggest splitting the bill', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost']
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     ((st as any).date_ev = (st as any).date_ev ?? {})['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?"');
     scene.text('"Yeah."');
@@ -1419,7 +1419,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Offer to pay', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I\'ll pay," you smile.');
     scene.actions([
       { label: 'Pay with cash', handler: (st: GameState) => {
@@ -1536,7 +1536,7 @@ function enterAwkwardFlash(s: GameState, scene: SceneBuilder): void {
     { label: 'Still awkward', handler: (st: GameState) => {
     scene.text('It\'s still awkward.');
     scene.text('Well. Shit.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatingMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatingMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Laughter', handler: (st: GameState) => {
     qspCall(st, 'date_funcs', 'date_rate', 'like');
@@ -1545,7 +1545,7 @@ function enterAwkwardFlash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'If it works...', handler: (st: GameState) => {
     scene.text('"If it works, it works," you shrug back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatingMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatingMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

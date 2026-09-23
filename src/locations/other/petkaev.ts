@@ -832,7 +832,8 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/pc/magic/penis_envy/guy_butt_cum' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/magic/penis_envy/guy_butt_cum' + rand...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/magic/penis_envy/guy_butt_cum` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     (s as any).orgasm_or = 'yes';
     (s as any).orgasm_txt = 'You pull out and feel the sudden release as cum starts shooting out of your dick. You moan loudly as you shoot several loads over his ass, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for an amazing afterglow.';

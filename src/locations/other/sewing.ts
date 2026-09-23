@@ -67,7 +67,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30  &&  (((st as any).YouCanGar ?? 0) === 0  ||  ((st as any).mc_inventory ?? 0)?.['trinkets_garage'] >= 100)) {
             scene.img('images/pc/activities/sewing/kit.jpg');
-            // TODO-QSP: dynamic text: You put together another trinket but then realize you have too many trinkets alr...
+            // TODO-QSP: dynamic text: 'You put together another trinket but then realize you have too many trinkets al...
             scene.text('You put together another trinket but then realize you have too many trinkets already. ' + ((((st as any).YouCanGar ?? 0) > 0) ? ('Even the space in your stepfather\'s garage is full. ') : ('')) + 'With a deep sense of regret, you throw it away, having no place to store it. At least you learned more about sewing…');
           } else {
             scene.img('images/pc/activities/sewing/trinket.jpg');
@@ -111,7 +111,7 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/5 - ((s as any).pcs_intel ?? 0)/10 + 1)) + (((s as any).pcs_intel ?? 0)/10)));
     (s as any).gobramax = (((s as any).pcs_sewng ?? 0) - 70) * 6;
     (s as any).gobramin = (((s as any).pcs_sewng ?? 0) - 70) * 2;
-    (s as any).newgobelen = ((s as any).newgobelen ?? 0) + (0);
+    (s as any).newgobelen = ((s as any).newgobelen ?? 0) + ((Math.floor(Math.random() * (((s as any).gobramax ?? 0) - ((s as any).gobramin ?? 0) + 1)) + (((s as any).gobramin ?? 0))));
     qspCall(s, 'stat', '');
     if (((s as any).newgobelen ?? 0) < 1000) {
       // TODO-QSP: dynamic text: You spend an hour working on your tapestry, which is now <<newgobelen/10>> perce...

@@ -59,55 +59,55 @@ function enterSetUseableCupsize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBsizetoccm(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     (s as any).result = 100;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) <= 15) {
+    if (String((s as any).locArgs?.[1] ?? '') <= 15) {
       (s as any).result = ((((s as any).locArgs?.[1] ?? 0)*14)+100);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) <= 20) {
+      if (String((s as any).locArgs?.[1] ?? '') <= 20) {
         (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-15)*16)+310);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) <= 25) {
+        if (String((s as any).locArgs?.[1] ?? '') <= 25) {
           (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-20)*18)+390);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) <= 30) {
+          if (String((s as any).locArgs?.[1] ?? '') <= 30) {
             (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-25)*22)+480);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) <= 35) {
+            if (String((s as any).locArgs?.[1] ?? '') <= 35) {
               (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-30)*24)+590);
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) <= 40) {
+              if (String((s as any).locArgs?.[1] ?? '') <= 40) {
                 (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-35)*28)+710);
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) <= 45) {
+                if (String((s as any).locArgs?.[1] ?? '') <= 45) {
                   (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-40)*30)+850);
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) <= 50) {
+                  if (String((s as any).locArgs?.[1] ?? '') <= 50) {
                     (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-45)*36)+1000);
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) <= 55) {
+                    if (String((s as any).locArgs?.[1] ?? '') <= 55) {
                       (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-50)*38)+1180);
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) <= 60) {
+                      if (String((s as any).locArgs?.[1] ?? '') <= 60) {
                         (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-55)*42)+1370);
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) <= 65) {
+                        if (String((s as any).locArgs?.[1] ?? '') <= 65) {
                           (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-60)*46)+1580);
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) <= 70) {
+                          if (String((s as any).locArgs?.[1] ?? '') <= 70) {
                             (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-65)*50)+1810);
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) <= 75) {
+                            if (String((s as any).locArgs?.[1] ?? '') <= 75) {
                               (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-70)*56)+2060);
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) <= 80) {
+                              if (String((s as any).locArgs?.[1] ?? '') <= 80) {
                                 (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-75)*60)+2340);
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) <= 85) {
+                                if (String((s as any).locArgs?.[1] ?? '') <= 85) {
                                   (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-80)*72)+2640);
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) > 85) {
+                                  if (String((s as any).locArgs?.[1] ?? '') > 85) {
                                     (s as any).result = (((((s as any).locArgs?.[1] ?? 0)-85)*84)+3000);
                                   } else {
                                     (s as any).result = 100;
@@ -134,55 +134,55 @@ function enterBsizetoccm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBccmtosize(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (String((s as any).locArgs?.[1] ?? '') < 0) {
     (s as any).result = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) <= 310) {
+    if (String((s as any).locArgs?.[1] ?? '') <= 310) {
       (s as any).result = ((((s as any).locArgs?.[1] ?? 0) - 100)/14);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) <= 390) {
+      if (String((s as any).locArgs?.[1] ?? '') <= 390) {
         (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 310)/16)+15);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) <= 480) {
+        if (String((s as any).locArgs?.[1] ?? '') <= 480) {
           (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 390)/18)+20);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) <= 590) {
+          if (String((s as any).locArgs?.[1] ?? '') <= 590) {
             (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 480)/22)+25);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) <= 710) {
+            if (String((s as any).locArgs?.[1] ?? '') <= 710) {
               (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 590)/24)+30);
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) <= 850) {
+              if (String((s as any).locArgs?.[1] ?? '') <= 850) {
                 (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 710)/28)+35);
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) <= 1000) {
+                if (String((s as any).locArgs?.[1] ?? '') <= 1000) {
                   (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 850)/30)+40);
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) <= 1180) {
+                  if (String((s as any).locArgs?.[1] ?? '') <= 1180) {
                     (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 1000)/36)+45);
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) <= 1370) {
+                    if (String((s as any).locArgs?.[1] ?? '') <= 1370) {
                       (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 1180)/38)+50);
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) <= 1580) {
+                      if (String((s as any).locArgs?.[1] ?? '') <= 1580) {
                         (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 1370)/42)+55);
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) <= 1810) {
+                        if (String((s as any).locArgs?.[1] ?? '') <= 1810) {
                           (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 1580)/46)+60);
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) <= 2060) {
+                          if (String((s as any).locArgs?.[1] ?? '') <= 2060) {
                             (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 1810)/50)+65);
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) <= 2340) {
+                            if (String((s as any).locArgs?.[1] ?? '') <= 2340) {
                               (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 2060)/56)+70);
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) <= 2640) {
+                              if (String((s as any).locArgs?.[1] ?? '') <= 2640) {
                                 (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 2340)/60)+75);
                               } else {
-                                if (Number((s as any).locArgs?.[1] ?? 0) <= 3000) {
+                                if (String((s as any).locArgs?.[1] ?? '') <= 3000) {
                                   (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 2640)/72)+80);
                                 } else {
-                                  if (Number((s as any).locArgs?.[1] ?? 0) > 3000) {
+                                  if (String((s as any).locArgs?.[1] ?? '') > 3000) {
                                     (s as any).result = (((((s as any).locArgs?.[1] ?? 0) - 3000)/84)+85);
                                   } else {
                                     (s as any).result = 0;
@@ -662,31 +662,31 @@ function enterLactateOptout(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetSuckflowrate(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = 17000;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       (s as any).result = 11000;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
         (s as any).result = 8000;
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === 3) {
           (s as any).result = 40000;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === 4) {
             (s as any).result = 100000;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === 5) {
               (s as any).result = 20000;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
+              if (String((s as any).locArgs?.[1] ?? '') === 6) {
                 (s as any).result = 160000;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === 7) {
                   (s as any).result = 5000;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
                     (s as any).result = 15000;
                   } else {
                     (s as any).result = 10000;
@@ -725,16 +725,16 @@ function enterGetMaxnipflowrate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetMoodmod(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0)/8;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0)/2;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
         ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
+        if (String((s as any).locArgs?.[1] ?? '') === 7) {
           ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0);
         } else {
           ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = 0;
@@ -801,7 +801,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
       ((s as any).lactation = (s as any).lactation ?? {})['lactaterate_per_min'] = (((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/60;
     }
     ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = 0;
-    if (((s as any).lactation ?? 0)?.['breastmv'] >= (Number((s as any).locArgs?.[2] ?? 0)*1000)) {
+    if (((s as any).lactation ?? 0)?.['breastmv'] >= (String((s as any).locArgs?.[2] ?? '')*1000)) {
       if (((s as any).lactation ?? 0)?.['max_nip_flow_rate'] <= ((s as any).lactation ?? 0)?.['suck_flow_rate']) {
         ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = (((s as any).locArgs?.[2] ?? 0)*1000)/(((s as any).lactation ?? {})?.['max_nip_flow_rate'] ?? 0);
       } else {
@@ -809,7 +809,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).result = ((s as any).lactation ?? 0)?.['milk_time_output'];
     } else {
-      if (((s as any).lactation ?? 0)?.['breastmv'] > 0  &&  ((s as any).lactation ?? 0)?.['breastmv'] < (Number((s as any).locArgs?.[2] ?? 0)*1000)) {
+      if (((s as any).lactation ?? 0)?.['breastmv'] > 0  &&  ((s as any).lactation ?? 0)?.['breastmv'] < (String((s as any).locArgs?.[2] ?? '')*1000)) {
         if (((s as any).lactation ?? 0)?.['max_nip_flow_rate'] <= ((s as any).lactation ?? 0)?.['suck_flow_rate']) {
           ((s as any).lactation = (s as any).lactation ?? {})['milk_time_output'] = (((s as any).lactation ?? {})?.['breastmv'] ?? 0)/(((s as any).lactation ?? {})?.['max_nip_flow_rate'] ?? 0);
           (s as any).temp_var2 = (((s as any).locArgs?.[2] ?? 0)*1000) - (((s as any).lactation ?? {})?.['breastmv'] ?? 0);

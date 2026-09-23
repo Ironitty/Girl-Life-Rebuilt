@@ -88,7 +88,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Set items', goto: ['intro_character_custom', 'modite'] },
     { label: 'Set clothes', goto: ['intro_character_custom', 'modclo_menu'] },
     { label: '', labelFn: (s: GameState) => 'Set money (' + String(qspFunc(s, 'money', 'format', ((s as any).money ?? '')) ?? '') + ')', handler: (st: GameState) => {
-    (st as any).money = 0;
+    (st as any).money = window.prompt("Set Cash Amount") ?? '';
     qspGoto(st, 'intro_character_custom', 'start');
   } },
   ]);
@@ -354,9 +354,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
       { label: 'Lusso Intimo', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = 'lusso'
   }, goto: ['intro_character_custom', 'modclo'] },
-      { label: 'Market', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing', 'mar...
-  } },
+      { label: 'Market', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'market_outfits'] },
       { label: 'Mommy Style', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = 'materinstvo'
   }, goto: ['intro_character_custom', 'modclo'] },
@@ -394,12 +392,8 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
         { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-        { label: 'View swimsuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing', 'all...
-  } },
-        { label: 'View bikinis', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing', 'all...
-  } },
+        { label: 'View swimsuits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'allure_swimsuit'] },
+        { label: 'View bikinis', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'allure_bikinis'] },
       ]);
     } else {
       if (((s as any).menu_name ?? 0) === 'coco_carmen') {
@@ -410,15 +404,9 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
           { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-          { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'co...
-  } },
-          { label: 'View other outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'co...
-  } },
-          { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'co...
-  } },
+          { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'coco_dress'] },
+          { label: 'View other outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'coco_outfits'] },
+          { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'coco'] },
         ]);
       } else {
         if (((s as any).menu_name ?? 0) === 'danilovich') {
@@ -431,27 +419,13 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
             { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-            { label: 'View sports clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'da...
-  } },
-            { label: 'View swimwear', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'da...
-  } },
-            { label: 'View sports bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'dani...
-  } },
-            { label: 'View sports panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'd...
-  } },
-            { label: 'View exercise shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'dan...
-  } },
-            { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'da...
-  } },
-            { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'dan...
-  } },
+            { label: 'View sports clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'danilovich_outfits'] },
+            { label: 'View swimwear', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'danilovich_swimsuit'] },
+            { label: 'View sports bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'danilovich'] },
+            { label: 'View sports panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'danilovich'] },
+            { label: 'View exercise shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'danilovich'] },
+            { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'danilovich'] },
+            { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'danilovich'] },
           ]);
         } else {
           if (((s as any).menu_name ?? 0) === 'erotomaniac') {
@@ -469,24 +443,12 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
               { label: 'Adult toys & items', goto: ['shop_erotomaniac', 'sexshop_menu'] },
-              { label: 'Look through the fetish dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'er...
-  } },
-              { label: 'Look through the fetish outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'er...
-  } },
-              { label: 'Look through the stripper clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'er...
-  } },
-              { label: 'Look through the bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'erot...
-  } },
-              { label: 'Look through the panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'e...
-  } },
-              { label: 'Look through the fetish shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'ero...
-  } },
+              { label: 'Look through the fetish dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'eroto_dress'] },
+              { label: 'Look through the fetish outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'eroto_outfits'] },
+              { label: 'Look through the stripper clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'eroto_strip'] },
+              { label: 'Look through the bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'eroto'] },
+              { label: 'Look through the panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'eroto'] },
+              { label: 'Look through the fetish shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'eroto'] },
             ]);
           } else {
             if (((s as any).menu_name ?? 0) === 'fancy_pancy') {
@@ -498,9 +460,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                 { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                { label: 'View clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing', 'fan...
-  } },
+                { label: 'View clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'fancy_burlesque'] },
               ]);
             } else {
               if (((s as any).menu_name ?? 0) === 'fashionista') {
@@ -512,21 +472,11 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                   { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                  { label: 'Try on dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'fa...
-  } },
-                  { label: 'Try on outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'fa...
-  } },
-                  { label: 'Try on bra', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'fash...
-  } },
-                  { label: 'Try on panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'f...
-  } },
-                  { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'fa...
-  } },
+                  { label: 'Try on dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'fashionista_dress'] },
+                  { label: 'Try on outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'fashionista_outfits'] },
+                  { label: 'Try on bra', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'fashionista'] },
+                  { label: 'Try on panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'fashionista'] },
+                  { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'fashionista'] },
                 ]);
               } else {
                 if (((s as any).menu_name ?? 0) === 'flamingos') {
@@ -537,15 +487,9 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                    { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'fl...
-  } },
-                    { label: 'View other clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'fl...
-  } },
-                    { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'fl...
-  } },
+                    { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'flamingos_dress'] },
+                    { label: 'View other clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'flamingos_outfits'] },
+                    { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'flamingos'] },
                   ]);
                 } else {
                   if (((s as any).menu_name ?? 0) === 'gm') {
@@ -556,39 +500,17 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                       { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                      { label: 'View clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View office wear', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View maid outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View server uniforms', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View school uniforms', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'gm...
-  } },
-                      { label: 'View bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'gm'
-  } },
-                      { label: 'View panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'g...
-  } },
-                      { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'gm'
-  } },
-                      { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'gm...
-  } },
-                      { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'gm'
-  } },
+                      { label: 'View clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_outfits'] },
+                      { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_dress'] },
+                      { label: 'View office wear', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_office'] },
+                      { label: 'View maid outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_maid'] },
+                      { label: 'View server uniforms', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_server'] },
+                      { label: 'View school uniforms', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'gm_school'] },
+                      { label: 'View bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'gm'] },
+                      { label: 'View panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'gm'] },
+                      { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'gm'] },
+                      { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'gm'] },
+                      { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'gm'] },
                     ]);
                   } else {
                     if (((s as any).menu_name ?? 0) === 'lusso') {
@@ -600,15 +522,9 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                         { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                        { label: 'View bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'luss...
-  } },
-                        { label: 'View panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'l...
-  } },
-                        { label: 'View bodysuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bodysuits',  'l...
-  } },
+                        { label: 'View bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'lusso'] },
+                        { label: 'View panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'lusso'] },
+                        { label: 'View bodysuits', goto: ['intro_character_custom', 'modclo_loop', 'bodysuits', 'lusso'] },
                       ]);
                     } else {
                       if (((s as any).menu_name ?? 0) === 'materinstvo') {
@@ -619,9 +535,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                           { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                          { label: 'View clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing', 'mat...
-  } },
+                          { label: 'View clothes', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'materinstvo_dress'] },
                         ]);
                       } else {
                         if (((s as any).menu_name ?? 0) === 'moncheri') {
@@ -633,24 +547,12 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                             { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                            { label: 'Try on gowns', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'mo...
-  } },
-                            { label: 'Try on dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'mo...
-  } },
-                            { label: 'Try on bodysuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bodysuits',  'm...
-  } },
-                            { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'mon...
-  } },
-                            { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'mo...
-  } },
-                            { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'mon...
-  } },
+                            { label: 'Try on gowns', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'moncheri_gown'] },
+                            { label: 'Try on dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'moncheri_dress'] },
+                            { label: 'Try on bodysuits', goto: ['intro_character_custom', 'modclo_loop', 'bodysuits', 'moncheri'] },
+                            { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'moncheri'] },
+                            { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'moncheri'] },
+                            { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'moncheri'] },
                           ]);
                         } else {
                           if (((s as any).menu_name ?? 0) === 'nerdvana') {
@@ -661,21 +563,11 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                               { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                              { label: 'View cosplay outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ne...
-  } },
-                              { label: 'View other outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ne...
-  } },
-                              { label: 'View swimsuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ne...
-  } },
-                              { label: 'View bikinis', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ne...
-  } },
-                              { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'ne...
-  } },
+                              { label: 'View cosplay outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'nerdvana_cosplay'] },
+                              { label: 'View other outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'nerdvana_outfits'] },
+                              { label: 'View swimsuits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'nerdvana_swimsuit'] },
+                              { label: 'View bikinis', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'nerdvana_bikinis'] },
+                              { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'nerdvana'] },
                             ]);
                           } else {
                             if (((s as any).menu_name ?? 0) === 'dolls') {
@@ -686,21 +578,11 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                 { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                                { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'do...
-  } },
-                                { label: 'View other outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'do...
-  } },
-                                { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'dol...
-  } },
-                                { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'do...
-  } },
-                                { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'dol...
-  } },
+                                { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'dolls_dress'] },
+                                { label: 'View other outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'dolls_outfits'] },
+                                { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'dolls'] },
+                                { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'dolls'] },
+                                { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'dolls'] },
                               ]);
                             } else {
                               if (((s as any).menu_name ?? 0) === 'pussycats') {
@@ -711,27 +593,13 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                   { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                                  { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ca...
-  } },
-                                  { label: 'View other outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'ca...
-  } },
-                                  { label: 'View bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'cats...
-  } },
-                                  { label: 'View panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    'c...
-  } },
-                                  { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'cat...
-  } },
-                                  { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'ca...
-  } },
-                                  { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'cat...
-  } },
+                                  { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'cats_dress'] },
+                                  { label: 'View other outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'cats_outfits'] },
+                                  { label: 'View bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'cats'] },
+                                  { label: 'View panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'cats'] },
+                                  { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'cats'] },
+                                  { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'cats'] },
+                                  { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'cats'] },
                                 ]);
                               } else {
                                 if (((s as any).menu_name ?? 0) === 'scandalicious') {
@@ -743,24 +611,12 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                                    { label: 'View clothing', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sc...
-  } },
-                                    { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sc...
-  } },
-                                    { label: 'View swimsuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sc...
-  } },
-                                    { label: 'View bikinis', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sc...
-  } },
-                                    { label: 'View bodysuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bodysuits',  's...
-  } },
-                                    { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'sca...
-  } },
+                                    { label: 'View clothing', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'scandalicious_outfits'] },
+                                    { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'scandalicious_dress'] },
+                                    { label: 'View swimsuits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'scandalicious_swimsuit'] },
+                                    { label: 'View bikinis', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'scandalicious_bikinis'] },
+                                    { label: 'View bodysuits', goto: ['intro_character_custom', 'modclo_loop', 'bodysuits', 'scandalicious'] },
+                                    { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'scandalicious'] },
                                   ]);
                                 } else {
                                   if (((s as any).menu_name ?? 0) === 'exhibitionist') {
@@ -771,21 +627,11 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                       { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                                      { label: 'View outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sa...
-  } },
-                                      { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'sa...
-  } },
-                                      { label: 'View bras', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bras',    'sala...
-  } },
-                                      { label: 'View panties', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'panties',    's...
-  } },
-                                      { label: 'View bodysuits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'bodysuits',  's...
-  } },
+                                      { label: 'View outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'salacious_dress'] },
+                                      { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'salacious_outfits'] },
+                                      { label: 'View bras', goto: ['intro_character_custom', 'modclo_loop', 'bras', 'salacious'] },
+                                      { label: 'View panties', goto: ['intro_character_custom', 'modclo_loop', 'panties', 'salacious'] },
+                                      { label: 'View bodysuits', goto: ['intro_character_custom', 'modclo_loop', 'bodysuits', 'salacious'] },
                                     ]);
                                   } else {
                                     if (((s as any).menu_name ?? 0) === 'tsar_bomba') {
@@ -797,21 +643,11 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                         { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = ''
   }, goto: ['intro_character_custom', 'modclo'] },
-                                        { label: 'View dresses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'bo...
-  } },
-                                        { label: 'View outfits', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'clothing',  'bo...
-  } },
-                                        { label: 'View shoes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'shoes',    'bom...
-  } },
-                                        { label: 'View purses', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'purses',    'bo...
-  } },
-                                        { label: 'View coats', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'coats',    'bom...
-  } },
+                                        { label: 'View dresses', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'bomba_dress'] },
+                                        { label: 'View outfits', goto: ['intro_character_custom', 'modclo_loop', 'clothing', 'bomba_outfits'] },
+                                        { label: 'View shoes', goto: ['intro_character_custom', 'modclo_loop', 'shoes', 'bomba'] },
+                                        { label: 'View purses', goto: ['intro_character_custom', 'modclo_loop', 'purses', 'bomba'] },
+                                        { label: 'View coats', goto: ['intro_character_custom', 'modclo_loop', 'coats', 'bomba'] },
                                       ]);
                                     } else {
                                       if (((s as any).menu_name ?? 0) === 'pirsingsalon') {
@@ -832,60 +668,24 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                             { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = 'pirsingsalon'
   }, goto: ['intro_character_custom', 'modclo'] },
-                                            { label: 'Ankle', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'ankl...
-  } },
-                                            { label: 'Arm', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'arm'
-  } },
-                                            { label: 'Ass', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'ass'
-  } },
-                                            { label: 'Back', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'back...
-  } },
-                                            { label: 'Belly', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'bell...
-  } },
-                                            { label: 'Breast', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'brea...
-  } },
-                                            { label: 'Chest', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'ches...
-  } },
-                                            { label: 'Face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'face...
-  } },
-                                            { label: 'Hand', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'hand...
-  } },
-                                            { label: 'Leg', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'leg'
-  } },
-                                            { label: 'Lip', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'lip'
-  } },
-                                            { label: 'Neck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'neck...
-  } },
-                                            { label: 'Pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'puss...
-  } },
-                                            { label: 'Shoulder', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'shou...
-  } },
-                                            { label: 'Side', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'side...
-  } },
-                                            { label: 'Tramp', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'tram...
-  } },
-                                            { label: 'Under', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'unde...
-  } },
-                                            { label: 'Wrist', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'tattoos', 'wris...
-  } },
+                                            { label: 'Ankle', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'ankle'] },
+                                            { label: 'Arm', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'arm'] },
+                                            { label: 'Ass', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'ass'] },
+                                            { label: 'Back', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'back'] },
+                                            { label: 'Belly', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'belly'] },
+                                            { label: 'Breast', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'breast'] },
+                                            { label: 'Chest', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'chest'] },
+                                            { label: 'Face', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'face'] },
+                                            { label: 'Hand', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'hand'] },
+                                            { label: 'Leg', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'leg'] },
+                                            { label: 'Lip', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'lip'] },
+                                            { label: 'Neck', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'neck'] },
+                                            { label: 'Pussy', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'pussy'] },
+                                            { label: 'Shoulder', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'shoulder'] },
+                                            { label: 'Side', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'side'] },
+                                            { label: 'Tramp', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'tramp'] },
+                                            { label: 'Under', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'under'] },
+                                            { label: 'Wrist', goto: ['intro_character_custom', 'modclo_loop', 'tattoos', 'wrist'] },
                                           ]);
                                         } else {
                                           if (((s as any).menu_name ?? 0) === 'pirsingsalon_piercings') {
@@ -893,30 +693,14 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
                                               { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: $menu_name = 'pirsingsalon'
   }, goto: ['intro_character_custom', 'modclo'] },
-                                              { label: 'Ears', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'ea...
-  } },
-                                              { label: 'Brow', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'br...
-  } },
-                                              { label: 'Lip', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'li...
-  } },
-                                              { label: 'Nose', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'no...
-  } },
-                                              { label: 'Tongue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'to...
-  } },
-                                              { label: 'Navel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'na...
-  } },
-                                              { label: 'Nipples', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'ni...
-  } },
-                                              { label: 'Pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', 'piercings', 'pu...
-  } },
+                                              { label: 'Ears', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'ears'] },
+                                              { label: 'Brow', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'brow'] },
+                                              { label: 'Lip', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'lip'] },
+                                              { label: 'Nose', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'nose'] },
+                                              { label: 'Tongue', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'tongue'] },
+                                              { label: 'Navel', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'navel'] },
+                                              { label: 'Nipples', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'nipples'] },
+                                              { label: 'Pussy', goto: ['intro_character_custom', 'modclo_loop', 'piercings', 'pussy'] },
                                             ]);
                                           }
                                         }
@@ -1118,7 +902,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
 
 function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
   (s as any).nstat = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
-  (s as any).nstat = 0;
+  (s as any).nstat = window.prompt("Enter value that ends in a 2 or a 7. For example, 2, 7, 12 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 97) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -1251,7 +1035,7 @@ function enterModiteMis(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModpur(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).currentpursetype = ((s as any).locArgs?.[1] ?? 0);
     (s as any).currentpursenumber = ((s as any).locArgs?.[2] ?? 0);
   }
@@ -1371,7 +1155,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
 
 function enterSetval(s: GameState, scene: SceneBuilder): void {
   (s as any).nstat = 0;
-  (s as any).nstat = 0;
+  (s as any).nstat = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 150) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -1392,7 +1176,7 @@ function enterSetval(s: GameState, scene: SceneBuilder): void {
 
 function enterSetval2(s: GameState, scene: SceneBuilder): void {
   (s as any).nstat = 0;
-  (s as any).nstat = 0;
+  (s as any).nstat = window.prompt("Enter value in multiples of 5. For example, 5, 0, -5 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 100) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -1412,7 +1196,7 @@ function enterSetval2(s: GameState, scene: SceneBuilder): void {
 
 function enterSetval3(s: GameState, scene: SceneBuilder): void {
   (s as any).nstat = 0;
-  (s as any).nstat = 0;
+  (s as any).nstat = window.prompt("Enter value in multiples of 5. For example, 0, 5, 10 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 100) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -1440,7 +1224,7 @@ function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
   scene.text('90 = overweight, stocky');
   scene.text('105 = fat, heavy set');
   (s as any).nstat = ((s as any).pcs_mass ?? 0)?.['body'];
-  (s as any).nstat = 0;
+  (s as any).nstat = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.") ?? '';
   if (((s as any).nstat ?? 0) > 150) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetbodymass(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -1777,10 +1561,10 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_rel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 0) {
+  if (((s as any).npc_rel ?? 0)[(String((s as any).locArgs?.[1] ?? ''))] < 0) {
     ((s as any).npc_rel = (s as any).npc_rel ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = 0;
   }
-  if (((s as any).npc_rel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 100) {
+  if (((s as any).npc_rel ?? 0)[(String((s as any).locArgs?.[1] ?? ''))] > 100) {
     ((s as any).npc_rel = (s as any).npc_rel ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = 100;
   }
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$npc_firstname[''<<$ARGS[1]>>'']>> <<$...
@@ -1953,7 +1737,7 @@ function enterModrelOth(s: GameState, scene: SceneBuilder): void {
 function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :pol_grup_set_loop
-  if (((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === Number((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).npc_gender ?? 0)['A' + (((s as any).r ?? 0))] === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).r ?? 0))] === String((s as any).locArgs?.[2] ?? '')) {
     ((s as any).npc_rel = (s as any).npc_rel ?? {})['A' + String(((s as any).r ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
   }
   (s as any).r = ((s as any).r ?? 0) + (1);

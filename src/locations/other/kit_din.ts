@@ -283,13 +283,13 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'tiny');
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('You prepare the meal.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'large_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.actions([
       { label: 'Eat cooked food (0:20)', goto: ['kit_din', 'edahotd', 'large_meal'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'small_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       scene.actions([
         { label: 'Eat cooked food (0:10)', goto: ['kit_din', 'edahotd', 'small_meal'] },
@@ -317,7 +317,7 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
     (s as any).dirttarelka = ((s as any).dirttarelka ?? 0) + (1);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'medium_meal';
   }
   qspCall(s, 'food', '', ((s as any).locArgs?.[1] ?? 0));
@@ -740,10 +740,10 @@ function enterCookMealPk(s: GameState, scene: SceneBuilder): void {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
   }
   qspCall(s, 'mood', 'lower', 'tiny');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'large_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'small_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 25;
@@ -940,7 +940,8 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'food', 'family_meals', 'breakfast');
     qspCall(st, 'food', 'aftermeal');
     qspCall(st, 'stat', '');
-    scene.img('images/shared/food/breakfast_' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/food/breakfast_'+rand(0, 1)+'.jpg...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/food/breakfast_` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     // TODO-QSP: dynamic text: You enjoy a quiet breakfast by yourself. The portions were moderate and<<$mtxt>>...
     scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((st as any).mtxt ?? '')} You accompany it with a mug of tea.`);
     scene.actions([
@@ -1082,12 +1083,12 @@ function enterEatWarmPk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== 'uni_dorm') {
     (s as any).dirttarelka = ((s as any).dirttarelka ?? 0) + (1);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'small_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'food', 'small_meal_stats');
     qspCall(s, 'food', 'small_meal_text');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'large_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       qspCall(s, 'food', 'large_meal_stats');
       qspCall(s, 'food', 'large_meal_text');
@@ -1114,12 +1115,12 @@ function enterEatCookedPk(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'mood', 'raise', 'small');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'small_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'food', 'small_meal_stats');
     qspCall(s, 'food', 'small_meal_text');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'large_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 50;
       qspCall(s, 'food', 'large_meal_stats');
       qspCall(s, 'food', 'large_meal_text');

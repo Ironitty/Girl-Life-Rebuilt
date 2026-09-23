@@ -333,11 +333,11 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 3) {
             // TODO-QSP: 'Your school social group consists of nerds, geeks and good students.' + $journal_school_standing
             if (((s as any).nerd_game ?? 0)?.['game_day'] > ((s as any).daystart ?? 0)) {
-              // TODO-QSP: dynamic text: You have been invited to a games night on <<$weekName[(week + (nerd_game[''game_...
+              // TODO-QSP: dynamic text: 'You have been invited to a games night on <<$weekName[(week + (nerd_game[''game...
               scene.text(`You have been invited to a games night on ${((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))]} at 20:00 in the community center library.`);
             }
             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
-              // TODO-QSP: dynamic text: You have been invited to a games night tonight at '+func('time', 'get_time_strin...
+              // TODO-QSP: dynamic text: 'You have been invited to a games night tonight at '+func('time', 'get_time_stri...
               scene.text('You have been invited to a games night tonight at 20:00 in the community center library.');
             }
           } else {
@@ -638,7 +638,7 @@ function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
 function enterVcard(s: GameState, scene: SceneBuilder): void {
   (s as any).quest_id = 'A' + ((s as any).locArgs?.[1] ?? 0);
   (s as any).loc_id = 'beta_journal_quests';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     // TODO-QSP: gt $loc_id, 'failure', 'id'
   }
   if (((s as any).npc_quest ?? 0)?.['q_next'] === '') {
@@ -711,7 +711,7 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
 
 function enterNavigation(s: GameState, scene: SceneBuilder): void {
   (s as any).nav_click = ((s as any).locArgs?.[1] ?? 0);
-  if (Number((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).qstage ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') !== ''  &&  ((s as any).qstage ?? 0) === 1) {
     ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_back'] = 'null';
   } else {
     if (((s as any).qstage ?? 0) > 1  &&  ((s as any).nav_click ?? 0) === 'next') {

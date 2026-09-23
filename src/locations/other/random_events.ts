@@ -1,4 +1,4 @@
-import { qspGoto } from '../_shared/qspBridge';
+import { dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -511,7 +511,7 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).rand_events_list_name ?? {}).length === 0) {
     // TODO-QSP: exit
   }
-  (s as any).temp = 0;
+  (s as any).temp = (Math.floor(Math.random() * (((s as any).rand_events_total_weight ?? 0) - 1 + 1)) + (1));
   (s as any).temp_i = 0;
   // TODO-QSP: :rand_events_pick_loop
   if (((s as any).temp ?? 0) > ((s as any).rand_events_cumweight ?? 0)?.[String((s as any).temp_i ?? 0)]) {
@@ -522,7 +522,7 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp[2] = $rand_events_list_name[temp_i]
   (s as any).rand_events_last = ((s as any).totminut ?? 0);
   // TODO-QSP: rand_events_list_last[$temp[1] + '_' + $temp[2]] = totminut
-  // TODO-QSP: gt $temp[1], $temp[2]
+  dynamicGoto(s, 'temp[1]', 'temp[2]');
   scene.build();
 }
 

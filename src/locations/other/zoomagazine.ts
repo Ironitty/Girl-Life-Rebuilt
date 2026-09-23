@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'money', 'pay', 2000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/rabbit.jpg');
         scene.text('<center><b>You bought a rabbit.</b></center>');
-        (st as any).namekrol = 0;
+        (st as any).namekrol = window.prompt("I call the rabbit…") ?? '';
         if (((st as any).namekrol ?? 0) === '') {
           (st as any).namekrol = 'Bugs';
         }
@@ -57,7 +57,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/dog.jpg');
         scene.text('<center><b>You bought a dog.</b></center>');
-        ((st as any).rex = (st as any).rex ?? {})['name'] = 0;
+        ((st as any).rex = (st as any).rex ?? {})['name'] = window.prompt("I call the dog…") ?? '';
         if (((st as any).rex ?? 0)?.['name'] === '') {
           ((st as any).rex = (st as any).rex ?? {})['name'] = 'Rex';
         }
@@ -84,7 +84,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
         scene.text('<center><b>You bought a parrot.</b></center>');
-        ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name1'] = 0;
+        ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name1'] = window.prompt("I call the parrot…") ?? '';
         if (((st as any).ParrotQW ?? 0)?.['Name1'] === '') {
           ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name1'] = 'Polly';
         }
@@ -112,7 +112,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 3000);
       scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
       scene.text('<center><b>You bought a parrot.</b></center>');
-      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name2'] = 0;
+      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name2'] = window.prompt("I call the parrot…") ?? '';
       if (((st as any).ParrotQW ?? 0)?.['Name2'] === '') {
         ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name2'] = 'Polly';
       }

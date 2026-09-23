@@ -229,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
     scene.img('images/characters/shared/headshots_main/big28.jpg');
     scene.text('Your stepfather is sitting on the couch, watching some boring TV show. You sit down next to him.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).fatherPayDay ?? 0) === ((st as any).daystart ?? 0)) {
       // TODO-QSP: dynamic text: Trying your cutest face on your stepfather, you ask him for some money. He just ...
       scene.text(`Trying your cutest face on your stepfather, you ask him for some money. He just shakes his head wearily: "No, ${((st as any).pcs_nickname ?? '')}. I've already given you some money today, don't be greedy."`);
@@ -393,7 +393,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
     scene.img('images/shared/home/telek.jpg');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_rel ?? 0)?.['A28'] < 20) {
       qspCall(st, 'dinfather', 'watchtv1');
       return;
@@ -449,7 +449,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
     scene.img('images/characters/shared/headshots_main/big28.jpg');
     scene.text('Your stepfather is sitting on the couch, watching TV. You sat next to him on the sofa.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('');
     if (((st as any).npc_rel ?? 0)?.['A28'] <= 40  ||  (((st as any).pcs_apprnc ?? 0) + (((st as any).npc_rel ?? 0)?.['A28'] / 10)) <= 60) {
       // TODO-QSP: dynamic text: You ask your stepfather what he thinks of your outfit. It looks like he''s not i...
@@ -820,7 +820,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Your stepfather is sitting by the dinner table eating and reading the newspaper.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFatherRep(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).npc_rel ?? 0)?.['A28'] < 20) {
       qspCall(st, 'dinfather', 'father 1');
       return;

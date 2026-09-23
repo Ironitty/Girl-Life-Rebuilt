@@ -56,11 +56,11 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
+  if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
+    (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   }
   qspGoto(s, 'bed_get_out_events', 'event_end');

@@ -88,7 +88,7 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
   scene.text('You consider which name you\'d like to register under.');
-  ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = 0;
+  // TODO-QSP: $assbook['account_name'] = input('Which name would you like to use? (Leave blank for <<$pcs_nickname>>)')
   if (((s as any).assbook ?? 0)?.['account_name'] === '') {
     ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
@@ -163,7 +163,7 @@ function enterListretrieve(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieClotot ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -178,7 +178,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: jump 'retr_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -192,7 +192,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -207,7 +207,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: jump 'retr_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -270,7 +270,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieClotot ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -286,7 +286,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: jump 'upl_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -300,7 +300,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -316,7 +316,7 @@ function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: jump 'upl_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {

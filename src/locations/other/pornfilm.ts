@@ -170,10 +170,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish him off', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/hjcumontits.mp4');
-    // TODO-QSP: dynamic text: You continue squeezing your tits together and milking his cock as he leans back ...
+    // TODO-QSP: dynamic text: 'You continue squeezing your tits together and milking his cock as he leans back...
     scene.text('You continue squeezing your tits together and milking his cock as he leans back and starts groaning. You pick up the pace in response, your tits loudly slapping against him as you smile up at him. "Cum for me. Cum all over my big ' + ((((st as any).age ?? 0) < 20) ? ('teen') : ('')) + ' tits!" you tell him in a teasing tone.');
     scene.text('He soon lets out a loud grunt and you quickly start jerking his dick with your hand before his hot cum starts squirting over your tits. When he finishes, you show your cum covered tits to the camera, playfully teasing your future viewers with a show of you squeezing them together before the shoot ends.');
-    // TODO-QSP: dynamic text: As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky day...
+    // TODO-QSP: dynamic text: 'As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky da...
     scene.text('As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky day if I was the first to get those tits on camera. I hope I\'m first in line to fuck you too." ' + ((((st as any).age ?? 0) < 20) ? ('He looks you over. "Nothing better than a tight teen pussy squeezing your cock. First Alli and now you. This job just gets better and better."') : ('He looks over. "That pussy is just begging for my dick."')) + '');
     scene.text('He whistles contently as he walks away, leaving you to go and clean up.');
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID ?? 0), 1);
@@ -197,10 +197,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish him off', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/hjcumontits.mp4');
-    // TODO-QSP: dynamic text: Egor caresses your tits as you continue to jerk his cock. After a few minutes, h...
+    // TODO-QSP: dynamic text: 'Egor caresses your tits as you continue to jerk his cock. After a few minutes, ...
     scene.text('Egor caresses your tits as you continue to jerk his cock. After a few minutes, he stops feeling you up, leans back and starts groaning. You pick up the pace in response, jerking his dick as you aim it at your tits. "Yes, cum all over my ' + ((((st as any).age ?? 0) < 20) ? ('teen') : ('')) + ' tits!" you tell him in a teasing tone.');
     scene.text('He soon lets out a loud grunt, and his hot cum starts squirting over your tits. When he finishes, you show your cum covered tits to the camera, playfully teasing your future viewers with a show of you squeezing them together before the shoot ends.');
-    // TODO-QSP: dynamic text: As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky day...
+    // TODO-QSP: dynamic text: 'As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky da...
     scene.text('As the shoot wraps up, Egor approaches you with a grin. "It must be my lucky day if I was the first to get on camera with you. I hope I\'m first in line to fuck you too." ' + ((((st as any).age ?? 0) < 20) ? ('He looks you over. "Nothing better than a tight teen pussy squeezing your cock. First Alli and now you. This job just gets better and better."') : ('He looks over. "That pussy is just begging for my dick."')) + '');
     scene.text('He whistles contently as he walks away, leaving you to go and clean up.');
     qspCall(st, 'cum_call', 'breasts', 'A195', 1);
@@ -1082,13 +1082,13 @@ function enter10(s: GameState, scene: SceneBuilder): void {
 { label: 'Warmup', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
     scene.text('Under pressure from the director, the men eventually agree and gather around you. You start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates it\'s time to change the scene.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck them', handler: (st: GameState) => {
     scene.img(`images/locations/city/redlight/studio_porn/sex/gangp${(Math.floor(Math.random() * 4) + 1)}.mp4`);
     scene.text('The guys take turns fucking you in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkVaginal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkVaginal(st, scene); (st as any).locArgs = __savedLocArgs; }
     (st as any).cumnostd = 1;
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID ?? 0), 1, 0, 10000, 1);
     (st as any).cumnostd = 1;
@@ -1247,13 +1247,13 @@ function enter11(s: GameState, scene: SceneBuilder): void {
 { label: 'Warmup', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
     scene.text('Under pressure from the director, the men eventually agree and gather around you. You start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck them', handler: (st: GameState) => {
     scene.img(`images/shared/sex/group/threesomepm${(Math.floor(Math.random() * 12) + 1)}.mp4`);
     scene.text('The guys take turns fucking you in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkVaginal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkVaginal(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Creampies', handler: (st: GameState) => {
@@ -1387,14 +1387,14 @@ function enter12(s: GameState, scene: SceneBuilder): void {
 { label: 'Warmup', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
     scene.text('Under pressure from the director, the men eventually agree and gather around you. Next, you start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck them', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img(`images/shared/sex/group/threesomepm${(Math.floor(Math.random() * 6) + 0)}.mp4`);
     scene.text('The guys take turns fucking your ass in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkAnal(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkAnal(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Anal creampies', handler: (st: GameState) => {
@@ -1513,7 +1513,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
 { label: 'Warmup', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
     scene.text('Under pressure from the director, the men eventually agree and gather around you. Next, you start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter4GuyBlowJerkBreastCuni(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let them fuck you', handler: (st: GameState) => {
@@ -1655,21 +1655,21 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
     (st as any).gb_roll = (Math.floor(Math.random() * 6) + 1);
     if (((st as any).gb_roll ?? 0) === 1) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbBj(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbBj(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).gb_roll ?? 0) === 2) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbHj(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbHj(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         if (((st as any).gb_roll ?? 0) === 3) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbLip(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbLip(st, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           if (((st as any).gb_roll ?? 0) === 4) {
-            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbAnal(s, scene); (st as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbAnal(st, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
             if (((st as any).gb_roll ?? 0) === 5) {
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbBukk(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbBukk(st, scene); (st as any).locArgs = __savedLocArgs; }
             } else {
-              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbSex(s, scene); (st as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbSex(st, scene); (st as any).locArgs = __savedLocArgs; }
             }
           }
         }

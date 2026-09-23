@@ -43,7 +43,8 @@ function enterPayback(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
     scene.text('You silently nod and Niko smiles. "Good, that\'s what I like to hear. So what\'s it going to be today? Money or that pretty mouth of yours?"');
     scene.actions([
       { label: 'Money', handler: (st: GameState) => {
@@ -54,7 +55,8 @@ function enterPayback(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       (st as any).NikoPayed = ((st as any).daystart ?? 0);
       qspCall(st, 'stat', '');
-      scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
       // TODO-QSP: dynamic text: You hand Niko <<$func(''money'', ''string_price'', 200)>> and he counts it befor...
       scene.text(`You hand Niko ${qspFunc(s, 'money', 'string_price', 200)} and he counts it before giving you an approving nod. "Excellent. See you tomorrow ${((st as any).pcs_nickname ?? '')}. Don't try to avoid me or things will end badly for you." He puts the money in his pocket and walks away. You take a minute to get dressed and try to regain your composure before leaving the restroom.`);
       scene.actions([
@@ -103,7 +105,8 @@ function enterPayback2(s: GameState, scene: SceneBuilder): void {
     { label: 'Approach him', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A189', (Math.floor(Math.random() * 5) + 1));
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
     scene.text('You approach Niko and a confident grin creeps onto his face. "You showed up? Good. How will you be paying today?"');
     scene.actions([
       { label: 'Money', handler: (st: GameState) => {
@@ -127,7 +130,8 @@ function enterPayback2(s: GameState, scene: SceneBuilder): void {
     (st as any).NikoPayed = ((st as any).daystart ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile' + (Math.floor(Math.random() * 2) + 2) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/boy/niko/niko...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/smile` + (Math.floor(Math.random() * 2) + 2) + '.jpg"></center>');
     scene.text('You look down at the floor, avoiding eye contact with him. "You can use my body as payment…"');
     scene.text('His eyes light up. "I was hoping you\'d say that. Let\'s not waste time." He grabs your ass firmly while leading you to the lesser used restroom.');
     scene.actions([

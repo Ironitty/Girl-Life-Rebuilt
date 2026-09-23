@@ -198,7 +198,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((st as any).ivrand ?? 0) === 2  &&  (((st as any).brotherQW ?? 0)?.['last_sex_day_evening'] !== ((st as any).daystart ?? 0)  ||  ((st as any).brotherQW ?? 0)?.['anatomy_help'] === 1)) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowbody(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowbody(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.actions([
           { label: 'Finish', goto: ['sitrPar', ''] },

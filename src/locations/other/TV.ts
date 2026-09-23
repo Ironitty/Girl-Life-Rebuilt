@@ -172,7 +172,8 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tvtime ?? 0) === 1) {
       qspCall(s, 'mood', 'raise', 'tiny');
       qspCall(s, 'stat', '');
-      scene.img('images/locations/gadukino/grandparents/tv/tv' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/gadukino/grand...
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/grandparents/tv/tv` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
       scene.text('You browse through the three available channels that reach this rural area. The selection is limited and the reception occasionally fuzzy, but even these modest programs provide a welcome distraction from country life. You watch with mild interest as the black and white images flicker across the screen.');
       scene.actions([
         { label: 'Watch for another hour (1:00)', handler: (st: GameState) => {

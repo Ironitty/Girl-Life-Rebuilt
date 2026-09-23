@@ -65,7 +65,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "That bastard didn\'t pay to fuck your ass. If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -97,7 +97,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -129,7 +129,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} looks furious as he stands up and marches out the door. Unsure what to do, you remain seated and wait for him to return.`);
       scene.text('"He\'s nowhere to be seen!" he says angrily as he returns to the table. "If he shows his face again, <i>I\'ll</i> deal with him."');
       scene.text('"Here\'s your money. You come straight to me next time if things get out of hand again."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go back to the hotel lobby', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -281,7 +281,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     (st as any).PavlinQW = 2;
     qspCall(st, 'willpower', 'misc', 'resist');
     qspCall(st, 'willpower', 'pay', 'resist');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetpaidpros(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.text('"I actually have a doctor\'s appointment in a few minutes, but I still expect that bonus," you say.');
     // TODO-QSP: dynamic text: "Sure <<$pcs_firstname>>, no problem," he replies with a knowing smile.
@@ -376,7 +376,8 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Are you ready to do some work, ${((s as any).pcs_firstname ?? '')}?"`);
     scene.text('Without bothering to wait for you to respond, he gets up from the table and heads to the elevator.');
   } else {
-    scene.img('images/locations/pavlovsk/hotel/resep.girl0,' + (Math.floor(Math.random() * 11) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/hotel/resep.girl0,'+r...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/hotel/resep.girl0,` + (Math.floor(Math.random() * 11) + 0) + '.jpg"></center>');
     // TODO-QSP: dynamic text: She picks up the phone. "<<$npc_nickname[''A217'']>>, I have <<$pcs_nickname>> h...
     scene.text(`She picks up the phone. "${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''}, I have ${((s as any).pcs_nickname ?? '')} here for you... Sure, I'll send her right up."`);
     // TODO-QSP: dynamic text: She gives you a subtle smile and tells you <<$npc_nickname[''A217'']>> is waitin...

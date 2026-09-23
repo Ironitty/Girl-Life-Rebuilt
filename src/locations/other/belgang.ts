@@ -30,7 +30,7 @@ function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'debt_pay', 'belgangPay', ((st as any).belgangPayWeek ?? 0), 'cash');
     qspCall(st, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
     scene.text('You don\'t get in, instead you hand him the payment for this week. "That\'s it, everything for this week."');
     // TODO-QSP: dynamic text: He takes a moment to count the money and nods approvingly. "Very good, it''s the...
@@ -110,7 +110,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     if (((st as any).belgangPayWeek ?? 0) > ((st as any).belgangPay ?? 0)) {
       (st as any).belgangPayWeek = ((st as any).belgangPay ?? 0);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('He gives you a fake smile, gets back in his jeep and drives away.');
     // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
@@ -132,7 +132,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
     scene.text('You hand over the payment for this week. "That\'s it, everything for this week."');
     scene.text('He takes a moment to count the money and nods approvingly. "Very good, it\'s the full amount."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -140,7 +140,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
     if (((st as any).belgangPayWeek ?? 0) > ((st as any).belgangPay ?? 0)) {
       (st as any).belgangPayWeek = ((st as any).belgangPay ?? 0);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     // TODO-QSP: dynamic text: He gives you a fake smile. "See you next week, <<$pcs_nickname>>."
     scene.text(`He gives you a fake smile. "See you next week, ${((st as any).pcs_nickname ?? '')}."`);
@@ -168,15 +168,15 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
       if (((st as any).belgangPayWeek ?? 0) > ((st as any).belgangPay ?? 0)) {
         (st as any).belgangPayWeek = ((st as any).belgangPay ?? 0);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (st as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(st, scene); (st as any).locArgs = __savedLocArgs; }
+      // TODO-QSP: dynamic text: 'He frowns, abruptly cutting you off. You can see the disapproval in his eyes wh...
       scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is very unfortunate, ${((st as any).pcs_nickname ?? '')}," he says. "You can pay me next week, but I expect ' + $func('money', 'string_debt_addition', 2000) + ' extra."`);
       if ((!((st as any).belgangProstitute ?? 0))) {
         (st as any).belgangProstitute = 1;
         // TODO-QSP: dynamic text: "And don''t worry, <<$pcs_nickname>>. I''ll give you some opportunities to help ...
         scene.text(`"And don't worry, ${((st as any).pcs_nickname ?? '')}. I'll give you some opportunities to help you pay your debts," he says with a dangerous smile.`);
       }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(st, scene); (st as any).locArgs = __savedLocArgs; }
       // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
       // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
       scene.actions([
@@ -192,10 +192,10 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
         if (((st as any).belgangPayWeek ?? 0) > ((st as any).belgangPay ?? 0)) {
           (st as any).belgangPayWeek = ((st as any).belgangPay ?? 0);
         }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(s, scene); (st as any).locArgs = __savedLocArgs; }
-        // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterUpdateDebtCalendar(st, scene); (st as any).locArgs = __savedLocArgs; }
+        // TODO-QSP: dynamic text: 'He frowns, abruptly cutting you off. You can see the disapproval in his eyes wh...
         scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is the last time, ${((st as any).pcs_nickname ?? '')}," he says. "You can pay me next week, but I expect ' + $func('money', 'string_debt_addition', 5000) + ' extra.`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSaunamention(st, scene); (st as any).locArgs = __savedLocArgs; }
         // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
         // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
         scene.actions([

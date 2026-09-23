@@ -64,7 +64,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure, that sounds fun and I just so happen to have some time to kill." You say with a wink.');
     // TODO-QSP: dynamic text: "Great!" answers <<$npc_firstname[$boy]>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} "So, what do you want to do?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).boy ?? 0));
@@ -193,7 +193,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
     scene.text('You give him a hard look and eye him up and down. "Fine I\'m fucking bored anyways, but you\'re paying."');
     scene.text('"Good, I expected no other outcome." he says. "I\'ll give it to you to decide what we should do?".');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'How about we fuck?', handler: (st: GameState) => {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
@@ -262,7 +262,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You think about it a moment and figure why not "Sure I would love to out with you."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npc_firstname[$boy]>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} "So, what do you want to do?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).boy ?? 0));
@@ -355,7 +355,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Stop, you\'re making me blush again. Sure, sounds like fun, I would love to."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npc_firstname[$boy]>> "So, what do you want to do gorgeous?"...
     scene.text(`"Great!" answers ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} "So, what do you want to do gorgeous?".`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).boy ?? 0));
@@ -432,7 +432,7 @@ function enterDateChoice(s: GameState, scene: SceneBuilder): void {
       { label: '"Let\'s go to the movie theater." (old content)', goto: ['dateM', 'datecinema'] },
       { label: '"Let\'s go to the movie theater." (new content)', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
-    qspGoto(st, 'date_ev', ((st as any).initiate_pre ?? ''), ((st as any).npcID ?? ''), 'movie_date');
+    qspGoto(st, 'date_ev', 'initiate_pre', ((st as any).npcID ?? ''), 'movie_date');
   } },
     ]);
   }
@@ -441,7 +441,7 @@ function enterDateChoice(s: GameState, scene: SceneBuilder): void {
     { label: '"Let\'s go to a cafe" (old content)', goto: ['dateM', 'datecafe'] },
     { label: '"Let\'s go to a cafe" (new content)', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
-    qspGoto(st, 'date_ev', ((st as any).initiate_pre ?? ''), ((st as any).npcID ?? ''), 'casual_meal');
+    qspGoto(st, 'date_ev', 'initiate_pre', ((st as any).npcID ?? ''), 'casual_meal');
   } },
     { label: '"Let\'s go to a bar." (old content)', goto: ['dateM', 'datebar'] },
   ]);
@@ -451,7 +451,8 @@ function enterDateChoice(s: GameState, scene: SceneBuilder): void {
 function enterDatepark(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/shared/park/walk_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/park/walk_'+ rand(1, 2)...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/park/walk_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('"Since it\'s such a beautiful day today, let\'s go for a walk in the park." you suggest.');
   // TODO-QSP: dynamic text: "Sounds great. Lets go." <<$npc_firstname[$boy]>> walks with you towards the par...
   scene.text(`"Sounds great. Lets go." ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} walks with you towards the park.`);
@@ -671,14 +672,16 @@ function enterDatecinema(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a seat', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 45;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/cinema/kino_' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/cinema/kino_'+ rand(1, ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/cinema/kino_` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"The movies is about to start. How about we make our way in?" he asks.');
     scene.text('You nod and the two of you make your way inside the theater. You find your seats, making yourselves comfortable.');
     scene.text('The movies starts off in a frantic pace containing many slapstick scenes. You\'re having a great time, laughing almost all the time.');
     scene.actions([
       { label: 'Eat some popcorn', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    scene.img('images/locations/shared/cinema/kino_' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/cinema/kino_'+ rand(1, ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/cinema/kino_` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: As you''re about to grab some popcorn from the tub, <<$npc_firstname[$boy]>> unk...
     scene.text(`As you're about to grab some popcorn from the tub, ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} unknowingly goes to grab some popcorn too, touching your hand.`);
     scene.text('He\'s startled as he didn\'t expect your hand to be there either. You acknowledge his touch by teasingly whispering, "Are you trying to make a move on me?"');
@@ -791,7 +794,8 @@ function enterDatecinema(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep watching the movie', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 45;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/cinema/kino_' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/cinema/kino_'+ rand(1, ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/cinema/kino_` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: After a while <<$npc_firstname[$boy]>> leans towards you and whispers if you''re...
     scene.text(`After a while ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} leans towards you and whispers if you're enjoying yourself.`);
     scene.text('You turn to him nodding, as you\'re nodding he leans in once again and gives you a kiss. The two of you hold hands for the rest of the movie.');
@@ -1050,7 +1054,8 @@ function enterDatebar(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I\'ll have a beer, thanks', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'alcohol', 'beer');
-    scene.img('images/locations/shared/date/barorder_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/date/barorder_'+ rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/date/barorder_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: "My kind of girl." <<$npc_firstname[$boy]>> tells you.
     scene.text(`"My kind of girl." ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} tells you.`);
     scene.actions([
@@ -1059,7 +1064,8 @@ function enterDatebar(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'I\'ll have some hard liquor, thanks', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'alcohol', 'vodka');
-    scene.img('images/locations/shared/date/barorder_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/date/barorder_'+ rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/date/barorder_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: "My kind of girl." <<$npc_firstname[$boy]>> tells you.
     scene.text(`"My kind of girl." ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} tells you.`);
     scene.actions([
@@ -1221,7 +1227,8 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep talking', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/date/bardiscuss_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/date/bardiscuss_'+ rand...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/date/bardiscuss_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: You and <<$npc_firstname[$boy]>> continue talking even if it''s hard to hear wha...
     scene.text(`You and ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} continue talking even if it's hard to hear what he says at some times because of the loud music.`);
     scene.text('Mostly you talk about yours and his backgrounds and future plans.');
@@ -1241,7 +1248,8 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
 function enterBarend(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/shared/date/bardiscuss_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/date/bardiscuss_'+ rand...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/date/bardiscuss_` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You tell <<$npc_firstname[$boy]>>, "I''ve had a great time but we should be on o...
   scene.text(`You tell ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, "I've had a great time but we should be on our way."`);
   // TODO-QSP: dynamic text: "I had a great time, you''re really fun to hang out with." <<$npc_firstname[$boy...

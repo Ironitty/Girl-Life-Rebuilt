@@ -58,7 +58,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).boulrand ?? 0) === 1) {
-          // TODO-QSP: dynamic text: You meet two girls, and they suggest challenging two guys to a game: Prize ' + $...
+          // TODO-QSP: dynamic text: 'You meet two girls, and they suggest challenging two guys to a game: Prize ' + ...
           scene.text('You meet two girls, and they suggest challenging two guys to a game: Prize 5000₽, lose and they have sex with you.');
           qspCall(st, 'willpower', 'sex', 'resist', 'hard');
           if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -156,7 +156,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).boulrand ?? 0) === 1) {
-          // TODO-QSP: dynamic text: You meet two girls, and they suggest challenging two guys to a game: Prize ' + $...
+          // TODO-QSP: dynamic text: 'You meet two girls, and they suggest challenging two guys to a game: Prize ' + ...
           scene.text('You meet two girls, and they suggest challenging two guys to a game: Prize 5000₽, lose and they have sex with you.');
           qspCall(st, 'willpower', 'sex', 'resist', 'hard');
           if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -241,7 +241,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boulwin ?? 0) > 10) {
     if ((!((s as any).boulvar ?? 0))) {
       qspCall(s, 'money', 'earn', 300);
-      // TODO-QSP: dynamic text: You win and receive ' + $func('money', 'string_profit', 300) + '.
+      // TODO-QSP: dynamic text: 'You win and receive ' + $func('money', 'string_profit', 300) + '.'
       scene.text('You win and receive \' + $func(\'money\', \'string_profit\', 300) + \'.');
       scene.actions([
         { label: 'Leave', goto: ['bouling', ''] },
@@ -249,7 +249,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).boulvar ?? 0) === 1) {
         qspCall(s, 'money', 'earn', 2000);
-        // TODO-QSP: dynamic text: You win and receive ' + $func('money', 'string_profit', 2000) + '.
+        // TODO-QSP: dynamic text: 'You win and receive ' + $func('money', 'string_profit', 2000) + '.'
         scene.text('You win and receive \' + $func(\'money\', \'string_profit\', 2000) + \'.');
         scene.actions([
           { label: 'Leave', goto: ['bouling', ''] },
@@ -257,7 +257,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).boulvar ?? 0) === 2) {
           qspCall(s, 'money', 'earn', 5000);
-          // TODO-QSP: dynamic text: You win and receive ' + $func('money', 'string_profit', 5000) + '.
+          // TODO-QSP: dynamic text: 'You win and receive ' + $func('money', 'string_profit', 5000) + '.'
           scene.text('You win and receive \' + $func(\'money\', \'string_profit\', 5000) + \'.');
           scene.actions([
             { label: 'Leave', goto: ['bouling', ''] },
@@ -268,7 +268,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((!((s as any).boulvar ?? 0))) {
       qspCall(s, 'money', 'pay', 300);
-      // TODO-QSP: dynamic text: You lose and pay ' + $func('money', 'string_price', 300) + '.
+      // TODO-QSP: dynamic text: 'You lose and pay ' + $func('money', 'string_price', 300) + '.'
       scene.text('You lose and pay 300₽.');
       scene.actions([
         { label: 'Leave', goto: ['bouling', ''] },
@@ -277,7 +277,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       if (((s as any).boulvar ?? 0) === 1) {
         (s as any).picrand = 14;
         if (qspFunc(s, 'money', 'can_afford', 2000, 'cash') === 1) {
-          // TODO-QSP: dynamic text: You lose and have to pay ' + $func('money', 'string_price', 2000) + '.
+          // TODO-QSP: dynamic text: 'You lose and have to pay ' + $func('money', 'string_price', 2000) + '.'
           scene.text('You lose and have to pay 2000₽.');
           qspCall(s, 'willpower', 'sex', 'self', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

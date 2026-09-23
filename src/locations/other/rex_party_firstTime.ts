@@ -58,7 +58,7 @@ function enterSisboyQWParty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_9.jpg');
     scene.text('Standing, you try to get out from behind the table to go dancing, but no one is actually dancing. They are all just sitting and drinking.');
     scene.text('Seeing what you\'re doing, Rex pulls you over. "Where are you going? It\'s only the beginning! Hold the bottle and let\'s drink, otherwise I will be offended."');
-    // TODO-QSP: dynamic text: You can''t deny the ' + iif(sisterQW['rexbday'] = 2, 'birthday boy', 'host of th...
+    // TODO-QSP: dynamic text: 'You can''t deny the ' + iif(sisterQW['rexbday'] = 2, 'birthday boy', 'host of t...
     scene.text('You can\'t deny the ' + ((((st as any).sisterQW ?? 0)?.['rexbday'] === 2) ? ('birthday boy') : ('host of the party')) + ', so you take the bottle from his hand and gulp down a huge shot, feeling it burn down your throat. You hear others shouting in encouragement.');
     scene.actions([
       { label: 'Go dance', goto: ['rex_party_firstTime', 'dance'] },

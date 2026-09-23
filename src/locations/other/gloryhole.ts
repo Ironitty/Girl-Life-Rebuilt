@@ -80,7 +80,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMast(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/caress1.mp4');
     scene.text('Feeling a bit turned on, you close the door to the stall and you behind to reach down your underwear and start rubbing your clit.');
@@ -93,7 +93,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'stage2') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'stage2') {
     qspCall(s, 'mood', 'raise', 'tiny');
     if (((s as any).picrand ?? 0) === 1) {
       scene.img('images/locations/shared/gloryhole/sex/caress1.mp4');
@@ -246,7 +246,8 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
     if (((st as any).stat ?? 0)?.['gloryhole'] === 0) {
-      scene.img('images/shared/sex/gloryhole/ghfinger' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/sex/gloryhole/ghfinger'+rand(1, 5...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/gloryhole/ghfinger` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
       scene.text('You put your finger in the hole hoping to entice a man to come over…');
       // TODO-QSP: dynamic text: The man slips <<$func(''money'', ''string_profit'', 100)>> into the hole, and th...
       scene.text(`The man slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then puts his erect cock through the hole.`);

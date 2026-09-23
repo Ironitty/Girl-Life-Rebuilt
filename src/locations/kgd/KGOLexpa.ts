@@ -114,22 +114,22 @@ function enterKGOLrise(s: GameState, scene: SceneBuilder): void {
       { label: 'Improve your strength', handler: (st: GameState) => {
     (st as any).KGOLstren = ((st as any).KGOLstren ?? 0) + (1);
     (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your speed', handler: (st: GameState) => {
     (st as any).KGOLspeed = ((st as any).KGOLspeed ?? 0) + (1);
     (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your endurance', handler: (st: GameState) => {
     (st as any).KGOLvital = ((st as any).KGOLvital ?? 0) + (1);
     (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your intelligence', handler: (st: GameState) => {
     (st as any).KGOLintel = ((st as any).KGOLintel ?? 0) + (1);
     (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

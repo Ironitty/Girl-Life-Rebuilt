@@ -7,10 +7,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRstd(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  &&  Number((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  &&  String((s as any).locArgs?.[1] ?? '') <= 0) {
     // TODO-QSP: exit
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'A' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
   if (!isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== ''  &&  parseFloat((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) < 10) {

@@ -37,7 +37,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/storeclerk.jpg');
   scene.text('The store clerk looks bored and doesn\'t even seem to notice you until you speak to him.');
   scene.text('"Do you have any swimsuits for sale?" you ask, but he just looks directly into your eyes without saying anything. The silence feels extremely intimidating, but he finally responds after what seems like an eternity.');
-  // TODO-QSP: dynamic text: "I don''t get much stock delivered here, so I only have this. It''s yours for ' ...
+  // TODO-QSP: dynamic text: '"I don''t get much stock delivered here, so I only have this. It''s yours for '...
   scene.text('"I don\'t get much stock delivered here, so I only have this. It\'s yours for 1200₽."');
   scene.text('He shows you a skimpy polka dot bikini that barely covers anything. It isn\'t pretty, but there aren\'t any other options.');
   if (qspFunc(s, 'money', 'can_afford', 1200) === 1) {
@@ -53,7 +53,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
       scene.text('The cheap, flimsy bikini is cheap looks like it could fall apart at any moment, but with no other options available, you reluctantly purchase it.');
     }
     qspCall(st, 'money', 'pay', 1200);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
@@ -105,7 +105,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly pull your clothes back on and leave with the bikini in hand, not looking back at him. You can feel his creepy stare on the back of your head and pick up your pace.');
     qspCall(st, 'money', 'set', 0, 'cash');
     ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['storeclerkvisit'] = 1;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
@@ -775,7 +775,7 @@ function enterWatertoplost(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 3;
       qspCall(st, 'stat', '');
       scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimedesc(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimedesc(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('You reach the edge of the pool and manage to climb out unnoticed before running to the locker room. You can get rid of this bottom since it\'s useless now.');
       ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['toplost'] = 0;
       qspCall(st, 'clothing', 'strip');

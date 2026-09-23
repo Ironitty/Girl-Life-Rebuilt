@@ -570,7 +570,7 @@ function enterShowerspy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'erotic_nudity', 10, 'lesbian');
     qspCall(st, 'arousal', 'flash', (-2), 'lesbian');
     qspCall(st, 'arousal', 'kiss', (-1), 'lesbian');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEscalation(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEscalation(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }

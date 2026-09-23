@@ -111,7 +111,7 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_cam_MFC_main', 'anya_interrupted');
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 'start') {
+  if (String((s as any).locArgs?.[1] ?? '') !== 'start') {
     qspCall(s, 'komp_cam_functions', 'camming', 5);
   }
   qspCall(s, 'stat', '');
@@ -127,8 +127,9 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) === 'none') {
     (s as any).img_source = ((s as any).img_source ?? 0) + (2);
   }
-  scene.img('images/pc/items/accessories/computer/camwhore' + ((s as any).img_source ?? '') + '.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 'start') {
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/computer/camwhore' ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/camwhore` + ((s as any).img_source ?? '') + '.jpg"></center>');
+  if (String((s as any).locArgs?.[1] ?? '') !== 'start') {
     qspCall(s, 'komp_cam_MFC_requests', '');
   }
   if (((s as any).camGirl ?? 0)?.['MFC_Viewers'] === 0) {
@@ -219,7 +220,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.img('images/pc/items/accessories/computer/webcam/strip' + ((s as any).video_source ?? '') + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/pc/items/accessories/com...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/pc/items/accessories/computer/webcam/strip` + ((s as any).video_source ?? '') + '.mp4"></video></center>');
   scene.text('Turning on some music you dance erotically hoping to entice some viewers.');
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']

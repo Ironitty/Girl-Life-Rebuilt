@@ -90,7 +90,8 @@ function enterFizRand(s: GameState, scene: SceneBuilder): void {
                                 scene.text('Lina is on the floor doing the splits when Lariska comes up behind her and lays on top of her, pretending to hump her. Lina laughs before they break it up.');
                               } else {
                                 if (((s as any).fizperand ?? 0) === 16) {
-                                  scene.img('images/locations/pavlovsk/school/gym/teaseboys' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                                  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/gym/teaseboys'...
+                                  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/teaseboys` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                                   scene.text('Lena and Lera notice several of the boys watching them and start teasing them by pretending to make out in front of them. Knowing them, they\'re likely doing it for more than the laughs.');
                                 } else {
                                   scene.img('images/locations/pavlovsk/school/gym/fizperand7.jpg');

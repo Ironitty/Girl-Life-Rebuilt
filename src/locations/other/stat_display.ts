@@ -42,19 +42,19 @@ function enterHelperSkillEntry(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_se = (s as any).sd_se ?? {})['cols'] = ((s as any).sd ?? 0)?.['skills_columns'];
   ((s as any).sd_se = (s as any).sd_se ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).stat_cfg ?? 0)?.['skills_mode'] > 0) {
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += $func('stat_display', 'helper_bar_cell', 'smooth_positive', $sd_se['name'], ARGS[2])
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   } else {
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += '<td style="font-size: <<sd_font_pct>>%;">' + $str(ARGS[2]) + ' ' + $sd_se['name'] + '</t...
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   }
@@ -71,15 +71,15 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_re = (s as any).sd_re ?? {})['color'] = qspFunc(s, 'progressbar', 'color', 'smooth_positive', ((s as any).locArgs?.[2] ?? 0), '10,35,60,80');
       ((s as any).sd_re = (s as any).sd_re ?? {})['dname'] = '<font color="' + ((s as any).sd_re ?? 0)?.['color'] + '">' + ((s as any).sd_re ?? 0)?.['dname'] + '</font>';
     }
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += $func('stat_display', 'helper_bar_cell', 'smooth_positive', $sd_re['dname'], ARGS[2])
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   } else {
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     if (((s as any).stat_cfg ?? 0)?.['rel_color_mode'] === 1) {
@@ -88,7 +88,7 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: $result += '<td style="font-size: <<sd_font_pct>>%;">' + $sd_re['dname'] + ': ' + $str(ARGS[2]) + '<...
     }
-    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
+    if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   }
@@ -98,7 +98,7 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).stat_hide ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).stat_hide ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[/u0027/u0027 + $ARGS[1] + /u0027/u0027] = 1 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_obnovit/u0027, /u0027/u0027); return false;">▲' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
   } else {
     (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[/u0027/u0027 + $ARGS[1] + /u0027/u0027] = 0 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_obnovit/u0027, /u0027/u0027); return false;">▽' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
@@ -110,7 +110,7 @@ function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
 
 function enterHelperRelName(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_hn = (s as any).sd_hn ?? {})['key'] = ((s as any).locArgs?.[1] ?? 0);
-  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[2] ?? '') !== '') {
     ((s as any).sd_hn = (s as any).sd_hn ?? {})['npcid'] = ((s as any).locArgs?.[2] ?? 0);
   } else {
     ((s as any).sd_hn = (s as any).sd_hn ?? {})['npcid'] = ((s as any).sd_hn ?? 0)?.['key'];
@@ -179,15 +179,15 @@ function enterHelperResolveAlign(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).temp_align = qspFunc(s, 'stat_display', 'helper_resolve_align', ((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).temp_align = ((s as any).locArgs?.[1] ?? 0);
   }
-  if (((s as any).temp_align ?? 0) === 1  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (((s as any).temp_align ?? 0) === 1  &&  String((s as any).locArgs?.[2] ?? '') !== '') {
     (s as any).result = '<center>' + ((s as any).locArgs?.[2] ?? 0) + '</center>';
   } else {
-    if (((s as any).temp_align ?? 0) === 2  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
+    if (((s as any).temp_align ?? 0) === 2  &&  String((s as any).locArgs?.[2] ?? '') !== '') {
       (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="right">' + ((s as any).locArgs?.[2] ?? 0) + '</td></tr></table>';
     } else {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
@@ -199,7 +199,7 @@ function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperFontWrap(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sd_font_pct ?? 0) !== 100  &&  Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (((s as any).sd_font_pct ?? 0) !== 100  &&  String((s as any).locArgs?.[1] ?? '') !== '') {
     (s as any).result = '<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $ARGS[1] + \'</div>';
   } else {
     (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -218,11 +218,11 @@ function enterHelperSectionHeader(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_cfg ?? 0)?.['sec_headers'] === 2) {
       ((s as any).sd_sh = (s as any).sd_sh ?? {})['lbl'] = qspFunc(s, 'stat_display', 'helper_toggle', ((s as any).locArgs?.[1] ?? 0), '&nbsp;' + ((s as any).sd_dn ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]);
       (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_sh ?? 0)?.['lbl']);
-      if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
+      if (String((s as any).locArgs?.[2] ?? '') !== '') {
         // TODO-QSP: $result += $temp_br + $ARGS[2]
       }
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+      if (String((s as any).locArgs?.[2] ?? '') === '') {
         (s as any).result = '';
       } else {
         (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', '<b>' + qspUntranslated(s, "sd_dn[\u00000\u0000]", { location: "stat_display" }) + '</b>') + ((s as any).temp_br ?? 0) + ((s as any).locArgs?.[2] ?? 0);
@@ -242,10 +242,10 @@ function enterGetSeparator(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_cfg ?? 0)?.['separator_style'] === 2) {
       (s as any).result = '<hr style="margin:12px 10px;">';
     } else {
-      if ((Number((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'table')  &&  (Number((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'table')) {
+      if ((String((s as any).locArgs?.[1] ?? '') === 'bars'  ||  String((s as any).locArgs?.[1] ?? '') === 'table')  &&  (String((s as any).locArgs?.[2] ?? '') === 'bars'  ||  String((s as any).locArgs?.[2] ?? '') === 'table')) {
         (s as any).result = '<br style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">';
       } else {
-        if ((Number((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'table')  ||  (Number((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'table')) {
+        if ((String((s as any).locArgs?.[1] ?? '') === 'bars'  ||  String((s as any).locArgs?.[1] ?? '') === 'table')  ||  (String((s as any).locArgs?.[2] ?? '') === 'bars'  ||  String((s as any).locArgs?.[2] ?? '') === 'table')) {
           (s as any).result = '<hr style="margin:' + ((s as any).sep_margin_px ?? 0) + 'px 10px;">';
         } else {
           (s as any).result = '<div style="margin:' + ((s as any).sep_margin_px ?? 0) + 'px 0;"></div>';
@@ -1696,7 +1696,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
   }
   return;
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[0] ?? '') !== '') {
     // TODO-QSP: exit
   }
   if (((s as any).debug ?? 0)?.['trace_shown'] === 1) {

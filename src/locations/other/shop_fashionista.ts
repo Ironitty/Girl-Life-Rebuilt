@@ -19,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(st, 'clothing', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -37,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(st, 'clothing', 'strip');
     qspCall(st, 'underwear', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -58,7 +58,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(st, 'clothing', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -76,7 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(st, 'clothing', 'strip');
     qspCall(st, 'underwear', 'strip');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterChangingroom(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -86,7 +86,7 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'changingroom');
   (s as any).locclass = 'changingroom';
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.text('As you walk through the store, you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you look at some clothes and grab several items to try on before heading into one of the changing rooms.');
   } else {
     scene.img('images/locations/city/citycenter/mall/fashionista/changingroom.jpg');
@@ -263,7 +263,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
 function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
   scene.text('As you try on a particularly spicy set of see-through underwear, you notice that it doesn\'t quite fit you.');
-  // TODO-QSP: dynamic text: "This should fit Natasha perfectly though. And it only costs ' + $func('money', ...
+  // TODO-QSP: dynamic text: '"This should fit Natasha perfectly though. And it only costs ' + $func('money',...
   scene.text('"This should fit Natasha perfectly though. And it only costs 750₽." You think to yourself, imagining the look on her face if you make her wear it.');
   // TODO-QSP: end
   scene.actions([

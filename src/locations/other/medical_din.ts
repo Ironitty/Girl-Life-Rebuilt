@@ -75,7 +75,7 @@ function enterBirthControlShot(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'money', 'pay', 650);
     scene.text('"I\'m sorry, but we can\'t give you the shot because you\'re pregnant."');
-    // TODO-QSP: dynamic text: After the initial shock subsides, you pay the ' + $func('money', 'string_price',...
+    // TODO-QSP: dynamic text: 'After the initial shock subsides, you pay the ' + $func('money', 'string_price'...
     scene.text('After the initial shock subsides, you pay the 650₽ for the test and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
@@ -109,7 +109,7 @@ function enterBirthControlImplant(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'money', 'pay', 650);
     scene.text('"I\'m sorry, but we can\'t give you the implant because you\'re pregnant."');
-    // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
+    // TODO-QSP: dynamic text: 'After the initial shock subsides, you only have to pay ' + $func('money', 'stri...
     scene.text('After the initial shock subsides, you only have to pay 650₽ for the test and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
@@ -145,7 +145,7 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 0;
     ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = 0;
     scene.text('"I\'m sorry, but we can\'t renew your implant because you\'re pregnant."');
-    // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
+    // TODO-QSP: dynamic text: 'After the initial shock subsides, you only have to pay ' + $func('money', 'stri...
     scene.text('After the initial shock subsides, you only have to pay 1650₽ for the test and the removal of your old implant and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
@@ -242,9 +242,9 @@ function enterBirthControlShot2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHealthTreatment(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
-  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
-  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((String((s as any).locArgs?.[1] ?? '') === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((String((s as any).locArgs?.[1] ?? '') === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((String((s as any).locArgs?.[1] ?? '') === 'spell') ? ('spell') : ('gift')));
   (s as any).pcs_health = Math.min(((s as any).healthmax ?? 0), Math.max(((s as any).pcs_health ?? 0) + ((s as any).healthmax ?? 0) / 4, ((s as any).healthmax ?? 0) / 2));
   if (((s as any).pillcon ?? 0) > 0  &&  (!(Math.floor(Math.random() * 5) + 0))) {
     (s as any).pillcon = ((s as any).pillcon ?? 0) - (2500);
@@ -290,7 +290,8 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Swallow', handler: (st: GameState) => {
     // TODO-QSP: delact 'Swallow' & delact 'Reconsider'
-    scene.img('images/pc/items/accessories/birthcontrol/pill_take' + ((((st as any).locclass ?? 0) === 'kitr'  ||  ((st as any).locclass ?? 0) === 'kitchen') ? (2) : (1)) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/items/accessories/birthcontrol/pill_t...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/items/accessories/birthcontrol/pill_take` + ((((st as any).locclass ?? 0) === 'kitr'  ||  ((st as any).locclass ?? 0) === 'kitchen') ? (2) : (1)) + '.jpg"></center>');
     if (((st as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((st as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
       ((st as any).LudaQW = (st as any).LudaQW ?? {})['luda_ma_pill'] = 1;
       scene.text('<i>I suppose this is why Aunt Luda gave me this,</i> you think as you take out the morning after pill.');
@@ -309,7 +310,7 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('<i>Well, that\'s that,</i> you think to yourself. <i>Hopefully I won\'t get pregnant now. I need to be more careful in the future.</i>');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningAfterPillFunction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningAfterPillFunction(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
   } },
         { label: 'Reconsider', handler: (st: GameState) => {

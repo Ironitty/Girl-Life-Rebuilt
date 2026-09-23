@@ -128,7 +128,7 @@ function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'shared_apartment', 0);
   (s as any).servitudelvl_bak = ((s as any).shared_apt ?? 0)?.['servitudeLvl'];
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['evicted'] = 1;
   }
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['previousTenant'] = 1;
@@ -406,7 +406,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Bathroom</h3></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
   scene.text('This is a modest bathroom, containing everything that young people need for their daily life, such as:');
-  // TODO-QSP: dynamic text: A shower, toilet, <a href="exec:gt ''mirror'',''start''">mirror</a>, where you c...
+  // TODO-QSP: dynamic text: 'A shower, toilet, <a href="exec:gt ''mirror'',''start''">mirror</a>, where you ...
   scene.text('A shower, toilet, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, a sink and even a bath tub.');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
@@ -427,7 +427,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Kitchen</h3></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/kuhrpar.jpg');
   scene.text('It\'s a modest kitchen, but has all that is needed.');
-  // TODO-QSP: dynamic text: You can cook breakfast for the guys between '+func('time', 'get_time_string', 6,...
+  // TODO-QSP: dynamic text: 'You can cook breakfast for the guys between '+func('time', 'get_time_string', 6...
   scene.text('You can cook breakfast for the guys between 6:00 and 7:00 and dinner for them between 18:00 and 19:00');
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: Above the sink are <b><<mc_inventory[''dish_plates'']>></b> the clean plates
@@ -840,7 +840,7 @@ function enterEolegAgreement(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '"Yes." End agreement', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 0]; enterBlockApt(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 0]; enterBlockApt(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'pav_complex', 'start');
   } },
     { label: '"Maybe you are right, I\'ll stay here with you guys"', goto: ['pav_shared_apt', 'start'] },
@@ -923,7 +923,8 @@ function enterAdvertNo30(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/pod_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('<br>As you pass by the advertisements, you notice a sign - "сдаeтся в аренду комната" (Room for rent!). Some guys are looking for a roommate. They live in an apartment in one of the other buildings in the apartment complex.');
   scene.actions([
 { label: 'Continue', goto: ['pod_ezd', 'etaj_1'] },

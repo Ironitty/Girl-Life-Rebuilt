@@ -43,7 +43,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text('"What do you think you\'re doing with something like this?! It\'s improper for a young lady your age! Not to mention if Kolka or your father saw this stuck inside the bathtub! You\'ll ruin your brother\'s innocence! Vladimir would have a heart attack! And you\'ll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.');
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -55,7 +55,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Blame it on Anya', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -64,7 +64,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -79,7 +79,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text('"What do you think you\'re doing with things like these?! They\'re improper for a young lady your age! Not to mention if Kolka or your father saw these! Stuck all over the bathtub and the walls! You\'ll ruin your brother\'s innocence! Vladimir would have a heart attack! And you\'ll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.');
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Shamelessly lie your ass off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -88,7 +88,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Blame it on Anya', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -97,7 +97,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -153,7 +153,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text('"No…" you say dejectedly.');
     // TODO-QSP: dynamic text: "Honestly," she huffs, shaking her head in disappointment. "I expected more of y...
     scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -177,9 +177,9 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     // TODO-QSP: dynamic text: <i>Ugh. Great. Now I need a new one. At least this gets <<$npc_nickname[''A29'']...
     scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
@@ -276,7 +276,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Blame it on Anya', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -285,7 +285,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I need some kind of outlet!', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -305,9 +305,9 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Ugh. Great. Now I need new ones.</i>');
     (st as any).vanrPar_bathtub_dildo = 0;
@@ -345,7 +345,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text('Unfortunately, you don\'t think you can weasel out of this one.');
     scene.text('"Uhh… Sorry?" you say, hopeful that she won\'t do what she did last time.');
     scene.text('She returns your apology with a glare. "Confiscated."');
-    // TODO-QSP: dynamic text: She walks away into her bedroom still carrying ' + iif(motherQW['bathroom_dildos...
+    // TODO-QSP: dynamic text: 'She walks away into her bedroom still carrying ' + iif(motherQW['bathroom_dildo...
     scene.text('She walks away into her bedroom still carrying ' + ((((st as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) ? ('it') : ('them')) + '.');
     scene.text('<i>Well, so much for that…</i>');
     ((st as any).motherQW = (st as any).motherQW ?? {})['bathroom_dildos'] = 0;
@@ -369,7 +369,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text('"No…" you say dejectedly.');
     // TODO-QSP: dynamic text: "Honestly," she huffs, shaking her head in disappointment. "I expected more of y...
     scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -393,9 +393,9 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have one of these."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     // TODO-QSP: dynamic text: <i>Ugh. Great. Now I need a new one. At least this gets <<$npc_nickname[''A29'']...
     scene.text(`<i>Ugh. Great. Now I need a new one. At least this gets ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} off my back…</i>`);
@@ -530,7 +530,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Blame it on Anya', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -539,7 +539,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text('Your mother puts her hands on her hips and glares at you. "I can\'t believe you\'re stupid enough to leave this in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You\'ll ruin your brother\'s innocence behaving like this, give your father a heart attack too! And you\'ll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.');
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I need some kind of outlet!', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -560,9 +560,9 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Ugh. Great. Now I need new ones.</i>');
     (st as any).vanrPar_bathtub_dildo = 0;
@@ -698,7 +698,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.text(`"I swear, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! It's not mine! I don't know where it came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw this straight into the garbage. And you w...
     scene.text(`"Yeah? Then you won't mind if I throw this straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
     } else {
@@ -738,7 +738,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
       scene.text('"No! I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
       scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}!"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I have to do that too. I didn\'t even get to use it…</i>');
     } else {
       scene.text('At this point, you decide it\'s time to come clean. Well, at least about the ownership.');
@@ -748,7 +748,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
       scene.text('"No! I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Then prove it. Get a new referral from the clinic. <i>Today</i> <<$pcs_firstnam...
       scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}. And I'm taking this. It's going in the trash right now."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
     }
     if (((st as any).motherQW ?? 0)?.['dildo_wakeup'] === 1) {
@@ -780,7 +780,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.text('"Yes! It\'s the truth!" you lie.');
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
     scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
     } else {
@@ -816,9 +816,9 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you can\'t have this back."');
     if (((st as any).motherQW ?? 0)?.['dildo_shower_discovery'] === 1) {
       ((st as any).motherQW = (st as any).motherQW ?? {})['dildo_shower_discovery'] = 0;
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoShowerEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Ugh. Great. Now I need a new one.</i>');
     if (((st as any).motherQW ?? 0)?.['dildo_wakeup'] === 1) {
@@ -855,7 +855,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     scene.text(`"I swear ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! They're not mine! I don't know where they came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw these straight into the garbage. And you ...
     scene.text(`"Yeah? Then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');
     } else {
@@ -895,7 +895,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
       scene.text('"I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
       scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I have to do that too. I didn\'t even get to use them…</i>');
     } else {
       scene.text('At this point, you decide it\'s time to come clean. Well, at least about the ownership.');
@@ -905,7 +905,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
       scene.text('"I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Then prove it. Get a new referral from the clinic. <i>Today</i> <<$pcs_firstnam...
       scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}. And I'm taking these. They're going in the trash right now."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');
     }
     if (((st as any).motherQW ?? 0)?.['dildo_wakeup'] === 1) {
@@ -937,7 +937,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     scene.text('"Yes! It\'s the truth!" you lie.');
     // TODO-QSP: dynamic text: There were <i>two of them</i> in there! Are you jerking one off while you suck o...
     scene.text(`There were <i>two of them</i> in there! Are you jerking one off while you suck on the other? Besides, you shouldn't be doing that either!" she sputters. "Well, if you're telling the truth, then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');
     } else {
@@ -971,7 +971,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     // TODO-QSP: dynamic text: "But <<$npc_nickname[''A29'']>>!"
     scene.text(`"But ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!"`);
     scene.text('"No buts, young lady! Other people live in this household too, so you need to learn to control yourself. If you can\'t do that much, then you don\'t deserve to have these either."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoEnding1(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('<i>Ugh. Great. Now I need new ones.</i>');
     (st as any).vanrPar_bathtub_dildo = 0;
     (st as any).vanrPar_bath_shower_dildo = 0;

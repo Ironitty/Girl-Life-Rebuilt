@@ -99,7 +99,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      // TODO-QSP: dynamic text: The clinic is closed. It''s open every day between '+func('time', 'get_time_stri...
+      // TODO-QSP: dynamic text: 'The clinic is closed. It''s open every day between '+func('time', 'get_time_str...
       scene.text('The clinic is closed. It\'s open every day between 6:00 and 21:00.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -115,7 +115,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 1;
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You notice a piece of paper on the wall near the entrance to the clinic - it''s ...
+    // TODO-QSP: dynamic text: 'You notice a piece of paper on the wall near the entrance to the clinic - it''s...
     scene.text('You notice a piece of paper on the wall near the entrance to the clinic - it\'s a job listing which reads: "Cleaner wanted! One hour per day, any time between 14:00 and 21:00. Payment: \'+$func(\'money\', \'string_profit\', 100)+\'."');
     scene.actions([
       { label: 'Move away', goto: ['pav_clinic', ''] },
@@ -405,7 +405,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. What brings you in today?" Dr. Petrovich says with a smile.`);
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 'referral_only') {
+  if (String((s as any).locArgs?.[1] ?? '') !== 'referral_only') {
     if (((s as any).drugVars ?? 0)?.['cocaine_addict'] === 1  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.actions([
         { label: 'Seek help for your weakness and pain', goto: ['pav_clinic', 'Petrovich_drug'] },
@@ -426,7 +426,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(st, 'money', 'pay', 1000);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdTest(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdTest(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'clinic_functions', 'set_std_herpes_shot_act');
       qspCall(st, 'clinic_functions', 'set_std_gonorrhea_shot_act');
       qspCall(st, 'clinic_functions', 'set_std_syphilis_shot_act');
@@ -565,7 +565,7 @@ function enterPetrovichCheckup(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The doctor frowns when he gives you the bad news. "I''m afraid I found something...
       scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick ?? '')}."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
     scene.actions([
@@ -621,7 +621,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The doctor frowns when he gives you the bad news. "I''m afraid I found something...
       scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick ?? '')}."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
     scene.text('The doctor stands beside you while he helps you move your legs from the stirrups. "So… How are you going to repay me for the examination?" he asks with a confident smile.');
@@ -633,13 +633,13 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       qspCall(st, 'stat', '');
       scene.text('You smile, knowing this question would come. "I can pay. How much do I owe you?"');
-      // TODO-QSP: dynamic text: He returns your smile. "For you? ' + $func('money', 'string_price', 1000) + '."
+      // TODO-QSP: dynamic text: 'He returns your smile. "For you? ' + $func('money', 'string_price', 1000) + '."...
       scene.text('He returns your smile. "For you? 1000₽."');
       scene.actions([
         { label: 'Pay him ( [1000₽]...]', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', 1000, 'cash');
-    // TODO-QSP: dynamic text: You gladly pay him the ' + $func('money', 'string_price', 1000) + ' and thank hi...
+    // TODO-QSP: dynamic text: 'You gladly pay him the ' + $func('money', 'string_price', 1000) + ' and thank h...
     scene.text('You gladly pay him the 1000₽ and thank him again.');
     // TODO-QSP: dynamic text: He counts out the money and puts it away. "Anytime, <<$pcs_nickname>>. Make sure...
     scene.text(`He counts out the money and puts it away. "Anytime, ${((st as any).pcs_nickname ?? '')}. Make sure you tell your friends about me if they need a check-up!"`);
@@ -855,7 +855,7 @@ function enterPetrovichDrug(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, you have a problem. You <<$gpoli_sick>> as well as bein...
       scene.text(`"Well ${((st as any).pcs_nickname ?? '')}, you have a problem. You ${((st as any).gpoli_sick ?? '')} as well as being addicted to cocaine. I'll have to write a note for your mother. I can't treat you without her permission."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.text('Your heart begins to race when you hear that. Your mother can\'t find out! She would kill you!');
       scene.text('"Wait!" you quickly blurt out. "Could you please just give me the cure without telling her? Please?"');
@@ -1045,7 +1045,7 @@ function enterGynoblow(s: GameState, scene: SceneBuilder): void {
     (s as any).gpoli_doctorhavesex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'referral_blow') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'referral_blow') {
     (s as any).Gspravka = 30;
     (s as any).GspravkaT = 1;
     (s as any).Gspassed = 1;
@@ -1334,7 +1334,7 @@ function enterSpravkaMoney(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_clinic_cleaner'] === 'employed') {
     scene.text('You don\'t want to have sex with him. Sex is what got you into this mess in the first place!');
     scene.text('You think fast. "I can pay!" you blurt out. "Would that referral be the same if I were to pay you for your time? I can pay you well!"');
-    // TODO-QSP: dynamic text: The doctor strokes his chin as he thinks. "I don''t know… I''m not here for the ...
+    // TODO-QSP: dynamic text: 'The doctor strokes his chin as he thinks. "I don''t know… I''m not here for the...
     scene.text('The doctor strokes his chin as he thinks. "I don\'t know… I\'m not here for the money. However, a private patient wouldn\'t count as a minor, so I would have no obligation to tell your mother. The standard consultancy fee is 2000₽."');
     scene.actions([
       { label: 'Pay him the fee', handler: (st: GameState) => {
@@ -1380,7 +1380,7 @@ function enterSpravkaMoneyPale(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).gpoli_doctorhavesex ?? 0))) {
     scene.text('"Could you overlook my age if I were to pay you for your time?" you suggest.');
     scene.text('He tries to reject you, but doesn\'t sound very convincing. "I don\'t know… I didn\'t become a doctor for the money."');
-    // TODO-QSP: dynamic text: A gleam of greed appears in his eyes - you definitely have his attention. "Howev...
+    // TODO-QSP: dynamic text: 'A gleam of greed appears in his eyes - you definitely have his attention. "Howe...
     scene.text('A gleam of greed appears in his eyes - you definitely have his attention. "However, a private patient wouldn\'t count as a minor, so I would have no obligation to tell anyone anything. It would be like you were never here! The normal consultancy fee is 2000₽."');
     scene.actions([
       { label: 'Pay him the fee', handler: (st: GameState) => {
@@ -1392,7 +1392,7 @@ function enterSpravkaMoneyPale(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
       qspCall(st, 'stat', '');
       scene.text('The doctor carefully counts the money before preparing an injection from a bottle marked "0.45% Sodium Chloride Injection USP". You swallow nervously as he fills a rather large looking needle with the unfamiliar chemical.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpravkaMoneyPale2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSpravkaMoneyPale2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Try to negotiate', goto: ['pav_clinic', 'spravka_arrange_pale'] },
@@ -2075,7 +2075,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pav_clinic', ''] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: The clinic is closed. It''s open every day between '+func('time', 'get_time_stri...
+    // TODO-QSP: dynamic text: 'The clinic is closed. It''s open every day between '+func('time', 'get_time_str...
     scene.text('The clinic is closed. It\'s open every day between 6:00 and 21:00.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -2180,7 +2180,7 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).pcs_gpoli_donationsessioncount ?? 0) > 0) {
       qspCall(st, 'money', 'earn', ((st as any).mward_donatemoney ?? 0));
-      // TODO-QSP: dynamic text: You put your top back on and the nurse hands you '+$func('money', 'string_profit...
+      // TODO-QSP: dynamic text: 'You put your top back on and the nurse hands you '+$func('money', 'string_profi...
       scene.text('You put your top back on and the nurse hands you \'+$func(\'money\', \'string_profit\', mward_donatemoney)+\' for your donated breast milk.');
     } else {
       scene.text('You put your top back on.');
@@ -2199,7 +2199,7 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_gpoli_donationsessioncount ?? 0) > 0) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_firstname>>, we are closing now.
       scene.text(`Sorry ${((s as any).pcs_firstname ?? '')}, we are closing now.`);
-      // TODO-QSP: dynamic text: You put your top back on and the nurse hands you '+$func('money', 'string_profit...
+      // TODO-QSP: dynamic text: 'You put your top back on and the nurse hands you '+$func('money', 'string_profi...
       scene.text('You put your top back on and the nurse hands you \'+$func(\'money\', \'string_profit\', mward_donatemoney)+\' for your donated breast milk.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -2207,7 +2207,7 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_commercial', ''] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: The clinic is closed. It''s open every day between '+func('time', 'get_time_stri...
+      // TODO-QSP: dynamic text: 'The clinic is closed. It''s open every day between '+func('time', 'get_time_str...
       scene.text('The clinic is closed. It\'s open every day between 6:00 and 21:00.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -2237,7 +2237,7 @@ function enterStdCheck(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).SifacOnce ?? 0) === 1) {
     (s as any).sifNapr = 1;
-    // TODO-QSP: dynamic text: "You have syphilis. The cure for this disease used to be expensive. However, thi...
+    // TODO-QSP: dynamic text: '"You have syphilis. The cure for this disease used to be expensive. However, th...
     scene.text('"You have syphilis. The cure for this disease used to be expensive. However, this deadly disease can now be with a single shot. The injection will cost 1000₽."');
   }
   if (((s as any).TriperOnce ?? 0) === 1) {

@@ -1530,7 +1530,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big24.jpg');
   scene.text('Pauline is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but she seems to be talking to several of the other gopniks while sharing some beers they\'ve smuggled in.');
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'lena'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'lera') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'lena'  ||  String((s as any).locArgs?.[0] ?? '') === 'lera') {
     qspGoto(s, 'pav_disco_gopniks', 'lena_lera');
   }
   scene.actions([
@@ -2494,7 +2494,7 @@ function enterAlyonaDance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'vitek'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'dan'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'shulga') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'vitek'  ||  String((s as any).locArgs?.[0] ?? '') === 'dan'  ||  String((s as any).locArgs?.[0] ?? '') === 'shulga') {
     qspGoto(s, 'pav_disco_gopniks', 'vitek_dan_vasily');
   }
   const arg = s.locArg;

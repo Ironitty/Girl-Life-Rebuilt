@@ -87,7 +87,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -103,7 +103,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
         { label: 'Go', goto: ['kinosvid', ''] },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Invite to the pool hall', handler: (st: GameState) => {
@@ -120,7 +120,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Invite to the cafe', handler: (st: GameState) => {
@@ -137,7 +137,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Invite to the casino', handler: (st: GameState) => {
@@ -154,7 +154,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Hangup', goto: ['lover_call', 'fin'] },
@@ -179,10 +179,10 @@ function enterCallingTheLover(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterInitCall4DateLover(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'telefon', 'phone_balance');
   qspCall(s, 'telefon', 'phone_call_receive');
-  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2) {
+  if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
     qspGoto(s, 'lover_call', 'callingTheLover_f');
   } else {
-    if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3) {
+    if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
       qspGoto(s, 'lover_call', 'callingTheLover_m');
     }
   }
@@ -198,7 +198,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite to the park', handler: (st: GameState) => {
     scene.text('"Let\'s go for a walk in the park."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you in the park in an hour."
@@ -222,7 +222,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite to the pool hall', handler: (st: GameState) => {
     scene.text('"Let\'s play pool."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the pool hall in an hour."
@@ -254,7 +254,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
     { label: 'Invite to a movie', handler: (st: GameState) => {
     scene.text('"Want to go see a movie?"');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the movie theater in an hour."
@@ -274,7 +274,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
     { label: 'Invite to the cafe', handler: (st: GameState) => {
     scene.text('"Let\'s go to the cafe."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the cafe in an hour."
@@ -294,7 +294,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
     { label: 'Invite to the casino', handler: (st: GameState) => {
     scene.text('"Let\'s go to the casino."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you in the casino in an hour."
@@ -337,7 +337,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
         { label: 'Invite to the park', handler: (st: GameState) => {
     scene.text('"Let\'s go for a walk in the park."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you in the park in an hour."
@@ -361,7 +361,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
         { label: 'Invite to the pool hall', handler: (st: GameState) => {
     scene.text('"Let\'s play pool."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the pool hall in an hour."
@@ -384,7 +384,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite to a movie', handler: (st: GameState) => {
     scene.text('"Want to go see a movie?"');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the movie theater in an hour."
@@ -404,7 +404,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite to the cafe', handler: (st: GameState) => {
     scene.text('"Let\'s go to the cafe."');
     if (! ((st as any).call4Date ?? 0)?.['willAgree']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).telsob ?? 0)]; enterTelotkaz(st, scene); (st as any).locArgs = __savedLocArgs; }
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the cafe in an hour."
@@ -435,10 +435,10 @@ function enterLover(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'telefon', 'phone_call_receive');
   // TODO-QSP: gs 'telefon', 'ClearInCallSchedule', $call4Date["NPC"]
-  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3) {
+  if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
     qspGoto(s, 'lover_call', 'lover_m');
   } else {
-    if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2) {
+    if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1  ||  ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
       qspGoto(s, 'lover_call', 'lover_f');
     }
   }
@@ -882,7 +882,7 @@ function enterNPCCallsForDate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $DateNickName[3] = 'baby'
   // TODO-QSP: $DateNickName[4] = 'hot stuff'
   // TODO-QSP: $DateNickName[5] = '<<$pcs_nickname>>'
-  ((s as any).call4Date = (s as any).call4Date ?? {})['SvetaName'] = ((s as any).DateNickName ?? 0)?.[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('DateNickName')-1)];
+  ((s as any).call4Date = (s as any).call4Date ?? {})['SvetaName'] = ((s as any).DateNickName ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))];
   ((s as any).call4Date = (s as any).call4Date ?? {})['leave'] = 'killvar \'call4Date\' & ';
   // TODO-QSP: dynamic text: Hey <<$call4Date["SvetaName"]>>, it''s me, <<$call4Date["CallerName"]>>. How''s ...
   scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, it's me, ${((s as any).call4Date ?? 0)?.['CallerName'] ?? ''}. How's it going?`);

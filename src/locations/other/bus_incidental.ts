@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -9,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'bus_incidental', 'event' + (Math.floor(Math.random() * 1) + 1) + '');
+  qspGoto(s, 'bus_incidental', qspUntranslated(s, "''event<<rand(1'", { location: "bus_incidental" }), '1)>>');
   // TODO-QSP: end
   scene.build();
 }
@@ -29,7 +31,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'bus_incidental', 'end' + (Math.floor(Math.random() * 1) + 1) + '');
+  qspGoto(s, 'bus_incidental', qspUntranslated(s, "''end<<rand(1'", { location: "bus_incidental" }), '1)>>');
   // TODO-QSP: end
   scene.build();
 }

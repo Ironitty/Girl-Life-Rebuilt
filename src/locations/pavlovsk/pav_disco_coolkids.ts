@@ -638,7 +638,7 @@ function enterMarcusDance(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 'andrey'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'stasya') {
+  if (String((s as any).locArgs?.[0] ?? '') === 'andrey'  ||  String((s as any).locArgs?.[0] ?? '') === 'stasya') {
     qspGoto(s, 'pav_disco_coolkids', 'andrey_stasya');
   }
   scene.actions([
@@ -1583,7 +1583,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
           ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5*(1 + (((st as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
         }
         scene.text('"Have you seen the dress the girl over there is wearing?" she asks while pointing at a tall blonde you haven\'t seen before, who is wearing an elegant short dress with a low neckline and open back.');
-        // TODO-QSP: dynamic text: "I love that dress '+iif(katjaQW['slut'] < 60, 'but I''m not sure I''d be brave ...
+        // TODO-QSP: dynamic text: '"I love that dress '+iif(katjaQW['slut'] < 60, 'but I''m not sure I''d be brave...
         scene.text('"I love that dress ' + ((((st as any).katjaQW ?? 0)?.['slut'] < 60) ? ('but I\'m not sure I\'d be brave enough to wear it here') : ('I wish I had a sexy dress like that')) + '." she comments and you agree.');
         scene.text('The conversation continues with Katja pointing out dresses she likes or girls whose make-up she thinks is well done.');
         if (((st as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((st as any).katjaQW ?? 0)?.['knows_masturbation'] + ((st as any).katjaQW ?? 0)?.['knows_BJ'] + ((st as any).katjaQW ?? 0)?.['knows_sex'] + ((st as any).katjaQW ?? 0)?.['knows_anal']+ ((st as any).katjaQW ?? 0)?.['knows_cuni'] >= 2) {
@@ -1644,7 +1644,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
               ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5*(1 + (((st as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
             }
             scene.text('"Have you seen the dress the girl over there is wearing?" she asks while pointing at a tall blonde you haven\'t seen before, who is wearing an elegant short dress with a low neckline and open back.');
-            // TODO-QSP: dynamic text: "I love that dress '+iif(katjaQW['slut'] < 60, 'but I''m not sure I''d be brave ...
+            // TODO-QSP: dynamic text: '"I love that dress '+iif(katjaQW['slut'] < 60, 'but I''m not sure I''d be brave...
             scene.text('"I love that dress ' + ((((st as any).katjaQW ?? 0)?.['slut'] < 60) ? ('but I\'m not sure I\'d be brave enough to wear it here') : ('I wish I had a sexy dress like that')) + '." she comments and you agree, but when you turn back to her, she\'s already discussing another dress with the girl next to her.');
             scene.text('The conversation continues with Katja pointing out dresses she likes or girls whose make-up she thinks is well done.');
             if (((st as any).university ?? 0)?.['student'] === 1  &&  ((st as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0  &&  ((st as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
@@ -1764,7 +1764,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Disco</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance.jpg');
     scene.text('Katja gets closer and closer to you as you dance with each other; at one point she\'s even grinding herself against you. It\'s clear that she\'s getting very aroused.');
-    // TODO-QSP: dynamic text: She then embraces you and whispers in your ear. '+iif(katjaQW['slut'] > 100, '"I...
+    // TODO-QSP: dynamic text: 'She then embraces you and whispers in your ear. '+iif(katjaQW['slut'] > 100, '"...
     scene.text('She then embraces you and whispers in your ear. ' + ((((s as any).katjaQW ?? 0)?.['slut'] > 100) ? ('"I\'m so horny right now! I really need a cock in me."') : ('"I think, you know, having a threesome sounds like a great idea right now."')) + ' She looks surprised that she actually said that out loud.');
     scene.text('"You want to see if Marcus is up for one right now?" you ask, and after a moment of hesitation, she silently nods her head while looking a little embarrassed.');
     scene.actions([

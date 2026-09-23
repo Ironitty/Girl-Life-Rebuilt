@@ -28,7 +28,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_commercial') {
     (s as any).adv_locationImg = 'images/locations/shared/noticeboards/pav_commercial.jpg';
-    if (((s as any).adv_pav_commercial ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
+    if (((s as any).adv_pav_commercial ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] === 1) {
       (s as any).adv_location_result = 1;
     } else {
       (s as any).adv_location_result = 0;
@@ -36,7 +36,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).loc ?? 0) === 'pav_commcenter') {
       (s as any).adv_locationImg = 'images/locations/shared/noticeboards/pav_commcenter.jpg';
-      if (((s as any).adv_pav_commcenter ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
+      if (((s as any).adv_pav_commcenter ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] === 1) {
         (s as any).adv_location_result = 1;
       } else {
         (s as any).adv_location_result = 0;
@@ -44,7 +44,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).loc ?? 0) === 'city_industrial') {
         (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_industrial.jpg';
-        if (((s as any).adv_city_industrial ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
+        if (((s as any).adv_city_industrial ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] === 1) {
           (s as any).adv_location_result = 1;
         } else {
           (s as any).adv_location_result = 0;
@@ -52,7 +52,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).loc ?? 0) === 'city_residential') {
           (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_residential.jpg';
-          if (((s as any).adv_city_residential ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
+          if (((s as any).adv_city_residential ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] === 1) {
             (s as any).adv_location_result = 1;
           } else {
             (s as any).adv_location_result = 0;
@@ -60,7 +60,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).loc ?? 0) === 'city_center') {
             (s as any).adv_locationImg = 'images/locations/shared/noticeboards/city_citycenter.jpg';
-            if (((s as any).adv_city_center ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
+            if (((s as any).adv_city_center ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] === 1) {
               (s as any).adv_location_result = 1;
             } else {
               (s as any).adv_location_result = 0;
@@ -152,7 +152,7 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
     (s as any).adv_lastAppearanceChance = ((s as any).daystart ?? 0);
     (s as any).i = 1;
     // TODO-QSP: :appearance_loop
-    if (((s as any).adv_chance ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] > (Math.floor(Math.random() * 100) + 0)) {
+    if (((s as any).adv_chance ?? 0)[(((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)])] > (Math.floor(Math.random() * 100) + 0)) {
       ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 1;
     } else {
       ((s as any).adv_appearance = (s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 0;

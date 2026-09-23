@@ -118,7 +118,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         { label: 'You have to think about it', handler: (st: GameState) => {
     (st as any).ml_didntbuyguitarthefirstvisit = 1;
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
-    // TODO-QSP: dynamic text: He nods. "You know what? I''ll put it aside for you in case you change your mind...
+    // TODO-QSP: dynamic text: 'He nods. "You know what? I''ll put it aside for you in case you change your min...
     scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
@@ -128,7 +128,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).ml_didntbuyguitarthefirstvisit = 1;
       scene.text('While the guitar isn\'t the best sounding, it is comfortable. Unfortunately, while it\'s cheaper than the rest, it still costs more than you have. You hand it back to Jimmy with a sigh. "Sorry, but I can\'t buy it right now."');
-      // TODO-QSP: dynamic text: He nods. "You know what? I''ll put it aside for you in case you change your mind...
+      // TODO-QSP: dynamic text: 'He nods. "You know what? I''ll put it aside for you in case you change your min...
       scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
       scene.actions([
         { label: 'Leave', goto: ['city_mall', ''] },
@@ -167,7 +167,7 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
         { label: 'Buy a cheap acoustic guitar ( [3400₽]...]', goto: ['city_musicstore', 'buycheapacoustic'] },
         { label: 'You have to think about it', handler: (st: GameState) => {
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
-    // TODO-QSP: dynamic text: He nods. "You know what? I''ll put it aside for you in case you change your mind...
+    // TODO-QSP: dynamic text: 'He nods. "You know what? I''ll put it aside for you in case you change your min...
     scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
@@ -221,8 +221,8 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
     scene.text('Jimmy disappears into the back of the shop with your guitar before returning 10 minutes later. "That\'s it all set up, but if you need to tweak anything, just bring it in and we\'ll do it for you, free of charge."');
-    // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', '') + iif(ml_hardcase =...
-    scene.text('He puts the guitar in \' + iif(ml_gigbag = 1, \'a gigbag\', \') + iif(ml_hardcase = 1, \'its case\', \') + \' and hands it to you. "All the best, ' + ((s as any).pcs_nickname ?? '') + '."');
+    // TODO-QSP: dynamic text: 'He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', '') + iif(ml_hardcase ...
+    scene.text('He puts the guitar in ' + ((((s as any).ml_gigbag ?? 0) === 1) ? ('a gigbag') : ('')) + ((((s as any).ml_hardcase ?? 0) === 1) ? ('its case') : ('')) + ` and hands it to you. "All the best, ${((s as any).pcs_nickname ?? '')}."`);
   }
   // TODO-QSP: end
   scene.actions([

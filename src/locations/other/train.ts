@@ -370,7 +370,8 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  scene.img('images/locations/shared/train/electri_' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/electri_' + rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/train/electri_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You pay for the ticket and board the next train going to the city center.');
   // TODO-QSP: dynamic text: After <<temp_transportVars[''timecost'']>> minutes, you see the office blocks an...
   scene.text(`After ${((s as any).temp_transportVars ?? 0)?.['timecost'] ?? ''} minutes, you see the office blocks and shops at the heart of the city before the train stops at its final destination, the busy station in the city center.`);

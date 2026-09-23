@@ -208,7 +208,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/sonia.skver.boy1,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/sonia.skver.boy1,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
     scene.text('After a while, the guy tells Sonia that he wants more. Sonia obediently gets up and asks him: "Would you like to fuck me from behind, sir?"');
     scene.text('The stranger happily accepts the invitation, and watches in amazement when he notices Sonia eagerly grinding her hips back against him once he\'s inside her. He had no idea she would be such a lusty slut for him, willing to do all the work!');
     scene.text('You watch Sonia give herself to the man for just a moment longer, before you decide you really have to get going. You\'re quite turned on from her little show. Sonia looks like she\'s having a lot of fun, and for just a second you think about what it would feel like to be in her place.');

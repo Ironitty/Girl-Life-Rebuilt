@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('After greeting Mikhail, an awkward silence follows because you don\'t know what to say.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what are you doing here?" Mikhail asks you in astonishment.
     scene.text(`"${((st as any).pcs_nickname ?? '')}, what are you doing here?" Mikhail asks you in astonishment.`);
-    // TODO-QSP: dynamic text: "Well, I wanted to improve my physical fitness, and since the sports club doesn'...
+    // TODO-QSP: dynamic text: '"Well, I wanted to improve my physical fitness, and since the sports club doesn...
     scene.text('"Well, I wanted to improve my physical fitness, and since the sports club doesn\'t open until 14:00, I figured it was worth the trip into the city to come here," you explain hastily.');
     // TODO-QSP: dynamic text: The coach looks at you with an approving nod, "That is good, <<$pcs_nickname>>."
     scene.text(`The coach looks at you with an approving nod, "That is good, ${((st as any).pcs_nickname ?? '')}."`);

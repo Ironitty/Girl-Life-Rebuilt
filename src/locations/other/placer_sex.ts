@@ -77,8 +77,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/gop/gopgang2.jpg"></center>`);
     }
     if (((st as any).placer_rand1 ?? 0) >= 10) {
-      // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/s...
-      scene.text('<center><video autoplay loop ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/sex/orgy1,\'+rand(0, 4)+\'.mp4"></video></center>');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/sex/orgy1,` + (Math.floor(Math.random() * 5) + 0) + '.mp4"></video></center>');
     }
     // TODO-QSP: :markdormrape
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -327,7 +327,7 @@ function enterPiano(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Let them pull out your butt plug', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinAnalPlugInOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinAnalPlugInOff(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('The immediately walk up to you when you spread your legs, their looks a bit lower than you\'d expect. Then you realize why and silently mutter to yourself: "Oh no! I still have my butt plug in!"');
     // TODO-QSP: dynamic text: <<$boydesc2>> puts his hand on it and lightly tugs at your plug as he teases you...
     scene.text(`${((st as any).boydesc2 ?? '')} puts his hand on it and lightly tugs at your plug as he teases you: "Oh my… what a nasty girl you are! Do you have more toys like this?"`);
@@ -422,7 +422,7 @@ function enterPiano(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a hot shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'You get into the shower and thoroughly wash yourself, trying to get all of their cum out of your holes. When you\'re done, you gather your things and get ready to leave.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
@@ -477,7 +477,7 @@ function enterPiano(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a hot shower', handler: (st: GameState) => {
     (st as any).din_dush_text = '"I\'m going to take a shower and head home, guys!" you tell the boys. They nod, too exhausted to protest you leaving them. You get into the shower and thoroughly wash yourself, trying to get all of their cum out of your pussy while you rinse your mouth. When you\'re done, you gather your things and get ready to leave.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave their apartment', handler: (st: GameState) => {
@@ -540,7 +540,7 @@ function enterPiano(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go into the shower', handler: (st: GameState) => {
     (st as any).din_dush_text = '"That was great, guys! But I\'m going to take a shower and head home, I\'m exhausted!" you tell the boys. They nod, too exhausted to protest you leaving them. You get into the shower and thoroughly wash yourself, trying to get all of their cum out of your holes while you rinse your mouth repeatedly. When you\'re done, you gather your things and wave the boys goodbye.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
@@ -681,7 +681,7 @@ function enterVodka2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'You smile at the boys: "Alright guys, I really need to go wash this sperm out of my pussy before I get pregnant. Where is your bathroom?"\' & \'The guys show you where their bathroom is and leave you alone to go clean up. You scoop their sperm out of your pussy as much as you can, and dry yourself off with a fluffy towel they laid out for you.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave the shower', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex28.jpg');
@@ -752,7 +752,7 @@ function enterVodka2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go take a shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'You smile at the guys: "Alright boys, I should really go take a shower and wash this out, you don\'t want me getting pregnant!"\' & \'The guys show you where their bathroom is and leave you alone to go clean up. You wash their sperm out of your pussy as good as you can, and dry yourself off with a fluffy towel they laid out for you.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Exit out of the shower', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex28.jpg');
@@ -1086,7 +1086,7 @@ function enterCardSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a shower and leave', handler: (st: GameState) => {
     (st as any).din_dush_text = 'You finally get up from the bed, and ask if it\'s okay you take a shower before you go. Of course ' + ((st as any).boydesc2 ?? 0) + ' doesn\'t mind, and points out where their bathroom is. You quickly get in, and after enjoying the hot water on your skin for a few moments you quickly clean their cum from your body. You try to spoon the sperm out of your pussy as good as you can with your fingers and rinse your mouth thoroughly, and then dry off and get dressed again. When you leave the bathroom, the guys are already waiting in the hallway. You kiss them goodbye, and tell them to let you know if they\'re ever in Pavlovsk again.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
@@ -1233,7 +1233,7 @@ function enterCardStript(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'After enjoying the hot water on your skin for a few moments, you quickly clean their cum from your body. You rinse your mouth thoroughly, and then dry off and get dressed again. When you leave the bathroom, the guys are already waiting in the hallway. You kiss them goodbye, and tell them to let you know if they\'re ever in Pavlovsk again.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
@@ -1355,7 +1355,7 @@ function enterStayInBed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'You quickly take a shower while ' + ((st as any).boydesc2 ?? 0) + ' rests on the bed a while longer, and you thoroughly wash the cum from your ass. You then get dressed, and kiss ' + ((st as any).boydesc2 ?? 0) + ' farewell before leaving the apartment.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return to the streets', handler: (st: GameState) => {
@@ -1467,7 +1467,7 @@ function enterStayInBed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take a shower', handler: (st: GameState) => {
     (st as any).din_dush_text = 'It takes you a few minutes to regain your senses, and your body is still shivering slightly when you give the guys a kiss. You tell them: "That was great guys… best fuck of my life, hands down! I really have to go though… let me take a quick shower to freshen up?"\' & \'The guys are sad to see a cute little fuckpuppet like you leave, but nod and show you where the shower is. After you thoroughly clean yourself up, you give the both of them a kiss and tell them to come look you up if they\'re ever in Pavlovsk again.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
@@ -2117,7 +2117,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower', handler: (st: GameState) => {
     // TODO-QSP: view
     (st as any).din_dush_text = 'You quietly thank him, and follow him to the bathroom. You take a quick shower, doing your best to rinse the cum from all of your holes. When you finish, you see Big C standing in the bathroom. He\'d been watching you the whole time, while making sure none of the other guys would disturb you.';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinDush(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave the apartment', handler: (st: GameState) => {
     (st as any).pcs_mood = 5;
@@ -2273,7 +2273,7 @@ function enterSittingParkBench(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).waiting = parseFloat(0);
+    (s as any).waiting = parseFloat(window.prompt("How long would you like to rest?<br>(Default 15 minutes, maximum 120 minutes)") ?? '');
     if (((s as any).alko ?? 0) >= 4) {
       qspGoto(s, 'placer_sex', 'sleeping_park_bench');
     }

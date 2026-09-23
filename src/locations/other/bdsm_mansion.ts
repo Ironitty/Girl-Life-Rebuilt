@@ -16,7 +16,7 @@ function enterTaxi(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/club.jpg');
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
     ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['unlocked'] = 1;
-    // TODO-QSP: dynamic text: The taxi brings you in a gated community outside of town and drops you off at th...
+    // TODO-QSP: dynamic text: 'The taxi brings you in a gated community outside of town and drops you off at t...
     scene.text('The taxi brings you in a gated community outside of town and drops you off at the closed wrought iron gate. You attempt to enter the secret club but the guard tells you it is closed. You show your card and he tells you to come back after 16:00.');
     scene.actions([
       { label: 'Leave', goto: ['city_suburbs', 'start'] },
@@ -52,7 +52,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You know this to be a BDSM club for rich people and you have access.');
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
-    // TODO-QSP: dynamic text: The club is closed until ' + $func('time', 'get_time_string', 16, 0) + '.
+    // TODO-QSP: dynamic text: 'The club is closed until ' + $func('time', 'get_time_string', 16, 0) + '.'
     scene.text('The club is closed until 16:00.');
     scene.actions([
       { label: 'Leave', goto: ['city_suburbs', 'start'] },
@@ -134,7 +134,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Listen', handler: (st: GameState) => {
     scene.img('images/locations/city/suburb/bdsm_club/1_1.jpg');
-    // TODO-QSP: dynamic text: She explains that there are two ways to visit the club, either as a submissive w...
+    // TODO-QSP: dynamic text: 'She explains that there are two ways to visit the club, either as a submissive ...
     scene.text('She explains that there are two ways to visit the club, either as a submissive where you will be subject to sexualization and humiliation, but its free. Or you can pay a monthly fee of 10000₽ and visit as a Dominant, in this case you will be able to sexualize and humiliate the submissives.');
     scene.text('For each role there is something of a dress code in that subs must dress either in submissive fetishwear, as a maid or be naked. A dominant simply has to be dressed in expensive quality clothing.');
     scene.text('There is also a required training aspect.');

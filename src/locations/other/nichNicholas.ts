@@ -211,19 +211,21 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSex(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'start') {
     qspCall(s, 'boyStat', 'A52');
     scene.img('images/characters/city/nicholas/sex/undress.jpg');
     scene.text('You slowly undress for Nicholas.');
     (s as any).nichSexTemp = 1;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'bj') {
-      scene.img('images/characters/city/nicholas/sex/bj/bj' + (Math.floor(Math.random() * 11) + 0) + '.jpg');
+    if (String((s as any).locArgs?.[1] ?? '') === 'bj') {
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/nicholas/sex/bj/bj'+rand...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/nicholas/sex/bj/bj` + (Math.floor(Math.random() * 11) + 0) + '.jpg"></center>');
       qspCall(s, 'arousal', 'bj', 1);
       (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
-        scene.img('images/characters/city/nicholas/sex/anal/anal' + (Math.floor(Math.random() * 8) + 0) + '.jpg');
+      if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/nicholas/sex/anal/anal'+...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/nicholas/sex/anal/anal` + (Math.floor(Math.random() * 8) + 0) + '.jpg"></center>');
         qspCall(s, 'arousal', 'anal', 1);
         (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
       }
@@ -243,11 +245,11 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'bj') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'bj') {
       scene.text('He groans loudly, and you feel his hard cock erupting in your mouth. You swallow it obediently, figuring that is what he wants you to do.');
       qspCall(s, 'cum_call', 'mouth_swallow', 'A52', 1);
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
         scene.text('He groans loudly, spraying his seed deep inside your ass.');
         qspCall(s, 'cum_call', 'anus', 'A52', 1);
       }
@@ -264,10 +266,10 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 
 function enterSeduce(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/sex/seduce.jpg');
-  // TODO-QSP: dynamic text: "'+$npc_nickname['A52']+'? Is there anything I can do for you?"
-  scene.text('"\'+$npc_nickname[\'A52\']+\'? Is there anything I can do for you?"');
-  // TODO-QSP: dynamic text: You squeze your breast together, so that '+$npc_firstname['A52']+' has a good lo...
-  scene.text('You squeze your breast together, so that \'+$npc_firstname[\'A52\']+\' has a good look at them.');
+  // TODO-QSP: dynamic text: '"'+$npc_nickname['A52']+'? Is there anything I can do for you?"'
+  scene.text('\'"\'+$npc_nickname[\'A52\']+\'? Is there anything I can do for you?"\'');
+  // TODO-QSP: dynamic text: 'You squeze your breast together, so that '+$npc_firstname['A52']+' has a good l...
+  scene.text('\'You squeze your breast together, so that \'+$npc_firstname[\'A52\']+\' has a good look at them.\'');
   scene.text('"I mean <i>anything</i>."');
   scene.text('"Actually there is something you could help me with." he says while unzipping his pants.');
   scene.actions([
@@ -770,7 +772,7 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).nichPerformance = ((s as any).nichPerformance ?? 0) + (((s as any).nichTempEval ?? 0));
   (s as any).nichPerformance = Math.min(100, Math.max(0, ((s as any).nichPerformance ?? 0)));
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'silent') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'silent') {
   } else {
     if ((!((s as any).nichPerformance ?? 0))) {
       scene.text('I had it with your laziness. Pack your stuff, you are fired!');

@@ -23,7 +23,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke');
     qspCall(st, 'stat', '');
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/smoke' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/smoke...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/smoke` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You pull out a cigarette and light it before taking a long drag and holding it for a while. You immediately feel yourself relaxing, the smoke\'s familiar tingling in your lungs taking the edge off. This feels much better than going to class.');
     (st as any).i = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).i ?? 0) <= 25) {
@@ -50,7 +51,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).school_bunk = 0;
     qspCall(st, 'stat', '');
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/usephone' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/useph...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/usephone` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You sit on the toilet, playing on your phone. With class in session, most people you text with take agonizingly long to respond, and the few games you find to occupy yourself with are pretty terrible, but it still sure as hell beats another boring class.');
     (st as any).i = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).i ?? 0) <= 25) {
@@ -79,10 +81,12 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Girls bathroom</b></center>');
   if ((!((s as any).school_bunk ?? 0))) {
-    scene.img('images/locations/pavlovsk/school/bathroom/usephone' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/useph...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/usephone` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You play on your phone for the rest of the period. Despite several instances of boredom and indecision that leave you wishing you could just go out, you find it very relaxing to be your own master and by the time the bell rings, you\'re in a far better mood than before.');
   } else {
-    scene.img('images/locations/pavlovsk/school/bathroom/smoke' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/smoke...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/smoke` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You spend the rest of the period playing on your phone while you smoke. The games on your phone are boring, and once or twice you hear somebody walking around out in the corridor, causing your heart to skip a beat when you realize they might smell the smoke, but despite all that, you find this use of the period very relaxing and by the time the bell rings, you\'re in a far better mood than before.');
   }
   // TODO-QSP: end
@@ -104,7 +108,8 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke');
     qspCall(st, 'stat', '');
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/smoke' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/smoke...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/smoke` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You need a smoke. Badly. You pull out a cigarette and light it before taking a long drag and holding it for a while. You immediately feel yourself relaxing, the smoke\'s familiar tingling in your lungs taking your mind off what happened.');
     scene.actions([
       { label: 'Make yourself presentable', handler: (st: GameState) => {
@@ -133,7 +138,8 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
     { label: 'Play on phone', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/usephone' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/useph...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/usephone` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You decide to play on your phone to pass the time. With class in session, most people you text with take agonizingly long to respond, and the few games you find to occupy yourself with are pretty terrible, but it\'s a welcome distraction to take your mind off what happened.');
     scene.actions([
       { label: 'Make yourself presentable', handler: (st: GameState) => {
@@ -639,7 +645,8 @@ function enterCompany1(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       // TODO-QSP: dynamic text: Listening to <<$rand_girl>> getting her pussy violated, the constant slapping so...
       scene.text(`Listening to ${((st as any).rand_girl ?? '')} getting her pussy violated, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn't, you know it's risky, but you just can't resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.`);
@@ -694,7 +701,8 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       // TODO-QSP: dynamic text: Listening to <<$rand_girl>> getting her ass violated, the constant slapping soun...
       scene.text(`Listening to ${((st as any).rand_girl ?? '')} getting her ass violated, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn't, you know it's risky, but you just can't resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.`);
@@ -778,7 +786,8 @@ function enterCompany3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boys bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('Listening to Anushka getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You hike up your skirt and spread your legs. Your hand slides down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Arkadi is giving Anushka. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
@@ -854,7 +863,8 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     scene.text('<center><b>Girls bathroom</b></center>');
-    scene.img('images/locations/pavlovsk/school/bathroom/sex/masturbate' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/schoo...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sex/masturbate` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('Listening to Miss Orlov getting pounded, the constant slapping sounds of flesh and her moans of pleasure is exciting - too exciting for you. You know you shouldn\'t, you know it\'s risky, but you just can\'t resist: You pull your panties off, hike up your skirt and spread your legs. Your hands slide down your thigh, then back up towards your crotch. Your pussy lips are already swollen and starting to get wet, and your clit stands out as if to make it easier for you to find it.');
       scene.text('You rub your sensitive little nub carefully to ease yourself into the pleasure; if you don\'t stay in control, you\'re going to make sounds and you don\'t want them to notice you. After teasing yourself for a bit, you sink two of your fingers into your wet hole, gasping soundlessly, and mimic the fuck Mr. Kuznetsov is giving Miss Orlov. You add your other hand to the mix, rubbing your clit while you\'re fingerfucking yourself, faster and faster as they get louder and louder.');
@@ -940,7 +950,8 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      scene.img('images/locations/pavlovsk/school/bathroom/sweettalk' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/sweet...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sweettalk` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       scene.text('You hang your head and feign shame as best you can. "I know, and I\'m sorry Ms. Braakman. I was feeling stressed out and I just needed a break, just a few minutes alone. I know I shouldn\'t have, but I couldn\'t help it." You give her a pleading look. "Please, please don\'t report me. I promise I won\'t do it again."');
       scene.text('Ms. Braakman looks at you in silence, her expression unreadable, her eyes sharp like a predator\'s, searching for dishonesty in your expression. You\'re starting to get nervous, fearing that she might see through you… when you hear her sigh. "Alright, I\'ll let you off with a warning. Take some time to collect yourself, but no more cutting class, you hear me?" You nod silently and she gives you a last look, mumbling something that sounds like "my good nature be damned", and goes about her business. A few seconds later, the bathroom is quiet again.');
       if ((!((st as any).school_bunk ?? 0))) {
@@ -1205,7 +1216,8 @@ function enterCaught1Anal(s: GameState, scene: SceneBuilder): void {
 function enterCaught2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Girls bathroom</b></center>');
-  scene.img('images/locations/pavlovsk/school/bathroom/caught' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/caugh...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/caught` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('After a few minutes, you hear someone else in the bathroom with you. You peek out and see Mr. Vasilyev standing at the mirror, causing you to duck back into the stall and close the door as quietly as you can, your heart beating like crazy as you pray he didn\'t notice you. What the hell is he doing in here?! You hear his footsteps coming closer, closer… and stop, right outside your stall door.');
   scene.text('"I saw you in the mirror, young lady!" he says sternly as he pushes the door open. "What do you think you\'re doing anyway? Skipping class?"');
   if (((s as any).school_bunk ?? 0) === 1) {
@@ -1240,7 +1252,8 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/locations/pavlovsk/school/bathroom/sweettalk' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/sweet...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/sweettalk` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
       scene.text('You hang your head and feign shame as best you can. "I know, and I\'m sorry sir, but I was feeling stressed out and I just needed a break, just a few minutes alone. I know I shouldn\'t have, but I couldn\'t help it." You give him a pleading look. "Please, please don\'t report me. I promise I won\'t do it again."');
       scene.text('Mr. Vasilyev looks at you and sighs. You think you can see pity in his eyes. "Okay. I\'ll let you off with a warning. Take some time to collect yourself, but no more cutting class, you hear me?" You nod that you understand, then he shakes his head, mumbles something that sounds like "my good nature be damned" and goes about his business. A few seconds later, the bathroom is quiet again, leaving you to wonder why he was in the girls bathroom in the first place. You can\'t think of a good reason.');
       if ((!((st as any).school_bunk ?? 0))) {

@@ -21,13 +21,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.text('A small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027start/u0027); return false;">grocery store</a> is currently open.');
   } else {
-    // TODO-QSP: dynamic text: There is a small whole foods store that is open from 8:00 - '+func('time', 'get_...
+    // TODO-QSP: dynamic text: 'There is a small whole foods store that is open from 8:00 - '+func('time', 'get...
     scene.text('There is a small whole foods store that is open from 8:00 - 20:00 everyday. It is currently closed.');
   }
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('A quaint little restaurant has put a sign outside of its door, reading, "<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_cafe/u0027, /u0027start/u0027); return false;">Liamel Cafe</a>."');
   } else {
-    // TODO-QSP: dynamic text: Liamel Cafe is current closed, it is open every day '+func('time', 'get_time_str...
+    // TODO-QSP: dynamic text: 'Liamel Cafe is current closed, it is open every day '+func('time', 'get_time_st...
     scene.text('Liamel Cafe is current closed, it is open every day 10:00 - 22:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 17) {
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Clothing for younger women is catered for in <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_flamingos/u0027, /u0027start/u0027); return false;">Flamingos</a>.');
     scene.text('Catering for the burlesque club here there is the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_fancy_pancy/u0027, /u0027start/u0027); return false;">Fancy Pancy</a> boutique clothing store.');
   } else {
-    // TODO-QSP: dynamic text: Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open ope...
+    // TODO-QSP: dynamic text: 'Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open op...
     scene.text('Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open open Mon - Sat day 9:00 - 18:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
@@ -44,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) === 7  &&  (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)) {
       scene.text('The dance shop is closed, but you can still access the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_ballet_secrets/u0027, /u0027init/u0027); return false;">Members Area</a> with your card.');
     } else {
-      // TODO-QSP: dynamic text: Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_stri...
+      // TODO-QSP: dynamic text: 'Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_str...
       scene.text('Ballet Secrets is currently closed. The shop opens 9:00-17:00 Monday to Saturday, and members only access for class is open on Sunday from 10:00 - 17:00.');
     }
   }
@@ -52,7 +52,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_exhibitionist/u0027, /u0027start/u0027); return false;">Simply Salacious</a> is just down a small side street from here.');
     } else {
-      // TODO-QSP: dynamic text: <b>Simply Salacious,</b> is open Mon - Sat, 8:00 - '+func('time', 'get_time_stri...
+      // TODO-QSP: dynamic text: '<b>Simply Salacious,</b> is open Mon - Sat, 8:00 - '+func('time', 'get_time_str...
       scene.text('<b>Simply Salacious,</b> is open Mon - Sat, 8:00 - 18:00');
     }
   }
@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('There is a burlesque club in an old theatre here. Such perversion is unhealthy and you cannot bring yourself to go there.');
     }
   } else {
-    // TODO-QSP: dynamic text: The old theatre that houses a burlesque club is closed now. It is open every day...
+    // TODO-QSP: dynamic text: 'The old theatre that houses a burlesque club is closed now. It is open every da...
     scene.text('The old theatre that houses a burlesque club is closed now. It is open every day 18:00 - 23:00');
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {

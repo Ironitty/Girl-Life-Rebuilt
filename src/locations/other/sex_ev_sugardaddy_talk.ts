@@ -120,7 +120,7 @@ function enterSugarBabyOffer3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I didn''t say you were," <<$npcdesc>> snickers back. "Don''t think of it that w...
     scene.text(`"I didn't say you were," ${((st as any).npcdesc ?? '')} snickers back. "Don't think of it that way. Think of it more like... a sugar daddy relationship. Will you be my baby? Will you let me be your daddy?"`);
     qspCall(st, 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_refuse');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferHowMuch(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferHowMuch(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -168,8 +168,8 @@ function enterSugarBabyOfferHowMuch(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "How about... <<$func(''money'', ''string_profit'', sex_ev[''sugar_daddy_offer''...
     scene.text(`"How about... ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? {})?.['sugar_daddy_offer'] ?? 0) * 100, 1)} a night?"`);
     qspCall(st, 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_refuse');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferAccept(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferHaggle(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferAccept(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyOfferHaggle(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -206,7 +206,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['sugar_daddy_offer'] > 0) {
       // TODO-QSP: dynamic text: "So?" <<$npcdesc>> grins shamelessly. "Does that change the value of the money?"
       scene.text(`"So?" ${((st as any).npcdesc ?? '')} grins shamelessly. "Does that change the value of the money?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyRefuse(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyRefuse(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'sex_ev_sugardaddy_talk', 'sugar_baby_how_much');
       scene.actions([
         { label: 'So long as you know', handler: (st: GameState) => {
@@ -270,7 +270,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['sugar_daddy_offer'] > 0) {
       // TODO-QSP: dynamic text: "So?" <<$npcdesc>> grins shamelessly. "Does that change the value of the money?"
       scene.text(`"So?" ${((st as any).npcdesc ?? '')} grins shamelessly. "Does that change the value of the money?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyRefuse(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSugarBabyRefuse(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'sex_ev_sugardaddy_talk', 'sugar_baby_how_much');
       scene.actions([
         { label: 'So long as you know', handler: (st: GameState) => {
@@ -345,7 +345,7 @@ function enterSugarBabyOfferHaggle(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Haggle', handler: (st: GameState) => {
     // TODO-QSP: :invalid_counter_offer
-    ((st as any).sex_ev = (st as any).sex_ev ?? {})['sugar_daddy_counteroffer'] = 0;
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['sugar_daddy_counteroffer'] = window.prompt("Pick a number between 10 and 50. The number will be multiplied by 100. (10 will be 1000, 25 will be 2500, 50 will be 5000)") ?? '';
     if (((st as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] > 50  ||  ((st as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] < 10) {
       // TODO-QSP: jump 'invalid_counter_offer'
     } else {
@@ -478,7 +478,7 @@ function enterWifeProblems(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh yeah."');
     scene.text('"Wow I can\'t believe that."');
     scene.text('You hear to him drone on, making the necessary noises to make it seem like you\'re listening but really you\'re just thinking about...');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPretendListenThoughts(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPretendListenThoughts(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Play therapist', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'love');
@@ -486,7 +486,7 @@ function enterWifeProblems(s: GameState, scene: SceneBuilder): void {
     scene.text('"Have you talked to her about it?" you ask.');
     scene.text('"No," he admits. "I\'m just tired of fighting about it."');
     scene.text('"Well, nothing is going to change if you don\'t tell her how you feel."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyReact(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTherapyReact(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {

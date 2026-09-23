@@ -63,7 +63,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
     { label: 'Accept the offer', handler: (st: GameState) => {
     ((st as any).ml_delparcoQW = (st as any).ml_delparcoQW ?? {})['Stage'] = 4;
     scene.text('"I would love to do it!" you almost bite your tongue as you stop, but the fact that someone asks you to play is a first step to your dream. You almost couldn\'t contain yourself.');
-    // TODO-QSP: dynamic text: "Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towa...
+    // TODO-QSP: dynamic text: '"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on tow...
     scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at 20:00, so please be here latest half past seven.');
     scene.text('Trust me, you will need the time to set yourself up. And then every Friday if it works out."');
     ((st as any).ml_gigday = (st as any).ml_gigday ?? {})['delparco'] = ((st as any).daystart ?? 0) + 19 - ((st as any).week ?? 0);
@@ -96,7 +96,7 @@ function enterAcceptafterthinking(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_delparco = (s as any).ml_delparco ?? {})['performance'] = 50;
   ((s as any).ml_delparcoQW = (s as any).ml_delparcoQW ?? {})['Stage'] = 4;
   scene.text('"I would love to do it!" you almost bite your tongue as you stop, but the fact that someone asks you to play is a first step to your dream. You almost couldn\'t contain yourself.');
-  // TODO-QSP: dynamic text: "Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towa...
+  // TODO-QSP: dynamic text: '"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on tow...
   scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at 20:00, so please be here latest half past seven.');
   scene.text('Trust me, you will need the time to set yourself up. And then every Friday if it works out."');
   // TODO-QSP: end

@@ -186,14 +186,16 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).girls_event_rand ?? 0) <= 10) {
-            scene.img('images/locations/pavlovsk/school/bathroom/girlsgossip' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/girls...
+            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/girlsgossip` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
             scene.text('When you enter the restroom, you find a group of girls clustered together chatting about the latest gossip or whatever has caught their interest of late.');
             scene.text('As you go about your business, you overhear them saying;');
             qspCall(s, 'gschool_gossip', 'mixed');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).girls_event_rand ?? 0) === 11) {
-              scene.img('images/locations/pavlovsk/school/bathroom/girlspose' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/girls...
+              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/girlspose` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
               scene.text('When you enter the restroom, you see a group of girls clustered together taking turns posing as a group while one girl takes their picture. They do this over and over until every girl has her picture taken in a group and they all like the pictures.');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
@@ -217,7 +219,8 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomActions(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).girls_event_rand ?? 0) === 14) {
-                    scene.img('images/locations/pavlovsk/school/bathroom/showass' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+                    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/bathroom/showa...
+                    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/bathroom/showass` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
                     scene.text('As you enter the restroom, you see three girls, one of them taking a picture of the other two. After a few pictures, the two having their pictures taken turn and raise their skirts to show their panty-clad asses to the third girl, who laughs and keeps taking their picture.');
                     scene.text('They keep this up as you go about your business.');
                     qspCall(s, 'arousal', 'erotic', 2);
@@ -238,7 +241,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/sweettalk1.jpg');
     scene.text('You shake your head. "I can\'t help you out with that, but, um… Good luck!"');
     scene.text('She snorts and gives you a dirty look, so you do your best to ignore her and go about your business.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                           { label: 'Help her out', goto: ['gschool_break', 'lena_gop'] },
                         ]);
@@ -369,7 +372,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
                             { label: 'Listen in', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/girlspose1.jpg');
     scene.text('You walk over to them to better hear what they\'re saying and quickly realize they\'re talking about a fight night. Apparently, they get together sometimes and fight each other for fun.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                           ]);
                         } else {
@@ -571,7 +574,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay', handler: (st: GameState) => {
     scene.text('You glance at him as you walk over to the sinks.');
     scene.text('"I just need to use the mirror. It\'s not like it\'s hurting you," you tell him as you take a look at yourself in the mirror, checking your hair and makeup.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -670,7 +673,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
             ((s as any).soniaQW = (s as any).soniaQW ?? {})['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
           }
           qspCall(s, 'stat', '');
-          scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
           scene.text('When you enter the restroom, you see Sonia bent over with her skirt hiked up and her panties around her ankles, getting fucked from behind by some guy you\'ve never seen before.');
           scene.text('She\'s moaning like a whore and seems to really be enjoying the pounding the boy is giving her. Neither of them seem to have noticed you yet.');
           qspCall(s, 'arousal', 'voyeur_sex', 5);
@@ -679,7 +683,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: '"What a fucking slut!"', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A25', (-5));
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('Undaunted in the face of such shameless debauchery, you continue with your business and go straight to the sink.');
     scene.text('As you lather your hands in soap, you turn to face them. "God, you\'re such a fucking slut, Sonia! I\'d be surprised if he can even feel anything with how loose you must be after every guy in town has had a turn with your pussy!"');
     scene.text('Sonia does her best to ignore your barbs as she keeps letting the boy fuck her. Drying your hands off, you walk over to them and reach down to grab her ass cheeks before spreading them apart.');
@@ -697,7 +702,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('Embarrassed, you decide to give Sonia the privacy she sought in the bathroom to begin with and leave.');
     qspCall(st, 'arousal', 'voyeur_sex', 1, 'unknown');
     qspCall(st, 'arousal', 'end');
@@ -706,7 +712,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Peek', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('You close the door quick enough that they don\'t notice you were there, but leave it open just a crack and continue to peer through.');
     scene.text('You watch as the boy pounds Sonia for all he\'s worth. After another minute, he grabs her by the hair and pulls her head back towards him while thrusting his hips forward vigorously. After a few more minutes, he pulls back and violently shakes for a few seconds as his cock pulses, sending long strands of cum spattering all over her ass.');
     scene.text('Deciding you would rather not be caught spying on them, you close the door and move away.');
@@ -718,7 +725,8 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
   } },
             { label: 'Greet them', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A25', 3);
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/sonia/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
     scene.text('Undaunted in the face of such shameless debauchery, you continue with your business and go straight to the sink.');
     scene.text('As  you lather your hands in soap, you turn to face them. "Hey Sonia! Having fun there?"');
     scene.text('Sonia rocks back into him, fucking him as much as he\'s fucking her. "Oh god yes, I\'m loving it!"');
@@ -922,7 +930,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/ivan1.jpg');
     scene.text('You shake your head. "Uh, no thanks. I definitely didn\'t come here looking for that."');
     scene.text('He just shrugs. "Suit yourself, but if you change your mind just let me know. Catch you later."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestroomActions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
               ]);
             }
@@ -1738,7 +1746,7 @@ function enterNakedBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a deep breath and decide it would only make things worse for you if you snitch. "It was stupid. I accidentally spilled a bottle of water all over my clothes, so I went to the bathroom to dry them with the hand dryer. While I waited, I went to use the toilet and when I came back, they were gone. I don\'t know what happened to them."');
     scene.text('Ms. Volkov frowns and her expression hardens ever so slightly. "If you don\'t tell me who\'s bullying you, I can\'t help. Don\'t think they will stop just because you didn\'t tell me who it was."');
     scene.text('You shake your head. "No one did this to me, at least no one I seen. I don\'t know what happened to my clothes. They just disappeared," you tell her, sticking to your story.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNakedBathroomEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNakedBathroomEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1753,7 +1761,7 @@ function enterNakedBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a deep breath and decide the girls need to be punished. "Some girls stripped me and stole my clothes."');
     scene.text('Ms. Volkov frowns at first, but her expression softens ever so slightly. "Names?"');
     scene.text('You tell her the names of the girls and she writes them down.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNakedBathroomEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNakedBathroomEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -12,7 +12,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   (s as any).hour = 6;
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     (s as any).loc = 'gad_gphouse';
     (s as any).loc_arg = 'main';
     qspCall(s, 'homes_properties', 'give_access', 'parents_home');
@@ -25,7 +25,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspGoto(s, 'gad_gphouse', 'quick_start');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
       qspCall(s, 'homes_properties', 'rent_property', 'old_town_apartment');
       qspCall(s, 'homes_properties', 'set_home', 'old_town_apartment');
@@ -36,7 +36,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       qspGoto(s, 'bedr2x', '');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         (s as any).motherKnowWhore = 1;
         (s as any).motherKnowSpravka = 2;
         qspCall(s, 'npc_relationship', 'set', 'A29', 0);
@@ -111,7 +111,7 @@ function enterIntroPavlovsk(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Your Bedroom</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/prost5.jpg');
     scene.text('You let out an exasperated sigh. "Yeah yeah, you\'ve told me that already. So how early are we talking?"');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shoots you a sharp look and you know to fix your...
+    // TODO-QSP: dynamic text: 'Your <<$npc_nickname[''A29'']>> shoots you a sharp look and you know to fix you...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shoots you a sharp look and you know to fix your attitude or else. "Well, that depends on what you plan to do in the morning. There's breakfast, showering and brushing your teeth, doing your hair and makeup, and shaving if you really need to. If I remember correctly, Anya used to wake up at 6:00 for school."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -119,7 +119,7 @@ function enterIntroPavlovsk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Your Bedroom</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
-    // TODO-QSP: dynamic text: "You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + f...
+    // TODO-QSP: dynamic text: '"You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + ...
     scene.text('"You want me to wake up that early?!" you huff. "Can\'t I wake up at like… 7:00?"');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shrugs. "You could, but then you might have to c...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shrugs. "You could, but then you might have to cut corners or even end up running late to school, and I won't be having any of that. Your teachers won't either," she warns before making her way towards the kitchen.`);
@@ -214,10 +214,10 @@ function enterIntroGadukino(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/prost5.jpg');
     scene.text('You release an exasperated sigh. "Yeah, I know. You told me that already. So how early are we talking?"');
     if (((st as any).month ?? 0) === 6) {
-      // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shoots you a sharp look, and you know to fix you...
+      // TODO-QSP: dynamic text: 'Your <<$npc_nickname[''A29'']>> shoots you a sharp look, and you know to fix yo...
       scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shoots you a sharp look, and you know to fix your attitude or else. "Well, depends on what you plan to do in the morning. There's showering and brushing your teeth, doing your hair and makeup, and shaving if you really need to. If I remember correctly, Anya used to wake up at 6:00 when she used to sleep here. Besides, while staying at your grandparents' house, you should be up extra early helping them tend to the farm. This isn't a holiday camp!"`);
     } else {
-      // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shoots you a sharp look, and you know to fix you...
+      // TODO-QSP: dynamic text: 'Your <<$npc_nickname[''A29'']>> shoots you a sharp look, and you know to fix yo...
       scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shoots you a sharp look, and you know to fix your attitude or else. "Well, depends on what you plan to do in the morning. There's showering and brushing your teeth, doing your hair and makeup, and shaving if you really need to. If I remember correctly, Anya used to wake up at 6:00 for school. Besides, while staying at your grandparents' house, you should be up extra early helping them tend to the farm. This isn't a holiday camp!"`);
     }
     scene.actions([
@@ -226,7 +226,7 @@ function enterIntroGadukino(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><h4>Your Grandparents\' Cottage</h4></center>');
     scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
-    // TODO-QSP: dynamic text: "You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + f...
+    // TODO-QSP: dynamic text: '"You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + ...
     scene.text('"You want me to wake up that early?!" you huff. "Can\'t I wake up at like… 7:00?"');
     if (((st as any).month ?? 0) === 6) {
       // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shrugs. "You could, but then you might have to c...
@@ -310,7 +310,7 @@ function enterIntroPushkin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/system/1_openings/shared/site_road.jpg');
     scene.text('This continues all the way to your new apartment. When you get there, you finally relent and ask her what time you should get up.');
-    // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shoots you a sharp look and you know to fix your...
+    // TODO-QSP: dynamic text: 'Your <<$npc_nickname[''A29'']>> shoots you a sharp look and you know to fix you...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shoots you a sharp look and you know to fix your attitude or else. "Well, that depends on what you plan to do in the morning. There's breakfast, showering and brushing your teeth, doing your hair and makeup, and shaving if you really need to. If I remember correctly, Anya used to wake up at 6:00 for school."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -323,7 +323,7 @@ function enterIntroPushkin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Your new Bedroom</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
-    // TODO-QSP: dynamic text: "You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + f...
+    // TODO-QSP: dynamic text: '"You want me to wake up that early?!" you huff. "Can''t I wake up at like… ' + ...
     scene.text('"You want me to wake up that early?!" you huff. "Can\'t I wake up at like… 7:00?"');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> shrugs. "You could, but then you might have to c...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} shrugs. "You could, but then you might have to cut corners or even end up running late to school, and I won't be having any of that. Your teachers won't either," she warns before giving you a big hug and leaving with Vladimir.`);
@@ -437,7 +437,7 @@ function enterIntroSharing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetMotherNickname(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = 0;
+  (s as any).temp = window.prompt("<center>What name do you address your mother by?<br>Mother (default), Mum, Mom, Mama, etc.</center>") ?? '';
   if (((s as any).temp ?? 0) !== '') {
     ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A29'] = ((s as any).temp ?? 0);
   }

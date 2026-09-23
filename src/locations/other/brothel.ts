@@ -556,15 +556,15 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: iif(mc_inventory['cosmetics'] < 2, '<a href="exec: mc_inventory[''cosmetics''] +...
   scene.text('iif(mc_inventory[\'cosmetics\'] < 2, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027cosmetics/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">cosmetics</a>\', \'cosmetics\')');
   // TODO-QSP: dynamic text: ' (you have '+mc_inventory['cosmetics']+'), '
-  scene.text('\' (you have \'+mc_inventory[\'cosmetics\']+\'), \'');
+  scene.text(' (you have ' + ((s as any).mc_inventory ?? 0)?.['cosmetics'] ?? '' + '), ');
   // TODO-QSP: dynamic text: iif(mc_inventory['shampoo'] < 1, '<a href="exec: mc_inventory[''shampoo''] += 5 ...
   scene.text('iif(mc_inventory[\'shampoo\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027shampoo/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">shampoo</a>\', \'shampoo\')');
   // TODO-QSP: dynamic text: ' (you have '+mc_inventory['shampoo']+'), '
-  scene.text('\' (you have \'+mc_inventory[\'shampoo\']+\'), \'');
+  scene.text(' (you have ' + ((s as any).mc_inventory ?? 0)?.['shampoo'] ?? '' + '), ');
   // TODO-QSP: dynamic text: iif(mc_inventory['lipbalm'] < 1, '<a href="exec: mc_inventory[''lipbalm''] += 5 ...
   scene.text('iif(mc_inventory[\'lipbalm\'] < 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027lipbalm/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">lip balm</a>\', \'lip balm\')');
   // TODO-QSP: dynamic text: ' (you have '+mc_inventory['lipbalm'] + '), or '
-  scene.text('\' (you have \'+mc_inventory[\'lipbalm\'] + \'), or \'');
+  scene.text(' (you have ' + ((s as any).mc_inventory ?? 0)?.['lipbalm'] ?? '' + '), or ');
   // TODO-QSP: dynamic text: iif(mc_inventory['razor'] < 3, '<a href="exec: mc_inventory[''razor''] += 5 & gt...
   scene.text('iif(mc_inventory[\'razor\'] < 3, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027razor/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">shaving</a>\', \'shaving\')');
   scene.text('For obvious reasons there is also a box with an ');
@@ -574,7 +574,7 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: iif(mc_inventory['painkillers'] < 1 and brothel_vars['painkillers_day'] < daysta...
   scene.text('iif(mc_inventory[\'painkillers\'] < 1 and brothel_vars[\'painkillers_day\'] < daystart, \'<a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})/u0027painkillers/u0027 +=s.2; (s.brothel_vars ??= {})/u0027painkillers_day/u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027brothel/u0027, window.__gameStore.getState().prevArg); return false;">painkillers</a>\', \'painkillers\')');
   // TODO-QSP: dynamic text: ' (you have '+mc_inventory['painkillers']+') is there, in case someone needs pai...
-  scene.text('\' (you have \'+mc_inventory[\'painkillers\']+\') is there, in case someone needs pain relief.\'');
+  scene.text(' (you have ' + ((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '' + ') is there, in case someone needs pain relief.');
   scene.text('-------------------------------------------------------------------------------------');
   scene.text(' 1) You are the Slave.');
   scene.text(' 2) The Client is the Master and can do any practice with the Slave, except specifically named practices in point 3.');

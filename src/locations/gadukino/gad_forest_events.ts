@@ -305,7 +305,8 @@ function enterMushroomPickers3(s: GameState, scene: SceneBuilder): void {
 function enterMushroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_center');
-  scene.img('images/locations/gadukino/forest/mushroom0.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom0.'+ra...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/mushroom0.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Wandering deep in the forest, you stumble upon a clearing full of mushrooms. How lucky!');
   if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
     scene.actions([
@@ -338,7 +339,8 @@ function enterMushroom(s: GameState, scene: SceneBuilder): void {
 function enterBilberry(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_center');
-  scene.img('images/locations/gadukino/forest/bilberry' + (Math.floor(Math.random() * 3) + 3) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/forest/bilberry'+rand...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/bilberry` + (Math.floor(Math.random() * 3) + 3) + '.jpg"></center>');
   scene.text('Wandering deep in the forest, you stumble upon a clearing full of berries. How lucky!');
   if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
     scene.actions([
@@ -407,7 +409,8 @@ function enterBasket(s: GameState, scene: SceneBuilder): void {
 function enterPicnic(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/forest/picnic1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/forest/picnic1.'+rand...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/picnic1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   scene.text('On the edge of the forest, you see some people. Apparently, they are having a family picnic.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You quickly remember you are naked right now and back away from them. It\'s a good thing they didn\'t see you here, if they did, it would be the talk of the whole village.');
@@ -424,8 +427,8 @@ function enterPicnic(s: GameState, scene: SceneBuilder): void {
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     }
     scene.text('You change into your clothes before anyone spots you.');
     scene.actions([
@@ -522,7 +525,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.img('images/locations/gadukino/hunters/hanters.jpg');
       scene.text('You decide to approach the strangers and chat. You never know. Maybe they can show you some good places to find mushrooms and berries. After welcoming you, the whole company sat on the ground to rest and chat.');
-      // TODO-QSP: dynamic text: "What''s your name'+iif(pcs_apprnc >= 60, ', beautiful', '')+'?" one of them ask...
+      // TODO-QSP: dynamic text: '"What''s your name'+iif(pcs_apprnc >= 60, ', beautiful', '')+'?" one of them as...
       scene.text('"What\'s your name' + ((((st as any).pcs_apprnc ?? 0) >= 60) ? (', beautiful') : ('')) + '?" one of them asks.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you answer.
       scene.text(`"${((st as any).pcs_nickname ?? '')}," you answer.`);

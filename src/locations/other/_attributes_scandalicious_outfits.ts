@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).CloQuality = 5;
     (s as any).CloStrength = 140625;
     (s as any).CloThinness = 5;
@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).CloOnePiece = 1;
     (s as any).CloPrice = 2800;
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).CloQuality = 3;
       (s as any).CloStrength = 129375;
       (s as any).CloThinness = 5;
@@ -22,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloBimbo = 1;
       (s as any).CloPrice = 2600;
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).CloQuality = 3;
         (s as any).CloStrength = 129375;
         (s as any).CloThinness = 6;
@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).CloProstitute = 1;
         (s as any).CloPrice = 2600;
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).CloQuality = 3;
           (s as any).CloStrength = 129375;
           (s as any).CloThinness = 5;
@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).CloCoverBack = 3;
           (s as any).CloPrice = 2600;
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).CloQuality = 4;
             (s as any).CloStrength = 135000;
             (s as any).CloThinness = 5;
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).CloOnePiece = 1;
             (s as any).CloPrice = 2700;
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).CloQuality = 4;
               (s as any).CloStrength = 135000;
               (s as any).CloThinness = 5;
@@ -60,7 +60,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).CloOnePiece = 1;
               (s as any).CloPrice = 2700;
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).CloQuality = 4;
                 (s as any).CloStrength = 135000;
                 (s as any).CloThinness = 5;
@@ -70,7 +70,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).CloBimbo = 1;
                 (s as any).CloPrice = 2700;
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).CloQuality = 4;
                   (s as any).CloStrength = 135000;
                   (s as any).CloThinness = 5;
@@ -80,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).CloBimbo = 1;
                   (s as any).CloPrice = 2700;
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).CloQuality = 4;
                     (s as any).CloStrength = 135000;
                     (s as any).CloThinness = 5;
@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).CloCoverBack = 4;
                     (s as any).CloPrice = 2700;
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).CloQuality = 4;
                       (s as any).CloStrength = 135000;
                       (s as any).CloThinness = 5;
@@ -101,7 +101,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).CloProstitute = 1;
                       (s as any).CloPrice = 2700;
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).CloQuality = 4;
                         (s as any).CloStrength = 135000;
                         (s as any).CloThinness = 5;
@@ -112,7 +112,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).CloCoverBack = 4;
                         (s as any).CloPrice = 2700;
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (String((s as any).locArgs?.[0] ?? '') === 12) {
                           (s as any).CloQuality = 4;
                           (s as any).CloStrength = 135000;
                           (s as any).CloThinness = 5;
@@ -122,7 +122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).CloProstitute = 1;
                           (s as any).CloPrice = 2700;
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (String((s as any).locArgs?.[0] ?? '') === 13) {
                             (s as any).CloQuality = 4;
                             (s as any).CloStrength = 135000;
                             (s as any).CloThinness = 5;
@@ -133,7 +133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).CloCoverBack = 4;
                             (s as any).CloPrice = 2700;
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (String((s as any).locArgs?.[0] ?? '') === 14) {
                               (s as any).CloQuality = 3;
                               (s as any).CloStrength = 129375;
                               (s as any).CloThinness = 5;
@@ -143,7 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).CloProstitute = 1;
                               (s as any).CloPrice = 2600;
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (String((s as any).locArgs?.[0] ?? '') === 15) {
                                 (s as any).CloQuality = 5;
                                 (s as any).CloStrength = 140625;
                                 (s as any).CloThinness = 5;
@@ -155,7 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).CloProstitute = 1;
                                 (s as any).CloPrice = 2800;
                               } else {
-                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (String((s as any).locArgs?.[0] ?? '') === 16) {
                                   (s as any).CloQuality = 3;
                                   (s as any).CloStrength = 129375;
                                   (s as any).CloThinness = 5;
@@ -165,7 +165,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).CloProstitute = 1;
                                   (s as any).CloPrice = 2600;
                                 } else {
-                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === 17) {
                                     (s as any).CloQuality = 5;
                                     (s as any).CloStrength = 140625;
                                     (s as any).CloThinness = 5;
@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).CloProstitute = 1;
                                     (s as any).CloPrice = 2800;
                                   } else {
-                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === 18) {
                                       (s as any).CloQuality = 5;
                                       (s as any).CloStrength = 140625;
                                       (s as any).CloThinness = 5;
@@ -185,7 +185,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).CloProstitute = 1;
                                       (s as any).CloPrice = 2800;
                                     } else {
-                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (String((s as any).locArgs?.[0] ?? '') === 19) {
                                         (s as any).CloQuality = 5;
                                         (s as any).CloStrength = 140625;
                                         (s as any).CloThinness = 5;
@@ -195,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).CloProstitute = 1;
                                         (s as any).CloPrice = 2800;
                                       } else {
-                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (String((s as any).locArgs?.[0] ?? '') === 20) {
                                           (s as any).CloQuality = 3;
                                           (s as any).CloStrength = 129375;
                                           (s as any).CloThinness = 5;
@@ -206,7 +206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).CloProstitute = 1;
                                           (s as any).CloPrice = 2600;
                                         } else {
-                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (String((s as any).locArgs?.[0] ?? '') === 21) {
                                             (s as any).CloQuality = 5;
                                             (s as any).CloStrength = 140625;
                                             (s as any).CloThinness = 4;
@@ -214,7 +214,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).CloPantsShortness = 6;
                                             (s as any).CloPrice = 2800;
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 22) {
                                               (s as any).CloQuality = 3;
                                               (s as any).CloStrength = 129375;
                                               (s as any).CloThinness = 5;
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).CloProstitute = 1;
                                               (s as any).CloPrice = 2600;
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 23) {
                                                 (s as any).CloQuality = 2;
                                                 (s as any).CloStrength = 123750;
                                                 (s as any).CloThinness = 5;
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).CloProstitute = 1;
                                                 (s as any).CloPrice = 2500;
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 24) {
                                                   (s as any).CloQuality = 4;
                                                   (s as any).CloStrength = 135000;
                                                   (s as any).CloThinness = 4;
@@ -242,7 +242,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).CloPantsShortness = 5;
                                                   (s as any).CloPrice = 2700;
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 25) {
                                                     (s as any).CloQuality = 2;
                                                     (s as any).CloStrength = 123750;
                                                     (s as any).CloThinness = 5;
@@ -252,7 +252,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).CloProstitute = 1;
                                                     (s as any).CloPrice = 2500;
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (String((s as any).locArgs?.[0] ?? '') === 26) {
                                                       (s as any).CloQuality = 2;
                                                       (s as any).CloStrength = 123750;
                                                       (s as any).CloThinness = 5;
@@ -262,7 +262,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).CloProstitute = 1;
                                                       (s as any).CloPrice = 2500;
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (String((s as any).locArgs?.[0] ?? '') === 27) {
                                                         (s as any).CloQuality = 4;
                                                         (s as any).CloStrength = 135000;
                                                         (s as any).CloThinness = 5;
@@ -272,7 +272,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).CloProstitute = 1;
                                                         (s as any).CloPrice = 2700;
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (String((s as any).locArgs?.[0] ?? '') === 28) {
                                                           (s as any).CloQuality = 5;
                                                           (s as any).CloStrength = 140625;
                                                           (s as any).CloThinness = 5;
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).CloProstitute = 1;
                                                           (s as any).CloPrice = 2800;
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (String((s as any).locArgs?.[0] ?? '') === 29) {
                                                             (s as any).CloQuality = 4;
                                                             (s as any).CloStrength = 135000;
                                                             (s as any).CloThinness = 5;
@@ -293,7 +293,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).CloProstitute = 1;
                                                             (s as any).CloPrice = 2700;
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (String((s as any).locArgs?.[0] ?? '') === 30) {
                                                               (s as any).CloQuality = 4;
                                                               (s as any).CloStrength = 135000;
                                                               (s as any).CloThinness = 5;

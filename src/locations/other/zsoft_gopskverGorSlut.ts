@@ -411,9 +411,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).alko ?? 0) < 6) {
-    scene.img('images/locations/pavlovsk/park/gop/b' + (Math.floor(Math.random() * 15) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/b'+rand(1, 1...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/b` + (Math.floor(Math.random() * 15) + 1) + '.jpg"></center>');
   } else {
-    scene.img('images/locations/pavlovsk/park/gop/drova' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/drova'+rand(...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/drova` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
   }
   // TODO-QSP: dynamic text: <<$beer_text>>
   scene.text(`${((s as any).beer_text ?? '')}`);
@@ -533,7 +535,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).temp_rand ?? 0) === 4) {
       (st as any).poza_gop_text = 'I want to fuck her first, guys. It\'s been a while since I got to go first on a whore.';
     }
-    scene.img('images/locations/pavlovsk/park/gop/p' + (Math.floor(Math.random() * 34) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/p'+rand(1, 3...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/p` + (Math.floor(Math.random() * 34) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: <<$poza_text>>
     scene.text(`${((st as any).poza_text ?? '')}`);
     // TODO-QSP: dynamic text: <<$shultextrand3>> <<$shultextrand6>> says "<<$poza_gop_text2>>"
@@ -623,15 +626,16 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
     (st as any).BjBeerQW = ((st as any).BjBeerQW ?? 0) + (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/oral/1/o' + (Math.floor(Math.random() * 25) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/1/o...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/1/o` + (Math.floor(Math.random() * 25) + 1) + '.jpg"></center>');
     qspCall(st, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
     scene.text(`${((st as any).oral_den_text ?? '')}`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Suck Vasily\'s cock', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A11');
@@ -643,15 +647,16 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (1);
     (st as any).BjBeerQW = ((st as any).BjBeerQW ?? 0) + (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/oral/2/o' + (Math.floor(Math.random() * 28) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/2/o...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/2/o` + (Math.floor(Math.random() * 28) + 1) + '.jpg"></center>');
     qspCall(st, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
     scene.text(`${((st as any).oral_den_text ?? '')}`);
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcumface');
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcummouth');
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcumbody');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Suck Vitek\'s cock', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A9');
@@ -663,15 +668,16 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (1);
     (st as any).BjBeerQW = ((st as any).BjBeerQW ?? 0) + (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/oral/3/o' + (Math.floor(Math.random() * 28) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/3/o...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/3/o` + (Math.floor(Math.random() * 28) + 1) + '.jpg"></center>');
     qspCall(st, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
     scene.text(`${((st as any).oral_den_text ?? '')}`);
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcumface');
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcummouth');
     qspCall(st, 'zsoft_gopskverGorSlut', 'gopcumbody');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVaginalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAnalsex(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Serve all of them at once', handler: (st: GameState) => {
     ((st as any).stat = (st as any).stat ?? {})['bj'] = ((st as any).stat['bj'] ?? 0) + (3);
@@ -744,7 +750,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['pav_park', 'start'] },
       ]);
     } else {
-      scene.img('images/locations/pavlovsk/park/gop/sex/group/oral/o' + (Math.floor(Math.random() * 33) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/or...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/group/oral/o` + (Math.floor(Math.random() * 33) + 1) + '.jpg"></center>');
       (st as any).temp_randC = (Math.floor(Math.random() * 4) + 0);
       if ((!((st as any).temp_randC ?? 0))) {
         // TODO-QSP: dynamic text: You spread your <<$pc_desc[''lips'']>> lips and wrap them around Vitek''s cock. ...
@@ -800,13 +807,14 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).temp_rand ?? 0) === 1) {
     }
     // TODO-QSP: You look at him apologetically and massage his prick with your fingers for a while, before guiding i...
-    scene.img('images/locations/pavlovsk/park/gop/sex/group/sex/s' + (Math.floor(Math.random() * 55) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/se...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/group/sex/s` + (Math.floor(Math.random() * 55) + 1) + '.jpg"></center>');
     // TODO-QSP: dynamic text: <<$gop_grup_eba>>
     scene.text(`${((st as any).gop_grup_eba ?? '')}`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksex(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumfaceGroup(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouthGroup(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumassGroup(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksex(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumfaceGroup(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouthGroup(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumassGroup(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -868,7 +876,8 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).piss = ((s as any).piss ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/park/gop/piss' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/piss'+rand(1...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/piss` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
   (s as any).ranadpercent = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).ranadpercent ?? 0)<=30) {
     return;
@@ -896,7 +905,8 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: gs'stat'
       qspCall(st, 'money', 'pay', 500);
-      scene.img('images/locations/pavlovsk/park/gop/vz' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/vz'+rand(1, ...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/vz` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       // TODO-QSP: dynamic text: You offer the policeman <<$func(''money'', ''string_price'', 500)>>, which he pr...
       scene.text(`You offer the policeman ${qspFunc(s, 'money', 'string_price', 500)}, which he promptly takes: "Very good, miss… I knew you would be reasonable, from the moment I saw you. Have a good day now."`);
       scene.text('They leave without even recording any of your personal information. That fine probably just went straight into their pockets, but at least it got you out of trouble!');
@@ -1076,7 +1086,8 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50) {
     (s as any).sis_gop_text = 'Nice rack, ' + ((s as any).shultextrand2 ?? 0) + '. How about you show us your pussy too? Maybe masturbate a little while you\'re at it?';
   }
-  scene.img('images/locations/pavlovsk/park/gop/tits' + (Math.floor(Math.random() * 7) + 1) + '.mp4');
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/tits` + (Math.floor(Math.random() * 7) + 1) + '.mp4"></video></center>');
   scene.text('You smile at the request, and quietly pull your clothes aside to expose your breasts to the boys with a lewd grin. The guys watch you eagerly, and you slowly rub your boobs and squeeze your nipples lightly. After a little while, they\'re so hard you could cut glass with them.');
   // TODO-QSP: dynamic text: <<$shultextrand3>> says <<$shultextrand6>>: "<<$sis_gop_text>>"
   scene.text(`${((s as any).shultextrand3 ?? '')} says ${((s as any).shultextrand6 ?? '')}: "${((s as any).sis_gop_text ?? '')}"`);
@@ -1084,7 +1095,8 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50) {
     scene.actions([
       { label: 'Masturbate in front of them', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/park/gop/mast' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/mast` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
     (st as any).temp_randB = (Math.floor(Math.random() * 4) + 0);
     if ((!((st as any).temp_randB ?? 0))) {
       (st as any).rnd_droch_text = 'Without hesitation, you pull your clothes to the side and rub your fingers over your wet cunt lips, and then theatrically suck on your finger to taste yourself. The guys are speechless, never thinking you would actually do it, and watch you intently.';
@@ -1157,12 +1169,12 @@ function enterCumface(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp_rand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).temp_rand ?? 0) > 20) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumf\'+rand(1, 22)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumf` + (Math.floor(Math.random() * 22) + 1) + '.jpg"></center>');
     }
     if (((st as any).temp_rand ?? 0) <= 20) {
-      // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text('<center><video autoplay loop ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf\'+rand(1, 6)+\'.mp4"></video></center>');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf` + (Math.floor(Math.random() * 6) + 1) + '.mp4"></video></center>');
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
@@ -1193,12 +1205,12 @@ function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp_rand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).temp_rand ?? 0) > 20) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cum...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/group/cum/cumf\'+rand(1, 14)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cu...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumf` + (Math.floor(Math.random() * 14) + 1) + '.jpg"></center>');
     }
     if (((st as any).temp_rand ?? 0) <= 20) {
-      // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text('<center><video autoplay loop ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf\'+rand(1, 6)+\'.mp4"></video></center>');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf` + (Math.floor(Math.random() * 6) + 1) + '.mp4"></video></center>');
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
@@ -1235,12 +1247,12 @@ function enterCummouth(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp_rand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).temp_rand ?? 0) > 40) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm\'+rand(1, 12)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     }
     if (((st as any).temp_rand ?? 0) <= 40) {
-      // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text('<center><video autoplay loop ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumm\'+rand(1, 8)+\'.mp4"></video></center>');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumm` + (Math.floor(Math.random() * 8) + 1) + '.mp4"></video></center>');
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
@@ -1280,12 +1292,12 @@ function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp_rand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).temp_rand ?? 0) > 40) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cum...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/group/cum/cumm\'+rand(1, 4)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cu...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumm` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     }
     if (((st as any).temp_rand ?? 0) <= 40) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm\'+rand(6, 10)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm` + (Math.floor(Math.random() * 5) + 6) + '.jpg"></center>');
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
@@ -1320,12 +1332,12 @@ function enterCumbody(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp_rand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).temp_rand ?? 0) > 50) {
-      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumb\'+rand(1, 9)+\'.jpg"></center>');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumb` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     }
     if (((st as any).temp_rand ?? 0) <= 50) {
-      // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text('<center><video autoplay loop ' + ((st as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumb\'+rand(1, 2)+\'.mp4"></video></center>');
+      // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumb` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     }
     scene.text('A fountain of cum erupts over your body as he furiously strokes his cock, coating your boobs and stomach with his sperm.');
     scene.actions([
@@ -1354,7 +1366,8 @@ function enterCumass(s: GameState, scene: SceneBuilder): void {
     if (((st as any).temp_rand ?? 0) === 2) {
       (st as any).cumass_text = 'You feel hot jets of his jizz spurting inside your asshole, and when he pulls out you can feel it slowly dribbling down your labia.';
     }
-    scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: <<$cumass_text>>
     scene.text(`${((st as any).cumass_text ?? '')}`);
     if (((st as any).agape ?? 0) === 3) {
@@ -1379,7 +1392,8 @@ function enterCumassGroup(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'cum_call', 'anal', ((st as any).boy ?? 0));
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: When all the guys are satisfied, you tiredly lie down on the grass for a moment....
     scene.text(`When all the guys are satisfied, you tiredly lie down on the grass for a moment. One of the guys comes over with a grin on his face and asks: "Well, ${((st as any).pcs_nickname ?? '')}, would you say you know how to get fucked in the ass now?"`);
     scene.text('You quietly answer: "Yes, I do", blushing and hiding your face. He happily nods, and continues: "I\'d say so too. So, you\'ll be offering us your ass more often from now on, understood?"');
@@ -1427,8 +1441,9 @@ function enterCumpussy(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (30);
   qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0));
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cump' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'wanted') {
+  // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
+  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cump` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
+  if (String((s as any).locArgs?.[1] ?? '') === 'wanted') {
     scene.text('After several minutes of hard fucking, his thrusts grow shorter and more intense. He then slams his cock inside you all the way to the balls, and you feel his warm load being shot inside you.');
   } else {
     scene.text('Despite your request, he does not pull out and comes inside your quivering snatch. When he pulls out, his load slowly drips out of you while he gives you an indifferent shrug.');
@@ -1451,7 +1466,7 @@ function enterCumpussywanted(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your pussy', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'wanted']; enterCumpussy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'wanted']; enterCumpussy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1461,7 +1476,7 @@ function enterCumpussyunwanted(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him not to come in your pussy', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'unwanted']; enterCumpussy(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'unwanted']; enterCumpussy(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1476,7 +1491,8 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
     (st as any).dick = 17;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/park/gop/sex/vagin/v' + (Math.floor(Math.random() * 40) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/vagin/v'...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/vagin/v` + (Math.floor(Math.random() * 40) + 1) + '.jpg"></center>');
     (st as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
     }
@@ -1489,12 +1505,12 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: Oh crap, did you just say that out loud!? He redoubles his efforts and fucks you even harder, while ...
     // TODO-QSP: dynamic text: <<$vag_gop_text>>
     scene.text(`${((st as any).vag_gop_text ?? '')}`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksex(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumpussywanted(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumpussyunwanted(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksex(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumpussywanted(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumpussyunwanted(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1509,7 +1525,8 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
     (st as any).dick = 17;
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/park/gop/sex/anal/ass' + (Math.floor(Math.random() * 35) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/anal/ass...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/anal/ass` + (Math.floor(Math.random() * 35) + 1) + '.jpg"></center>');
     if (((st as any).analPlugIn ?? 0) === 1) {
       (st as any).analPlugIn = 0;
       (st as any).analPlugOut = 1;
@@ -1542,11 +1559,11 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
       scene.text('When he sees the tattoo on your lower back, he pats your ass approvingly: "Nice tramp stamp, whore."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksexanal(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumass(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHornyparksexanal(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumface(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCummouth(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumbody(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumass(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

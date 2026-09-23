@@ -301,7 +301,7 @@ function enterSetReportChoresActs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'livingroom') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'livingroom') {
     if (((s as any).grandmaQW ?? 0)?.['chore_clean_floor'] === 1) {
       scene.actions([
         { label: 'Clean the floor for Grandma (1:00)', goto: ['gp_elene', 'event_cleanfloor'] },
@@ -313,7 +313,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'garden') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'garden') {
       if (((s as any).grandmaQW ?? 0)?.['chore_work_in_garden'] === 1) {
         scene.actions([
           { label: 'Work in the garden (3:00)', goto: ['gp_elene', 'event_checkplants'] },
@@ -330,35 +330,35 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'chickens') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'chickens') {
         if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1) {
           scene.actions([
             { label: 'Feed the chickens', goto: ['gp_elene', 'event_feedchickens'] },
           ]);
         }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'strawberry') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'strawberry') {
           if (((s as any).grandmaQW ?? 0)?.['chore_collect_strawberries'] === 1) {
             scene.actions([
               { label: 'Collect strawberries (3:00)', goto: ['gp_elene', 'event_collectstrawberries'] },
             ]);
           }
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'fruit_garden') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'fruit_garden') {
             if (((s as any).grandmaQW ?? 0)?.['chore_collect_fruit'] === 1) {
               scene.actions([
                 { label: 'Collect fruit (3:00)', goto: ['gp_elene', 'event_collectfruit'] },
               ]);
             }
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'cow') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'cow') {
               if (((s as any).grandmaQW ?? 0)?.['chore_milk_cow'] === 1) {
                 scene.actions([
                   { label: 'Milk the cow (0:30)', goto: ['gp_elene', 'event_milkcow'] },
                 ]);
               }
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 'store') {
+              if (String((s as any).locArgs?.[1] ?? '') === 'store') {
                 if (((s as any).grandmaQW ?? 0)?.['chore_groceries'] === 1) {
                   scene.actions([
                     { label: 'Gather the things on Grandma\'s list (0:30)', goto: ['gp_elene', 'event_groceries'] },
@@ -858,7 +858,8 @@ function enterEventCheckplants(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 1));
   qspCall(s, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 7) + 3));
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/village/work_garden' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/work_garden'+...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/village/work_garden` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You spend some time doing some gardening.');
   // TODO-QSP: end
   scene.actions([
@@ -1149,7 +1150,8 @@ function enterEventHarvestgarden(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 3) + 1));
   qspCall(s, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 7) + 3));
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/village/harvest_garden' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/village/harvest_garde...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/village/harvest_garden` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You spend a few hours harvesting vegetables in the garden.');
   // TODO-QSP: end
   scene.actions([

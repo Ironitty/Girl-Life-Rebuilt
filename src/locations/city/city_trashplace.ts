@@ -106,7 +106,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Show him your passport', handler: (st: GameState) => {
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'suspicious') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'suspicious') {
       scene.text('The man walks over to the manager and whispers something in his ear.');
       scene.text('The manager seems surprised and looks at you. "We seem to have one more issue. Suspicions that you are not quite… as feminine as you appear."');
       qspCall(st, 'willpower', 'exhib', 'resist');
@@ -266,7 +266,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/bum.jpg');
     scene.text('As you\'re about to leave, a drunk old man stumbles up to you. He looks and smells like he hasn\'t washed in weeks.');
-    // TODO-QSP: dynamic text: "It''s national give ' + $func('money', 'string_price', 300) + ' to a bum day, s...
+    // TODO-QSP: dynamic text: '"It''s national give ' + $func('money', 'string_price', 300) + ' to a bum day, ...
     scene.text('"It\'s national give 300₽ to a bum day, so come on then!" he drunkenly demands.');
     scene.actions([
 { label: 'Give him money', handler: (st: GameState) => {

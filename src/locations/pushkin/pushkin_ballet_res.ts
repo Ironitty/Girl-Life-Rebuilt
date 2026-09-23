@@ -368,7 +368,7 @@ function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'reputation') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'reputation') {
     // TODO-QSP: "That Talk"
   }
   // TODO-QSP: end
@@ -386,10 +386,10 @@ function enterRules(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('1) No males are allowed in the accommodation block.');
-  // TODO-QSP: dynamic text: 2) All residents must return to the block by '+func('time', 'get_time_string', 2...
+  // TODO-QSP: dynamic text: '2) All residents must return to the block by '+func('time', 'get_time_string', ...
   scene.text('2) All residents must return to the block by 21:00. No exceptions. If you are late, you will have to report to the duty warden.');
   scene.text('3) No smoking, drinking, or drug use is allowed in the accommodation. If you are caught, you will face immediate dismissal from the school.');
-  // TODO-QSP: dynamic text: 4) Breakfast is from '+func('time', 'get_time_string', 6, 0)+' to '+func('time',...
+  // TODO-QSP: dynamic text: '4) Breakfast is from '+func('time', 'get_time_string', 6, 0)+' to '+func('time'...
   scene.text('4) Breakfast is from 6:00 to 7:00.');
   scene.text('5) All rooms must be kept clean and tidy.');
   scene.text('6) Valuables can be left with the duty warden if required. All thefts or problems are to be reported immediately.');

@@ -745,7 +745,7 @@ function enterHiringAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good. Now don\'t come back without that passport. I don\'t like having my time wasted."');
     scene.text('He shoos you away and you leave the studio, getting ready for the next step.');
     if (qspFunc(s, 'money', 'can_afford', 30000) === 0) {
-      // TODO-QSP: dynamic text: <i>Great. Now I just need to find ' + $func('money', 'string_price', 30000) + ' ...
+      // TODO-QSP: dynamic text: '<i>Great. Now I just need to find ' + $func('money', 'string_price', 30000) + '...
       scene.text('<i>Great. Now I just need to find 30000₽ for the fake passport. Just great. Big load of trouble this job is…</i>');
     }
     scene.actions([
@@ -1083,11 +1083,11 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).age ?? 0) >= 18  ||  ((s as any).fakepassport ?? 0) === 1  ||  ((s as any).age_lie ?? 0) === 1) {
-      // TODO-QSP: dynamic text: When he''s finished, he stands in front of you and says,' + iif(pcs_mdlng >= 20,...
+      // TODO-QSP: dynamic text: 'When he''s finished, he stands in front of you and says,' + iif(pcs_mdlng >= 20...
       scene.text('When he\'s finished, he stands in front of you and says,' + ((((s as any).pcs_mdlng ?? 0) >= 20) ? ('"You\'re a natural. You already move like you\'ve been trained. ') : ('"You fit the criteria for the kind of images we want to produce. ')) + 'I just need to see your passport to confirm your age and put your info into our database," holding out his hand.');
     } else {
       if (((s as any).age_truth ?? 0) === 1) {
-        // TODO-QSP: dynamic text: After several minutes, he stands in front of you and says,' + iif(pcs_mdlng >= 2...
+        // TODO-QSP: dynamic text: 'After several minutes, he stands in front of you and says,' + iif(pcs_mdlng >= ...
         scene.text('After several minutes, he stands in front of you and says,' + ((((s as any).pcs_mdlng ?? 0) >= 20) ? ('"You\'re a natural. You already move like you\'ve been trained. ') : ('"You fit the criteria for the kind of images we want to produce. ')) + 'However, you need to be 18 to work here. If you come back then, we\'ll be happy to have you." He smiles at you and starts heading back to his computer.');
       }
     }
@@ -1353,7 +1353,7 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     scene.text('"Why would I want to use a fake name?" you ask. "Is there a reason I should?"');
     scene.text('"Not <i>should</i>," he explains. "But some girls like to have a little distance from their personal lives. Or they use it to sound more professional or to stand out more. A name like \'Elena Ivanova\' isn\'t exactly uncommon."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelName2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterModelName2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1377,9 +1377,9 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModelName3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).model = (s as any).model ?? {})['firstname'] = 0;
-  ((s as any).model = (s as any).model ?? {})['nickname'] = 0;
-  ((s as any).model = (s as any).model ?? {})['lastname'] = 0;
+  ((s as any).model = (s as any).model ?? {})['firstname'] = window.prompt("What is the first name of your model persona?") ?? '';
+  ((s as any).model = (s as any).model ?? {})['nickname'] = window.prompt("What is the shortened version or nickname of your model persona?") ?? '';
+  ((s as any).model = (s as any).model ?? {})['lastname'] = window.prompt("What is the last name of your model persona?") ?? '';
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model[''firstname'']>>…" he mutters, slowly typing. "<<$model[''lastname'']>...
   scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}…" he mutters, slowly typing. "${((s as any).model ?? 0)?.['lastname'] ?? ''}… Okay, there. Is this correct?"`);
@@ -1420,12 +1420,12 @@ function enterModelProfile(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    ((st as any).model = (st as any).model ?? {})['likes1'] = 0;
-    ((st as any).model = (st as any).model ?? {})['likes2'] = 0;
-    ((st as any).model = (st as any).model ?? {})['likes3'] = 0;
-    ((st as any).model = (st as any).model ?? {})['dislikes1'] = 0;
-    ((st as any).model = (st as any).model ?? {})['dislikes2'] = 0;
-    ((st as any).model = (st as any).model ?? {})['dislikes3'] = 0;
+    ((st as any).model = (st as any).model ?? {})['likes1'] = window.prompt("Write one thing you like. <br>Examples: reading, rainy days, sleeping") ?? '';
+    ((st as any).model = (st as any).model ?? {})['likes2'] = window.prompt("Write another thing you like.") ?? '';
+    ((st as any).model = (st as any).model ?? {})['likes3'] = window.prompt("Write one last thing thing you like.") ?? '';
+    ((st as any).model = (st as any).model ?? {})['dislikes1'] = window.prompt("Write one thing you dislike. <br>Example: dieting, rude boys, chores") ?? '';
+    ((st as any).model = (st as any).model ?? {})['dislikes2'] = window.prompt("Write another thing you dislike.") ?? '';
+    ((st as any).model = (st as any).model ?? {})['dislikes3'] = window.prompt("Write one last thing thing you dislike.") ?? '';
     scene.actions([
       { label: 'Continue', goto: ['foto', 'gave_passport'] },
     ]);
@@ -1543,7 +1543,7 @@ function enterMicrocameraAsk(s: GameState, scene: SceneBuilder): void {
       (st as any).artemIzdev = 3;
     }
     if (qspFunc(s, 'money', 'can_afford', 70000) === 0) {
-      // TODO-QSP: dynamic text: You do not have the ' + $func('money', 'string_price', 70000) + ' required.
+      // TODO-QSP: dynamic text: 'You do not have the ' + $func('money', 'string_price', 70000) + ' required.'
       scene.text('You do not have the 70000₽ required.');
     } else {
       scene.text('"Oh, looks like you have enough money."');

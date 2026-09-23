@@ -183,7 +183,7 @@ function enterDownstairsBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('The bathroom is just as well appointed as the rest of the house, with polished marble used throughout its furnishings.');
-  // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">mirror<...
+  // TODO-QSP: dynamic text: 'There is a shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">mirror...
   scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a separate bathtub.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
@@ -351,7 +351,7 @@ function enterAlbinaBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/albinahome/bathroom.jpg');
   scene.text('Much like the other bathrooms in the house, Albina\'s en-suite is extravagantly decorated with polished marble and glossy tiles.');
-  // TODO-QSP: dynamic text: There is a large shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">m...
+  // TODO-QSP: dynamic text: 'There is a large shower, toilet, sink, <a href="exec:gt ''mirror'', ''start''">...
   scene.text('There is a large shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and a huge marble bathtub that looks big enough to fit two people.');
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('As you glance around the room, you notice the large suction dildo stuck to the edge of the bathtub. Albina could have absent-mindedly left it here by mistake, but knowing your friend, it\'s also likely that she done it deliberately.');
@@ -671,7 +671,7 @@ function enterPoledancing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/stren.jpg');
     scene.text('Albina shows you how to develop your strength using various exercises.');
     scene.text('You wonder if these exercises are how she has such a great-looking ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPostWorkoutShower(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPostWorkoutShower(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Rest', goto: ['albinahome', 'bedroom'] },
     ]);

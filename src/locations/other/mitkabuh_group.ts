@@ -39,7 +39,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'mitkabuh_group', ((s as any).partywithMira ?? 0));
   (s as any).location_type = 'public_indoors';
   scene.img('images/locations/gadukino/village/drunk.jpg');
-  // TODO-QSP: dynamic text: You, Mira, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, 'l...
+  // TODO-QSP: dynamic text: 'You, Mira, Mitka, Kolyamba and Vasyan are sitting on some '+iif(sunWeather=1, '...
   scene.text('You, Mira, Mitka, Kolyamba and Vasyan are sitting on some ' + ((((s as any).sunWeather ?? 0)===1) ? ('logs outside') : ('couches inside')) + ' the trailer. There is plenty of moonshine to go around but no snacks.');
   if (((s as any).GadBoy ?? 0)?.['drunk_event'] === 1  &&  ((s as any).alko ?? 0) < 10) {
     (s as any).alko = 10;
@@ -182,7 +182,8 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup1.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup1.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     // TODO-QSP: dynamic text: <<$boydesc[0]>> and <<$boydesc[1]>> waste no time as they quickly put you and Mi...
     scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} waste no time as they quickly put you and Mira on your knees. They shove their cocks in your mouths and you give them sloppy blowjobs while trying to avoid gagging.`);
     // TODO-QSP: dynamic text: <<$boydesc[0]>> turns you around and begins thrusting rapidly, as Mira moans bes...
@@ -229,7 +230,8 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Make ' + String(qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" }) ?? '') + ' cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 8) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
         scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.4.jpg');
@@ -359,7 +361,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Make ' + String(qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" }) ?? '') + ' cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 8) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
         scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.4.jpg');
@@ -409,7 +412,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuh1.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuh1.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
         scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuh0.3.jpg');
@@ -451,7 +455,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 3) + 2);
     if (((st as any).mitkapicrand ?? 0) <= 3) {
-      scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoral0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoral0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoral0.8.jpg');
     }
@@ -464,7 +469,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make them both cum', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 2) + 2);
-    scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     // TODO-QSP: dynamic text: You pick up the pace, moving your head faster and faster with each stroke. <<$bo...
     scene.text(`You pick up the pace, moving your head faster and faster with each stroke. ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} is the first to cum and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} isn't far behind him.`);
     scene.text('They both pull back a little before shooting their loads onto you. There is a decent amount of cum that has gotten in your hair and dripped down your face onto your body.');
@@ -479,7 +485,8 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 7) + 1);
     if (((st as any).mitkapicrand ?? 0) <= 5) {
-      scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhcum0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     } else {
       if (((st as any).mitkapicrand ?? 0) === 6) {
         scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhoralcum0.4.jpg');
@@ -537,7 +544,8 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 4) + 0);
-    scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhdance0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhdance0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     scene.text('You follow Mira\'s lead and quickly undress. It doesn\'t take long for you both to be completely naked in front of the boys.');
     scene.text('You whirl and dance around the fire completely naked. You are having so much fun dancing with Mira that you barely notice the boys watching you.');
     scene.text('The boys take their cocks out at begin to stroke themselves as they watch you and Mira dance for them. The boys are having a blast as they race to see which one can cum first, just by looking at you and Mira.');
@@ -720,7 +728,8 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhanal0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhanal0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     // TODO-QSP: dynamic text: <<$boydesc[0]>> takes you inside the trailer and pushes you down on the bed face...
     scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} takes you inside the trailer and pushes you down on the bed face first. As he penetrates you, he says something to himself about choosing the right girl, whatever that means.`);
     // TODO-QSP: dynamic text: You wouldn''t call this particularly enjoyable tonight as <<$boydesc[0]>> roughl...
@@ -730,7 +739,8 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back with him', handler: (st: GameState) => {
     (st as any).mitkapicrand = (Math.floor(Math.random() * 5) + 1);
-    scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup0.' + ((st as any).mitkapicrand ?? '') + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/mitka/mitka_group...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitka_group/mitkabuhgroup0.` + ((st as any).mitkapicrand ?? '') + '.jpg"></center>');
     // TODO-QSP: dynamic text: As you walk back to where you left Mira, <<$boydesc[1]>>, and <<$boydesc[2]>> yo...
     scene.text(`As you walk back to where you left Mira, ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })}, and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} you see they are just finishing up with Mira too.`);
     // TODO-QSP: dynamic text: <<$boydesc[0]>> walks up to them and says, "I think I got the better deal here, ...

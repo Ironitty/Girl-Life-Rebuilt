@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     (s as any).CloQuality = 3;
     (s as any).CloStrength = 129375;
     (s as any).CloThinness = 4;
@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).CloPrice = 3000;
     (s as any).swimwear_description = 'A skimpy triangle bikini set with the Minions print.';
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === 2) {
       (s as any).CloQuality = 3;
       (s as any).CloStrength = 129375;
       (s as any).CloThinness = 4;
@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloPrice = 3000;
       (s as any).swimwear_description = 'A bikini set in the color scheme and design of Snow White.';
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === 3) {
         (s as any).CloQuality = 3;
         (s as any).CloStrength = 129375;
         (s as any).CloThinness = 4;
@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).CloPrice = 3000;
         (s as any).swimwear_description = 'A skimpy string bikini set in the design of Captain America.';
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === 4) {
           (s as any).CloQuality = 3;
           (s as any).CloStrength = 129375;
           (s as any).CloThinness = 4;
@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).CloPrice = 3000;
           (s as any).swimwear_description = 'A bikini set with cutesy and nerdy print!';
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === 5) {
             (s as any).CloQuality = 3;
             (s as any).CloStrength = 129375;
             (s as any).CloThinness = 4;
@@ -58,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).CloPrice = 3000;
             (s as any).swimwear_description = 'A bikini set with cutesy and nerdy print!';
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === 6) {
               (s as any).CloQuality = 3;
               (s as any).CloStrength = 129375;
               (s as any).CloThinness = 4;
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).CloPrice = 3000;
               (s as any).swimwear_description = 'A bikini set with comic print!';
             } else {
-              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === 7) {
                 (s as any).CloQuality = 3;
                 (s as any).CloStrength = 129375;
                 (s as any).CloThinness = 4;
@@ -80,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).CloPrice = 3000;
                 (s as any).swimwear_description = 'A bikini set in the design of Batman.';
               } else {
-                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === 8) {
                   (s as any).CloQuality = 3;
                   (s as any).CloStrength = 129375;
                   (s as any).CloThinness = 4;
@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).CloPrice = 3000;
                   (s as any).swimwear_description = 'A bikini set in the design of Batman.';
                 } else {
-                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
                     (s as any).CloQuality = 3;
                     (s as any).CloStrength = 129375;
                     (s as any).CloThinness = 4;
@@ -102,7 +102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).CloPrice = 3000;
                     (s as any).swimwear_description = 'A string bikini set in the design of Batman.';
                   } else {
-                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[0] ?? '') === 10) {
                       (s as any).CloQuality = 3;
                       (s as any).CloStrength = 129375;
                       (s as any).CloThinness = 4;
@@ -113,7 +113,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).CloPrice = 3000;
                       (s as any).swimwear_description = 'A string bikini set in the design of Harley Quinn.';
                     } else {
-                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[0] ?? '') === 11) {
                         (s as any).CloQuality = 3;
                         (s as any).CloStrength = 129375;
                         (s as any).CloThinness = 4;
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).CloPrice = 3000;
                         (s as any).swimwear_description = 'A string bikini set in the design from Game of Thrones.';
                       } else {
-                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (String((s as any).locArgs?.[0] ?? '') === 12) {
                           (s as any).CloQuality = 4;
                           (s as any).CloStrength = 135000;
                           (s as any).CloThinness = 4;
@@ -135,7 +135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).CloPrice = 3150;
                           (s as any).swimwear_description = 'A tankini set with a design inspired by Star Wars.';
                         } else {
-                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (String((s as any).locArgs?.[0] ?? '') === 13) {
                             (s as any).CloQuality = 4;
                             (s as any).CloStrength = 135000;
                             (s as any).CloThinness = 4;
@@ -146,7 +146,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).CloPrice = 3150;
                             (s as any).swimwear_description = 'A bikini set with a design inspired by Star Wars.';
                           } else {
-                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (String((s as any).locArgs?.[0] ?? '') === 14) {
                               (s as any).CloQuality = 4;
                               (s as any).CloStrength = 135000;
                               (s as any).CloThinness = 4;
@@ -157,7 +157,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).CloPrice = 3150;
                               (s as any).swimwear_description = 'A bikini set with a design inspired by Star Wars.';
                             } else {
-                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (String((s as any).locArgs?.[0] ?? '') === 15) {
                                 (s as any).CloQuality = 4;
                                 (s as any).CloStrength = 135000;
                                 (s as any).CloThinness = 4;
@@ -168,7 +168,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).CloPrice = 3150;
                                 (s as any).swimwear_description = 'A string bikini set with a design inspired by Star Wars.';
                               } else {
-                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (String((s as any).locArgs?.[0] ?? '') === 16) {
                                   (s as any).CloQuality = 4;
                                   (s as any).CloStrength = 135000;
                                   (s as any).CloThinness = 4;
@@ -179,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).CloPrice = 3150;
                                   (s as any).swimwear_description = 'A bikini set with a design inspired by Star Wars.';
                                 } else {
-                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === 17) {
                                     (s as any).CloQuality = 4;
                                     (s as any).CloStrength = 135000;
                                     (s as any).CloThinness = 4;
@@ -190,7 +190,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).CloPrice = 3150;
                                     (s as any).swimwear_description = 'A bikini set with a design inspired by the Star Wars.';
                                   } else {
-                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === 18) {
                                       (s as any).CloQuality = 4;
                                       (s as any).CloStrength = 135000;
                                       (s as any).CloThinness = 4;
@@ -201,7 +201,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).CloPrice = 3150;
                                       (s as any).swimwear_description = 'A bikini set with a design inspired by the Star Wars.';
                                     } else {
-                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (String((s as any).locArgs?.[0] ?? '') === 19) {
                                         (s as any).CloQuality = 4;
                                         (s as any).CloStrength = 135000;
                                         (s as any).CloThinness = 4;
@@ -212,7 +212,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).CloPrice = 3150;
                                         (s as any).swimwear_description = 'A bikini set with a design inspired by the Star Wars.';
                                       } else {
-                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (String((s as any).locArgs?.[0] ?? '') === 20) {
                                           (s as any).CloQuality = 4;
                                           (s as any).CloStrength = 135000;
                                           (s as any).CloThinness = 4;
@@ -223,7 +223,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).CloPrice = 3150;
                                           (s as any).swimwear_description = 'A string bikini set with a design inspired by the Star Wars.';
                                         } else {
-                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (String((s as any).locArgs?.[0] ?? '') === 21) {
                                             (s as any).CloQuality = 4;
                                             (s as any).CloStrength = 135000;
                                             (s as any).CloThinness = 4;
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).CloPrice = 3150;
                                             (s as any).swimwear_description = 'A bikini set with cutesy and nerdy print!';
                                           } else {
-                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (String((s as any).locArgs?.[0] ?? '') === 22) {
                                               (s as any).CloQuality = 4;
                                               (s as any).CloStrength = 135000;
                                               (s as any).CloThinness = 4;
@@ -245,7 +245,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).CloPrice = 3150;
                                               (s as any).swimwear_description = 'A bikini set with a design inspired by the X-Men.';
                                             } else {
-                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (String((s as any).locArgs?.[0] ?? '') === 23) {
                                                 (s as any).CloQuality = 4;
                                                 (s as any).CloStrength = 135000;
                                                 (s as any).CloThinness = 4;
@@ -256,7 +256,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).CloPrice = 3150;
                                                 (s as any).swimwear_description = 'A bikini set with a design inspired by Iron Man.';
                                               } else {
-                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (String((s as any).locArgs?.[0] ?? '') === 24) {
                                                   (s as any).CloQuality = 4;
                                                   (s as any).CloStrength = 135000;
                                                   (s as any).CloThinness = 4;
@@ -267,7 +267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).CloPrice = 3150;
                                                   (s as any).swimwear_description = 'A bikini set with a design inspired by Iron Man.';
                                                 } else {
-                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (String((s as any).locArgs?.[0] ?? '') === 25) {
                                                     (s as any).CloQuality = 4;
                                                     (s as any).CloStrength = 135000;
                                                     (s as any).CloThinness = 4;
@@ -278,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).CloPrice = 3150;
                                                     (s as any).swimwear_description = 'A string bikini set with a design inspired by Pokemon.';
                                                   } else {
-                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (String((s as any).locArgs?.[0] ?? '') === 26) {
                                                       (s as any).CloQuality = 3;
                                                       (s as any).CloStrength = 129375;
                                                       (s as any).CloThinness = 4;
@@ -289,7 +289,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).CloPrice = 3000;
                                                       (s as any).swimwear_description = 'A two-piece set with a design inspired by Supergirl.';
                                                     } else {
-                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (String((s as any).locArgs?.[0] ?? '') === 27) {
                                                         (s as any).CloQuality = 4;
                                                         (s as any).CloStrength = 135000;
                                                         (s as any).CloThinness = 4;
@@ -300,7 +300,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).CloPrice = 3150;
                                                         (s as any).swimwear_description = 'A two-piece set with a design inspired by Wonder Woman.';
                                                       } else {
-                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (String((s as any).locArgs?.[0] ?? '') === 28) {
                                                           (s as any).CloQuality = 4;
                                                           (s as any).CloStrength = 135000;
                                                           (s as any).CloThinness = 4;
@@ -311,7 +311,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).CloPrice = 3150;
                                                           (s as any).swimwear_description = 'A two-piece set with a design inspired by Wonder Woman.';
                                                         } else {
-                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (String((s as any).locArgs?.[0] ?? '') === 29) {
                                                             (s as any).CloQuality = 4;
                                                             (s as any).CloStrength = 135000;
                                                             (s as any).CloThinness = 4;
@@ -322,7 +322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).CloPrice = 3150;
                                                             (s as any).swimwear_description = 'A two-piece set with a design inspired by Wonder Woman.';
                                                           } else {
-                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (String((s as any).locArgs?.[0] ?? '') === 30) {
                                                               (s as any).CloQuality = 4;
                                                               (s as any).CloStrength = 135000;
                                                               (s as any).CloThinness = 4;

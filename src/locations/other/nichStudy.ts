@@ -197,8 +197,8 @@ function enterReHire(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/nicholas/01.jpg');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, what brings you here?" Nicholas asks while still reading...
     scene.text(`"Oh, ${((st as any).pcs_nickname ?? '')}, what brings you here?" Nicholas asks while still reading his papers.`);
-    // TODO-QSP: dynamic text: "'+$npc_nickname['A52']+', I was wondering if you still needed a maid?"
-    scene.text('"\'+$npc_nickname[\'A52\']+\', I was wondering if you still needed a maid?"');
+    // TODO-QSP: dynamic text: '"'+$npc_nickname['A52']+', I was wondering if you still needed a maid?"'
+    scene.text('\'"\'+$npc_nickname[\'A52\']+\', I was wondering if you still needed a maid?"\'');
     qspCall(st, 'nichUtil', 'rehired');
     if (((st as any).nichSex ?? 0) >= 10) {
       scene.text('Nicholas looks from his desk at you and sees you in your maid uniform. "How fitting."');

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -503,8 +501,8 @@ function enterDTRVaginal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     (s as any).panty_txt = ', slide your panties off';
   }
-  // TODO-QSP: dynamic text: After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start rem...
-  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt ?? '') + ' and sit on your brother\'s lap.');
+  // TODO-QSP: dynamic text: 'After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start re...
+  scene.text('After a moment, you stand up ' + ((((s as any).clothingworntype ?? 0) !== 'nude') ? ('and start removing your clothes') : ('')) + `${((s as any).panty_txt ?? '')} and sit on your brother's lap.`);
   scene.text('"Ready for some real fun, now, dear brother?" you ask him in your most seductive voice.');
   scene.text('He nods enthusiastically.');
   if (((s as any).preziktype ?? 0) !== 1) {
@@ -622,8 +620,8 @@ function enterDTRAnal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     (s as any).panty_txt = ', slide your panties off';
   }
-  // TODO-QSP: dynamic text: After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start rem...
-  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt ?? '') + ' and move to the end of the couch, presenting your ' + ((s as any).pc_desc ?? 0)?.['anus'] ?? '' + ' ass to your brother.');
+  // TODO-QSP: dynamic text: 'After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start re...
+  scene.text('After a moment, you stand up ' + ((((s as any).clothingworntype ?? 0) !== 'nude') ? ('and start removing your clothes') : ('')) + `${((s as any).panty_txt ?? '')} and move to the end of the couch, presenting your ${((s as any).pc_desc ?? 0)?.['anus'] ?? ''} ass to your brother.`);
   scene.text('You turn your head back and wiggle your ass enticingly. "Come and get it."');
   // TODO-QSP: end
   scene.actions([
@@ -891,7 +889,7 @@ function enterCuni(s: GameState, scene: SceneBuilder): void {
     scene.text('"Shut up!" he retorts as he guides your head towards his hard cock.');
     scene.text('It doesn\'t take long before you feel his body start to tense up.');
     scene.text('"OH God, I\'m going to cum sis."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBj2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBj2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1057,7 +1055,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell him you\'ll show him your tits', handler: (st: GameState) => {
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['last_sex_day_morning'] = ((st as any).daystart ?? 0);
     scene.text('"I\'ll tell you what Kolka, if you get up now, I\'ll let you look at my tits."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterWakeupresponse(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'tits']; enterWakeupresponse(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).clothingworntype ?? 0) !== 'nude') {
       scene.actions([
         { label: 'Pull up your top', handler: (st: GameState) => {
@@ -1091,7 +1089,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell him you\'ll show him your pussy', handler: (st: GameState) => {
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['last_sex_day_morning'] = ((st as any).daystart ?? 0);
     scene.text('"I\'ll tell you what Kolka, if you get up now, I\'ll show you my pussy."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterWakeupresponse(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pussy']; enterWakeupresponse(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).clothingworntype ?? 0) !== 'nude'  ||  ((st as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Expose yourself', handler: (st: GameState) => {
@@ -1267,14 +1265,14 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWakeupresponse(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'tits'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'tits'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
     scene.text('He cracks open an eye. "I don\'t need to get up to do that."');
     scene.text('You look down at yourself and remember that you\'re already topless. Right. That wasn\'t a very good plan…');
     scene.actions([
       { label: 'Back to the drawing board', goto: ['brother2', 'wakeup'] },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pussy'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pussy'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.text('He cracks open an eye. "I don\'t need to get up to do that."');
       scene.text('You look down at yourself and remember that you\'re naked. Right. That wasn\'t a very good plan…');
       scene.actions([
@@ -1601,15 +1599,15 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 16) + 15));
   scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).temp_winchance = (Math.floor(Math.random() * (10 - (-2) + 1)) + ((-2)));
     scene.text('In it for the fun and taking it easy on Kolka.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
       (s as any).temp_winchance = (Math.floor(Math.random() * 10) + 1);
       scene.text('In it for the fun you still hope to beat Kolka.');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
         (s as any).temp_winchance = (Math.floor(Math.random() * 6) + 5);
         scene.text('Focusing on the game you grip your controller and start playing.');
       } else {
@@ -1625,10 +1623,10 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
     scene.text('<i>At some point your mother peeks her head in and tells you to both to keep it down.</i>');
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[1] ?? '') === 3) {
     scene.text('You having taken the lead, Kolka steels him self for a last minute come back.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       scene.text('Having been neck and neck the hole game it\'s near its end.');
     } else {
       scene.text('Kolka is in the lead but you still have a chance to come back.');
@@ -1661,7 +1659,7 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
 function enterVideoGamingStop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/${(Math.floor(Math.random() * 3) + 1)}.jpg`);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'win') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'win') {
     if ((!((s as any).game_dare ?? 0))) {
       scene.text('Having won you say to Kolka "Ha! Eat it bro!" Your brother bummed out that he lost lets out a quick sigh and goes back to playing solo.');
       qspCall(s, 'brother2', 'video_gaming_taunt');
@@ -1785,10 +1783,10 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kolka</b></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('brother_face_image')", { location: "brother2" })}`);
+  scene.img(`${qspFunc(s, '$$brother_face_image')}`);
   // TODO-QSP: dynamic text: "Ok <<$pcs_nickname>>, I dare you… too…" he say as he looks around as if he is t...
   scene.text(`"Ok ${((s as any).pcs_nickname ?? '')}, I dare you… too…" he say as he looks around as if he is thinking about what to dare you to do.`);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'brother2', 'caught_risk');
       if (((s as any).dare_lick ?? 0) < 3) {
@@ -1826,7 +1824,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
         // TODO-QSP: 'too… uhh" he seems unsure of what he wants. "Well, I''m not going to sit here all day." you say imp...
@@ -1847,7 +1845,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         qspCall(s, 'boyStat', 'A34');
         // TODO-QSP: :repick3
         if (((s as any).brother ?? 0)?.['pentalk'] === 1) {
@@ -1901,9 +1899,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Any way isn\'t mom in the kitchen right now? Wont we get caught?" you ask. He retorts with "Nope she said she forgot something at the market and would be back later."');
                 }
                 scene.actions([
-                  { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'sex', $dare_location
-  } },
+                  { label: 'Do it', goto: ['brother2', 'lose_dares3', '3', 'sex'] },
                 ]);
               }
             }
@@ -1943,7 +1939,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'tits') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'tits') {
     if (((s as any).brother ?? 0)?.['horny'] >= 10  &&  ((s as any).brother ?? 0)?.['tempted'] >= 1  &&  ((s as any).pcs_inhib ?? 0) >= 25  &&  ((s as any).pcs_horny ?? 0) >= 20  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
       qspGoto(s, 'brother2', 'tit_flash_dare2');
     }
@@ -1965,7 +1961,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'lick') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'lick') {
       if ((!((s as any).dare_lick ?? 0))) {
         (s as any).dare_lick = 1;
       }
@@ -1978,9 +1974,10 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
         { label: 'Search for the cream', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/lick/search1,' + ((((st as any).dare_lick ?? 0) === 1) ? ('1') : ('2')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/kolka/event...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/kolka/event/videogaming/lick/search1,` + ((((st as any).dare_lick ?? 0) === 1) ? ('1') : ('2')) + '.jpg"></center>');
     // TODO-QSP: 'At first you''re not sure if you have any but as look around for some you''re sure Kolka was' + iif...
-    // TODO-QSP: dynamic text: "Ah duh it should be in the fridge' + iif(dare_lick < 2, '."', ' <i>where I put ...
+    // TODO-QSP: dynamic text: '"Ah duh it should be in the fridge' + iif(dare_lick < 2, '."', ' <i>where I put...
     scene.text('"Ah duh it should be in the fridge' + ((((st as any).dare_lick ?? 0) < 2) ? ('."') : (' <i>where I put it last time.</i>"')) + ' you say.');
     scene.actions([
       { label: 'Look in the fridge', handler: (st: GameState) => {
@@ -2008,7 +2005,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'dance') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'dance') {
         if (((s as any).brother ?? 0)?.['SexQW'] < 3) {
           ((s as any).brother = (s as any).brother ?? {})['SexQW'] = 3;
         }
@@ -2066,7 +2063,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'lap') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'lap') {
           ((s as any).brother = (s as any).brother ?? {})['Confidence'] = ((s as any).brother['Confidence'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
           qspCall(s, 'brother_disc', 'arousal', 'light');
           (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -2084,7 +2081,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
             { label: 'Take your clothing off', goto: ['brother2', 'lap1'] },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[2] ?? 0) === 'hj') {
+          if (String((s as any).locArgs?.[2] ?? '') === 'hj') {
             qspCall(s, 'stat', '');
             ((s as any).npc_rel = (s as any).npc_rel ?? {})['A34'] = ((s as any).npc_rel['A34'] ?? 0) + (2);
             scene.img(`images/characters/pavlovsk/school/boy/kolka/sex/jerk${(Math.floor(Math.random() * 18) + 1)}.mp4`);
@@ -2114,7 +2111,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[2] ?? 0) === 'bj') {
+            if (String((s as any).locArgs?.[2] ?? '') === 'bj') {
               ((s as any).brother = (s as any).brother ?? {})['bj'] = ((s as any).brother['bj'] ?? 0) + (1);
               ((s as any).npc_rel = (s as any).npc_rel ?? {})['A34'] = ((s as any).npc_rel['A34'] ?? 0) + (3);
               if (((s as any).dare_blow ?? 0) === 1) {
@@ -2208,7 +2205,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                 ]);
               }
             } else {
-              if (Number((s as any).locArgs?.[2] ?? 0) === 'rub_butt') {
+              if (String((s as any).locArgs?.[2] ?? '') === 'rub_butt') {
                 if (((s as any).brother ?? 0)?.['SexQW'] < 4) {
                   ((s as any).brother = (s as any).brother ?? {})['SexQW'] = 4;
                 }
@@ -2239,7 +2236,8 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
       { label: '"Alright you can… keep going"', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 5, 'incest');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/resi...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/kolka/event/videogaming/sex/` + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4"></video></center>');
     scene.text('Kolka reaches down and slowly starts running his hands up and down your lower back and butt cheeks. He basically starts giving you a massage.');
     scene.text('As he does this soon you\'re starting to feel very relaxed when something unexpected happens.');
     scene.actions([
@@ -2260,10 +2258,11 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               } else {
-                if (Number((s as any).locArgs?.[2] ?? 0) === 'sex') {
-                  if (Number((s as any).locArgs?.[3] ?? 0) === 'kitchen'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'hall') {
+                if (String((s as any).locArgs?.[2] ?? '') === 'sex') {
+                  if (String((s as any).locArgs?.[3] ?? '') === 'kitchen'  ||  String((s as any).locArgs?.[3] ?? '') === 'hall') {
                     qspCall(s, 'npcStat', 'A34');
-                    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + ((s as any).dare_location ?? '') + '/' + ((s as any).dare_location ?? '') + ' \' + iif($dare_location <> \'kitchen\', \'(' + (Math.floor(Math.random() * 12) + 1) + ')\', \'(' + (Math.floor(Math.random() * 38) + 1) + ')\') + \'.mp4');
+                    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/resi...
+                    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).dare_location ?? '')}/${((s as any).dare_location ?? '')} ` + ((((s as any).dare_location ?? 0) !== 'kitchen') ? ('(' + (Math.floor(Math.random() * 12) + 1) + ')') : ('(' + (Math.floor(Math.random() * 38) + 1) + ')')) + '.mp4"></video></center>');
                     if ((!((s as any).losedare_sexcount ?? 0))) {
                       ((s as any).brother = (s as any).brother ?? {})['fuck'] = ((s as any).brother['fuck'] ?? 0) + (1);
                       qspCall(s, 'brother2', 'dare_condom_ask');
@@ -2310,7 +2309,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  if (Number((s as any).locArgs?.[3] ?? 0) === 'stairway') {
+                  if (String((s as any).locArgs?.[3] ?? '') === 'stairway') {
                     qspCall(s, 'npcStat', 'A34');
                     if ((!((s as any).losedare_sexcount ?? 0))) {
                       (s as any).losedare_sexcount = 1;
@@ -2395,7 +2394,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'rub_butt_start') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'rub_butt_start') {
     if (((s as any).brother ?? 0)?.['but_rub'] === 0) {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         (s as any).temp_rub_image = 'dressed_panties (' + (Math.floor(Math.random() * 2) + 1) + ')';
@@ -2521,7 +2520,8 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2, 'incest');
     qspCall(st, 'brother_disc', 'arousal', 'light');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/resi...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/kolka/event/videogaming/sex/` + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4"></video></center>');
     scene.text('He reaches over and places his hands on your butt cheeks.');
     scene.text('Slowly he starts running his hands up and down your butt cheeks basically giving you a massage.');
     // TODO-QSP: 'Several times his hands get very close to the outer lips of your sex. Being so caught up in moment ...
@@ -2563,7 +2563,8 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2, 'incest');
     qspCall(st, 'brother_disc', 'arousal', 'light');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/characters/pavlovsk/resi...
+    scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/kolka/event/videogaming/sex/` + (((Math.floor(Math.random() * 2) + 1) === 2) ? ('butt_rub') : ('nodressed_nopanties (1)')) + '.mp4"></video></center>');
     scene.text('He reaches over and places his hands on your butt cheeks.');
     scene.text('Slowly he starts running his hands up and down your butt cheeks basically giving you a massage.');
     // TODO-QSP: 'Several times his hands get very close to the outer lips of your sex. Being so caught up in moment ...

@@ -348,7 +348,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, I know what to do," you say with a smile while he pulls down his pants, showing you his hard cock.');
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['sex_count_today'] = ((st as any).brotherQW['sex_count_today'] ?? 0) - (1);
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['last_sex_day_night'] = ((st as any).daystart ?? 0);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'He\'s on his own there', handler: (st: GameState) => {
     scene.text('"You\'ve got two perfectly good hands for that," you reply with a smile as you turn around to leave.');
@@ -370,7 +370,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Kolka starts to take off his pants, his erect ${((st as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock quickly popping out.`);
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['sex_count_today'] = ((st as any).brotherQW['sex_count_today'] ?? 0) - (1);
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['last_sex_day_evening'] = ((st as any).daystart ?? 0);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             { label: 'That is so his problem', handler: (st: GameState) => {
     scene.text('"Poor little Kolka, they sell porn in the local shops. I\'m sure you can work out the rest," you chuckle quietly as you leave.');
@@ -867,7 +867,7 @@ function enterBrotherSexStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'incest');
     qspCall(st, 'stat', '');
     qspCall(st, 'dinsex', 'bj_swallow_random');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Take his cock out of your mouth', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -878,7 +878,7 @@ function enterBrotherSexStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/facial/facial21.jpg');
     scene.text('Just as you take his dick out of your mouth, you\'re hit with a hot blast of cum across your face, followed by several more spurts. Your face is covered in your brother\'s jism when he is finally finished with his orgasm.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -908,7 +908,7 @@ function enterBrotherSexStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`You take his hard ${((st as any).npc_dick ?? 0)?.['A34'] ?? ''} cm cock in your hand and begin masturbating him. It only takes a few minutes of gliding your hand up and down his shaft for him to cum. Kolka quietly groans as jets of hot cum erupt from his throbbing member all over your hand.`);
     qspCall(st, 'arousal', 'hj', 5, 'incest');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBrotherSexEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1656,7 +1656,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A34'] > 20  &&  ((s as any).npc_QW ?? 0)?.['A34'] < 25) {
     ((s as any).npc_QW = (s as any).npc_QW ?? {})['A34'] = 20;
   }
-  if (((s as any).npc_pregtalk ?? 0)?.['A34'] === 0  &&  ((s as any).brother_pregreact ?? 0) !== 1  &&  (Number((s as any).locArgs?.[0] ?? 0) === 'start'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'showbody'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'kiss_talk'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'homework')) {
+  if (((s as any).npc_pregtalk ?? 0)?.['A34'] === 0  &&  ((s as any).brother_pregreact ?? 0) !== 1  &&  (String((s as any).locArgs?.[0] ?? '') === 'start'  ||  String((s as any).locArgs?.[0] ?? '') === 'showbody'  ||  String((s as any).locArgs?.[0] ?? '') === 'kiss_talk'  ||  String((s as any).locArgs?.[0] ?? '') === 'homework')) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregreact(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).brother_pregreact ?? 0) === 1) {
       // TODO-QSP: exit

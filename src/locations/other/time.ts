@@ -193,7 +193,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).dateVars = (s as any).dateVars ?? {})['day'] = 1 + (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0);
   ((s as any).dateVars = (s as any).dateVars ?? {})['suffix'] = qspFunc(s, 'time', 'get_number_suffix', ((s as any).dateVars ?? 0)?.['day']);
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'test') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'test') {
     // TODO-QSP: dynamic text: new_daystart: <<ARGS[1]>> | old_daystart: <<daystart>>
     scene.text(`new_daystart: ${((s as any).locArgs?.[1] ?? '')} | old_daystart: ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: new_day: <<dateVars[''day'']>> | old_day: <<day>>
@@ -248,16 +248,16 @@ function enterGetOddWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
-  if ((Number((s as any).locArgs?.[1] ?? 0) >= 4  &&  Number((s as any).locArgs?.[1] ?? 0) <= 20)) {
+  if ((String((s as any).locArgs?.[1] ?? '') >= 4  &&  String((s as any).locArgs?.[1] ?? '') <= 20)) {
     (s as any).result = 'th';
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) % 10 === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') % 10 === 1) {
       (s as any).result = 'st';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) % 10 === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') % 10 === 2) {
         (s as any).result = 'nd';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) % 10 === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') % 10 === 3) {
           (s as any).result = 'rd';
         } else {
           (s as any).result = 'th';
@@ -328,7 +328,7 @@ function enterToDaystart(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = ((s as any).temp_timeVars['mod_daystart'] ?? 0) + (((s as any).dateVars ?? 0)?.['day']);
   ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['daystart_offset'] ?? 0));
-  if (Number((s as any).locArgs?.[4] ?? 0) === 'test') {
+  if (String((s as any).locArgs?.[4] ?? '') === 'test') {
     // TODO-QSP: dynamic text: new_daystart <<dateVars[''daystart'']>> | old_daystart <<daystart>>
     scene.text(`new_daystart ${((s as any).dateVars ?? 0)?.['daystart'] ?? ''} | old_daystart ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: mod_daystart: <<temp_timeVars[''mod_daystart'']>>
@@ -390,10 +390,10 @@ function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).daystart ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).daystart ?? 0)) {
+  if (String((s as any).locArgs?.[1] ?? '') === ((s as any).daystart ?? 0)) {
     ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).day_of_year ?? 0);
   } else {
-    if (((s as any).dateVars ?? 0)?.['daystart'] !== Number((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).dateVars ?? 0)?.['daystart'] !== String((s as any).locArgs?.[1] ?? '')) {
       // TODO-QSP: gs 'time', 'to_date', ARGS[1]
     }
     ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).dateVars ?? 0)?.['day_of_year'];
@@ -466,21 +466,21 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['time_format'];
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) === 0  &&  Number((s as any).locArgs?.[3] ?? 0) === '') {
+  if (String((s as any).locArgs?.[3] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === '') {
     (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '';
   } else {
     ((s as any).dateVars = (s as any).dateVars ?? {})['period'] = 'AM';
-    if (Number((s as any).locArgs?.[1] ?? 0) >= 12) {
+    if (String((s as any).locArgs?.[1] ?? '') >= 12) {
       ((s as any).dateVars = (s as any).dateVars ?? {})['period'] = 'PM';
-      if (Number((s as any).locArgs?.[1] ?? 0) > 12) {
+      if (String((s as any).locArgs?.[1] ?? '') > 12) {
         ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) - (12);
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === 0) {
         ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 12;
       }
     }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === 0) {
       (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
     } else {
       (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '&nbsp;' + ((s as any).dateVars ?? 0)?.['period'] + '';
@@ -502,16 +502,16 @@ function enterGetDateString(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).day ?? 0);
   }
   (s as any).temp_date_suffix = qspFunc(s, 'time', 'get_number_suffix', ((s as any).locArgs?.[3] ?? 0));
-  if (Number((s as any).locArgs?.[4] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[4] ?? '') === 1) {
     (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0)) + '-' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '-' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2)));
   } else {
-    if (Number((s as any).locArgs?.[4] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[4] ?? '') === 2) {
       (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
     } else {
-      if (Number((s as any).locArgs?.[4] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[4] ?? '') === 3) {
         (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));
       } else {
-        if (Number((s as any).locArgs?.[4] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[4] ?? '') === 4) {
           (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
         } else {
           (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + '&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));
@@ -544,7 +544,7 @@ function enterGetAge(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[6] = ((s as any).day ?? 0);
   }
   (s as any).result = ((s as any).locArgs?.[4] ?? 0) - ((s as any).locArgs?.[1] ?? 0);
-  if (Number((s as any).locArgs?.[5] ?? 0) < Number((s as any).locArgs?.[2] ?? 0)  ||  Number((s as any).locArgs?.[5] ?? 0) === Number((s as any).locArgs?.[2] ?? 0)  &&  Number((s as any).locArgs?.[6] ?? 0) < Number((s as any).locArgs?.[3] ?? 0)) {
+  if (String((s as any).locArgs?.[5] ?? '') < String((s as any).locArgs?.[2] ?? '')  ||  String((s as any).locArgs?.[5] ?? '') === String((s as any).locArgs?.[2] ?? '')  &&  String((s as any).locArgs?.[6] ?? '') < String((s as any).locArgs?.[3] ?? '')) {
     (s as any).result = ((s as any).result ?? 0) - (1);
   }
   return;
@@ -589,7 +589,7 @@ function enterInitMonthends(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).monthsend = (s as any).monthsend ?? {})[1] = 31;
   ((s as any).monthsend = (s as any).monthsend ?? {})[2] = 28;
-  if (((Number((s as any).locArgs?.[1] ?? 0) % 4 === 0)  &&  (Number((s as any).locArgs?.[1] ?? 0) % 100 !== 0))  ||  (Number((s as any).locArgs?.[1] ?? 0) % 400 === 0)) {
+  if (((String((s as any).locArgs?.[1] ?? '') % 4 === 0)  &&  (String((s as any).locArgs?.[1] ?? '') % 100 !== 0))  ||  (String((s as any).locArgs?.[1] ?? '') % 400 === 0)) {
     ((s as any).monthsend = (s as any).monthsend ?? {})[2] = ((s as any).monthsend[2] ?? 0) + (1);
   }
   ((s as any).monthsend = (s as any).monthsend ?? {})[3] = 31;

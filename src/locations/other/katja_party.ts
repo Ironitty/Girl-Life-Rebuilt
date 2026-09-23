@@ -15,7 +15,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['party_location'] = 2;
   }
-  // TODO-QSP: dynamic text: "OK, enough just sitting around here at home. I want to go out '+iif(katjaQW['pa...
+  // TODO-QSP: dynamic text: '"OK, enough just sitting around here at home. I want to go out '+iif(katjaQW['p...
   scene.text('"OK, enough just sitting around here at home. I want to go out ' + ((((s as any).katjaQW ?? 0)?.['party_location'] === 1) ? ('for dinner') : ('partying')) + ' tonight!" Katja says.');
   scene.text('She starts to change before you even have a chance to say anything, rummaging around in her wardrobe.');
   if (((s as any).katjaQW ?? 0)?.['party_location'] > 1) {
@@ -147,12 +147,12 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 75  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5)) {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised1.jpg');
     scene.text('Katja has her back to you, half-dressed, seemingly in the process of putting on a dress. "Hey, Katja. What are doing?" you ask.');
-    // TODO-QSP: dynamic text: She turns around with her dress just hanging around the waist of her otherwise n...
+    // TODO-QSP: dynamic text: 'She turns around with her dress just hanging around the waist of her otherwise ...
     scene.text('She turns around with her dress just hanging around the waist of her otherwise naked body. "I\'m getting dressed to go ' + ((((s as any).katjaQW ?? 0)?.['party_location'] === 1) ? ('out to have dinner') : (' to a party')) + '," Katja says, seemingly not bothered by being topless.');
   } else {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised2.jpg');
     scene.text('Katja has her back to you, half-dressed, seemingly in the process of putting on a dress. "Hey, Katja. What are doing?" you ask.');
-    // TODO-QSP: dynamic text: She makes a small jump and pulls up her dress before turning around. "I''m getti...
+    // TODO-QSP: dynamic text: 'She makes a small jump and pulls up her dress before turning around. "I''m gett...
     scene.text('She makes a small jump and pulls up her dress before turning around. "I\'m getting dressed to go ' + ((((s as any).katjaQW ?? 0)?.['party_location'] === 1) ? ('out to have dinner') : (' to a party')) + '," Katja says, smiling.');
   }
   if (((s as any).katjaQW ?? 0)?.['party_location'] > 1) {
@@ -281,7 +281,8 @@ function enterPartyPreparations(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).locat = (s as any).locat ?? {})['katja_rand2'] = ((s as any).daystart ?? 0);
   ((s as any).locat = (s as any).locat ?? {})['katja_save2'] = ((s as any).locat ?? 0)?.['katja'];
-  scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised' + ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 75  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5)) ? ('1') : ('2')) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/katja/un...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised` + ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 75  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5)) ? ('1') : ('2')) + '.jpg"></center>');
   scene.text('"I need to finish prepping. I still need to do my makeup," Katja says as she starts moving around.');
   scene.text('"Let me see how you look," Katja says, stopping and turning around to look at you.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPartDressCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -422,7 +423,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             } else {
-              // TODO-QSP: dynamic text: "You look '+iif(PCloQuality > 4, 'perfect', 'good')+'," Katja says.
+              // TODO-QSP: dynamic text: '"You look '+iif(PCloQuality > 4, 'perfect', 'good')+'," Katja says.'
               scene.text('"You look ' + ((((s as any).PCloQuality ?? 0) > 4) ? ('perfect') : ('good')) + '," Katja says.');
               scene.text('"OK, enough about me. Show me how you look," you ask Katja.');
               scene.actions([
@@ -454,7 +455,7 @@ function enterPartyPreparationsFinal(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_show_of_front_lewd.jpg');
       scene.text('Katja lifts her left leg and puts her foot on the chair, letting her dress crawl up so it would give a nice view of her panties - if she were wearing any. Instead, you get a view of her smoothly shaved pussy lips.');
       scene.text('"What about this?" Katja asks.');
-      // TODO-QSP: dynamic text: "Nice, very nice. So you aren''t wearing panties to the '+iif(locat['katja'] = 5...
+      // TODO-QSP: dynamic text: '"Nice, very nice. So you aren''t wearing panties to the '+iif(locat['katja'] = ...
       scene.text('"Nice, very nice. So you aren\'t wearing panties to the ' + ((((st as any).locat ?? 0)?.['katja'] === 53) ? ('club') : ('party')) + ' tonight?" you ask.');
       scene.text('"I\'m not wearing panties right now. Whether I will wear some later is for you to find out," she answers.');
       scene.text('"But enough of this. I need to use the bathroom before we leave. Wait for me here," she says and takes her purse before heading out.');
@@ -470,7 +471,7 @@ function enterPartyPreparationsFinal(s: GameState, scene: SceneBuilder): void {
         { label: 'Ask her to show some more', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_show_of_side_lewd..jpg');
     scene.text('"You naughty girl," Katja says, but lifts up her skirt and reveals her smoothly shaven pussy. "Is this good enough for you?" she asks.');
-    // TODO-QSP: dynamic text: "Perfect. So you''re not wearing panties to the '+iif(locat['katja'] = 53, 'club...
+    // TODO-QSP: dynamic text: '"Perfect. So you''re not wearing panties to the '+iif(locat['katja'] = 53, 'clu...
     scene.text('"Perfect. So you\'re not wearing panties to the ' + ((((st as any).locat ?? 0)?.['katja'] === 53) ? ('club') : ('party')) + ' tonight?" you ask.');
     if (((st as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5  ||  (((st as any).katjaQW ?? 0)?.['slut'] >= 100  &&  (Math.floor(Math.random() * 2) + 0) ===0)) {
       scene.text('"I\'m not wearing panties right now. Whether I will wear some later is for you to find out," she answers.');
@@ -483,7 +484,7 @@ function enterPartyPreparationsFinal(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Get ready to head out', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "We''re going to be the stars of the '+iif(locat['katja'] = 53, 'club', 'party')...
+    // TODO-QSP: dynamic text: '"We''re going to be the stars of the '+iif(locat['katja'] = 53, 'club', 'party'...
     scene.text('"We\'re going to be the stars of the ' + ((((st as any).locat ?? 0)?.['katja'] === 53) ? ('club') : ('party')) + ' tonight," Katja says.');
     scene.text('"Yes, we are," you reply.');
     scene.text('"But enough of this. I need to use the bathroom before we leave. Wait for me here," she says and takes her purse before heading out.');
@@ -551,7 +552,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['coke_stage'] >= (Math.floor(Math.random() * 4) + 4)  &&  ((s as any).katjaQW ?? 0)?.['coke_day'] !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: '"You know, <<$pcs_nickname>>. We sometimes take some cocaine when we are partying. If you have any,...
       if (((s as any).mc_inventory ?? 0)?.['cocaine'] < 2) {
-        // TODO-QSP: dynamic text: "I don''t have ' + iif(mc_inventory['cocaine'] = 1, 'enough for both of us', 'an...
+        // TODO-QSP: dynamic text: '"I don''t have ' + iif(mc_inventory['cocaine'] = 1, 'enough for both of us', 'a...
         scene.text('"I don\'t have ' + ((((s as any).mc_inventory ?? 0)?.['cocaine'] === 1) ? ('enough for both of us') : ('any')) + '," you say.');
         scene.text('"No problem. Maybe we\'ll meet somebody that does," Katja says. "Let\'s go."');
         scene.actions([
@@ -683,7 +684,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
         scene.text('"What\'s that?" Katja asks, looking confused.');
         scene.text('"It\'s coke," you tell her.');
         scene.text('"What?! You do drugs?!" Katja exclaims, shocked.');
-        // TODO-QSP: dynamic text: "'+iif(drugVars['cocaine_used'] < 5, 'I''ve tried it a couple of times.', 'Sure ...
+        // TODO-QSP: dynamic text: '"'+iif(drugVars['cocaine_used'] < 5, 'I''ve tried it a couple of times.', 'Sure...
         scene.text('"' + ((((st as any).drugVars ?? 0)?.['cocaine_used'] < 5) ? ('I\'ve tried it a couple of times.') : ('Sure I do.')) + ' It\'s fun," you reply.');
         scene.text('"I didn\'t know that about you," Katja says, still surprised.');
         scene.text('"Well, do you want to try?" you ask.');
@@ -785,7 +786,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).katjaQW ?? 0)?.['coke_stage'] < 3) {
         scene.text('"So, I have some coke - enough for both of us. Want to do some before leaving?" you ask Katja and pull out a small bag of cocaine.');
-        // TODO-QSP: dynamic text: "No. I don''t wanna," Katja says, looking like she'+iif(katjaQW['coke_stage'] = ...
+        // TODO-QSP: dynamic text: '"No. I don''t wanna," Katja says, looking like she'+iif(katjaQW['coke_stage'] =...
         scene.text('"No. I don\'t wanna," Katja says, looking like she' + ((((st as any).katjaQW ?? 0)?.['coke_stage'] === 2) ? ('\'s almost ready') : (' needs some convincing')) + ' to say yes.');
         if (((st as any).katjaQW ?? 0)?.['coke_stage'] === 2) {
           qspCall(st, 'willpower', 'drugs', 'force', 'easy');
@@ -817,7 +818,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She still looks skeptical. "I don''t know, <<$pcs_nickname>>. I''m not sure it''...
     scene.text(`She still looks skeptical. "I don't know, ${((st as any).pcs_nickname ?? '')}. I'm not sure it's a good idea," she replies.`);
     scene.text('"You liked it last time! it will be fine this time, too," you continue.');
-    // TODO-QSP: dynamic text: "I''m not sure. '+iif(katjaQW['coke_stage'] = 2, 'I don''t want it to become a h...
+    // TODO-QSP: dynamic text: '"I''m not sure. '+iif(katjaQW['coke_stage'] = 2, 'I don''t want it to become a ...
     scene.text('"I\'m not sure. ' + ((((st as any).katjaQW ?? 0)?.['coke_stage'] === 2) ? ('I don\'t want it to become a habit') : ('I think the last time was enough for me')) + '," she says.');
     scene.text('"Don\'t be such a bore. You know you will love it," you say.');
     scene.text('Katja finally relents. "OK. Let\'s do it, together," she says.');

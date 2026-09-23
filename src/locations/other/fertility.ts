@@ -49,7 +49,7 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
     (s as any).tabletkiap = ((s as any).tabletkimm ?? 0);
     (s as any).tabletkiap = ((s as any).tabletkiap ?? 0) + ((((s as any).pcs_intel ?? 0) * 4) + (((s as any).pcs_sprt ?? 0) * 2) + (((s as any).age ?? 0) * 3));
     (s as any).tabletkiap = ((s as any).tabletkiap ?? 0) - (((((s as any).kid ?? 0) * 30) + (((s as any).abort ?? 0) * 2) - (((s as any).tabletkipd ?? 0) * ((60 - ((s as any).age ?? 0)) / 10))));
-    (s as any).temprand = ((s as any).rand ?? 0)(0, (200 + (((s as any).tabletkimm ?? 0) - ((100 - ((s as any).pcs_sprt ?? 0)) * 3))));
+    (s as any).temprand = (Math.floor(Math.random() * ((200 + (((s as any).tabletkimm ?? 0) - ((100 - ((s as any).pcs_sprt ?? 0)) * 3))) - 0 + 1)) + (0));
     (s as any).tabletkiap = ((s as any).tabletkiap ?? 0) + (((s as any).temprand ?? 0));
     if (((s as any).tabletkiap ?? 0) < 300) {
       if (((s as any).tabletkipd ?? 0) > -10) {
@@ -674,11 +674,11 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[1] ?? 0)) === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_usedname ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
+  if (((s as any).npc_usedname ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) {
-    if (((s as any).npc_spermpot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 0) {
+    if (((s as any).npc_spermpot ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
       return;
     }
   }

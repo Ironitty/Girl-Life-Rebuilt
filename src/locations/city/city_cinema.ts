@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/locations/city/citycenter/mall/cinema/cinema.jpg');
-  // TODO-QSP: dynamic text: Small cinema ticket costs ' + $func('money', 'string_price', 300) + '.
+  // TODO-QSP: dynamic text: 'Small cinema ticket costs ' + $func('money', 'string_price', 300) + '.'
   scene.text('Small cinema ticket costs 300₽.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.actions([
@@ -55,7 +55,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
         { label: 'Just watch the movie', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMovie(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMovie(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave', goto: ['city_cinema', ''] },
     ]);

@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).FSHP = ((st as any).FSvital ?? 0) * 10;
     (st as any).FSbrona = 0;
     (st as any).FSweaponDam = 0;
-    (st as any).FSname = 0;
+    (st as any).FSname = window.prompt("Enter nickname") ?? '';
     if (((st as any).FSpers ?? 0)?.['text'] === '') {
       ((st as any).FSpers = (st as any).FSpers ?? {})['text'] = 'Player';
     }

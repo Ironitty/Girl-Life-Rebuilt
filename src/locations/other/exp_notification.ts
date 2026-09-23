@@ -9,9 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrackExp(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).exp_ignored_stats) ? ((s as any).exp_ignored_stats as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0  &&  ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  ||  (Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0)) {
+  if ((Array.isArray((s as any).exp_ignored_stats) ? ((s as any).exp_ignored_stats as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0  &&  ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0  ||  (Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0)) {
     // TODO-QSP: exp_tracked_values[$ARGS[1]] += ARGS[2]
-    if ((Array.isArray((s as any).exp_tracked_names) ? ((s as any).exp_tracked_names as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+    if ((Array.isArray((s as any).exp_tracked_names) ? ((s as any).exp_tracked_names as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
       // TODO-QSP: $exp_tracked_names[] = $ARGS[1]
     }
   }

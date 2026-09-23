@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -21,7 +23,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_dining', 'event_' + (Math.floor(Math.random() * 10) + 1) + '');
+  qspGoto(s, 'bdsm_dining', qspUntranslated(s, "''event_<<rand(1'", { location: "bdsm_dining" }), '10)>>');
   // TODO-QSP: end
   scene.build();
 }
@@ -147,7 +149,8 @@ function enterEvent_10(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/suburb/bdsm_club/sex/spank' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/suburb/bdsm_club/sex/span...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/bdsm_club/sex/spank` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
   scene.text('A well dressed man has a young woman bent over his knees with her bare ass exposed, giving her a spanking. The sound from the flesh on flesh slaps carry some distance.');
   // TODO-QSP: end
   scene.actions([

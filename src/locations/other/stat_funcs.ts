@@ -7,7 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = 0;
   } else {
     (s as any).result = 1 + (146 * (((s as any).locArgs?.[1] ?? 0) - 1) * (((s as any).locArgs?.[1] ?? 0) - 1) / 91);
@@ -32,10 +32,10 @@ function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     // TODO-QSP: $att_name[] = $ARGS[1]
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[2] ?? '') !== '') {
     // TODO-QSP: $att_desc[$ARGS[1]] = $ARGS[2]
   }
   return;
@@ -44,10 +44,10 @@ function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     // TODO-QSP: $skl_name[] = $ARGS[1]
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[2] ?? '') !== '') {
     // TODO-QSP: $skl_desc[$ARGS[1]] = $ARGS[2]
   }
   return;
@@ -56,7 +56,7 @@ function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
     // TODO-QSP: $traitattskl[] = $ARGS[1]
   }
   return;

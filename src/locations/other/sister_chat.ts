@@ -642,7 +642,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
           if (((st as any).sisterQW ?? 0)?.['romatime'] === 0) {
             ((st as any).sisterQW = (st as any).sisterQW ?? {})['romatime'] = 1;
             scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_01.jpg');
-            // TODO-QSP: dynamic text: Anya takes a long and hesitant look at you. "<<$pcs_nickname>>, could you spend ...
+            // TODO-QSP: dynamic text: 'Anya takes a long and hesitant look at you. "<<$pcs_nickname>>, could you spend...
             scene.text(`Anya takes a long and hesitant look at you. "${((st as any).pcs_nickname ?? '')}, could you spend an hour or two tomorrow after 16:00 going for a walk or something? Roma wants to visit me here and… Well, you know what I mean."`);
             scene.text('Your sister is blushing a little and looks at you with pleading eyes.');
           } else {
@@ -1088,7 +1088,7 @@ function enterTwincompare(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'pavlin', 'Twins');
     } else {
       // TODO-QSP: delact $selact
-      // TODO-QSP: dynamic text: Pavlin is usually in the hotel lobby between '+func('time', 'get_time_string', 1...
+      // TODO-QSP: dynamic text: 'Pavlin is usually in the hotel lobby between '+func('time', 'get_time_string', ...
       scene.text('Pavlin is usually in the hotel lobby between 12:00 and 20:00. No reason to go now.');
     }
   } },
@@ -1330,7 +1330,7 @@ function enterPartyInvite(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/shared/headshots_main/big33.jpg');
     scene.text('You agree to go to the party.');
-    // TODO-QSP: dynamic text: "Awesome!" she replies. "We''re meeting at the community center this Friday. Don...
+    // TODO-QSP: dynamic text: '"Awesome!" she replies. "We''re meeting at the community center this Friday. Do...
     scene.text('"Awesome!" she replies. "We\'re meeting at the community center this Friday. Don\'t forget to be there before 18:00, otherwise we\'ll leave without you."');
     scene.text('She gives you a hug and kisses you on the cheek.');
     scene.actions([
@@ -1576,7 +1576,7 @@ function enterMomslutTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Anya…" you say, looking seriously at her. "Did you know that ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is cheating on dad?"`);
     scene.text('Your sister blanches at your question, staring into your eyes for a few seconds before swiftly looking away.');
     scene.text('"Who\'d you catch her with?" she asks without turning back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1594,7 +1594,7 @@ function enterMomslutTalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Uncle Sergey," you say flatly. "I watched her ride him like it was her last day on earth, loving every second of it."');
     }
     scene.text('She nods. "I think I was… 13 the first time I caught them? I promised Vasily I\'d play with him in the courtyard and instead I found… Yeah…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1603,7 +1603,7 @@ function enterMomslutTalk2(s: GameState, scene: SceneBuilder): void {
       { label: 'Sergey and Misha', handler: (st: GameState) => {
     scene.text('"Uncle Sergey," you say flatly. "And Uncle Misha. At the same time. They double teamed her like a cheap whore and she loved every second of it."');
     scene.text('She nods. "I always wondered about Misha, but I never saw. Sergey I knew. I saw. I think I was… 13 the first time I caught them together? I promised Vasily I\'d play with him in the courtyard and instead I found… Yeah…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1612,7 +1612,7 @@ function enterMomslutTalk2(s: GameState, scene: SceneBuilder): void {
       { label: 'Borislav', handler: (st: GameState) => {
     scene.text('"Borislav," you say flatly. "I saw them fucking through a window at the cafe."');
     scene.text('Anya blinks in surprise. "I knew she was cheating with a lot of guys, but I never knew about Slava! I guess I never go around the cafe so why would I? I think I was… 13 the first time I caught her with Sergey? I promised Vasily I\'d play with him in the courtyard and instead I found… Yeah…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1621,7 +1621,7 @@ function enterMomslutTalk2(s: GameState, scene: SceneBuilder): void {
       { label: 'Everyone', handler: (st: GameState) => {
     scene.text('"Who haven\'t I caught her with?" you say exasperatedly. "Sergey, Misha, Borislav, probably a dozen others I don\'t know about."');
     scene.text('Anya blinks in surprise. "I knew she was cheating with a lot of guys, but I never knew about Slava! I guess I never go around the cafe so why would I? I think I was… 13 the first time I caught her with Sergey? I promised Vasily I\'d play with him in the courtyard and instead I found… Yeah…"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMomslutTalk3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1656,17 +1656,17 @@ function enterPornTalk0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>… What are you doing for money…?" she asks slowly.
     scene.text(`"${((st as any).pcs_nickname ?? '')}… What are you doing for money…?" she asks slowly.`);
     scene.text('"Porn…?" you admit with a weak smile, feeling your face flush with heat.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Casually', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['porn_admission'] = 'casual';
     scene.text('"I\'ve shot a few pornos," you admit as casually as if you were saying you got a job waitressing.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Proudly', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['porn_admission'] = 'proud';
     scene.text('"I\'ve been shooting porn," you admit with a smug smirk.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornTalk1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1694,7 +1694,7 @@ function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Are you crazy?!" she hisses. "Who cares about the money?! What if mom finds out?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'The sex is good', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
@@ -1710,7 +1710,7 @@ function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Are you crazy?!" she hisses. "Who cares about the sex?! What if mom finds out?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s fun', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
@@ -1726,7 +1726,7 @@ function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Are you crazy?!" she hisses. "Who cares if it\'s fun?! What if mom finds out?!"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornConfront2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1820,7 +1820,7 @@ function enterPornRepeat2(s: GameState, scene: SceneBuilder): void {
     ((st as any).anyaQW = (st as any).anyaQW ?? {})['porn_approve'] = 1;
     scene.text('"Weren\'t you the one who was telling me I should quit?" you ask with a smirk.');
     scene.text('"Look it\'s not like I <i>disapprove</i>," she explains. "I just don\'t want you to get kicked out of the house. Honestly? I think it\'s kinda cool that you\'re finding a way to make money with your body without resorting to straight up prostitution."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornRepeat2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPornRepeat2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

@@ -21,7 +21,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop_start
   (s as any).temp_bgcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bgcolor ?? 0));
   (s as any).temp_text = '';
-  if (((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)] === -1  ||  ((s as any).experimentQW ?? 0)['times_participated_' + ((s as any).cetl_i ?? 0)] < ((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)]) {
+  if (((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)] === -1  ||  ((s as any).experimentQW ?? 0)['times_participated_' + (((s as any).cetl_i ?? 0))] < ((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)]) {
     // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><a href="exec: gt ''city_experimen...
   } else {
     // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><font color="<<$func("shortgs", "r...
@@ -35,7 +35,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('</table></center>');
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[0]) {
+  if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[0]) {
     // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[0]
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -152,7 +152,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[1]) {
+    if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[1]) {
       // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[1]
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       qspCall(s, 'stat', '');
@@ -196,7 +196,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[2]) {
+      if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[2]) {
         // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[2]
         (s as any).minut = ((s as any).minut ?? 0) + 2;
         qspCall(s, 'stat', '');
@@ -236,7 +236,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[3]) {
+        if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[3]) {
           // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[3]
           (s as any).minut = ((s as any).minut ?? 0) + 2;
           qspCall(s, 'stat', '');
@@ -276,7 +276,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[4]) {
+          if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[4]) {
             // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[4]
             (s as any).minut = ((s as any).minut ?? 0) + 2;
             qspCall(s, 'stat', '');
@@ -317,7 +317,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (Number((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[5]) {
+            if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[5]) {
               // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[5]
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               qspCall(s, 'stat', '');
@@ -385,7 +385,7 @@ function enterActReturn(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the clinic', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', ((st as any).temp_pay ?? 0));
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKillvars(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKillvars(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'city_clinic', 'start');
   } },
   ]);
@@ -429,7 +429,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $trial_sections[5]  = 'fertility_shot'
   ((s as any).trial_maxs = (s as any).trial_maxs ?? {})[5] = 1;
   ((s as any).trial_durations = (s as any).trial_durations ?? {})[5] = 3;
-  if (((s as any).therapistQW ?? 0)?.['breast_cream'] === 1  &&  ((s as any).experimentQW ?? 0)?.['times_participated_1'] === 0  &&  Number((s as any).locArgs?.[0] ?? 0) === 'see_trials') {
+  if (((s as any).therapistQW ?? 0)?.['breast_cream'] === 1  &&  ((s as any).experimentQW ?? 0)?.['times_participated_1'] === 0  &&  String((s as any).locArgs?.[0] ?? '') === 'see_trials') {
     // TODO-QSP: $trial_names[1] = '<b>Breast Cream</b>'
     (s as any).cetl_i = 0;
     // TODO-QSP: :therapist_overwrite_loop

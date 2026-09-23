@@ -240,7 +240,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach down to your purse and pull out the morning after pill you keep inside, popping it from the packaging and swallowing it dry.');
     }
     qspCall(st, 'medical_din', 'morning_after_pill_function');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -443,19 +443,19 @@ function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No time', handler: (st: GameState) => {
     scene.text('"Sorry, I don\'t have time," you say. "I wish I could but I really need to get going."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Not hungry', handler: (st: GameState) => {
     scene.text('"I\'ll pass," you say. "I\'m not all that hungry right now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Don\'t eat breakfast', handler: (st: GameState) => {
     scene.text('"I\'ll pass," you say. "I don\'t really eat breakfast."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'On a diet', handler: (st: GameState) => {
     scene.text('"I\'m on a diet," you say ruefully. "Gotta keep the calories down."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -511,7 +511,7 @@ function enterBreakfastSearch(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['kitchen_room']
     scene.text('You follow the smell of food and find him in the kitchen cooking breakfast.');
     scene.text('"Hey," he smiles. "I just finished. Was going to bring it to you in bed. Saves me a trip I guess. Go ahead, dig in."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastInBedMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastInBedMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -535,7 +535,7 @@ function enterBreakfastInBed(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s sweet of you," you smile back, genuinely a little touched that he would do this for you.');
     scene.text('"It\'s no big deal," he shrugs. "Anything I can help you with first?"');
     scene.text('He shows you the tray which is filled with quite a spread.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastInBedMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastInBedMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -558,11 +558,11 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Coffee first', handler: (st: GameState) => {
     scene.text('"Coffee first," you say. "Definitely the coffee first."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Just coffee (no food)', handler: (st: GameState) => {
     scene.text('"Coffee," you say. "Give me coffee."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoffeeMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -571,30 +571,30 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
     scene.text(`"That toast looks good," you smile and ${((st as any).npcdesc ?? '')} hands it over.`);
     scene.actions([
       { label: 'Plain', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You grab the toast not bothering to put on any additional spreads or condiments and bite in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth.');
     scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Butter', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You grab the toast and spread a pat of butter across it before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, the butter providing a salty sweetness to it.');
     scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Jam', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You grab the toast and slather raspberry jam across it before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, the jam providing a sour sweetness to it.');
     scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Sour cream', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakfastImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You grab the toast and slather sour cream across its surface before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, supplemented by the creaminess of your chosen condiment.');
     // TODO-QSP: dynamic text: "Isn''t sour cream normally for the pancakes?" <<$npcdesc>> asks amused.
     scene.text(`"Isn't sour cream normally for the pancakes?" ${((st as any).npcdesc ?? '')} asks amused.`);
     scene.text('"Isn\'t toast just a crispy pancake?" you shrug back, grinning at him with a full mouth.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -606,22 +606,22 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Roll your eyes', handler: (st: GameState) => {
     scene.text('You sigh deeply, rolling your eyes to the heavens as you ignore his vulgar remarks and take your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Giggle', handler: (st: GameState) => {
     scene.text('You giggle at the dirty joke, struggling to fit the fork into your mouth as you take your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Maybe later', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['sex_after_breakfast'] = 1;
     scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before taking your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> provides you with a plate and you eagerly cut it up and stab it wit...
       scene.text(`${((st as any).npcdesc ?? '')} provides you with a plate and you eagerly cut it up and stab it with your fork to take your first bite of egg. It's perfectly fried, the edges crispy but the the yolk is runny and delicious.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Kolbasa', handler: (st: GameState) => {
@@ -632,29 +632,29 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Roll your eyes', handler: (st: GameState) => {
     scene.text('You sigh deeply, rolling your eyes to the heavens as you ignore his vulgar euphemisms and bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Giggle', handler: (st: GameState) => {
     scene.text('You giggle at the dirty joke, struggling to fit the fork into your mouth as you bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Maybe later', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['sex_after_breakfast'] = 1;
     scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before biting into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> provides you with a plate and you eagerly bite into the sandwich. T...
       scene.text(`${((st as any).npcdesc ?? '')} provides you with a plate and you eagerly bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Pancakes', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Those <i>blini</i> look good," you smile. <<$npcdesc>> hands you a plate stacke...
     scene.text(`"Those <i>blini</i> look good," you smile. ${((st as any).npcdesc ?? '')} hands you a plate stacked with millimeter thin pancakes and you spread raspberry jam and sour cream across them before folding them up for consumption. You take your first bite and close your eyes, savouring the sweet, sour, creamy deliciousness before opening them to grin at ${((st as any).npcdesc ?? '')}.`);
     scene.text('"Taste good too," you say with your mouth full.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -690,17 +690,17 @@ function enterWantBreakfast(s: GameState, scene: SceneBuilder): void {
       { label: 'Got any coffee?', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Any chance I could get some coffee?" you ask <<$npcdesc>>.
     scene.text(`"Any chance I could get some coffee?" you ask ${((st as any).npcdesc ?? '')}.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Would kill for some coffee', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I would <i>kill</i> for a cup of coffee right now," you say, looking suggestive...
     scene.text(`"I would <i>kill</i> for a cup of coffee right now," you say, looking suggestively at ${((st as any).npcdesc ?? '')}.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Would suck cock for some coffee', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I would suck your cock for a cup of coffee right now," you say, smirking sugges...
     scene.text(`"I would suck your cock for a cup of coffee right now," you say, smirking suggestively at ${((st as any).npcdesc ?? '')}.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWantCoffeeResponse(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -761,14 +761,14 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nah', handler: (st: GameState) => {
     scene.text('A little too basic. Maybe not.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes (2 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (2);
     // TODO-QSP: $sex_ev[] = 'coffee_make'
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -782,14 +782,14 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nah', handler: (st: GameState) => {
     scene.text('A little too basic. Maybe not.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes (2 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (2);
     // TODO-QSP: $sex_ev[] = 'toast_make'
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -803,14 +803,14 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nah', handler: (st: GameState) => {
     scene.text('Not really in the mood. Maybe skip the eggs.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes (5 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (5);
     // TODO-QSP: $sex_ev[] = 'eggs_make'
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Eggs are basic. Easy as throwing them into a pan. You\'ll do it.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -824,14 +824,14 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nah', handler: (st: GameState) => {
     scene.text('A little simple. A little boring.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes (10 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (10);
     // TODO-QSP: $sex_ev[] = 'kolbasa_make'
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s quick and simple. Might as well.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -845,14 +845,14 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nah', handler: (st: GameState) => {
     scene.text('Too much work. Better do something else.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes (15 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (15);
     // TODO-QSP: $sex_ev[] = 'pancakes_make'
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Who doesn\'t love pancakes in the morning? You <i>have</i> to make them!');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1013,7 +1013,7 @@ function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Coffee snob', handler: (st: GameState) => {
     scene.text('"Black obviously," you sniff as he hands a mug to you. "Milk and sugar is a waste of good coffee."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '... like my men (joke)', handler: (st: GameState) => {
     scene.text('"Black," you say as he hands you the mug. "Like my men," you add, smirking as you take a sip.');
@@ -1025,23 +1025,23 @@ function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Airplane?" <<$npcdesc>> asks, looking equally confused. "The movie that joke is...
     scene.text(`"Airplane?" ${((st as any).npcdesc ?? '')} asks, looking equally confused. "The movie that joke is from?"`);
     scene.text('"Oh. I thought it was just a meme," you blink.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'He\'s seen it?', handler: (st: GameState) => {
     scene.text('"You\'ve seen Airplane?" you ask excitedly.');
     scene.text('"Of course! It\'s such a funny movie! Who hasn\'t seen it?"');
     scene.text('"A lot of people my age haven\'t. Kids these days, right?" you grin.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Knew he\'d like that reference', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     scene.text('"I thought you\'d like that reference," you say, grinning into your mug of coffee. "You\'re such a nerd."');
     scene.text('"It\'s a funny movie," he grins back. "What can I say?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1052,18 +1052,18 @@ function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Sugar please," you smile and <<$npcdesc>> stirs some into a mug for you before ...
     scene.text(`"Sugar please," you smile and ${((st as any).npcdesc ?? '')} stirs some into a mug for you before handing it over. "Thanks."`);
     scene.text('"No problem," he smiles back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Like it sweet', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "With lots of sugar. I like it sweet," you say and <<$npcdesc>> stirs some into ...
     scene.text(`"With lots of sugar. I like it sweet," you say and ${((st as any).npcdesc ?? '')} stirs some into a mug for you. You can't help but smile as he hands it to you and you take your first sip.`);
     scene.text('"No problem," he smiles back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '"Sweet like me"', handler: (st: GameState) => {
     scene.text('"With sugar," you smile. "I like it sweet. Just like me."');
     scene.text('You give him a cute wink as he hands the mug over to you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1071,12 +1071,12 @@ function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Just milk please," you smile and <<$npcdesc>> stirs some into a mug for you bef...
     scene.text(`"Just milk please," you smile and ${((st as any).npcdesc ?? '')} stirs some into a mug for you before handing it over. "Thanks."`);
     scene.text('"No problem," he smiles back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Milk and sugar', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Milk and sugar please," you smile and <<$npcdesc>> stirs some into a mug for yo...
     scene.text(`"Milk and sugar please," you smile and ${((st as any).npcdesc ?? '')} stirs some into a mug for you obligingly before handing it over. "Thanks."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEatBreakfast1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1403,7 +1403,7 @@ function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: "Ugh!" you groan, giving <<$npcdesc>> a look of disgust and forcibly pulling his...
     scene.text(`"Ugh!" you groan, giving ${((st as any).npcdesc ?? '')} a look of disgust and forcibly pulling his hands off your body. "Right when I feel all gross after eating? How can you even <i>think</i> about that right now?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1416,11 +1416,11 @@ function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t have time', handler: (st: GameState) => {
     scene.text('"Tsk! Down boy!" you chide, rolling your eyes and taking his hands to forcibly pull them off your body. "I don\'t have time for this."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Not in the mood', handler: (st: GameState) => {
     scene.text('"Tsk! Down boy!" you chide, rolling your eyes and taking his hands to forcibly pull them off your body. "I had fun earlier but I\'m not in the mood right now."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningMenu1(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1497,7 +1497,7 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_after', 'ending');
     // TODO-QSP: $sex_ev['drop_off_image']
     scene.text('"Thanks for the ride," you say, giving him a quick smile and open up the passenger door.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -1506,7 +1506,7 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_after', 'ending');
     // TODO-QSP: $sex_ev['drop_off_image']
     scene.text('"Thanks for the ride," you say, leaning over and giving him a quick peck on the cheek before opening up the passenger door.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -1515,7 +1515,7 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_after', 'ending');
     // TODO-QSP: $sex_ev['drop_off_image']
     scene.text('"Thanks for the ride," you say, leaning over and giving him a quick peck on the lips before opening up the passenger door.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -1525,7 +1525,7 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', (-5));
     qspCall(st, 'sex_ev_after', 'ending');
     scene.text('"Thanks for the ride," you say. You lean over and give him a deep kiss, forcing your tongue past his lips and enjoying the feeling of his tongue pushing past into yours. You hold the kiss for a good ten seconds before pulling away, saliva trailing with you. You wipe your mouth with a lusty grin before opening the passenger door.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterClassmatesSee(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'main'] },
     ]);

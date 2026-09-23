@@ -325,7 +325,7 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
       (s as any).EggRH = ((s as any).EggRH ?? 0) + (1);
     }
     (s as any).focH = ((s as any).focH ?? 0) + (1);
-    (s as any).temprand = (Math.floor(Math.random() * 10) + 0) - ((s as any).sterileov ?? 0) + ((s as any).tempovbonus ?? 0);
+    (s as any).temprand = (Math.floor(Math.random() * (9 - 0 + 1)) + (0));
     if (((s as any).temprand ?? 0) < 0) {
       (s as any).EggRH = ((s as any).EggRH ?? 0) - (1);
     } else {

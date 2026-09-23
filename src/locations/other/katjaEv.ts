@@ -1494,7 +1494,7 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/market/kosmetic.jpg');
   (s as any).tovpay = 800;
   scene.text('You and Katja explore the open-air market, chatting and having a great time until Katja excitedly signals towards a stall and quickly hauls you towards it.');
-  // TODO-QSP: dynamic text: Looking at the stall, you see what''s gotten her so excited; there are some cosm...
+  // TODO-QSP: dynamic text: 'Looking at the stall, you see what''s gotten her so excited; there are some cos...
   scene.text('Looking at the stall, you see what\'s gotten her so excited; there are some cosmetics on sale for \'+$func(\'money\', \'string_price\', tovpay)+\' that soon land in her bag.');
   if (((s as any).hour ?? 0) <= 20) {
     scene.actions([
@@ -1536,7 +1536,7 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/market/vitaminki.jpg');
   scene.text('You and Katja explore the open-air market, chatting and having a great time until Katja excitedly signals towards a stall and quickly hauls you towards it.');
-  // TODO-QSP: dynamic text: Looking at the stall, you see what''s gotten her so excited; there are some vita...
+  // TODO-QSP: dynamic text: 'Looking at the stall, you see what''s gotten her so excited; there are some vit...
   scene.text('Looking at the stall, you see what\'s gotten her so excited; there are some vitamins on sale for \'+$func(\'money\', \'string_price\', tovpay)+\' that soon land in her bag.');
   if (((s as any).hour ?? 0) <= 20) {
     scene.actions([
@@ -1578,7 +1578,7 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/market/balzam.jpg');
   scene.text('You and Katja explore the open-air market, chatting and having a great time until Katja excitedly signals towards a stall and quickly hauls you towards it.');
-  // TODO-QSP: dynamic text: Looking at the stall, you see what''s gotten her so excited; there is some lip b...
+  // TODO-QSP: dynamic text: 'Looking at the stall, you see what''s gotten her so excited; there is some lip ...
   scene.text('Looking at the stall, you see what\'s gotten her so excited; there is some lip balm on sale for \'+$func(\'money\', \'string_price\', tovpay)+\' that soon land in her bag.');
   if (((s as any).hour ?? 0) <= 20) {
     scene.actions([

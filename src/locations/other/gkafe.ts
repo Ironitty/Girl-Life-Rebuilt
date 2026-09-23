@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Borislav\'s cafe</b></center>');
   scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe.jpg');
-  // TODO-QSP: dynamic text: A small shabby cafe attached to the train station. It''s closed right now, but i...
+  // TODO-QSP: dynamic text: 'A small shabby cafe attached to the train station. It''s closed right now, but ...
   scene.text('A small shabby cafe attached to the train station. It\'s closed right now, but is usually open between 8:00 and 20:00.');
   if ((((s as any).locat ?? 0)?.['Mother'] === 7  ||  ((s as any).locat ?? 0)?.['Mother'] === 9)  &&  ((s as any).hour ?? 0) === 16  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).locat ?? 0)?.['Mom_cafe_sex'] === 1) {
     scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe.jpg');

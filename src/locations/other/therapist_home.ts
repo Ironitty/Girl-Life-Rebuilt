@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,7 +14,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  // TODO-QSP: gt $ARGS[1], $ARGS[2]
+  dynamicGoto(s, 'ARGS[1]', 'ARGS[2]');
   // TODO-QSP: end
   scene.build();
 }
@@ -113,7 +113,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 function enterWardrobe(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'therapist_home';
   (s as any).loc_arg = 'wardrobe';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'start') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wardrobe', 'start']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -333,7 +333,7 @@ function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the Hotel', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'wear_last_worn');
     qspCall(st, 'wakeup_events', 'exit');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

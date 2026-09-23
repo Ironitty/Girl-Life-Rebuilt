@@ -1506,36 +1506,37 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDesc(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Tanya is the daughter of Gala and the step-daughter of Nicholas.');
   (s as any).nichTanyaBdD = 22;
   (s as any).nichTanyaBdM = 6;
   (s as any).nichTanyaBdY = 1998;
   if (((s as any).month ?? 0) > ((s as any).nichTanyaBdM ?? 0)  ||  (((s as any).month ?? 0) === ((s as any).nichTanyaBdM ?? 0)  &&  ((s as any).day ?? 0) > ((s as any).nichTanyaBdD ?? 0))) {
-    // TODO-QSP: dynamic text: She is ' + (year - nichTanyaBdY) + ' years old.
-    scene.text('She is \' + (year - nichTanyaBdY) + \' years old.');
+    // TODO-QSP: dynamic text: 'She is ' + (year - nichTanyaBdY) + ' years old.'
+    scene.text('\'She is \' + (year - nichTanyaBdY) + \' years old.\'');
   } else {
     if (((s as any).month ?? 0) === ((s as any).nichTanyaBdM ?? 0)  &&  ((s as any).day ?? 0) === ((s as any).nichTanyaBdD ?? 0)) {
       if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 1) {
-        // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'st birthday.
-        scene.text('Today is her \' + (year - nichTanyaBdY) + \'st birthday.');
+        // TODO-QSP: dynamic text: 'Today is her ' + (year - nichTanyaBdY) + 'st birthday.'
+        scene.text('\'Today is her \' + (year - nichTanyaBdY) + \'st birthday.\'');
       } else {
         if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 2) {
-          // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'nd birthday.
-          scene.text('Today is her \' + (year - nichTanyaBdY) + \'nd birthday.');
+          // TODO-QSP: dynamic text: 'Today is her ' + (year - nichTanyaBdY) + 'nd birthday.'
+          scene.text('\'Today is her \' + (year - nichTanyaBdY) + \'nd birthday.\'');
         } else {
           if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 3) {
-            // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'rd birthday.
-            scene.text('Today is her \' + (year - nichTanyaBdY) + \'rd birthday.');
+            // TODO-QSP: dynamic text: 'Today is her ' + (year - nichTanyaBdY) + 'rd birthday.'
+            scene.text('\'Today is her \' + (year - nichTanyaBdY) + \'rd birthday.\'');
           } else {
-            // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'th birthday.
-            scene.text('Today is her \' + (year - nichTanyaBdY) + \'th birthday.');
+            // TODO-QSP: dynamic text: 'Today is her ' + (year - nichTanyaBdY) + 'th birthday.'
+            scene.text('\'Today is her \' + (year - nichTanyaBdY) + \'th birthday.\'');
           }
         }
       }
     } else {
-      // TODO-QSP: dynamic text: She is ' + (year - nichTanyaBdY - 1) + ' years old.
-      scene.text('She is \' + (year - nichTanyaBdY - 1) + \' years old.');
+      // TODO-QSP: dynamic text: 'She is ' + (year - nichTanyaBdY - 1) + ' years old.'
+      scene.text('\'She is \' + (year - nichTanyaBdY - 1) + \' years old.\'');
     }
   }
   if (((s as any).nichTanya ?? 0)?.['Relationship'] === 0) {
@@ -1657,7 +1658,8 @@ function enterSexL(s: GameState, scene: SceneBuilder): void {
     ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckCounter'] = ((s as any).nichTanya['FuckCounter'] ?? 0) + (1);
   }
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckToday'] = ((s as any).nichTanya['FuckToday'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sex/undress' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sex/undress' + ran...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sex/undress` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('Tanya slowly undresses and poses seductively for you. "Now you."');
   scene.text('You make a show or striping out of your clothes, it takes some effort not to rush but the anticipation already has you turned on and the rewards are greater if you take your time.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1668,7 +1670,8 @@ function enterSexL(s: GameState, scene: SceneBuilder): void {
 function enterRepeat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckToday'] = ((s as any).nichTanya['FuckToday'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sex/pose' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sex/pose' + rand(0...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sex/pose` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
   scene.text('Tanya smiles at you and poses seductively and purrs, "Ready to go for another round?"');
   scene.text('She hasn\'t mastered the sultry act but the flawed effort is both sexy and cute so you are not about to complain.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1678,7 +1681,8 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
 
 function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  scene.img('images/characters/city/tanya/sexL/kiss/kiss' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/kiss/kiss' + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/kiss/kiss` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
   scene.text('Tanya and you kiss passionately pushing your naked bodies together. The pleasure of just kissing has you melting in her arms and her yours, you have no idea how long this continues but finally you break the kiss as one of you will have to decide what to do next.');
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1689,7 +1693,8 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
 function enterAeatout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/aeatout/aeatout' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/aeatout/aeato...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/aeatout/aeatout` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You begin by kissing her breasts, moving gradually down her body, lower and lower until you are facing her pussy. You start by gently caressing her swollen lips with up and down tongue lapping, up and down the swollen mound and moist slit, and getting ready to focus the tip of your tongue directly on her clitoris. You part her outer lips with your fingers, spreading her pouty inner lips giving you full access to her puffy pink clitoris.');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'lesbian');
@@ -1701,7 +1706,8 @@ function enterAeatout(s: GameState, scene: SceneBuilder): void {
 function enterPeatout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/peatout/peatout' + (Math.floor(Math.random() * 7) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/peatout/peato...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/peatout/peatout` + (Math.floor(Math.random() * 7) + 0) + '.jpg"></center>');
   scene.text('Tanya begins by dragging her tongue up your thighs to your crotch and plants light kisses from the top of your slit down to the opening of your vagina. Her tongue pushes into your slickened hole a few times, then slides back up your cunny to caress your tingling clitoris again.');
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1712,7 +1718,8 @@ function enterPeatout(s: GameState, scene: SceneBuilder): void {
 function enterArimjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/arimjob/arimjob' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/arimjob/arimj...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/arimjob/arimjob` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You kiss her buttocks in ever decreasing circles, eventually getting to the center where her puckered anus is waiting. Reaching your goal, you lick all around the tender star to get it plenty moist, then firmly push your tongue forward, penetrating her ass with just the tip. You retract it, again licking all around her anus, and repeating your tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1723,7 +1730,8 @@ function enterArimjob(s: GameState, scene: SceneBuilder): void {
 function enterPrimjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/primjob/primjob' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/primjob/primj...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/primjob/primjob` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
   scene.text('Tanya kisses your buttocks in ever decreasing circles, eventually getting to the center where your puckered anus is waiting. Reaching her goal, she licks all around the tender star to get it plenty moist, then firmly pushes her tongue forward, penetrating your ass with just the tip. She retracts it, again licking all around your anus, and repeats her tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1734,7 +1742,8 @@ function enterPrimjob(s: GameState, scene: SceneBuilder): void {
 function enterPsovaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/pstrapon/pstrapon' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/pstrapon/pstr...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/pstrapon/pstrapon` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
   scene.text('You watch as Tanya puts on the strap-on, adjusting it to her hips and centering the fake cock, and then she moves to you and inserts it slowly into your pussy. You moan and grind back at her while she fucks you with it.');
   (s as any).dick = ((s as any).nichTanya ?? 0)?.['Strapon'];
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian');
@@ -1746,7 +1755,8 @@ function enterPsovaginal(s: GameState, scene: SceneBuilder): void {
 function enterAsovaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
   ((s as any).nichTanya = (s as any).nichTanya ?? {})['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
-  scene.img('images/characters/city/tanya/sexL/astrapon/astrapon' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sexL/astrapon/astr...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sexL/astrapon/astrapon` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
   scene.text('You put on the strap-on, adjusting it to your hips and centering it. You let Tanya suck on it to moisten it up, then you insert it slowly into her pussy. She moans and grinds back at you while you fuck her with it.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexMatrix(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1891,7 +1901,8 @@ function enterSexLAfter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.img('images/characters/city/tanya/sex/relax' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/sex/relax' + rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/sex/relax` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
   scene.text('Tanya lies on the bed basking in a post sex glow looking hotter than ever. Its very tempting to jump her again but you could also take a break to chat or just cuddle for a bit. Of course you could also leave if you have things to do.');
   // TODO-QSP: end
   scene.actions([
@@ -1921,7 +1932,8 @@ function enterSexLAfter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChat(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('"What would you like to talk about?"');
   if ((((s as any).nichTanya ?? 0)?.['DateCounter'] > 0  ||  ((s as any).nichJobRefused ?? 0) === 1)  &&  (((s as any).nichTanya ?? 0)?.['DateLast'] !== ((s as any).daystart ?? 0)  ||  ((s as any).nichDebug ?? 0) === 1)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDateProposal(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1976,19 +1988,22 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUniversity(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('"I talked with Nicholas. And he really would like you to attend your courses at university."');
   scene.text('"I know, I know!" Tanya seems to be annoyed "But I don\'t know if university is the right place for me. What do you think?"');
   // TODO-QSP: end
   scene.actions([
     { label: 'You should take university seriously', handler: (st: GameState) => {
-    scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"I think you should take university seriously."');
     scene.text('"Really? And why would I listen to you?"');
     if (((st as any).nichTanya ?? 0)?.['Relationship'] === 3) {
       scene.actions([
         { label: 'I love you (relationship)', handler: (st: GameState) => {
-    scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"I love you and I only want the best for you. And I know that going to university is the best decision for your future."');
     scene.text('She bites down on her lip and hesitates for a few seconds.');
     scene.text('"I love you too. You know I do. And maybe you are right. I think I will give university another shot."');
@@ -2082,7 +2097,8 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneral(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You and Tanya talk about the usual stuff from boys to clothes to current affairs. You are surprised by how informed and up to date on business affairs and politics she is, but it makes sense considering her parents.');
   // TODO-QSP: end
   scene.actions([
@@ -2094,7 +2110,8 @@ function enterGeneral(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRelationship(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('"How do you feel about us, Tanya?"');
   if (((s as any).nichTanya ?? 0)?.['Relationship'] === 1) {
     scene.text('"I like our special times together. I really do. Before I met you I would never have dreamt of doing it with a woman. I don\'t know if it is you or me but being with you doesn\'t feel wrong. It\'s quite the opposite really."');
@@ -2127,7 +2144,8 @@ function enterRelationship(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFamily(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Nicholas', handler: (st: GameState) => {
@@ -2167,7 +2185,8 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobOffer(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('"About the job you offered me some time ago… you know, the one as your maid…"');
   scene.text('Tanya looks excited "Yes? Did you change your mind? It is still available."');
   // TODO-QSP: end
@@ -2204,7 +2223,8 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRoom(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/0' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/0' + rand(1, 3) + ...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/0` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('"I\'d like to talk about your room."');
   if (((s as any).nichTanya ?? 0)?.['Room'] === 1) {
     scene.text('"Okay. I cleaned it just as you asked me to."');
@@ -2255,7 +2275,8 @@ function enterCuddle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHire(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/city/tanya/idle/idle' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/tanya/idle/idle' + rand(...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/tanya/idle/idle` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
   qspCall(s, 'npc_relationship', 'modify', 'A218', 'love');
   (s as any).nichWork = 1;
   ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['nich_maid'] = 1;
@@ -2283,7 +2304,7 @@ function enterHire(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry Tanya, I can\'t do that today."');
     scene.text('"Don\'t worry, that\'s fine. After all this comes very sudden."');
     scene.text('She hugs you again.');
-    // TODO-QSP: dynamic text: "Just come back any day between ' + iif(cheatVars['time_format'] = 0, '18 and 22...
+    // TODO-QSP: dynamic text: '"Just come back any day between ' + iif(cheatVars['time_format'] = 0, '18 and 2...
     scene.text('"Just come back any day between ' + ((((st as any).cheatVars ?? 0)?.['time_format'] === 0) ? ('18 and 22 o\'clock') : ('6 and 10 PM')) + ' while wearing your uniform. My parents should be home then."');
     scene.actions([
       { label: 'Leave the apartment', goto: ['city_center', ''] },
@@ -2294,7 +2315,7 @@ function enterHire(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Understood', handler: (st: GameState) => {
     scene.text('She hugs you again.');
-    // TODO-QSP: dynamic text: "Great! Just come back any day between ' + iif(cheatVars['time_format'] = 0, '18...
+    // TODO-QSP: dynamic text: '"Great! Just come back any day between ' + iif(cheatVars['time_format'] = 0, '1...
     scene.text('"Great! Just come back any day between ' + ((((st as any).cheatVars ?? 0)?.['time_format'] === 0) ? ('18 and 22 o\'clock') : ('6 and 10 PM')) + ' while wearing your uniform. My parents should be home then."');
     scene.actions([
       { label: 'Leave the apartment', goto: ['city_center', ''] },
@@ -2307,7 +2328,7 @@ function enterHire(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.text('The two of you enter the mall and Tanya leads you to the store where the maid uniforms are sold.');
     scene.text('She asks you to wait for a few seconds while she looks for an appropriate uniform.');
@@ -2400,7 +2421,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stop looking', handler: (st: GameState) => {
     scene.text('"I don\'t think we will find something suitable today, Tanya."');
-    // TODO-QSP: dynamic text: She seems to be a bit disappointed. "Okay. You will have to buy an uniform on yo...
+    // TODO-QSP: dynamic text: 'She seems to be a bit disappointed. "Okay. You will have to buy an uniform on y...
     scene.text('She seems to be a bit disappointed. "Okay. You will have to buy an uniform on your own then. Just come to my place wearing it between ' + ((((st as any).cheatVars ?? 0)?.['time_format'] === 0) ? ('18 and 22 o\'clock') : ('6 and 10 PM')) + '."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

@@ -116,7 +116,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     scene.text('You stand quietly by the entrance to the market, displaying your tapestries while waiting for customers and displaying your tapestries.');
-    // TODO-QSP: dynamic text: Buyers soon start to gather, but a large, muscular man quickly approaches you. "...
+    // TODO-QSP: dynamic text: 'Buyers soon start to gather, but a large, muscular man quickly approaches you. ...
     scene.text('Buyers soon start to gather, but a large, muscular man quickly approaches you. "It is illegal to trade in the market without a trader\'s license, but I may be interested in buying your tapestries, 1000₽ apiece. Come and see me at my stall."');
     scene.text('Not wanting to get into trouble, you pack your stuff away. The man has already left, but you saw which direction he went in and he should be easy to find.');
     scene.actions([
@@ -144,7 +144,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((st as any).mc_inventory ?? 0)?.['tapestry'] > 1) {
       scene.actions([
         { label: 'Sell all of your tapestries', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: You show Roman your tapestries, and he gives you '+$func('money', 'string_profit...
+    // TODO-QSP: dynamic text: 'You show Roman your tapestries, and he gives you '+$func('money', 'string_profi...
     scene.text('You show Roman your tapestries, and he gives you \'+$func(\'money\', \'string_profit\', mc_inventory[\'tapestry\'] * 1000)+\'. You take the money and give him the tapestries.');
     // TODO-QSP: gs 'money', 'earn', mc_inventory['tapestry'] * 1000
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tapestry'] = 0;
@@ -161,7 +161,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tapestry'] = ((st as any).mc_inventory['tapestry'] ?? 0) - (1);
     qspCall(st, 'money', 'earn', 1000);
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You show your tapestry to Roman, and he gives you '+$func('money', 'string_profi...
+    // TODO-QSP: dynamic text: 'You show your tapestry to Roman, and he gives you '+$func('money', 'string_prof...
     scene.text('You show your tapestry to Roman, and he gives you \'+$func(\'money\', \'string_profit\', 1000)+\'. You take the money and give him the tapestry.');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
@@ -181,21 +181,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask about wang-goo', handler: (st: GameState) => {
     scene.text('You ask the old woman if she has any rice wine. She smiles at you and points to a basket filled with rice.');
-    // TODO-QSP: dynamic text: "Onry '+$func('money', 'string_price', 2)+', hundred glam," she says in badly ac...
+    // TODO-QSP: dynamic text: '"Onry '+$func('money', 'string_price', 2)+', hundred glam," she says in badly a...
     scene.text('"Onry 2₽, hundred glam," she says in badly accented Russian, "You buy?"');
     scene.text('"No," you reply, "I need rice wine, rice wine."');
     scene.text('She looks at you in confusion for a moment, then suddenly brightens, "Ah!" she exclaims, "Come, come!"');
     scene.text('She hurries to the other side of the stall, where several smoked piglets are hung in a row.');
     scene.text('"Here," the old woman crowed, handing you one of the pigs, "Nice swine, vely nice swine."');
     scene.text('"No, not nice swine," you sigh in despair. "Rice! Wine!"');
-    // TODO-QSP: dynamic text: "Yes, yes," the woman counters. "Nice swine, only '+$func('money', 'string_price...
+    // TODO-QSP: dynamic text: '"Yes, yes," the woman counters. "Nice swine, only '+$func('money', 'string_pric...
     scene.text('"Yes, yes," the woman counters. "Nice swine, only 5₽."');
     scene.text('Just as you\'re about to give up, a young Chinese boy arrives.');
     scene.text('"My grandmother asks why you don\'t like the piglets?" he translates as the old woman stops.');
     scene.text('"I don\'t want a pig," you reply in relief as his Russian is quite good. "I\'m looking for rice wine, wang-goo."');
     scene.text('"Ah, huangjiu!" he exclaims before he turns to his grandmother and starts speaking in Chinese.');
     scene.text('The old woman glares at you, hangs the smoked pig back up and shuffles over to the shelf with the bottles. She finally picks up one of them and brings it over to you.');
-    // TODO-QSP: dynamic text: "Why you not say wanted rice wine?" she scoffs. "'+$func('money', 'string_price'...
+    // TODO-QSP: dynamic text: '"Why you not say wanted rice wine?" she scoffs. "'+$func('money', 'string_price...
     scene.text('"Why you not say wanted rice wine?" she scoffs. "500₽."');
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash')) {
       scene.actions([
@@ -233,8 +233,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Agree', handler: (st: GameState) => {
     (st as any).porndeal = 1;
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+  }, goto: ['pav_train_market', '4'] },
     ]);
   } },
       ]);
@@ -298,7 +297,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_train_market', 'clo'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: The market stalls are empty. The market is only open between '+func('time', 'get...
+    // TODO-QSP: dynamic text: 'The market stalls are empty. The market is only open between '+func('time', 'ge...
     scene.text('The market stalls are empty. The market is only open between 8:00 and 19:00.');
     scene.actions([
       { label: 'Leave the market', handler: (st: GameState) => {
@@ -337,7 +336,8 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Market</h2></center>');
-  scene.img('images/locations/pavlovsk/market/brodit' + (Math.floor(Math.random() * 16) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/market/brodit'+rand(1...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/market/brodit` + (Math.floor(Math.random() * 16) + 1) + '.jpg"></center>');
   scene.text('You wander around the market, taking in the sounds and colours, but nothing catches your eye.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
     scene.actions([
@@ -348,7 +348,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'pav_train_market', rand(1, 19)
   }
   // TODO-QSP: end
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/poproshaika1.jpg');
     scene.text('You\'re strolling through the market when a beggar asks you for some change.');
@@ -387,7 +387,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === 2) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
@@ -401,7 +401,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 3) {
     (s as any).pavtrain_book = 1;
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -409,7 +409,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/market/book.jpg');
     }
-    // TODO-QSP: dynamic text: You find a stall selling various books. There are fantasy, science fiction and r...
+    // TODO-QSP: dynamic text: 'You find a stall selling various books. There are fantasy, science fiction and ...
     scene.text('You find a stall selling various books. There are fantasy, science fiction and romance novels, all of which cost 350₽ each.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([
@@ -421,7 +421,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === 4) {
     (s as any).pavmarket_porn = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -491,7 +491,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/market/pornmag.jpg');
     scene.text('Blushing profusely, you approach the salesman and stammer as you ask him how much the magazines cost.');
-    // TODO-QSP: dynamic text: He smiles at you. "All magazines are ' + $func('money', 'string_price', 400) + '...
+    // TODO-QSP: dynamic text: 'He smiles at you. "All magazines are ' + $func('money', 'string_price', 400) + ...
     scene.text('He smiles at you. "All magazines are 400₽ each."');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
@@ -520,7 +520,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).TimesBuyPorno ?? 0) > 0  &&  ((st as any).TimesBuyPorno ?? 0) < 5) {
-        // TODO-QSP: dynamic text: The salesman notices you approaching. "Looking to buy a magazine? They''re only ...
+        // TODO-QSP: dynamic text: 'The salesman notices you approaching. "Looking to buy a magazine? They''re only...
         scene.text('The salesman notices you approaching. "Looking to buy a magazine? They\'re only 400₽ each."');
         scene.actions([
           { label: 'Look through a magazine', handler: (st: GameState) => {
@@ -595,7 +595,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/market/sextoys.jpg');
     scene.text('He lets you step behind the counter to get a better look. "Take a look and let me know what you would like.');
-    // TODO-QSP: dynamic text: You see several 15cm dildos, a small selection of vibrators in various colours a...
+    // TODO-QSP: dynamic text: 'You see several 15cm dildos, a small selection of vibrators in various colours ...
     scene.text('You see several 15cm dildos, a small selection of vibrators in various colours and many butt plugs, all of which are tagged as costing 700₽ each. Near the bottom are several strap-on harnesses priced at 500₽ each.');
     scene.text('The salesman only deals in cash.');
     if (((st as any).mc_inventory ?? 0)?.['dildo_normal'] === 0) {
@@ -784,7 +784,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+  if (String((s as any).locArgs?.[0] ?? '') === 5) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
@@ -798,7 +798,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+  if (String((s as any).locArgs?.[0] ?? '') === 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/nenavizublyadcigan.jpg');
@@ -807,7 +807,8 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Decline', goto: ['pav_train_market', 'start'] },
       { label: 'Accept', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/market/gadaet' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/market/gadaet'+rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/market/gadaet` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You agree and the woman takes your hand before she predicts you\'ll have great happiness and lots of money.');
     scene.text('Afterwards, she quickly hurries away.');
     scene.actions([
@@ -831,11 +832,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+  if (String((s as any).locArgs?.[0] ?? '') === 7) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/kosmetic.jpg');
-    // TODO-QSP: dynamic text: You see some cosmetics on sale for '+ $func('money', 'string_price', 800) +'.
+    // TODO-QSP: dynamic text: 'You see some cosmetics on sale for '+ $func('money', 'string_price', 800) +'.'
     scene.text('You see some cosmetics on sale for 800₽.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([
@@ -856,11 +857,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
+  if (String((s as any).locArgs?.[0] ?? '') === 8) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/vitaminki.jpg');
-    // TODO-QSP: dynamic text: You see some vitamins on sale for '+ $func('money', 'string_price', 100) +'.
+    // TODO-QSP: dynamic text: 'You see some vitamins on sale for '+ $func('money', 'string_price', 100) +'.'
     scene.text('You see some vitamins on sale for 100₽.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([
@@ -881,11 +882,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
+  if (String((s as any).locArgs?.[0] ?? '') === 9) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/birthcontrol/condoms.jpg');
-    // TODO-QSP: dynamic text: You see a booth selling condoms for '+ $func('money', 'string_price', 80) +'.
+    // TODO-QSP: dynamic text: 'You see a booth selling condoms for '+ $func('money', 'string_price', 80) +'.'
     scene.text('You see a booth selling condoms for 80₽.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([
@@ -915,11 +916,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
+  if (String((s as any).locArgs?.[0] ?? '') === 10) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/balzam.jpg');
-    // TODO-QSP: dynamic text: There is lip balm on sale for '+ $func('money', 'string_price', 100) +'.
+    // TODO-QSP: dynamic text: 'There is lip balm on sale for '+ $func('money', 'string_price', 100) +'.'
     scene.text('There is lip balm on sale for 100₽.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([
@@ -940,7 +941,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
+  if (String((s as any).locArgs?.[0] ?? '') === 11) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
@@ -959,7 +960,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
+  if (String((s as any).locArgs?.[0] ?? '') === 12) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/cheburek.jpg');
@@ -999,7 +1000,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
+  if (String((s as any).locArgs?.[0] ?? '') === 13) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dropwallet.jpg');
@@ -1019,7 +1020,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).i = (Math.floor(Math.random() * 161) + 40);
     scene.img('images/locations/pavlovsk/market/zaglanut.jpg');
-    // TODO-QSP: dynamic text: You open the wallet and see '+$func('money', 'string_earn', i)+' inside.
+    // TODO-QSP: dynamic text: 'You open the wallet and see '+$func('money', 'string_earn', i)+' inside.'
     scene.text('You open the wallet and see \'+$func(\'money\', \'string_earn\', i)+\' inside.');
     qspCall(st, 'willpower', 'misc', 'self', 'easy');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -1061,7 +1062,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
+  if (String((s as any).locArgs?.[0] ?? '') === 14) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/rebenok.jpg');
@@ -1075,7 +1076,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
+  if (String((s as any).locArgs?.[0] ?? '') === 15) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/rezba.jpg');
@@ -1089,7 +1090,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
+  if (String((s as any).locArgs?.[0] ?? '') === 16) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/gruzchik.jpg');
@@ -1103,7 +1104,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
+  if (String((s as any).locArgs?.[0] ?? '') === 17) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/meatlavka.jpg');
@@ -1117,7 +1118,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
+  if (String((s as any).locArgs?.[0] ?? '') === 18) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dirka.jpg');
@@ -1140,7 +1141,8 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'voyeur', 2);
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/market/pereodev' + (Math.floor(Math.random() * 15) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/market/pereodev'+rand...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/market/pereodev` + (Math.floor(Math.random() * 15) + 1) + '.jpg"></center>');
     // TODO-QSP: 'You look inside the tent and see ' + $pavtrain_marketrandtext[rand(3, 7)]
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
@@ -1152,11 +1154,11 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
+  if (String((s as any).locArgs?.[0] ?? '') === 19) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/birthcontrolpills.jpg');
-    // TODO-QSP: dynamic text: You see a booth selling birth control pills for '+ $func('money', 'string_price'...
+    // TODO-QSP: dynamic text: 'You see a booth selling birth control pills for '+ $func('money', 'string_price...
     scene.text('You see a booth selling birth control pills for 1500₽.');
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
       scene.actions([

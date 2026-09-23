@@ -143,7 +143,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Disco</b></center>');
     scene.img('images/locations/pavlovsk/community/disco/dance.jpg');
     scene.text('You head out to the dance floor with the intention of attracting some attention. It\'s not long before you catch someone\'s eye...');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDancePartner(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDancePartner(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     return;
   } },
@@ -713,7 +713,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop dancing with him', handler: (st: GameState) => {
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'enjoy_react') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'enjoy_react') {
       scene.text('You have a really good time dancing with this guy, that\'s all you really wanted. So when the song ends and he tries to move closer to you, instead you quickly move yourself away.');
     } else {
       // TODO-QSP: dynamic text: Disgust overwhelms you and you quickly move away from <<$tempnameL>>.
@@ -727,7 +727,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue to dance with him', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('<center><b>Disco</b></center>');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'enjoy_react') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'enjoy_react') {
       ((st as any).temp = (st as any).temp ?? {})['disco_mood'] = 'enjoy_md';
       if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
         qspCall(st, 'arousal_oneline', 'foreplay', 5);
@@ -748,7 +748,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((st as any).locArgs?.[1] ?? 0) === 'boring_react') {
+      if (String((st as any).locArgs?.[1] ?? '') === 'boring_react') {
         ((st as any).temp = (st as any).temp ?? {})['disco_mood'] = 'bore_md';
       }
       if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
@@ -805,7 +805,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
-    if (Number((st as any).locArgs?.[1] ?? 0) === 'enjoy_react') {
+    if (String((st as any).locArgs?.[1] ?? '') === 'enjoy_react') {
       scene.text('"Sure," you smile and let him lead you outside.');
     } else {
       scene.text('"Sure, I guess," you say, a little flatly, and let him lead you outside.');
@@ -1411,8 +1411,8 @@ function enterHookupAggressive(s: GameState, scene: SceneBuilder): void {
     { label: 'That sounds nice', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('"That sounds nice," you say with a smile.');
-    // TODO-QSP: dynamic text: He leans in and gives you a quick, yet passionate kiss. "Great!" ' + $apartment_...
-    scene.text('He leans in and gives you a quick, yet passionate kiss. "Great!" \' + $apartment_txt + \', whispering obscenities in your ear along the way.');
+    // TODO-QSP: dynamic text: 'He leans in and gives you a quick, yet passionate kiss. "Great!" ' + $apartment...
+    scene.text('\'He leans in and gives you a quick, yet passionate kiss. "Great!" \' + $apartment_txt + \', whispering obscenities in your ear along the way.\'');
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1422,8 +1422,8 @@ function enterHookupAggressive(s: GameState, scene: SceneBuilder): void {
     { label: 'That sounds great', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('"Fuck yeah, that sounds awesome." you say back to him.');
-    // TODO-QSP: dynamic text: He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." ' ...
-    scene.text('He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." \' + $apartment_txt + \'.');
+    // TODO-QSP: dynamic text: 'He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." '...
+    scene.text('\'He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." \' + $apartment_txt + \'.\'');
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([

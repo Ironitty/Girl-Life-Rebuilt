@@ -51,10 +51,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shop') {
     dynamicGoto(s, 'prevLoc');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'pushkin') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'pushkin') {
       qspGoto(s, 'pushkin_sq', '');
     } else {
       // TODO-QSP: gt $ARGS[1], $ARGS[2]
@@ -132,7 +132,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).hour ?? 0) >= 16) {
-        // TODO-QSP: dynamic text: All the evening classes have started today, you need to be here before '+func('t...
+        // TODO-QSP: dynamic text: 'All the evening classes have started today, you need to be here before '+func('...
         scene.text('All the evening classes have started today, you need to be here before 16:00 to ensure you can attend.');
       }
     }
@@ -158,7 +158,7 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
       scene.text('You approach the reception to renew your membership.');
     }
   }
-  // TODO-QSP: dynamic text: The gym offers a weekly or monthly subscription for ' + $func('money', 'string_p...
+  // TODO-QSP: dynamic text: 'The gym offers a weekly or monthly subscription for ' + $func('money', 'string_...
   scene.text('The gym offers a weekly or monthly subscription for 1500₽ or 4500₽ to use the facilities with some courses included. Physio appointments and personal trainers are charged separately.');
   scene.text('The subscriptions include classes in gymnastics, yoga and introductory ballet. For advanced classes, there is an additional instructor fee. A personal trainer is on hand to assist at all times if you so need one.');
   scene.text('We also have a small café which attracts a members discount and your membership card can purchase items directly from the vending machine which will be billed to your account.');
@@ -173,7 +173,7 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 1500);
       ((st as any).balletqw = (st as any).balletqw ?? {})['membership'] = ((st as any).daystart ?? 0) + 7;
-      // TODO-QSP: dynamic text: You purchase a weeks subscription for ' + $func('money', 'string_price', 1500) +...
+      // TODO-QSP: dynamic text: 'You purchase a weeks subscription for ' + $func('money', 'string_price', 1500) ...
       scene.text('You purchase a weeks subscription for 1500₽.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -188,7 +188,7 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 4500);
       ((st as any).balletqw = (st as any).balletqw ?? {})['membership'] = ((st as any).daystart ?? 0) + 28;
-      // TODO-QSP: dynamic text: You purchase a monthly subscription for ' + $func('money', 'string_price', 4500)...
+      // TODO-QSP: dynamic text: 'You purchase a monthly subscription for ' + $func('money', 'string_price', 4500...
       scene.text('You purchase a monthly subscription for 4500₽ and got a week free.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -407,7 +407,7 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
           scene.text('Today\'s sixty minutes was challenging with the instructor taking the class through some of the more demanding positions. Leaving many of your yoga buddies look more than a little bit ragged after today\'s session.');
         }
       }
-      (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (0);
+      (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + ((Math.floor(Math.random() * (((s as any).lesson_tier ?? 0) - 1 + 1)) + (1)));
       qspCall(s, 'pain', '', 2, 'legL', 'stretch');
       qspCall(s, 'pain', '', 2, 'legR', 'stretch');
       qspCall(s, 'pain', '', 2, 'shoulders', 'stretch');

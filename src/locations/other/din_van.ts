@@ -139,7 +139,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'ve already gotten used to your feminine body and its softness doesn\'t surprise you very much anymore, but you still let your hands wander a bit over your soft curves before you begin to wash yourself in earnest.');
     } else {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 3) + 0));
-      // TODO-QSP: dynamic text: '+iif(noshampoo_tmp = 1, 'It''s not your shampoo, so you use a little more than ...
+      // TODO-QSP: dynamic text: ''+iif(noshampoo_tmp = 1, 'It''s not your shampoo, so you use a little more than...
       scene.text('' + ((((s as any).noshampoo_tmp ?? 0) === 1) ? ('It\'s not your shampoo, so you use a little more than you normally would; with a tinge of guilt you ') : ('Using your own shampoo, you carefully ')) + 'lather yourself up, trying not to miss any spots, and then wash off.');
     }
   }
@@ -221,7 +221,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
     scene.text('Your rapist\'s cock <i>inside</i> you.');
     scene.text('His cum <i>leaking</i> out of you.');
     scene.text('You grab the soap again and scrub yourself again, but it still feels like something is there, coating your skin. You scrub and scrub and scrub but it just won\'t go away until you finally cry out, throwing it into the corner. Tremors begin coursing through your body and you slowly sink down onto the shower floor, where you remain, sobbing while the water continues raining down on you.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -251,7 +251,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
       (st as any).cumspclnt = 8;
       qspCall(st, 'cum_cleanup', '');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -311,7 +311,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
       scene.text('You have become a little accustomed to your female body and casually soap up all these soft curves and rinse yourself off, rubbing your hands all over your feminine body to make sure you didn\'t miss a spot.');
     } else {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 3) + 0));
-      // TODO-QSP: dynamic text: You lean back and relax for a while. '+iif(noshampoo_tmp = 1, 'It''s not your sh...
+      // TODO-QSP: dynamic text: 'You lean back and relax for a while. '+iif(noshampoo_tmp = 1, 'It''s not your s...
       scene.text('You lean back and relax for a while. ' + ((((s as any).noshampoo_tmp ?? 0) === 1) ? ('It\'s not your shampoo, so you use a little more than you normally would; with a tinge of guilt you ') : ('Using your own shampoo, you carefully ')) + 'begin to lather your body, gently gliding your soft hands over your smooth curves, and wash yourself thoroughly.');
     }
   }
@@ -383,7 +383,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = '';
     qspCall(st, 'arousal', 'clit_vibe', 10, 'masturbate');
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Take a selfie', handler: (st: GameState) => {
     qspCall(st, 'telefon', 'Phone_selfie_image_bathing', 'bath');
@@ -527,7 +527,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
       ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['razor'] = ((st as any).mc_inventory['razor'] ?? 0) - (((st as any).razors_to_use ?? 0)?.['all']);
     }
     qspCall(st, 'traits', 'body_hair_attitude', 'on_shave');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'selfplay', 'bathtub_dildo_check');
     qspCall(st, 'selfplay', 'shower_dildo_check');
   } },
@@ -614,7 +614,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_pubes ?? 0) <= 3) {
       qspCall(st, 'traits', 'body_hair_attitude', 'on_shave');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'selfplay', 'bathtub_dildo_check');
     qspCall(st, 'selfplay', 'shower_dildo_check');
   } },
@@ -646,7 +646,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
         scene.text('You lather your legs up with some soapy water and shave your legs. After a few swift movements, your legs are smooth as silk. The feeling of your smooth legs turns you on a little.');
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'shave']; enterDryOff(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'selfplay', 'bathtub_dildo_check');
     qspCall(st, 'selfplay', 'shower_dildo_check');
   } },
@@ -971,7 +971,7 @@ function enterPublicpan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).prostitute ?? 0)?.['active'] === 1  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'no_prost'  &&  ((s as any).loc ?? 0) !== 'gschool_break') {
+  if (((s as any).prostitute ?? 0)?.['active'] === 1  &&  String((s as any).locArgs?.[1] ?? '') !== 'no_prost'  &&  ((s as any).loc ?? 0) !== 'gschool_break') {
     qspCall(s, 'prostitution_functions', 'work_clothes');
     if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
       scene.actions([
@@ -1610,9 +1610,9 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: 'Your deodorant will last you for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['de...
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'HotelRoom') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'HotelRoom') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'bath') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'bath') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
@@ -1804,8 +1804,8 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change clothes and toys', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearpan(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRemovepan(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearpan(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRemovepan(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).curloc ?? 0) === 'vanrPar'  &&  ((st as any).clothingworntype ?? 0) === 'nude') {
       scene.actions([
         { label: 'Wear clothes (0:05)', handler: (st: GameState) => {
@@ -1841,7 +1841,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterToymanage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterToymanage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     (st as any).menu_off = 0;
@@ -2297,7 +2297,8 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
   (s as any).last_pee = ((s as any).totminut ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 4;
   qspCall(s, 'stat', '');
-  scene.img('images/pc/body/pee/private/' + (Math.floor(Math.random() * 19) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/private/' + rand(1, 19) + '....
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/body/pee/private/` + (Math.floor(Math.random() * 19) + 1) + '.jpg"></center>');
   (s as any).rand_pee = (Math.floor(Math.random() * 8) + 0);
   if ((!((s as any).rand_pee ?? 0))) {
     scene.text('You take a seat on the toilet and begin peeing, glad to feel the pressure released.');
@@ -2336,9 +2337,10 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/period/tampon/' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/period/tampon/' + rand(1, 12...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/period/tampon/` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('Reaching down and taking the string between your fingers, you slowly pull the used tampon from your vagina. You wrap it in toilet paper to be thrown in the trash bin. Opening your purse, you retrieve a fresh one, unpack it and carefully insert it into yourself.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrvtPeeEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrvtPeeEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2350,9 +2352,10 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/period/pad/' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/period/pad/' + rand(1, 6) + ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/period/pad/` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     scene.text('Checking your pad, you decide it\'s time for a new one. You carefully peel it off of your panties before folding it into thirds and setting it aside to be thrown away. Digging in your bag, you pull out a fresh pad, unpackage it, peel off the adhesive strip, and place it into your underwear. Finally, you wrap the wings around the sides of the gusset to make sure it is nice and secure.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrvtPeeEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrvtPeeEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2370,7 +2373,8 @@ function enterPrvtPeeEnd(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (1);
     }
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/wiping/' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/wiping/' + rand(1, 9) + '.jp...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/wiping/` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     (st as any).rand_pee = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).rand_pee ?? 0))) {
       scene.text('Gathering some toilet paper from the roll, you reach down wipe your vagina clean from the last drops of urine leaking from you before dropping the paper into the toilet.');
@@ -2398,7 +2402,8 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     (st as any).last_pee = ((st as any).totminut ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 4;
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/public/' + (Math.floor(Math.random() * 11) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/public/' + rand(1, 11) + '.j...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/public/` + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center>');
     (st as any).rand_pee = (Math.floor(Math.random() * 8) + 0);
     if ((!((st as any).rand_pee ?? 0))) {
       scene.text('Settling onto the toilet seat, you pull out your phone and begin checking for messages and doing other things to occupy the time until the stream slows to a trickle and finally stops.');
@@ -2413,7 +2418,8 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
             scene.text('Immediately up entering the restroom, your nostrils are assaulted by the most heinous stench. Knowing that you have no other option, you try to suppress your gags as you sit in a stall and do your business.');
           } else {
             if (((st as any).rand_pee ?? 0) === 4) {
-              scene.img('images/pc/body/pee/public/hovercraft' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/public/hovercraft' + rand(1,...
+              scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/public/hovercraft` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
               scene.text('You enter the stall and groan in disgust at the sight of the gross facilities. Realizing that you have no choice, you decided to "hovercraft" it. Instead of sitting down on the filthy seat, you hover your ass above the bowl before letting go of the pee you\'d been holding, not caring if all of the stream gets into the toilet or elsewhere.');
             } else {
               (st as any).rand_pee = (Math.floor(Math.random() * 22) + 0);
@@ -2519,9 +2525,10 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/period/tampon/' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/period/tampon/' + rand(1, 12...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/period/tampon/` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('Reaching down and taking the string between your fingers, you slowly pull the used tampon from your vagina. You wrap it in toilet paper to be thrown in the trash bin. Opening your purse, you retrieve a fresh one before unpackaging it and carefully inserting it into yourself.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -2533,13 +2540,14 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'mood', 'lower', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/period/pad/' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/period/pad/' + rand(1, 6) + ...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/period/pad/` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     scene.text('Checking your pad, you decide it\'s time for a new one. You carefully peel it off of your panties before folding it into thirds and setting it aside to be thrown away. Digging in your bag, you pull out a fresh pad, unpackage it, peel off the adhesive strip, and place it into your underwear. Finally, you wrap the wings around the sides of the gusset to make sure it is nice and secure.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPblcPeeEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2556,7 +2564,8 @@ function enterPblcPeeEnd(s: GameState, scene: SceneBuilder): void {
       (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (1);
     }
     qspCall(st, 'stat', '');
-    scene.img('images/pc/body/pee/wiping/' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/wiping/' + rand(1, 9) + '.jp...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/wiping/` + (Math.floor(Math.random() * 9) + 1) + '.jpg"></center>');
     (st as any).rand_pee = (Math.floor(Math.random() * 7) + 0);
     if ((!((st as any).rand_pee ?? 0))) {
       scene.text('Gathering some toilet paper from the roll, you reach down wipe your vagina clean from the last drops of urine leaking from you before dropping the paper into the toilet.');
@@ -2573,7 +2582,8 @@ function enterPblcPeeEnd(s: GameState, scene: SceneBuilder): void {
             if (((st as any).rand_pee ?? 0) === 4) {
               scene.text('Looking for the roll of toilet paper, you are dismayed to see that the roll has been used up. Noticing that the stall next to you seems occupied, you politely ask the stranger to help you out. The stranger chuckles a bit before kindly handing you a wad under the stall wall, which you happily use.');
             } else {
-              scene.img('images/pc/body/pee/wiping/no' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/pc/body/pee/wiping/no' + rand(1, 6) + '....
+              scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/pc/body/pee/wiping/no` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
               scene.text('Reaching out for toilet paper, you sigh as you notice that the roll is empty. Annoyed, you wiggle your ass to shake the last few drops off before pulling up your panties and walking out of the stall.');
             }
           }
@@ -2762,7 +2772,7 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Set image height for this view', handler: (st: GameState) => {
-    (st as any).shave_img_hgt = 0;
+    (st as any).shave_img_hgt = window.prompt("Enter height in pixels you want for images on this page<br>(default 100, min 50, max 500)") ?? '';
     if (((st as any).shave_img_hgt ?? 0) < 50) {
       (st as any).shave_img_hgt = 50;
     } else {

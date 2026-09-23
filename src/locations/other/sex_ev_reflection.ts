@@ -89,11 +89,11 @@ function enterWhatDidIDo(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>What did I do...?</i>');
   scene.text('The thought circles through your head relentlessly, bouncing off every wall in your brain.');
   if (((s as any).sex_ev ?? 0)?.['deflowered'] === 1) {
-    // TODO-QSP: dynamic text: This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') + ...
-    scene.text('This went further with ' + ((s as any).npcdesc ?? '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc ?? '') + '. You certainly didn\'t plan on losing your virginity to him! The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
+    // TODO-QSP: dynamic text: 'This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') +...
+    scene.text(`This went further with ${((s as any).npcdesc ?? '')} ` + ((((s as any).daystage ?? 0) < 4) ? ('today') : ('tonight')) + ` than you ever meant it to. However it turned out, you never planned on doing anything like this with ${((s as any).npcdesc ?? '')}. You certainly didn't plan on losing your virginity to him! The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...`);
   } else {
-    // TODO-QSP: dynamic text: This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') + ...
-    scene.text('This went further with ' + ((s as any).npcdesc ?? '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc ?? '') + '. The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
+    // TODO-QSP: dynamic text: 'This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') +...
+    scene.text(`This went further with ${((s as any).npcdesc ?? '')} ` + ((((s as any).daystage ?? 0) < 4) ? ('today') : ('tonight')) + ` than you ever meant it to. However it turned out, you never planned on doing anything like this with ${((s as any).npcdesc ?? '')}. The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...`);
   }
   scene.text('What happened?');
   scene.text('Did you lead him on? Give him the wrong idea? Should you just have spoken up more?');
@@ -112,7 +112,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['starting_mood'] === 'reluctant'  ||  ((st as any).sex_ev ?? 0)?.['virgin_pushed'] === 1) {
       scene.text('You were pressured into it, which didn\'t feel good. There was little to no account for your feelings on it, it just happened.');
       if (((st as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
-        // TODO-QSP: dynamic text: But it also felt good.' + iif(sex_ev['orgasm_count'] > 0, ' Hell, you even came....
+        // TODO-QSP: dynamic text: 'But it also felt good.' + iif(sex_ev['orgasm_count'] > 0, ' Hell, you even came...
         scene.text('But it also felt good.' + ((((st as any).sex_ev ?? 0)?.['orgasm_count'] > 0) ? (' Hell, you even came. ') : (' ')) + 'Does that make up for how it started? Does it even matter either way?');
       } else {
         if (((st as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
@@ -123,7 +123,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((st as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
-        // TODO-QSP: dynamic text: It felt so good.' + iif(sex_ev['orgasm_count'] > 0, ' You even orgasmed. ', ' Yo...
+        // TODO-QSP: dynamic text: 'It felt so good.' + iif(sex_ev['orgasm_count'] > 0, ' You even orgasmed. ', ' Y...
         scene.text('It felt so good.' + ((((st as any).sex_ev ?? 0)?.['orgasm_count'] > 0) ? (' You even orgasmed. ') : (' You didn\'t cum, but it was still extremely satisfying to have a dick inside you like that. ')) + 'So why are you having second thoughts now? Is this that thing guys call "post nut clarity?"');
       } else {
         if (((st as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
@@ -293,7 +293,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
       { label: 'Gross', handler: (st: GameState) => {
     scene.text('It was... <i>so gross...</i>');
     if (((st as any).sex_ev ?? 0)?.['creampie_orgasm_count'] > 0) {
-      // TODO-QSP: dynamic text: Sure, you came when it happened, but now with the benefit of hindsight and post-...
+      // TODO-QSP: dynamic text: 'Sure, you came when it happened, but now with the benefit of hindsight and post...
       scene.text('Sure, you came when it happened, but now with the benefit of hindsight and post-nut clarity, ' + ((((st as any).cum_loc ?? 0)?.['vagina'] > 0) ? ('the sensation of his cum leaking out of you gives you shivers. ') : ('the memory of his cum leaking out of you gives you shivers. ')) + 'All <i>sticky</i> and <i>slimy</i>. You shudder just thinking about it.');
     } else {
       // TODO-QSP: iif(cum_loc['vagina'] > 0, 'You grimace as you feel another glob of the slimy white stuff ooze out o...
@@ -342,7 +342,7 @@ function enterGeneralCreampieReflect(s: GameState, scene: SceneBuilder): void {
       { label: 'Gross', handler: (st: GameState) => {
     scene.text('It was... <i>so gross...</i>');
     if (((st as any).sex_ev ?? 0)?.['creampie_orgasm_count'] > 0) {
-      // TODO-QSP: dynamic text: Sure, you came when it happened, but now with the benefit of hindsight and post-...
+      // TODO-QSP: dynamic text: 'Sure, you came when it happened, but now with the benefit of hindsight and post...
       scene.text('Sure, you came when it happened, but now with the benefit of hindsight and post-nut clarity, ' + ((((st as any).cum_loc ?? 0)?.['vagina'] > 0) ? ('the sensation of his cum leaking out of you gives you shivers. ') : ('the memory of his cum leaking out of you gives you shivers. ')) + 'All <i>sticky</i> and <i>slimy</i>. You shudder just thinking about it.');
     } else {
       // TODO-QSP: iif(cum_loc['vagina'] > 0, 'You grimace as you feel another glob of the slimy white stuff ooze out o...

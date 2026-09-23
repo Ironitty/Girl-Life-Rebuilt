@@ -12,8 +12,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'cafe_parco', 'start');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cafe "Del Parco"</b></center>');
-  scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco' + ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 7) ? ('_night') : ('')) + '.jpg');
-  // TODO-QSP: dynamic text: The newly opened cafe "Del Parco", with its striking facade, lots of tables and ...
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/cafe/caffe_del_p...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/cafe/caffe_del_parco` + ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 7) ? ('_night') : ('')) + '.jpg"></center>');
+  // TODO-QSP: dynamic text: 'The newly opened cafe "Del Parco", with its striking facade, lots of tables and...
   scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between 14:00 and 21:00.');
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 21) {
     scene.actions([

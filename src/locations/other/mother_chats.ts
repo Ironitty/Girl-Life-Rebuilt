@@ -254,7 +254,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/walking.jpg');
     scene.text('"So you\'re saying you want me to move out?" you snap.');
     scene.text('"Aaaargh! You insufferable brat!" she screeches back, practically tearing out her hair in frustration.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Get your stuff and leave (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'block_access', 'parents_home');
@@ -283,7 +283,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a deep breath and continue. "Oh and while we\'re on the subject of sex, you\'re in no position to preach to me as I\'ve seen you cheating on Vlad!"');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> just glares at you and opens her mouth, but all ...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} just glares at you and opens her mouth, but all that comes out is a frustrated growl. She shoos you away with her arms and turns away from you.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave home (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'block_access', 'parents_home');
@@ -322,7 +322,7 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"So you\'re saying you want me to move out?" you snap.');
     scene.text('"Aaaargh! You insufferable brat!" she screeches back, practically tearing out her hair in frustration.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Get your stuff and leave (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'block_access', 'parents_home');
@@ -351,7 +351,7 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a deep breath and continue. "Oh and while we\'re on the subject of sex, you\'re in no position to preach to me as I\'ve seen you cheating on Vlad!"');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> just glares at you and opens her mouth, but all ...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} just glares at you and opens her mouth, but all that comes out is a frustrated growl. She shoos you away with her arms and turns away from you.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone1(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLostVirginLeaveAlone1(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave home (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'block_access', 'parents_home');
@@ -468,7 +468,7 @@ function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, I would like that," you smile gently.');
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> gets up and rushes around the table to give you ...
     scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} gets up and rushes around the table to give you a hug, nearly knocking her tea over in the process. "Thank you, ${((st as any).pcs_nickname ?? '')}!"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReconciliationReplies(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReconciliationReplies(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'You need to think about it', handler: (st: GameState) => {
     ((st as any).mother = (st as any).mother ?? {})['kickedout_pending'] = 1;

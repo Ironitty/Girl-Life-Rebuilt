@@ -28,7 +28,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
   (s as any).milkedvolume = 0;
   // TODO-QSP: :vmbloop
   if (((s as any).vmb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
-    if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).vmb_i ?? 0)]; enterUpdateMbottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
         ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
@@ -53,12 +53,12 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).mbarrfill ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: exit
   }
   scene.img('images/pc/body/tits/milk_drink.jpg');
   scene.text('<center>You drink your own breast milk and clean up the bottle.</center>');
-  if (((s as any).mbarrtemp ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'warm') {
+  if (((s as any).mbarrtemp ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'warm') {
     scene.text('<center>The milk is still warm from your breasts.</center>');
   }
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).locArgs?.[1] ?? 0)]/400);
@@ -70,7 +70,7 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
     { label: 'Finish', handler: (st: GameState) => {
     // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterViewMilkBottles(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterViewMilkBottles(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -112,7 +112,7 @@ function enterEmptyAllMilkBottles(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFillMilkBottle(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) > ((s as any).mbarrtype ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+  if (String((s as any).locArgs?.[2] ?? '') > ((s as any).mbarrtype ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
     scene.text('ERROR - More milk going into bottle than the bottle can hold.');
   } else {
     // TODO-QSP: mbarrfill[ARGS[1]] = ARGS[2]
@@ -159,25 +159,25 @@ function enterTimeStamp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).mbarrfill ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
   } else {
-    if (((s as any).mbarrfill ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > ((s as any).mbarrtype ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] > ((s as any).mbarrtype ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: mbarrfill[ARGS[1]] = mbarrtype[ARGS[1]]
     }
-    if (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+    if (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
       // TODO-QSP: mbarrmage[ARGS[1]] = func('lact_bp', 'time_stamp')
     }
-    if (((s as any).mbarrcool ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
-      if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 60) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+    if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
+      if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 60) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
         // TODO-QSP: $mbarrtemp[ARGS[1]] = 'warm'
         // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
       } else {
-        if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 60) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 360) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+        if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 60) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 360) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
           // TODO-QSP: $mbarrtemp[ARGS[1]] = 'lukewarm'
           // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
         } else {
-          if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 360) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+          if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 360) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
             // TODO-QSP: $mbarrtemp[ARGS[1]] = 'lukewarm'
             // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
           } else {
@@ -187,16 +187,16 @@ function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).mbarrcool ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
-        if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+      if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
+        if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
           // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
           // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
         } else {
-          if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 1440) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 4320) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+          if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 1440) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 4320) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
             // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
             // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
           } else {
-            if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 4320) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 7200) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+            if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 4320) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 7200) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
               // TODO-QSP: $mbarrtemp[ARGS[1]] = 'cold'
               // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
             } else {
@@ -206,16 +206,16 @@ function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (((s as any).mbarrcool ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2) {
-          if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 10080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+        if (((s as any).mbarrcool ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
+          if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 10080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
             // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
             // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
           } else {
-            if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 10080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 262080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+            if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 10080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 262080) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
               // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
               // TODO-QSP: $mbarrstat[ARGS[1]] = 'normal'
             } else {
-              if ((((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 262080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + 525600) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
+              if ((((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 262080) < qspFunc(s, 'lact_bp', 'time_stamp')  &&  (((s as any).mbarrmage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + 525600) >= qspFunc(s, 'lact_bp', 'time_stamp')) {
                 // TODO-QSP: $mbarrtemp[ARGS[1]] = 'frozen'
                 // TODO-QSP: $mbarrstat[ARGS[1]] = 'old'
               } else {
@@ -390,7 +390,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'lact_bp', 'milking');
   } },
             { label: 'Custom', handler: (st: GameState) => {
-    (st as any).pumptime = 0;
+    (st as any).pumptime = window.prompt("How long do you plan to pump your breasts? (Not more than 60 minutes)") ?? '';
     if (((st as any).pumptime ?? 0) <= 0  ||  ((st as any).pumptime ?? 0) > 60) {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
       scene.actions([
@@ -552,9 +552,9 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Custom', handler: (st: GameState) => {
     if (((st as any).lactation ?? 0)?.['active'] > 0  &&  ((st as any).lactation ?? 0)?.['pc_aware'] > 0) {
-      (st as any).pumptime = 0;
+      (st as any).pumptime = window.prompt("How long do you plan to milk your breasts? (Not more than 60 minutes)") ?? '';
     } else {
-      (st as any).pumptime = 0;
+      (st as any).pumptime = window.prompt("How long do you plan to massage your breasts? (Not more than 60 minutes)") ?? '';
     }
     if (((st as any).pumptime ?? 0) <= 0  ||  ((st as any).pumptime ?? 0) > 60) {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -1251,7 +1251,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :di_emptyloop
     if (((st as any).di_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
       if (((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       (st as any).di_i = ((st as any).di_i ?? 0) + (1);
       // TODO-QSP: jump 'di_emptyloop'
@@ -1273,7 +1273,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :piits_emptyloop
     if (((st as any).piits_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
       if (((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       (st as any).piits_i = ((st as any).piits_i ?? 0) + (1);
       // TODO-QSP: jump 'piits_emptyloop'

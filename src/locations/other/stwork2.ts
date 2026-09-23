@@ -90,7 +90,7 @@ function enterStripHub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripHub2(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if (((s as any).fame ?? 0)?.['city_stripping'] < 50) {
       scene.text('There are men sitting in front of the stage, mostly talking amongst themselves.');
     } else {
@@ -277,7 +277,7 @@ function enterDanceClothed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 5);
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))) / 10);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You dance seductively around the pole at the center of the stage.');
@@ -297,7 +297,7 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))) / 7);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You start moving seductively around the pole at the center of the stage.');
@@ -351,7 +351,7 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 2) + 1));
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))) / 5);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show1.jpg');
   scene.text('You start moving seductively around the pole in the center of the stage wearing just your underwear.');
@@ -387,7 +387,7 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))) / 5);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('You dance seductively in just your panties, teasing the crowd.');
@@ -421,7 +421,7 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))) / 3);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancero ?? 0) - ((s as any).pcs_dancero ?? 0) + 1)) + (((s as any).pcs_dancero ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show5.jpg');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetCustomerMood(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -468,7 +468,7 @@ function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancpol', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancpol ?? 0) - ((s as any).pcs_dancpol ?? 0) + 1)) + (((s as any).pcs_dancpol ?? 0))) / 3);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancpol ?? 0) - ((s as any).pcs_dancpol ?? 0) + 1)) + (((s as any).pcs_dancpol ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_panties.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your underwear.');
@@ -489,7 +489,7 @@ function enterPolePanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancpol', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'fame', 'city', 'stripping', (Math.floor(Math.random() * 2) + 1));
-  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancpol ?? 0) - ((s as any).pcs_dancpol ?? 0) + 1)) + (((s as any).pcs_dancpol ?? 0))) / 3);
+  ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * ((s as any).pcs_dancpol ?? 0) - ((s as any).pcs_dancpol ?? 0) + 1)) + (((s as any).pcs_dancpol ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_topless.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your panties.');
@@ -728,14 +728,14 @@ function enterPr1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', (-2));
     qspCall(st, 'cum_call', 'mouth_swallow', 'Private dance client', 0, 0, 10000, 40);
     qspCall(st, 'arousal', 'end');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/fuckyou_underwear.jpg');
     scene.text('You shake your head as you start getting dressed. "This is a strip club, not a fucking brothel! Go rent him a whore off the corner if he needs his dick sucked!"');
     scene.text('"Whatever, bitch. Enjoy your dirty slut money. Shaking your tits and ass is the only thing you\'re good for!" he huffs and you flip him off before collecting your clothing and heading back to the dressing room.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -769,7 +769,7 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
     scene.text('You refuse and kick him out before heading back to the dressing room.');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -784,7 +784,7 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and get on your knees as the client pulls his cock out and starts jerking it. After a few seconds, he loudly grunts and you close your eyes before spurts of warm cum start splattering across your face. It drips down your chin as he squeezes the last few drops onto your forehead.');
     scene.text('You wipe the cum from your eyes as he puts his cock away and places your payment on the table before leaving. You gather up your clothes and wipe your face as best as you can as you hurry to the dressing room to clean up.');
     qspCall(st, 'cum_call', 'face', 'Private dance client', 0, 0, 10000, 40);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -808,7 +808,7 @@ function enterPr3(s: GameState, scene: SceneBuilder): void {
     scene.text('You refuse and kick her out before heading back to the dressing room.');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -824,7 +824,7 @@ function enterPr3(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and get on your knees in front of the woman as she undresses her lower half and sits back in the chair before spreading her legs. You move in and start tracing your tongue along her pussy lips before moving up to her clit.');
     scene.text('You spend a few minutes teasing her sensitive bud before she clamps her hand over her mouth and lets out a muffled cry as she climaxes and a small amount of her juices squirt over your face.');
     scene.text('Once she recovers, she dresses herself and leaves your payment on the table before walking out. You gather up your clothes and head to the dressing room to clean up.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -920,7 +920,7 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
     scene.text('Your customer huffs and nods, tossing a few more bills at your feet and downing the remainder of his drink.');
     scene.text('"Yeah yeah, I get it. See you around, girl."');
     scene.text('You fix your outfit and collect your earnings from the floor, watching from the corner of your eye as the man stumbles out of the door. A few minutes later, the security guard peeks in and gives you the "all clear" sign, allowing you to head back to the dressing room.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Accept', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '', 0, 'Private dance client', (Math.floor(Math.random() * 16) + 25));
@@ -938,7 +938,7 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
     scene.text('After just a few minutes, the man\'s entire body tenses and, without warning, he cums down your throat, not even giving you a chance to pull his cock out of your mouth.');
     scene.text('The man grunts as he holds your head in place, unloading every single drop of his hot, viscous cum into your mouth. When he finally releases you, you sputter and choke on his thick load while gasping for breath. Before you can even yell at him for not giving you any warning, he\'s re-dressed himself and ducked out of the door.');
     scene.text('"Could have warned me, asshole..." you mumble to yourself while gathering your things and heading back to the dressing room.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

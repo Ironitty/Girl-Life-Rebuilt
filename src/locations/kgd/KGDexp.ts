@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :kgdexp_loop
   ((s as any).KGD = (s as any).KGD ?? {})['needExpNextLvl_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''] * 10) * ((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''];
   ((s as any).KGD = (s as any).KGD ?? {})['needExp_' + String(((s as any).i ?? 0))] = ((s as any).KGD ?? 0)['needExpNextLvl_' + ((s as any).i ?? 0) + ''] - ((s as any).KGD ?? 0)['exp_' + ((s as any).i ?? 0) + ''];
-  if (((s as any).KGD ?? 0)['needExp_' + ((s as any).i ?? 0)] <= 0  &&  ((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0)] > ((s as any).KGD ?? 0)['lvlr_' + ((s as any).i ?? 0)]) {
+  if (((s as any).KGD ?? 0)['needExp_' + (((s as any).i ?? 0))] <= 0  &&  ((s as any).KGD ?? 0)['lvl_' + (((s as any).i ?? 0))] > ((s as any).KGD ?? 0)['lvlr_' + (((s as any).i ?? 0))]) {
     ((s as any).KGD = (s as any).KGD ?? {})['lvlr_' + String(((s as any).i ?? 0))] = ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
     ((s as any).KGD = (s as any).KGD ?? {})['lvl_' + String(((s as any).i ?? 0))] = ((s as any).KGD['lvl_' + String(((s as any).i ?? 0))] ?? 0) + (1);
     ((s as any).KGD = (s as any).KGD ?? {})['exp_' + String(((s as any).i ?? 0))] = 0;

@@ -134,8 +134,8 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: Your relationship with ' + $npc_firstname[$boy] + ' is <font color=#' + $color_r...
-  scene.text('Your relationship with \' + $npc_firstname[$boy] + \' is <font color=#\' + $color_rel + \'>\' + $rel_word[$boy] + \'</font>.');
+  // TODO-QSP: dynamic text: 'Your relationship with ' + $npc_firstname[$boy] + ' is <font color=#' + $color_...
+  scene.text('\'Your relationship with \' + $npc_firstname[$boy] + \' is <font color=#\' + $color_rel + \'>\' + $rel_word[$boy] + \'</font>.\'');
   // TODO-QSP: $func('npc_notes', $boy)
   // TODO-QSP: dynamic text: his mood is <<$Nestor[''mood_txt'']>>
   scene.text(`his mood is ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''}`);
@@ -711,8 +711,8 @@ function enterNestorHandjobHeader(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/gp/cockerect.jpg"></center>');
     }
   }
-  // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-  scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+  // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   // TODO-QSP: end
   scene.build();
 }
@@ -723,7 +723,7 @@ function enterNestorHandjobSlow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Nestor ?? 0)?.['mood'] === 0) {
     (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 20) + 1));
   } else {
-    (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 30) + 1) /(((s as any).Nestor ?? {})?.['mood'] ?? 0));
+    (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * (30 - 1 + 1)) + (1)));
   }
   scene.img('images/shared/sex/handjob/handjob2.mp4');
   // TODO-QSP: dynamic text: You grab <<$npc_firstname[$boy]>>''s cock in your hand, jerking it slowly, chang...
@@ -934,8 +934,8 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Nestor_Suck';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/cockflaccid.jpg');
@@ -1309,8 +1309,8 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Nestor_SexVaginal';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1935,8 +1935,8 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Nestor_SexAnal';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

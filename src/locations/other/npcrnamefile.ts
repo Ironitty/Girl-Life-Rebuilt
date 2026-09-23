@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNickname(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'rusMale') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'rusMale') {
     (s as any).result = qspFunc(s, 'npcrnamefile', 'get_nickname', qspFunc(s, 'npcrnamefile', 'rusMale'));
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'rusFemale') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'rusFemale') {
       (s as any).result = qspFunc(s, 'npcrnamefile', 'get_nickname', qspFunc(s, 'npcrnamefile', 'rusFemale'));
     } else {
       (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -338,7 +338,7 @@ function enterRusMale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Zakhar'
   // TODO-QSP: $rntempgen[] = 'Zernebog'
   // TODO-QSP: $rntempgen[] = 'Zinoviy'
-  (s as any).irngi = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('rntempgen') - 1);
+  (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
   // TODO-QSP: end
   scene.build();
@@ -552,7 +552,7 @@ function enterRusFemale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Zinovia'
   // TODO-QSP: $rntempgen[] = 'Zinoviya'
   // TODO-QSP: $rntempgen[] = 'Zoya'
-  (s as any).irngi = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('rntempgen') - 1);
+  (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
   // TODO-QSP: end
   scene.build();
@@ -2440,7 +2440,7 @@ function enterRusSur(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Yasneyev'
   // TODO-QSP: $rntempgen[] = 'Yashin'
   // TODO-QSP: $rntempgen[] = 'Yashkin'
-  (s as any).irngi = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('rntempgen') - 1);
+  (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
   // TODO-QSP: end
   scene.build();

@@ -588,7 +588,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'small');
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A15', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkgirl' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkgirl` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"I saw this video of an American girl dancing all sexy and stuff, and I\'m thinking of learning the dance. Next time I go to the community center, I\'ll show up all the girls and steal their boyfriends!" she jokes with a playful smile, but you notice a wicked twinkle in her eyes.');
     scene.text('Vicky\'s bubbly personality makes her easy and fun to talk to, and you end up spending the rest of class smiling and laughing with her.');
     scene.actions([
@@ -598,7 +599,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Lena', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A20', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkgirl' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkgirl` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Lena sighs heavily. "Fuck, what\'s taking her so long?"');
     scene.text('"Who are you waiting for?" you ask.');
     scene.text('"Lera! She had to go take a piss, but she\'s taking forever!" she snaps back. "Her tongue probably needed a break anyways…" she mumbles quietly as a small smile spreads across her face.');
@@ -609,7 +611,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Lera', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A21', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkgirl' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkgirl` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"It\'s hard enough having my dad as a teacher at school, but now that freak Lesco is living with us!"');
     scene.text('She spends the rest of class talking about all the awkward run-ins she\'s had with her dad in school and how she and Lena had to beat the shit out of anyone that tried spreading weird rumors about her being \'close\' to her cousin, Lesco.');
     scene.actions([
@@ -619,7 +622,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Radomir', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkboy' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkboy` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You try talking to Radomir, but it\'s hard to get a word in with how hard he\'s stroking his own ego.');
     scene.text('"You should have heard me last night, I killed it! You should come hear us play. Everyone thinks we\'re amazing, especially the girls. I know you\'ll love it too," he says with a wink. He keeps saying \'we\' a lot to refer to the rest of the band, but something tells you he\'s still talking about himself.');
     scene.actions([
@@ -629,7 +633,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Ivan', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A3', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkboy' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkboy` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('With a confident smile, Ivan starts telling you about a recent match he had at the community center. "This kid I\'ve never seen before comes up to me and starts talking shit, saying my form is bad and that I couldn\'t hit someone even if they were standing still right in front of me!" he says with a scoff. "I told him to put his money where his mouth is and get in the ring, and guess what happened?"');
     scene.text('"You beat the crap out of him?" you say with a smile.');
     scene.text('Ivan laughs and you can see his chest puff out slightly. "Of course! The best part is that his girlfriend was there to see it happen, and while he was lying on the mat knocked out, she gave me her number."');
@@ -640,7 +645,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Bella', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A22', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkgirl' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkgirl` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('"God, this place is more like a daycare than a high school!" Bella says, scoffing in disgust. A few seconds later, a group of students start talking and laughing loud enough to disrupt the class. "See what I mean?" she adds as she rolls her eyes. "They\'re practically adults, but they act so childish. I hate it. They need to act their age, like I do."');
     scene.actions([
       { label: 'Finish class', goto: ['gschool_lessons', 'short_break'] },
@@ -649,7 +655,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       { label: 'Veronika', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'npc_relationship', 'modify', 'A141', 'like');
-    scene.img('images/locations/pavlovsk/school/classroom/talkgirl' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/school/classroom/talk...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/classroom/talkgirl` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You try talking to Veronika, but she has little to say, which is no surprise; she\'s always been standoffish. Still, she doesn\'t outright tell you to leave you alone, so you take it as a sign that she\'s okay with listening to you talk.');
     scene.actions([
       { label: 'Finish class', goto: ['gschool_lessons', 'short_break'] },
@@ -901,14 +908,14 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
     if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 0) {
       ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 1;
     }
-    // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
+    // TODO-QSP: dynamic text: 'Coach Pavlovich announces that the inter-school running competition will be hel...
     scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
   } else {
     if (((s as any).week ?? 0) === 5  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 1) {
       if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 0) {
         ((s as any).runnerQW = (s as any).runnerQW ?? {})['pav_racetype'] = 2;
       }
-      // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
+      // TODO-QSP: dynamic text: 'Coach Pavlovich announces that the inter-school running competition will be hel...
       scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
     }
   }
@@ -1079,16 +1086,16 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/pavlovsk/school/gym/fizperand1.jpg');
             if (((st as any).pcs_hotcat ?? 0) >= 6) {
               scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns doing pull-ups. He also says that he\'ll be counting how many each person does, so it\'s a bit more stressful than usual.');
-              // TODO-QSP: dynamic text: You''re not wearing panties and while you''re doing your pullups, your shorts sl...
+              // TODO-QSP: dynamic text: 'You''re not wearing panties and while you''re doing your pullups, your shorts s...
               scene.text('You\'re not wearing panties and while you\'re doing your pullups, your shorts slide down a little. The top of your ' + ((((st as any).pcs_pubes ?? 0) < 3) ? ('pubic area is') : ('pubes are')) + ' on display for the whole class to see. It\'s met with mixed responses: the guys are whistling and whooping appreciatively, while most of the girls are staring you down in disapproval. You quickly let go of the bar and pull your shorts back up, deeply embarrassed by the whole ordeal.');
             } else {
               if (((st as any).pcs_hotcat ?? 0) >= 4) {
                 scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns doing pull-ups. He also says that he\'ll be counting how many each person does, so it\'s a bit more stressful than usual.');
-                // TODO-QSP: dynamic text: You''re not wearing panties and while you''re doing your pullups, your shorts sl...
+                // TODO-QSP: dynamic text: 'You''re not wearing panties and while you''re doing your pullups, your shorts s...
                 scene.text('You\'re not wearing panties and while you\'re doing your pullups, your shorts slide down a little. The top of your ' + ((((st as any).pcs_pubes ?? 0) < 3) ? ('pubic area is') : ('pubes are')) + ' on display for the whole class to see. It\'s met with mixed responses: most of the class that are watching start laughing, with a few pointing, while some of the girls are staring you down in disapproval. You quickly let go of the bar and pull your shorts back up, deeply embarrassed by the whole ordeal.');
               } else {
                 scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns doing pull-ups. He also says that he\'ll be counting how many each person does, so it\'s a bit more stressful than usual.');
-                // TODO-QSP: dynamic text: You''re not wearing panties and while you''re doing your pullups, your shorts sl...
+                // TODO-QSP: dynamic text: 'You''re not wearing panties and while you''re doing your pullups, your shorts s...
                 scene.text('You\'re not wearing panties and while you\'re doing your pullups, your shorts slide down a little. The top of your ' + ((((st as any).pcs_pubes ?? 0) < 3) ? ('pubic area is') : ('pubes are')) + ' on display for the whole class to see. It\'s met with negative responses: almost everyone gives you looks of disgust or disapproval and make mocking comments, so you quickly let go of the bar and pull your shorts back up, deeply embarrassed by the whole ordeal. It takes a while for Coach Nikolaevich to get the class focused.');
               }
             }
@@ -1928,13 +1935,13 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/shower/nudepic.jpg');
     scene.text('Caught in the middle, you have no choice to but to keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Fume', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap1.jpg');
     scene.text('Caught in the middle, you have no choice to but to keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1942,7 +1949,7 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap2.jpg');
     scene.text('You do your best to ignore it and keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerOptions(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -2131,7 +2138,7 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 1) {
       scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/lockerroom/lockerflirt.jpg');
-      // TODO-QSP: dynamic text: As you walk into the locker room, you can tell that it''s Albina. ' + iif(Albina...
+      // TODO-QSP: dynamic text: 'As you walk into the locker room, you can tell that it''s Albina. ' + iif(Albin...
       scene.text('As you walk into the locker room, you can tell that it\'s Albina. ' + ((((st as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) ? ('She doesn\'t sound very happy as she argues on the phone with her father.') : ('She\'s happily speaking on the phone with someone.')) + ' Once you start drying your hair, you can\'t hear what she\'s saying anymore.');
       scene.text('As you finish drying your hair, she comes around to your side of the lockers wearing only a towel. She smiles at you before dropping the towel, revealing her naked, toned body to you. She then turns around, giving you an even better view of her ass.');
       scene.text('"You like what you see?" she asks teasingly.');
@@ -2195,7 +2202,7 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 1  &&  ((st as any).npc_had_sex ?? 0)?.['A23']) {
         scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/lockerroom/lockerflirt.jpg');
-        // TODO-QSP: dynamic text: As you walk into the locker room, you can tell that it''s Albina. ' + iif(Albina...
+        // TODO-QSP: dynamic text: 'As you walk into the locker room, you can tell that it''s Albina. ' + iif(Albin...
         scene.text('As you walk into the locker room, you can tell that it\'s Albina. ' + ((((st as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) ? ('She doesn\'t sound very happy as she argues on the phone with her father.') : ('She\'s happily speaking on the phone with someone.')) + ' Once you start drying your hair, you can\'t hear what she\'s saying anymore.');
         scene.text('As you finish drying your hair, she comes around to your side of the lockers wearing only a towel. She smiles at you before dropping the towel, revealing her naked, toned body to you. She then turns around, giving you an even better view of her ass.');
         scene.text('"You like what you see?" she asks teasingly.');

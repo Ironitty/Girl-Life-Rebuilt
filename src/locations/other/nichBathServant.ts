@@ -20,9 +20,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nichChore', 'inspect', 'bathServant');
     scene.actions([
       { label: '<b>Go to your bedroom</b>', goto: ['nichBedroomServant', ''] },
-      { label: 'Inspect laundry', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'inspect', 'laundry', 1
-  } },
+      { label: 'Inspect laundry', goto: ['nichChore', 'inspect', 'laundry', '1'] },
     ]);
   } else {
     scene.actions([
@@ -51,9 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nichChore', 'inspect', 'bathServant');
     scene.actions([
       { label: '<b>Go to your bedroom</b>', goto: ['nichBedroomServant', ''] },
-      { label: 'Inspect laundry', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'inspect', 'laundry', 1
-  } },
+      { label: 'Inspect laundry', goto: ['nichChore', 'inspect', 'laundry', '1'] },
     ]);
   } else {
     scene.actions([
@@ -82,9 +78,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nichChore', 'inspect', 'bathServant');
     scene.actions([
       { label: '<b>Go to your bedroom</b>', goto: ['nichBedroomServant', ''] },
-      { label: 'Inspect laundry', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'inspect', 'laundry', 1
-  } },
+      { label: 'Inspect laundry', goto: ['nichChore', 'inspect', 'laundry', '1'] },
     ]);
   } else {
     scene.actions([

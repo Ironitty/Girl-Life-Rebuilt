@@ -19,7 +19,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Woman</b></center>');
   scene.img('images/locations/shared/park/ksenya/ksenya1.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.text('As you wander through the park you see someone in a field, who waves you over. As you get closer you realize it is a pretty looking woman of some kind of Asian descent, she gives you an enigmatic smile then runs off.');
   } else {
     scene.text('While searching for a place to expose yourself, you catch sight of a woman between some tall stalks of grass in the corner of your eye. Although it is difficult to see her face, you can see her large chest, and she appears to be a pretty looking woman of some kind of Asian descent. When you finally decide to meet her, you discover that she has already disappeared.');
@@ -265,7 +265,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Ksenya hands you back your clothes and gives you a business card, it\'s for a shop in Old Town. How odd.');
     scene.text('"I know I tricked you there but I find special customers for a very private shop. The address is on the card."');
     scene.text('""You have a lovely body by the way." Ksenya blows you a kiss and leaves. By the time you are dressed she is long gone.');
-    // TODO-QSP: dynamic text: You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Square...
+    // TODO-QSP: dynamic text: 'You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Squar...
     scene.text('You look at the card again, "Simply Salacious" just off Pushkin Okhlopkov Square. Open Mon-Sat, 8:00 - 18:00');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

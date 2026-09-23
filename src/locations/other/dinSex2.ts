@@ -42,7 +42,7 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   (s as any).frost = 0;
@@ -95,9 +95,9 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
 
 function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick = ((String((s as any).locArgs?.[2] ?? '') > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
   (s as any).dick_girth = 'well proportioned';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -149,7 +149,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
 
 function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   // TODO-QSP: dynamic text: <<$boydesc>> tucks a finger into your anus, then a second one.
@@ -199,9 +199,9 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick = ((String((s as any).locArgs?.[2] ?? '') > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
   (s as any).dick_girth = 'well proportioned';
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (((s as any).analPlugIn ?? 0) === 1) {
@@ -251,7 +251,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
 function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).totPain = 0;
-  if (Number((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') / 2 === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-2);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {

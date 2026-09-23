@@ -93,7 +93,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/police/pavrec.jpg');
   scene.text('The officer drags you in by the arm, his grip tightening whenever he feels the slightest bit of resistance from you.');
   scene.text('As the officer leads you by the reception area, the clerk pops his head out and looks down the corridor, appearing very unimpressed.');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'shplft'  ||  String((s as any).locArgs?.[1] ?? '') === 'shoplift') {
     ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_booked_pav'] = ((s as any).policeQW['shoplift_booked_pav'] ?? 0) + (1);
     ((s as any).policeQW = (s as any).policeQW ?? {})['crime_flag_pav'] = 'shoplift';
     (s as any).temp_tot_booked_pav = ((s as any).temp_tot_booked_pav ?? 0) + (1);

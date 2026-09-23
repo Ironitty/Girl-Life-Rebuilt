@@ -10,7 +10,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/entrance.jpg');
   if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8) {
-    // TODO-QSP: dynamic text: The swimming pool is currently closed. Opening hours are from '+func('time', 'ge...
+    // TODO-QSP: dynamic text: 'The swimming pool is currently closed. Opening hours are from '+func('time', 'g...
     scene.text('The swimming pool is currently closed. Opening hours are from 8:00 to 21:00.');
     return;
   }
@@ -28,7 +28,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
 ]);
       return;
     } else {
-      // TODO-QSP: dynamic text: You were supposed to show up for lifeguard training today at ' + $func('time', '...
+      // TODO-QSP: dynamic text: 'You were supposed to show up for lifeguard training today at ' + $func('time', ...
       scene.text('You were supposed to show up for lifeguard training today at 8:00!');
     }
   } else {
@@ -51,7 +51,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
           return;
         } else {
           if (((s as any).hour ?? 0) > 12) {
-            // TODO-QSP: dynamic text: You missed your lifeguard shift! You should have been here by ' + $func('time', ...
+            // TODO-QSP: dynamic text: 'You missed your lifeguard shift! You should have been here by ' + $func('time',...
             scene.text('You missed your lifeguard shift! You should have been here by 12:00!');
           }
         }
@@ -102,7 +102,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/entrance.jpg');
   if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8) {
-    // TODO-QSP: dynamic text: The swimming pool is currently closed. Opening hours are from '+func('time', 'ge...
+    // TODO-QSP: dynamic text: 'The swimming pool is currently closed. Opening hours are from '+func('time', 'g...
     scene.text('The swimming pool is currently closed. Opening hours are from 8:00 to 21:00.');
     return;
   }
@@ -120,7 +120,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 ]);
       return;
     } else {
-      // TODO-QSP: dynamic text: You were supposed to show up for lifeguard training today at ' + $func('time', '...
+      // TODO-QSP: dynamic text: 'You were supposed to show up for lifeguard training today at ' + $func('time', ...
       scene.text('You were supposed to show up for lifeguard training today at 8:00!');
     }
   } else {
@@ -143,7 +143,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           return;
         } else {
           if (((s as any).hour ?? 0) > 12) {
-            // TODO-QSP: dynamic text: You missed your lifeguard shift! You should have been here by ' + $func('time', ...
+            // TODO-QSP: dynamic text: 'You missed your lifeguard shift! You should have been here by ' + $func('time',...
             scene.text('You missed your lifeguard shift! You should have been here by 12:00!');
           }
         }
@@ -198,7 +198,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   scene.text('From here, you can access the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027lockerfemale/u0027); return false;">girls locker room</a>, visit the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027cafeteria/u0027); return false;">cafeteria</a> or browse the pool\'s <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027store/u0027); return false;">store</a>.');
   scene.text('There\'s a sign by the store\'s entrance that reads: "If closed, I\'m working in the pool. Be back soon." It seems like the store clerk is also the janitor.');
   if (((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 0  &&  (((s as any).year ?? 0) === 2016  &&  ((s as any).month ?? 0) < 10)) {
-    // TODO-QSP: dynamic text: You also notice a sign stating that the pool is looking for an extra lifeguard a...
+    // TODO-QSP: dynamic text: 'You also notice a sign stating that the pool is looking for an extra lifeguard ...
     scene.text('You also notice a sign stating that the pool is looking for an extra lifeguard and that anyone interested should apply in the main office between 9:00 and 18:00.');
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
       scene.actions([
@@ -306,7 +306,7 @@ function enterLockerfemale(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === 0) {
     qspGoto(s, 'pav_pool_events', 'naked_locker');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -442,7 +442,7 @@ function enterShowerfemale(s: GameState, scene: SceneBuilder): void {
 function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool', 'mirror');
   (s as any).location_type = 'private';
-  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === 0) {
     qspGoto(s, 'pav_pool_events', 'naked_mirror');
   }
   qspCall(s, 'stat', '');

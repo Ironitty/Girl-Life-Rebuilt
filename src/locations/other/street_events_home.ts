@@ -37,7 +37,7 @@ function enterMinorDebtPayoff(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You tell them that you don\'t have enough money. They smack you and go through your bag and pockets, taking everything you have on you.');
       }
-      // TODO-QSP: dynamic text: The brutes take everything that you have then explain your situation. In short, ...
+      // TODO-QSP: dynamic text: 'The brutes take everything that you have then explain your situation. In short,...
       scene.text('The brutes take everything that you have then explain your situation. In short, you have a debt of \' + $func(\'money\', \'string_debt\', workDolg) + \'. Your debt has grown by \' + $func(\'money\', \'string_debt_addition\', 10000) + \', and since you cannot pay it off. As your job obviously doesn\'t pay well enough, they decide they\'ll help you out with that. The brutes drag you to the street and throw you into the back seat of their car. They get in, one of them sitting next to you and the other in the driver\'s seat. He starts the car and drives away. They refuse to answer any of your questions. You have no choice but to sit quietly and see where they take you.');
       scene.actions([
         { label: 'Out of the car', handler: (st: GameState) => {
@@ -69,7 +69,7 @@ function enterMinorDidntDeliverDisk(s: GameState, scene: SceneBuilder): void {
     ((s as any).job_termination_reason = (s as any).job_termination_reason ?? {})['city_pornstudio_delivery'] = 'blacklisted';
     qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_delivery');
     scene.text('"It was stolen."');
-    // TODO-QSP: dynamic text: "WHAT! But how could this happen! Do you realize what you have done?! You owe me...
+    // TODO-QSP: dynamic text: '"WHAT! But how could this happen! Do you realize what you have done?! You owe m...
     scene.text('"WHAT! But how could this happen! Do you realize what you have done?! You owe me \' + $func(\'money\', \'string_debt_addition\', 200000) + \', bring it to my office, you have until next Friday. If you fail to do so, prepare yourself for a world of hurt."');
   } else {
     (s as any).konvert = 0;

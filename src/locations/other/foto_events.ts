@@ -405,7 +405,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     (st as any).casting = 3;
     if (((st as any).week ?? 0) >= 6) {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 13;
-      // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+      // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
       scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be there next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -413,13 +413,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 6;
       if (((st as any).week ?? 0) === 5) {
-        // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+        // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
         scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+        // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
         scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -440,7 +440,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     (st as any).casting = 3;
     if (((st as any).week ?? 0) >= 6) {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 13;
-      // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+      // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
       scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -448,13 +448,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 6;
       if (((st as any).week ?? 0) === 5) {
-        // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+        // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
         scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
+        // TODO-QSP: dynamic text: 'He hands you a business card for the <b>Aurora Talent Agency</b> in the city ce...
         scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -478,7 +478,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).week ?? 0) >= 6) {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 13;
-      // TODO-QSP: dynamic text: "If it means anything to you, I think you''re making the right choice for your c...
+      // TODO-QSP: dynamic text: '"If it means anything to you, I think you''re making the right choice for your ...
       scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -486,13 +486,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).SMTV_commercial = ((st as any).daystart ?? 0) - ((st as any).week ?? 0) + 6;
       if (((st as any).week ?? 0) === 5) {
-        // TODO-QSP: dynamic text: "If it means anything to you, I think you''re making the right choice for your c...
+        // TODO-QSP: dynamic text: '"If it means anything to you, I think you''re making the right choice for your ...
         scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: "If it means anything to you, I think you''re making the right choice for your c...
+        // TODO-QSP: dynamic text: '"If it means anything to you, I think you''re making the right choice for your ...
         scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
@@ -1631,7 +1631,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The woman steps forward, reaching into her purse to pull out <<$func(''money'', ...
       scene.text(`The woman steps forward, reaching into her purse to pull out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))}, which she places in your hand.`);
       scene.text('"I am disappointed with your commitment," she says. "Great people should be willing to sacrifice for the sake of great art. I vish you vere one of those people." She shakes her head and walks away, snapping her fingers twice and causing her crew to start packing up equipment.');
-      // TODO-QSP: dynamic text: You watch them leave, the money from the job in hand and your ' + iif(stat['thin...
+      // TODO-QSP: dynamic text: 'You watch them leave, the money from the job in hand and your ' + iif(stat['thi...
       scene.text('You watch them leave, the money from the job in hand and your ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 1) ? ('virginity') : ('dignity')) + ' still intact.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -2640,7 +2640,7 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Hey <<$model[''firstname'']>>, listen. We have an emergency situation and we''re...
     scene.text(`Hey ${((st as any).model ?? 0)?.['firstname'] ?? ''}, listen. We have an emergency situation and we're looking for whoever is available. A clothing studio we sometimes shoot for is having a fashion show tonight but for some reason something's gone wrong and they're missing models."`);
     scene.text('"Missing models?" you gasp. "You mean like they\'ve disappeared or something?"');
-    // TODO-QSP: dynamic text: He looks confused for a second and says, "What? No! Just for whatever reason, th...
+    // TODO-QSP: dynamic text: 'He looks confused for a second and says, "What? No! Just for whatever reason, t...
     scene.text('He looks confused for a second and says, "What? No! Just for whatever reason, they don\'t have enough models for tonight. I don\'t know if it\'s because some of them got sick or had an accident or if they just planned poorly and were supposed to have more than they hired. In any case, we need people to jump in tonight. It\'s going to be an all day thing though. We can\'t have anymore hiccups so if you agree you\'ll have to stay here until the show starts and then the show itself runs until 22:00 tonight. We know it\'s a big commitment so if you do we\'re willing to shell out a ton of money to make this work. We\'re talking a three grand bonus on top of your normal variety shoot rate. Can we count on you for tonight?"');
     qspCall(st, 'willpower', 'exhib', 'resist', 'easy');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {

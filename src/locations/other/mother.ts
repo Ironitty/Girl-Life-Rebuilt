@@ -2091,7 +2091,7 @@ function enterAbortionTalkPreg(s: GameState, scene: SceneBuilder): void {
 
 function enterKickedout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'kolka') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'kolka') {
     (s as any).momKnowsKolka = 1;
     scene.text('Eventually, you get up and wipe your face.');
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
@@ -2102,7 +2102,7 @@ function enterKickedout(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'stepdad') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'stepdad') {
       (s as any).momKnowsVladimir = 1;
       scene.text('Eventually, you get up and wipe your face. You have no choice but to fend for yourself now.');
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
@@ -2255,7 +2255,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
   ((s as any).motherQW = (s as any).motherQW ?? {})['clo_react'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'apartment') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'apartment') {
     qspCall(s, 'npc_relationship', 'modify', 'A29', 'dislike');
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A29'] >= 80) {
@@ -2516,7 +2516,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'hear') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'hear') {
     ((s as any).motherQW = (s as any).motherQW ?? {})['con_steal_hear'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
@@ -2526,7 +2526,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
     scene.text('"Where the hell are they?" you hear her quietly ask to herself. "I know I put them here, I always put them here!"');
     scene.text('Not noticing you, she keeps rummaging as you quietly slip out, not wanting to bring attention to yourself.');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'talk') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'talk') {
       ((s as any).motherQW = (s as any).motherQW ?? {})['con_steal_talk'] = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 3;
       qspCall(s, 'stat', '');

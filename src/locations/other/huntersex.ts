@@ -54,14 +54,16 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck them all', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/dancesexoasi1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/dancesexoas...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/dancesexoasi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Andrei and Sergei aren\'t content to just watch you all night and put hands on their dicks as well. You began to suck and stroke the circle of guys around you, alternating attention to each member.');
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie down on your back', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/hantersgrvaosi1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrva...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvaosi1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('The guys put you on the bed and Andrei settles down between your legs, while Igor and Sergei hover over you and put their members in front of your face…');
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
@@ -69,7 +71,8 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie on your side', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/hantersgrv2aosi1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrv2...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrv2aosi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Andrei rolls you to the side and without even moving from between your legs, and Igor and Sergei reposition to put their dicks in the face again…');
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
@@ -77,7 +80,8 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get on all fours', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/hantersgrvioas1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvi...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvioas1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('Igor pushes you down on all fours and then moves behind you. He begins to pound you from behind with increasing frequency. Sergei and Andrei refuse to give you a rest and shove their dicks in your mouth…');
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
@@ -85,7 +89,8 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Sit down', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/hantersgrvsoia1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvs...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvsoia1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Sergei sits on the bed, and pulls you on top of him. Igor and Andrei adjust to this new position accordingly…');
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
@@ -109,7 +114,8 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie down on the ground', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/hantersgrdpvaaios1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrdp...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrdpvaaios1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('Andrei gets on the ground and pulls you down with him. You feel his dick pop into your ass.');
     scene.text('Igor moves in front of you and lines up on your second exposed hole.');
     scene.text('You think, "At least I only have to suck one dick at a time now…"');
@@ -251,7 +257,8 @@ function enterSexafterstrip3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/sex/dance/dancesexoi2.' + (Math.floor(Math.random() * 5) + 0) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/dancesexoi2...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/dancesexoi2.` + (Math.floor(Math.random() * 5) + 0) + '.jpg"></center>');
     scene.text('You wrap your lips around Igor\'s member…');
     qspCall(st, 'boyStat', 'A173');
     qspCall(st, 'oral', 'start');
@@ -406,7 +413,8 @@ function enterDoublelovesex(s: GameState, scene: SceneBuilder): void {
 
 function enterDoubleloveOral12(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveoral12.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveoral12.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You kneel in front of guys and begin sucking their dicks, taking turns and paying attention to each one…');
   if (((s as any).temphunt ?? 0) <= 2) {
     qspCall(s, 'boyStat', 'A172');
@@ -527,7 +535,8 @@ function enterDoubleloveOralCum12_2(s: GameState, scene: SceneBuilder): void {
 
 function enterDoubleloveDog112(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/doublelovedog112.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doublelovedog112.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
   if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A174');
@@ -679,7 +688,8 @@ function enterDoubleloveDogCum112_2(s: GameState, scene: SceneBuilder): void {
 
 function enterDoubleloveDog212(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/doublelovedog212.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doublelovedog212.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
   if (((s as any).temphunt ?? 0) <= 2) {
     qspCall(s, 'boyStat', 'A172');
@@ -809,7 +819,8 @@ function enterDoubleloveDogCum212_2(s: GameState, scene: SceneBuilder): void {
 
 function enterDoubleloveSide12(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveside12.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveside12.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
   if (((s as any).temphunt ?? 0) <= 2) {
     qspCall(s, 'boyStat', 'A172');
@@ -940,7 +951,8 @@ function enterDoubleloveSideCum12_2(s: GameState, scene: SceneBuilder): void {
 
 function enterDoubleloveCow112(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/doublelovecow112.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doublelovecow112.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
   if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A174');
@@ -1095,7 +1107,8 @@ function enterDoubleloveCowCum112_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoubleloveCow212(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/doublelovecow212.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doublelovecow212.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
   if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A174');
@@ -1262,7 +1275,8 @@ function enterDoubleloveSide2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A62');
     (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveside2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveside2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
@@ -1350,7 +1364,8 @@ function enterDoubleloveCow1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A62');
     (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/doublelovecow1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doublelovecow1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
@@ -1423,7 +1438,8 @@ function enterDoubleloveOral1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A62');
     (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveoral1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveoral1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
@@ -1499,7 +1515,8 @@ function enterDoubleloveOral2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temphunt ?? 0) === 5) {
     qspCall(s, 'boyStat', 'A62');
   }
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveoral2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveoral2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
@@ -1586,7 +1603,8 @@ function enterDoubleloveOralCum12(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
   }
-  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum12.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/doublelove...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/doubleloveoralcum12.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You are on your knees in front of the boys with an open mouth.');
   scene.text('Soon, a jet of sperm hits you in the mouth, then another, and another. The sperm fills your mouth and runs down your chin and onto your breasts.');
   scene.text('The guys put their dicks back in their pants and go about their business, leaving you alone to freshen up.');
@@ -1639,7 +1657,8 @@ function enterSluthomeSTART(s: GameState, scene: SceneBuilder): void {
 
 function enterSluthomeORAL1(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeoral1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomeor...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeoral1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You slowly put his dick in your mouth and begin to suck on it…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
@@ -1670,7 +1689,8 @@ function enterSluthomeOralCum1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeORAL2(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeoral2.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomeor...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeoral2.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You continue sucking on his dick…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
@@ -1701,7 +1721,8 @@ function enterSluthomeOralCum2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeORAL3(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeoral3.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomeor...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeoral3.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> pushes his whole weight against your head, forcing you to swallow m...
   scene.text(`${((s as any).boydesc ?? '')} pushes his whole weight against your head, forcing you to swallow more of his ${((s as any).dick ?? '')} cm dick.`);
   if (((s as any).dick ?? 0) > ((s as any).pcs_throat ?? 0)) {
@@ -1753,7 +1774,8 @@ function enterSluthomeOralCum3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeORAL4(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeoral4.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomeor...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeoral4.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You continue sucking on his dick…');
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
@@ -1777,7 +1799,8 @@ function enterSluthomeOralCum4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
   qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeoralcum4.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomeor...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeoralcum4.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You are on your knees in front of the guy with your mouth open. <<$boydesc>> fie...
   scene.text(`You are on your knees in front of the guy with your mouth open. ${((s as any).boydesc ?? '')} fiercely rubs his ${((s as any).dick ?? '')} member in front of your face…`);
   // TODO-QSP: dynamic text: Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm ...
@@ -1808,7 +1831,8 @@ function enterSluthomeTanga(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalDog1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanaldog1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanaldog1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> bends you over the couch and begins pound your ass…
   scene.text(`${((s as any).boydesc ?? '')} bends you over the couch and begins pound your ass…`);
   if ((!((s as any).boyAsexa ?? 0))) {
@@ -1843,7 +1867,8 @@ function enterSluthomeAnalDogCum1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalDog2(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanaldog2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanaldog2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: You bend over the couch as position yourself so <<$boydesc>> could go into your ...
   scene.text(`You bend over the couch as position yourself so ${((s as any).boydesc ?? '')} could go into your ass deeper…`);
   if ((!((s as any).boyAsexa ?? 0))) {
@@ -1878,7 +1903,8 @@ function enterSluthomeAnalDogCum2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalCow1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanalcow1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanalcow1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> he lies on his back, you climb on top of him…
   scene.text(`${((s as any).boydesc ?? '')} he lies on his back, you climb on top of him…`);
   if ((!((s as any).boyAsexa ?? 0))) {
@@ -1913,7 +1939,8 @@ function enterSluthomeAnalCowCum1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalCow2(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanalcow2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanalcow2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> he lies on his back, you climb on top of him…
   scene.text(`${((s as any).boydesc ?? '')} he lies on his back, you climb on top of him…`);
   if ((!((s as any).boyAsexa ?? 0))) {
@@ -1967,7 +1994,8 @@ function enterSluthomeAnalCowCum2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalSide1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanalside1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanalside1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on the side, and begins to penetrate your ass.
   scene.text(`${((s as any).boydesc ?? '')} puts you on the side, and begins to penetrate your ass.`);
   (s as any).pose = 0;
@@ -2003,7 +2031,8 @@ function enterSluthomeAnalSideCum1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSluthomeAnalSide2(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/hunter/sluthomeanalside2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/hunter/sluthomean...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/hunter/sluthomeanalside2.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on the side, and begins to penetrate your ass.
   scene.text(`${((s as any).boydesc ?? '')} puts you on the side, and begins to penetrate your ass.`);
   (s as any).pose = 0;
@@ -2053,7 +2082,8 @@ function enterSluthomeAnalSideCum2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHuntersgrOasi(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/gadukino/sex/dance/dancesexoasi1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/dancesexoas...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/dancesexoasi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('You began to suck all the guys around you, alternating between each member.');
   (s as any).pose = 0;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 11) + 10));
@@ -2072,7 +2102,8 @@ function enterHuntersgrOasi(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrVaOsi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrvaosi1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrva...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvaosi1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('The guys put you on the bed, Andrei gets down between your legs, while Igor and Sergei put their members in front of your face…');
   qspCall(s, 'boyStat', 'A174');
   qspCall(s, 'oral', 'start');
@@ -2218,7 +2249,8 @@ function enterHuntersgrVaOi(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrVsOai(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrvsoai1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvs...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvsoai1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('The guys put you on the bed, Sergei gets down between your legs, while Igor and Andrei put their members in front of your face…');
   qspCall(s, 'boyStat', 'A172');
   qspCall(s, 'oral', 'start');
@@ -2374,7 +2406,8 @@ function enterHuntersgrVsO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrViOas(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrvioas1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvi...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvioas1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   scene.text('You get down on all fours. Igor begins to penetrate you from behind, while Sergei and Andrei put their members in front of your face…');
   qspCall(s, 'boyStat', 'A172');
   qspCall(s, 'oral', 'start');
@@ -2457,7 +2490,8 @@ function enterHuntersgrViO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrVsOia(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrvsoia1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvs...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvsoia1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Sergei sat down on the bed, and pulled you on top of him, while Igor and Andrei put their dicks in front of your face…');
   qspCall(s, 'boyStat', 'A172');
   qspCall(s, 'oral', 'start');
@@ -2528,7 +2562,8 @@ function enterHuntersgrVsOi1(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrVaOis(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrvaois1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrva...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvaois1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Andrei sat down on the bed, and pulled you on top of him, while Igor and Sergei put their dicks in front of your face…');
   qspCall(s, 'boyStat', 'A174');
   qspCall(s, 'oral', 'start');
@@ -2644,7 +2679,8 @@ function enterHuntersgrVO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrV2aOsi(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrv2aosi1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrv2...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrv2aosi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Andrei put you on your side and began to get down between your legs, while Igor and Sergei stood in front of your face with their dicks waiting…');
   qspCall(s, 'boyStat', 'A174');
   qspCall(s, 'oral', 'start');
@@ -2714,7 +2750,8 @@ function enterHuntersgrV2aOs(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgrDPVaAiOs(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgrdpvaaios1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrdp...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrdpvaaios1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('Andrei lays down on the couch and pulls you on top of him, Igor straddles you and lines up to penetrate your second hole, while Sergei expects you to suck his dick too…');
   qspCall(s, 'boyStat', 'A174');
   qspCall(s, 'oral', 'start');
@@ -2862,7 +2899,8 @@ function enterHuntersgrAiO(s: GameState, scene: SceneBuilder): void {
 function enterHuntersgrO3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).pose = 0;
-  scene.img('images/locations/gadukino/sex/dance/hantersgro3.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgro3...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgro3.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   scene.text('The guys drag you to your kness and surround you. They began to masturbate in front of your face, sometimes inserting their member into your mouth, and you get ready for the cum about to cover you…');
   // TODO-QSP: end
   scene.actions([
@@ -2873,7 +2911,8 @@ function enterHuntersgrO3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'stomach', ((st as any).boy ?? 0), 1);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/gadukino/sex/dance/hantersgro3cum1.' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgro3...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgro3cum1.` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
     scene.text('Finally all the guys start to cum. Jets of sperm cover your face, hit you in the mouth and drip all over your body too…');
     if (((st as any).hunterVars ?? 0)?.['sexnude'] === 0) {
       scene.actions([
@@ -3025,7 +3064,8 @@ function enterHuntersgr2VO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgr2ViOa(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgr2vioa1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgr2v...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgr2vioa1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('The guys put you all fours, Igor spreads your legs and puts the tip of his dick against your pussy, while Andrei puts his member in front of your face…');
   qspCall(s, 'boyStat', 'A172');
   qspCall(s, 'oral', 'start');
@@ -3356,7 +3396,8 @@ function enterHuntersgr2AsO(s: GameState, scene: SceneBuilder): void {
 
 function enterHuntersgr2DPVaAs(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  scene.img('images/locations/gadukino/sex/dance/hantersgr2dpvaas1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgr2d...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgr2dpvaas1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
   scene.text('Andrei lay on the couch, and pulled you on top of him, while Sergei immediately began to aim for you second hole…');
   qspCall(s, 'boyStat', 'A172', 'a');
   qspCall(s, 'boyStat', 'A174', 'b');
@@ -3405,7 +3446,8 @@ function enterHuntersgrO2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   (s as any).body_write = ((s as any).body_write ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/sex/dance/hantersgro2cum1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgro2...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgro2cum1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('Sergei and Igor put you on your back and begin to cum on you. A jet of sperm hit in your mouth and face and another hit your breasts and stomach. For fun, the guys wrote on your body to commemorate the event…');
   // TODO-QSP: end
   scene.actions([

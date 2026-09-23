@@ -8,20 +8,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).furibj_today = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (Number((s as any).locArgs?.[0] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === 0) {
     scene.text('The driver climbs into his seat and starts the engine. The two of you drive off, and chat casually for fifteen minutes.');
     scene.text('Then, the driver spots another roadside parking lot and stops his truck.');
     scene.actions([
       { label: 'Look at the driver', goto: ['furisex', '1'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     scene.text('When you look at the driver questioningly, he has a greedy grin on his face. He says: "Now, it\'s time for you to fulfill your part of the deal. Undress and go to my sleeping compartment, I want to look at your naked body while you blow me."');
     scene.actions([
       { label: 'Do as he says', goto: ['furisex', '2'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === 2) {
     scene.text('You nod and take off your clothes. You squeeze past him into the sleeping compartment behind the chairs, and the driver follows you. When he takes off his pants, his cock jumps free. It\'s not particularly large, but still a bit above average size.');
     scene.text('When you reach out to touch it, he playfully slaps it away and says: "Put on the condom first, girl! I don\'t take risks with slutty hitchhikers."');
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
@@ -40,21 +40,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Put on the condom with your mouth', goto: ['furisex', '4'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 3) {
     scene.img('images/locations/highway/sex/condomput.jpg');
     scene.text('You quickly take the condom out of its wrapper and roll it down the man\'s erection.');
     scene.actions([
       { label: 'Suck his dick', goto: ['furisex', '5'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === 4) {
     scene.img('images/locations/highway/sex/condomput2.jpg');
     scene.text('You quickly take the condom out of its wrapper and place it between your lips. It takes you a while to put the condom on his penis using only your mouth, but eventually you manage. The truck driver laughs when he sees you struggle at first, but you can tell he\'s impressed when you actually succeed.');
     scene.actions([
       { label: 'Suck his dick', goto: ['furisex', '5'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+  if (String((s as any).locArgs?.[0] ?? '') === 5) {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).furibj = ((s as any).furibj ?? 0) + (1);
     scene.img('images/locations/highway/sex/condombj.jpg');
@@ -66,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Put your clothes back on', goto: ['furisex', '6'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+  if (String((s as any).locArgs?.[0] ?? '') === 6) {
     scene.text('The truck driver ties a knot in the condom and flings it out the window without another thought, before he puts his clothes back on and takes place behind the wheel again.');
     scene.text('He drives you to where you wanted to go, not talking much on the way there.');
     qspCall(s, 'arousal', 'end');
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 100) {
+  if (String((s as any).locArgs?.[0] ?? '') === 100) {
     if (((s as any).furibj ?? 0) >= 5) {
       scene.text('The driver starts the engine and unzips his trousers. His semi-hard cock flops out and without further instruction you reach over and jerk him a few times to get him properly stiff.');
       if ((((s as any).furibj ?? 0) / 10) >= ((s as any).furi_driver ?? 0)) {
@@ -118,7 +118,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 101) {
+  if (String((s as any).locArgs?.[0] ?? '') === 101) {
     qspCall(s, 'npcgeneratec', '', 0, 'Truck Driver', (Math.floor(Math.random() * 11) + 30));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).guy = ((s as any).guy ?? 0) + (1);

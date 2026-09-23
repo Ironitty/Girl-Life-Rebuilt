@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -19,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'andrey', '');
   }
   if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === '') {
-    // TODO-QSP: dynamic text: As you enter, you notice a for hire sign with a note scribbled on it that reads:...
+    // TODO-QSP: dynamic text: 'As you enter, you notice a for hire sign with a note scribbled on it that reads...
     scene.text('As you enter, you notice a for hire sign with a note scribbled on it that reads: "<b>The Manager Mr. Sobulyagin works weekdays from 9:00 to 20:00, weekends 9:00 to 15:00; Applicants should speak to him weekdays BEFORE 14:30!</b>"');
     if (((s as any).hour ?? 0) >= 9  &&  (((s as any).hour ?? 0) < 15  ||  (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30))  &&  ((s as any).week ?? 0) < 6) {
       scene.actions([
@@ -47,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You spend 6 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -112,7 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'andrey', '');
   }
   if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === '') {
-    // TODO-QSP: dynamic text: As you enter, you notice a for hire sign with a note scribbled on it that reads:...
+    // TODO-QSP: dynamic text: 'As you enter, you notice a for hire sign with a note scribbled on it that reads...
     scene.text('As you enter, you notice a for hire sign with a note scribbled on it that reads: "<b>The Manager Mr. Sobulyagin works weekdays from 9:00 to 20:00, weekends 9:00 to 15:00; Applicants should speak to him weekdays BEFORE 14:30!</b>"');
     if (((s as any).hour ?? 0) >= 9  &&  (((s as any).hour ?? 0) < 15  ||  (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30))  &&  ((s as any).week ?? 0) < 6) {
       scene.actions([
@@ -140,7 +138,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You spend 6 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -561,10 +559,10 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter7(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_pussycats_index = qspUntranslated(s, "rand(1, func('clothing', 'get_total', 'cats_outfits'))", { location: "shop_pussycats" });
+  (s as any).temp_pussycats_index = (Math.floor(Math.random() * (qspFunc(s, 'clothing', 'get_total', 'cats_outfits') - 1 + 1)) + (1));
   qspCall(s, 'clothing_attributes', 'cats_outfits', ((s as any).temp_pussycats_index ?? 0));
   scene.img(`images/pc/items/cats/outfits/${((s as any).temp_pussycats_index ?? '')}.jpg`);
-  // TODO-QSP: dynamic text: Nastya approaches you. "This nice new blouse has a slight defect and the manager...
+  // TODO-QSP: dynamic text: 'Nastya approaches you. "This nice new blouse has a slight defect and the manage...
   scene.text(`Nastya approaches you. "This nice new blouse has a slight defect and the manager asked me to put it in the discount bin, but maybe you want to take it for yourself? It's normally ${qspFunc(s, 'money', 'string_price', ((s as any).CloPrice ?? ''))}, but you can have it for 720₽."`);
   if (((s as any).cats_outfits ?? 0)?.[String((s as any).temp_pussycats_index ?? 0)] === 1) {
     scene.text('You look at the outfit and see that it\'s one you already own. "Thanks, but I already have that outfit."');
@@ -676,7 +674,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter10(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_pussycats_index = qspUntranslated(s, "rand(1, func('clothing', 'get_total', 'gm_outfits'))", { location: "shop_pussycats" });
+  (s as any).temp_pussycats_index = (Math.floor(Math.random() * (qspFunc(s, 'clothing', 'get_total', 'gm_outfits') - 1 + 1)) + (1));
   scene.img(`images/pc/items/gm/outfits/${((s as any).temp_pussycats_index ?? '')}.jpg`);
   scene.text('You go to the changing booths and find that someone has left an outfit behind. You remember that it belongs to a girl who just left the store after buying a new outfit. She has apparently decided that she no longer needs this and has just left it in the booth.');
   scene.text('You decide to wait until the end of the shift in case she returns, but she never does. You carefully look at the outfit; it\'s an ordinary looking outfit from G&M, almost new and fairly clean. Could you just keep it for yourself?');

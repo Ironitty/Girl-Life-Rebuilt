@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   ((s as any).cleanHTML = (s as any).cleanHTML ?? {})['ReturnStr'] = (String(((s as any).cleanHTML ?? 0)?.['ReturnStr']).split(((s as any).cleanHTML ?? 0)?.['newline']).join(''));
   ((s as any).cleanHTML = (s as any).cleanHTML ?? {})['ReturnStr'] = (String(((s as any).cleanHTML ?? 0)?.['ReturnStr']).split(((s as any).cleanHTML ?? 0)?.['tab']).join(''));
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).cleanHTML = (s as any).cleanHTML ?? {})['ReturnStr'] = (String(((s as any).cleanHTML ?? 0)?.['ReturnStr']).split('<tr></tr>').join(''));
     ((s as any).cleanHTML = (s as any).cleanHTML ?? {})['ReturnStr'] = (String(((s as any).cleanHTML ?? 0)?.['ReturnStr']).split('<td></td>').join(''));
   }

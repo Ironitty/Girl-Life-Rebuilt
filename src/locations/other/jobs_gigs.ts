@@ -29,22 +29,22 @@ function enterSetLocCode(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
-      ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 9) + 2) * 50;
+    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (10 - 2 + 1)) + (2));
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
-        ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 11) + 10) * 50;
+      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+        ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (20 - 10 + 1)) + (10));
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
-          ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 21) + 20) * 50;
+        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+          ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (40 - 20 + 1)) + (20));
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
-            ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 41) + 40) * 50;
+          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+            ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (80 - 40 + 1)) + (40));
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === 5) {
               ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = ((s as any).locArgs?.[2] ?? 0);
             }
           }
@@ -57,19 +57,19 @@ function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['week_string'] = qspUntranslated(s, "ARGS[1]  else evt_transient['week_string']  = '1234567'", { location: "jobs_gigs" });
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) > 0  &&  Number((s as any).locArgs?.[2] ?? 0) < 1440) {
+  if (String((s as any).locArgs?.[2] ?? '') > 0  &&  String((s as any).locArgs?.[2] ?? '') < 1440) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['duration'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) >= ((s as any).daystart ?? 0)) {
+  if (String((s as any).locArgs?.[3] ?? '') >= ((s as any).daystart ?? 0)) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['search_day'] = ((s as any).locArgs?.[3] ?? 0);
   }
-  if (Number((s as any).locArgs?.[4] ?? 0) >= ((s as any).evt_transient ?? 0)?.['search_day']) {
+  if (String((s as any).locArgs?.[4] ?? '') >= ((s as any).evt_transient ?? 0)?.['search_day']) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['search_limit'] = ((s as any).locArgs?.[4] ?? 0);
   }
-  if (Number((s as any).locArgs?.[5] ?? 0) > 0  &&  Number((s as any).locArgs?.[5] ?? 0) < 1440) {
+  if (String((s as any).locArgs?.[5] ?? '') > 0  &&  String((s as any).locArgs?.[5] ?? '') < 1440) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['start_time'] = ((s as any).locArgs?.[5] ?? 0);
   }
   ((s as any).evt_transient = (s as any).evt_transient ?? {})['time_overshoot'] = (((s as any).evt_transient ?? {})?.['duration'] ?? 0) + (((s as any).evt_transient ?? {})?.['start_time'] ?? 0) - 1380;
@@ -106,7 +106,7 @@ function enterSaveEvtEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $evt_content_code[] = $evt_transient['code']
   // TODO-QSP: $evt_desc[] = $evt_transient['desc']
   if (((s as any).evt_transient ?? 0)?.['verbose'] === 1) {
-    // TODO-QSP: dynamic text: Job accepted, you currently have ' + arrsize('evt_event') + ' jobs assigned to y...
+    // TODO-QSP: dynamic text: 'Job accepted, you currently have ' + arrsize('evt_event') + ' jobs assigned to ...
     scene.text('Job accepted, you currently have ' + 0 + ' jobs assigned to you. Please look at your journal for more information.');
     scene.actions([
       { label: 'Return', goto: ['jobs_gigs', 'evt_exit'] },
@@ -123,13 +123,13 @@ function enterEvtExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispEvt(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt3(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
@@ -139,7 +139,7 @@ function enterDispEvt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobEvt(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'jobs_gigs', 'job_evt');
   scene.text('I have this job for you do you want to accept it?');
   // TODO-QSP: gs 'time', 'to_date', evt_transient['event_daystart']
   // TODO-QSP: "Event Scheduled for: <<dateVars['day']>><<$dateVars['suffix']>>, <<$dateVars['monthName']>> <<dateV...
@@ -164,7 +164,7 @@ function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
 
 function enterDispEvt2(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).evt_event ?? {}).length > 0) {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobEvt(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'jobs_gigs', 'job_evt');
     (s as any).job_idx = 0;
     // TODO-QSP: :jmp_list_create
     if (((s as any).evt_verbose ?? 0)?.[String((s as any).job_idx ?? 0)] === 1) {
@@ -216,102 +216,16 @@ function enterDispEvt3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEventAct(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobEvt(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'jobs_gigs', 'job_evt');
   // TODO-QSP: dynamic "
-  // TODO-QSP: "
-  // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Attend your ' + String(qspUntranslated(s, "evt_job[evt_event[ARGS[1]]]", { location: "jobs_gigs" }) ?? '') + ' event', handler: (st: GameState) => {
     // TODO-QSP: gs 'jobs_gigs', 'array_init', <<ARGS[1]>>
     // TODO-QSP: gs 'jobs_gigs', 'del_evt2', <<ARGS[1]>>
-    if (((st as any).evt_content_code ?? 0)[Number((st as any).locArgs?.[1] ?? 0)] !== '') {
-      // TODO-QSP: dynamic ""<<$evt_content_code[ARGS[1]]>>""
-    } else {
-      qspGoto(st, '<<$evt_loc[ARGS[1]]>>', '' + qspUntranslated(s, "evt_loc_arg[ARGS[1]]", { location: "jobs_gigs" }) + '');
+    if (((st as any).evt_content_code ?? 0)[String((st as any).locArgs?.[1] ?? '')] !== '') {
     }
   } },
   ]);
-  scene.build();
-}
-
-function enterJobEvt(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $evt_job[0] = 'Sport'
-  // TODO-QSP: $evt_job[1] = 'Photography'
-  // TODO-QSP: $evt_job[2] = 'Modelling'
-  // TODO-QSP: $evt_job[3] = 'Music Gig'
-  // TODO-QSP: $evt_job[4] = 'Dance Show'
-  // TODO-QSP: $evt_job[5] = 'Ballet Performance'
-  // TODO-QSP: $evt_job[6] = 'Acting'
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDelEvt(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) >= 0  &&  Number((s as any).locArgs?.[1] ?? 0) < Object.keys((s as any).evt_event ?? {}).length) {
-    (s as any).evt_idx = ((s as any).locArgs?.[1] ?? 0);
-    scene.text('You\'re about to delete this job: ');
-    // TODO-QSP: dynamic text: Delete: <<evt_event[evt_idx]>>
-    scene.text(`Delete: ${((s as any).evt_event ?? 0)?.[String((s as any).evt_idx ?? 0)] ?? ''}`);
-    // TODO-QSP: dynamic text: Index: <<evt_idx>>
-    scene.text(`Index: ${((s as any).evt_idx ?? '')}`);
-    // TODO-QSP: dynamic text: Desc: <<$evt_desc[evt_idx]>>
-    scene.text(`Desc: ${((s as any).evt_desc ?? 0)?.[String((s as any).evt_idx ?? 0)] ?? ''}`);
-    scene.actions([
-      { label: 'Confirm?', handler: (st: GameState) => {
-    scene.text('Are you sure?');
-    scene.actions([
-      { label: 'Deleting', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).evt_idx ?? 0)]; enterDelEvt2(s, scene); (st as any).locArgs = __savedLocArgs; }
-    scene.actions([
-      { label: 'Return', goto: ['journal_work', 'start'] },
-    ]);
-  } },
-      { label: 'Cancel', goto: ['journal_work', 'start'] },
-    ]);
-  } },
-    ]);
-  } else {
-    // TODO-QSP: dynamic text: <<evt_idx>> - Invalid record - please check your index
-    scene.text(`${((s as any).evt_idx ?? '')} - Invalid record - please check your index`);
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDelEvt2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterArrayInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).evtVars = (s as any).evtVars ?? {})['verbose'] = qspUntranslated(s, "evt_verbose[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['event'] = qspUntranslated(s, "evt_event[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['event_sub'] = qspUntranslated(s, "evt_event_sub[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['dow'] = qspUntranslated(s, "evt_dow[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['starttime'] = qspUntranslated(s, "evt_starttime[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['duration'] = qspUntranslated(s, "evt_duration[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['wage'] = qspUntranslated(s, "evt_wages[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['journal'] = qspUntranslated(s, "evt_journal[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['loc'] = qspUntranslated(s, "evt_loc[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['loc_arg'] = qspUntranslated(s, "evt_loc_arg[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['content_code'] = qspUntranslated(s, "evt_content_code[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars = (s as any).evtVars ?? {})['desc'] = qspUntranslated(s, "evt_desc[ARGS[1]]", { location: "jobs_gigs" });
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterDailyEventCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).evt_chk = 0;
-  (s as any).job_idx = 0;
-  // TODO-QSP: :daily_event_check
-  if (((s as any).daystart ?? 0) === ((s as any).evt_daystart ?? 0)?.[String((s as any).job_idx ?? 0)]) {
-    (s as any).evt_chk = 1;
-  }
-  (s as any).job_idx = ((s as any).job_idx ?? 0) + (1);
-  if (((s as any).evt_chk ?? 0) === 0  &&  ((s as any).job_idx ?? 0) < Object.keys((s as any).evt_event ?? {}).length) {
-    // TODO-QSP: jump 'daily_event_check'
-  }
-  // TODO-QSP: end
   scene.build();
 }
 
@@ -350,21 +264,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'set_event_act':
       enterSetEventAct(s, scene);
-      break;
-    case 'job_evt':
-      enterJobEvt(s, scene);
-      break;
-    case 'del_evt':
-      enterDelEvt(s, scene);
-      break;
-    case 'del_evt2':
-      enterDelEvt2(s, scene);
-      break;
-    case 'array_init':
-      enterArrayInit(s, scene);
-      break;
-    case 'daily_event_check':
-      enterDailyEventCheck(s, scene);
       break;
     default:
       enterDefault(s, scene);

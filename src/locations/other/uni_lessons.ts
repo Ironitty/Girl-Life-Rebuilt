@@ -41,7 +41,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                   (s as any).passed_count = 0;
                   (s as any).class_count = 0;
                   // TODO-QSP: :passed_exams_loop
-                  if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
+                  if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
                     (s as any).class_count = ((s as any).class_count ?? 0) + (1);
                     if ((0 as any) > 40  &&  (0 as any) === 1) {
                       (s as any).passed_count = ((s as any).passed_count ?? 0) + (1);

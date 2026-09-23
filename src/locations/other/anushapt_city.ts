@@ -539,7 +539,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
-    scene.img('images/shared/home/video_games/videogame_2boys' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/shared/home/video_games/videogame_2boys'...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/video_games/videogame_2boys` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You take a seat between the boys and watch as they play the game. Valentin asks you how things have been going and generally makes pleasant conversation with you as he plays, while Arkadi mostly ignores you. He seems very intent on winning his game against Valentin and has no time for talking.');
     scene.text('After a while, you get bored and eventually excuse yourself, but they barely even notice you leaving.');
     scene.actions([
@@ -646,7 +647,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).anushfood_day = ((st as any).daystart ?? 0);
     (st as any).anushbeer_count = ((st as any).anushbeer_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You take a bottle of beer from the fridge and drink it, which quenches your thirst.');
     scene.actions([
       { label: 'Continue', goto: ['anushapt_city', 'fridge'] },
@@ -663,7 +665,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).anushfood_day = ((st as any).daystart ?? 0);
     (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You pour some vodka into a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['anushapt_city', 'fridge'] },
@@ -678,7 +681,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'drugs', 'alcohol', 'vodka');
         (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
         qspCall(st, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is strong!');
       }
     }

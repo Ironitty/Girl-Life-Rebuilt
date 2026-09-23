@@ -38,7 +38,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterDSalf(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Tissues</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image',  currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0) {
@@ -77,7 +77,7 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
 
 function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Mouth Wash</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image',  currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).cumspclnt = 2;
@@ -102,7 +102,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   (s as any).BACKIMAGE = '';
   qspCall(s, 'stat', '');
   scene.text('<center><h1>Purse</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image', currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
@@ -110,12 +110,12 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['makeup_wipes'] ?? ''}</b> wet wipes left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_salf/u0027); return false;">Use a tissue</a>`);
   }
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0  &&  ((s as any).pain ?? 0)?.['total'] > 0) {
-    // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory['...
+    // TODO-QSP: dynamic text: 'You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory[...
     scene.text('You have <b>' + ((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '' + '</b> painkiller\'+iif(mc_inventory[\'painkillers\'] > 1, \'s \', \' \')+\'left in your purse. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027painkiller/u0027); return false;">' + qspFunc(s, 'drugs', 'painkiller_act_str') + '</a>');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
-      // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory['...
-      scene.text('You have <b>' + ((s as any).mc_inventory ?? 0)?.['painkillers'] ?? '' + '</b> painkiller\'+iif(mc_inventory[\'painkillers\'] > 1, \'s \', \' \')+\'left in your purse.');
+      // TODO-QSP: dynamic text: 'You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory[...
+      scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller` + ((((s as any).mc_inventory ?? 0)?.['painkillers'] > 1) ? ('s ') : (' ')) + 'left in your purse.');
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['mouthwash'] > 0  &&  (((s as any).pcs_breath ?? 0) === 0  ||  ((s as any).cumloc ?? 0)[12] === 1)) {
@@ -331,15 +331,15 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text('Your purse contains a strange photo');
   }
   if (((s as any).pattest ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You have <b><<pattest>></b> unused paternity test'+iif(pattest > 1, 's ', ' ')+'...
-    scene.text('You have <b>' + ((s as any).pattest ?? '') + '</b> unused paternity test\'+iif(pattest > 1, \'s \', \' \')+\'in your purse.');
+    // TODO-QSP: dynamic text: 'You have <b><<pattest>></b> unused paternity test'+iif(pattest > 1, 's ', ' ')+...
+    scene.text(`You have <b>${((s as any).pattest ?? '')}</b> unused paternity test` + ((((s as any).pattest ?? 0) > 1) ? ('s ') : (' ')) + 'in your purse.');
   }
   if (((s as any).used_pattest ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You have <b><<used_pattest>></b> <a href="exec:dynamic $test_purse">used</a> pat...
-    scene.text('You have <b>' + ((s as any).used_pattest ?? '') + '</b> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $test_purse */ return s; }); return false;">used</a> paternity test\'+iif(used_pattest > 1, \'s \', \' \')+\'in your purse.');
+    // TODO-QSP: dynamic text: 'You have <b><<used_pattest>></b> <a href="exec:dynamic $test_purse">used</a> pa...
+    scene.text(`You have <b>${((s as any).used_pattest ?? '')}</b> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $test_purse */ return s; }); return false;">used</a> paternity test` + ((((s as any).used_pattest ?? 0) > 1) ? ('s ') : (' ')) + 'in your purse.');
   }
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
-    // TODO-QSP: dynamic text: You also have '+iif($pursepantytype ! '', '<a href="exec:view''<<func(''$panty_i...
+    // TODO-QSP: dynamic text: 'You also have '+iif($pursepantytype ! '', '<a href="exec:view''<<func(''$panty_...
     scene.text('You also have ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">a pair of panties</a>') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">a bra</a>') : ('')) + ' in your purse, which you can put on in the nearest bathroom.');
   }
   if (((s as any).photographyEv ?? 0) >= 2) {
@@ -400,7 +400,7 @@ function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
 function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDin_Update_Condom_Counts(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image',  currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).i = 0;
@@ -460,22 +460,22 @@ function enterDin_Table_Condom_Menu(s: GameState, scene: SceneBuilder): void {
 
 function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image',  currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     scene.text('Use a condom the next time you have sex.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'normal']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       scene.text('You will not use a condom the next time you have sex.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'none']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         scene.text('Use your sabotaged condom the next time you have sex.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sabotaged']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === 4) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSabotageACondom(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -498,16 +498,16 @@ function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).preziktype ?? 0) === 2) {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'normal') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'normal') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = 0;
     (s as any).preziktype = 0;
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'none') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'none') {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
       (s as any).preziktype = 1;
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'sabotaged') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'sabotaged') {
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'];
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
         (s as any).preziktype = 2;
@@ -522,18 +522,18 @@ function enterSabotageACondom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).preziktype ?? 0) !== 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) + (1);
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
-    if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+    if (String((s as any).locArgs?.[1] ?? '') === '') {
       scene.text('You use a needle to punch holes in one of the condoms.');
     }
   } else {
     if (((s as any).preziktype ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) + (1);
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
-      if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+      if (String((s as any).locArgs?.[1] ?? '') === '') {
         scene.text('You use a needle to punch holes in one of the condoms.');
       }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+      if (String((s as any).locArgs?.[1] ?? '') === '') {
         scene.text('You do not have any condoms to sabotage.');
       }
     }
@@ -594,7 +594,7 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
 
 function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Birth Control</h1></center>');
-  scene.img(`${qspUntranslated(s, "FUNC('purse_image', currentpursetype, currentpursenumber)", { location: "din_bad" })}`);
+  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).tabloc = 0;
@@ -743,7 +743,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     (s as any).tabletkipd = ((s as any).tabletkipd ?? 0) + (((s as any).tabletkipt ?? 0));
     if (((s as any).tabletkiday ?? 0) !== ((s as any).daystart ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTakepill(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -758,18 +758,18 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
     scene.text('You take your birth control pill.');
     qspCall(s, 'stat', '');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       ((s as any).birth_control = (s as any).birth_control ?? {})['remind_hour'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetAutoBc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('You will do your best to remember to take your birth control pills every day.');
       qspCall(s, 'stat', '');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         scene.text('You will take your birth control pills as you desire.');
         (s as any).tabletkicheck = 0;
         qspCall(s, 'stat', '');
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === 4) {
           if (((s as any).pcs_intel ?? 0) + ((s as any).pilldays ?? 0) <= (Math.floor(Math.random() * 66) + 30)  ||  ((s as any).therapistFuckedPussyStage ?? 0) > 1) {
             scene.text('These pills appear to be normal birth control pills.');
             (s as any).tabletkioddk = 0;
@@ -812,7 +812,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === 5) {
             scene.text('You get rid of the strange pills.');
             (s as any).tabletkioddk = 0;
             ((s as any).pillsleft = (s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 0;
@@ -842,7 +842,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
 
 function enterSetAutoBc(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :invalid_auto_bc_loop
-  ((s as any).birth_control = (s as any).birth_control ?? {})['auto_hour'] = 0;
+  ((s as any).birth_control = (s as any).birth_control ?? {})['auto_hour'] = window.prompt("When do you want to take your pill? (Pick an hour 1 - 23. At that hour, you will automatically take your birth control pill. If you are asleep during the hour you set, you will not take it.)") ?? '';
   if (((s as any).birth_control ?? 0)?.['auto_hour'] < 1  ||  ((s as any).birth_control ?? 0)?.['auto_hour'] > 23) {
     // TODO-QSP: jump 'invalid_auto_bc_loop'
   } else {
@@ -859,7 +859,7 @@ function enterSetAutoBc(s: GameState, scene: SceneBuilder): void {
 
 function enterSetBcReminder(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :invalid_bc_reminder_loop
-  ((s as any).birth_control = (s as any).birth_control ?? {})['remind_hour'] = 0;
+  ((s as any).birth_control = (s as any).birth_control ?? {})['remind_hour'] = window.prompt("When do you want to set your reminder? (Pick an hour 1 - 22. An icon will appear in the stat display during that hour to remind you to take your pill.)") ?? '';
   if (((s as any).birth_control ?? 0)?.['remind_hour'] < 1  ||  ((s as any).birth_control ?? 0)?.['remind_hour'] > 22) {
     // TODO-QSP: jump 'invalid_bc_reminder_loop'
   } else {
@@ -949,7 +949,7 @@ function enterDCycreportChoice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     if (((s as any).knowpreg ?? 0) === 1) {
       (s as any).denypreg = 1;
       (s as any).thinkpreg = 0;
@@ -961,14 +961,14 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2) {
       (s as any).thinkpreg = 1;
       (s as any).denypreg = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === 3) {
         (s as any).thinkpreg = 0;
         (s as any).denypreg = 0;
         (s as any).daylastperiod = ((s as any).daystart ?? 0);
@@ -976,7 +976,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === 4) {
           (s as any).thinkpreg = 0;
           (s as any).denypreg = 0;
           scene.text('<center><h1>Fertility Cycle</h1></center>');
@@ -998,7 +998,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === 5) {
             if (((s as any).knowpreg ?? 0) === 1) {
               (s as any).denypreg = 1;
             } else {
@@ -1009,7 +1009,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
+            if (String((s as any).locArgs?.[1] ?? '') === 6) {
               scene.text('<center><h1>Fertility Cycle</h1></center>');
               scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
               scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
@@ -1029,7 +1029,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === 7) {
                 scene.text('<center><h1>Fertility Cycle</h1></center>');
                 scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
                 scene.text('<td width="500" cellspacing="0" cellpadding="0" valign="top">');
@@ -1102,13 +1102,13 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === 8) {
                   (s as any).thinkpreg = 0;
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                   qspCall(s, 'stat', '');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 10) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 10) {
                     (s as any).temp = 0;
                     (s as any).temp = ((s as any).temp ?? 0) - (1);
                     (s as any).cycreport_txt = 'You are currently recovering from childbirth. You gave birth on ' + ((s as any).monthkid ?? 0)?.[String((s as any).temp ?? 0)] + ' / ' + ((s as any).daykid ?? 0)?.[String((s as any).temp ?? 0)] + ' / ' + ((s as any).yearkid ?? 0)?.[String((s as any).temp ?? 0)] + '.';
@@ -1227,7 +1227,7 @@ function enterDPregmovement(s: GameState, scene: SceneBuilder): void {
 function enterTakepill(s: GameState, scene: SceneBuilder): void {
   ((s as any).birth_control = (s as any).birth_control ?? {})['using_bc'] = 3;
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
-    (s as any).tabletkirand = qspUntranslated(s, "rand(1, mc_inventory['contraceptive_pill'])", { location: "din_bad" });
+    (s as any).tabletkirand = (Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] - 1 + 1)) + (1));
     if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0)) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
       (s as any).tabletkiold = ((s as any).tabletkiold ?? 0) - (1);
@@ -1306,7 +1306,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  (s as any).EggRH = ((s as any).EggRH ?? 0) + ((Math.floor(Math.random() * ((((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0) + 30 - (((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0) + 1)) + ((((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0))));
+                  (s as any).EggRH = ((s as any).EggRH ?? 0) + ((Math.floor(Math.random() * ((((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] ?? 0) + 30 - ((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] + 1)) + (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'])));
                   if (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] < 50) {
                     ((s as any).trait_vars = (s as any).trait_vars ?? {})['fertility_bc_conditioning'] = ((s as any).trait_vars['fertility_bc_conditioning'] ?? 0) + (1);
                   }

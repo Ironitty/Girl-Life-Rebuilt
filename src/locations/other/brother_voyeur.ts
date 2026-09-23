@@ -247,7 +247,7 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('You casually talk to him about his day while you shower. He sits on the toilet seat and faces away from you, awkwardly answering all your questions and queries, but you still see him occasionally stealing glances at your naked body. Not that it bothers you any, as you simply smile to yourself, amused that he thinks he\'s still being sneaky.');
     } else {
       scene.text('He happily talks to you about his day, though he still sits on the toilet facing away. He also still takes a few looks at you now and again but they aren\'t as sneaky and they mostly seem to be glances to see your face. <i>Not that his eyes don\'t wander downward anyways…</i> you notice with a smile.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDayTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDayTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['brother_voyeur', 'shave'] },
@@ -259,7 +259,7 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('You casually chat with him about how he\'s doing in school while you shower. He sits on the toilet seat and faces away from you, awkwardly answering all your questions and queries, but you still see him occasionally stealing glances at your naked body. Not that it bothers you any, as you simply smile to yourself, amused that he thinks he\'s still being sneaky.');
     } else {
       scene.text('He energetically talks to you about school and how it\'s going for him, though he still sits on the toilet facing away. He also still takes a few looks at you now and again but they aren\'t as sneaky and they mostly seem to be glances to see your face. <i>Not that his eyes don\'t wander downward anyways…</i> you notice with a smile.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['brother_voyeur', 'shave'] },
@@ -271,7 +271,7 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('You chat with him about his friends and what he does for fun with them while you shower. He sits on the toilet seat and faces away from you, awkwardly answering all your questions and queries, but you still see him occasionally stealing glances at your naked body. Not that it bothers you any, as you simply smile to yourself, amused that he thinks he\'s still being sneaky.');
     } else {
       scene.text('He cheerfully talks to you about him and his friends and what they get up to together, though he still sits on the toilet facing away. He also still takes a few looks at you now and again but they aren\'t as sneaky and they mostly seem to be glances to see your face. <i>Not that his eyes don\'t wander downward anyways…</i> you notice with a smile.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFriendTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFriendTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Continue', goto: ['brother_voyeur', 'shave'] },
@@ -316,7 +316,7 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He happily talks to you about his day, only rarely taking glances at your exposed breasts. For the most part, his attention seems to be focused more on the conversation than your naked body.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDayTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDayTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).bro_ass_compliment = (Math.floor(Math.random() * 3) + 1);
@@ -336,7 +336,7 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He energetically talks to you about school and how it\'s going for him, pretty much only taking a look at your ass when you turn around to wash or rinse. For the most part, he seems to be more engrossed by the conversation than your naked body.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSchoolTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).bro_ass_compliment = (Math.floor(Math.random() * 3) + 1);
@@ -357,7 +357,7 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He cheerfully talks to you about him and his friends and what mischief they get up to together, only looking at your pussy when his attention is inadvertently drawn by you washing between your legs. For the most part, he seems more engaged in the conversation than your naked body.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFriendTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFriendTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).bro_ass_compliment = (Math.floor(Math.random() * 3) + 1);
@@ -1001,7 +1001,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     scene.text('"I couldn\'t even if I wanted to," you say to him wistfully. He looks at you in confusion. "Razor\'s gone dull." You thumb the razor to show him. Need a sharp razor to shave. <i>Especially</i> down there," you smile.');
     scene.text('"Oh." He looks disappointed.');
     if (((st as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((st as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((st as any).brotherwash ?? 0) > 5) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
@@ -1020,7 +1020,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
         { label: 'Not going to change my mind', handler: (st: GameState) => {
     scene.text('"Sorry little brother, you\'re not going to change my mind that easily. I said I\'d shave just because you asked. I didn\'t say that I\'d do everything you asked."');
     scene.text('"Hmph. I still think you\'d look better if you just kept it smooth…" he mutters while you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I guess I did', handler: (st: GameState) => {
     // TODO-QSP: brother_shower['shave_request'] = 1
@@ -1034,7 +1034,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
       scene.text('Kolka seems disappointed. Once you\'re finished you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
     }
     if (((st as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((st as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((st as any).brotherwash ?? 0) > 5) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
@@ -1052,7 +1052,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
         { label: 'That\'s not what I said', handler: (st: GameState) => {
     scene.text('"That\'s not what I said. I said I\'d shave just because you asked. I didn\'t say what exactly I\'d be shaving or that I\'d do everything you tell me to."');
     scene.text('"Hrmph." Kolka seems disappointed. Once you\'re finished you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I guess I did', handler: (st: GameState) => {
     // TODO-QSP: brother_shower['shave_request'] = 1
@@ -1063,7 +1063,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((st as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((st as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((st as any).brotherwash ?? 0) > 5) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
           { label: '"I like it like this"', handler: (st: GameState) => {
@@ -1075,7 +1075,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
           { label: 'Not going to change my mind', handler: (st: GameState) => {
     scene.text('"Sorry little brother, you\'re not going to change my mind that easily. I said I\'d shave just because you asked. I didn\'t say that I\'d shave everything you wanted."');
     scene.text('"Hmph. I still think you\'d look better if you just kept it smooth…" he mutters while you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'I guess I did', handler: (st: GameState) => {
     // TODO-QSP: brother_shower['shave_request'] = 1
@@ -1092,7 +1092,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hmph. I still think you\'d look better if you just kept it smooth…" he mutters.');
       scene.text('Kolka seems disappointed. Once you\'re finished you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
       if (((st as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((st as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((st as any).brotherwash ?? 0) > 5) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
@@ -1116,7 +1116,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/home/bathroom/brotherpussyfeel.mp4');
       scene.text('"There," you say, rinsing off the last of the hair, stubble, and lather. "Smooth enough for you now?"');
       scene.text('You take his hand and press it against your freshly shaved pubic region, letting him feel it for himself. He does so greedily, taking the opportunity to also slip his fingers your pussy and forcing a moan out of you.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('Once you\'re finished you gently glide your hands over your smooth pussy and legs, enjoying the feeling.');
       scene.text('You put your hands on either side of your pussy and say, "Well? Satisfied now?"');
@@ -1133,7 +1133,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Once you\'re finished you gently glide your hands over your smooth legs, making sure you didn\'t miss a spot.');
       if (((st as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((st as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((st as any).brotherwash ?? 0) > 5) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGetFrisky(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
@@ -1184,7 +1184,7 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
           { label: '"Too lazy"', handler: (st: GameState) => {
     scene.text('"Nah," you say. "I don\'t feel like doing it right now. Too much work."');
     scene.text('Kolka seems disappointed. Once you\'re finished you gently glide your hands over your pubic area, enjoying the smoothness and making sure you didn\'t miss a spot.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: '"Hmm, maybe you\'re right" (0:05)', handler: (st: GameState) => {
     (st as any).pcs_leghair = 0;
@@ -1207,7 +1207,7 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/home/bathroom/brotherpussyfeel.mp4');
       scene.text('"There," you say, taking your brother\'s hand and pressing it against your freshly shaved pubic region. "Smooth enough for you now?"');
       scene.text('"Yeah…" He takes advantage of the opportunity to slip his fingers inside you, forcing a moan from you. "I like it a lot."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('Once you\'re finished you gently glide your hands over your smooth pussy and legs, enjoying the feeling.');
       scene.text('You put your hands on either side of your pussy as if to frame it for him.');
@@ -1233,7 +1233,7 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
     scene.text('"There," you say, taking your brother\'s hand and pressing it against your freshly shaved pubic region. "Happy now?"');
     scene.text('He takes advantage of the opportunity sliding his fingers down your smooth front of your pussy to slip his fingers inside, forcing a moan from you.');
     scene.text('"Very," he grins back.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShowerEnd_2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -1717,7 +1717,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((st as any).pcs_pubes ?? 0) > 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveNotDone(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterShaveNotDone(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.actions([
           { label: 'Dry off', goto: ['brother_voyeur', 'dryoff'] },

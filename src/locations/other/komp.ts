@@ -923,7 +923,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 10, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (st as any).intinp = 0;
+      // TODO-QSP: intinp = input ("How many hours of internet access do you wish to purchase? (1hr = <<$func('money', 'string_price', 10)>>)")
       if (((st as any).intinp ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((st as any).intinp ?? 0) * 10, 'bank') === 0) {
         scene.text('Invalid amount.');
       } else {
@@ -951,7 +951,7 @@ function enterFin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[0] ?? 0) !== 'fin') {
+  if (String((s as any).locArgs?.[0] ?? '') !== 'fin') {
     if (((s as any).loc ?? 0) === 'pav_library'  &&  (((s as any).hour ?? 0) >= 18  ||  ((s as any).hour ?? 0) < 8)  ||  ((s as any).loc ?? 0) === 'city_library'  &&  (((s as any).hour ?? 0) >= 19  ||  ((s as any).hour ?? 0) < 8)  ||  ((s as any).loc ?? 0) === 'uni_library'  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8)) {
       scene.img('images/pc/items/accessories/computer/komp.jpg');
       scene.text('The library is closing.');

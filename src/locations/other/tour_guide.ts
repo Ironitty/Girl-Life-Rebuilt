@@ -48,7 +48,7 @@ function enterTourstart(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
     (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (100);
     qspCall(st, 'stat', '');
-    // TODO-QSP: gt 'tour_guide', 'tourran' + rand(1, 8)
+    qspGoto(st, 'tour_guide', '\'tourran\' + rand(1', '8)');
   } },
   ]);
   scene.build();

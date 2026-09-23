@@ -277,7 +277,8 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return to the station and catch the next train', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('images/locations/shared/train/electri_' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/train/electri_' + rand(...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/shared/train/electri_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('The journey is uneventful, and you end up not paying attention for much of it. It doesn\'t seem like long before you arrive at your destination.');
     scene.actions([
       { label: 'Get off the train', handler: (st: GameState) => {

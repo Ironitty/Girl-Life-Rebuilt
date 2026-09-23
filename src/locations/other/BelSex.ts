@@ -590,13 +590,13 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     if (((st as any).belgangPay ?? 0) <= 0) {
       qspCall(st, 'money', 'earn', ((st as any).belsexpayment ?? 0));
-      // TODO-QSP: dynamic text: Vadim looks at you and says, "That was a good fuck, <<$pcs_nickname>>. Here, thi...
+      // TODO-QSP: dynamic text: 'Vadim looks at you and says, "That was a good fuck, <<$pcs_nickname>>. Here, th...
       scene.text(`Vadim looks at you and says, "That was a good fuck, ${((st as any).pcs_nickname ?? '')}. Here, this is for you," and with those words he hands you ' + $func('money', 'string_profit', belsexpayment) + '.`);
     } else {
       qspCall(st, 'money', 'debt_pay', 'belgangPay', ((st as any).belsexpayment ?? 0), 'none');
       qspCall(st, 'money', 'debt_pay', 'belgangPayWeek', ((st as any).belsexpayment ?? 0), 'none');
       qspCall(st, 'belgang', 'update_debt_calendar');
-      // TODO-QSP: dynamic text: "You''re getting there, whore." <<$boydesc>> writes off ' + $func('money', 'stri...
+      // TODO-QSP: dynamic text: '"You''re getting there, whore." <<$boydesc>> writes off ' + $func('money', 'str...
       scene.text(`"You're getting there, whore." ${((st as any).boydesc ?? '')} writes off ' + $func('money', 'string_debt_reduction', belsexpayment) + ' from your debt. He looks at you probably planning what he could do next to you. "Run along now, I have business to take care of," he says as he's escorting you to the door. As he's closing the door you hear him say, "Don't you ever forget who's your master, ${((st as any).pcs_nickname ?? '')}."`);
       scene.text(' ');
       // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)

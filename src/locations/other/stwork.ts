@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('To the side is a <a href="#" onclick="window.__gameStore.setState((s) => { s.stripMir = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027stripclub/u0027, /u0027start/u0027); return false;">door</a> which overlooks the staff parking lot to the rear, used as a private entrance so girls don\'t to deal with scummy customers queuing out front. Always standing by this entrance is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stwork/u0027, /u0027guard/u0027); return false;">security guard</a> keeping the girls safe.');
   }
-  // TODO-QSP: dynamic text: Near the exit door is a vending machine selling '+iif(func('money', 'can_afford'...
+  // TODO-QSP: dynamic text: 'Near the exit door is a vending machine selling '+iif(func('money', 'can_afford...
   scene.text('Near the exit door is a vending machine selling ' + ((qspFunc(s, 'money', 'can_afford', 100) === 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().100 ?? /u0027/u0027)); return false;">snacks</a>') : ('snacks')) + ' and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027water/u0027); return false;">water cooler</a> which is used heavily by girls coming off stage.');
   scene.text('A wooden door leads to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stwork/u0027, /u0027toilet/u0027); return false;">staff bathroom</a>.');
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
@@ -97,10 +97,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'this_week') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'this_week') {
     qspCall(s, 'stripclub_schedule', 'set_schedule');
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 'next_week') {
+    if (String((s as any).locArgs?.[1] ?? '') === 'next_week') {
       qspCall(s, 'stripclub_schedule', 'next_week_set_schedule');
     }
   }
@@ -314,7 +314,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
               scene.text(`The customers followed your movements between their conversations. After counting out your tips, it amounts to ${qspFunc(s, 'money', 'string_profit', ((s as any).paymoneyrand ?? ''))}.`);
             }
           } else {
-            (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) - (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) + 1)) + ((((s as any).strip_club ?? {})?.['strip_tips'] ?? 0)));
+            (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * (((s as any).strip_club ?? {})?.['strip_tips'] ?? 0) - ((s as any).strip_club ?? 0)?.['strip_tips'] + 1)) + (((s as any).strip_club ?? 0)?.['strip_tips']));
             (s as any).paymoneyrand = Math.min(((s as any).paymoneyrand ?? 0), 500);
             qspCall(s, 'money', 'earn', ((s as any).paymoneyrand ?? 0));
             qspCall(s, 'mood', 'raise', 'small');
@@ -755,8 +755,8 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/bathroom/toilet.jpg');
   scene.text('You enter the staff bathroom that contains a single shower, a toilet stall and a wash basin.');
-  // TODO-QSP: dynamic text: Your razor will last <b><<mc_inventory[''razor'']>></b> more ' + iif(mc_inventor...
-  scene.text('Your razor will last <b>' + ((s as any).mc_inventory ?? 0)?.['razor'] ?? '' + '</b> more \' + iif(mc_inventory[\'razor\'] = 1, \'shave\', \'shaves\') + \'. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>');
+  // TODO-QSP: dynamic text: 'Your razor will last <b><<mc_inventory[''razor'']>></b> more ' + iif(mc_invento...
+  scene.text(`Your razor will last <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more ` + ((((s as any).mc_inventory ?? 0)?.['razor'] === 1) ? ('shave') : ('shaves')) + '. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_van/u0027, /u0027shave_options/u0027); return false;">Shave Options</a>');
   qspCall(s, 'din_van', 'brit');
   qspCall(s, 'din_van', 'toymanage');
   qspCall(s, 'din_van', 'enema');

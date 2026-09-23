@@ -364,7 +364,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 
 function enterShHooker(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/h' + (Math.floor(Math.random() * 10) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/h` + (Math.floor(Math.random() * 10) + 1) + '.jpg"></center>');
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -426,7 +427,8 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/beer' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/beer` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
     // TODO-QSP: func('gopsex', 'hide', 'gop_text_beer2')
     qspCall(s, 'willpower', 'drink', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -448,7 +450,8 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pjanaja' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pjanaja` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
     scene.text('You\'re almost too drunk to stand. The boys notice and start harassing you.');
     // TODO-QSP: dynamic text: "We let you drink for free all night, <<$pcs_nickname>>. Show us a little skin a...
     scene.text(`"We let you drink for free all night, ${((s as any).pcs_nickname ?? '')}. Show us a little skin as a thank you," Vasily says with a grin.`);
@@ -491,7 +494,8 @@ function enterDrunkenSexYes(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   ((s as any).vasily = (s as any).vasily ?? {})['drunk_sex'] = ((s as any).vasily['drunk_sex'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/yes' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/yes` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
   scene.text('It\'s time to show these boys that you know how to have a good time. The guys urge you on, calling out various lewd suggestions.');
   // TODO-QSP: end
   scene.actions([
@@ -507,7 +511,8 @@ function enterDrunkenSexNo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).healthmax ?? 0) / 10);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/sleep' + (Math.floor(Math.random() * 17) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/sleep` + (Math.floor(Math.random() * 17) + 1) + '.jpg"></center>');
   scene.text('"You\'re all fixing to get a swift kick in the balls if you don\'t cut it out, or I can wake this whole building up with a scream," you drunkenly slur.');
   scene.text('Dan sneers at you. "Settle down bitch, nobody\'s going to hurt you. Why don\'t you go lie down on the couch and sleep it off?"');
   scene.text('The guys lose interest in you and go back to pounding beers as you crawl away in the direction of the sofa.');
@@ -523,7 +528,8 @@ function enterDrunkenSleep(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).healthmax ?? 0) / 10);
   qspCall(s, 'mood', 'lower', 'large');
   qspCall(s, 'sleep_simple', 'forced', 180);
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
   scene.text('You passed out for about three hours and wake up with a splitting headache and only vague memories of your night with the guys. Remembering that somebody deserved a kick in the balls, you look around the room. Vasily is passed out in a heap on the sofa with no sign of the other two.');
   scene.text('"It was probably Dan that deserved a kick…" you mutter to yourself as you try to get your bearings.');
   // TODO-QSP: end
@@ -601,7 +607,8 @@ function enterShultv(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).shulga_tv_rand ?? '')} <br> You veg out in front of the TV for 30 minutes.`);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvrekl' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop width="748" height="540" src="images/locations/pav...
+    scene.text('<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvrekl' + (Math.floor(Math.random() * 4) + 1) + '.mp4"></video></center> You find some advertising.');
   }
   qspCall(s, 'stat', '');
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
@@ -627,7 +634,8 @@ function enterViewPornotv(s: GameState, scene: SceneBuilder): void {
     { label: 'Flip to the porn channel', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'porn', 20);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
+    // TODO-QSP: dynamic text: '<center><video autoplay loop width="748" height="540" src="images/locations/pav...
+    scene.text('<center><video autoplay loop width="748" height="540" src="images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center> You switched to the porn channel.');
     scene.text('You watch porn for about 20 minutes. It\'s very exciting.');
     scene.actions([
       { label: 'Turn it off', goto: ['vasilyhome', 'livingroom'] },
@@ -684,7 +692,8 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A11', 1);
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     if (((st as any).bazar_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "Give it a rest, <<$pcs_nickname>>. How about a drink instead?" Vasily offers.
       scene.text(`"Give it a rest, ${((st as any).pcs_nickname ?? '')}. How about a drink instead?" Vasily offers.`);
@@ -903,7 +912,8 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A10', 1);
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     (st as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).den_textb = 'Dan tells you about a girl they saw giving a guy a blowjob in the park today. "She had such lovely ' + ((st as any).pcs_eyecolor ?? 0) + ' eyes, and beautiful ' + ((st as any).pcs_haircolor ?? 0) + ' hair," he says while smiling at you. "Oh ' + ((st as any).pcs_nickname ?? 0) + ', you should come join us in the park after school. We\'re almost always there having drinks," he adds as an afterthought.';
@@ -1032,7 +1042,8 @@ function enterVitekBazar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A9', 1);
     }
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     (st as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).vitek_textb = '"Any chance I could get you to come over and do some cleaning? My apartment is such a wreck that it\'s virtually uninhabitable. It could really use a woman\'s touch."<br>  "I\'ll think about it," you answer shyly.<br> The thought of cleaning Vitek\'s place in a skimpy little outfit bubbles up in your mind, and you turn away blushing.';
@@ -1167,8 +1178,9 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
     if (((st as any).bazar_count ?? 0) > 0) {
       qspCall(st, 'npc_relationship', 'modify', 'A11', 1);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVasilyRep(s, scene); (st as any).locArgs = __savedLocArgs; }
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVasilyRep(st, scene); (st as any).locArgs = __savedLocArgs; }
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     (st as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).vasyan_textb_day = '"Life is like a Matryoshka doll," Vasily says mysteriously.<br> "What the hell is that supposed to mean?" you ask.<br> "Think about it," is all he says.<br> You roll you eyes and give him a sarcastic: "Oh I will."';
@@ -1330,7 +1342,8 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
     if (((s as any).alko ?? 0) >= 6  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 100) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
-      scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pjanaja' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pjanaja` + (Math.floor(Math.random() * 8) + 1) + '.jpg"></center>');
       scene.text('You\'re so drunk the room is spinning around and you can barely focus on anything. You see Vasily smile and walk over to you before pulling his dick out of his pants and rubbing the tip against your lips. "Open your mouth, slut."');
       scene.actions([
         { label: 'Open your mouth', goto: ['vasily_home_sex', 'vasily_vodka_bj'] },
@@ -1505,7 +1518,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vanna.jpg');
-  // TODO-QSP: dynamic text: Uncle Sergey''s bathroom is small and very unpretentious. Nevertheless, it has e...
+  // TODO-QSP: dynamic text: 'Uncle Sergey''s bathroom is small and very unpretentious. Nevertheless, it has ...
   scene.text('Uncle Sergey\'s bathroom is small and very unpretentious. Nevertheless, it has everything a bathroom needs. There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, a shower and a bathtub.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
@@ -1632,7 +1645,7 @@ function enterVasilykitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh.jpg');
   scene.text('An uninspiring kitchen, with the basic amenities for life.');
-  if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  Number((s as any).locArgs?.[0] ?? 0) === 0) {
+  if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  String((s as any).locArgs?.[0] ?? '') === 0) {
     if ((Math.floor(Math.random() * 100) + 1) < 10) {
       // TODO-QSP: dynamic text: When you enter the kitchen, <<$serg_obr>> <a href="exec:gt ''Serge_kuh'',''kuh_b...
       scene.text(`When you enter the kitchen, ${((s as any).serg_obr ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Serge_kuh/u0027, /u0027kuh_buh/u0027); return false;">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
@@ -1708,7 +1721,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).beer_day = ((st as any).daystart ?? 0);
     (st as any).beer_count = ((st as any).beer_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('You take a bottle of beer from the fridge and drink it, quenching your thirst.');
     scene.actions([
       { label: 'Keep looking around', goto: ['vasilyhome', 'fridge'] },
@@ -1725,7 +1739,8 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (st as any).vodka_day = ((st as any).daystart ?? 0);
     (st as any).vodka_count = ((st as any).vodka_count ?? 0) - (1);
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/sh...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('You pour some vodka in a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['vasilyhome', 'fridge'] },

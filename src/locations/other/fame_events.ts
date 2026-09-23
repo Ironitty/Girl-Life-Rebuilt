@@ -11,42 +11,42 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSelect(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = (Math.floor(Math.random() * 3) + 0);
   if ((!((s as any).temp ?? 0))) {
-    if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
+    if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
       ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
       ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
       // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
     }
   } else {
     if (((s as any).temp ?? 0) === 1) {
-      if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
+      if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
         ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
         ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
         // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
       }
     } else {
       if (((s as any).temp ?? 0) === 2) {
-        if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
+        if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
           ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
           ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
           // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
         }
       } else {
         if (((s as any).temp ?? 0) === 3) {
-          if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
+          if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
             ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
             ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
             // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
           }
         } else {
           if (((s as any).temp ?? 0) === 4) {
-            if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
+            if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
               ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
               ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
               // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
             }
           } else {
             if (((s as any).temp ?? 0) === 5) {
-              if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
+              if (((s as any).fame ?? 0)[(String((s as any).locArgs?.[1] ?? '')) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
                 ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
                 ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
                 // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]

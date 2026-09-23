@@ -135,7 +135,8 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).zz_stage ?? 0) < 8) {
-      scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea' + ((s as any).zz_stage ?? '') + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/meynolds/tam...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/meynolds/tamara_tea` + ((s as any).zz_stage ?? '') + '.jpg"></center>');
       if (((s as any).zz_stage ?? 0) === 1) {
         // TODO-QSP: dynamic text: "Oh hi, <<$pcs_nickname>>! I''m so glad to see you! Come in, come in, make yours...
         scene.text(`"Oh hi, ${((s as any).pcs_nickname ?? '')}! I'm so glad to see you! Come in, come in, make yourself at home! I'll put on a kettle right away!"`);
@@ -187,9 +188,7 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Drink tea with Tamara', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'next_meet', zz_stage + 1
-  } },
+        { label: 'Drink tea with Tamara', goto: ['mey_tamara_events', 'next_meet', 'zz_stage + 1'] },
       ]);
     } else {
       (s as any).pcs_energy = 20;
@@ -369,7 +368,7 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).newdress_id ?? 0) > 0) {
       scene.text('"I picked a real sexy outfit, it\'s so sexy that the boys will spontaneously be cumming in their pants." you said smiling.');
-      // TODO-QSP: dynamic text: "Good! Now remember it''s only to be used in school. Now lets start training you...
+      // TODO-QSP: dynamic text: '"Good! Now remember it''s only to be used in school. Now lets start training yo...
       scene.text(`"Good! Now remember it's only to be used in school. Now lets start training you how to walk elegantly. You can start by getting out of my car and take a walk around the city for a couple hours" Tamara hands you ${qspFunc(s, 'money', 'string_profit', 2000)}. "It's important that you take care of your health so take the money and head over to the clinic and get a health exam, within the next couple weeks. I'll be waiting for you by the Babel restaurant at 21:00, don't be late."`);
       ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 36;
       qspCall(st, 'money', 'earn', 2000);
@@ -406,7 +405,7 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
         { label: 'Stay in the city', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "No, dear. I need you to stay near here if you want I can drive you home to me o...
+    // TODO-QSP: dynamic text: '"No, dear. I need you to stay near here if you want I can drive you home to me ...
     scene.text('"No, dear. I need you to stay near here if you want I can drive you home to me or if you want to walk around the city. Either way you will need to kill a couple of hours. I\'m feeling hungry so I\'ll go and get something to eat." She says. "Whatever you decide, I expect you to be by the restaurant by 21:00, I\'ll be waiting for you there."<br>');
     scene.actions([
       { label: 'I insist staying here in the city', handler: (st: GameState) => {
@@ -539,7 +538,7 @@ function enterParty0(s: GameState, scene: SceneBuilder): void {
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 41;
     scene.text('"I would love to accompany you to the party, Aunt Tamara! I\'ll go and get ready right away."');
     scene.text('Tamara looks mischievously at you, but strictly instructs you to…');
-    // TODO-QSP: dynamic text: "Wear your formal dress and put on normal makeup," she smiles. "Don''t overdo th...
+    // TODO-QSP: dynamic text: '"Wear your formal dress and put on normal makeup," she smiles. "Don''t overdo t...
     scene.text('"Wear your formal dress and put on normal makeup," she smiles. "Don\'t overdo the makeup. You should look normal. Not too little, but don\'t put on a ton of makeup either. You\'re not a soldier, putting on war paint before battle! Be ready by 18:00. I can\'t be bothered waiting for you. I\'ll leave without you if you\'re not on time and there might be some consequences…"');
     scene.actions([
       { label: 'Move away', goto: ['mey_home', 'start'] },
@@ -643,7 +642,8 @@ function enterParty2(s: GameState, scene: SceneBuilder): void {
 ]);
     return;
   }
-  scene.img('images/characters/pavlovsk/school/girl/vicky/event/party' + (Math.floor(Math.random() * 3) + 8) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/party` + (Math.floor(Math.random() * 3) + 8) + '.jpg"></center>');
   scene.text('"You must try the food, it\'s what the oligarchs usually eat…" someone points you in the direction of a luxurious table filled with appetizers.');
   if (((s as any).hour ?? 0) === 23  ||  ((s as any).hour ?? 0) < 2) {
     qspGoto(s, 'mey_home', 'start');
@@ -736,7 +736,8 @@ function enterParty4(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).zz_stage ?? 0))) {
     (s as any).zz_stage = 16;
   }
-  scene.img('images/characters/pavlovsk/school/girl/vicky/event/party' + ((((s as any).zz_stage ?? 0) === 18) ? (17) : (((s as any).zz_stage ?? ''))) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/party` + ((((s as any).zz_stage ?? 0) === 18) ? (17) : (((s as any).zz_stage ?? ''))) + '.jpg"></center>');
   if (((s as any).zz_stage ?? 0) === 16) {
     (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
     scene.text('The champagne silently creeps up on you. You\'re feeling more loose and finally find the strength to mingle. The alcohol is making you a bit horny and you can\'t shake off the desire, wanting to hook up with someone. You are totally forgetting the strict orders that Tamara gave you about "keeping your composure at all times, and not going looking for sexual encounters".');
@@ -933,8 +934,8 @@ function enterParty6(s: GameState, scene: SceneBuilder): void {
 function enterReputation(s: GameState, scene: SceneBuilder): void {
   (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
   if (((s as any).zz_stage ?? 0)!==3) {
-    // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/eve...
-    scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/pavlovsk/school/girl/vicky/event/reputation\'+zz_stage+\'.jpg"></center>');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/reputation` + ((s as any).zz_stage ?? '') + '.jpg"></center>');
   }
   if ((!((s as any).zz_stage ?? 0))) {
     scene.text('You stand in front of Tamara, with your eyes tearing up.');
@@ -1014,9 +1015,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).zz_stage ?? 0) < 11) {
     scene.actions([
-{ label: 'Pleade', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'reputation', zz_stage+1
-  } },
+{ label: 'Pleade', goto: ['mey_tamara_events', 'reputation', 'zz_stage+1'] },
 ]);
     return;
   } else {

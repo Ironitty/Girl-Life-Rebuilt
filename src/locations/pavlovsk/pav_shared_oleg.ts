@@ -511,8 +511,8 @@ function enterOlegDick(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: Your relationship with ' + $npc_firstname[$boy] + ' is <font color=#' + $color_r...
-  scene.text('Your relationship with \' + $npc_firstname[$boy] + \' is <font color=#\' + $color_rel + \'>\' + $rel_word[$boy] + \'</font>.');
+  // TODO-QSP: dynamic text: 'Your relationship with ' + $npc_firstname[$boy] + ' is <font color=#' + $color_...
+  scene.text('\'Your relationship with \' + $npc_firstname[$boy] + \' is <font color=#\' + $color_rel + \'>\' + $rel_word[$boy] + \'</font>.\'');
   // TODO-QSP: $func('npc_notes', $boy)
   // TODO-QSP: dynamic text: His mood is <<$Oleg[''mood_txt'']>>
   scene.text(`His mood is ${((s as any).Oleg ?? 0)?.['mood_txt'] ?? ''}`);
@@ -804,8 +804,8 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Oleg_SuckBellowTable';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjtablestart.jpg');
@@ -827,7 +827,7 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 1) {
-      (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 20) + 1) / (((s as any).Oleg ?? {})?.['mood'] ?? 0));
+      (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * (20 - 1 + 1)) + (1)));
       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjtablekisstip.mp4');
       // TODO-QSP: dynamic text: You take <<$npc_firstname[$boy]>> cock in your hand, pointing the tip in front o...
       scene.text(`You take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cock in your hand, pointing the tip in front of your mouth.`);
@@ -1139,8 +1139,8 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Oleg_Suck';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/nd/cockflaccid.jpg');
@@ -1507,8 +1507,8 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Oleg_Sex_Vag';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2027,8 +2027,8 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Oleg_Sex_Anal';
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
-    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
-    scene.text('' + ((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '' + ' orgasm build-up: \'+orgB+\'/100');
+    // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

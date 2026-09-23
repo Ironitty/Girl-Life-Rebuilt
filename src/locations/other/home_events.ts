@@ -55,7 +55,7 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to bed', handler: (st: GameState) => {
     scene.img(`images/locations/shared/apartment/event/sick/sick${(Math.floor(Math.random() * 7) + 21)}.jpg`);
-    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 6) + 1) * 30);
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * (6 - 1 + 1)) + (1)));
     scene.text('You lie in bed, shivering while wrapped in a blanket. Time drags by painfully slow and you can\'t say how much time passes before the doorbell rings.');
     scene.actions([
       { label: 'Answer the door', handler: (st: GameState) => {
@@ -539,8 +539,6 @@ function enterSetWashClothesAct(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'check_total_items');
   if (((s as any).washer_total_wash_count ?? 0) > 0) {
     (s as any).wash_time = Math.min(30 + 5 * (((s as any).washer_total_wash_count ?? 0) / 5), 120);
-    // TODO-QSP: dynamic "
-    // TODO-QSP: "
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Wash clothes (' + String(((s as any).wash_time ?? '') / 60 ?? '') + ':' + String((String(100 + ((s as any).wash_time ?? '') % 60).slice((2)-1, ((2)-1)+(2))) ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).wash_time ?? 0));
@@ -687,7 +685,7 @@ function enterGoHomeNaked(s: GameState, scene: SceneBuilder): void {
     scene.text('You make it to your door and fish your keys out of your purse. You unlock the door and slip inside, closing the door behind you before you rush down the hall to your bedroom.');
     scene.actions([
       { label: 'Stay home', handler: (st: GameState) => {
-    // TODO-QSP: gt $home['bedroom'], $home['bedroom_arg']
+    dynamicGoto(st, (((st as any).home ?? {})['bedroom']), (((st as any).home ?? {})['bedroom_arg']));
   } },
     ]);
   } },

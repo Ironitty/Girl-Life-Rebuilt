@@ -17,7 +17,7 @@ function enterGoodForYou(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/pillow_talk4.jpg');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.text('"Was it good for you?" you ask pleasantly.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGoodForYou2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGoodForYou2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -220,8 +220,8 @@ function enterCreampieFavorite(s: GameState, scene: SceneBuilder): void {
       { label: 'Glad you enjoyed it', handler: (st: GameState) => {
     scene.text('"I\'m glad you found my pussy so satisfying," you smirk in amusement.');
     scene.text('"What about you?" he asks. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I liked it too', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['creampie_count'] === ((st as any).sex_ev ?? 0)?.['simultaneous_orgasm_count']) {
@@ -242,8 +242,8 @@ function enterCreampieFavorite(s: GameState, scene: SceneBuilder): void {
       { label: 'Glad you enjoyed it', handler: (st: GameState) => {
     scene.text('"I\'m glad you found my ass so satisfying," you smirk in amusement.');
     scene.text('"What about you?" he asks. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I liked it too', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['anal_creampie_count'] === ((st as any).sex_ev ?? 0)?.['simultaneous_orgasm_count']) {
@@ -289,14 +289,14 @@ function enterCreampieFavorite(s: GameState, scene: SceneBuilder): void {
           { label: 'Ask next time (tease)', handler: (st: GameState) => {
     scene.text('"It would be nice if you would ask before you do," you smile teasingly. "I\'m not just a cum receptacle you know."');
     scene.text('"Sorry," he replies, though he doesn\'t look it. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Ask next time (annoyed)', handler: (st: GameState) => {
     scene.text('"It would be nice if you would ask first," you frown in annoyance. "I\'m not just a cum receptacle you know."');
     scene.text('"Sorry," he replies, though he doesn\'t look it. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -368,16 +368,16 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause I like you too much to say no," you say, smirking wryly at him.');
     scene.text('He smiles back warmly.');
     scene.text('"Well what about you? Was there something I did to make you feel good?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'For you (sarcastic)', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk2.jpg');
     scene.text('"Why do you think?" you say, eyeballing him. "Cause <i>somebody</i> likes watching me swallow."');
     scene.text('He smiles back.');
     scene.text('"Well what about you? Was there something I did to make you feel good?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Acquiring taste', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk2.jpg');
@@ -385,8 +385,8 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> laughs.
     scene.text(`${((st as any).npcdesc ?? '')} laughs.`);
     scene.text('"Well I appreciate the effort. What about you? Was there something I did to make you feel good?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Spitting is quitting', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk2.jpg');
@@ -394,15 +394,15 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> laughs.
     scene.text(`${((st as any).npcdesc ?? '')} laughs.`);
     scene.text('"You certainly do. What about you then? Was there something I did to make you feel good?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
         // TODO-QSP: dynamic text: "Sorry I guess," <<$npcdesc>> says, looking a little embarrassed. "Was there som...
         scene.text(`"Sorry I guess," ${((st as any).npcdesc ?? '')} says, looking a little embarrassed. "Was there something you did enjoy?"`);
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -420,8 +420,8 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> looks pretty pleased with himself at that.
     scene.text(`${((st as any).npcdesc ?? '')} looks pretty pleased with himself at that.`);
     scene.text('"What else did you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -432,8 +432,8 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> can''t seem to help but grin back at you.
     scene.text(`${((st as any).npcdesc ?? '')} can't seem to help but grin back at you.`);
     scene.text('"What else did you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -441,14 +441,14 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
       { label: 'I aim to please', handler: (st: GameState) => {
     scene.text('"Glad you thought so," you smile pleasantly. "I aim to please."');
     scene.text('"So what about you? What did you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Not my favorite', handler: (st: GameState) => {
     scene.text('"It\'s not exactly my favorite flavour of syrup," you smile ruefully. "But I\'m glad you thought it was hot."');
     scene.text('"So what about you? What did you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -459,12 +459,12 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
       { label: 'I don\'t like it', handler: (st: GameState) => {
     scene.text('"I don\'t like it," you say, wrinkling your nose. "It\'s just <i>weird</i> swallowing cum."');
     scene.text('"Then what <i>do</i> you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It\'s gross', handler: (st: GameState) => {
     scene.text('"Cum is gross," you say, wrinkling your nose. "I hate it. There\'s no way I\'m swallowing that vile shit."');
     scene.text('"Then what <i>do</i> you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Don\'t like you enough', handler: (st: GameState) => {
     scene.text('"I don\'t like you enough for that yet," you say.');
@@ -479,20 +479,20 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: "Okay, I see how it is," <<$npcdesc>> chuckles. "So what do <i>you</i> like then...
       scene.text(`"Okay, I see how it is," ${((st as any).npcdesc ?? '')} chuckles. "So what do <i>you</i> like then? So I know what to avoid in the future?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Maybe', handler: (st: GameState) => {
     scene.text('"Maybe," you smirk teasingly.');
     // TODO-QSP: dynamic text: "Okay, I see how it is," <<$npcdesc>> chuckles. "So what did <i>you</i> enjoy th...
     scene.text(`"Okay, I see how it is," ${((st as any).npcdesc ?? '')} chuckles. "So what did <i>you</i> enjoy then? So I know what to do to make you like me?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Yes," you smirk, a mischievous twinkle in your eye. "Every drop."');
     // TODO-QSP: dynamic text: "Well in that case," <<$npcdesc>> smiles back. "What do I do to make you like me...
     scene.text(`"Well in that case," ${((st as any).npcdesc ?? '')} smiles back. "What do I do to make you like me?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -509,7 +509,7 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: "Okay, I see how it is," <<$npcdesc>> chuckles. "So what do <i>you</i> like then...
       scene.text(`"Okay, I see how it is," ${((st as any).npcdesc ?? '')} chuckles. "So what do <i>you</i> like then? So I know how to drive <i>you</i> crazy."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Maybe', handler: (st: GameState) => {
@@ -521,7 +521,7 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Okay, I see how it is," <<$npcdesc>> chuckles. "So what did <i>you</i> enjoy th...
       scene.text(`"Okay, I see how it is," ${((st as any).npcdesc ?? '')} chuckles. "So what did <i>you</i> enjoy then? So I know what to do to make you my girlfriend."`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Yes," you smirk, a mischievous twinkle in your eye. "Every drop."');
@@ -532,7 +532,7 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Well in that case," <<$npcdesc>> smiles back. "So what did <i>you</i> enjoy the...
       scene.text(`"Well in that case," ${((st as any).npcdesc ?? '')} smiles back. "So what did <i>you</i> enjoy then? So I know what to do to make you my girlfriend."`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -564,7 +564,7 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I think it\'s hot too. There\'s something about having a guy\'s cum on my face that just makes me feel like a sex goddess," you grin back.');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It feels nice', handler: (st: GameState) => {
     if (((st as any).cum_loc ?? 0)?.['face'] > 0) {
@@ -572,7 +572,7 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I like how it feels," you smile. "It\'s warm and sticky, but in a good way. It feels nice on my skin."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -589,7 +589,7 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause it goes both ways," you shrug. "If I don\'t let you do stuff to me that you enjoy then how can I ask the same of you?"');
     // TODO-QSP: dynamic text: "Well, what do you enjoy then?" <<$npcdesc>> asks.
     scene.text(`"Well, what do you enjoy then?" ${((st as any).npcdesc ?? '')} asks.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Cause you like it', handler: (st: GameState) => {
     scene.actions([
@@ -597,13 +597,13 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause I know you like it," you smirk. "And I like turning you on."');
     // TODO-QSP: dynamic text: "Well, what can I do to turn you on then?" <<$npcdesc>> asks.
     scene.text(`"Well, what can I do to turn you on then?" ${((st as any).npcdesc ?? '')} asks.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '(Sarcastic)', handler: (st: GameState) => {
     scene.text('"Cause I know you\'re a pervert," you say eyeballing him. "And pervs like seeing girls get facials."');
     // TODO-QSP: dynamic text: "We sure do," <<$npcdesc>> chuckles. "But what about you? What do you like?"
     scene.text(`"We sure do," ${((st as any).npcdesc ?? '')} chuckles. "But what about you? What do you like?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -612,7 +612,7 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "Well I don''t want you to feel like you always have to be serving me," <<$npcde...
       scene.text(`"Well I don't want you to feel like you always have to be serving me," ${((st as any).npcdesc ?? '')} smiles back. "What can I do to make you feel good?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).npc_abusive ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
         // TODO-QSP: dynamic text: "Glad you know your place," <<$npcdesc>> says smugly.
@@ -638,8 +638,8 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well I always like looking hot," you smirk amusedly.');
     }
     scene.text('"What about you?" he asks. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Why?', handler: (st: GameState) => {
     if (((st as any).cum_loc ?? 0)?.['face'] > 0) {
@@ -648,8 +648,8 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
       scene.text('"What is it about guys and finishing on girls faces?" you ask amusedly. "What\'s so hot about it?"');
     }
     scene.text('"I don\'t know," he shrugs. "There\'s just something... primal about it. It\'s hot, what else do you want me to say? But what about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -672,7 +672,7 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I think it\'s hot too," you grin back. "There\'s something about having a guy\'s cum on my chest that just makes me feel like a sex goddess!"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It feels nice', handler: (st: GameState) => {
     if (((st as any).cum_loc ?? 0)?.['tits'] > 0) {
@@ -680,7 +680,7 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I like how it feels," you smile. "It\'s warm and sticky, but in a good way. It feels nice on my skin."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -697,7 +697,7 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause it goes both ways," you shrug. "If I don\'t let you do stuff to me that you enjoy then how can I ask the same of you?"');
     // TODO-QSP: dynamic text: "Well, what do you enjoy then?" <<$npcdesc>> asks.
     scene.text(`"Well, what do you enjoy then?" ${((st as any).npcdesc ?? '')} asks.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Cause you like it', handler: (st: GameState) => {
     scene.actions([
@@ -705,13 +705,13 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cause I know you like it," you smirk. "And I like turning you on."');
     // TODO-QSP: dynamic text: "Well, what can I do to turn you on then?" <<$npcdesc>> asks.
     scene.text(`"Well, what can I do to turn you on then?" ${((st as any).npcdesc ?? '')} asks.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '(Sarcastic)', handler: (st: GameState) => {
     scene.text('"Cause I know you\'re a pervert," you say eyeballing him. "And pervs like seeing girls get slimed."');
     // TODO-QSP: dynamic text: "We sure do," <<$npcdesc>> chuckles. "But what about you? What do you like?"
     scene.text(`"We sure do," ${((st as any).npcdesc ?? '')} chuckles. "But what about you? What do you like?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -720,7 +720,7 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "Well I don''t want you to feel like you always have to be serving me," <<$npcde...
       scene.text(`"Well I don't want you to feel like you always have to be serving me," ${((st as any).npcdesc ?? '')} smiles back. "What can I do to make you feel good?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).npc_abusive ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
         // TODO-QSP: dynamic text: "Glad you know your place," <<$npcdesc>> says smugly.
@@ -746,8 +746,8 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well I as long as you had fun," you smirk amusedly.');
     }
     scene.text('"What about you?" he asks. "What about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Why?', handler: (st: GameState) => {
     if (((st as any).cum_loc ?? 0)?.['tits'] > 0) {
@@ -756,8 +756,8 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
       scene.text('"What is it about guys and coming on tits?" you ask amusedly. "What\'s so hot about it?"');
     }
     scene.text('"Tits are sexy, girls with cum on them are sexy," he shrugs. "So tits with cum on them are the sexiest. What\'s not to love about it? But what about you? What was your favorite part?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -773,15 +773,15 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
     { label: 'What do I taste like?', handler: (st: GameState) => {
     scene.text('"Yeah?" you smirk back. "What do I taste like?"');
     scene.text('"Hmm... A little salty. Maybe a little sweet too. Not exactly sure how to describe it other than to say you taste delicious. Did you enjoy it too?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'What do you like about eating pussy?', handler: (st: GameState) => {
     scene.text('"Why do you like eating pussy so much?" you giggle. "You\'re not gonna come from it."');
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       // TODO-QSP: dynamic text: "I just like giving more than I like receiving," <<$npcdesc>> shrugs. "It turns ...
       scene.text(`"I just like giving more than I like receiving," ${((st as any).npcdesc ?? '')} shrugs. "It turns me on knowing that what I'm doing is making a girl feel good. I love making girls squirm just by running my tongue across their clit at the right time and I like the way they taste. What can I say? I just think it's fun. What about you? What do you like?"`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: "Well, do you like giving blowjobs?" <<$npcdesc>> asks.
       scene.text(`"Well, do you like giving blowjobs?" ${((st as any).npcdesc ?? '')} asks.`);
@@ -793,8 +793,8 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> shrugs.
     scene.text(`${((st as any).npcdesc ?? '')} shrugs.`);
     scene.text('"What can I say? I just think it\'s fun. What about you? What do you like?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Yes', handler: (st: GameState) => {
     scene.text('"... yeah," you admit.');
@@ -805,21 +805,21 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Same thing with eating pussy," <<$npcdesc>> smirks back. "I like giving more th...
     scene.text(`"Same thing with eating pussy," ${((st as any).npcdesc ?? '')} smirks back. "I like giving more than receiving. It's fun to make girls squirm and I love the taste of pussy. So if you're allowed to love blowjobs, why can't I love eating pussy?"`);
     scene.text('"Guess you\'ve got a point," you chuckle.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'The taste', handler: (st: GameState) => {
     scene.text('"Something about having a cock in my mouth just feels good," you say. "The sweaty rough texture, the sort of musky smell. It\'s like licking a warm salty popsicle."');
     // TODO-QSP: dynamic text: "Same thing with eating pussy," <<$npcdesc>> smirks back. "I love the taste of p...
     scene.text(`"Same thing with eating pussy," ${((st as any).npcdesc ?? '')} smirks back. "I love the taste of pussy. And it's fun to lick them, playing with their little clits and making girls squirm with just my tongue. So if you're allowed to love blowjobs, why can't I love eating pussy?"`);
     scene.text('"Guess you\'ve got a point," you chuckle.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'The control', handler: (st: GameState) => {
     scene.text('"I guess because of the control?" you say. "There\'s something... empowering about having a cock in my mouth. Like I could just chomp down and cause tons of pain but also that I have a direct line to the pleasure a guy is feeling. <i>I</i> get to decide if he gets to feel good. <i>I</i> get to decide if he gets to come. I can edge him, I can tease him, I can swallow him whole, make him gasp. Something about that just... turns me on."');
     // TODO-QSP: dynamic text: "Same thing with eating pussy," <<$npcdesc>> smirks back. "I like giving more th...
     scene.text(`"Same thing with eating pussy," ${((st as any).npcdesc ?? '')} smirks back. "I like giving more than receiving. I love the taste of pussy and it's fun to lick them, playing with their little clits and making girls squirm with just my tongue. So if you're allowed to love blowjobs, why can't I love eating pussy?"`);
     scene.text('"Guess you\'ve got a point," you chuckle.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -833,7 +833,7 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"You didn\'t have to," he smirks back. "I could tell by the way you were screaming my name."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -849,7 +849,7 @@ function enterNpcMissFav1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It\'s pleasant', handler: (st: GameState) => {
     scene.text('"Me too," you smile back. "There\'s just something... pleasant about missionary. Can\'t explain it but it\'s my favorite way to fuck."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It\'s intimate', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['creampie_count'] > 0  &&  (((st as any).sex_ev ?? 0)?.['creampie_allowance'] > 0  ||  ((st as any).npc_free_creampies ?? 0)?.[String((st as any).npcID ?? 0)] !== '')) {
@@ -857,42 +857,42 @@ function enterNpcMissFav1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Me too," you smile back. "I like how we can stare into each other\'s eyes while we fuck."');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Like being on bottom', handler: (st: GameState) => {
     scene.text('"Me too," you smile back. "I prefer being on bottom myself."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Like feeling his weight', handler: (st: GameState) => {
     scene.text('"Me too," you smile back. "I can feel the weight of your entire body when you\'re on top, pressing down through your cock into my pussy. I love it."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
     { label: 'It\'s not my favorite (liked)', handler: (st: GameState) => {
     scene.text('"Yeah?" you say. "Missionary isn\'t usually my favorite, but I had fun while we were doing it."');
     scene.text('"Then what <i>is</i> your favorite?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s not my favorite (disliked)', handler: (st: GameState) => {
     scene.text('"At least you were having fun," you say wryly. "Missionary isn\'t really my cup of tea."');
     scene.text('"Then what do you prefer?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Isn\'t missionary boring?', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
     if (((st as any).npc_argumentative ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       scene.img('images/shared/sex/after/pillow_talk3.jpg');
       scene.text('"Don\'t you think missionary is kind of boring?" you sigh unhappily. "It\'s just so... basic."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
       scene.text('"Don\'t you think missionary is kind of boring?" you sigh unhappily. "It\'s just so... basic."');
       scene.text('"If missionary is boring, then what do you prefer?" he asks back wryly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -909,46 +909,46 @@ function enterNpcDoggyFav1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Feels better', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "It feels better in doggy. Hits the inside of my pussy just right."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Goes deeper', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I can feel you so much deeper inside when you fuck me doggy."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Feels dirty', handler: (st: GameState) => {
     scene.text('"Me too," you grin back wickedly. "It feels dirty. And I like it dirty."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Like the impact', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I like how it feels, not just being penetrated but when your hips hit my ass. The impact of it goes through my whole body and I just think that\'s <i>super hot</i>."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
     { label: 'It\'s not my favorite (liked)', handler: (st: GameState) => {
     scene.text('"Yeah?" you say. "Doggystyle isn\'t usually my favorite, but I had fun while we were doing it."');
     scene.text('"Then what <i>is</i> your favorite?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s not my favorite (disliked)', handler: (st: GameState) => {
     scene.text('"At least you were having fun," you say wryly. "Doggystyle isn\'t really my cup of tea."');
     scene.text('"Then what do you prefer?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Isn\'t doggy boring?', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
     if (((st as any).npc_argumentative ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       scene.img('images/shared/sex/after/pillow_talk3.jpg');
       scene.text('"Don\'t you think doggy is kind of boring?" you sigh unhappily. "I\'m just on hands and knees the whole time staring at the wall and you can\'t see anything of me except my ass."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
       scene.text('"Don\'t you think doggy is kind of boring?" you sigh unhappily. "I\'m just on hands and knees the whole time staring at the wall and you can\'t see anything of me except my ass."');
       scene.text('"If doggy\'s boring, then what do you prefer?" he asks back wryly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -969,42 +969,42 @@ function enterNpcCowgirlFav1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Feels better', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I love bouncing on your dick! I can\'t get that feeling in any other position."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Good angle', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "Your cock rubs against the inside of my pussy in a whole different way. I can only get that when I\'m on top."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Like control', handler: (st: GameState) => {
     scene.text('"Me too," you grin back wickedly. "I like being in charge."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
     { label: 'It\'s not my favorite (liked)', handler: (st: GameState) => {
     scene.text('"Yeah?" you say. "Cowgirl isn\'t usually my favorite, but it was fun bouncing on your dick."');
     scene.text('"Then what <i>is</i> your favorite?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s not my favorite (disliked)', handler: (st: GameState) => {
     scene.text('"At least you were having fun," you say wryly. "Cowgirl isn\'t really my cup of tea."');
     scene.text('"Then what do you prefer?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Cowgirl sucks', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
     if (((st as any).npc_argumentative ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       scene.img('images/shared/sex/after/pillow_talk1.jpg');
       scene.text('"Really? I hate cowgirl," you sigh. "It\'s so tiring, just bouncing up and down on your dick for ages until you come. Makes my legs sore."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
       scene.text('"Really? I hate cowgirl," you sigh. "It\'s so tiring, just bouncing up and down on your dick for ages until you come. Makes my legs sore."');
       scene.text('"Well, then what do you prefer?" he asks back wryly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1019,14 +1019,14 @@ function enterNpcAnalFav1(s: GameState, scene: SceneBuilder): void {
       { label: 'It\'s not my favorite (liked)', handler: (st: GameState) => {
     scene.text('"Yeah?" you say. "I\'m not super into anal, but this was fun."');
     scene.text('"Then what <i>is</i> your favorite?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It\'s not my favorite (disliked)', handler: (st: GameState) => {
     scene.text('"At least you were having fun," you say wryly. "Anal isn\'t really my cup of tea."');
     scene.text('"Then what do you prefer?" he asks in response.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1037,15 +1037,15 @@ function enterNpcAnalFav1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Feels better than vaginal', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I think I like it better than vaginal sex."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Hits different', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "It scratches a totally different itch from pussy sex."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Feels dirty', handler: (st: GameState) => {
     scene.text('"Me too," you grin back wickedly. "It feels dirty. And I like it dirty."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1054,13 +1054,13 @@ function enterNpcAnalFav1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_argumentative ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       scene.img('images/shared/sex/after/pillow_talk3.jpg');
       scene.text('"Don\'t you think doggy is kind of boring?" you sigh unhappily. "I\'m just on hands and knees the whole time staring at the wall and you can\'t see anything of me except my ass."');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcArgueLashout(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
       scene.text('"Don\'t you think doggy is kind of boring?" you sigh unhappily. "I\'m just on hands and knees the whole time staring at the wall and you can\'t see anything of me except my ass."');
       scene.text('"If doggy\'s boring, then what do you prefer?" he asks back wryly.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcNothingFav(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1102,8 +1102,8 @@ function enterPcFavoritePart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
     scene.actions([
       { label: 'You liked the sex', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFuckFav1(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFuckFav2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFuckFav1(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFuckFav2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1177,15 +1177,15 @@ function enterPcBjFav1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "You''ve got magic lips," <<$npcdesc>> smiles back, running his thumb across you...
       scene.text(`"You've got magic lips," ${((st as any).npcdesc ?? '')} smiles back, running his thumb across your lips.`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav2(s, scene); (st as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav2(st, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Oral fixation', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"I liked sucking your cock," you grin. "I think I have some kind of oral fixation. Something about having a cock in my mouth just feels <i>good</i>."');
     // TODO-QSP: dynamic text: "Oral fixation huh?" <<$npcdesc>> says, running his thumb across your lips.
     scene.text(`"Oral fixation huh?" ${((st as any).npcdesc ?? '')} says, running his thumb across your lips.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'The taste', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
@@ -1198,8 +1198,8 @@ function enterPcBjFav1(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: "Explains why you''re so good at it," <<$npcdesc>> smirks, running his thumb acr...
       scene.text(`"Explains why you're so good at it," ${((st as any).npcdesc ?? '')} smirks, running his thumb across your lips. "You were gobbling it up like it was your last meal."`);
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcBjFav3(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1286,10 +1286,10 @@ function enterPcFuckFav1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref1(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcRoughGentleFav1(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref1(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcRoughGentleFav1(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).sex_ev ?? 0)?.['simultaneous_orgasm_count'] > 0) {
       scene.actions([
@@ -1632,10 +1632,10 @@ function enterPcFuckFav2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcRoughGentleFav2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcRoughGentleFav2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -2005,9 +2005,9 @@ function enterPcAnalPref2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref2(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMissPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDoggyPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcCowgirlPref2(st, scene); (st as any).locArgs = __savedLocArgs; }
       if (((st as any).sex_ev ?? 0)?.['gentle_fuck'] === 1) {
         scene.actions([
           { label: 'When you were gentle', handler: (st: GameState) => {
@@ -2109,7 +2109,7 @@ function enterPcCuniFav1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['boy_favorite'] === 'pussyeating') {
       scene.text('"That was my favorite part too," you grin. "When you ate me out. You\'re just so good at it!"');
     } else {
-      // TODO-QSP: dynamic text: "I liked it when you ate me out ' + iif($sex_ev['boy_favorite'] = 'pussyeating',...
+      // TODO-QSP: dynamic text: '"I liked it when you ate me out ' + iif($sex_ev['boy_favorite'] = 'pussyeating'...
       scene.text('"I liked it when you ate me out ' + ((((st as any).sex_ev ?? 0)?.['boy_favorite'] === 'pussyeating') ? ('too') : ('')) + '," you grin. "A tongue playing with the little man in the boat drives me crazy. I love it."');
     }
     qspCall(st, 'sex_ev_pillow_talk', 'topic_route');
@@ -2359,11 +2359,11 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['orgasm_count'] > 0) {
       scene.text('"You gave me a <i>good</i> dicking," you grin back. "What more could I ask for?"');
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Dick drunk', handler: (st: GameState) => {
     scene.text('"I think I\'m dick drunk," you say with a ditzy giggle, rubbing your wet thighs together.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2380,7 +2380,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "I''m not gonna be able to walk right for a week," you say, rubbing your thighs ...
       scene.text(`"I'm not gonna be able to walk right for a week," you say, rubbing your thighs over your thoroughly fucked sex and grinning as you add, "I think you might've pounded my pussy into a ${((st as any).npcdesc ?? '')} shape."`);
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '(in a bad way)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['keep_it_up'] = 1;
@@ -2413,7 +2413,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
       scene.text('"I just do," you shrug. "Besides, it\'s your fault for fucking me so well."');
     }
     scene.text('You both grin at that.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: '(in a bad way)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['sore_pussy_talk'] = 1;
@@ -2430,7 +2430,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
       { label: 'Lots of orgasms', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "You made me come lots," you say, flashing a tired smile at <<$npcdesc>>. "It wa...
     scene.text(`"You made me come lots," you say, flashing a tired smile at ${((st as any).npcdesc ?? '')}. "It was more than good."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -2439,7 +2439,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
         { label: 'You got me off', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "You got me off," you say, smiling at <<$npcdesc>>. "How could I complain?"
     scene.text(`"You got me off," you say, smiling at ${((st as any).npcdesc ?? '')}. "How could I complain?"`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -2454,7 +2454,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>>''s response makes you laugh out loud.
     scene.text(`${((st as any).npcdesc ?? '')}'s response makes you laugh out loud.`);
     scene.text('"That\'s okay," you giggle. "I forgive you."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Roll your eyes', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
@@ -2487,7 +2487,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
         scene.text(`"I'm all full," you smile, rubbing your belly in tired satisfaction as ${((st as any).npcdesc ?? '')}'s cum seeps out from both your holes.`);
       }
     }
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2496,7 +2496,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
     { label: 'Satisfied', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I had fun," you say, smiling at <<$npcdesc>>.
     scene.text(`"I had fun," you say, smiling at ${((st as any).npcdesc ?? '')}.`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcFavoritePart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Unsatisfied', handler: (st: GameState) => {
     scene.text('"Not really," you sigh.');

@@ -46,7 +46,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['story'] = 2;
   scene.img('images/locations/city/shared/fightclub/card.jpg');
   scene.text('That doesn\'t exactly inspire confidence, but You take his card. It says Sultan Maskaev, Sport Management.');
-  // TODO-QSP: dynamic text: <b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You ca...
+  // TODO-QSP: dynamic text: '<b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You c...
   scene.text('<b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You can call him on weekdays between 8:00 and 20:00!');
   qspCall(s, 'fightClub_phone', 'sultan');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -57,7 +57,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/fightclub/athlete_gym.jpg');
     scene.text('As you\'re getting changed, you\'re approached by a female kickboxer you\'ve seen a few times at the gym. "What did the Shadow want with you?');
     scene.text('"Who?"');
-    // TODO-QSP: dynamic text: "'+ $func('npc_notes', 'A295')+'"
+    // TODO-QSP: dynamic text: '"'+ $func('npc_notes', 'A295')+'"'
     scene.text('"\'+ $func(\'npc_notes\', \'A295\')+\'"');
     scene.text('"Why not?"');
     scene.text('"I heard, there was some dirty doping story. So you\'d better be careful with that."');
@@ -190,7 +190,7 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
     { label: 'Why put it off?', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
     scene.text('You arrange the first fight for next Sunday. He promises to pick you up and even get you the right clothes for the fight. He looks happy.');
-    // TODO-QSP: dynamic text: <b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at ' +...
+    // TODO-QSP: dynamic text: '<b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at ' ...
     scene.text('<b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at 19:00 (be inside)');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
@@ -273,7 +273,7 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Choose a fight name (Default: ' + String(((s as any).fightClubQW ?? 0)?.['name'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = 0;
+    ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = window.prompt("Enter the name you want to be known as.") ?? '';
     if (((st as any).fightClubQW ?? 0)?.['name'] === '') {
       ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = 'Dark Star';
     }
@@ -647,7 +647,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $home['location'], $home['location_arg']
+    dynamicGoto(st, (((st as any).home ?? {})['location']), (((st as any).home ?? {})['location_arg']));
   } },
   ]);
   scene.build();

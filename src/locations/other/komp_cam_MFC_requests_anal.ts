@@ -15,28 +15,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'komp_cam_functions', 'check_available_anal_dildo');
     if (((st as any).temp_camVars ?? 0)?.['anal_vibe_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetVibrAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetVibrAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_small_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSmallAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetSmallAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_normal_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetNormalAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetNormalAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_big_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetBigAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetBigAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_large_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLargeAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLargeAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_huge_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHugeAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetHugeAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_enormous_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetEnormousAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetEnormousAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
     if (((st as any).temp_camVars ?? 0)?.['anal_gigantic_available']) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetGiganticAct(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetGiganticAct(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);

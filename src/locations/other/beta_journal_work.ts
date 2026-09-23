@@ -17,14 +17,14 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'jobs', 'show_all');
   if (((s as any).teacher ?? 0)?.['job'] > 2) {
-    // TODO-QSP: dynamic text: You work as a teacher at the Lycée and your schedule is Monday to Saturday, teac...
+    // TODO-QSP: dynamic text: 'You work as a teacher at the Lycée and your schedule is Monday to Saturday, tea...
     scene.text(`You work as a teacher at the Lycée and your schedule is Monday to Saturday, teaching between 14:00 and 16:00. Your salary is ${qspFunc(s, 'money', 'string_profit', 300)} per day.`);
   }
   if (((s as any).bumtolik ?? 0) === 4) {
     scene.text('You have been asked to help the homeless at the Mercy Clinic in the city industrial region.');
   }
   if (((s as any).bumtolik ?? 0) >= 5) {
-    // TODO-QSP: dynamic text: You volunteer at the Mercy Clinic in the city industrial region and work with th...
+    // TODO-QSP: dynamic text: 'You volunteer at the Mercy Clinic in the city industrial region and work with t...
     scene.text('You volunteer at the Mercy Clinic in the city industrial region and work with the homeless. Working hours are from 9:00 to 17:00 on Saturday and Sunday.');
   }
   if (((s as any).audition ?? 0)?.['day'] === ((s as any).daystart ?? 0)) {

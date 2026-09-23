@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_buildup = Math.max(0, ((s as any).orgasm_buildup ?? 0) - 70);
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2  &&  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 0) {
-    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  Number((s as any).locArgs?.[0] ?? 0) !== 'hypno'  &&  (Math.floor(Math.random() * 9) + 1) > 2) {
+    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  String((s as any).locArgs?.[0] ?? '') !== 'hypno'  &&  (Math.floor(Math.random() * 9) + 1) > 2) {
       (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
       if ((!((s as any).orgasm_rand ?? 0))) {
         (s as any).orgasm_txt = 'You feel an orgasm building up, the warmth in your abdomen, the tell tale tingles but it just stops and you feel calm again.';
@@ -28,8 +28,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).orgasm_flag ?? 0)?.['masturbate'] === 1) {
     (s as any).orgasm_masturbate = ((s as any).orgasm_masturbate ?? 0) + (1);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
-      if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+    if (String((s as any).locArgs?.[1] ?? '') !== '') {
+      if (((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
         (s as any).arousal_feed_orgasm_flag = 1;
       }
     }
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).orgasm_flag ?? 0)?.['anal'] === 1) {
         (s as any).orgasm_anal = ((s as any).orgasm_anal ?? 0) + (1);
       } else {
-        if (Number((s as any).locArgs?.[0] ?? 0) === 'hypno') {
+        if (String((s as any).locArgs?.[0] ?? '') === 'hypno') {
           (s as any).orgasm_hypno = ((s as any).orgasm_hypno ?? 0) + (1);
         }
       }

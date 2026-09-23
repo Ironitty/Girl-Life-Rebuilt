@@ -37,7 +37,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).boyP = qspUntranslated(s, "boy[0]", { location: "paysex" });
   (s as any).x = 0;
   // TODO-QSP: :randomorder
-  (s as any).paysexrand = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp1') - 1);
+  (s as any).paysexrand = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   // TODO-QSP: $temp2[x] = $temp1[paysexrand]
   (s as any).x = ((s as any).x ?? 0) + (1);
   if (Object.keys((s as any).temp1 ?? {}).length > 0) {
@@ -155,7 +155,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/shared/sex/cum${((s as any).picrand ?? '')}.jpg`);
   (s as any).x = 0;
   // TODO-QSP: :randomend
-  (s as any).paysexrand = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp1') - 1);
+  (s as any).paysexrand = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   // TODO-QSP: $temp2[x] = $temp1[paysexrand]
   (s as any).x = ((s as any).x ?? 0) + (1);
   if (Object.keys((s as any).temp1 ?? {}).length > 0) {
@@ -316,7 +316,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[1] ?? '') > 0) {
     (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: :knownloop
     ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;

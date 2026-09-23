@@ -44,7 +44,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).region ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['loc_arg']  &&  Number((s as any).locArgs?.[3] ?? 0) === ((s as any).car ?? 0)?.['region']) {
+  if (String((s as any).locArgs?.[1] ?? '') === ((s as any).car ?? 0)?.['loc']  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).car ?? 0)?.['loc_arg']  &&  String((s as any).locArgs?.[3] ?? '') === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
   }
   return;
@@ -63,7 +63,7 @@ function enterIsHereArea(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).region ?? 0);
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['region']) {
+  if (String((s as any).locArgs?.[1] ?? '') === ((s as any).car ?? 0)?.['loc']  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
   }
   return;
@@ -150,7 +150,7 @@ function enterAvt(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).tehNT ?? 0))) {
     (s as any).tehNT = 200;
   }
-  (s as any).tehT = 0;
+  (s as any).tehT = (Math.floor(Math.random() * (((s as any).tehNT ?? 0) - 10 + 1)) + (10));
   if (((s as any).tehT ?? 0) < ((s as any).tehNT ?? 0) * 25 / 100) {
     (s as any).tehT_desc = 'You\'re not sure how someone managed to get this piece of junk here.';
     (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? ((Math.floor(Math.random() * 351) + 150)) : ((Math.floor(Math.random() * 251) + 150)));
@@ -181,18 +181,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).car ?? 0)?.['ID'] === 1) {
       if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-        (s as any).bupay = (Math.floor(Math.random() * 101) + 100) * 100;
+        (s as any).bupay = (Math.floor(Math.random() * (200 - 100 + 1)) + (100));
       } else {
         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-          (s as any).bupay = (Math.floor(Math.random() * 101) + 100) * 100;
+          (s as any).bupay = (Math.floor(Math.random() * (200 - 100 + 1)) + (100));
         } else {
           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-            (s as any).bupay = (Math.floor(Math.random() * 201) + 200) * 100;
+            (s as any).bupay = (Math.floor(Math.random() * (400 - 200 + 1)) + (200));
           } else {
             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-              (s as any).bupay = (Math.floor(Math.random() * 201) + 400) * 100;
+              (s as any).bupay = (Math.floor(Math.random() * (600 - 400 + 1)) + (400));
             } else {
-              (s as any).bupay = (Math.floor(Math.random() * 501) + 500) * 100;
+              (s as any).bupay = (Math.floor(Math.random() * (1000 - 500 + 1)) + (500));
             }
           }
         }
@@ -200,18 +200,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).car ?? 0)?.['ID'] <= 5) {
         if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-          (s as any).bupay = (Math.floor(Math.random() * 101) + 100) * 100;
+          (s as any).bupay = (Math.floor(Math.random() * (200 - 100 + 1)) + (100));
         } else {
           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-            (s as any).bupay = (Math.floor(Math.random() * 201) + 500) * 100;
+            (s as any).bupay = (Math.floor(Math.random() * (700 - 500 + 1)) + (500));
           } else {
             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-              (s as any).bupay = (Math.floor(Math.random() * 301) + 600) * 100;
+              (s as any).bupay = (Math.floor(Math.random() * (900 - 600 + 1)) + (600));
             } else {
               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                (s as any).bupay = (Math.floor(Math.random() * 401) + 800) * 100;
+                (s as any).bupay = (Math.floor(Math.random() * (1200 - 800 + 1)) + (800));
               } else {
-                (s as any).bupay = (Math.floor(Math.random() * 1001) + 1000) * 100;
+                (s as any).bupay = (Math.floor(Math.random() * (2000 - 1000 + 1)) + (1000));
               }
             }
           }
@@ -219,18 +219,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).car ?? 0)?.['ID'] <= 10) {
           if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-            (s as any).bupay = (Math.floor(Math.random() * 101) + 100) * 100;
+            (s as any).bupay = (Math.floor(Math.random() * (200 - 100 + 1)) + (100));
           } else {
             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-              (s as any).bupay = (Math.floor(Math.random() * 401) + 500) * 100;
+              (s as any).bupay = (Math.floor(Math.random() * (900 - 500 + 1)) + (500));
             } else {
               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                (s as any).bupay = (Math.floor(Math.random() * 401) + 800) * 100;
+                (s as any).bupay = (Math.floor(Math.random() * (1200 - 800 + 1)) + (800));
               } else {
                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                  (s as any).bupay = (Math.floor(Math.random() * 601) + 1000) * 100;
+                  (s as any).bupay = (Math.floor(Math.random() * (1600 - 1000 + 1)) + (1000));
                 } else {
-                  (s as any).bupay = (Math.floor(Math.random() * 701) + 1500) * 100;
+                  (s as any).bupay = (Math.floor(Math.random() * (2200 - 1500 + 1)) + (1500));
                 }
               }
             }
@@ -238,18 +238,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).car ?? 0)?.['ID'] <= 13) {
             if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-              (s as any).bupay = (Math.floor(Math.random() * 101) + 100) * 100;
+              (s as any).bupay = (Math.floor(Math.random() * (200 - 100 + 1)) + (100));
             } else {
               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                (s as any).bupay = (Math.floor(Math.random() * 201) + 100) * 100;
+                (s as any).bupay = (Math.floor(Math.random() * (300 - 100 + 1)) + (100));
               } else {
                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                  (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                  (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                 } else {
                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                    (s as any).bupay = (Math.floor(Math.random() * 401) + 400) * 100;
+                    (s as any).bupay = (Math.floor(Math.random() * (800 - 400 + 1)) + (400));
                   } else {
-                    (s as any).bupay = (Math.floor(Math.random() * 301) + 700) * 100;
+                    (s as any).bupay = (Math.floor(Math.random() * (1000 - 700 + 1)) + (700));
                   }
                 }
               }
@@ -260,18 +260,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).car ?? 0)?.['ID'] === 95) {
                 if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                  (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                  (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                 } else {
                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                    (s as any).bupay = (Math.floor(Math.random() * 2501) + 500) * 100;
+                    (s as any).bupay = (Math.floor(Math.random() * (3000 - 500 + 1)) + (500));
                   } else {
                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                      (s as any).bupay = (Math.floor(Math.random() * 2001) + 3000) * 100;
+                      (s as any).bupay = (Math.floor(Math.random() * (5000 - 3000 + 1)) + (3000));
                     } else {
                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                        (s as any).bupay = (Math.floor(Math.random() * 2001) + 4000) * 100;
+                        (s as any).bupay = (Math.floor(Math.random() * (6000 - 4000 + 1)) + (4000));
                       } else {
-                        (s as any).bupay = (Math.floor(Math.random() * 4001) + 5000) * 100;
+                        (s as any).bupay = (Math.floor(Math.random() * (9000 - 5000 + 1)) + (5000));
                       }
                     }
                   }
@@ -279,18 +279,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).car ?? 0)?.['ID'] === 96) {
                   if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                    (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                    (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                   } else {
                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                      (s as any).bupay = (Math.floor(Math.random() * 11101) + 500) * 100;
+                      (s as any).bupay = (Math.floor(Math.random() * (11600 - 500 + 1)) + (500));
                     } else {
                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                        (s as any).bupay = (Math.floor(Math.random() * 14001) + 11500) * 100;
+                        (s as any).bupay = (Math.floor(Math.random() * (25500 - 11500 + 1)) + (11500));
                       } else {
                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                          (s as any).bupay = (Math.floor(Math.random() * 6601) + 25400) * 100;
+                          (s as any).bupay = (Math.floor(Math.random() * (32000 - 25400 + 1)) + (25400));
                         } else {
-                          (s as any).bupay = (Math.floor(Math.random() * 18001) + 30000) * 100;
+                          (s as any).bupay = (Math.floor(Math.random() * (48000 - 30000 + 1)) + (30000));
                         }
                       }
                     }
@@ -298,18 +298,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).car ?? 0)?.['ID'] === 97) {
                     if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                      (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                      (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                     } else {
                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                        (s as any).bupay = (Math.floor(Math.random() * 1101) + 500) * 100;
+                        (s as any).bupay = (Math.floor(Math.random() * (1600 - 500 + 1)) + (500));
                       } else {
                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                          (s as any).bupay = (Math.floor(Math.random() * 4001) + 1500) * 100;
+                          (s as any).bupay = (Math.floor(Math.random() * (5500 - 1500 + 1)) + (1500));
                         } else {
                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                            (s as any).bupay = (Math.floor(Math.random() * 6601) + 5400) * 100;
+                            (s as any).bupay = (Math.floor(Math.random() * (12000 - 5400 + 1)) + (5400));
                           } else {
-                            (s as any).bupay = (Math.floor(Math.random() * 8001) + 10000) * 100;
+                            (s as any).bupay = (Math.floor(Math.random() * (18000 - 10000 + 1)) + (10000));
                           }
                         }
                       }
@@ -317,18 +317,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).car ?? 0)?.['ID'] === 98) {
                       if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                        (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                        (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                       } else {
                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                          (s as any).bupay = (Math.floor(Math.random() * 11101) + 500) * 100;
+                          (s as any).bupay = (Math.floor(Math.random() * (11600 - 500 + 1)) + (500));
                         } else {
                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                            (s as any).bupay = (Math.floor(Math.random() * 14001) + 11500) * 100;
+                            (s as any).bupay = (Math.floor(Math.random() * (25500 - 11500 + 1)) + (11500));
                           } else {
                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                              (s as any).bupay = (Math.floor(Math.random() * 6601) + 25400) * 100;
+                              (s as any).bupay = (Math.floor(Math.random() * (32000 - 25400 + 1)) + (25400));
                             } else {
-                              (s as any).bupay = (Math.floor(Math.random() * 18001) + 30000) * 100;
+                              (s as any).bupay = (Math.floor(Math.random() * (48000 - 30000 + 1)) + (30000));
                             }
                           }
                         }
@@ -336,18 +336,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).car ?? 0)?.['ID'] === 99) {
                         if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                          (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                          (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                         } else {
                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                            (s as any).bupay = (Math.floor(Math.random() * 5101) + 500) * 100;
+                            (s as any).bupay = (Math.floor(Math.random() * (5600 - 500 + 1)) + (500));
                           } else {
                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                              (s as any).bupay = (Math.floor(Math.random() * 10001) + 5500) * 100;
+                              (s as any).bupay = (Math.floor(Math.random() * (15500 - 5500 + 1)) + (5500));
                             } else {
                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                (s as any).bupay = (Math.floor(Math.random() * 6601) + 15400) * 100;
+                                (s as any).bupay = (Math.floor(Math.random() * (22000 - 15400 + 1)) + (15400));
                               } else {
-                                (s as any).bupay = (Math.floor(Math.random() * 18001) + 20000) * 100;
+                                (s as any).bupay = (Math.floor(Math.random() * (38000 - 20000 + 1)) + (20000));
                               }
                             }
                           }
@@ -355,18 +355,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).car ?? 0)?.['ID'] === 100) {
                           if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                            (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                            (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                           } else {
                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                              (s as any).bupay = (Math.floor(Math.random() * 15101) + 500) * 100;
+                              (s as any).bupay = (Math.floor(Math.random() * (15600 - 500 + 1)) + (500));
                             } else {
                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                (s as any).bupay = (Math.floor(Math.random() * 10001) + 15500) * 100;
+                                (s as any).bupay = (Math.floor(Math.random() * (25500 - 15500 + 1)) + (15500));
                               } else {
                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                  (s as any).bupay = (Math.floor(Math.random() * 6601) + 25400) * 100;
+                                  (s as any).bupay = (Math.floor(Math.random() * (32000 - 25400 + 1)) + (25400));
                                 } else {
-                                  (s as any).bupay = (Math.floor(Math.random() * 28001) + 30000) * 100;
+                                  (s as any).bupay = (Math.floor(Math.random() * (58000 - 30000 + 1)) + (30000));
                                 }
                               }
                             }
@@ -374,18 +374,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                         } else {
                           if (((s as any).car ?? 0)?.['ID'] === 101) {
                             if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                              (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                              (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                             } else {
                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                (s as any).bupay = (Math.floor(Math.random() * 1901) + 500) * 100;
+                                (s as any).bupay = (Math.floor(Math.random() * (2400 - 500 + 1)) + (500));
                               } else {
                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                  (s as any).bupay = (Math.floor(Math.random() * 6001) + 2250) * 100;
+                                  (s as any).bupay = (Math.floor(Math.random() * (8250 - 2250 + 1)) + (2250));
                                 } else {
                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                    (s as any).bupay = (Math.floor(Math.random() * 9901) + 8100) * 100;
+                                    (s as any).bupay = (Math.floor(Math.random() * (18000 - 8100 + 1)) + (8100));
                                   } else {
-                                    (s as any).bupay = (Math.floor(Math.random() * 12001) + 15000) * 100;
+                                    (s as any).bupay = (Math.floor(Math.random() * (27000 - 15000 + 1)) + (15000));
                                   }
                                 }
                               }
@@ -393,18 +393,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).car ?? 0)?.['ID'] === 102) {
                               if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                               } else {
                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                  (s as any).bupay = (Math.floor(Math.random() * 1601) + 500) * 100;
+                                  (s as any).bupay = (Math.floor(Math.random() * (2100 - 500 + 1)) + (500));
                                 } else {
                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                    (s as any).bupay = (Math.floor(Math.random() * 1401) + 2100) * 100;
+                                    (s as any).bupay = (Math.floor(Math.random() * (3500 - 2100 + 1)) + (2100));
                                   } else {
                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                      (s as any).bupay = (Math.floor(Math.random() * 1401) + 2800) * 100;
+                                      (s as any).bupay = (Math.floor(Math.random() * (4200 - 2800 + 1)) + (2800));
                                     } else {
-                                      (s as any).bupay = (Math.floor(Math.random() * 2801) + 3500) * 100;
+                                      (s as any).bupay = (Math.floor(Math.random() * (6300 - 3500 + 1)) + (3500));
                                     }
                                   }
                                 }
@@ -412,18 +412,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).car ?? 0)?.['ID'] === 103) {
                                 if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                  (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                  (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                 } else {
                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                    (s as any).bupay = (Math.floor(Math.random() * 2801) + 500) * 100;
+                                    (s as any).bupay = (Math.floor(Math.random() * (3300 - 500 + 1)) + (500));
                                   } else {
                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                      (s as any).bupay = (Math.floor(Math.random() * 2201) + 3300) * 100;
+                                      (s as any).bupay = (Math.floor(Math.random() * (5500 - 3300 + 1)) + (3300));
                                     } else {
                                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                        (s as any).bupay = (Math.floor(Math.random() * 2201) + 4400) * 100;
+                                        (s as any).bupay = (Math.floor(Math.random() * (6600 - 4400 + 1)) + (4400));
                                       } else {
-                                        (s as any).bupay = (Math.floor(Math.random() * 4401) + 5500) * 100;
+                                        (s as any).bupay = (Math.floor(Math.random() * (9900 - 5500 + 1)) + (5500));
                                       }
                                     }
                                   }
@@ -431,18 +431,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 if (((s as any).car ?? 0)?.['ID'] === 104) {
                                   if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                    (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                    (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                   } else {
                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                      (s as any).bupay = (Math.floor(Math.random() * 2501) + 500) * 100;
+                                      (s as any).bupay = (Math.floor(Math.random() * (3000 - 500 + 1)) + (500));
                                     } else {
                                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                        (s as any).bupay = (Math.floor(Math.random() * 2001) + 3000) * 100;
+                                        (s as any).bupay = (Math.floor(Math.random() * (5000 - 3000 + 1)) + (3000));
                                       } else {
                                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                          (s as any).bupay = (Math.floor(Math.random() * 2001) + 4000) * 100;
+                                          (s as any).bupay = (Math.floor(Math.random() * (6000 - 4000 + 1)) + (4000));
                                         } else {
-                                          (s as any).bupay = (Math.floor(Math.random() * 4001) + 5000) * 100;
+                                          (s as any).bupay = (Math.floor(Math.random() * (9000 - 5000 + 1)) + (5000));
                                         }
                                       }
                                     }
@@ -450,18 +450,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                 } else {
                                   if (((s as any).car ?? 0)?.['ID'] === 105) {
                                     if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                      (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                      (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                     } else {
                                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                        (s as any).bupay = (Math.floor(Math.random() * 3101) + 500) * 100;
+                                        (s as any).bupay = (Math.floor(Math.random() * (3600 - 500 + 1)) + (500));
                                       } else {
                                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                          (s as any).bupay = (Math.floor(Math.random() * 2401) + 3600) * 100;
+                                          (s as any).bupay = (Math.floor(Math.random() * (6000 - 3600 + 1)) + (3600));
                                         } else {
                                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                            (s as any).bupay = (Math.floor(Math.random() * 2401) + 4800) * 100;
+                                            (s as any).bupay = (Math.floor(Math.random() * (7200 - 4800 + 1)) + (4800));
                                           } else {
-                                            (s as any).bupay = (Math.floor(Math.random() * 4801) + 6000) * 100;
+                                            (s as any).bupay = (Math.floor(Math.random() * (10800 - 6000 + 1)) + (6000));
                                           }
                                         }
                                       }
@@ -469,18 +469,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                   } else {
                                     if (((s as any).car ?? 0)?.['ID'] === 106) {
                                       if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                        (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                        (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                       } else {
                                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                          (s as any).bupay = (Math.floor(Math.random() * 5001) + 500) * 100;
+                                          (s as any).bupay = (Math.floor(Math.random() * (5500 - 500 + 1)) + (500));
                                         } else {
                                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                            (s as any).bupay = (Math.floor(Math.random() * 3501) + 5500) * 100;
+                                            (s as any).bupay = (Math.floor(Math.random() * (9000 - 5500 + 1)) + (5500));
                                           } else {
                                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                              (s as any).bupay = (Math.floor(Math.random() * 4001) + 7000) * 100;
+                                              (s as any).bupay = (Math.floor(Math.random() * (11000 - 7000 + 1)) + (7000));
                                             } else {
-                                              (s as any).bupay = (Math.floor(Math.random() * 7001) + 9000) * 100;
+                                              (s as any).bupay = (Math.floor(Math.random() * (16000 - 9000 + 1)) + (9000));
                                             }
                                           }
                                         }
@@ -488,18 +488,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                     } else {
                                       if (((s as any).car ?? 0)?.['ID'] === 107) {
                                         if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                          (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                          (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                         } else {
                                           if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                            (s as any).bupay = (Math.floor(Math.random() * 5101) + 500) * 100;
+                                            (s as any).bupay = (Math.floor(Math.random() * (5600 - 500 + 1)) + (500));
                                           } else {
                                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                              (s as any).bupay = (Math.floor(Math.random() * 10001) + 5500) * 100;
+                                              (s as any).bupay = (Math.floor(Math.random() * (15500 - 5500 + 1)) + (5500));
                                             } else {
                                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                (s as any).bupay = (Math.floor(Math.random() * 6601) + 15400) * 100;
+                                                (s as any).bupay = (Math.floor(Math.random() * (22000 - 15400 + 1)) + (15400));
                                               } else {
-                                                (s as any).bupay = (Math.floor(Math.random() * 18001) + 20000) * 100;
+                                                (s as any).bupay = (Math.floor(Math.random() * (38000 - 20000 + 1)) + (20000));
                                               }
                                             }
                                           }
@@ -507,18 +507,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((s as any).car ?? 0)?.['ID'] === 108) {
                                           if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                            (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                            (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                           } else {
                                             if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                              (s as any).bupay = (Math.floor(Math.random() * 20501) + 500) * 100;
+                                              (s as any).bupay = (Math.floor(Math.random() * (21000 - 500 + 1)) + (500));
                                             } else {
                                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                                (s as any).bupay = (Math.floor(Math.random() * 14001) + 21000) * 100;
+                                                (s as any).bupay = (Math.floor(Math.random() * (35000 - 21000 + 1)) + (21000));
                                               } else {
                                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                  (s as any).bupay = (Math.floor(Math.random() * 14001) + 28000) * 100;
+                                                  (s as any).bupay = (Math.floor(Math.random() * (42000 - 28000 + 1)) + (28000));
                                                 } else {
-                                                  (s as any).bupay = (Math.floor(Math.random() * 28001) + 35000) * 100;
+                                                  (s as any).bupay = (Math.floor(Math.random() * (63000 - 35000 + 1)) + (35000));
                                                 }
                                               }
                                             }
@@ -526,18 +526,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                         } else {
                                           if (((s as any).car ?? 0)?.['ID'] === 109) {
                                             if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                              (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                              (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                             } else {
                                               if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                                (s as any).bupay = (Math.floor(Math.random() * 5001) + 500) * 100;
+                                                (s as any).bupay = (Math.floor(Math.random() * (5500 - 500 + 1)) + (500));
                                               } else {
                                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                                  (s as any).bupay = (Math.floor(Math.random() * 3501) + 5500) * 100;
+                                                  (s as any).bupay = (Math.floor(Math.random() * (9000 - 5500 + 1)) + (5500));
                                                 } else {
                                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                    (s as any).bupay = (Math.floor(Math.random() * 4001) + 7000) * 100;
+                                                    (s as any).bupay = (Math.floor(Math.random() * (11000 - 7000 + 1)) + (7000));
                                                   } else {
-                                                    (s as any).bupay = (Math.floor(Math.random() * 7001) + 9000) * 100;
+                                                    (s as any).bupay = (Math.floor(Math.random() * (16000 - 9000 + 1)) + (9000));
                                                   }
                                                 }
                                               }
@@ -545,18 +545,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                           } else {
                                             if (((s as any).car ?? 0)?.['ID'] === 110) {
                                               if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                                (s as any).bupay = (Math.floor(Math.random() * 401) + 200) * 100;
+                                                (s as any).bupay = (Math.floor(Math.random() * (600 - 200 + 1)) + (200));
                                               } else {
                                                 if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                                  (s as any).bupay = (Math.floor(Math.random() * 2051) + 500) * 100;
+                                                  (s as any).bupay = (Math.floor(Math.random() * (2550 - 500 + 1)) + (500));
                                                 } else {
                                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                                    (s as any).bupay = (Math.floor(Math.random() * 1701) + 2550) * 100;
+                                                    (s as any).bupay = (Math.floor(Math.random() * (4250 - 2550 + 1)) + (2550));
                                                   } else {
                                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                      (s as any).bupay = (Math.floor(Math.random() * 1701) + 3400) * 100;
+                                                      (s as any).bupay = (Math.floor(Math.random() * (5100 - 3400 + 1)) + (3400));
                                                     } else {
-                                                      (s as any).bupay = (Math.floor(Math.random() * 3401) + 4250) * 100;
+                                                      (s as any).bupay = (Math.floor(Math.random() * (7650 - 4250 + 1)) + (4250));
                                                     }
                                                   }
                                                 }
@@ -564,18 +564,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                             } else {
                                               if (((s as any).car ?? 0)?.['ID'] === 111) {
                                                 if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                                  (s as any).bupay = (Math.floor(Math.random() * 1501) + 500) * 100;
+                                                  (s as any).bupay = (Math.floor(Math.random() * (2000 - 500 + 1)) + (500));
                                                 } else {
                                                   if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                                    (s as any).bupay = (Math.floor(Math.random() * 21501) + 1500) * 100;
+                                                    (s as any).bupay = (Math.floor(Math.random() * (23000 - 1500 + 1)) + (1500));
                                                   } else {
                                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                                      (s as any).bupay = (Math.floor(Math.random() * 32001) + 23000) * 100;
+                                                      (s as any).bupay = (Math.floor(Math.random() * (55000 - 23000 + 1)) + (23000));
                                                     } else {
                                                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                        (s as any).bupay = (Math.floor(Math.random() * 14001) + 50000) * 100;
+                                                        (s as any).bupay = (Math.floor(Math.random() * (64000 - 50000 + 1)) + (50000));
                                                       } else {
-                                                        (s as any).bupay = (Math.floor(Math.random() * 36001) + 60000) * 100;
+                                                        (s as any).bupay = (Math.floor(Math.random() * (96000 - 60000 + 1)) + (60000));
                                                       }
                                                     }
                                                   }
@@ -583,18 +583,18 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
                                               } else {
                                                 if (((s as any).car ?? 0)?.['ID'] === 112) {
                                                   if (((s as any).car ?? 0)?.['wreck'] === 1  ||  ((s as any).car ?? 0)?.['current_condition'] <= 0) {
-                                                    (s as any).bupay = (Math.floor(Math.random() * 3001) + 1000) * 100;
+                                                    (s as any).bupay = (Math.floor(Math.random() * (4000 - 1000 + 1)) + (1000));
                                                   } else {
                                                     if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                                      (s as any).bupay = (Math.floor(Math.random() * 43001) + 3000) * 100;
+                                                      (s as any).bupay = (Math.floor(Math.random() * (46000 - 3000 + 1)) + (3000));
                                                     } else {
                                                       if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
-                                                        (s as any).bupay = (Math.floor(Math.random() * 64001) + 46000) * 100;
+                                                        (s as any).bupay = (Math.floor(Math.random() * (110000 - 46000 + 1)) + (46000));
                                                       } else {
                                                         if (((s as any).car ?? 0)?.['current_condition'] < ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                                                          (s as any).bupay = (Math.floor(Math.random() * 28001) + 100000) * 100;
+                                                          (s as any).bupay = (Math.floor(Math.random() * (128000 - 100000 + 1)) + (100000));
                                                         } else {
-                                                          (s as any).bupay = (Math.floor(Math.random() * 70001) + 120000) * 100;
+                                                          (s as any).bupay = (Math.floor(Math.random() * (190000 - 120000 + 1)) + (120000));
                                                         }
                                                       }
                                                     }

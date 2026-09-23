@@ -148,7 +148,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/igorhome/vann.jpg');
   scene.text('The bathroom has a large sink area and tiled floors. The toilet sits along the far wall. There is also a walk-in shower and bathtub. It all looks very nice.');
-  // TODO-QSP: dynamic text: You can do your hair and makeup in the <a href="exec:gt ''mirror'', ''start''">m...
+  // TODO-QSP: dynamic text: 'You can do your hair and makeup in the <a href="exec:gt ''mirror'', ''start''">...
   scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink, where you can ' + ((((s as any).pcs_hairbsh ?? 0) < 1) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   qspCall(s, 'din_van', 'private');
   // TODO-QSP: end
@@ -372,9 +372,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).IgorQW ?? 0)?.['DimaNos'] === 2  ||  ((s as any).IgorQW ?? 0)?.['DimaNos'] === 3)  &&  ((s as any).IgorQW ?? 0)?.['DimaNos_day'] < ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: 'How was your date?', handler: (st: GameState) => {
-    // TODO-QSP: gt 'igorev', 'Ask about Diana''s date'
-  } },
+      { label: 'How was your date?', goto: ['igorev', 'Ask about Diana/\'s date'] },
     ]);
   }
   if (((s as any).IgorQW ?? 0)?.['Love'] === 1) {

@@ -81,7 +81,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   scene.text(`You pause and look towards her. "Thank you, ${((s as any).pcs_nickname ?? '')}, for coming with me. You're probably wondering why we're here." Grief fills her eyes, showing the pain that she's been holding back. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} starts to walk again until you come to a grave.`);
   // TODO-QSP: dynamic text: Standing at the grave, you see the name Anitchka Semionova engraved on the grave...
   scene.text(`Standing at the grave, you see the name Anitchka Semionova engraved on the gravestone. You realize that this must be her mother who died 6 years ago, looking at the dates. You look at ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} and see the tears start to form in her eyes.`);
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'graveyard_wait') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'graveyard_wait') {
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You pick up your coat and start walking to the bench near the main entrance, bru...
     scene.text(`You pick up your coat and start walking to the bench near the main entrance, brushing the grass and leaves from your coat. You sit down and look towards ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} but can't see her. You pull out your phone and play a game to distract yourself.`);
@@ -262,7 +262,7 @@ function enterSummerSchool(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'piano') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'piano') {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: As you pass through the common room you are drawn to the conservatoire by the so...

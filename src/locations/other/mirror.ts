@@ -106,8 +106,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).pcs_apprnc_text ?? '')}`);
     // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
-    // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>. You have ' + iif(pcs_eyesize > 1, '<<$pc_desc[''ey...
-    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. You have \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' eyes ' + ((s as any).pcs_lashes_txt ?? '') + '.');
+    // TODO-QSP: dynamic text: '<<$pc_descFull[''makeup'']>>. You have ' + iif(pcs_eyesize > 1, '<<$pc_desc[''e...
+    scene.text(`${((s as any).pc_descFull ?? 0)?.['makeup'] ?? ''}. You have ` + ((((s as any).pcs_eyesize ?? 0) > 1) ? ('' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' ') : ('')) + `${((s as any).pc_desc ?? 0)?.['eye colour'] ?? ''} eyes ${((s as any).pcs_lashes_txt ?? '')}.`);
     if (((s as any).glass ?? 0) > 0) {
       // TODO-QSP: dynamic text: You are wearing <<$pc_descWordy[''vision'']>>.
       scene.text(`You are wearing ${((s as any).pc_descWordy ?? 0)?.['vision'] ?? ''}.`);
@@ -175,8 +175,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).pcs_apprnc_text ?? '')}`);
     // TODO-QSP: dynamic text: <<$hair>>
     scene.text(`${((s as any).hair ?? '')}`);
-    // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>. Your ' + iif(pcs_eyesize > 1, '<<$pc_desc[''eye si...
-    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. Your \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'eyes are ' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' ' + ((s as any).pcs_lashes_txt ?? '') + '.');
+    // TODO-QSP: dynamic text: '<<$pc_descFull[''makeup'']>>. Your ' + iif(pcs_eyesize > 1, '<<$pc_desc[''eye s...
+    scene.text(`${((s as any).pc_descFull ?? 0)?.['makeup'] ?? ''}. Your ` + ((((s as any).pcs_eyesize ?? 0) > 1) ? ('' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' ') : ('')) + `eyes are ${((s as any).pc_desc ?? 0)?.['eye colour'] ?? ''} ${((s as any).pcs_lashes_txt ?? '')}.`);
     if (((s as any).glass ?? 0) > 0) {
       // TODO-QSP: dynamic text: You are wearing <<$pc_descWordy[''vision'']>>.
       scene.text(`You are wearing ${((s as any).pc_descWordy ?? 0)?.['vision'] ?? ''}.`);
@@ -383,7 +383,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
     scene.actions([
       { label: 'Apply lip balm', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLipbalm(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLipbalm(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
@@ -395,7 +395,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 3  &&  ((s as any).lashextensionstyle ?? 0) <= 0) {
     scene.actions([
       { label: 'Apply false lashes', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesplain(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesplain(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
@@ -407,7 +407,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 4  &&  ((s as any).lashextensionstyle ?? 0) <= 0) {
     scene.actions([
       { label: 'Apply mink lashes', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesmink(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesmink(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
@@ -420,14 +420,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_max_cosmetic_routines = qspFunc(s, 'mirror', 'get_max_cosmetic_routines');
   // TODO-QSP: :makeup_routine_apply_acts_loop
   (s as any).temp_routine_name = ((s as any).makeup ?? 0)?.['routine_' + String(((s as any).temp_routine_index ?? 0)) + '_name'];
-  if (((s as any).makeup ?? 0)['routine_' + ((s as any).temp_routine_index ?? 0)] !== '') {
+  if (((s as any).makeup ?? 0)['routine_' + (((s as any).temp_routine_index ?? 0))] !== '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_routine_index ?? 0)]; enterRoutineDescription(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (qspFunc(s, 'mirror', 'routine_check', ((s as any).temp_routine_index ?? 0))) {
-      // TODO-QSP: dynamic "
-      // TODO-QSP: "
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Apply ' + String(((s as any).temp_routine_name ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: gt 'mirror', 'works_routine', <<temp_routine_index>>
+    qspGoto(st, 'mirror', 'works_routine', '' + ((st as any).temp_routine_index ?? 0) + '');
   } },
       ]);
     }
@@ -483,7 +481,7 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_max_cosmetic_routines = qspFunc(s, 'mirror', 'get_max_cosmetic_routines');
   // TODO-QSP: :makeup_routine_save_selector_loop
   (s as any).temp_routine_index = ((s as any).temp_routine_index ?? 0) + (1);
-  if (((s as any).temp_routine_index ?? 0) <= ((s as any).temp_max_cosmetic_routines ?? 0)  &&  ((s as any).makeup ?? 0)['routine_' + ((s as any).temp_routine_index ?? 0)] !== '') {
+  if (((s as any).temp_routine_index ?? 0) <= ((s as any).temp_max_cosmetic_routines ?? 0)  &&  ((s as any).makeup ?? 0)['routine_' + (((s as any).temp_routine_index ?? 0))] !== '') {
     // TODO-QSP: jump 'makeup_routine_save_selector_loop'
   }
   // TODO-QSP: dynamic "if temp_routine_index <= temp_max_cosmetic_routines:
@@ -507,16 +505,16 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
     ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_lashes'] = ((st as any).custlashes ?? 0);
     ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0))] = ((st as any).routine ?? 0);
     ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_name'] = 'routine ' + ((st as any).temp_routine_index ?? 0) + '';
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index ?? '') ?? '') + '. Remove ""' + String(((s as any).temp_routine_name ?? '') ?? '') + '""', handler: (st: GameState) => {
     qspCall(st, 'array', 'remove_element', 'makeup', 'routine_' + ((st as any).temp_routine_index ?? 0) + '');
     qspCall(st, 'array', 'remove_element', 'makeup', 'routine_' + ((st as any).temp_routine_index ?? 0) + '_name');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index ?? '') ?? '') + '. Rename ""' + String(((s as any).temp_routine_name ?? '') ?? '') + '""', handler: (st: GameState) => {
-    ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_name'] = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
+    ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_name'] = window.prompt("Name the routine") ?? '';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -525,9 +523,9 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
 function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'mirror', 'routine_check', ((s as any).locArgs?.[1] ?? 0))) {
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] > 0) {
-    if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 4) {
-      if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  ((s as any).pcs_makeup ?? 0) !== 0) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] > 0) {
+    if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 4) {
+      if (String((s as any).locArgs?.[2] ?? '') === ''  &&  ((s as any).pcs_makeup ?? 0) !== 0) {
         if (((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3) {
           (s as any).temp_prefix = '<font color="' + ((s as any).theme_hex ?? 0)?.['pos'] + '">';
           (s as any).temp_postfix = ' - Not applied</font>';
@@ -537,7 +535,7 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] + 1) {
+      if (String((s as any).locArgs?.[2] ?? '') === ''  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] + 1) {
         if (((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(qspUntranslated(s, "makeup[\u00000\u0000]", { location: "mirror" }), 3)) {
           (s as any).temp_prefix = '<font color="' + ((s as any).theme_hex ?? 0)?.['pos'] + '">';
           (s as any).temp_postfix = ' - Not applied</font>';
@@ -547,27 +545,27 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 1) {
+    if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 1) {
       // TODO-QSP: dynamic text:  <<$temp_prefix>>Light make-up<<$temp_postfix>>
       scene.text(` ${((s as any).temp_prefix ?? '')}Light make-up${((s as any).temp_postfix ?? '')}`);
     } else {
-      if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 2) {
+      if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 2) {
         // TODO-QSP: dynamic text:  <<$temp_prefix>>Vibrant make-up<<$temp_postfix>>
         scene.text(` ${((s as any).temp_prefix ?? '')}Vibrant make-up${((s as any).temp_postfix ?? '')}`);
       } else {
-        if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 3) {
+        if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 3) {
           // TODO-QSP: dynamic text:  <<$temp_prefix>>Thick make-up<<$temp_postfix>>
           scene.text(` ${((s as any).temp_prefix ?? '')}Thick make-up${((s as any).temp_postfix ?? '')}`);
         } else {
-          if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 4) {
+          if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 4) {
             // TODO-QSP: dynamic text:  <<$temp_prefix>>Smeared make-up<<$temp_postfix>>
             scene.text(` ${((s as any).temp_prefix ?? '')}Smeared make-up${((s as any).temp_postfix ?? '')}`);
           } else {
-            if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 5) {
+            if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 5) {
               // TODO-QSP: dynamic text:  <<$temp_prefix>>Bimbo make-up<<$temp_postfix>>
               scene.text(` ${((s as any).temp_prefix ?? '')}Bimbo make-up${((s as any).temp_postfix ?? '')}`);
             } else {
-              if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 6) {
+              if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 6) {
                 // TODO-QSP: dynamic text:  <<$temp_prefix>>Goth make-up<<$temp_postfix>>
                 scene.text(` ${((s as any).temp_prefix ?? '')}Goth make-up${((s as any).temp_postfix ?? '')}`);
               }
@@ -577,8 +575,8 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lipbalm'] > 0) {
-    if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  ((s as any).pcs_lipbalm ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lipbalm']) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lipbalm'] > 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === ''  &&  ((s as any).pcs_lipbalm ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lipbalm']) {
       if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0) {
         (s as any).temp_prefix = '<font color="#E5C07B">';
         (s as any).temp_postfix = ' - Not applied</font>';
@@ -590,9 +588,9 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text:  <<$temp_prefix>>Lipbalm<<$temp_postfix>>
     scene.text(` ${((s as any).temp_prefix ?? '')}Lipbalm${((s as any).temp_postfix ?? '')}`);
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] > 0) {
-    if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] + 2) {
-      if ((((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1)  ||  (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1)) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] > 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === ''  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] + 2) {
+      if ((((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1)  ||  (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1)) {
         (s as any).temp_prefix = '<font color="#E5C07B">';
         (s as any).temp_postfix = ' - Not applied</font>';
       } else {
@@ -600,11 +598,11 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_postfix = ' - Not enough to apply</font>';
       }
     }
-    if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 1) {
+    if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 1) {
       // TODO-QSP: dynamic text:  <<$temp_prefix>>False lashes<<$temp_postfix>>
       scene.text(` ${((s as any).temp_prefix ?? '')}False lashes${((s as any).temp_postfix ?? '')}`);
     } else {
-      if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 2) {
+      if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 2) {
         // TODO-QSP: dynamic text:  <<$temp_prefix>>Mink false lashes<<$temp_postfix>>
         scene.text(` ${((s as any).temp_prefix ?? '')}Mink false lashes${((s as any).temp_postfix ?? '')}`);
       }
@@ -616,19 +614,19 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
 
 function enterRoutineCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 4  &&  ((s as any).pcs_makeup ?? 0) !== 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] === 4  &&  ((s as any).pcs_makeup ?? 0) !== 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3) {
     (s as any).result = 1;
     return;
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] > 0  &&  ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] !== 4  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] + 1  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(qspUntranslated(s, "makeup[\u00003\u0000]", { location: "mirror" }), 3)) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] > 0  &&  ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] !== 4  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_makeup'] + 1  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(qspUntranslated(s, "makeup[\u00003\u0000]", { location: "mirror" }), 3)) {
     (s as any).result = 1;
     return;
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lipbalm']  &&  ((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lipbalm']  &&  ((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0) {
     (s as any).result = 1;
     return;
   }
-  if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] > 0  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] + 2  &&  ((((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1)  ||  (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1))) {
+  if (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] > 0  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < ((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] + 2  &&  ((((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1)  ||  (((s as any).makeup ?? 0)['routine_' + (String((s as any).locArgs?.[1] ?? '')) + '_lashes'] === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1))) {
     (s as any).result = 1;
     return;
   }
@@ -704,7 +702,7 @@ function enterBrush(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorksRoutine(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'mirror', 'works', makeup['routine_<<ARGS[1]>>_makeup'], makeup['routine_<<ARGS[1]>>_lipbalm'], m...
+  qspGoto(s, 'mirror', 'works', 'makeup[\'routine_' + ((s as any).locArgs?.[1] ?? 0) + '_makeup\']', 'makeup[\'routine_' + ((s as any).locArgs?.[1] ?? 0) + '_lipbalm\']');
   // TODO-QSP: end
   scene.build();
 }
@@ -722,26 +720,26 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pcs_makeup ?? 0))) {
     (s as any).pcs_makeup = ((s as any).makeup ?? 0)?.['base'];
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  ((s as any).pcs_makeup ?? 0) < Number((s as any).locArgs?.[1] ?? 0) + 1) {
+  if (String((s as any).locArgs?.[1] ?? '') > 0  &&  ((s as any).pcs_makeup ?? 0) < String((s as any).locArgs?.[1] ?? '') + 1) {
     if (((s as any).mc_inventory ?? 0)?.['cosmetics'] <= 0) {
       scene.text('You don\'t have any cosmetics.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['cosmetics'] >= Math.min(((s as any).locArgs?.[1] ?? 0), 3)) {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) < 2) {
+        if (String((s as any).locArgs?.[1] ?? '') === 1  &&  ((s as any).pcs_makeup ?? 0) < 2) {
           scene.text('You subtly apply some neutral tones, with a light application of makeup to bring out your natural beauty.');
           (s as any).minut = ((s as any).minut ?? 0) + 3;
           qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
           ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
           (s as any).pcs_makeup = 2;
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 2  &&  ((s as any).pcs_makeup ?? 0) < 3) {
+          if (String((s as any).locArgs?.[1] ?? '') === 2  &&  ((s as any).pcs_makeup ?? 0) < 3) {
             scene.text('You apply some mildly vibrant tones and colors of makeup to cover your minor imperfections and enhance your best features.');
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
             ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
             (s as any).pcs_makeup = 3;
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 3  &&  ((s as any).pcs_makeup ?? 0) < 4) {
+            if (String((s as any).locArgs?.[1] ?? '') === 3  &&  ((s as any).pcs_makeup ?? 0) < 4) {
               scene.text('You apply some deeper, richer shades of makeup, thick enough to cover most imperfections, while drawing attention to your eyes and lips.');
               (s as any).minut = ((s as any).minut ?? 0) + 10;
               qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
@@ -749,7 +747,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
               (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
               (s as any).pcs_makeup = 4;
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 5  &&  ((s as any).pcs_makeup ?? 0) < 6) {
+              if (String((s as any).locArgs?.[1] ?? '') === 5  &&  ((s as any).pcs_makeup ?? 0) < 6) {
                 scene.text('You apply some bright, seductive makeup, thick enough to cover most imperfections, while drawing attention in a way only a bimbo can.');
                 (s as any).minut = ((s as any).minut ?? 0) + 10;
                 qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
@@ -757,7 +755,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
                 (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
                 (s as any).pcs_makeup = 6;
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 6  &&  ((s as any).pcs_makeup ?? 0) < 6) {
+                if (String((s as any).locArgs?.[1] ?? '') === 6  &&  ((s as any).pcs_makeup ?? 0) < 6) {
                   scene.text('You apply some makeup thick enough to cover most imperfections, while drawing attention in a way only a goth can.');
                   (s as any).minut = ((s as any).minut ?? 0) + 10;
                   qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
@@ -765,7 +763,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
                   (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
                   (s as any).pcs_makeup = 7;
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 4  &&  ((s as any).pcs_makeup ?? 0) !== 0) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 4  &&  ((s as any).pcs_makeup ?? 0) !== 0) {
                     scene.text('You deliberately smear cosmetics across your face in a messy, smudged pattern.');
                     (s as any).minut = ((s as any).minut ?? 0) + 5;
                     qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
@@ -787,14 +785,14 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hairbsh = 1;
     scene.text('You brush your hair.');
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[2] ?? '') > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyLipbalm(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) > 0  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < Number((s as any).locArgs?.[3] ?? 0) + 2) {
-    if (Number((s as any).locArgs?.[3] ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1) {
+  if (String((s as any).locArgs?.[3] ?? '') > 0  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < String((s as any).locArgs?.[3] ?? '') + 2) {
+    if (String((s as any).locArgs?.[3] ?? '') === 1  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_fake'] >= 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyLashesplain(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (Number((s as any).locArgs?.[3] ?? 0) === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1) {
+      if (String((s as any).locArgs?.[3] ?? '') === 2  &&  ((s as any).mc_inventory ?? 0)?.['eyelash_mink'] >= 1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyLashesmink(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
@@ -853,7 +851,7 @@ function enterApplyLashesplain(s: GameState, scene: SceneBuilder): void {
 
 function enterApplyMakeupDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'daily_routine', 'settings_defaults');
-  // TODO-QSP: gt 'mirror', 'works', droutine_settings['makeup_level'], 0, 0
+  qspGoto(s, 'mirror', 'works', 'droutine_settings[\'makeup_level\']', '0');
   // TODO-QSP: end & !! --- apply_makeup_do ---
   scene.build();
 }
@@ -915,8 +913,8 @@ function enterDBagMirror(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/mirror_compact.jpg');
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
-  // TODO-QSP: dynamic text: You have ' + iif(mc_inventory['travel_makeup'] > 0, '<b><<mc_inventory[''travel_...
-  scene.text('You have \' + iif(mc_inventory[\'travel_makeup\'] > 0, \'<b>' + ((s as any).mc_inventory ?? 0)?.['travel_makeup'] ?? '' + '</b>\', \'no\') + \' cosmetic applications and \' + iif(mc_inventory[\'makeup_wipes\'] > 0, \'<b>' + ((s as any).mc_inventory ?? 0)?.['makeup_wipes'] ?? '' + '</b>\', \'no\') + \' tissues left in your purse.');
+  // TODO-QSP: dynamic text: 'You have ' + iif(mc_inventory['travel_makeup'] > 0, '<b><<mc_inventory[''travel...
+  scene.text('You have ' + ((((s as any).mc_inventory ?? 0)?.['travel_makeup'] > 0) ? ('<b>' + ((s as any).mc_inventory ?? 0)?.['travel_makeup'] ?? '' + '</b>') : ('no')) + ' cosmetic applications and ' + ((((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) ? ('<b>' + ((s as any).mc_inventory ?? 0)?.['makeup_wipes'] ?? '' + '</b>') : ('no')) + ' tissues left in your purse.');
   if (((s as any).pcs_hairbsh ?? 0) < 1  &&  ((s as any).mc_inventory ?? 0)?.['comb'] === 1) {
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairbsh = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027d_bag_mirror/u0027); return false;"><b>Brush your hair</b></a>');
   }

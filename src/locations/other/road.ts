@@ -150,7 +150,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     (s as any).road_textrand4 = '' + qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100) + '.';
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     if (((s as any).truck_drive ?? 0) === 1) {
       scene.img(`images/locations/highway/truck_guy (${((s as any).locArgs?.[2] ?? '')}).jpg`);
     } else {
@@ -487,19 +487,19 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$road_textrand3>>" - rubs his fingers together with a wide smile as he waits f...
   scene.text(`${((s as any).road_textrand3 ?? '')}" - rubs his fingers together with a wide smile as he waits for your answer.`);
   // TODO-QSP: 'You blink at the question, then you realize that he mistook you for a prositute' + iif(PCloStyle = ...
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'St. Petersburg') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'St. Petersburg') {
     if (((s as any).nroad ?? 0) > 10) {
       scene.actions([
         { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Gadukino';
-    // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
+    qspGoto(st, 'road', 'autostop_money', '1', ((st as any).picrand ?? ''));
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask the driver to take you to St. Petersburg', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'St. Petersburg';
-    // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
+    qspGoto(st, 'road', 'autostop_money', '1', ((st as any).picrand ?? ''));
   } },
     ]);
   } else {
@@ -507,14 +507,14 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Gadukino';
-    // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
+    qspGoto(st, 'road', 'autostop_money', '1', ((st as any).picrand ?? ''));
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask the driver to take you to Pavlovsk', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Pavlovsk';
-    // TODO-QSP: gt 'road', 'autostop_money', 1, picrand
+    qspGoto(st, 'road', 'autostop_money', '1', ((st as any).picrand ?? ''));
   } },
     ]);
   }
@@ -524,8 +524,8 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
-  if (Number((s as any).locArgs?.[0] ?? 0) === ''  ||  !isNaN(Number((s as any).locArgs?.[0] ?? 0)) && Number((s as any).locArgs?.[0] ?? 0) !== '') {
-    if (Number((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(Number((s as any).locArgs?.[0] ?? 0)) && Number((s as any).locArgs?.[0] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[0] ?? '') === ''  ||  !isNaN(String((s as any).locArgs?.[0] ?? '')) && String((s as any).locArgs?.[0] ?? '') !== '') {
+    if (String((s as any).locArgs?.[0] ?? '') !== ''  &&  !isNaN(String((s as any).locArgs?.[0] ?? '')) && String((s as any).locArgs?.[0] ?? '') !== '') {
       (s as any).nroad = parseFloat(((s as any).locArgs?.[0] ?? 0));
     } else {
       // TODO-QSP: $ARGS[0] = '<<nroad>>'
@@ -639,19 +639,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).gorand ?? 0) > 60) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAutostopD(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAutostopD(st, scene); (st as any).locArgs = __savedLocArgs; }
           if (((st as any).nroad ?? 0) < 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Gadukino';
-    // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
+    qspGoto(st, 'road', 'autostop_money', '0', ((st as any).picrand ?? ''));
   } },
             ]);
           }
           scene.actions([
             { label: 'Ask the driver to take you to Pavlovsk', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Pavlovsk';
-    // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
+    qspGoto(st, 'road', 'autostop_money', '0', ((st as any).picrand ?? ''));
   } },
           ]);
         }
@@ -677,19 +677,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((st as any).gorand ?? 0) > 60) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAutostopD(s, scene); (st as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAutostopD(st, scene); (st as any).locArgs = __savedLocArgs; }
           if (((st as any).nroad ?? 0) > 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'Gadukino';
-    // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
+    qspGoto(st, 'road', 'autostop_money', '0', ((st as any).picrand ?? ''));
   } },
             ]);
           }
           scene.actions([
             { label: 'Ask the driver to take you to St. Petersburg', handler: (st: GameState) => {
     (st as any).road_textrand0 = 'St. Petersburg';
-    // TODO-QSP: gt 'road', 'autostop_money', 0, picrand
+    qspGoto(st, 'road', 'autostop_money', '0', ((st as any).picrand ?? ''));
   } },
           ]);
         }
@@ -870,7 +870,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 scene.text('You can see a bunch of motorcycles around the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoSlut/u0027, /u0027Diner Exterior/u0027); return false;">Boris diner</a>, which is a diner that is frequently visited by both truckers and bikers.');
                                               }
                                               if (((s as any).hour ?? 0) === 22  &&  ((s as any).NikoEv ?? 0) < 21) {
-                                                // TODO-QSP: dynamic text: You can see <a href="exec:gt ''NikoSlut'', ''Yurik Out''">' + iif($YurikEv['Name...
+                                                // TODO-QSP: dynamic text: 'You can see <a href="exec:gt ''NikoSlut'', ''Yurik Out''">' + iif($YurikEv['Nam...
                                                 scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoSlut/u0027, /u0027Yurik Out/u0027); return false;">' + ((((s as any).YurikEv ?? 0)?.['Name'] === 'Yurik') ? ('Yurik') : ('a big burly man')) + '</a>, clearly drunk, stumbling along the highway with a beer bottle in his hand.');
                                               }
                                             }

@@ -95,7 +95,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
               if (qspFunc(s, 'homes_properties', 'is_current_home')) {
                 scene.text('This is the small bedroom you share with your sister, Anya. On one side of the room is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> where you can choose outfits and organise your clothing.');
-                // TODO-QSP: dynamic text: Your <a href="exec:gt ''bed'', ''start''">bed</a> stands opposite the wardrobe, ...
+                // TODO-QSP: dynamic text: 'Your <a href="exec:gt ''bed'', ''start''">bed</a> stands opposite the wardrobe,...
                 scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">bed</a> stands opposite the wardrobe, and your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">desk</a> is next to it' + ((((s as any).mc_inventory ?? 0)?.['strapon'] === 1) ? ('. You keep your strapon inside it.') : ('.')) + ' Your sister\'s bed is in the other corner.');
               } else {
                 scene.text('This small bedroom you used to share with your sister, Anya. The furniture is old and basic.');
@@ -473,7 +473,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
               if (qspFunc(s, 'homes_properties', 'is_current_home')) {
                 scene.text('This is the small bedroom you share with your sister, Anya. On one side of the room is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> where you can choose outfits and organise your clothing.');
-                // TODO-QSP: dynamic text: Your <a href="exec:gt ''bed'', ''start''">bed</a> stands opposite the wardrobe, ...
+                // TODO-QSP: dynamic text: 'Your <a href="exec:gt ''bed'', ''start''">bed</a> stands opposite the wardrobe,...
                 scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">bed</a> stands opposite the wardrobe, and your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">desk</a> is next to it' + ((((s as any).mc_inventory ?? 0)?.['strapon'] === 1) ? ('. You keep your strapon inside it.') : ('.')) + ' Your sister\'s bed is in the other corner.');
               } else {
                 scene.text('This small bedroom you used to share with your sister, Anya. The furniture is old and basic.');

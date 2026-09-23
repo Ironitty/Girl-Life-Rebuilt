@@ -225,7 +225,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/fedordance.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-    // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
+    // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door while you an...
     scene.text('The students start picking up their stuff and heading for the door while you and Fedor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((st as any).NosovRevenge ?? 0) === 1) {
@@ -265,7 +265,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-    // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
+    // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door while you an...
     scene.text('The students start picking up their stuff and heading for the door while you and Igor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((st as any).NosovRevenge ?? 0) === 1) {
@@ -305,7 +305,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-    // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
+    // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door while you an...
     scene.text('The students start picking up their stuff and heading for the door while you and Marcus walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((st as any).NosovRevenge ?? 0) === 1) {
@@ -345,7 +345,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-    // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
+    // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door while you an...
     scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((st as any).NosovRevenge ?? 0) === 1) {
@@ -388,7 +388,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-    // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
+    // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door while you an...
     scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((st as any).NosovRevenge ?? 0) === 1) {
@@ -1145,7 +1145,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
   scene.text('Time seems to have flown by as the music suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
-  // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door before Dimka ...
+  // TODO-QSP: dynamic text: 'The students start picking up their stuff and heading for the door before Dimka...
   scene.text('The students start picking up their stuff and heading for the door before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
   scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
   if (((s as any).NosovRevenge ?? 0) === 1) {

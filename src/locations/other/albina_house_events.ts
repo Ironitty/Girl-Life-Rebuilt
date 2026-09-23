@@ -545,7 +545,7 @@ function enterTekkenBet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
-    (st as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((st as any).pcs_gaming ?? 0);
+    (st as any).gameresult = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
     if (((st as any).gameresult ?? 0) >= 150) {
       (st as any).albplay = 3;
     } else {
@@ -635,7 +635,7 @@ function enterSwimWinter1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
     scene.text('"I don\'t have a swimsuit," you protest, but Albina just gives you an amused look.');
     scene.text('"Then go in your underwear," she smirks.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -682,7 +682,7 @@ function enterSwimWinter2(s: GameState, scene: SceneBuilder): void {
     { label: 'Hesitantly join her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
     scene.text('"I... I guess..." you say. ');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter2Strip(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter2Strip(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Enthusiastically join her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
@@ -707,7 +707,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hurry up! I\'m freezing my ass off here!"');
     scene.text('"Okay okay!" you say, getting down to just your panties and joining her poolside.');
     scene.text('<i>Brrrr! It really is cold out here!</i> you as you feel a pair of warm hands on your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -719,7 +719,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hurry up! I\'m freezing my ass off here!"');
     scene.text('"Okay okay!" you say, leaving your bra and your panties on and joining her poolside.');
     scene.text('<i>Brrrr! It really is cold out here!</i> you think before you feel a pair of warm hands on your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -740,7 +740,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
       scene.text('"You know I don\'t always wear them," you smirk, skipping out the door to join her poolside.');
     }
     scene.text('<i>Brrrr! It really is cold out here!</i> you think before you feel a pair of warm hands on your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -748,12 +748,12 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
         { label: 'Blush', handler: (st: GameState) => {
     scene.text('Your cheeks flush with crimson heat, but you don\'t say anything else, skipping out the door to join her poolside.');
     scene.text('<i>Brrrr! It really is cold out here!</i> you think before you feel a pair of warm hands on your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Play it off', handler: (st: GameState) => {
     scene.text('"Like you\'ve never gone commando before," you wink, skipping out the door to join her poolside.');
     scene.text('<i>Brrrr! It really is cold out here!</i> you think before you feel a pair of warm hands on your ass.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -762,7 +762,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
       scene.text('"Okay okay!" You finish by pulling your panties down your legs and tossing them into the pile.');
       scene.text('"Full skinny dip, eh?" she grins as you skip out the door to join her. "Nice."');
       scene.text('<i>Brrrr! It really is cold out here!</i> you as you feel a pair of warm hands on your ass.');
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSwimWinter3(st, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -844,7 +844,7 @@ function enterWinterHotTub(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/hottub.jpg');
     scene.text('The two of you spend several minutes soaking in the tub together before Albina stands up.');
     scene.text('"Come on, let\'s get out before we start pruning."');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterSwimShower(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAfterSwimShower(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1347,7 +1347,7 @@ function enterHotTubNoPanties3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/hottub.jpg');
     scene.text('You think she\'s just teasing you until you sit down and gasp yourself. Hot water blasts directly across your pussy, softly tickling your clit. It\'s turning you on and you can feel heat spreading through your hips that <i>isn\'t</i> coming from the water.');
     scene.text('It seems to have the same effect on Albina, who reaches over and turns up the bubbles even more. She gives you a voyeuristic smile and openly panting to show you she\'s getting off on this too. You lose track of time, but it\'s a very pleasurable experience.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties4(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties4(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1415,11 +1415,11 @@ function enterGoodieTwoShoes(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Guess you didn\'t know me', handler: (st: GameState) => {
     scene.text('"Guess you didn\'t know me so well back then," you shrug while smiling.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Rebellious phase', handler: (st: GameState) => {
     scene.text('"I\'m going through my rebellious phase right now," you grin mischievously.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1428,7 +1428,7 @@ function enterGoodieTwoShoes(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m not-" you stammer, blush deepening. "I told you, I just-"');
     // TODO-QSP: dynamic text: "Forgot?" she laughs. "Not even I ''forget'' to wear panties, <<$pcs_nickname>>....
     scene.text(`"Forgot?" she laughs. "Not even I 'forget' to wear panties, ${((st as any).pcs_nickname ?? '')}. Only a slut would forget."`);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1436,7 +1436,7 @@ function enterGoodieTwoShoes(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Offended', handler: (st: GameState) => {
     scene.text('"Look who\'s talking, bitch!" you scowl, making her laugh out loud.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHotTubNoPanties2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1848,7 +1848,7 @@ function enterAlbYoga_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I need to take a shower and wash all this sweat off. Care to join me?" she asks with a playful smile.');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalkStart(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalkStart(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1899,7 +1899,7 @@ function enterAlbNakedYoga(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'re just going to leave your clothes there?" you ask as you follow.');
     scene.text('"The maid will take care of it," she says flippantly. As you enter her room, she gives you a glance over her shoulder. "I need a shower. Wanna join me?"');
     scene.text('The look in her eye tells you she wants to do a lot more than shower right now.');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalk(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Shower with her', goto: ['albina_sex_scenes', 'albina_shower'] },
       { label: 'No thanks', handler: (st: GameState) => {
@@ -2032,7 +2032,7 @@ function enterAlbinaShowerTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"No thanks, but I wouldn\'t mind talking while you do."');
     scene.text('"Suit yourself," she shrugs before she heads into her personal bathroom, leaving the door open for you to follow her in. You sit on the edge of the bathtub while she steps into the shower.');
     if (((st as any).AlbinaQW ?? 0)?.['mother_daughter_sunbathe'] === ((st as any).daystart ?? 0)) {
-      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalkMotherSunbathe(s, scene); (st as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlbinaShowerTalkMotherSunbathe(st, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       if (((st as any).AlbinaQW ?? 0)?.['naked_yoga'] === ((st as any).daystart ?? 0)) {
         scene.text('"Do you always work out like that?"');

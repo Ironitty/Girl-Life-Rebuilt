@@ -103,8 +103,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text('Martin wordlessly puts your usual drink in front of you, then examines you like he\'s seeing you for the first time.');
             scene.text('"You\'re skinny," he observes.');
             scene.text('"Excuse me?"');
-            // TODO-QSP: dynamic text: You ' + iif($bodyVars['desc']='skinny', 'would call yourself skinny, too, but', ...
-            scene.text('You \' + iif($bodyVars[\'desc\']=\'skinny\', \'would call yourself skinny, too, but\', \'see yourself as ' + ((s as any).bodyVars ?? 0)?.['desc'] ?? '' + ' rather than skinny, so\') + \' you don\'t really see why he would bring this up.');
+            // TODO-QSP: dynamic text: 'You ' + iif($bodyVars['desc']='skinny', 'would call yourself skinny, too, but',...
+            scene.text('You ' + ((((s as any).bodyVars ?? 0)?.['desc']==='skinny') ? ('would call yourself skinny, too, but') : ('see yourself as ' + ((s as any).bodyVars ?? 0)?.['desc'] ?? '' + ' rather than skinny, so')) + ' you don\'t really see why he would bring this up.');
             // TODO-QSP: dynamic text: "Are you eating right, <<$pcs_firstname>>?" He inquires, completely ignoring you...
             scene.text(`"Are you eating right, ${((s as any).pcs_firstname ?? '')}?" He inquires, completely ignoring your visible confusion.`);
             scene.text('"Uh… I guess. Wait, you didn\'t, by any chance, talk to my mother, did you?"');
@@ -283,9 +283,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).MartinHobby = 'finger exercises';
     }
-    // TODO-QSP: dynamic text: "I '+iif(pcs_vokal >= pcs_instrmusic, 'sing', 'play an instrument')+'."
+    // TODO-QSP: dynamic text: '"I '+iif(pcs_vokal >= pcs_instrmusic, 'sing', 'play an instrument')+'."'
     scene.text('"I ' + ((((st as any).pcs_vokal ?? 0) >= ((st as any).pcs_instrmusic ?? 0)) ? ('sing') : ('play an instrument')) + '."');
-    // TODO-QSP: dynamic text: "No wonder, with ' + iif(pcs_vokal>=pcs_instrmusic, 'a voice', 'deft fingers') +...
+    // TODO-QSP: dynamic text: '"No wonder, with ' + iif(pcs_vokal>=pcs_instrmusic, 'a voice', 'deft fingers') ...
     scene.text('"No wonder, with ' + ((((st as any).pcs_vokal ?? 0)>=((st as any).pcs_instrmusic ?? 0)) ? ('a voice') : ('deft fingers')) + ' like yours," Martin smiles.');
     scene.text('"Oh, stop it," you say, flattered by his compliment. "Would you like to, I don\'t know, hear something sometime?"');
     scene.text('Martin gives you a look of pure horror. "Oh god, please no."');
@@ -319,7 +319,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).MartinHobby = 'photography';
     }
-    // TODO-QSP: dynamic text: "I ' + iif(pcs_artskls >= pcs_photoskl, 'started drawing and painting', 'picked ...
+    // TODO-QSP: dynamic text: '"I ' + iif(pcs_artskls >= pcs_photoskl, 'started drawing and painting', 'picked...
     scene.text('"I ' + ((((st as any).pcs_artskls ?? 0) >= ((st as any).pcs_photoskl ?? 0)) ? ('started drawing and painting') : ('picked up photography')) + ' some time ago."');
     scene.text('"Ah, so you have the keen eye and talent of an artist," Martin smiles.');
     scene.text('"Well, I don\'t know if I have talent," you respond sheepishly.');
@@ -404,8 +404,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).MartinTalkVar ?? 0) === 9  &&  ((s as any).npc_rel ?? 0)?.['A216'] >= 48) {
                       (s as any).MartinTalkVar = 10;
-                      // TODO-QSP: dynamic text: "Here you go." Martin puts your drink in front of you before you''ve even proper...
-                      scene.text('"Here you go." Martin puts your drink in front of you before you\'ve even properly come to rest on the stool. \' + $OpenInnerThought + \'When your bartender has your drink ready by the time you order it, maybe you\'ve been spending too much time in the bar,\' + $CloseInnerThought + \' you think to yourself.');
+                      // TODO-QSP: dynamic text: '"Here you go." Martin puts your drink in front of you before you''ve even prope...
+                      scene.text('\'"Here you go." Martin puts your drink in front of you before you\'ve even properly come to rest on the stool. \' + $OpenInnerThought + \'When your bartender has your drink ready by the time you order it, maybe you\'ve been spending too much time in the bar,\' + $CloseInnerThought + \' you think to yourself.\'');
                       scene.text('"How are you doing today?" You ask.');
                       scene.text('Martin shrugs. "Same as always: You kill a man, you move on."');
                       scene.text('You laugh at his remark, but when he doesn\'t join in, you stop and look at him uncertainly. "You <b>are</b> joking, right?"');
@@ -730,7 +730,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                           scene.text('"\'A gentleman doesn\'t kiss and tell\'," he corrects and continues with a sly smile, "but it\'s been so long since the last kiss that I can barely recall it. And I never claimed to be a gentleman."');
                           scene.text('No, of course he didn\'t. "Oh, so you have no memory of being intimate with me?" You sigh dramatically. "That hurts, you know."');
                           scene.text('"How could I possibly forget that?" He speaks and looks at you with a sudden intensity that almost makes you blush. "I just wanted to know how you feel about it."');
-                          // TODO-QSP: dynamic text: You give him a hint of a smile. "Trust me, if I didn''t like what we''re doing, ...
+                          // TODO-QSP: dynamic text: 'You give him a hint of a smile. "Trust me, if I didn''t like what we''re doing,...
                           scene.text('You give him a hint of a smile. "Trust me, if I didn\'t like what we\'re doing, you\'d know. But for the record: I like sex.' + ((((s as any).stat ?? 0)?.['bj']>30) ? (' I like giving blowjobs.') : ('')) + ((((s as any).stat ?? 0)?.['anal']>30) ? (' I like anal.') : ('')) + ((qspFunc(s, 'fetish', 'get_pref', 'rough') > 30) ? (' I like it rough.') : ('')) + ((((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) ? (' I like exposing myself.') : ('')) + ((((s as any).stat ?? 0)?.['lesbian_count']>10) ? (' And I kinda like women, too.') : ('')) + ' But most importantly, I like having sex with you."');
                           scene.text('You lean forward, so close to Martin now that he can smell the alcohol on your breath. "Does that answer your questions?"');
                           scene.text('Baffled by your directness, Martin nods silently.');
@@ -753,7 +753,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  (((s as any).npc_rel ?? 0)?.['A33'] >= 50  ||  ((s as any).npc_rel ?? 0)?.['A34'] >= 50)) {
                               scene.text('"Yeah, I know what you mean," you nod, thinking of your own siblings. "No matter where they are, you always know that somebody\'s there for you."');
                               scene.text('"You have siblings?"');
-                              // TODO-QSP: dynamic text: "An older sister and a younger brother", you nod. "My ' + iif(npc_rel['A33']>=np...
+                              // TODO-QSP: dynamic text: '"An older sister and a younger brother", you nod. "My ' + iif(npc_rel['A33']>=n...
                               scene.text('"An older sister and a younger brother", you nod. "My ' + ((((s as any).npc_rel ?? 0)?.['A33']>=((s as any).npc_rel ?? 0)?.['A34']) ? ('sister') : ('brother')) + ' and I are really close, but I care about both of them."');
                               scene.text('"There\'s always a favorite sibling," he chuckles. "Usually the one who shared the most candy with you."');
                             } else {
@@ -805,8 +805,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                                 ]);
                               } else {
                                 scene.text('As always, Martin brings you your beverage of choice. Rather than leave to look after his other patrons, though, he sticks around and the two of you chat for a while.');
-                                // TODO-QSP: dynamic text: You keep the conversation light today, talking about how your respective day was...
-                                scene.text('You keep the conversation light today, talking about how your respective day was, what has been going on in the bar and the area,\' + iif($MartinHobby!\', \' and, of course, your ' + ((s as any).MartinHobby ?? '') + ',\', \') + \' but really, these subjects are little more than a facade for subtle and not-so-subtle quips, hidden and open insults you try to outwit the other with, and the occasional suggestive remark, usually followed by roaring laughter.');
+                                // TODO-QSP: dynamic text: 'You keep the conversation light today, talking about how your respective day wa...
+                                scene.text('You keep the conversation light today, talking about how your respective day was, what has been going on in the bar and the area,' + ((((s as any).MartinHobby ?? 0)!=='') ? (' and, of course, your ' + ((s as any).MartinHobby ?? '') + ',') : ('')) + ' but really, these subjects are little more than a facade for subtle and not-so-subtle quips, hidden and open insults you try to outwit the other with, and the occasional suggestive remark, usually followed by roaring laughter.');
                                 scene.text('Neither of you finds out anything mindblowing about the other, but you still feel like you and Martin know each other a little better now, your friendship with him growing stronger the more time you spend with him.');
                                 scene.actions([
                                   { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },

@@ -259,7 +259,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorkout(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== 'nude') {
+  if (String((s as any).locArgs?.[1] ?? '') !== 'nude') {
     qspGoto(s, 'exercise', 'workout');
   }
   if (qspFunc(s, 'pcs_has_attr', 'clothes_naked') === 0) {

@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'shop_erotomaniac', 'kendra');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
@@ -151,7 +151,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'shop_erotomaniac', 'kendra');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    // TODO-QSP: dynamic text: 'You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' an...
     scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_erotomaniac/u0027, /u0027albina/u0027); return false;">Albina</a>')) + ' browsing through the underwear that the store has to offer.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
@@ -533,7 +533,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'money', 'pay', 50, 'cash');
       (st as any).minut = ((st as any).minut ?? 0) + 10;
       qspCall(st, 'stat', '');
-      // TODO-QSP: dynamic text: You insert ' + $func('money', 'string_price', 50) + ' into the terminal and the ...
+      // TODO-QSP: dynamic text: 'You insert ' + $func('money', 'string_price', 50) + ' into the terminal and the...
       scene.text('You insert 50₽ into the terminal and the TV on the wall starts showing a pornographic film.');
       scene.text('You sit in the chair and watch the film, feeling yourself becoming a little excited.');
       if (((st as any).GHchance ?? 0) >= 10 - ((st as any).ghnowcheck ?? 0)) {
@@ -549,7 +549,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     }
     scene.img(`images/shared/sex/gloryhole/ghfinger${(Math.floor(Math.random() * 5) + 1)}.jpg`);
     scene.text('You poke your finger in the hole, letting whoever\'s on the other side know that you\'re ready to serve him.');
-    // TODO-QSP: dynamic text: The stranger slips ' + iif(ghnow < 5, $func('money', 'string_price', 300), $func...
+    // TODO-QSP: dynamic text: 'The stranger slips ' + iif(ghnow < 5, $func('money', 'string_price', 300), $fun...
     scene.text('The stranger slips ' + ((((st as any).ghnow ?? 0) < 5) ? (qspFunc(s, 'money', 'string_price', 300)) : (qspFunc(s, 'money', 'string_price', 150))) + ' into the hole, followed by his erect cock.');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {

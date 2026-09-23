@@ -71,7 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You lead Mira through the thickets to the hidden meadow and all the way she talks about everything and anything, merrily telling stories from her past urban life.');
@@ -91,9 +91,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Ask if she\'s met the local boys?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'npc_relationship', 'modify', 'A60', 1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You ask Mira if she has already met everyone in the village. When she says no, you offer to introduce her to some local guys, and she readily agrees, asking you to wait a few minutes while she changes and freshens up. When she comes out, you go drinking with the group of boys near your house…');
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 24 - ((st as any).hour ?? 0);
@@ -137,7 +137,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You offered Mira to walk through the woods naked, and she immediately agreed.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $locat['A60_loc'], $locat['A60_arg']
+    dynamicGoto(st, (((st as any).locat ?? {})['A60_loc']), (((st as any).locat ?? {})['A60_arg']));
   } },
     ]);
   } },
@@ -232,7 +232,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/gadukino/mira/mira_tv' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You watch TV with Mira for an hour.');
     scene.actions([
       { label: 'Continue', goto: ['gad_gphouse', 'main'] },
@@ -263,7 +264,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You go with Mira through the dense undergrowth to the hidden meadow. Along the way, she merrily tells stories from her past city life.');
@@ -297,7 +298,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You decided to go with Mira to the village beach, and all the way, she goes, merrily chattering and telling stories.');
@@ -483,7 +484,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You lead Mira through the thickets to the hidden meadow and all the way she talks about everything and anything, merrily telling stories from her past urban life.');
@@ -503,9 +504,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             { label: 'Ask if she\'s met the local boys?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'npc_relationship', 'modify', 'A60', 1);
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You ask Mira if she has already met everyone in the village. When she says no, you offer to introduce her to some local guys, and she readily agrees, asking you to wait a few minutes while she changes and freshens up. When she comes out, you go drinking with the group of boys near your house…');
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 24 - ((st as any).hour ?? 0);
@@ -549,7 +550,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You offered Mira to walk through the woods naked, and she immediately agreed.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt $locat['A60_loc'], $locat['A60_arg']
+    dynamicGoto(st, (((st as any).locat ?? {})['A60_loc']), (((st as any).locat ?? {})['A60_arg']));
   } },
     ]);
   } },
@@ -644,7 +645,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/gadukino/mira/mira_tv' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You watch TV with Mira for an hour.');
     scene.actions([
       { label: 'Continue', goto: ['gad_gphouse', 'main'] },
@@ -675,7 +677,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You go with Mira through the dense undergrowth to the hidden meadow. Along the way, she merrily tells stories from her past city life.');
@@ -709,7 +711,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 2;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWearStrippedClothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You decided to go with Mira to the village beach, and all the way, she goes, merrily chattering and telling stories.');
@@ -981,7 +983,8 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
       ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearStrippedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
-      scene.img('images/characters/gadukino/mira/girls_walking' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
+      // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/girls_walking'+...
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/girls_walking` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
       scene.text('You invite her to wander around the village, and she gladly accepts. Then you walk together around the small village, telling each other different stories from your lives.');
       if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 15  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20) {
         (s as any).temp_rand = (Math.floor(Math.random() * 12) + 1);
@@ -1264,7 +1267,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A60', 1);
     }
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You are tired of hanging around on the street, and you decide to invite Mira to dinner.');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
@@ -1295,7 +1298,8 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A60', (Math.floor(Math.random() * 2) + 1));
     }
     qspCall(st, 'stat', '');
-    scene.img('images/characters/gadukino/mira/mira_tv' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You ask your grandparents if Mira can sleep over. They tell you it\'s okay with them, so you invite Mira to sleep over.');
     scene.text('You and Mira head over to the vast wardrobe where your clothes are and spend an hour trying on different dresses and underwear.');
     scene.actions([
@@ -1321,7 +1325,8 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'stat', '');
-    scene.img('images/characters/gadukino/mira/mira_tv' + (Math.floor(Math.random() * 12) + 1) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira_tv'+rand(1...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira_tv` + (Math.floor(Math.random() * 12) + 1) + '.jpg"></center>');
     scene.text('You and Mira watch TV for an hour.');
     scene.actions([
       { label: 'Continue', goto: ['gad_gphouse', 'main'] },
@@ -1330,7 +1335,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Say goodbye to Mira', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMiraclothes(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You say goodbye to Mira, and she goes home.');
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follow_time'] = 0;
@@ -1676,16 +1681,20 @@ function enterMiraclothes(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/gadukino/mira/mira3.jpg');
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] >= 4  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 8) {
-        scene.img('images/characters/gadukino/mira/mira0,' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+        // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira0,'+rand(0,...
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira0,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 8  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 12) {
-          scene.img('images/characters/gadukino/mira/mira1,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
+          // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira1,'+rand(0,...
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira1,` + (Math.floor(Math.random() * 3) + 0) + '.jpg"></center>');
         } else {
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 12  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 20) {
-            scene.img('images/characters/gadukino/mira/mira2,' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
+            // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira2,'+rand(0,...
+            scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira2,` + (Math.floor(Math.random() * 6) + 0) + '.jpg"></center>');
           } else {
             if (((s as any).MiraVars ?? 0)?.['QW'] >= 20) {
-              scene.img('images/characters/gadukino/mira/mira3,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
+              // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/gadukino/mira/mira3,'+rand(0,...
+              scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/mira3,` + (Math.floor(Math.random() * 4) + 0) + '.jpg"></center>');
             }
           }
         }

@@ -599,7 +599,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   qspGoto(s, 'succubus', 'RapistFight');
                 }
                 scene.img('images/locations/shared/street/rapist_defeat.jpg');
-                // TODO-QSP: dynamic text: You defeat the '+iif(fightEnding = 8, 'rapist', 'thief')+' and empty his wallet ...
+                // TODO-QSP: dynamic text: 'You defeat the '+iif(fightEnding = 8, 'rapist', 'thief')+' and empty his wallet...
                 scene.text('You defeat the ' + ((((s as any).fightEnding ?? 0) === 8) ? ('rapist') : ('thief')) + ' and empty his wallet as he lies unconscious on the street.');
                 (s as any).fightEnding = 0;
                 (s as any).scpopt = 0;

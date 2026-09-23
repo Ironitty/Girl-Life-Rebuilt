@@ -244,7 +244,8 @@ function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/elevator' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/event/elevator` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   scene.text('When the elevator door opens, you are surprised to see a naked woman standing in it. She looks at you in panic and is frantically pressing all the elevator buttons. You\'re too baffled to do anything until it\'s too late. The door has already closed, and the elevator is moving away from you.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
@@ -274,12 +275,11 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
 function enterElevObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/elevator_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_complexb3', 'lift', $ARGS[1]
-  } },
+    { label: 'Continue', goto: ['pav_complexb3', 'lift', 'ARGS[1]'] },
   ]);
   scene.build();
 }
@@ -287,7 +287,8 @@ function enterElevObjava(s: GameState, scene: SceneBuilder): void {
 function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/pod_ob` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_complexb3', 'etaj_1'] },

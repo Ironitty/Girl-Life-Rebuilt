@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterActive(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).succubusQW ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).succubusQW ?? 0) !== 12  &&  ((s as any).succubusQW ?? 0) !== 13) {
+  if (((s as any).succubusQW ?? 0) >= String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).succubusQW ?? 0) !== 12  &&  ((s as any).succubusQW ?? 0) !== 13) {
     (s as any).result = 1;
   }
   return;
@@ -488,7 +486,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
-  if (((s as any).sucpcinfo ?? 0) >= 4  &&  Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (((s as any).sucpcinfo ?? 0) >= 4  &&  String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.text('"You are a Succubus. Now, the Succubae are not demons, that impression is a byproduct of the masking spell; they are instead a type of Fae, like that Fairy you told me about, and they are native to this plane of existence. As Fae, Succubae have nothing to do with "souls", but they do feed on the energy released during sex. The most efficient means of getting this energy is semen taken internally, but a lot is gained by lesbian orgasm if the Succubus is in sexual contact with the woman as she cums."');
     if (((s as any).tatisucsex ?? 0) !== 0) {
       scene.text('She then gives you a coy smile and says, "I can tell you that sex with a willing Succubus is an <i>amazing experience</i>."');
@@ -501,7 +499,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('"And I will be able to teach you how to tell what your energy levels are."');
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 1)) {
+  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (String((s as any).locArgs?.[1] ?? '') === 0  ||  String((s as any).locArgs?.[1] ?? '') === 1)) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('"Succubae can exceed normal human limitations in a way similar to the way Gustav does, but unlike Gustav, since they are Fae, the masking spell ignores them.');
     scene.text('"They automatically store sexual energy in excess of what they need to survive internally, and when this energy builds up enough, let\'s call that point 100 units, their bodies will automatically use this energy to improve themselves; increasing their physical and mental abilities, keeping themselves young looking, and providing a reserve in case they can\'t find food.');
@@ -512,7 +510,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('"And," she adds with a grin, "I can teach you to store energy before your body uses it and to increase your storage capacity, as long as you have some reserves! Just make sure your reserves are full before we try to teach you."');
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 2)) {
+  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (String((s as any).locArgs?.[1] ?? '') === 0  ||  String((s as any).locArgs?.[1] ?? '') === 2)) {
     if (((s as any).sucskill ?? 0) >= 3) {
       scene.text('"They also learned, as you have, to be more efficient with the sexual energy, increasing the amount of energy they have available for survival and storage."');
     } else {
@@ -527,7 +525,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 3)) {
+  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (String((s as any).locArgs?.[1] ?? '') === 0  ||  String((s as any).locArgs?.[1] ?? '') === 3)) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('"Succubae are somewhat territorial when hungry, but when sated, the impulse is weak enough to suppress easily. They seem to have established neutral territories in the flesh-pots of the world, like Amsterdam, Morocco, and Las Vegas. Places like that are not claimed by one Succubus, instead groups of them have made their homes there.');
     scene.text('"A Succubae\'s body can learn to expend a bit of power to accommodate nearly any size of… implement." She gives you a smug grin with that.');
@@ -535,7 +533,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('And I can teach you, just go get the biggest dildo they sell at that shop down the street, then bring it and 100 units of stored energy back here.');
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     scene.text('"They likely have other abilities and weaknesses, but the few Succubae I have encountered were not that willing to part with information, though I have put out requests for more information from my contacts.');
     scene.text('"As far as I know, you are the only Succubus in the region."');
     scene.actions([
@@ -975,7 +973,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'money', 'set', 0, 'cash');
           (s as any).scwalkmon = 0;
-          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
+          ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) + ((Math.floor(Math.random() * (((s as any).car ?? 0)?.['tank'] - 10 + 1)) + (10)));
         }
       }
     }

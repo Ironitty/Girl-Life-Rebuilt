@@ -237,7 +237,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               (s as any).cumcondslip = ((s as any).cumcondslip ?? 0) + (1);
               if (((s as any).cumcondslip_deep ?? 0) <= 0) {
-                (s as any).cumcondslip_deep = 0;
+                (s as any).cumcondslip_deep = (Math.floor(Math.random() * (((s as any).dick_length ?? 0) - 1 + 1)) + (1));
               }
               if (((s as any).sparridt ?? 0)?.[String((s as any).sparrtemp ?? 0)] >= 0) {
                 (s as any).cumcondslip_aware = 1;
@@ -510,14 +510,14 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
         ((s as any).cumcount = (s as any).cumcount ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).cumcount[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + (1);
       } else {
         if (((s as any).sparridt ?? 0)?.[String((s as any).idx ?? 0)] === 1) {
-          if (((s as any).knownguy ?? 0)[((s as any).temp_cum_manage_i ?? 0) + ':' + ((s as any).temp_cum_manage_j ?? 0)] > 0) {
+          if (((s as any).knownguy ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0))] > 0) {
             (s as any).gchk = 0;
             // TODO-QSP: :cum_c_sameguy
-            if (((s as any).cumowner ?? 0)[((s as any).temp_cum_manage_i ?? 0) + ':' + ((s as any).temp_cum_manage_j ?? 0) + ':' + ((s as any).gchk ?? 0)] !== ((s as any).sparrnam ?? 0)?.[String((s as any).idx ?? 0)]  &&  ((s as any).gchk ?? 0) <= ((s as any).knownguy ?? 0)[((s as any).temp_cum_manage_i ?? 0) + ':' + ((s as any).temp_cum_manage_j ?? 0)]) {
+            if (((s as any).cumowner ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0)) + ':' + (((s as any).gchk ?? 0))] !== ((s as any).sparrnam ?? 0)?.[String((s as any).idx ?? 0)]  &&  ((s as any).gchk ?? 0) <= ((s as any).knownguy ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0))]) {
               (s as any).gchk = ((s as any).gchk ?? 0) + (1);
               // TODO-QSP: jump 'cum_c_sameguy'
             }
-            if (((s as any).gchk ?? 0) > ((s as any).knownguy ?? 0)[((s as any).temp_cum_manage_i ?? 0) + ':' + ((s as any).temp_cum_manage_j ?? 0)]) {
+            if (((s as any).gchk ?? 0) > ((s as any).knownguy ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0))]) {
               // TODO-QSP: $cumowner['<<temp_cum_manage_i>>:<<temp_cum_manage_j>>:<<knownguy[''<<temp_cum_manage_i>>:<<temp_cum...
               ((s as any).knownguy = (s as any).knownguy ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).knownguy[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + (1);
               ((s as any).cumcount = (s as any).cumcount ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).cumcount[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + (1);
@@ -542,7 +542,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :cum_c_locloop
   (s as any).temp_cum_manage_j = 0;
   // TODO-QSP: :cum_c_ageloop
-  if (((s as any).cumvolume ?? 0)[((s as any).temp_cum_manage_i ?? 0) + ':' + ((s as any).temp_cum_manage_j ?? 0)] > 0) {
+  if (((s as any).cumvolume ?? 0)[(((s as any).temp_cum_manage_i ?? 0)) + ':' + (((s as any).temp_cum_manage_j ?? 0))] > 0) {
     ((s as any).cumloc = (s as any).cumloc ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = 1;
     ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = ((s as any).cumvolume ?? 0)?.[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))];
     if (((s as any).temp_cum_manage_j ?? 0) === 4) {
@@ -715,17 +715,17 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sd_cum = (s as any).sd_cum ?? {})['j'] = 0;
   // TODO-QSP: :cum_ageloop
-  if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 0) {
+  if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 0) {
     if (((s as any).sd_cum ?? 0)?.['loc_check'] !== 1  &&  ((s as any).sd_cum ?? 0)?.['i'] !== 12) {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_check'] = 1;
     }
-    if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 250) {
+    if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 250) {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['amount'] = 'Enormous ';
     } else {
-      if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 100) {
+      if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 100) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['amount'] = 'Huge ';
       } else {
-        if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] >= 20) {
+        if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] >= 20) {
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['amount'] = 'Decent ';
         } else {
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['amount'] = 'Small ';
@@ -736,19 +736,19 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((((s as any).vibratorIN ?? 0) === 1  ||  ((s as any).isprok ?? 0) === 1)  &&  ((s as any).sd_cum ?? 0)?.['i'] === 0)  ||  (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).sd_cum ?? 0)?.['i'] === 3)) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'being plugged in ';
       } else {
-        if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] < qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)) {
+        if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] < qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)) {
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'staying inside ';
         } else {
-          if (((s as any).sd_cum ?? 0)?.['i'] === 3  &&  ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] < qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)) {
+          if (((s as any).sd_cum ?? 0)?.['i'] === 3  &&  ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] < qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)) {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'staying inside ';
           } else {
-            if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 250) {
+            if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 250) {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'gushing out of ';
             } else {
-              if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 100) {
+              if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 100) {
                 ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'flowing out of ';
               } else {
-                if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] >= 40) {
+                if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] >= 40) {
                   ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'seeping out of ';
                 } else {
                   ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'staying inside ';
@@ -774,10 +774,10 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).sd_cum ?? 0)?.['j'] < 4  &&  ((s as any).sd_cum ?? 0)?.['j'] > 0) {
-          if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 160) {
+          if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 160) {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'coating ';
           } else {
-            if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 40) {
+            if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 40) {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'covering ';
             } else {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = 'spattered ';
@@ -792,20 +792,20 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = ((s as any).sd_cum['proxy'] ?? 0) + ('powderly ');
             }
           }
-          if (((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] < 40) {
+          if (((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] < 40) {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['proxy'] = ((s as any).sd_cum['proxy'] ?? 0) + (((s as any).sd_cum ?? 0)?.['loc_adj']);
           }
         }
       }
     }
     ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = '';
-    if (((s as any).cumcount ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 0) {
+    if (((s as any).cumcount ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 0) {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['iscum'] = 'some whitish substance ';
     } else {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['iscum'] = 'cum';
-      if (((s as any).cumcount ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === ((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']]) {
-        if (((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 1) {
-          if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':0']] === 'stranger') {
+      if (((s as any).cumcount ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === ((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])]) {
+        if (((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 1) {
+          if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] === 'stranger') {
             // TODO-QSP: $sd_cum['person'] = $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
           } else {
             // TODO-QSP: $sd_cum['person'] = $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
@@ -813,7 +813,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         } else {
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = 0;
           // TODO-QSP: :cum_nullocator1
-          if (((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['kmax']] !== '') {
+          if (((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['kmax'])] !== '') {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = ((s as any).sd_cum['kmax'] ?? 0) + (1);
             // TODO-QSP: jump 'cum_nullocator1'
           }
@@ -827,22 +827,22 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: jump 'cum_knownloop'
           }
           ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);
-          if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k']]] === 'stranger') {
+          if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_firstname[$cumowner[\'' + ((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k'] + '\']] + \' ');
           } else {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_usedname[$cumowner[\'' + ((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k'] + '\']] + \' ');
           }
         }
       } else {
-        if (((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 0) {
-          if (((s as any).cumcount ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 1) {
+        if (((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 0) {
+          if (((s as any).cumcount ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 1) {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ('some guy ');
           } else {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ('some guys ');
           }
         } else {
-          if (((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 1) {
-            if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k']]] === 'stranger') {
+          if (((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 1) {
+            if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
               // TODO-QSP: $sd_cum['person'] = $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' and some guy'
             } else {
               // TODO-QSP: $sd_cum['person'] = $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' and some guy'
@@ -850,14 +850,14 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           } else {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = 0;
             // TODO-QSP: :cum_nullocator2
-            if (((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['kmax']] !== '') {
+            if (((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['kmax'])] !== '') {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = ((s as any).sd_cum['kmax'] ?? 0) + (1);
               // TODO-QSP: jump 'cum_nullocator2'
             }
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = ((s as any).sd_cum['kmax'] ?? 0) - (1);
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = 0;
             // TODO-QSP: :cum_mixloop
-            if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k']]] === 'stranger') {
+            if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
               // TODO-QSP: $sd_cum['person'] += $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
             } else {
               // TODO-QSP: $sd_cum['person'] += $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
@@ -868,7 +868,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ('and some guy');
           }
-          if (((s as any).cumcount ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] - ((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] > 1) {
+          if (((s as any).cumcount ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] - ((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] > 1) {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ('s ');
           } else {
             ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' ');
@@ -888,7 +888,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = ((s as any).sd_cum ?? 0)?.['display'];
     } else {
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['tail'] = '.';
-      if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).sd_cum ?? 0)?.['j'] === 4  &&  ((s as any).vibratorIN ?? 0) === 0  &&  ((s as any).pcs_vag ?? 0) * 10 < ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']]  &&  ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] >= 20) {
+      if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).sd_cum ?? 0)?.['j'] === 4  &&  ((s as any).vibratorIN ?? 0) === 0  &&  ((s as any).pcs_vag ?? 0) * 10 < ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])]  &&  ((s as any).cumvolume ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] >= 20) {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['tail'] = ((((s as any).pantyworntype ?? 0) !== 'none') ? (' into your panties.') : (' down your legs.'));
       }
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['tooltip'] = '' + ((s as any).sd_cum ?? 0)?.['amount'] + 'amounts of ' + ((s as any).sd_cum ?? 0)?.['icon_iscum'] + '' + ((s as any).sd_cum ?? 0)?.['person'] + ' is ' + ((s as any).sd_cum ?? 0)?.['proxy'] + '' + ((s as any).sd_cum ?? 0)?.['icon_loc'] + '' + ((s as any).sd_cum ?? 0)?.['tail'] + '';
@@ -969,44 +969,44 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
 function enterCumgather(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cum_manage_pos = qspUntranslated(s, "arrpos('sparrloc', ARGS[1])", { location: "cum_manage" });
   if (((s as any).temp_cum_manage_pos ?? 0) >= 0  &&  ((s as any).temp_cum_manage_pos ?? 0) < Object.keys((s as any).sparrloc ?? {}).length) {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === 0) {
       (s as any).part = 'pussy';
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === 1) {
         (s as any).part = 'pussylips';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 2  ||  Number((s as any).locArgs?.[1] ?? 0) === 5) {
+        if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5) {
           (s as any).part = 'your panties';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+          if (String((s as any).locArgs?.[1] ?? '') === 3) {
             (s as any).part = 'anus';
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+            if (String((s as any).locArgs?.[1] ?? '') === 4) {
               (s as any).part = 'buttocks';
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 6  ||  Number((s as any).locArgs?.[1] ?? 0) === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7) {
                 (s as any).part = 'clothes';
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === 8) {
                   (s as any).part = 'back';
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 9) {
                     (s as any).part = 'legs';
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 10) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 10) {
                       (s as any).part = 'arms';
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 11) {
+                      if (String((s as any).locArgs?.[1] ?? '') === 11) {
                         ((s as any).stat = (s as any).stat ?? {})['cum_facial'] = ((s as any).stat['cum_facial'] ?? 0) + (1);
                         (s as any).part = 'face';
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 14) {
+                        if (String((s as any).locArgs?.[1] ?? '') === 14) {
                           (s as any).part = 'stomach';
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 15) {
+                          if (String((s as any).locArgs?.[1] ?? '') === 15) {
                             (s as any).part = 'breasts';
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 16) {
+                            if (String((s as any).locArgs?.[1] ?? '') === 16) {
                               (s as any).part = 'hair';
                             } else {
                               (s as any).part = 'unknown';
@@ -1069,51 +1069,51 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     (s as any).cumnostd = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).part = '';
-    if (Number((s as any).locArgs?.[1] ?? 0) === 13) {
+    if (String((s as any).locArgs?.[1] ?? '') === 13) {
       // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
       scene.text('You carefully lick the sperm residue from your hands, enjoying the tart taste.');
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === 0) {
         (s as any).part = 'pussy';
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === 1) {
           (s as any).part = 'pussylips';
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 2  ||  Number((s as any).locArgs?.[1] ?? 0) === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5) {
             (s as any).part = 'your panties';
             qspCall(s, 'cum_cleanup', 'cleanloc', 2);
             qspCall(s, 'cum_cleanup', 'cleanloc', 5);
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+            if (String((s as any).locArgs?.[1] ?? '') === 3) {
               (s as any).part = 'anus';
             } else {
-              if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
+              if (String((s as any).locArgs?.[1] ?? '') === 4) {
                 (s as any).part = 'buttocks';
               } else {
-                if (Number((s as any).locArgs?.[1] ?? 0) === 6  ||  Number((s as any).locArgs?.[1] ?? 0) === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7) {
                   (s as any).part = 'clothes';
                   qspCall(s, 'cum_cleanup', 'cleanloc', 6);
                   qspCall(s, 'cum_cleanup', 'cleanloc', 7);
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
                     (s as any).part = 'back';
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
+                    if (String((s as any).locArgs?.[1] ?? '') === 9) {
                       (s as any).part = 'legs';
                     } else {
-                      if (Number((s as any).locArgs?.[1] ?? 0) === 10) {
+                      if (String((s as any).locArgs?.[1] ?? '') === 10) {
                         (s as any).part = 'arms';
                       } else {
-                        if (Number((s as any).locArgs?.[1] ?? 0) === 11) {
+                        if (String((s as any).locArgs?.[1] ?? '') === 11) {
                           (s as any).part = 'face';
                         } else {
-                          if (Number((s as any).locArgs?.[1] ?? 0) === 14) {
+                          if (String((s as any).locArgs?.[1] ?? '') === 14) {
                             (s as any).part = 'stomach';
                           } else {
-                            if (Number((s as any).locArgs?.[1] ?? 0) === 15) {
+                            if (String((s as any).locArgs?.[1] ?? '') === 15) {
                               (s as any).part = 'breasts';
                             } else {
-                              if (Number((s as any).locArgs?.[1] ?? 0) === 16) {
+                              if (String((s as any).locArgs?.[1] ?? '') === 16) {
                                 (s as any).part = 'hair';
                               } else {
                                 (s as any).part = 'unknown';
@@ -1141,7 +1141,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
         (s as any).cumspclnt = 15;
         qspCall(s, 'cum_cleanup', '');
       } else {
-        if ((Number((s as any).locArgs?.[1] ?? 0) !== 0  &&  Number((s as any).locArgs?.[1] ?? 0) !== 3)  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
+        if ((String((s as any).locArgs?.[1] ?? '') !== 0  &&  String((s as any).locArgs?.[1] ?? '') !== 3)  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
           // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
         }
       }
@@ -1184,7 +1184,7 @@ function enterIsPrivateLocation(s: GameState, scene: SceneBuilder): void {
 function enterCheckPrivate(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'cum_manage', 'is_private_location');
   if ((!((s as any).result ?? 0))) {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 2  ||  Number((s as any).locArgs?.[1] ?? 0) === 5  ||  Number((s as any).locArgs?.[1] ?? 0) === 6  ||  Number((s as any).locArgs?.[1] ?? 0) === 7  ||  Number((s as any).locArgs?.[1] ?? 0) === 8  ||  Number((s as any).locArgs?.[1] ?? 0) === 9  ||  Number((s as any).locArgs?.[1] ?? 0) === 10  ||  Number((s as any).locArgs?.[1] ?? 0) === 11  ||  Number((s as any).locArgs?.[1] ?? 0) === 13  ||  Number((s as any).locArgs?.[1] ?? 0) === 14  ||  Number((s as any).locArgs?.[1] ?? 0) === 16) {
+    if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5  ||  String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7  ||  String((s as any).locArgs?.[1] ?? '') === 8  ||  String((s as any).locArgs?.[1] ?? '') === 9  ||  String((s as any).locArgs?.[1] ?? '') === 10  ||  String((s as any).locArgs?.[1] ?? '') === 11  ||  String((s as any).locArgs?.[1] ?? '') === 13  ||  String((s as any).locArgs?.[1] ?? '') === 14  ||  String((s as any).locArgs?.[1] ?? '') === 16) {
       (s as any).result = 1;
     }
   }
@@ -1195,12 +1195,12 @@ function enterCheckPrivate(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckInnerOverflow(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === -1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
     if (((s as any).cumsumvag ?? 0) >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
       (s as any).result = 1;
     }
   }
-  if (Number((s as any).locArgs?.[1] ?? 0) === 3  ||  Number((s as any).locArgs?.[1] ?? 0) === -1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 3  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
     if (((s as any).cumsumass ?? 0) >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  (!((s as any).analPlugIn ?? 0))) {
       (s as any).result = 1;
     }
@@ -1212,10 +1212,10 @@ function enterCheckInnerOverflow(s: GameState, scene: SceneBuilder): void {
 
 function enterGetInnerCapacity(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1;
-  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === 0) {
     (s as any).result = Math.max(1, 3 * ((s as any).pcs_vag ?? 0) - 30 * ((s as any).vgape ?? 0) - Math.min(100, ((s as any).pcs_horny ?? 0)) / 10);
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
+    if (String((s as any).locArgs?.[1] ?? '') === 3) {
       (s as any).result = Math.max(1, 6 * ((s as any).pcs_ass ?? 0) - 40 * ((s as any).agape ?? 0));
     }
   }
@@ -1225,7 +1225,7 @@ function enterGetInnerCapacity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckInnards(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (String((s as any).locArgs?.[2] ?? '') > 0) {
     (s as any).result = qspFunc(s, 'cum_manage', 'get_inner_capacity', ((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).result = qspFunc(s, 'cum_manage', 'check_inner_overflow', ((s as any).locArgs?.[1] ?? 0));
@@ -1293,7 +1293,7 @@ function enterCheckInside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecay(s: GameState, scene: SceneBuilder): void {
-  if ((Number((s as any).locArgs?.[1] ?? 0) === 0  &&  (((s as any).menu_off ?? 0) === 1  ||  ((s as any).totminut ?? 0) < ((s as any).cumdectime ?? 0) + 15))  ||  ((s as any).cheatVars ?? 0)?.['no_cum_leak'] === 1) {
+  if ((String((s as any).locArgs?.[1] ?? '') === 0  &&  (((s as any).menu_off ?? 0) === 1  ||  ((s as any).totminut ?? 0) < ((s as any).cumdectime ?? 0) + 15))  ||  ((s as any).cheatVars ?? 0)?.['no_cum_leak'] === 1) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
@@ -1374,23 +1374,23 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 0) {
     // TODO-QSP: exit
   }
   if ((!((s as any).succubusflag ?? 0))) {
-    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/30 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60)) + (Math.floor(Math.random() * (0, ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 3) + 1) + 1))) + ((s as any).isprok ?? 0)*(Math.floor(Math.random() * 6) + 5) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/30 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60)) - 0 + 1)) + (0)) + (Math.floor(Math.random() * ((Math.floor(Math.random() * 3) + 1) - 0 + 1)) + (0)));
+    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/30 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/60)));
     // TODO-QSP: sparrvol[ARGS[1]] -= cumamount
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }));
-    if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  Number((s as any).locArgs?.[2] ?? 0) / (Math.floor(Math.random() * 2) + 2) > ((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
-      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 3) + 1), (Math.floor(Math.random() * (((s as any).vgape ?? 0)*40 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / Math.max(1, ((s as any).pcs_vag ?? 0)) + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / Math.max(1, ((s as any).pcs_vag ?? 0)))) - ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 4) + 2) + Math.max(1, ((s as any).pcs_vag ?? 0))) + ((s as any).cumforced ?? 0) / (Math.floor(Math.random() * 6) + 5));
+    if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  String((s as any).locArgs?.[2] ?? '') / (Math.floor(Math.random() * 2) + 2) > ((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
+      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 3) + 1), (Math.floor(Math.random() * (((s as any).vgape ?? 0)*40 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / Math.max(1, ((s as any).pcs_vag ?? 0)) + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / Math.max(1, ((s as any).pcs_vag ?? 0))))) + ((s as any).cumforced ?? 0) / (Math.floor(Math.random() * 6) + 5));
       // TODO-QSP: sparrvol[ARGS[1]] -= cumamount & cumsumvag -= cumamount
       ((s as any).cumvol = (s as any).cumvol ?? {})[0] = ((s as any).cumvol[0] ?? 0) - (((s as any).cumamount ?? 0));
-      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/2 - ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? (((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 11) + 10)) : (0)));
+      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/2 - ((String((s as any).locArgs?.[2] ?? '') === 0) ? (((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 11) + 10)) : (0)));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 1;
-        (s as any).sexunaware = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0))) : (0));
+        (s as any).sexunaware = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1399,12 +1399,12 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
         ((s as any).cumvol = (s as any).cumvol ?? {})[1] = ((s as any).cumvol[1] ?? 0) + (((s as any).sexvolume ?? 0));
         ((s as any).cumloc = (s as any).cumloc ?? {})[1] = 1;
       }
-      if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
+      if (String((s as any).locArgs?.[2] ?? '') === 0) {
         if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
           if (((s as any).isprokp ?? 0) !== 1) {
             (s as any).spafinloc = 2;
             (s as any).sexvolume = Math.max(1, ((s as any).cumamount ?? 0)/2);
-            (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+            (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnpcID = ((s as any).npcID ?? 0);
             (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1418,7 +1418,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
             (s as any).sexvolume = Math.max(0, ((s as any).cumamount ?? 0)/4);
             if (((s as any).sexvolume ?? 0) > 0) {
               (s as any).spafinloc = 9;
-              (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+              (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
               (s as any).sexspecpot = (-1);
               (s as any).cumnpcID = ((s as any).npcID ?? 0);
               (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1433,7 +1433,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
           (s as any).sexvolume = Math.max(0, ((s as any).cumamount ?? 0) / (3 + ((((s as any).pantyworntype ?? 0) !== 'none') ? (12) : (0))));
           if (((s as any).sexvolume ?? 0) > 0) {
             (s as any).spafinloc = 6;
-            (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+            (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnpcID = ((s as any).npcID ?? 0);
             (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1446,7 +1446,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
@@ -1455,23 +1455,23 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 3) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 3) {
     // TODO-QSP: exit
   }
   if ((!((s as any).succubusflag ?? 0))) {
-    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 3) + 0), (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/20 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40)) + (Math.floor(Math.random() * (0, ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 4) + 3) + 1))) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/20 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40)) - 0 + 1)) + (0)));
+    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 3) + 0), (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/20 - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/40)));
     // TODO-QSP: sparrvol[ARGS[1]] -= cumamount
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 0) {
     (s as any).cumsumass = ((s as any).cumsumass ?? 0) + (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }));
-    if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  Number((s as any).locArgs?.[2] ?? 0) / (Math.floor(Math.random() * 3) + 2) > ((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
-      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * (((s as any).agape ?? 0)*20 - ((s as any).sparrvol ?? 0)[Math.max(1, (((s as any).pcs_ass ?? 0)*3/2))]/Math.max(1, (((s as any).pcs_ass ?? 0)*3/2)) + 1)) + (((s as any).sparrvol ?? 0)[Math.max(1, (((s as any).pcs_ass ?? 0)*3/2))]/Math.max(1, (((s as any).pcs_ass ?? 0)*3/2)))) - ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 5) + 4)) + ((s as any).locArgs?.[2] ?? 0)/(Math.floor(Math.random() * 9) + 7));
+    if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  String((s as any).locArgs?.[2] ?? '') / (Math.floor(Math.random() * 3) + 2) > ((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
+      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max((Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * (((s as any).agape ?? 0)*20 - ((s as any).sparrvol ?? 0)[Math.max(1, (((s as any).pcs_ass ?? 0)*3/2))]/Math.max(1, (((s as any).pcs_ass ?? 0)*3/2)) + 1)) + (((s as any).sparrvol ?? 0)[Math.max(1, (((s as any).pcs_ass ?? 0)*3/2))]/Math.max(1, (((s as any).pcs_ass ?? 0)*3/2))))) + ((s as any).locArgs?.[2] ?? 0)/(Math.floor(Math.random() * 9) + 7));
       // TODO-QSP: sparrvol[ARGS[1]] -= cumamount & cumsumass -= cumamount
       ((s as any).cumvol = (s as any).cumvol ?? {})[3] = ((s as any).cumvol[3] ?? 0) - (((s as any).cumamount ?? 0));
-      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/4 - ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? (((s as any).isprokp ?? 0)*(Math.floor(Math.random() * 11) + 10)) : (0)));
+      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/4 - ((String((s as any).locArgs?.[2] ?? '') === 0) ? (((s as any).isprokp ?? 0)*(Math.floor(Math.random() * 11) + 10)) : (0)));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 1;
-        (s as any).sexunaware = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0))) : (0));
+        (s as any).sexunaware = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1480,7 +1480,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
         ((s as any).cumvol = (s as any).cumvol ?? {})[1] = ((s as any).cumvol[1] ?? 0) + (((s as any).sexvolume ?? 0));
         ((s as any).cumloc = (s as any).cumloc ?? {})[1] = 1;
       }
-      if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
+      if (String((s as any).locArgs?.[2] ?? '') > 0) {
         (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/15, ((s as any).cumamount ?? 0)/3);
         if (((s as any).sexvolume ?? 0) > 0) {
           (s as any).spafinloc = 4;
@@ -1499,7 +1499,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
           if (((s as any).isprokp ?? 0) !== 1) {
             (s as any).spafinloc = 5;
             (s as any).sexvolume = Math.max(1, ((s as any).cumamount ?? 0) / 3);
-            (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+            (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnpcID = ((s as any).npcID ?? 0);
             (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1513,7 +1513,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
             (s as any).sexvolume = Math.max(0, ((s as any).cumamount ?? 0) / 5);
             if (((s as any).sexvolume ?? 0) > 0) {
               (s as any).spafinloc = 9;
-              (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+              (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
               (s as any).sexspecpot = (-1);
               (s as any).cumnpcID = ((s as any).npcID ?? 0);
               (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1528,7 +1528,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
           (s as any).sexvolume = Math.max(0, ((s as any).cumamount ?? 0) / (4 + ((((s as any).pantyworntype ?? 0)!=='none') ? (16) : (0))));
           if (((s as any).sexvolume ?? 0) > 0) {
             (s as any).spafinloc = 6;
-            (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+            (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnpcID = ((s as any).npcID ?? 0);
             (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1541,7 +1541,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
@@ -1550,14 +1550,14 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 1) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 1) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] * ((((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0)) / 15) < (Math.floor(Math.random() * 4) + 3)) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] * ((((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0)) / 15) < (Math.floor(Math.random() * 4) + 3)) {
     return;
   }
   if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
-    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[\u00001\u0000]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2)) - ((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 16) + 15);
+    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2));
     if (((s as any).sexvolume ?? 0) > 0) {
       // TODO-QSP: sparrvol[ARGS[1]] -= sexvolume
       (s as any).spafinloc = 2;
@@ -1572,10 +1572,10 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).PCloPants ?? 0) > 0) {
-      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[\u00001\u0000]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2));
+      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 6;
-        (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+        (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1586,7 +1586,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
@@ -1595,14 +1595,14 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 4) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 4) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] * ((((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0)) / 15) < (Math.floor(Math.random() * 5) + 5)) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] * ((((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0)) / 15) < (Math.floor(Math.random() * 5) + 5)) {
     return;
   }
   if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
-    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[\u00001\u0000]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2));
+    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/2));
     if (((s as any).sexvolume ?? 0) > 0) {
       // TODO-QSP: sparrvol[ARGS[1]] -= sexvolume
       (s as any).spafinloc = 5;
@@ -1617,10 +1617,10 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).PCloPants ?? 0) > 0) {
-      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[\u00001\u0000]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2));
+      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 2));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 6;
-        (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
+        (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1631,7 +1631,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
@@ -1640,10 +1640,10 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayCondomVagina(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 17) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 17) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < (Math.floor(Math.random() * 6) + 11)) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] < (Math.floor(Math.random() * 6) + 11)) {
     // TODO-QSP: exit
   }
   (s as any).sexvolume = Math.min(((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]/3, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(0, ((s as any).cumamount ?? 0)/5 - ((s as any).isprokp ?? 0)*(Math.floor(Math.random() * 4) + 2)) + ((s as any).locArgs?.[2] ?? 0) / (Math.floor(Math.random() * 6) + 5));
@@ -1667,29 +1667,29 @@ function enterCumDecayCondomVagina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecayBodyClothing(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 3) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 4) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 4) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 12) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 12) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 17) {
+  if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 17) {
     // TODO-QSP: exit
   }
-  if (((s as any).sparrvol ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < (Math.floor(Math.random() * 4) + 1)) {
+  if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] < (Math.floor(Math.random() * 4) + 1)) {
     // TODO-QSP: exit
   }
-  if ((Math.floor(Math.random() * (((s as any).sparrage ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + (((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0) - -1 * Math.max(1 - ((s as any).inSleep ?? 0), ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 5) + 1)) + (-1 * Math.max(1 - ((s as any).inSleep ?? 0), ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 5))) / 30) >= 1) {
-    if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 5  ||  ((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 7) {
+  if ((Math.floor(Math.random() * (((s as any).sparrage ?? 0)[String((s as any).locArgs?.[1] ?? '')] + (((s as any).totminut ?? 0) - ((s as any).cumdectime ?? 0) - -1 * Math.max(1 - ((s as any).inSleep ?? 0), ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 5) + 1)) + (-1 * Math.max(1 - ((s as any).inSleep ?? 0), ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 5))) / 30) >= 1) {
+    if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 5  ||  ((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 7) {
       qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * (Math.max(1, ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10) - 0 + 1)) + (0)));
     }
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]

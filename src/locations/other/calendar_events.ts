@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddToEventsList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) === -1) {
     // TODO-QSP: $events_list[] = $ARGS[1]
   }
   return;
@@ -29,7 +29,7 @@ function enterRemoveFromEventsList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangeTitle(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0) {
     // TODO-QSP: $event_title[$ARGS[1]] = $ARGS[2]
   }
   return;
@@ -38,7 +38,7 @@ function enterChangeTitle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMarkDone(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0) {
     // TODO-QSP: $event_title[$ARGS[1]] = '<s><<$event_title[$ARGS[1]]>></s>'
   }
   return;
@@ -99,11 +99,11 @@ function enterIsDayHoliday(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (String((s as any).locArgs?.[1] ?? '') !== '') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).result = 0;
-  if (((s as any).event_vars ?? 0)?.['daystart'] > Number((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).event_vars ?? 0)?.['daystart'] > String((s as any).locArgs?.[2] ?? '')) {
     return;
   }
   if (((s as any).event_vars ?? 0)?.['holiday'] !== 0) {
@@ -112,11 +112,11 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  if (((s as any).event_vars ?? 0)?.['daystart'] === Number((s as any).locArgs?.[2] ?? 0)  &&  parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) === 0) {
+  if (((s as any).event_vars ?? 0)?.['daystart'] === String((s as any).locArgs?.[2] ?? '')  &&  parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) === 0) {
     (s as any).result = 1;
     return;
   }
-  if (((s as any).event_vars ?? 0)?.['recur'] !== ''  &&  (((s as any).event_vars ?? 0)?.['recur_end'] === 0  ||  ((s as any).event_vars ?? 0)?.['recur_end'] >= Number((s as any).locArgs?.[2] ?? 0))) {
+  if (((s as any).event_vars ?? 0)?.['recur'] !== ''  &&  (((s as any).event_vars ?? 0)?.['recur_end'] === 0  ||  ((s as any).event_vars ?? 0)?.['recur_end'] >= String((s as any).locArgs?.[2] ?? ''))) {
     if (((s as any).event_vars ?? 0)?.['recur'] === 'yearly') {
       // TODO-QSP: gs 'time', 'to_date', ARGS[2]
       (s as any).temp_month_1 = ((s as any).dateVars ?? 0)?.['month'];
@@ -197,7 +197,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === -1) {
+  if (String((s as any).locArgs?.[1] ?? '') === -1) {
     if (parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) > 0) {
       (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).new_ev ?? 0)?.['daystart']);
       if ((!((String(' ' + ((s as any).new_ev ?? 0)?.['recur'] + ' ').indexOf(String(' ' + String(((s as any).temp_weekday ?? 0)) + ' '))) + 1))) {
@@ -285,10 +285,10 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).temp_start_mmdd ?? 0) <= ((s as any).temp_end_mmdd ?? 0)) {
                   qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_start_month ?? 0), ((s as any).temp_start_day ?? 0));
                   (s as any).temp_start_this_year = ((s as any).dateVars ?? 0)?.['daystart'];
-                  if (Number((s as any).locArgs?.[1] ?? 0) >= ((s as any).temp_start_this_year ?? 0)  &&  Number((s as any).locArgs?.[1] ?? 0) < ((s as any).temp_end_this_year ?? 0)) {
+                  if (String((s as any).locArgs?.[1] ?? '') >= ((s as any).temp_start_this_year ?? 0)  &&  String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_end_this_year ?? 0)) {
                     (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 1;
                   } else {
-                    if (Number((s as any).locArgs?.[1] ?? 0) < ((s as any).temp_start_this_year ?? 0)) {
+                    if (String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_start_this_year ?? 0)) {
                       (s as any).candidate = ((s as any).temp_start_this_year ?? 0);
                     } else {
                       (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
@@ -297,12 +297,12 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  if (Number((s as any).locArgs?.[1] ?? 0) < ((s as any).temp_end_this_year ?? 0)) {
+                  if (String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_end_this_year ?? 0)) {
                     (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 1;
                   } else {
                     qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_start_month ?? 0), ((s as any).temp_start_day ?? 0));
                     (s as any).temp_start_this_year = ((s as any).dateVars ?? 0)?.['daystart'];
-                    if (Number((s as any).locArgs?.[1] ?? 0) < ((s as any).temp_start_this_year ?? 0)) {
+                    if (String((s as any).locArgs?.[1] ?? '') < ((s as any).temp_start_this_year ?? 0)) {
                       (s as any).candidate = ((s as any).temp_start_this_year ?? 0);
                     } else {
                       (s as any).candidate = ((s as any).locArgs?.[1] ?? 0) + 1;
@@ -349,7 +349,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
 
 function enterNewEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'calendar_events', 'check_event_conflicts');
-  if (((s as any).result ?? 0) === 0  &&  Number((s as any).locArgs?.[2] ?? 0) !== 'dry_run') {
+  if (((s as any).result ?? 0) === 0  &&  String((s as any).locArgs?.[2] ?? '') !== 'dry_run') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
@@ -385,7 +385,7 @@ function enterAddEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoadNewEv(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
     ((s as any).new_ev = (s as any).new_ev ?? {})['id'] = ((s as any).event_vars ?? 0)?.['id'];
     ((s as any).new_ev = (s as any).new_ev ?? {})['title'] = ((s as any).event_vars ?? 0)?.['title'];
     ((s as any).new_ev = (s as any).new_ev ?? {})['loc'] = ((s as any).event_vars ?? 0)?.['loc'];
@@ -583,7 +583,7 @@ function enterGetEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).event_recur_end ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = ((s as any).event_holiday ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = ((s as any).event_flex_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  if (((s as any).event_flex_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).event_flex_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
     ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).event_window_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).event_window_end_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
     ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];

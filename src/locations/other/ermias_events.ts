@@ -1386,7 +1386,7 @@ function enterVisit(s: GameState, scene: SceneBuilder): void {
 
 function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/africanblowjob2.mp4');
-  if (Number((s as any).locArgs?.[1] ?? 0) === 'skip_bj') {
+  if (String((s as any).locArgs?.[1] ?? '') === 'skip_bj') {
     scene.text('You answer by taking a bit more of his cock into your mouth as you continue sucking it.');
     scene.text('"Oh yes! Keep going, slut!" he grunts as you slurp and gag on his huge shaft while trying to stuff even more of it into your mouth.');
     scene.text('Your jaw starts aching after a few minutes, so you pop his massive cock out of your mouth and smile up at him while jerking him off.');

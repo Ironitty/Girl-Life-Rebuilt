@@ -12,7 +12,8 @@ function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['start_time'] = ((s as any).totminut ?? 0);
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['day'] = ((s as any).daystart ?? 0);
-  scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   if (((s as any).grupTipe ?? 0) === 3) {
     scene.text('You arrive at the library and see all of your fellow nerds have already gathered around one of the tables. Some are grabbing some books or looking up things on their laptop, while others are sitting and chatting before the study session begins. You sit down with your fellow students and start studying.');
   } else {
@@ -74,7 +75,8 @@ function enterNerdStudyNight1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + ((60 -((s as any).totminut ?? 0) + (((s as any).nerdstudynight ?? {})?.['start_time'] ?? 0)));
   }
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You help each other out, debate topics and discuss answers. You have a very enjoyable time and feel like you\'ve learned a fair bit about your subject.');
   // TODO-QSP: end
   scene.actions([
@@ -93,7 +95,8 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).totminut ?? 0) >= ((s as any).nerdstudynight ?? 0)?.['start_time'] +60) {
     qspGoto(s, 'pav_library_nerdstudy', 'nerd_study_night_over');
   }
-  scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('You can\'t help but be a little distracted. You\'re not sure why, but you\'re just not feeling the desire to study. Maybe one of your fellow nerds would like to chat instead?');
   if (((s as any).nerdstudynight ?? 0)?.['Feofan'] === 0) {
     scene.actions([
@@ -343,7 +346,8 @@ function enterNerdStudyNightOver(s: GameState, scene: SceneBuilder): void {
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Evgeny'] = 0;
   ((s as any).nerdstudynight = (s as any).nerdstudynight ?? {})['Natalia'] = 0;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/community/library/ner...
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/community/library/nerdsstudy/nerds_study` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
   scene.text('After an hour, everyone starts packing up and talking about heading home. A few text their parents to let them know they\'re leaving the library. You gather up your stuff and leave with the group.');
   // TODO-QSP: end
   scene.actions([

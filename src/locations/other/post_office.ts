@@ -248,9 +248,9 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay your fine(s)', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: dynamic text: You have an outstanding fine of ' + $func('money', 'string_debt', policeQW['lega...
+    // TODO-QSP: dynamic text: 'You have an outstanding fine of ' + $func('money', 'string_debt', policeQW['leg...
     scene.text('You have an outstanding fine of \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \'.');
-    (st as any).fineIN = 0;
+    (st as any).fineIN = window.prompt("How much do you want to pay off?") ?? '';
     if (((st as any).fineIN ?? 0) <= 0) {
       scene.text('Invalid operation.');
     } else {
@@ -268,7 +268,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (qspFunc(s, 'money', 'can_afford_debt', ((st as any).fineIN ?? 0))) {
           (st as any).temp_paid = qspFunc(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', ((st as any).fineIN ?? 0));
-          // TODO-QSP: dynamic text: <br>You pay ' + $func('money', 'string_debt_reduction', temp_paid) + ' towards y...
+          // TODO-QSP: dynamic text: '<br>You pay ' + $func('money', 'string_debt_reduction', temp_paid) + ' towards ...
           scene.text('<br>You pay \' + $func(\'money\', \'string_debt_reduction\', temp_paid) + \' towards your legal fine(s). You have \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \' still outstanding.');
         } else {
           scene.text('<br>You don\'t have enough money to pay that amount.');
@@ -356,7 +356,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddMail(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'all';
   }
   // TODO-QSP: $mail_region[] = $ARGS[1]

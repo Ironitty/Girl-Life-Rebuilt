@@ -58,7 +58,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['rel_type'] > 0) {
-      // TODO-QSP: dynamic text: We defined our relationship and are now in ' + iif(NatbelQW['rel_type'] = 2, 'an...
+      // TODO-QSP: dynamic text: 'We defined our relationship and are now in ' + iif(NatbelQW['rel_type'] = 2, 'a...
       scene.text('We defined our relationship and are now in ' + ((((s as any).NatbelQW ?? 0)?.['rel_type'] === 2) ? ('an open') : ('an exclusive')) + ' relationship.');
     }
     if (((s as any).NatbelQW ?? 0)?.['disco_invite'] === 1) {
@@ -76,7 +76,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystart ?? 0) <= ((s as any).NatbelQW ?? 0)?.['evt_day'] + 6 + ((s as any).week ?? 0)) {
         scene.text('The two of you are going on a shopping spree on the weekend next week.');
       } else {
-        // TODO-QSP: dynamic text: The two of you are going on a shopping spree on the weekend. You need 2.000 <b>₽...
+        // TODO-QSP: dynamic text: 'The two of you are going on a shopping spree on the weekend. You need 2.000 <b>...
         scene.text('The two of you are going on a shopping spree on the weekend. You need 2.000 <b>₽</b> and meet her before 15:00.');
       }
     } else {
@@ -84,7 +84,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
         scene.text('It seems like Natasha wants to ask something of you. Maybe you should talk to her.');
       } else {
         if (((s as any).NatbelQW ?? 0)?.['shopping'] === 3  &&  (((s as any).NatbelQW ?? 0)?.['FriendLover'] === 7  ||  ((s as any).NatbelQW ?? 0)?.['FriendLover'] === 8)) {
-          // TODO-QSP: dynamic text: You''ve promised Natasha to take her to St. Petersburg ' + iif(daystart < Natbel...
+          // TODO-QSP: dynamic text: 'You''ve promised Natasha to take her to St. Petersburg ' + iif(daystart < Natbe...
           scene.text('You\'ve promised Natasha to take her to St. Petersburg \' + iif(daystart < NatbelQW[\'StP_trip_daystart\'], \'in ' + (((s as any).NatbelQW ?? {})?.['StP_trip_daystart'] ?? 0)-((s as any).daystart ?? '') + ' days\', iif((week=6 and hour < 14), \'today\', \'next saturday\')) + \', picking her up at her place between 12:00 and 14:00.');
         }
       }
@@ -108,7 +108,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).NatbelQW ?? 0)?.['Isabella'] === 0) {
-          // TODO-QSP: dynamic text: Maybe you should be at home between '+func('time', 'get_time_string', 19, 0)+' a...
+          // TODO-QSP: dynamic text: 'Maybe you should be at home between '+func('time', 'get_time_string', 19, 0)+' ...
           scene.text('Maybe you should be at home between 19:00 and 23:00.');
         } else {
           if (((s as any).NatbelQW ?? 0)?.['Isabella'] === 1) {
@@ -135,7 +135,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).daystart ?? 0) === ((s as any).NatbelQW ?? 0)?.['bday_day']) {
                 scene.text('Natasha\'s birthday party at Del Parco is today!');
-                // TODO-QSP: dynamic text: You should meet them there between '+func('time', 'get_time_string', 18, 30)+' a...
+                // TODO-QSP: dynamic text: 'You should meet them there between '+func('time', 'get_time_string', 18, 30)+' ...
                 scene.text('You should meet them there between 18:30 and 20:00.');
               } else {
                 scene.text('You have missed Natasha\'s birthday party, maybe you should talk to Natasha.');
@@ -178,7 +178,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).daystart ?? 0) >= 579) {
-        // TODO-QSP: dynamic text: She spends time at The Coffee Hole on Vasilyevsky Island after her classes (betw...
+        // TODO-QSP: dynamic text: 'She spends time at The Coffee Hole on Vasilyevsky Island after her classes (bet...
         scene.text('She spends time at The Coffee Hole on Vasilyevsky Island after her classes (between 15:00 and 18:00, weekdays).');
       }
     } else {

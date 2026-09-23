@@ -52,7 +52,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).DimaRudeBlock ?? 0))) {
     (s as any).DimaRudeBlock = 1;
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === 1) {
     qspCall(s, 'fame', 'pav', 'sex', 10);
     (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
     scene.text('<center><b>Classroom</b></center>');
@@ -63,7 +63,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === 2) {
     qspCall(s, 'fame', 'pav', 'sex', 20);
     (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
     scene.text('<center><b>School Hallway</b></center>');
@@ -73,7 +73,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === 3) {
     qspCall(s, 'fame', 'pav', 'sex', 40);
     (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/lunch/lunch.jpg');
@@ -494,11 +494,11 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (Number((s as any).locArgs?.[0] ?? 0) < 4) {
+  if (String((s as any).locArgs?.[0] ?? '') < 4) {
     // TODO-QSP: exit
   }
   if ((!((s as any).dimaRevChoice ?? 0))) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', 60);
       scene.text('<center><b>School Hallway</b></center>');
@@ -508,7 +508,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', 60);
       qspCall(s, 'fame', 'pav', 'prostitute', 60);
@@ -582,7 +582,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dimaRevChoice ?? 0) === 1) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/behindherback.jpg');
       scene.text('As you leave the school you hear some girls talking about Dimka. "I heard Dimka is a coke fiend. He has to do several lines everyday or else he can\'t function."');
@@ -601,8 +601,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'before') {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
+      if (String((s as any).locArgs?.[1] ?? '') === 'before') {
         qspCall(s, 'fame', 'pav', 'sex', 60);
         scene.text('You enter the school and walk around listening to the other students. "I heard Dimka sucked some guy off for crack."');
         // TODO-QSP: dynamic text: "I heard <<$pcs_firstname>> gets passed around by everyone in her apartment buil...
@@ -611,7 +611,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'lunch') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'lunch') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         scene.text('The first thing you do after leaving the cafeteria is look for Lizaveta to have her spread more rumors. You find her talking to Dimka again. He leaves the way you came. "Slut," he calls you.');
         scene.text('"Asshole," you reply. The two of you glare at each other for a while, before he leaves. You head over to Lizaveta. She stops you before you tell her anything.');
@@ -622,8 +622,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'before') {
+    if (String((s as any).locArgs?.[0] ?? '') === 6) {
+      if (String((s as any).locArgs?.[1] ?? '') === 'before') {
         qspCall(s, 'fame', 'pav', 'sex', (-60));
         ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (15);
         qspCall(s, 'npc_relationship', 'modify', 'A140', (-20));
@@ -637,7 +637,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'lunch') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'lunch') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/boygirlarguing.jpg');
         scene.text('You go around the hallway spreading rumors about Dimka, but everyone looks at you like you are full of it. It seems Lizaveta was true to her word, after all. You see Dimka having the same trouble. It seems you\'ve both lost your credibility. At least your reputation is safe, since no one believes Dimka anymore. You are too stubborn to notice that though and keep trying to spread rumors while Dimka does the same.');
@@ -665,7 +665,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
+    if (String((s as any).locArgs?.[0] ?? '') === 7) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       scene.text('As you leave school, you see Dimka talking on his cell phone. "Dad, I need to talk to you about the principal."');
       scene.text('"What do you mean she already called you?" You see him look confused for a moment then he goes pale.');
@@ -687,8 +687,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     } else {
       ((s as any).dimaRevenge = (s as any).dimaRevenge ?? {})['Fedor Involved 2'] = 'Svyatoslav';
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'day4jockbefore') {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
+      if (String((s as any).locArgs?.[1] ?? '') === 'day4jockbefore') {
         qspCall(s, 'fame', 'pav', 'sex', 60);
         scene.text('As you enter the school you hear students talking excitedly. "I heard Lena is a huge slut, but she has to keep it a secret because Vitek beats up any guy who hits on her."');
         scene.text('"I heard that too. I also heard that if you can catch her when she is all alone, she will happily go down on you." Someone is going to get their ass kicked.');
@@ -697,7 +697,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'lunch') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'lunch') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         scene.text('Something is wrong. Rumors about Lena continue to spread, but that isn\'t what worries you. As you walk the halls, you notice the other kids avoiding you. When you approach them, they run away.');
         scene.text('You grab one girl and make her tell you what is going on. "Vitek and Lena are after you," she says.');
@@ -771,8 +771,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'day5jockbefore') {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
+      if (String((s as any).locArgs?.[1] ?? '') === 'day5jockbefore') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         qspCall(s, 'fame', 'pav', 'sex', (-60));
         scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/bulliedinhall.jpg');
@@ -782,7 +782,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'day5jockafter') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'day5jockafter') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         scene.text('As you get ready to leave, you see Dimka walking down the hall. His face is bruised and he tries to avoid being seen.');
         scene.text('His eyes meet yours and you see anger and fear. He hates you more than ever, but he knows he won\'t be able to get the gopniks to attack you again. He has to accept that you won.');
@@ -793,7 +793,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dimaRevChoice ?? 0) === 3) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', 60);
       qspCall(s, 'npc_relationship', 'modify', 'A152', 10);
@@ -813,7 +813,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
       qspCall(s, 'fame', 'pav', 'sex', (-100));
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       scene.text('<center><b>School Hallway</b></center>');
@@ -862,7 +862,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dimaRevChoice ?? 0) === 4) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/behindherback.jpg');
       // TODO-QSP: dynamic text: As you head to your locker you hear kids talking about you behind your back. "I ...
@@ -872,8 +872,8 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['gschool_grounds', 'main'] },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'before') {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
+      if (String((s as any).locArgs?.[1] ?? '') === 'before') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         qspCall(s, 'fame', 'pav', 'sex', 60);
         // TODO-QSP: dynamic text: You wait at the entrance to the school for Dimka to arrive, but he never shows u...
@@ -935,7 +935,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'after') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'after') {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         (s as any).dimaDisco = 0;
         scene.text('The two of you head home since you already skipped most of your classes today. Lavrenti flirts with you along the way. The bell rings just as you get to the front entrance, and you decide to wait for some of your friends.');
@@ -953,7 +953,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['gschool_grounds', 'main'] },
         ]);
       }
-      if (Number((s as any).locArgs?.[1] ?? 0) === 'disco') {
+      if (String((s as any).locArgs?.[1] ?? '') === 'disco') {
         qspCall(s, 'npc_relationship', 'modify', 'A1', (-50));
         ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
         (s as any).dimaDisco = 1;
@@ -1001,7 +1001,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
+    if (String((s as any).locArgs?.[0] ?? '') === 6) {
       if (((s as any).dimaDisco ?? 0) === 1) {
         (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
         qspCall(s, 'fame', 'pav', 'sex', (-40));
@@ -1080,7 +1080,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dimaRevChoice ?? 0) === 5) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', 60);
       qspCall(s, 'npc_relationship', 'modify', 'A159', 10);
@@ -1160,7 +1160,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
       if (((s as any).dimaTrain ?? 0) !== 1) {
         (s as any).dimaRevChoice = 0;
         qspCall(s, 'fame', 'pav', 'sex', 40);
@@ -1179,7 +1179,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'before') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'before') {
           qspCall(s, 'fame', 'pav', 'sex', (-80));
           qspCall(s, 'npc_relationship', 'modify', 'A1', (-20));
           scene.img('images/characters/shared/headshots_main/big1.jpg');
@@ -1197,7 +1197,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
             { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
           ]);
         }
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'afterlunch') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'afterlunch') {
           ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (5);
           (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
           scene.text('<center><b>School Hallway</b></center>');
@@ -1258,7 +1258,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dimaRevChoice ?? 0) === 6) {
-    if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
+    if (String((s as any).locArgs?.[0] ?? '') === 4) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', 60);
       scene.text('<center><b>School Hallway</b></center>');
@@ -1269,7 +1269,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
       ]);
     }
-    if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
+    if (String((s as any).locArgs?.[0] ?? '') === 5) {
       (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
       qspCall(s, 'fame', 'pav', 'sex', (-100));
       scene.text('<center><b>Girls bathroom</b></center>');

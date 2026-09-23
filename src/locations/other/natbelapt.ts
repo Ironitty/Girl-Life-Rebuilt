@@ -692,7 +692,8 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['askedbaby'] = ((st as any).daystart ?? 0);
     qspCall(st, 'npc_relationship', 'modify', 'A16', 'like');
     qspCall(st, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/touch_belly' + ((((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) ? ('_preg') : ('')) + '.jpg');
+    // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/na...
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/natbelapt/touch_belly` + ((((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) ? ('_preg') : ('')) + '.jpg"></center>');
     if (((st as any).daystart ?? 0)-((st as any).NatbelQW ?? 0)?.['pregday'] < 120) {
       scene.text('She looks at you with a strange smile.');
       scene.text('"Yes," she answers the question you didn\'t voice, "your little brother has actually knocked me up. I hope you are happy with that because I can\'t afford an abortion."');

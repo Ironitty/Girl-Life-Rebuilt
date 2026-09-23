@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((st as any).pcs_nickname ?? '')}! I didn't expect to see you back here. What can I do for you?"`);
     scene.text('"I was wondering if the maid position is still open," you ask. "I\'d like to come back, if that\'s alright."');
     scene.text('Herman leans back in his chair, thinking it over for a moment. "Well, we\'ve been a bit short-staffed, to be honest. I don\'t see why not."');
-    // TODO-QSP: dynamic text: "Same terms as before: working between '+func('time', 'get_time_string', 16, 0)+...
+    // TODO-QSP: dynamic text: '"Same terms as before: working between '+func('time', 'get_time_string', 16, 0)...
     scene.text(`"Same terms as before: working between 16:00 and 19:00, give or take, ${qspFunc(s, 'money', 'string_profit', 375)} per shift. Sound good?"`);
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
     scene.text('You smile. "Thank you, I really appreciate it!"');
-    // TODO-QSP: dynamic text: Herman nods. "Your uniform should still be in the locker room. Come by between '...
+    // TODO-QSP: dynamic text: 'Herman nods. "Your uniform should still be in the locker room. Come by between ...
     scene.text('Herman nods. "Your uniform should still be in the locker room. Come by between 16:00 and 17:00 whenever you\'re ready to start a shift."');
     scene.actions([
       { label: 'Return to the lobby', goto: ['pav_hotel', ''] },
@@ -58,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You carefully try to get his attention with a soft voice. "Umm… Excuse me?"');
     scene.text('He looks up from his paperwork. "Oh, I\'m sorry, I didn\'t hear you come in. Hello, I\'m Herman Leonidovich, manager of this hotel. Is there a problem?"');
     scene.text('You smile and shake your head. "No, no problem. I\'m actually looking for a job and I heard that you\'re often looking for maids?"');
-    // TODO-QSP: dynamic text: You can feel his eyes exploring your body for a moment before he responds. "Yes,...
+    // TODO-QSP: dynamic text: 'You can feel his eyes exploring your body for a moment before he responds. "Yes...
     scene.text('You can feel his eyes exploring your body for a moment before he responds. "Yes, we are! We currently only have a part-time vacancy for a maid. You would be working between 16:00 and 19:00, give or take. Most of the hotel rooms are empty then, before the new guests come in."');
     // TODO-QSP: dynamic text: "You can work any day you like, no pressure. It would pay <<$func(''money'', ''s...
     scene.text(`"You can work any day you like, no pressure. It would pay ${qspFunc(s, 'money', 'string_profit', 375)} per shift. After your work, you can immediately collect your salary at the reception, or you can save it up and collect it all at once later. Does that sound good to you?"`);
@@ -73,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Herman gives you a friendly smile, happy to have found another potential worker. ');
     scene.text('He quickly writes some of your personal data down. "Oh by the way, two more things: you\'ll be required to wear a maid uniform during your working hours. Don\'t worry, we have them right here. You can change before you start your shift, and your own stuff will be safe in a locker."');
     scene.text('You nod. "Sounds fair… What\'s the other thing?"');
-    // TODO-QSP: dynamic text: He continues. "If you want to work a shift, you need to be here between '+func('...
+    // TODO-QSP: dynamic text: 'He continues. "If you want to work a shift, you need to be here between '+func(...
     scene.text('He continues. "If you want to work a shift, you need to be here between 16:00 and 17:00. There\'s no point in you getting changed for just 20 minutes of work."');
     scene.text('"That also sounds fair," you say and give him a handshake as you get ready to leave. "Okay. Thank you sir!"');
     scene.actions([

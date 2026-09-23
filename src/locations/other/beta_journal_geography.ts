@@ -14,17 +14,17 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeoPavlovsk(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '58_estate') {
+  if (String((s as any).locArgs?.[1] ?? '') === '58_estate') {
   } else {
-    if (Number((s as any).locArgs?.[1] ?? 0)=== 'commercial') {
+    if (String((s as any).locArgs?.[1] ?? '')=== 'commercial') {
     } else {
-      if (Number((s as any).locArgs?.[1] ?? 0)=== 'industrial') {
+      if (String((s as any).locArgs?.[1] ?? '')=== 'industrial') {
       } else {
-        if (Number((s as any).locArgs?.[1] ?? 0) === 'market') {
+        if (String((s as any).locArgs?.[1] ?? '') === 'market') {
         } else {
-          if (Number((s as any).locArgs?.[1] ?? 0) === 'park') {
+          if (String((s as any).locArgs?.[1] ?? '') === 'park') {
           } else {
-            if (Number((s as any).locArgs?.[1] ?? 0) === 'train_station') {
+            if (String((s as any).locArgs?.[1] ?? '') === 'train_station') {
             }
           }
         }

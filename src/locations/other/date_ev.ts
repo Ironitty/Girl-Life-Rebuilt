@@ -9,20 +9,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).npc_date_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }
   (s as any).temp_npcID = ((s as any).locArgs?.[1] ?? 0);
-  if (Number((s as any).locArgs?.[2] ?? 0) === 'movie_date') {
+  if (String((s as any).locArgs?.[2] ?? '') === 'movie_date') {
     qspGoto(s, 'date_movie', 'start');
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'casual_meal') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'casual_meal') {
       qspGoto(s, 'date_casual_meal', 'start', 'separate');
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'netflix_chill') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'netflix_chill') {
         // TODO-QSP: gt 'date_chill', 'knock_start', $ARGS[1]
       }
     }
@@ -32,43 +32,43 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInviteCode(s: GameState, scene: SceneBuilder): void {
-  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
   }
-  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
+  if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'movie_date';
   }
-  if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
+  if (String((s as any).locArgs?.[3] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).hour ?? 0) + 1;
   }
   // TODO-QSP: npc_date_invite[$ARGS[1]] = daystart
   // TODO-QSP: npc_date_meethour[$ARGS[1]] = ARGS[3]
   // TODO-QSP: $npc_date_type[$ARGS[1]] = $ARGS[2]
-  if (((s as any).npc_residence ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'pav_residential') {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'netflix_chill') {
+  if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 'pav_residential') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'netflix_chill') {
       // TODO-QSP: $npc_date_loc[$ARGS[1]] = $npc_residence[$ARGS[1]]
       (s as any).temp_date_loc = 'Pavlovsk Residential Area';
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'movie_date') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'movie_date') {
         // TODO-QSP: $npc_date_loc[$ARGS[1]] = 'pav_park'
         (s as any).temp_date_loc = 'Pavlovsk Park';
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'casual_meal') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'casual_meal') {
           // TODO-QSP: $npc_date_loc[$ARGS[1]] = 'pav_park'
           (s as any).temp_date_loc = 'Pavlovsk Park';
         }
       }
     }
   } else {
-    if (Number((s as any).locArgs?.[2] ?? 0) === 'netflix_chill') {
+    if (String((s as any).locArgs?.[2] ?? '') === 'netflix_chill') {
       // TODO-QSP: $npc_date_loc[$ARGS[1]] = $npc_residence[$ARGS[1]]
       (s as any).temp_date_loc = ((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + 's place';
     } else {
-      if (Number((s as any).locArgs?.[2] ?? 0) === 'movie_date') {
+      if (String((s as any).locArgs?.[2] ?? '') === 'movie_date') {
         // TODO-QSP: $npc_date_loc[$ARGS[1]] = 'city_mall'
         (s as any).temp_date_loc = 'St. Petersburg Mall';
       } else {
-        if (Number((s as any).locArgs?.[2] ?? 0) === 'casual_meal') {
+        if (String((s as any).locArgs?.[2] ?? '') === 'casual_meal') {
           // TODO-QSP: $npc_date_loc[$ARGS[1]] = 'city_residential'
           (s as any).temp_date_loc = 'St. Petersburg Residential Area';
         }
@@ -122,10 +122,10 @@ function enterPhoneInviteStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).npc_assertive ?? 0)[((st as any).call4Date ?? 0)?.['NPC']] > 0) {
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcPickDate(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNpcPickDate(st, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('"Sure, where did you want to go?"');
-        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateInviteMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateInviteMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
     }
   } },
@@ -139,17 +139,17 @@ function enterDateInviteMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Grab a bite?', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['date_type'] = 'casual_meal';
     scene.text('"How about a bite to eat?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'See a movie?', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['date_type'] = 'movie_date';
     scene.text('"How about a movie?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Hang at his place?', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['date_type'] = 'netflix_chill';
     scene.text('"Can I just come over to hang out and chill?"');
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateTimePicker(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -198,7 +198,7 @@ function enterDateTimePicker(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: :date_time_loop
-    ((st as any).temp = (st as any).temp ?? {})['meet_time'] = 0;
+    // TODO-QSP: temp['meet_time'] = input ("When do you want go on your date? It is now <<func('time', 'get_time_string', hour, minut)>>. [Enter the hour only 0 - 20]")
     if (((st as any).temp ?? 0)?.['meet_time'] < ((st as any).hour ?? 0)) {
       // TODO-QSP: jump 'date_time_loop'
     } else {
