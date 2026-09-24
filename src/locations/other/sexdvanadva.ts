@@ -94,8 +94,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'npcgeneratec', '', 0, 'Random Guy', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Random Guy', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'cum_call', 'mouth_swallow', 'Random Guy');
   if (((s as any).pcs_horny ?? 0) >= 80) {
     (s as any).orgasm_or = 'yes';

@@ -131,26 +131,26 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
       if (String((s as any).locArgs?.[1] ?? '') === 'chat') {
         scene.actions([
           { label: 'Continue chatting (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'Vika', 'talk', 'chat');
+    qspCall(st, 'Vika', '');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Chat with Vika (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'Vika', 'talk', 'chat');
+    qspCall(st, 'Vika', '');
   } },
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'study') {
         scene.actions([
           { label: 'Continue studying (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'Vika', 'talk', 'study', 'continue');
+    qspCall(st, 'Vika', '');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Study with Vika (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'Vika', 'talk', 'study');
+    qspCall(st, 'Vika', '');
   } },
         ]);
       }

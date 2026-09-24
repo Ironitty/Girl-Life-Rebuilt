@@ -555,7 +555,7 @@ function enterRenderDayCell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :render_columns
     if (((s as any).temp_column_filled ?? 0)?.[String((s as any).temp_col ?? 0)] === 1) {
       if (((s as any).temp_column_event_index ?? 0)?.[String((s as any).temp_col ?? 0)] >= 0) {
-        (s as any).temp_e = ((s as any).temp_column_event_index ?? 0)?.[String((s as any).temp_col ?? 0)];
+        (s as any).temp_e = (((s as any).temp_column_event_index ?? 0)?.[String((s as any).temp_col ?? 0)] ?? 0);
         (s as any).temp_colspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'];
         (s as any).temp_rowspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span'];
         // TODO-QSP: $result += $func('calendar_render', 'render_event_cell', temp_d, temp_t, temp_e, temp_rowspan, temp_...

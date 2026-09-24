@@ -439,7 +439,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['makeup_wipes'] = ((st as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
-    qspCall(st, 'cum_cleanup', '', 20);
+    qspCall(st, 'cum_cleanup', '20');
     qspGoto(st, 'gas_station_gp_117', 'work');
   } },
       ]);

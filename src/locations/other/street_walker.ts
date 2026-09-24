@@ -807,7 +807,7 @@ function enterPolicebribe(s: GameState, scene: SceneBuilder): void {
 
 function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', money/3, 'cash'
+  qspCall(s, 'money', 'pay', ((s as any).money ?? 0)/3, 'cash');
   qspCall(s, 'stat', '');
   (s as any).temp_rand = 0;
   if (((s as any).temp_rand ?? 0) <= 4) {
@@ -822,7 +822,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp_rand ?? 0) <= 7) {
       ((s as any).policeQW = (s as any).policeQW ?? {})['prostitution_bribe'] = 1;
-      qspCall(s, 'pain', '', 6, 'armL', 'break');
+      qspCall(s, 'pain', '6', 'armL', 'break');
       qspCall(s, 'stat', '');
       scene.img('images/locations/shared/police/arrested.jpg');
       scene.text('His lips turn up into a disgusted sneer. Before you can react, he slaps your hand away, the money flying into the air and onto the ground. "You think I can be paid off, whore?!" he snarls as you clutch your red and stinging hand.');
@@ -876,8 +876,8 @@ function enterPolicesub1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).police_sub_counter ?? 0) > 4) {
     qspGoto(s, 'street_walker', 'policesub2');
   }
-  qspCall(s, 'pain', '', 2, 'twist', 'pinch');
-  qspCall(s, 'pain', '', 4, 'nipples', 'pinch');
+  qspCall(s, 'pain', '2', 'twist', 'pinch');
+  qspCall(s, 'pain', '4', 'nipples', 'pinch');
   scene.img('images/locations/city/shared/streetwalker/sex/policesub.jpg');
   scene.text('"Alright. If that\'s what it takes…" you say reluctantly. You\'re barely given a chance to put the money away before he\'s pulling you to a dark, secluded area between two buildings. In the darkness, you can\'t make out anything he\'s doing.');
   scene.text('"Um, let\'s make this qui-" Your words are cut off as you\'re shoved against the cold, hard brick wall of one of the buildings. You can only whimper as the officer presses his body against you.');
@@ -896,7 +896,7 @@ function enterPolicesub1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m about to cum!" you hear him groan, and soon after, he\'s pressing balls deep inside you, his cock twitching as he fills the condom. He pulls out slow, and you\'re left feeling raw and numb.');
     scene.text('As you re-adjust your clothes, you see him tie up the used condom, but rather than toss it, he puts it back in the wrapper. He\'s not stupid enough to leave any DNA evidence behind.');
     scene.text('"Alright, a deal\'s a deal. You\'re free to go," he tells you as he zips up his pants. As you make your way back to the street, you think you hear him say the boys will enjoy playing with you…');
-    qspCall(st, 'pain', '', 5, 'vaginal', 'tear');
+    qspCall(st, 'pain', '5', 'vaginal', 'tear');
     qspCall(st, 'arousal', 'vaginal_finger', 10, 'rough', 'sub', 'prostitute');
     qspCall(st, 'arousal', 'vaginal', (-10), 'rough', 'sub', 'prostitute');
     qspCall(st, 'arousal', 'end');
@@ -909,8 +909,8 @@ function enterPolicesub1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPolicesub2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 5, 'vaginal', 'tear');
-  qspCall(s, 'pain', '', 2, 'twist', 'pinch');
+  qspCall(s, 'pain', '5', 'vaginal', 'tear');
+  qspCall(s, 'pain', '2', 'twist', 'pinch');
   scene.img('images/locations/city/shared/streetwalker/sex/policesub2.jpg');
   scene.text('"I understand…" you answer weakly as his grin widens. Leading you to a quiet and secluded area, he wastes no time hiking your skirt up and shoving his knee between your legs to spread them. Careless and rough, his fingers dig into the soft flesh of your breasts as he gropes them. You absent-mindedly look upward to the sky as you try your best to focus your attention on anything but him.');
   scene.text('"Turn around," he orders, and you obey without a word. You stick your ass out for him, and he pulls your panties down to your thighs. You hear him spit, using it as improvised lube as he smears it along his condom covered dick. In one violent thrust, he\'s buried deep inside your pussy, stretching your walls and filling you completely. You wince and grit your teeth as he fucks you fast and hard.');

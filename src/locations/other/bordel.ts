@@ -132,8 +132,8 @@ function enterDysh(s: GameState, scene: SceneBuilder): void {
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
-  qspCall(s, 'npcgeneratec', '', 0, 'Client', (Math.floor(Math.random() * 23) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Client', (Math.floor(Math.random() * 23) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   (s as any).borrand = (Math.floor(Math.random() * 11) + 0);
@@ -242,8 +242,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     if (((st as any).zpprand ?? 0) >= 70) {
       qspCall(st, 'dinSex', 'std_trigger');
     }
-    qspCall(st, 'npcgeneratec', '', 0, 'Client', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), '1');
+    qspCall(st, 'npcgeneratec', '0', 'Client', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated', '1');
     qspGoto(st, 'sexdvoe', 'start');
   } },
         ]);
@@ -280,8 +280,8 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     if (((st as any).zpprand ?? 0) >= 70) {
       qspCall(st, 'dinSex', 'std_trigger');
     }
-    qspCall(st, 'npcgeneratec', '', 0, 'Client', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), '1');
+    qspCall(st, 'npcgeneratec', '0', 'Client', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated', '1');
     qspGoto(st, 'sexdvanadva', 'start');
   } },
           ]);
@@ -319,12 +319,12 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'dinSex', 'std_trigger');
     }
     (st as any).guy = ((st as any).guy ?? 0) + (3);
-    qspCall(st, 'npcgeneratec', '', 0, 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 1);
-    qspCall(st, 'npcgeneratec', '', 0, 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 2);
+    qspCall(st, 'npcgeneratec', '0', 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated', 1);
+    qspCall(st, 'npcgeneratec', '0', 'Bordel Client', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated', 2);
     qspGoto(st, 'paysex', 'start');
   } },
             ]);

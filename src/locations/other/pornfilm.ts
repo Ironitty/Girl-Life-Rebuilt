@@ -234,7 +234,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 12);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
@@ -308,7 +308,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 16);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
@@ -405,7 +405,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 20);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
@@ -517,8 +517,8 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: Your co-stars for this shoot are <<$npcdesc>> and <<$npcdesc1>>. They watch porn...
   scene.text(`Your co-stars for this shoot are ${((s as any).npcdesc ?? '')} and ${((s as any).npcdesc1 ?? '')}. They watch porn on a monitor, getting their cocks ready for you.`);
@@ -611,8 +611,8 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
   scene.text(`${((s as any).npcdesc ?? '')} and ${((s as any).npcdesc1 ?? '')} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
@@ -721,7 +721,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: Your co-star for this shoot is <<$npcdesc>>. He is standing to the side, slowly ...
   scene.text(`Your co-star for this shoot is ${((s as any).npcdesc ?? '')}. He is standing to the side, slowly stroking his dick.`);
@@ -753,7 +753,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
     qspCall(st, 'stat', '');
     scene.img(`images/locations/city/redlight/studio_porn/sex/porncp${(Math.floor(Math.random() * 3) + 1)}.mp4`);
     // TODO-QSP: dynamic text: You''re really getting into it and your pussy tightens around <<$npcdesc>>, whic...
@@ -793,8 +793,8 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   (s as any).porngang = ((s as any).porngang ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
   scene.text(`${((s as any).npcdesc ?? '')} and ${((s as any).npcdesc1 ?? '')} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
@@ -827,7 +827,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'anal', (-25), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
       qspCall(st, 'arousal', 'vaginal', 25, ((st as any).npcID ?? 0), 'exhibitionism', 'group');
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
       qspCall(st, 'cum_call', 'anus', ((st as any).npcID1 ?? 0), 1, 0, 0, 40);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc1>> lays on the bed, and you climb on top of him, sliding his cock int...
@@ -835,7 +835,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'anal', (-25), ((st as any).npcID ?? 0), 'exhibitionism', 'group');
       qspCall(st, 'arousal', 'vaginal', 25, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
+      qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
       qspCall(st, 'cum_call', 'anus', ((st as any).npcID ?? 0), 1, 0, 0, 40);
     }
     qspCall(st, 'stat', '');
@@ -907,8 +907,8 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
   scene.text(`${((s as any).npcdesc ?? '')} and ${((s as any).npcdesc1 ?? '')} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
@@ -945,7 +945,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
       (st as any).cumnostd = 1;
       qspCall(st, 'cum_call', 'precum', ((st as any).npcID ?? 0), 1, 0, 10000, 1);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
       (st as any).cumnostd = 1;
       qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 1, 0, 0, 40);
     } else {
@@ -956,7 +956,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
       (st as any).cumnostd = 1;
       qspCall(st, 'cum_call', 'precum', ((st as any).npcID1 ?? 0), 1, 0, 10000, 1);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
+      qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
       (st as any).cumnostd = 1;
       qspCall(st, 'cum_call', 'anus', ((st as any).npcID ?? 0), 1, 0, 0, 40);
     }
@@ -1069,10 +1069,10 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
-  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
-  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
+  qspCall(s, 'npcStat', '$pactorID[3]', 'b');
+  qspCall(s, 'npcStat', '$pactorID[4]', 'c');
   scene.text('The set is already bustling with assistants preparing the set for the shoot.');
   // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
   scene.text(`Your co-stars, ${((s as any).npcdesc ?? '')}, ${((s as any).npcdesc1 ?? '')}, ${((s as any).npcdesc2 ?? '')} and ${((s as any).npcdesc3 ?? '')}, are watching porn while loudly discussing who gets to do what first.`);
@@ -1111,7 +1111,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> is fucking you when he suddenly groans and pulls his dick out of yo...
       scene.text(`${((st as any).npcdesc ?? '')} is fucking you when he suddenly groans and pulls his dick out of your pussy, but messes up when his first shot of cum shoots straight into your open pussy. He quickly corrects his aim, and the others coat your labia.`);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 10);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 10);
       qspCall(st, 'cum_call', 'labia', ((st as any).npcID ?? 0), 1, 0, 10000, 30);
       (st as any).cuminside = 1;
     }
@@ -1137,7 +1137,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Reaching climax, <<$npcdesc1>> groans and pulls out. He aims at your tits, but h...
       scene.text(`Reaching climax, ${((st as any).npcdesc1 ?? '')} groans and pulls out. He aims at your tits, but his first shot hits you straight in the face. He quickly corrects his aim, and the rest of his cum coats your tits.`);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 10);
+      qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 10);
       qspCall(st, 'cum_call', 'breasts', ((st as any).npcID1 ?? 0), 1, 0, 10000, 30);
       (st as any).cuminside = 1;
     }
@@ -1154,7 +1154,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc2>> is pounding you hard. He reaches climax rather quickly but doesn''...
       scene.text(`${((st as any).npcdesc2 ?? '')} is pounding you hard. He reaches climax rather quickly but doesn't pull out fast enough. His first shot of cum shoots straight into your open pussy, and the rest splatters over your already-covered labia.`);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0), 1, 0, 10000, 10);
+      qspCall(st, 'cum_call', '', ((st as any).npcID2 ?? 0), 1, 0, 10000, 10);
       qspCall(st, 'cum_call', 'labia', ((st as any).npcID2 ?? 0), 1, 0, 10000, 15);
       (st as any).cuminside = 1;
     }
@@ -1180,7 +1180,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc3>> fucks you for a few minutes before he pulls out but messes up when...
       scene.text(`${((st as any).npcdesc3 ?? '')} fucks you for a few minutes before he pulls out but messes up when his first shot of cum shoots straight into your open pussy. He quickly corrects his aim, and the rest splatter across your stomach.`);
       (st as any).cumnostd = 1;
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID3 ?? 0), 1, 0, 10000, 10);
+      qspCall(st, 'cum_call', '', ((st as any).npcID3 ?? 0), 1, 0, 10000, 10);
       qspCall(st, 'cum_call', 'stomach', ((st as any).npcID3 ?? 0), 1, 0, 10000, 30);
       (st as any).cuminside = 1;
     }
@@ -1233,10 +1233,10 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
-  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
-  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
+  qspCall(s, 'npcStat', '$pactorID[3]', 'b');
+  qspCall(s, 'npcStat', '$pactorID[4]', 'c');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: Your co-stars <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are ...
   scene.text(`Your co-stars ${((s as any).npcdesc ?? '')}, ${((s as any).npcdesc1 ?? '')}, ${((s as any).npcdesc2 ?? '')} and ${((s as any).npcdesc3 ?? '')}, are watching porn while loudly discussing who gets to do what first.`);
@@ -1261,13 +1261,13 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     (st as any).porncream = ((st as any).porncream ?? 0) + (1);
     scene.img(`images/locations/city/redlight/studio_porn/sex/porncp${(Math.floor(Math.random() * 3) + 1)}.mp4`);
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID2 ?? 0), 1, 0, 10000, 40);
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID3 ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID3 ?? 0), 1, 0, 10000, 40);
     qspCall(st, 'arousal', 'vaginal', 4, ((st as any).npcID ?? 0), 'exhibitionism', 'group');
     qspCall(st, 'arousal', 'vaginal', 4, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
     qspCall(st, 'arousal', 'vaginal', 4, ((st as any).npcID2 ?? 0), 'exhibitionism', 'group');
@@ -1373,10 +1373,10 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
-  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
-  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
+  qspCall(s, 'npcStat', '$pactorID[3]', 'b');
+  qspCall(s, 'npcStat', '$pactorID[4]', 'c');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
   scene.text(`Your co-stars, ${((s as any).npcdesc ?? '')}, ${((s as any).npcdesc1 ?? '')}, ${((s as any).npcdesc2 ?? '')} and ${((s as any).npcdesc3 ?? '')}, are watching porn while loudly discussing who gets to do what first.`);
@@ -1499,10 +1499,10 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).orgasm_or = 'no';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
-  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
-  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactorID[2]', 'a');
+  qspCall(s, 'npcStat', '$pactorID[3]', 'b');
+  qspCall(s, 'npcStat', '$pactorID[4]', 'c');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
   scene.text(`Your co-stars, ${((s as any).npcdesc ?? '')}, ${((s as any).npcdesc1 ?? '')}, ${((s as any).npcdesc2 ?? '')} and ${((s as any).npcdesc3 ?? '')}, are watching porn while loudly discussing who gets to do what first.`);
@@ -1518,9 +1518,9 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let them fuck you', handler: (st: GameState) => {
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 0, 10000, 40);
     (st as any).cumnostd = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1, 0, 10000, 40);
     qspCall(st, 'arousal', 'vaginal', 7, ((st as any).npcID ?? 0), 'exhibitionism', 'group');
     qspCall(st, 'arousal', 'vaginal', 7, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
     qspCall(st, 'arousal', 'vaginal', 7, ((st as any).npcID2 ?? 0), 'exhibitionism', 'group');
@@ -1651,8 +1651,8 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :gb_main_loop
     (st as any).gb_counter = ((st as any).gb_counter ?? 0) + (1);
     ((st as any).arousal_overcall = (st as any).arousal_overcall ?? {})['args'] = '';
-    qspCall(st, 'npcgeneratec', '', 0, 'Porn Fan', (Math.floor(Math.random() * 17) + 22), 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Porn Fan', (Math.floor(Math.random() * 17) + 22), 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
     (st as any).gb_roll = (Math.floor(Math.random() * 6) + 1);
     if (((st as any).gb_roll ?? 0) === 1) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter14GbBj(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -1841,7 +1841,7 @@ function enter14GbBukk(s: GameState, scene: SceneBuilder): void {
 function enter14GbSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
   (s as any).cumnostd = 1;
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
   (s as any).gb_sex_count = ((s as any).gb_sex_count ?? 0) + (1);
   return;
   // TODO-QSP: end
@@ -1861,7 +1861,7 @@ function enter15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 20);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
@@ -1945,7 +1945,7 @@ function enter16(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 16);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
@@ -2026,7 +2026,7 @@ function enter17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 16);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  qspCall(s, 'npcStat', '$pactressID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. She is sitting to the side, fondlin...
   scene.text(`${((s as any).npcdesc ?? '')} is your co-star for this shoot. She is sitting to the side, fondling her breasts while watching porn on a monitor.`);
@@ -2098,7 +2098,7 @@ function enter18(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'city', 'porn', 16);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  qspCall(s, 'npcStat', '$pactressID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>>, your co-star for this shoot, is sitting to the side, fondling her ...
   scene.text(`${((s as any).npcdesc ?? '')}, your co-star for this shoot, is sitting to the side, fondling her breasts while watching porn on a monitor.`);
@@ -2174,8 +2174,8 @@ function enter19(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactressID[1], 'a'
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactressID[1]', 'a');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> watches porn on a monitor, getting himself ready while <<$npcdesc1>...
   scene.text(`${((s as any).npcdesc ?? '')} watches porn on a monitor, getting himself ready while ${((s as any).npcdesc1 ?? '')} has her make-up touched up.`);
@@ -2259,8 +2259,8 @@ function enter20(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'npcStat', $pactorID[1]
-  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  qspCall(s, 'npcStat', '$pactorID[1]');
+  qspCall(s, 'npcStat', '$pactressID[1]');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> is watching porn on a monitor, getting himself ready, while <<$npcd...
   scene.text(`${((s as any).npcdesc ?? '')} is watching porn on a monitor, getting himself ready, while ${((s as any).npcdesc1 ?? '')} is having her make-up touched up.`);

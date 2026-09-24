@@ -39,28 +39,28 @@ function enterExpfame(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).chessV ?? 0) === 10) {
-    // TODO-QSP: gs 'exp_gain', 'chess', chessmulti * 2
-    // TODO-QSP: gs 'fame', 'pav', 'chess', chessmulti * 2
+    qspCall(s, 'exp_gain', 'chess', ((s as any).chessmulti ?? 0) * 2);
+    qspCall(s, 'fame', 'pav', 'chess', ((s as any).chessmulti ?? 0) * 2);
     qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
   } else {
     if (((s as any).chessV ?? 0) === 30) {
-      // TODO-QSP: gs 'exp_gain', 'chess', chessmulti * 4
-      // TODO-QSP: gs 'fame', 'pav', 'chess', chessmulti * 4
+      qspCall(s, 'exp_gain', 'chess', ((s as any).chessmulti ?? 0) * 4);
+      qspCall(s, 'fame', 'pav', 'chess', ((s as any).chessmulti ?? 0) * 4);
       qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1));
     } else {
       if (((s as any).chessV ?? 0) === 50) {
-        // TODO-QSP: gs 'exp_gain', 'chess', chessmulti * 6
-        // TODO-QSP: gs 'fame', 'pav', 'chess', chessmulti * 6
+        qspCall(s, 'exp_gain', 'chess', ((s as any).chessmulti ?? 0) * 6);
+        qspCall(s, 'fame', 'pav', 'chess', ((s as any).chessmulti ?? 0) * 6);
         qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 2));
       } else {
         if (((s as any).chessV ?? 0) === 70) {
-          // TODO-QSP: gs 'exp_gain', 'chess', chessmulti * 8
-          // TODO-QSP: gs 'fame', 'pav', 'chess', chessmulti * 8
+          qspCall(s, 'exp_gain', 'chess', ((s as any).chessmulti ?? 0) * 8);
+          qspCall(s, 'fame', 'pav', 'chess', ((s as any).chessmulti ?? 0) * 8);
           qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 3) + 2));
         } else {
           if (((s as any).chessV ?? 0) === 90) {
-            // TODO-QSP: gs 'exp_gain', 'chess', chessmulti * 10
-            // TODO-QSP: gs 'fame', 'pav', 'chess', chessmulti * 10
+            qspCall(s, 'exp_gain', 'chess', ((s as any).chessmulti ?? 0) * 10);
+            qspCall(s, 'fame', 'pav', 'chess', ((s as any).chessmulti ?? 0) * 10);
             qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 4) + 2));
           }
         }

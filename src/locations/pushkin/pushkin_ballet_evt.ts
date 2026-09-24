@@ -377,7 +377,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
-  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   qspCall(s, 'exercise', 'tier1', 30, 'agil', 'stren');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/ballet_residence/residence_barre_single.jpg');
@@ -594,7 +594,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Practice with the girls', handler: (st: GameState) => {
     ((st as any).ballet_homework = (st as any).ballet_homework ?? {})[String((st as any).week ?? 0)] = ((st as any).ballet_homework[String((st as any).week ?? 0)] ?? 0) + (1);
-    ((st as any).ballet_grade_score = (st as any).ballet_grade_score ?? {})['homework'] = ((st as any).ballet_grade_score['homework'] ?? 0) + (((st as any).ballet_homework ?? 0)?.[String((st as any).week ?? 0)]);
+    ((st as any).ballet_grade_score = (st as any).ballet_grade_score ?? {})['homework'] = ((st as any).ballet_grade_score['homework'] ?? 0) + ((((st as any).ballet_homework ?? 0)?.[String((st as any).week ?? 0)] ?? 0));
     qspCall(st, 'exercise', 'tier1', 60, 'agil', 'stren');
     scene.text('You spend an hour helping the girls through the various forms, giving tips and advice. At the end of it they thank you ethuastically for your time and teaching.');
     // TODO-QSP: dynamic text: You feel teaching the girls has deepened your own understanding and appreciation...

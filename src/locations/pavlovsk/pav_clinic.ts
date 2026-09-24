@@ -174,7 +174,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Later, when you're cleaning the office of a doctor who you know isn't in today, you lock the door and carefully fill out the form. You take your time, doing your best to mimic your gynecologist's handwriting. You nod happily and mutter to yourself: "This looks good. ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} will have no clue it's forged! That'll get me off the hook for at least another month…"`);
     scene.actions([
       { label: 'Finish cleaning', handler: (st: GameState) => {
-    qspCall(st, 'jobs', 'paycheck', 'pav_clinic_cleaner');
+    qspCall(st, 'jobs', '');
   }, goto: ['pav_clinic', ''] },
     ]);
   } },
@@ -186,7 +186,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 00)':
   } },
             { label: 'Finish cleaning', handler: (st: GameState) => {
-    qspCall(st, 'jobs', 'paycheck', 'pav_clinic_cleaner');
+    qspCall(st, 'jobs', '');
   }, goto: ['pav_clinic', ''] },
           ]);
         }
@@ -466,7 +466,7 @@ function enterPetrovichBirthControl(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"Please explain them to me"', goto: ['pav_clinic', 'Petrovich_birth_control2'] },
     { label: '"No need for that"', handler: (st: GameState) => {
-    qspCall(st, 'pav_clinic', 'Petrovich_birth_control3');
+    qspCall(st, 'pav_clinic', '');
   } },
   ]);
   scene.build();

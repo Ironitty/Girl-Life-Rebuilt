@@ -23,12 +23,12 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'cleanlocloop'
       } else {
         if (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
-          (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
-          (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 3) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
+          (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? ((((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] ?? 0)) : (0)));
+          (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 3) ? ((((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] ?? 0)) : (0)));
           ((s as any).sparrvol = (s as any).sparrvol ?? {})[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
           ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
         } else {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 15]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+          qspCall(s, 'cum_cleanup', '15');
         }
       }
     }

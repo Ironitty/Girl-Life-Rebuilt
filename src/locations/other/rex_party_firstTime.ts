@@ -177,10 +177,10 @@ function enterAnyaKit(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Join', handler: (st: GameState) => {
     (st as any).sisterknowslut = 2;
-    qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17, 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17, 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17, 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17, 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_28.jpg');
     scene.text('You frown upon seeing your sister being used like this, but maybe it would be better for her if you let them use you too so she wouldn\'t be the sole object of their lust? "OK, who wants to fuck me first?" you say as you walk over and take your clothes off.');
     scene.text('The one that had been talking to you and fucking your sister\'s mouth pulls away from her and shoves you down on your hands and knees. Without waiting, he shoves his cock in your ass and begins to furiously fuck you.');
@@ -284,10 +284,10 @@ function enterReks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTwoBoy(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', (Math.floor(Math.random() * 23) + 18), 1, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', (Math.floor(Math.random() * 23) + 18), 1, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'unknown guy', (Math.floor(Math.random() * 23) + 18), 1, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'unknown guy', (Math.floor(Math.random() * 23) + 18), 1, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_14.mp4');
   scene.text('They rub your body, grab your boobs and squeeze your ass. Under the influence of alcohol, you really like it and just enjoy the moment.');
   scene.text('Seeing that you aren\'t resisting, they pull you into the next room.');

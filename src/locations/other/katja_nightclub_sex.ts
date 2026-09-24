@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), 4);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), 4);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'beverage', 'cocktail_stats');
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + ((Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
@@ -776,7 +776,7 @@ function enterPrivateBooth_FFM(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I feel energized," Katja says. "Let's go dance. Bye, ${((st as any).npcdesc ?? '')}!" she continues and practically drags you to the dance floor.`);
     qspCall(st, 'arousal', 'kiss', 3, ((st as any).npcID1 ?? 0), 'lesbian');
     qspCall(st, 'cum_call', 'stomach', ((st as any).npcID ?? 0), 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -982,8 +982,8 @@ function enterLonebartenderDrinking(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBartenderBj(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Bartender', (Math.floor(Math.random() * 21) + 18), (Math.floor(Math.random() * 2) + 2));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Bartender', (Math.floor(Math.random() * 21) + 18), (Math.floor(Math.random() * 2) + 2));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/bartender_bj1.jpg');
@@ -1506,10 +1506,10 @@ function enterCheatingConversation(s: GameState, scene: SceneBuilder): void {
 
 function enterPrivateroomTwoGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'npcgeneratec', '', 1, '', (Math.floor(Math.random() * 18) + 18), (Math.floor(Math.random() * 3) + 2));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 1, '', (Math.floor(Math.random() * 18) + 18), (Math.floor(Math.random() * 3) + 2));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '1', '', (Math.floor(Math.random() * 18) + 18), (Math.floor(Math.random() * 3) + 2));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '1', '', (Math.floor(Math.random() * 18) + 18), (Math.floor(Math.random() * 3) + 2));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/private_room_with_two_girls.jpg');
   scene.text('You leave the dance floor and head for the private rooms upstairs. One of the girls talks with a bouncer and a waiter soon arrives and shows you into one of the rooms.');

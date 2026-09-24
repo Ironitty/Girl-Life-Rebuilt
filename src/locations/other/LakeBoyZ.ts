@@ -92,7 +92,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Thank him for the beer and leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['pav_lake', ''] },
       ]);
     }
@@ -116,7 +116,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Push him away and leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['pav_lake', ''] },
         ]);
       }
@@ -143,15 +143,15 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Call it a day and leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['pav_lake', ''] },
       ]);
     }
     scene.actions([
       { label: 'Follow him to his house', handler: (st: GameState) => {
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspGoto(st, 'LBZhouse', '');
   } },
     ]);
@@ -166,14 +166,14 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     if (((st as any).clothingworntype ?? 0) === 'nude') {
       scene.img('images/locations/pavlovsk/lake/event/changenude.jpg');
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     } else {
       scene.img('images/locations/pavlovsk/lake/event/changebikini.jpg');
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get changed into your regular clothes and go for a walk with <<$boyd...
@@ -190,7 +190,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Call it a day and leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['pav_lake', ''] },
       ]);
     }

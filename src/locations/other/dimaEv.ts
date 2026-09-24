@@ -93,7 +93,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'main');
+    qspCall(st, 'gschool_grounds', '');
   } },
   ]);
   scene.build();
@@ -207,7 +207,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as if it is the only thing in your little world. Dimka grabs you by the hair and pulls you onto his member. His hard ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock enters your throat, you resist gagging, but are too confused to really understand what he is doing. Dimka enjoys the fact that he can push his hard cock to the back of your throat and relentlessly fucks your mouth. Finally the torture ends and he cums his hot slimy sperm that you instinctively swallow.`);
     }
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'pain', '', 2, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'throat', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', goto: ['dimaEv', 'cleanup'] },
@@ -368,7 +368,7 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimkaWarn ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).dimkaWarn = 0;
-    qspCall(s, 'pain', '', 2, 'neck', 'bind');
+    qspCall(s, 'pain', '2', 'neck', 'bind');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/choke.jpg');
     scene.text('After avoiding Dimka for more than a week, you finally show up at his home. You enter his room nervously, but he actually seems happy and relaxed.');
@@ -388,7 +388,7 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dimkaWarn ?? 0) >= 2) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).dimkaWarn = 0;
-      qspCall(s, 'pain', '', 4, 'cheeks', 'hit');
+      qspCall(s, 'pain', '4', 'cheeks', 'hit');
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/school/boy/dimka/dimadrinks.jpg');
       scene.text('You enter Dimka\'s room hesitantly, unsure how he will react to your avoidance. Dimka is sitting at his desk with his back to you as you close the door behind you. You can see a half bottle of vodka on the desk along with a nearly empty glass.');
@@ -419,7 +419,7 @@ function enterDimkawarns(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Dimka strips you of all your clothes, ties you securely to the chair and forces ...
   scene.text(`Dimka strips you of all your clothes, ties you securely to the chair and forces a ball gag into your mouth. He pours himself another glass of vodka and drinks it as he stares at you. You want to beg him for forgiveness, but you can only moan fearfully through the gag. Finishing his drink, he unfastens his trousers and allows them to fall to the floor. He is not wearing underwear and his dick is already hard and leaking precum as he approaches you. "I loved you, you know, but you had to ruin it." He rubs the slippery head of his cock against your vagina until he finds your entrance. "You are still mine!" he hisses as he forces his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick into your dry vagina. You can only cry at the sudden intrusion.`);
   qspCall(s, 'arousal', 'vaginal', 15, 'rough', 'rape');
-  qspCall(s, 'pain', '', 3, 'vaginal', 'tear');
+  qspCall(s, 'pain', '3', 'vaginal', 'tear');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -431,8 +431,8 @@ function enterDimkawarns(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', 10, 'rough', 'rape');
     qspCall(st, 'arousal', 'pee', 5, 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'tear');
-    qspCall(st, 'pain', '', 1, 'eyes', 'burn');
+    qspCall(st, 'pain', '2', 'vaginal', 'tear');
+    qspCall(st, 'pain', '1', 'eyes', 'burn');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
@@ -493,15 +493,15 @@ function enterDimkaplays2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaabuse0(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 2, 'armR', 'bind');
-  qspCall(s, 'pain', '', 2, 'armL', 'bind');
+  qspCall(s, 'pain', '2', 'armR', 'bind');
+  qspCall(s, 'pain', '2', 'armL', 'bind');
   qspCall(s, 'stat', '');
   scene.text('Dimka looks at you with an indifferent grin as he examines your body. He walked over to the closer and rummages in it, taking out a few things. He comes up to you and roughly pulls your hands behind your back. You hear the distinctive clicking of handcuffs and you feel the cold steel tighten on your wrists. He comes up to you from behind and shoves a metal ring that has leather straps attached to it into your mouth. He quickly buckles the belt tightly behind your head before you can attempt to spit out the ring.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'pain', '', 2, 'mouth', 'stretch');
+    qspCall(st, 'pain', '2', 'mouth', 'stretch');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/ogag.jpg');
     // TODO-QSP: dynamic text: Your mouth is being held widely open by the ring and Dimka seems a little blurry...
@@ -516,7 +516,7 @@ function enterDimkaabuse0(s: GameState, scene: SceneBuilder): void {
     scene.text('Dimka\'s cock enters your mouth through the ring and drives it to the entrance to your throat. The ring prevents you from doing anything to stop him except to try to use your tongue to force him out. The actions of your tongue on his cock only seem to excite him further. You gag as the head of his dick presses up against the soft palate at the back of your mouth. Dimka pulls his cock back then with all his strength drives it deep into your throat. You choke and gag as drool flows from your mouth, mixing with your tears and snot on your face as you struggle to breath through your nose. Dimka fiercely drives his penis in your mouth, fucking your throat until it burns like fire. You almost faint from suffocation as you choke on the cock jammed deeply inside of you as it spews its slimy load down your throat. To your relief, Dimka\'s cock begins to soften and he pulls it out of you. He then takes the gag out of your mouth and uncuffs your wrists.');
     qspCall(st, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'pain', '', 2, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'throat', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
@@ -541,7 +541,7 @@ function enterDimkaabuse1(s: GameState, scene: SceneBuilder): void {
   scene.text(`Dimka roughly pulls off your panties and puts them on your head. He inserts his penis into your mouth and begins to fuck you hard in the mouth. Your throat is burning with fire from the fact that his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock penetrates you nearly to the balls on every thrust. Dimka growls at you "A cocksucker's mouth is her second pussy, and what should be done with a pussy? Fuck it hard, right to the uterus!" Dimka slaps you on the cheek with his hand "Take it in your mouth pussy!" The dick in your mouth starts to cum and fills your mouth with sperm, you swallow.`);
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 2, 'throat', 'stretch');
+  qspCall(s, 'pain', '2', 'throat', 'stretch');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -602,7 +602,7 @@ function enterDimkaabuse4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).maxdradrug ?? 0) === 4) {
     (s as any).maxdradrug = 5;
   }
-  qspCall(s, 'pain', '', 2, 'throat', 'stretch');
+  qspCall(s, 'pain', '2', 'throat', 'stretch');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/nar.jpg');
   scene.text('Dimka ties your hands tightly behind your back, then ties your legs so that they are fully folder under you. He puts a collar on you and drags you to a post where a dildo has been taped in place. Dimka makes you take the dildo in your mouth, then he ties the collar to the post so that you can not get the dildo out of your mouth. Just when you think Dimka has finished with you, he pulls the rope on your collar forcing the dildo down your throat. Dimka begins to enjoy the sight of your face reddened by suffocation, while streams of snot, saliva and tears run down your face. You choke with the dildo in your throat and you can feel that your body keeps trying to vomit. You start to fear that this is how you will die, choked with a dildo down your throat. As you start to lose consciousness, Dimka finally frees you and you are able to finally breathe freely.');
@@ -622,7 +622,7 @@ function enterDimkaabuse5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_makeup ?? 0) !== 1) {
     (s as any).pcs_makeup = 0;
   }
-  qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '4', 'asscheeks', 'spank');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/spank.jpg');
   scene.text('Dimka ties you to a pole. Then he shows you a leather whip. "You know slut. I am really am understanding individual. And what I think you need, is a little of discipline. So… Let see if I can help you." He begins to whip your ass. "One." Sharp flashes of pain burn through your drug induced euphoria and you begin screaming. "Two." You beg Dimka to stop. "Three." You sob and fight against the bonds. "Four." You understand that this is only the beginning. After several more, Dimka is satisfied and releases you.');
@@ -645,9 +645,9 @@ function enterDimkaabuse6(s: GameState, scene: SceneBuilder): void {
   scene.text('Dimka make you lie down, and binds you until you are fully immobilized. He looks at you with a pensive expression. "Ok… Hm… I think that you don\'t understand your position… Hmm, let\'s see if you can learn something" then he clamps your nipples in small vices and tightens the jaws. It hurts, but then you see what he has prepared, and cry in terror. Suddenly he stabs a needle through your nipple. You howl in pain, but Dimka spits on you as you cry and sticks in another needle forcing you to howl again. You yell and swear at this fucking sadist, but Dimka coldly continues and to your ever growing horror, connect them to a battery. Little shocks run through your body, enhancing the sensation of helplessness. After an eternity of sobbing, pain and pleading. He releases you.');
   if (((s as any).pcs_piercings ?? 0)?.['nipple'] > 0) {
     scene.text('When he gets bored of watching you in pain, Dimka pulls the needles out of your nipples and sets you free.');
-    qspCall(s, 'pain', '', 7, 'nipples', 'pierce');
+    qspCall(s, 'pain', '7', 'nipples', 'pierce');
   } else {
-    qspCall(s, 'pain', '', 9, 'nipples', 'pierce');
+    qspCall(s, 'pain', '9', 'nipples', 'pierce');
     qspCall(s, 'piercing_management', 'add', 'nipples', 1);
     scene.text('When he finally gets bored, Dimka pierces your nipples with metal bars, then sets you free.');
   }
@@ -660,7 +660,7 @@ function enterDimkaabuse6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaabuse7(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 9, 'pierce', 'tongue');
+  qspCall(s, 'pain', '9', 'pierce', 'tongue');
   if (((s as any).maxdradrug ?? 0) === 7) {
     (s as any).maxdradrug = 8;
   }
@@ -684,7 +684,7 @@ function enterDimkaabuse7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaabuse8(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 9, 'pierce', 'labia');
+  qspCall(s, 'pain', '9', 'pierce', 'labia');
   if (((s as any).pcs_makeup ?? 0) !== 1) {
     (s as any).pcs_makeup = 0;
   }

@@ -49,9 +49,9 @@ function enterNavigate(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_list', 'init_event_vars');
-  qspCall(s, 'calendar_list', '', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'calendar_list', '$ARGS[1]');
   qspCall(s, 'calendar_list', 'assign_color');
-  // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
+  qspCall(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -67,73 +67,73 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
 function enterPack(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_function = ((s as any).locArgs?.[1] ?? 0);
   if (String((s as any).locArgs?.[2] ?? '') === 'holidays') {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_new_year']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_christmas']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_fatherland']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_womens_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_labor_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_may_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_victory_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_russia_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_june_13']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_unity_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(s, 'calendar', '$temp_function', 'holiday_new_year');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_christmas');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_fatherland');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_womens_day');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_labor_day');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_may_2');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_victory_day');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_russia_day');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_june_13');
+    qspCall(s, 'calendar', '$temp_function', 'holiday_unity_day');
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'school') {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_winter_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_spring_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_summer_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_autumn_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_graduation']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_monday_fall2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_tuesday_fall2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_wednesday_fall2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_thursday_fall2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_friday_fall2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_monday_winter2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_tuesday_winter2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_wednesday_winter2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_thursday_winter2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_friday_winter2016']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_monday_spring2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_tuesday_spring2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_wednesday_spring2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_thursday_spring2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_friday_spring2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_monday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_tuesday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_wednesday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_thursday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_friday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+      qspCall(s, 'calendar', '$temp_function', 'school_winter_break');
+      qspCall(s, 'calendar', '$temp_function', 'school_spring_break');
+      qspCall(s, 'calendar', '$temp_function', 'school_summer_break');
+      qspCall(s, 'calendar', '$temp_function', 'school_autumn_break');
+      qspCall(s, 'calendar', '$temp_function', 'school_graduation');
+      qspCall(s, 'calendar', '$temp_function', 'school_monday_fall2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_tuesday_fall2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_wednesday_fall2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_thursday_fall2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_friday_fall2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_monday_winter2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_tuesday_winter2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_wednesday_winter2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_thursday_winter2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_friday_winter2016');
+      qspCall(s, 'calendar', '$temp_function', 'school_monday_spring2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_tuesday_spring2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_wednesday_spring2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_thursday_spring2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_friday_spring2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_monday_final2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_tuesday_final2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_wednesday_final2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_thursday_final2017');
+      qspCall(s, 'calendar', '$temp_function', 'school_friday_final2017');
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === 'church') {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'church_vigil']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'church_liturgy']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+        qspCall(s, 'calendar', '$temp_function', 'church_vigil');
+        qspCall(s, 'calendar', '$temp_function', 'church_liturgy');
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 'intercity_trains') {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'train_morning']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'train_evening']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+          qspCall(s, 'calendar', '$temp_function', 'train_morning');
+          qspCall(s, 'calendar', '$temp_function', 'train_evening');
         } else {
           if (String((s as any).locArgs?.[2] ?? '') === 'starlets') {
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'starlets_practice_regular']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'starlets_practice_friday']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+            qspCall(s, 'calendar', '$temp_function', 'starlets_practice_regular');
+            qspCall(s, 'calendar', '$temp_function', 'starlets_practice_friday');
           } else {
             if (String((s as any).locArgs?.[2] ?? '') === 'cheerleading_practice') {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_3']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_4']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+              qspCall(s, 'calendar', '$temp_function', 'cheerleading_practice_1');
+              qspCall(s, 'calendar', '$temp_function', 'cheerleading_practice_2');
+              qspCall(s, 'calendar', '$temp_function', 'cheerleading_practice_3');
+              qspCall(s, 'calendar', '$temp_function', 'cheerleading_practice_4');
             } else {
               if (String((s as any).locArgs?.[2] ?? '') === 'cheerleading_games') {
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_3']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_4']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+                qspCall(s, 'calendar', '$temp_function', 'cheerleading_game_1');
+                qspCall(s, 'calendar', '$temp_function', 'cheerleading_game_2');
+                qspCall(s, 'calendar', '$temp_function', 'cheerleading_game_3');
+                qspCall(s, 'calendar', '$temp_function', 'cheerleading_game_4');
               } else {
                 if (String((s as any).locArgs?.[2] ?? '') === 'cycle_phases') {
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_0']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
-                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_3']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+                  qspCall(s, 'calendar', '$temp_function', 'cycle_0');
+                  qspCall(s, 'calendar', '$temp_function', 'cycle_1');
+                  qspCall(s, 'calendar', '$temp_function', 'cycle_2');
+                  qspCall(s, 'calendar', '$temp_function', 'cycle_3');
                 }
               }
             }
@@ -164,11 +164,11 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :phase_loop
   (s as any).ph_idx = (((s as any).cycle ?? 0) + ((s as any).ph_n ?? 0)) % 4;
   qspCall(s, 'calendar_list', 'init_event_vars');
-  // TODO-QSP: gs 'calendar_list', 'cycle_phase_' + ph_idx
+  qspCall(s, 'calendar_list', '', 'cycle_phase_' + ((s as any).ph_idx ?? 0));
   ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
   ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + (((s as any).cal_cycle ?? {})?.['dur_'] ?? 0), ((s as any).daystart ?? 0));
   if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
-    // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
+    qspCall(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id']);
   }
   (s as any).chain_end = ((s as any).event_vars ?? 0)?.['recur_end'];
   (s as any).ph_n = ((s as any).ph_n ?? 0) + (1);

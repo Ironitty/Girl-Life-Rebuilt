@@ -73,7 +73,7 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
   (s as any).ms_slot = ((s as any).locArgs?.[2] ?? 0) - 1;
   (s as any).ms_booked = ((((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).ms_target_day ?? 0)) + ', ' + String(((s as any).ms_slot ?? 0))] !== '') ? (1) : (0));
   (s as any).ms_worked = ((s as any).masseuse ?? 0)?.['worked_' + String(((s as any).ms_target_day ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0))];
-  (s as any).ms_taken = ((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)];
+  (s as any).ms_taken = (((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)] ?? 0);
   (s as any).ms_past = ((((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0));
   // TODO-QSP: $result += '<tr><td>'
   if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {

@@ -145,7 +145,7 @@ function enterTrainTracks(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Walk home with Fedor', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -158,7 +158,7 @@ function enterTrainTracks(s: GameState, scene: SceneBuilder): void {
     scene.text('You think to yourself "This is going too fast." so you offer Fedor your hand. He is a little surprised at first but kisses your hand nonetheless. Fedor lowers your hand as he releases it and after a few moments of silence you notice a Fedor\'s posture lowers as he turns away from you "It\'s starting to get late, we should probably get going before your parents start to worry about you." He says, with a meek smile as he takes your hand and walks you home.');
     scene.actions([
       { label: 'Walk home with Fedor', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -372,7 +372,7 @@ function enterMovie4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go Home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -384,7 +384,7 @@ function enterMovie4(s: GameState, scene: SceneBuilder): void {
     scene.text('You put your index finger on his lips. "Sorry but I just re-applied my lipstick." and then you back up into your apartment as you say, "Bye" Fedor then tilts his head downward and looks noticeably upset as you close the door.');
     scene.actions([
       { label: 'Go Home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -428,7 +428,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text('You tell Fedor that you need to go and he wraps his arms around you, giving you a warm hug as he replies, "I understand, maybe next time." and he walks you home. Fedor fetches your coat and walks you out the door. When you arrive at your apartment, you give Fedor a soft kiss on the cheek. "Until next time." as you give him a wink and close the door.');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -645,7 +645,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) < 100) {
     (s as any).pcs_health = 100;
   }
-  // TODO-QSP: gs 'sweat', 'add', 7 + rand(0, 4)
+  qspCall(s, 'sweat', 'add', 7 + (Math.floor(Math.random() * 5) + 0));
   (s as any).hapri = 1;
   (s as any).mop = 1;
   (s as any).cumspclnt = 1;
@@ -671,7 +671,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((st as any).pcs_firstname ?? '')}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((st as any).pcs_nickname ?? '')} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((st as any).pcs_nickname ?? '')}] ${((st as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.actions([
       { label: 'Walk Home', handler: (st: GameState) => {
     (st as any).fedorkozqw = 5;
@@ -683,7 +683,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -778,7 +778,7 @@ function enterSkateKiss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk home with Fedor', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     { label: 'I\'ll be fine on my own', goto: ['pav_residential', ''] },
   ]);
@@ -795,7 +795,7 @@ function enterSkateEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk home with Fedor', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     { label: 'I\'ll be fine on my own', goto: ['pav_residential', ''] },
   ]);
@@ -1140,7 +1140,7 @@ function enterParkEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
   ]);
   scene.build();

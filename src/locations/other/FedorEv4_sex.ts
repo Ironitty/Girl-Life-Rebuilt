@@ -42,7 +42,7 @@ function enterHallSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
     // TODO-QSP: dynamic text: Fedor nods his head as he continues thrusting faster. You lay against the wall e...
     scene.text(`Fedor nods his head as he continues thrusting faster. You lay against the wall enjoying his thrusts as you soon feel a burst of warmth fill your womb. Fedor holds you tightly as he fills you with his seed. You do your best to milk him dry as you feel his cum slowly leaking out of your pussy and after a few seconds Fedor catches his breath then says, "Ohh ${((st as any).pcs_nickname ?? '')} You're an absolute gem." The affectionate tone of his voice fills your heart with a sudden warmth. "Oh Fedor, you're so sweet." You and Fedor both get dressed and then Fedor leads you to the bathroom to get washed up.`);
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -189,7 +189,7 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A3');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     qspCall(st, 'boyStat', 'A5');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wash up', goto: ['FedorEv4', 'Bathroom Wash'] },
@@ -211,7 +211,7 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     qspCall(st, 'boyStat', 'A5');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wash up', goto: ['FedorEv4', 'Bathroom Wash'] },
@@ -385,7 +385,7 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
     qspCall(st, 'boyStat', 'A5');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -405,7 +405,7 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
     qspCall(st, 'boyStat', 'A5');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -477,7 +477,7 @@ function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You continue thrusting faster, riding Fedor''s cock as fast as you can as you st...
     scene.text(`You continue thrusting faster, riding Fedor's cock as fast as you can as you stare into his eyes. Fedor's head tilts back and he lets out a loud groan as he begins filling you with his seed. You push down on his dick making sure that he is as far inside you as possible. After Fedor finishes filling you up he looks you in the eyes "${((st as any).pcs_firstname ?? '')} you're so perfect. I can't think of anyone who could make me happier than you." Which you respond, "I'll always be here to keep you happy and fully satisfied, my love." Fedor leans forward and gives you a passionate kiss before getting dressed and leaving the room.`);
     scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -554,7 +554,7 @@ function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Fedor hears you and continues to increase the pace of his thrust until you feel ...
     scene.text(`Fedor hears you and continues to increase the pace of his thrust until you feel him tightly grip your hips as begins filling your womb with his seed. You wrap your legs around Fedor's hips, pushing him deeper inside you as the warmth of his seed fills your womb. Fedor looks down at you then gives you a light kiss on the lips before saying "${((st as any).pcs_firstname ?? '')} you are so precious to me. You realize that, don't you?" You return the kiss and respond, "And you are everything to me. I love you Fyodor." Fedor leans forward and gives you a long passionate kiss before climbing off of you and getting dressed.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -677,7 +677,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sex/ball5.mp4');
     scene.text('');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sex/ball3.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 10);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -692,7 +692,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sex/ball5.mp4');
     scene.text('');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sex/ball3.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 10);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -913,7 +913,7 @@ function enterBathroomCam2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum4.mp4');
     // TODO-QSP: dynamic text: You turn around and look Fedor in the eyes as you say, "Fill me with your seed."...
     scene.text(`You turn around and look Fedor in the eyes as you say, "Fill me with your seed." Fedor gives you a pleased smile as he nods and increases the pace of his thrusts. Soon you hear Fedor groan then feel his seed filling your womb with its warmth. You thrust your hips into Fedors pelvis, trying your best to get his seed as deep inside you as possible. After Fedor catches his breath he pulls out of you, causing a jet of sperm to erupt from your vagina and leak onto the floor. Fedor picks up his camera then watches the video for a few seconds before turning to you "The video came out great. Thank you ${((st as any).pcs_firstname ?? '')}." you give Fedor a wide smile as he gets dressed and leaves the room.`);
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -981,7 +981,7 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor reaches for your chest and begins lightly squeezing and rubbing your breasts as he increases his pace. Fedor suddenly grips your waist with both hands and groans as he begins filling your womb with his seed. The warmth of his seed spraying inside you, fills you with a burst of excitement as you thrust your hips milking every last drop out of Fedor's dick. Fedor takes a moment to catch his breath then looks down at you. "${((st as any).pcs_firstname ?? '')} you're the most incredible girl I've even met."`);
     scene.text('You respond, "I just know what you like babe and I give it." Fedor gives you a grateful smile as he pulls out of you causing his cum to leak out of you and on the ground. Fedor leans forward and gives you a gentle kiss before getting dressed and leaving the room.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1039,7 +1039,7 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/sex6.jpg');
     scene.text('VKwip');
     scene.img('images/shared/sex/cum/cum81.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1099,7 +1099,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/sex/kitchen2.jpg');
     scene.text('Fedor increases his pace as he gives your ass a quick smack. Fedor groans and you feel his warm seed filling your womb. You press your hips against Fedor\'s as he finishes pumping you with his seed, Fedor then pulls out of you, causing the cum inside your vagina to leak out which mildly tickles you as it slides down your leg. Fedor then says, "I really lucked out when I met you." you turn to Fedor and respond, "We\'re both lucky." Fedor give you a wink as he gets dressed then leaves the kitchen.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum4.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1159,7 +1159,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You wrap your legs around Fedor as he thrust his dick further inside you, Fedor ...
     scene.text(`You wrap your legs around Fedor as he thrust his dick further inside you, Fedor then lets out a groan as he begins pumping his seed into your womb. You can feel his penis throbbing inside you, filling you up with his seed. Fedor looks down to you "Your such a great fuck ${((st as any).pcs_nickname ?? '')}." you respond, "Well that's only one of my many talents." to which Fedor replies, "You'll have to show me those other talents sometime." Fedor then gets dressed then walks out of the room.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1329,7 +1329,7 @@ function enterBedroomCam(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You look up at Fedor''s reflection. "Fill me with your cum." Fedor has a very pl...
     scene.text(`You look up at Fedor's reflection. "Fill me with your cum." Fedor has a very pleased smile on his face as he increases his pace. Fedor then groans and you feel his seed filling your womb causing you to let out a loud moan. You look up at the camera as you focus on Fedor's hard cock throbbing inside you and his warm cum filling up your pussy. After a few seconds Fedor asks "How does my cum feel ${((st as any).pcs_firstname ?? '')}?" You reply, "It feels so warm and pleasant. Your cum belongs inside me Fyodor." Fedor gives you a sweet smile as he responds, "Ohh ${((st as any).pcs_firstname ?? '')}, you are the sweetest, most beautiful girlfriend I could ever ask for." Fedor kisses you passionately as he closes his camera then begins getting dressed.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'exhibitionism');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1585,7 +1585,7 @@ function enterBedroom2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
     scene.text('You look Fedor in the eyes as you reply, "Fill me with your seed, my love." Fedor gives you a passionate kiss as he begin increasing his pace. You can feel Fedor\'s penis entering deeper inside you as he groans and begins filling your womb with his warm cum. You can feel his penis throbbing as he continues to pump your pussy with his seed. After Fedor finishes, he looks down to you. "You are the best girlfriend I could ever ask for. I\'m so lucky to have you." You look him in the eyes as you reply, "I love you Fyodor and I always will." Fedor leans forward and gives you a long passionate kiss before getting dressed and leaving the room.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagkiss.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 10);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1633,7 +1633,7 @@ function enterBedroom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You look Fedor in the eyes as you reply, "Fill me with your seed, my love." Fedo...
     scene.text(`You look Fedor in the eyes as you reply, "Fill me with your seed, my love." Fedor gives you a passionate kiss as you both increase the pace. You soon feel Fedor's arms tighten around you as he groans. You can feel Fedor's warm seed quickly filling your womb and you continue riding him, trying to keep his dick as far inside you as possible. You let out a loud moan as Fedor finishes pumping your pussy with his seed. Fedor catches his breath before looking you in the eyes "You are the most precious thing in my life. I love you ${((st as any).pcs_firstname ?? '')}." You can feel tears begin to form in your eyes as you reply, "I love you too Fyodor, with all my heart." Fedor leans forward then gives you a long passionate kiss before getting dressed and leaving the room.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagkiss.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
@@ -1718,7 +1718,7 @@ function enterBedroom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Fedor catches his breath before looking you in the eyes "You are the most precio...
     scene.text(`Fedor catches his breath before looking you in the eyes "You are the most precious thing in my life. I love you ${((st as any).pcs_firstname ?? '')}." You can feel tears begin to form in your eyes as you reply, "I love you too Fyodor, with all my heart." Fedor leans forward then gives you a long passionate kiss before getting dressed and leaving the room.`);
     scene.img('images/shared/sex/cum/cum81.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'kiss', 5, 'dom');
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
@@ -1833,7 +1833,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor gives you a passionate kiss as he increases the pace of his thrusts and you do your best to match his thrusts with your own. After a few seconds, Fedor groans and you feel his seed filling your womb with its warmth as you continue thrusting your hips attempting to drain his dick completely. Fedor gives you a passionate kiss and then looks you in the eyes as he says, "${((st as any).pcs_firstname ?? '')} what have I done to deserve a perfect girl like you?"`);
     scene.text('His words of affection catch you off guard as you are left speechless for a few seconds then you recover your thoughts and respond, "You\'ve treated me with love and affection and handled my heart with care and that is why you deserve everything I can offer you." You both stare at each other in silence until Fedor gives you another long kiss and then dries off and gets dressed before leaving the room.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1908,7 +1908,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You turn to face Fedor and give him a passionate kiss before he says, "You are s...
     scene.text(`You turn to face Fedor and give him a passionate kiss before he says, "You are so perfect ${((st as any).pcs_firstname ?? '')}. I want to spend my whole life with you." You give Fedor a warm smile as you respond, "I feel the same way Fyodor. Maybe one day we will be ready to take that step." Fedor replies, "That day will come ${((st as any).pcs_firstname ?? '')}. I promise you." Fedor gets dressed then leaves the room.`);
     scene.img('images/shared/sex/cum/cum81.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([

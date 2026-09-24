@@ -513,7 +513,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.text('But to your dismay, he doesn\'t budge, and before you know it, he\'s standing next you. "Like pleading will help you now, slut!"');
     scene.actions([
       { label: 'Squeak', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'breasts', 'twist');
+    qspCall(st, 'pain', '4', 'breasts', 'twist');
     qspCall(st, 'arousal', 'foreplay', 5, 'sub', 'humiliation');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge3.jpg');
@@ -523,8 +523,8 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.text('All of a sudden, you can feel the mood change as he violently grabs hold of your breast and starts roughly kneading it. "It\'s not one of those times where you\'re supposed to feel excited, slut." The pain you feel in your breast is almost unbearable.');
     scene.actions([
       { label: 'Plead', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Security Guard', 42);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Security Guard', 42);
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'humiliation', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge4.jpg');
@@ -535,7 +535,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.text('Fearing what he might do, you try your best to accommodate him. His thrusts become more rapid, and he goes really deep down your throat. There are several times you feel that you\'re close to throwing up. "Lube it up whore if you don\'t want to feel any pain…" you hear him say as you gag once more on his cock.');
     scene.actions([
       { label: 'Comply', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 7, 'vaginal', 'tear');
+    qspCall(st, 'pain', '7', 'vaginal', 'tear');
     qspCall(st, 'arousal', 'vaginal', 10, 'sub', 'humiliation', 'rough');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge5.jpg');

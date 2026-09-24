@@ -205,13 +205,13 @@ function enterChatOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Talk about her', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'chat_personal');
+    qspCall(st, 'model_anastasia', '');
   } },
     { label: 'Talk about modelling', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'model_talk');
+    qspCall(st, 'model_anastasia', '');
   } },
     { label: 'Talk about sex', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'sex_talk');
+    qspCall(st, 'model_anastasia', '');
   } },
   ]);
   scene.build();
@@ -226,7 +226,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'chat_options');
+    qspCall(st, 'model_anastasia', '');
   } },
     { label: 'Ask about food', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
@@ -288,7 +288,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'chat_options');
+    qspCall(st, 'model_anastasia', '');
   } },
     { label: 'Ask her how she became a model', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/9.jpg');
@@ -529,7 +529,7 @@ function enterAnastasiasextalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
-    qspCall(st, 'model_anastasia', 'chat_options');
+    qspCall(st, 'model_anastasia', '');
   } },
     { label: 'Ask about blowjobs', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);

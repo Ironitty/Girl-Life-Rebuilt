@@ -69,7 +69,7 @@ function enterPavCommcenter(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Decline and move along', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);

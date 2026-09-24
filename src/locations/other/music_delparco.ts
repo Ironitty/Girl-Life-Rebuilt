@@ -79,7 +79,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
     (st as any).ml_delparcooriginaldate = ((st as any).daystart ?? 0);
     scene.text('"I have to think, I want to make sure that I can do it. It\'s a big commitment and I don\'t want to, you know… not do it right."');
     // TODO-QSP: dynamic text: Zariyah nods "Ok, <<$pcs_nickname>>, but please, let me know by <<$weekName[ml_a...
-    scene.text(`Zariyah nods "Ok, ${((st as any).pcs_nickname ?? '')}, but please, let me know by ${((st as any).weekName ?? 0)?.[String((st as any).ml_answerdeadline ?? 0)] ?? ''}."`);
+    scene.text(`Zariyah nods "Ok, ${((st as any).pcs_nickname ?? '')}, but please, let me know by ${(((st as any).weekName ?? 0)?.[String((st as any).ml_answerdeadline ?? 0)] ?? '')}."`);
     scene.actions([
       { label: 'Leave', goto: ['cafe_parco', 'start'] },
     ]);

@@ -74,7 +74,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic']
+    qspCall(st, 'mood', 'raise', 5 * (((st as any).trait_vars ?? {})?.['academic'] ?? 0));
     (st as any).lern = ((st as any).lern ?? 0) + (1);
     qspCall(st, 'stat', '');
     qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 0, 0);

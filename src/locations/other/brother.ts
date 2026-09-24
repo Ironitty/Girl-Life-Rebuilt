@@ -699,7 +699,7 @@ function enterSleepsexcum(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).protect ?? 0) !== 1) {
     if ((Math.floor(Math.random() * 101) + 0) < ((s as any).pcs_horny ?? 0)) {
-      qspCall(s, 'cum_call', '', '', 'A34', 1);
+      qspCall(s, 'cum_call', '', 'A34', 1);
       // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm fill your pussy.
       scene.text(`${((s as any).boydesc ?? '')} groans and you feel a jet of sperm fill your pussy.`);
       qspCall(s, 'mood', 'lower', 'medium');
@@ -735,7 +735,7 @@ function enterSleepsexcum(s: GameState, scene: SceneBuilder): void {
       if ((!(Math.floor(Math.random() * 90) + 0))) {
         (s as any).sexcontra = 4;
       }
-      qspCall(s, 'cum_call', '', '', 'A34', 1);
+      qspCall(s, 'cum_call', '', 'A34', 1);
       if (((s as any).sexcontra ?? 0) === 4) {
         // TODO-QSP: dynamic text: You pull off of <<$boydesc>>, look at his dick and think, <i>Oh shit! The condom...
         scene.text(`You pull off of ${((s as any).boydesc ?? '')}, look at his dick and think, <i>Oh shit! The condom ripped.</i>`);
@@ -1280,26 +1280,26 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
           if (((s as any).wombthfathID ?? 0) === 'A34'  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 50) {
             scene.actions([
               { label: 'Yes (Happy)', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows1');
+    qspCall(st, 'brother', '');
   } },
               { label: 'Yes (Angry)', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows2');
+    qspCall(st, 'brother', '');
   } },
             ]);
           } else {
             if ((Array.isArray((s as any).wombpotfath) ? ((s as any).wombpotfath as any[]).indexOf('A34') : -1) >= 0) {
               scene.actions([
                 { label: 'Maybe (Happy)', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows3');
+    qspCall(st, 'brother', '');
   } },
                 { label: 'Maybe (Angry)', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows4');
+    qspCall(st, 'brother', '');
   } },
               ]);
             } else {
               scene.actions([
                 { label: 'No', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows5');
+    qspCall(st, 'brother', '');
   } },
               ]);
             }
@@ -1331,19 +1331,19 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
           if (((s as any).wombthfathID ?? 0) === 'A34'  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 50) {
             scene.actions([
               { label: 'Yes', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows6');
+    qspCall(st, 'brother', '');
   } },
             ]);
           }
           scene.actions([
             { label: 'Maybe', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows7');
+    qspCall(st, 'brother', '');
   } },
           ]);
         } else {
           scene.actions([
             { label: 'No', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherknows8');
+    qspCall(st, 'brother', '');
   } },
           ]);
         }

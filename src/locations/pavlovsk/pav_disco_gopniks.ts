@@ -553,7 +553,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
       if (((st as any).pcs_hotcat ?? 0) >= 6) {
         scene.text('As you walk up, Radomir steps away from the girl and places his hand on your arm. "Well well well, if it isn\'t my favorite groupie slut."');
         scene.text('He doesn\'t give you a chance to speak as he starts to painfully squeeze your arm and whisper in your ear. "This bitch is playing hard to get and I could really use a blowjob right about now, so how about we go somewhere private and you can suck my dick slut?"');
-        qspCall(st, 'pain', '', 1, 'armR', 'pinch');
+        qspCall(st, 'pain', '1', 'armR', 'pinch');
         qspCall(st, 'willpower', 'sex', 'resist', 'hard');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
@@ -623,7 +623,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('As you walk up, Radomir steps away from the girl and places his hand on your arm. "Well well well, if it isn\'t the town whore."');
             scene.text('He doesn\'t give you a chance to speak as he starts to painfully squeeze your arm and whisper in your ear. "This bitch is playing hard to get and I could really use a blowjob right about now, so how about we go somewhere private and you can suck my dick slut?"');
-            qspCall(st, 'pain', '', 1, 'armR', 'pinch');
+            qspCall(st, 'pain', '1', 'armR', 'pinch');
             qspCall(st, 'willpower', 'sex', 'resist', 'hard');
             if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
               scene.actions([
@@ -724,7 +724,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
             scene.text('"Well well well, if it isn\'t the town bike." Radomir taunts as you approach.');
             scene.text('You frown at his comment, but don\'t have a chance to respond. He tells you that you should stop by practice some time, saying that the boys could use some stress release after practice, which leads to him talking about the band and where they will be playing.');
             scene.text('He doesn\'t give you a chance to speak and you\'re forced to listen to him go on and on about his band before he finally pauses and grabs your arm, squeezing it painfully. "I could really use a blowjob, so how about we go somewhere private and you can suck my dick, slut?"');
-            qspCall(st, 'pain', '', 1, 'armR', 'pinch');
+            qspCall(st, 'pain', '1', 'armR', 'pinch');
             qspCall(st, 'willpower', 'sex', 'resist', 'hard');
             if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
               scene.actions([

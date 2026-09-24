@@ -89,7 +89,7 @@ function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_character_custom', 'pol_grup_set', ARGS[1], ARGS[2], ARGS[3]
+  qspCall(s, 'intro_character_custom', 'pol_grup_set', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0));
   scene.build();
 }
 

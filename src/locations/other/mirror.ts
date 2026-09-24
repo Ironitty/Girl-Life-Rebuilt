@@ -386,7 +386,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLipbalm(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -398,7 +398,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesplain(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -410,7 +410,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterApplyLashesmink(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'View results', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -439,7 +439,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Move away from the mirror', goto: ['mirror', 'fin'] },
     { label: 'Manage your custom make-up routines', handler: (st: GameState) => {
-    qspCall(st, 'mirror', 'routine_manage');
+    qspCall(st, 'mirror', '');
   } },
     { label: '', labelFn: (s: GameState) => String(((((s as any).newstylemirror ?? 0)) ? ('Change to the old style mirror') : ('Change to the new style mirror')) ?? ''), handler: (st: GameState) => {
     (st as any).newstylemirror = ((((st as any).newstylemirror ?? 0)) ? (0) : (1));
@@ -800,7 +800,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- works ----
   scene.actions([
     { label: 'View results', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -864,7 +864,7 @@ function enterBrushHairDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- brush_hair_do ---
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -877,7 +877,7 @@ function enterLipbalmDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- lipbalm_do ---
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -895,7 +895,7 @@ function enterApplyLashesDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- apply_lashes_do ---
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();

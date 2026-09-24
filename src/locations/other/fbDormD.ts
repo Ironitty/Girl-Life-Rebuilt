@@ -336,9 +336,9 @@ function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'vodka', 2);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, '' + ((s as any).npcdesc ?? 0) + '\'s friend', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', '' + ((s as any).npcdesc ?? 0) + '\'s friend', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcStat', '$npcID', 'a');
   // TODO-QSP: dynamic text: You quietly drink the booze while you''re leaning against <<$npcdesc1>>. He begi...
   scene.text(`You quietly drink the booze while you're leaning against ${((s as any).npcdesc1 ?? '')}. He begins to kiss you, while his friend on the other side begins to gently stroke your ass cheeks through your clothes.`);
   // TODO-QSP: dynamic text: <<$npcdesc1>> grins at you and whispers: "Hey babe… what do you want to do next?...

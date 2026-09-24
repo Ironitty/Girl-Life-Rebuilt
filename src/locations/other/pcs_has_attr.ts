@@ -290,7 +290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: :pha_AND_loop
     if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-      if (qspFunc(s, 'pcs_has_attr', ((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) === 0) {
+      if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
         (s as any).result = 0;
         // TODO-QSP: jump 'pha_AND_killvar'
       }
@@ -317,7 +317,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       // TODO-QSP: :pha_OR_loop
       if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-        if (qspFunc(s, 'pcs_has_attr', ((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)])) {
+        if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
           (s as any).result = 1;
           // TODO-QSP: jump 'pha_OR_killvar'
         }
@@ -344,7 +344,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         // TODO-QSP: :pha_NAND_loop
         if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-          if (qspFunc(s, 'pcs_has_attr', ((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)]) === 0) {
+          if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0)) === 0) {
             (s as any).result = 1;
             // TODO-QSP: jump 'pha_NAND_killvar'
           }
@@ -371,7 +371,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           // TODO-QSP: :pha_NOR_loop
           if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-            if (qspFunc(s, 'pcs_has_attr', ((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)])) {
+            if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
               (s as any).result = 0;
               // TODO-QSP: jump 'pha_NOR_killvar'
             }
@@ -407,7 +407,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             // TODO-QSP: :pha_XOR_loop
             if (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] !== '') {
-              if (qspFunc(s, 'pcs_has_attr', ((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)])) {
+              if (qspFunc(s, 'pcs_has_attr', (((s as any).ARGS ?? 0)?.[String((s as any).pha_i ?? 0)] ?? 0))) {
                 if (((s as any).result ?? 0) < ((s as any).pha_target ?? 0)) {
                   (s as any).result = ((s as any).result ?? 0) + (1);
                 } else {

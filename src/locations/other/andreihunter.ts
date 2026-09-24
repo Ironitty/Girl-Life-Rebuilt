@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boystat', 'A172');
   ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
-  (s as any).boyage = ((s as any).npc_dob ?? 0)?.[String((s as any).boy ?? 0)];
+  (s as any).boyage = (((s as any).npc_dob ?? 0)?.[String((s as any).boy ?? 0)] ?? 0);
   (s as any).boyage = (((s as any).boyage ?? 0) - ((s as any).boyage ?? 0) % 10000) / 10000;
   (s as any).boyage = ((s as any).year ?? 0) - ((s as any).boyage ?? 0);
   if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['AndreiQw'] < 10) {

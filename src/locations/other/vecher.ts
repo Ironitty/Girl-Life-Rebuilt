@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
@@ -67,7 +67,7 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
@@ -133,7 +133,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
@@ -186,8 +186,8 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave him blueballed', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'arousal', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
@@ -246,7 +246,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
@@ -330,7 +330,7 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['uni_dorm', 'korr'] },
     ]);
   }
@@ -338,8 +338,8 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Grab his crotch', handler: (st: GameState) => {
     (st as any).sexloc = 'uni_dorm';
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger from a party', (Math.floor(Math.random() * 11) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger from a party', (Math.floor(Math.random() * 11) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = (Math.floor(Math.random() * 21) + 20);
     qspGoto(st, 'sex', 'start');
   } },
@@ -372,7 +372,7 @@ function enterEnd12(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['vecher', 'end12'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'cuni', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['uni_dorm', 'tenth_floor'] },
   ]);
   scene.build();

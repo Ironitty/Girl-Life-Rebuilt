@@ -1247,7 +1247,7 @@ function enterOfferGoForest(s: GameState, scene: SceneBuilder): void {
 function enterWearStrippedClothes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1) {
     if (((s as any).MiraVars ?? 0)?.['strip_loc'] !== ''  &&  ((s as any).CloLosTyp ?? 0)[((s as any).MiraVars ?? 0)?.['strip_loc']] !== '') {
-      // TODO-QSP: gs 'outfit', 'recover_lost_outfit', $MiraVars['strip_loc'], 1
+      qspCall(s, 'outfit', 'recover_lost_outfit', ((s as any).MiraVars ?? 0)?.['strip_loc'], 1);
     } else {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
@@ -1305,7 +1305,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Mira and you raid the kitchen for a late night snack (0:15)', handler: (st: GameState) => {
     // TODO-QSP: 'You and Mira head to the kitchen to make a quick snack'
-    qspCall(st, 'food', 'snack');
+    qspCall(st, 'food', '');
   } },
       { label: 'Go to sleep', handler: (st: GameState) => {
     // TODO-QSP: 'You''re feeling tired. You and Mira head to your bed and cr...

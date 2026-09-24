@@ -339,7 +339,7 @@ function enterRusMale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Zernebog'
   // TODO-QSP: $rntempgen[] = 'Zinoviy'
   (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
+  (s as any).result = (((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -553,7 +553,7 @@ function enterRusFemale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Zinoviya'
   // TODO-QSP: $rntempgen[] = 'Zoya'
   (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
+  (s as any).result = (((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -2441,7 +2441,7 @@ function enterRusSur(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $rntempgen[] = 'Yashin'
   // TODO-QSP: $rntempgen[] = 'Yashkin'
   (s as any).irngi = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-  (s as any).result = ((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)];
+  (s as any).result = (((s as any).rntempgen ?? 0)?.[String((s as any).irngi ?? 0)] ?? 0);
   // TODO-QSP: end
   scene.build();
 }

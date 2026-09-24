@@ -255,7 +255,7 @@ function enterDate1_2(s: GameState, scene: SceneBuilder): void {
     scene.text('He helps you get dressed before taking your hand and walking you towards the train station.');
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoDates', 'home_sad'] },
     ]);
   } },
@@ -319,7 +319,7 @@ function enterDate1_2(s: GameState, scene: SceneBuilder): void {
     scene.text('This causes you both to burst into laughter before he grabs your hand and raises it to his face before giving it a kiss. "Are you ready to head home?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoDates', 'home1'] },
     ]);
   } },
@@ -735,7 +735,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Talk to Niko', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.text('"Do you mind if I ask you some more questions about your… family?" you ask as Niko applies the sunscreen. "I\'m really interested in getting to know you better."');
     scene.text('He pauses for a second before replying. "Sure, why not? Ask away."');
     scene.text('"You told me that you had a sister who… passed away, but you never told me what happened to your younger brother or your father."');
@@ -762,7 +762,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.text('You spend the next few minutes talking about various topics before Niko interrupts.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_firstname>>, would you consider yourself a daring girl?"
     scene.text(`"Hey ${((st as any).pcs_firstname ?? '')}, would you consider yourself a daring girl?"`);
@@ -977,7 +977,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You were great, ${((st as any).pcs_nickname ?? '')}. If you want to wash up, the bathroom is two rooms down that way." He leans over and gives you a kiss on the cheek.`);
     scene.actions([
       { label: 'Wash up', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoDates', 'bathroom'] },
     ]);
   } },
@@ -1263,7 +1263,7 @@ function enterHallwayStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Enter the cafeteria', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_lunch', 'lunch'] },
     ]);
   } },

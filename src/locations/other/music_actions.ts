@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Available musical activities', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
               ]);
             }
@@ -61,7 +61,7 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s too early to do anything noisy like playing the guitar or singing.');
     scene.actions([
 { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
 ]);
     return;
@@ -70,7 +70,7 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
       scene.text('It\'s too late to do anything noisy like playing the guitar or singing.');
       scene.actions([
 { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
 ]);
       return;
@@ -98,7 +98,7 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -141,7 +141,7 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     scene.text('You hum along to the tune, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   } },
@@ -167,7 +167,7 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     scene.text('You hum along to the tune, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   } },
@@ -185,7 +185,7 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     scene.text('You sway and move your head to keep the tempo, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   } },
@@ -210,7 +210,7 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     scene.text('You sway and move your head to keep the tempo, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   } },
@@ -277,7 +277,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).will_cost ?? 0))) {
         scene.actions([
           { label: 'Start busking (60 minutes)', handler: (st: GameState) => {
-    qspCall(st, 'music_buskingevents', 'busking');
+    qspCall(st, 'music_buskingevents', '');
   } },
         ]);
       } else {

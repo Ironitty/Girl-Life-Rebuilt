@@ -118,10 +118,10 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   }
   qspGoto(s, 'wakeup_events', 'event_end');
   // TODO-QSP: end
@@ -208,7 +208,7 @@ function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', handler: (st: GameState) => {
-    qspCall(st, 'wakeup_events', 'event_end');
+    qspCall(st, 'wakeup_events', '');
   } },
     { label: 'Have morning sex with Natasha', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }

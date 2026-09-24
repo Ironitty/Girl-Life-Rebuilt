@@ -44,13 +44,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) > 0) {
     scene.actions([
       { label: 'Caress your clitoris', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'clit_play');
+    qspCall(st, 'selfplay', '');
   } },
       { label: 'Put a finger in your ass', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'anal_fingering');
+    qspCall(st, 'selfplay', '');
   } },
       { label: 'Put a finger in your pussy', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering');
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }
@@ -110,7 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).analcap ?? 0) <= 2  ||  (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4)) {
           scene.actions([
             { label: 'Use the dildo on your ass', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'anal_dildo_start');
+    qspCall(st, 'selfplay', '');
   } },
           ]);
         }
@@ -1333,7 +1333,7 @@ function enterBathSuctionDildo(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Take it off', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'bathtub_suction_dildo_remove');
+    qspCall(st, 'selfplay', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Ride it', goto: ['selfplay', 'bath_suction_dildo_ride'] },
@@ -1350,7 +1350,7 @@ function enterShowerSuctionDildo(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Take it off', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'shower_suction_dildo_remove');
+    qspCall(st, 'selfplay', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
@@ -1815,7 +1815,7 @@ function enterFingering(s: GameState, scene: SceneBuilder): void {
       if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
         scene.actions([
           { label: 'Fuck yourself with your fingers', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering2');
+    qspCall(st, 'selfplay', '');
   } },
         ]);
       }
@@ -1878,13 +1878,13 @@ function enterFingering2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Thrust four of your fingers into your pussy', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering3');
+    qspCall(st, 'selfplay', '');
   } },
       ]);
     }
     scene.actions([
       { label: 'Keep fingering yourself', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering2', 1);
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }
@@ -1936,7 +1936,7 @@ function enterFingering3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     scene.actions([
       { label: 'Use your fingers to fuck yourself', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering4');
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }
@@ -1992,7 +1992,7 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
         scene.actions([
           { label: 'Stuff your whole hand into your pussy', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'self_fisting_1');
+    qspCall(st, 'selfplay', '');
   } },
         ]);
       } else {
@@ -2017,7 +2017,7 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Use your fingers to fuck yourself', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering4', 1);
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }
@@ -2042,7 +2042,7 @@ function enterSelfFisting_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You bring all your fingers together and shove your whole hand up your tight pussy, but you feel it stretch out way more than is comfortable. It\'s actually rather painful.');
     scene.actions([
       { label: 'Go back to using four fingers', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'fingering4', 2);
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   } else {
@@ -2071,7 +2071,7 @@ function enterSelfFisting_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     scene.actions([
       { label: 'Start fisting yourself', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'self_fisting_2');
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }
@@ -2129,7 +2129,7 @@ function enterSelfFisting_2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Keep fisting your pussy', handler: (st: GameState) => {
-    qspCall(st, 'selfplay', 'self_fisting_2', 1);
+    qspCall(st, 'selfplay', '');
   } },
     ]);
   }

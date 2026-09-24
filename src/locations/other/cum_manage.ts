@@ -92,9 +92,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ((s as any).cumarrage = (s as any).cumarrage ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
       ((s as any).cumarrdel = (s as any).cumarrdel ?? {})[String((s as any).cumarrtemp ?? 0)] = 0;
       ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexcontra ?? 0);
-      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/12);
+      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/12);
       if (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]) {
-        ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+        ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
       }
     }
   } else {
@@ -166,11 +166,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).break_thresh = ((s as any).break_thresh ?? 0) + (((s as any).slip_thresh ?? 0));
           (s as any).slip_thresh = 0;
           if ((!((s as any).temprand ?? 0))) {
-            ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/4);
+            ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/4);
             ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 3;
           } else {
             if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
-              ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+              ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/2);
               ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 4;
               (s as any).sexcontra = 4;
               ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
@@ -189,7 +189,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               ((s as any).stat = (s as any).stat ?? {})['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
               ((s as any).stat = (s as any).stat ?? {})['last_broken_condom'] = ((s as any).daystart ?? 0);
               ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-              ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
               ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               qspCall(s, 'dina', 'ferteggfather');
             } else {
@@ -202,7 +202,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sexcontra ?? 0) === 4) {
-            ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+            ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/2);
             ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 4;
             ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
             ((s as any).sparrloc = (s as any).sparrloc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
@@ -215,12 +215,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             ((s as any).cumloc = (s as any).cumloc ?? {})[0] = 1;
             (s as any).condom_break = 1;
             ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-            ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+            ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
             ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
             qspCall(s, 'dina', 'ferteggfather');
           } else {
             if (((s as any).sexcontra ?? 0) === 5) {
-              ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/200);
+              ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/200);
               ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 5;
               (s as any).cumcondslip = 1;
               (s as any).cumcondsanb = ((s as any).cumarrtemp ?? 0);
@@ -233,7 +233,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
               (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
               ((s as any).cumloc = (s as any).cumloc ?? {})[0] = 1;
-              ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
               ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
               (s as any).cumcondslip = ((s as any).cumcondslip ?? 0) + (1);
               if (((s as any).cumcondslip_deep ?? 0) <= 0) {
@@ -248,10 +248,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).sexcontra ?? 0) === 6  ||  ((s as any).npcCondom ?? 0) === 'sabotaged') {
                   // TODO-QSP: break_thresh * 3
-                  ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
+                  ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/3);
                   ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 6;
                   if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
-                    ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                    ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/2);
                     ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 4;
                     (s as any).sexcontra = 4;
                     ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
@@ -267,16 +267,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     ((s as any).stat = (s as any).stat ?? {})['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
                     ((s as any).stat = (s as any).stat ?? {})['last_broken_condom'] = ((s as any).daystart ?? 0);
                     ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                    ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                    ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
                     ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                   }
                 } else {
                   if (((s as any).sexcontra ?? 0) === 7) {
                     // TODO-QSP: break_thresh * 3
-                    ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
+                    ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/3);
                     ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 7;
                     if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
-                      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0)/2);
                       ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = 4;
                       (s as any).sexcontra = 4;
                       ((s as any).sparrage = (s as any).sparrage ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
@@ -292,7 +292,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                       ((s as any).stat = (s as any).stat ?? {})['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
                       ((s as any).stat = (s as any).stat ?? {})['last_broken_condom'] = ((s as any).daystart ?? 0);
                       ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                      ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                      ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
                       ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
                     }
                     qspCall(s, 'dina', 'ferteggfather');
@@ -312,9 +312,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
         (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
         ((s as any).cumloc = (s as any).cumloc ?? {})[0] = 1;
-        ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+        ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
         ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
-        ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 5 * 4);
+        ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + ((((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0) / 5 * 4);
         ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexcontra ?? 0);
         qspCall(s, 'dina', 'ferteggfather');
       }
@@ -356,7 +356,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npcID ?? 0) === 'A28'  ||  ((s as any).npcID ?? 0) === 'A32'  ||  ((s as any).npcID ?? 0) === 'A34'  ||  ((s as any).npcID ?? 0) === 'A35') {
           (s as any).pcs_cp_risk_daylastincest = ((s as any).daystart ?? 0);
         }
-        // TODO-QSP: gs 'fetish', 'set_exp', 'creampie', stat['creampies_safe_known'] + stat['creampies_notsafe_known'] +...
+        qspCall(s, 'fetish', 'set_exp', 'creampie', (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0));
         ((s as any).stat = (s as any).stat ?? {})['total_creampies'] = (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0);
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] > 0  &&  (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1)) {
           if (((s as any).orgasm_txt ?? 0) === '') {
@@ -422,13 +422,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).spafinloc ?? 0) === 3) {
           (s as any).cumsumass = ((s as any).cumsumass ?? 0) + (((s as any).sexvolume ?? 0));
         }
-        ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+        ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
         ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
         ((s as any).cumloc = (s as any).cumloc ?? {})[String((s as any).spafinloc ?? 0)] = 1;
       }
     }
     if (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]) {
-      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+      ((s as any).cumarrcpt = (s as any).cumarrcpt ?? {})[String((s as any).cumarrtemp ?? 0)] = (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
     }
     (s as any).sexpartkno = 0;
     (s as any).sexunaware = 0;
@@ -470,7 +470,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
     (s as any).idx = 0;
     // TODO-QSP: :cum_c_spermloop
-    (s as any).temp_cum_manage_i = ((s as any).sparrloc ?? 0)?.[String((s as any).idx ?? 0)];
+    (s as any).temp_cum_manage_i = (((s as any).sparrloc ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
     if ((!((s as any).temp_cum_manage_i ?? 0))) {
       (s as any).temp_cum_manage_j = 4;
     } else {
@@ -504,7 +504,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).cumvolume = (s as any).cumvolume ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).cumvolume[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)]);
+    ((s as any).cumvolume = (s as any).cumvolume ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).cumvolume[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + ((((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)] ?? 0));
     if (((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)] > 0) {
       if (((s as any).sparridt ?? 0)?.[String((s as any).idx ?? 0)] === 0) {
         ((s as any).cumcount = (s as any).cumcount ?? {})[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] = ((s as any).cumcount[String(((s as any).temp_cum_manage_i ?? 0)) + ':' + String(((s as any).temp_cum_manage_j ?? 0))] ?? 0) + (1);
@@ -1028,7 +1028,7 @@ function enterCumgather(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       // TODO-QSP: dynamic text: You use a wipe to clean the sperm from your <<$part>>.
       scene.text(`You use a wipe to clean the sperm from your ${((s as any).part ?? '')}.`);
-      // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
+      qspCall(s, 'cum_cleanup', 'cleanloc', ((s as any).locArgs?.[1] ?? 0));
       qspCall(s, 'stat', '');
     }
   }
@@ -1061,16 +1061,16 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cum_cleanup_cumeater_pos ?? 0) >= 0  &&  ((s as any).temp_cum_cleanup_cumeater_pos ?? 0) < Object.keys((s as any).sparrloc ?? {}).length) {
     ((s as any).cumloc = (s as any).cumloc ?? {})[12] = 1;
     (s as any).spafinloc = 12;
-    (s as any).sexvolume = ((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cumeater_pos ?? 0)];
+    (s as any).sexvolume = (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cumeater_pos ?? 0)] ?? 0);
     (s as any).sexunaware = 0;
     (s as any).sexspecpot = (-1);
     (s as any).cumnpcID = ((s as any).npcID ?? 0);
-    (s as any).npcID = ((s as any).sparrnam ?? 0)?.[String((s as any).temp_cum_cleanup_cumeater_pos ?? 0)];
+    (s as any).npcID = (((s as any).sparrnam ?? 0)?.[String((s as any).temp_cum_cleanup_cumeater_pos ?? 0)] ?? 0);
     (s as any).cumnostd = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).part = '';
     if (String((s as any).locArgs?.[1] ?? '') === 13) {
-      // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
+      qspCall(s, 'cum_cleanup', 'cleanloc', ((s as any).locArgs?.[1] ?? 0));
       scene.text('You carefully lick the sperm residue from your hands, enjoying the tart taste.');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 0) {
@@ -1142,7 +1142,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_cleanup', '');
       } else {
         if ((String((s as any).locArgs?.[1] ?? '') !== 0  &&  String((s as any).locArgs?.[1] ?? '') !== 3)  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
-          // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
+          qspCall(s, 'cum_cleanup', 'cleanloc', ((s as any).locArgs?.[1] ?? 0));
         }
       }
     }
@@ -1301,30 +1301,30 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
     (s as any).cumsumass = 0;
     (s as any).idx = 0;
     // TODO-QSP: :sparrlocloop
-    (s as any).temp_cum_manage_i = ((s as any).sparrloc ?? 0)?.[String((s as any).idx ?? 0)];
+    (s as any).temp_cum_manage_i = (((s as any).sparrloc ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
     if (((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)] <= 0) {
       if (((s as any).sparrnam ?? 0)?.[String((s as any).idx ?? 0)] === ''  ||  ((s as any).temp_cum_manage_i ?? 0) !== 0  ||  (((s as any).temp_cum_manage_i ?? 0) === 0  &&  ((s as any).sparrage ?? 0)?.[String((s as any).idx ?? 0)] > 10)) {
         qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).idx ?? 0));
       }
     } else {
       if ((!((s as any).temp_cum_manage_i ?? 0))) {
-        // TODO-QSP: gs 'cum_manage', 'cum_decay_vagina', idx, ARGS[1]
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayVagina(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).temp_cum_manage_i ?? 0) === 1) {
-          // TODO-QSP: gs 'cum_manage', 'cum_decay_labia', idx, ARGS[1]
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayLabia(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_cum_manage_i ?? 0) === 3) {
-            // TODO-QSP: gs 'cum_manage', 'cum_decay_anus', idx, ARGS[1]
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayAnus(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).temp_cum_manage_i ?? 0) === 4) {
-              // TODO-QSP: gs 'cum_manage', 'cum_decay_butt', idx, ARGS[1]
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayButt(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).temp_cum_manage_i ?? 0) === 12) {
               } else {
                 if (((s as any).temp_cum_manage_i ?? 0) === 17) {
-                  // TODO-QSP: gs 'cum_manage', 'cum_decay_condom_vagina', idx, ARGS[1]
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayCondomVagina(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  // TODO-QSP: gs 'cum_manage', 'cum_decay_body_clothing', idx, ARGS[1]
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).idx ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterCumDecayBodyClothing(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               }
             }
@@ -1336,7 +1336,7 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
         ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).idx ?? 0)] = 0;
       } else {
         ((s as any).cumloc = (s as any).cumloc ?? {})[String((s as any).temp_cum_manage_i ?? 0)] = 1;
-        ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).idx ?? 0)] = ((s as any).cumvol[String((s as any).idx ?? 0)] ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)]);
+        ((s as any).cumvol = (s as any).cumvol ?? {})[String((s as any).idx ?? 0)] = ((s as any).cumvol[String((s as any).idx ?? 0)] ?? 0) + ((((s as any).sparrvol ?? 0)?.[String((s as any).idx ?? 0)] ?? 0));
       }
     }
     (s as any).sexvolume = 0;
@@ -1447,7 +1447,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
+    qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -1542,7 +1542,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
+    qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -1587,7 +1587,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
+    qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -1632,7 +1632,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sparrvol ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
+    qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -1692,7 +1692,7 @@ function enterCumDecayBodyClothing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] < 5  ||  ((s as any).sparrloc ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 7) {
       qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * (Math.max(1, ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10) - 0 + 1)) + (0)));
     }
-    // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
+    qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
   // TODO-QSP: end

@@ -105,10 +105,10 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   qspCall(s, 'cum_manage', '');
   if (((s as any).cumnpc ?? 0) !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).cumnpc ?? 0), 0, ((s as any).cumCon ?? 0));
+    qspCall(s, 'npcStat', '$cumnpc', 0, ((s as any).cumCon ?? 0));
   } else {
     if (((s as any).cumboy ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).cumboy ?? 0), 0, ((s as any).cumCon ?? 0));
+      qspCall(s, 'npcStat', '$cumboy', 0, ((s as any).cumCon ?? 0));
     }
   }
   scene.build();
@@ -120,7 +120,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).cumCon = ((s as any).npcCondom ?? 0);
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
     if (String((s as any).locArgs?.[2] ?? '') !== 1) {
-      qspCall(s, 'npcgeneratec', '', 0, ((s as any).locArgs?.[1] ?? 0), (Math.floor(Math.random() * 43) + 18), 0, 1);
+      qspCall(s, 'npcgeneratec', '0', ((s as any).locArgs?.[1] ?? 0), (Math.floor(Math.random() * 43) + 18), 0, 1);
       // TODO-QSP: $ARGS[1] = $npclastgenerated
     } else {
       (s as any).tempnpcid = qspUntranslated(s, "arrpos('npc_usedname', ARGS[1])", { location: "cum_call" });
@@ -133,7 +133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'npcStat', '$ARGS[1]', 0, ((s as any).locArgs?.[3] ?? 0));
   (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
   if (String((s as any).locArgs?.[2] ?? '') === 1) {
     (s as any).sexpartkno = 1;

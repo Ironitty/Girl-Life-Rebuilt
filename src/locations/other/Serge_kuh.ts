@@ -2083,7 +2083,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     (st as any).pcs_hairbsh = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex2-5.jpg');
     scene.text('Your mouth is wide open, producing lewd moans and cries while Sergey pleases you.');
@@ -2186,7 +2186,7 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     (st as any).pcs_hairbsh = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex3-7.jpg');
     scene.text('"Uncle Sergey, please… fuck me?" you mutter. Why is he making you beg? Doesn\'t he want this just as much?');

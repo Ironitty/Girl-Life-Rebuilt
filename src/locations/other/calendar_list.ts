@@ -801,7 +801,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 1);
-  // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
+  qspCall(s, 'time', 'to_date', ((s as any).dateVars ?? 0)?.['daystart']);
   ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + ((6 - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + 14;
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'gopnik_fight_night_event';
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = 'Gopnik Fight Night';

@@ -429,7 +429,7 @@ function enterPavser7(s: GameState, scene: SceneBuilder): void {
     scene.text('His inflexible pride prevents you. Perhaps he knows this and takes pride in his power over you.');
     scene.actions([
       { label: 'Listen to the receiver', handler: (st: GameState) => {
-    qspCall(st, 'koncepod', 'pavser8');
+    qspCall(st, 'koncepod', '');
   } },
     ]);
   } },
@@ -472,7 +472,7 @@ function enterPavser8(s: GameState, scene: SceneBuilder): void {
     scene.text('You gasp, but no words come out—they drown in your own mind.');
     scene.actions([
       { label: 'Oh', handler: (st: GameState) => {
-    qspCall(st, 'koncepod', 'pavser9');
+    qspCall(st, 'koncepod', '');
   } },
     ]);
   } },
@@ -548,8 +548,8 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).cumprecheck = 1;
     qspCall(st, 'cum_manage', '');
     scene.img('images/locations/pushkin/vacanthouse/sex/07.jpg');
@@ -589,7 +589,7 @@ function enterPavser9(s: GameState, scene: SceneBuilder): void {
     scene.text('He remains silent, and you\'re grateful for that.');
     scene.actions([
       { label: 'Recover', handler: (st: GameState) => {
-    qspCall(st, 'koncepod', 'pavser10');
+    qspCall(st, 'koncepod', '');
   } },
     ]);
   } },

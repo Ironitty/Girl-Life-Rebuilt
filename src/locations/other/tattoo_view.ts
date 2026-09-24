@@ -76,13 +76,13 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    // TODO-QSP: gs 'tattoo_attributes', $ARGS[2], ARGS[3]
+    qspCall(s, 'tattoo_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).TatQuality ?? 0))) {
       // TODO-QSP: exit
     }
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_quality', $ARGS[2], ARGS[3], TatQuality
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_price', $ARGS[2], ARGS[3], TatPrice
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_number', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_quality', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).TatQuality ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_price', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).TatPrice ?? 0));
     return;
   }
   return;
@@ -96,7 +96,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      // TODO-QSP: gs 'tattoo_attributes', $ARGS[4], ARGS[5]
+      qspCall(s, 'tattoo_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, 'tattoo_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -115,7 +115,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
-  // TODO-QSP: gs 'tattoo_attributes', $shop_utils_view['type'], shop_utils_view['number']
+  qspCall(s, 'tattoo_attributes', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number']);
   scene.img(`${qspFunc(s, 'tattoo_management', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
     qspGoto(s, 'tattoo_view', 'view_item_shop');
@@ -155,8 +155,8 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Get this tattoo (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
-    // TODO-QSP: gs 'tattoo_management', 'add', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
+    qspCall(st, 'tattoo_management', 'add', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspCall(st, 'tattoo_management', 'count');
     qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');

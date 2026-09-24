@@ -87,8 +87,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
     if ((Math.floor(Math.random() * 2001) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
-      qspCall(s, 'npcgeneratec', '', 0, '', 'like');
-      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', '', 'like');
+      qspCall(s, 'npcStat', '$npclastgenerated');
       // TODO-QSP: dynamic text: You are approached by <<$npcheight_pref>>, <<$npcbuild>> guy with <<$npchair>> h...
       scene.text(`You are approached by ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')} guy with ${((s as any).npchair ?? '')} hair. He is wearing ${((s as any).npcClo ?? '')}.`);
       // TODO-QSP: dynamic text: The guy introduced himself as <<$boydesc>> and asks you for your telephone numbe...

@@ -512,7 +512,7 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
   (s as any).toy_bunny = 1;
   qspCall(s, 'npcStat', 'A20');
   qspCall(s, 'npcStat', 'A21', 'a');
-  qspCall(s, 'pain', '', 1, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '1', 'asscheeks', 'spank');
   scene.text('<center><b>Girls bathroom</b></center>');
   scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/lena-leraown.jpg');
   scene.text('The first thing they do is unbutton your shirt and pull it off - you protest meekly, but they simply ignore you. Lena wraps one hand around your head and holds it steady while leaning in and licking the side of your face. Meanwhile, her other hand pulls down one side of your bra, exposing your breast, which she quickly starts to kneed and squeeze.');
@@ -523,7 +523,7 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/lena-leranipple.jpg');
     scene.text('Lena keeps making out with you while her hands fondle your breasts. Meanwhile, Lera stands up and continues to smack your ass until it\'s stinging so much you\'re sure it must be cherry red by now. She finally stops and takes off her top and bra, exposing her perky tits. "Okay, now it\'s my turn with her pretty mouth."');
@@ -592,7 +592,7 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
 
 function enterCompany(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_randperson', 'couple_generator');
-  (s as any).gtoilet_rand = (Math.floor(Math.random() * 100) + 1);
+  qspGoto(s, 'oilet_rand = rand(1', '100)');
   if (((s as any).gtoilet_rand ?? 0) <= 30) {
     (s as any).rand_boy = 'a boy you don\'t know';
     qspGoto(s, 'gschool_girls_bathroom', 'company1');
@@ -811,7 +811,7 @@ function enterCompany3(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Join them', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_boys_bathroom', 'Join them'] },
   ]);
   scene.build();
@@ -885,7 +885,7 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCaught(s: GameState, scene: SceneBuilder): void {
-  (s as any).gtoilet_rand = (Math.floor(Math.random() * 75) + 1);
+  qspGoto(s, 'oilet_rand = rand(1', '75)');
   if (((s as any).gtoilet_rand ?? 0) <= 25) {
     qspGoto(s, 'gschool_girls_bathroom', 'caught1');
   } else {
@@ -1000,7 +1000,7 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Spanking', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtfspank.jpg');
     scene.text('Ms. Braakman stares at you for a long time, seemingly considering her options. You can see a hardness in her eyes, a desire to punish you that seems greater than you expected. A moment later, she has made up her mind and walks over to you. "I suppose the principal doesn\'t have to know about this, as long as you get properly punished." She grabs you by the hair, pulls you over to the sinks and bends you over, your head nearly touching the mirror. "And make no mistake: I will make sure you\'ll remember this lesson." She pulls your skirt up and your panties down with an ease that speaks of habit - maybe those rumors about the principal being a dominatrix were about the wrong teacher?');
@@ -1010,7 +1010,7 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'end');
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtfspank.jpg');
@@ -1106,7 +1106,7 @@ function enterCaught1SlutPunishment(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtffinger.jpg');
     scene.text('"Take off your skirt and panties!" she demands, your ass still stinging. You do as she tells you and get naked from the waist down. Once you are, she bends you over the sink, sucking on two of her fingers as she goes. With her other hand, she gives your bare ass several hard swats that make you yelp and leaves your ass red and stinging, but you almost immediately forget about that when she slides her wet fingers inside your pussy and starts finger-banging you with one hand. She doesn\'t ease up on the spanking, but the pain adds to the pleasure.');
@@ -1482,10 +1482,10 @@ function enterCaught3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     if ((!((st as any).detention_set ?? 0))) {
       (st as any).detention_set = 1;
-      qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+      qspCall(st, 'pain', '2', 'asscheeks', 'spank');
       scene.text('Once your bare ass is exposed, she starts spanking you. She uses the full force of her swings to deliver stinging slaps to your bare ass and spanks you until your ass is bright red. She only stops when her hand starts to hurt too much to continue. She finally lets go of you and steps away. "In addition, you will report to detention this weekend. Now get your ass to class! I don\'t want to catch you cutting class again, you understand?" You nod your head and wipe away the tears before you straighten up your clothes and go to class.');
     } else {
-      qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+      qspCall(st, 'pain', '2', 'asscheeks', 'spank');
       scene.text('Once your bare ass is exposed, she starts spanking you. She uses the full force of her swings to deliver stinging slaps to your bare ass and spanks you until your ass is bright red. She only stops when her hand starts to hurt too much to continue. She finally lets go of you and steps away.');
     }
     scene.actions([

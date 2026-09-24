@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterToilet1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/city/citycenter/nightclub/sex/glory.jpg');
   scene.text('You head into the stall and close the door. The walls are covered with obscene graffiti and circular holes are carved in the walls. Sitting on the toilet, you hear a noise coming from the next stall.');
   scene.text('The next thing you know, a cock is pushed through the hole. "Here\'s a treat for you, baby," a lustful voice says with a laugh.');
@@ -109,10 +109,10 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['city_nightclub', 'inside'] },
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Gloryhole Client', (Math.floor(Math.random() * 43) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     (st as any).slutiness = ((st as any).slutiness ?? 0) + (10);
     scene.img('images/locations/city/citycenter/nightclub/sex/glory4.jpg');
     scene.text('Two cocks poke through the holes in the walls. "Come on, baby. You know you want to…" the voice says.');

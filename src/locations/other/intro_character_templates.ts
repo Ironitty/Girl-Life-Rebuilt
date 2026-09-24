@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetRandomTemplate(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_character_templates', 'set_template', $func('intro_character_templates', 'get_random_templ...
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'intro_character_templates', 'get_random_template')]; enterSetTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -157,8 +157,8 @@ function enterSetGroup(s: GameState, scene: SceneBuilder): void {
 
 function enterDoSubgroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_' + ((s as any).locArgs?.[2] ?? 0) + '');
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], $ARGS[2]
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'intro_character_templates', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -176,15 +176,15 @@ function enterModOnlySetGroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_sex');
   qspCall(s, 'intro_functions', 'reset_fame');
   qspCall(s, 'intro_functions', 'reset_other');
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'body'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'traits'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'skills'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'inventory'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'relationships'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'school'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'sex'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'fame'
-  // TODO-QSP: gs 'intro_character_templates', $start_type['group'], 'other'
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'body');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'traits');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'skills');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'inventory');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'relationships');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'school');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'sex');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'fame');
+  qspCall(s, 'intro_character_templates', '$start_type[\'group\']', 'other');
   return;
   // TODO-QSP: end
   scene.build();

@@ -85,7 +85,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :lover_schedules1
       ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['ID'] = qspUntranslated(s, "lover[scheduleVars['i']]", { location: "schedule" });
       if (((s as any).scheduleVars ?? 0)?.['all']  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(((s as any).scheduleVars ?? 0)?.['ID']) : -1) >= 0) {
-        // TODO-QSP: gs 'lover_schedule', $scheduleVars['ID']
+        qspCall(s, 'lover_schedule', '$scheduleVars[\'ID\']');
       }
       ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
       if (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']) {
@@ -96,7 +96,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :lover_schedules2
       ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['index'] = qspUntranslated(s, "arrpos('lover', ARGS[scheduleVars['i']])", { location: "schedule" });
       if (((s as any).scheduleVars ?? 0)?.['index'] >= 0) {
-        // TODO-QSP: gs 'lover_schedule', $lover[scheduleVars['index']]
+        qspCall(s, 'lover_schedule', '', qspUntranslated(s, "lover[scheduleVars['index']]", { location: "schedule" }));
       }
       ((s as any).scheduleVars = (s as any).scheduleVars ?? {})['i'] = ((s as any).scheduleVars['i'] ?? 0) + (1);
       if (((s as any).scheduleVars ?? 0)?.['i'] < ((s as any).scheduleVars ?? 0)?.['maxi']) {

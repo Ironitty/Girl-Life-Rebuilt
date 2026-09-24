@@ -81,8 +81,8 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
               (s as any).i = (Math.floor(Math.random() * 3) + 1);
               (s as any).hidden_guy = ((s as any).hidden_guy ?? 0) + (3);
               if (((s as any).i ?? 0) === 1) {
-                qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                qspCall(s, 'boyStat', '$npclastgenerated');
                 (s as any).sloc = (Math.floor(Math.random() * 7) + 0);
                 if (((s as any).sloc ?? 0) === 1) {
                   qspCall(s, 'cum_call', 'labia', 'unconscious rapist', 2);
@@ -107,8 +107,8 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 }
-                qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                qspCall(s, 'boyStat', '$npclastgenerated');
                 (s as any).sloc = (Math.floor(Math.random() * 7) + 0);
                 if (((s as any).sloc ?? 0) === 1) {
                   qspCall(s, 'cum_call', 'labia', 'unconscious rapist', 2);
@@ -133,8 +133,8 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 }
-                qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                qspCall(s, 'boyStat', '$npclastgenerated');
                 (s as any).sexunaware = 1;
                 (s as any).sloc = (Math.floor(Math.random() * 7) + 0);
                 if (((s as any).sloc ?? 0) === 1) {
@@ -164,40 +164,40 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                 scene.text('After everything that happened tonight, you feel exhausted and fall asleep. Your face and body are still smeared and coated in sperm, but you don\'t care.');
               } else {
                 if (((s as any).i ?? 0) === 2) {
-                  qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                  qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                  qspCall(s, 'boyStat', '$npclastgenerated');
                   qspCall(s, 'cum_call', 'face', 'unconscious rapist', 2);
-                  qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                  qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                  qspCall(s, 'boyStat', '$npclastgenerated');
                   qspCall(s, 'cum_call', 'face', 'unconscious rapist', 2);
-                  qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                  qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                  qspCall(s, 'boyStat', '$npclastgenerated');
                   qspCall(s, 'cum_call', 'face', 'unconscious rapist', 2);
                   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_8_${(Math.floor(Math.random() * 5) + 1)}.jpg`);
                   scene.text('After everything that happened tonight, you feel exhausted and fall asleep. You have a dream about warm wet drops landing on your face and lips, like a warm summers rain. You sleepily like at the drops.');
                 } else {
                   if (((s as any).i ?? 0) === 3) {
-                    qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                    qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                    qspCall(s, 'boyStat', '$npclastgenerated');
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
                       qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                     } else {
-                      qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
+                      qspCall(s, 'cum_call', '', 'unconscious rapist', 2);
                     }
-                    qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                    qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                    qspCall(s, 'boyStat', '$npclastgenerated');
                     (s as any).sexunaware = 1;
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
                       qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                     } else {
-                      qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
+                      qspCall(s, 'cum_call', '', 'unconscious rapist', 2);
                     }
-                    qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
-                    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                    qspCall(s, 'npcgeneratec', '0', 'unconscious rapist', (Math.floor(Math.random() * 6) + 17));
+                    qspCall(s, 'boyStat', '$npclastgenerated');
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
                       qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                     } else {
-                      qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
+                      qspCall(s, 'cum_call', '', 'unconscious rapist', 2);
                     }
                     (s as any).i = (Math.floor(Math.random() * 2) + 1);
                     if (((s as any).i ?? 0) === 1) {
@@ -776,7 +776,7 @@ function enterDj(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flash boobs', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['rex_party_sexEvents', 'dj_boobs'] },
     ]);
   }
@@ -906,7 +906,7 @@ function enterPartyGirlsDrink(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
@@ -954,7 +954,7 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
@@ -980,9 +980,9 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Undress', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    (st as any).boydesc = ((st as any).npc_usedname ?? 0)?.[String((st as any).npclastgenerated ?? 0)];
+    qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    (st as any).boydesc = (((st as any).npc_usedname ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? 0);
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 0));
     qspCall(st, 'arousal', 'flash', 5);
     qspCall(st, 'stat', '');
@@ -1045,7 +1045,7 @@ function enterPartyGirlsDance(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
@@ -1312,15 +1312,15 @@ function enterKitchenBoyDrink(s: GameState, scene: SceneBuilder): void {
 
 function enterSmile(s: GameState, scene: SceneBuilder): void {
   (s as any).party_boys_in = ((s as any).party_boys_in ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  (s as any).boydesc = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'boyStat', '$npclastgenerated');
+  (s as any).boydesc = (((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? 0);
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
   (s as any).boy1 = ((s as any).npclastgenerated ?? 0);
-  (s as any).boydesc1 = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
+  (s as any).boydesc1 = (((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? 0);
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
   (s as any).boy2 = ((s as any).npclastgenerated ?? 0);
-  (s as any).boydesc2 = ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)];
+  (s as any).boydesc2 = (((s as any).npc_usedname ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? 0);
   qspCall(s, 'stat', '');
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   scene.text('You give the guys a faint smile, showing your availability. They quickly realize the situation and come over to you and start to stroke your hair and massage your neck. It is very relaxing and you give a soft sigh which turns into a moan. You have the full attention of the boys and they decide to drag you.');
@@ -1437,7 +1437,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 18) + 1);
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_2_${((s as any).i ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$talkEvent[i]>>
-  scene.text(`${((s as any).talkEvent ?? 0)?.[String((s as any).i ?? 0)] ?? ''}`);
+  scene.text(`${(((s as any).talkEvent ?? 0)?.[String((s as any).i ?? 0)] ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
@@ -1605,8 +1605,8 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Surrender', handler: (st: GameState) => {
     if ((!((st as any).rex_love ?? 0))) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+      qspCall(st, 'boyStat', '$npclastgenerated');
     } else {
       (st as any).sexa = ((st as any).sexa ?? 0) + (1);
       if ((!((st as any).rexSex ?? 0))) {
@@ -1723,7 +1723,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
             ]);

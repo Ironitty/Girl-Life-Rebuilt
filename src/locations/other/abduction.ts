@@ -488,7 +488,7 @@ function enterAbdBrokenAsk(s: GameState, scene: SceneBuilder): void {
 function enterAbdBreak2FuckA1(s: GameState, scene: SceneBuilder): void {
   (s as any).broken = ((s as any).broken ?? 0) + (1);
   (s as any).cumnostd = 1;
-  qspCall(s, 'cum_call', '', '', 'Master', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+  qspCall(s, 'cum_call', '', 'Master', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
   scene.img('images/locations/shared/abduction/sex/brokena1.jpg');
   scene.text('Your tormentor unchains you and throws you onto your dirty bed.');
   scene.text('Spreading your legs wide apart, you spit on your hand and smear it on your pussy. "Come and take me, Master."');
@@ -865,7 +865,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rapeType ?? 0) === 2  &&  qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
       ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
       (s as any).cumnostd = 1;
-      qspCall(s, 'cum_call', '', '', 'Master');
+      qspCall(s, 'cum_call', '', 'Master');
       (s as any).i = (Math.floor(Math.random() * 5) + 1);
       scene.img(`images/locations/shared/abduction/sex/fucktiedpussy${((s as any).i ?? '')}.jpg`);
       scene.text('Your hands are tied, and you\'re bent over the bed.');
@@ -1633,7 +1633,7 @@ function enterAbdTrainDildosSmall(s: GameState, scene: SceneBuilder): void {
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1681,7 +1681,7 @@ function enterAbdTrainDildosRegular(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1729,7 +1729,7 @@ function enterAbdTrainDildosBig(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1777,7 +1777,7 @@ function enterAbdTrainDildosHorse(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosVaginaGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1816,7 +1816,7 @@ function enterAbdTrainDildosAnalSmall(s: GameState, scene: SceneBuilder): void {
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosAnalSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1864,7 +1864,7 @@ function enterAbdTrainDildosAnalRegular(s: GameState, scene: SceneBuilder): void
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1912,7 +1912,7 @@ function enterAbdTrainDildosAnalBig(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1960,7 +1960,7 @@ function enterAbdTrainDildosAnalHorse(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosAnalGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -1999,7 +1999,7 @@ function enterAbdTrainDildosMouthSmall(s: GameState, scene: SceneBuilder): void 
     { label: 'Use it', goto: ['abduction', 'abdTrainDildosMouthSmallUse'] },
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -2047,7 +2047,7 @@ function enterAbdTrainDildosMouthRegular(s: GameState, scene: SceneBuilder): voi
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -2095,7 +2095,7 @@ function enterAbdTrainDildosMouthBig(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();
@@ -2143,7 +2143,7 @@ function enterAbdTrainDildosMouthHorse(s: GameState, scene: SceneBuilder): void 
   scene.actions([
     { label: 'Choose different dildo', goto: ['abduction', 'abdTrainDildosMouthGate'] },
     { label: 'Go back to your bed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['abduction', 'abdRoom'] },
   ]);
   scene.build();

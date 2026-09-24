@@ -17,7 +17,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/music/guitarpractice_1.jpg');
   if (((s as any).ml_guitarlesson ?? 0)?.['lessoncount'] === 0  &&  ((s as any).ml_guitar ?? 0)?.['chordbook'] === 1  &&  ((s as any).instrmusic_lvl ?? 0) <= 10) {
     qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
-    qspCall(s, 'pain', '', 1, 'fingers', 'ache');
+    qspCall(s, 'pain', '1', 'fingers', 'ache');
     qspCall(s, 'stat', '');
     scene.text('You open the book you got from Jimmy and start to practice the chords and basic techniques on the guitar.');
     scene.text('It goes slowly, your fingers get in the way and start to hurt after a short time because the strings dig into them, but you fight your way through.');
@@ -46,7 +46,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish practice', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -94,7 +94,7 @@ function enterRehearse(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish practice', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();

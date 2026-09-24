@@ -139,12 +139,12 @@ function enterNone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', $ARGS[1], $ARGS[2], $ARGS[3]
+  qspGoto(s, 'intro_character_custom', 'modclo_loop', String((s as any).locArgs?.[1] ?? ''), String((s as any).locArgs?.[2] ?? ''));
   scene.build();
 }
 
 function enterModpur(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_custom', 'modpur', $ARGS[1], ARGS[2]
+  qspGoto(s, 'intro_character_custom', 'modpur', String((s as any).locArgs?.[1] ?? ''), 'ARGS[2]');
   scene.build();
 }
 

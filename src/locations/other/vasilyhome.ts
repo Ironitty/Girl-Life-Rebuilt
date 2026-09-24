@@ -223,8 +223,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Run out of the room crying', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'misc', 'self', 'easy');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'hallway'] },
         ]);
       }
@@ -300,8 +300,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Seduce the guys', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'sex', 'self');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['gopsex', 'gopsex_select'] },
         ]);
       }
@@ -317,8 +317,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Seduce Vasily', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'sex', 'self', 'easy');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['gopsex', 'gopsex_select'] },
           ]);
         }
@@ -335,7 +335,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look around the room', goto: ['vasilyhome', 'livingroom'] },
       { label: 'Take an hour long nap (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'sleep_simple', 'nap');
+    qspCall(st, 'sleep_simple', '');
   } },
       { label: 'Sleep for a few hours', handler: (st: GameState) => {
     if (((st as any).pcs_sleep ?? 0) < 90) {
@@ -376,7 +376,7 @@ function enterShHooker(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave feigning resentment', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'hallway'] },
     ]);
   }
@@ -440,7 +440,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'You\'ve had enough', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'livingroom'] },
       ]);
     }
@@ -475,7 +475,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Tell them to knock it off', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'drunken_sex_no'] },
           ]);
         }
@@ -1393,7 +1393,7 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'You\'ve had enough', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'livingroom'] },
       ]);
     }
@@ -1448,7 +1448,7 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'You\'re not in the mood', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'vasily_lern_sex_no'] },
         ]);
       }
@@ -1469,7 +1469,7 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Stop it', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasilyhome', 'vasily_lern_sex_no'] },
           ]);
         }
@@ -1573,8 +1573,8 @@ function enterSoniaEv(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Suggest you take a bath together', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'cuni', 'self', 'easy');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasily_home_sex', 'sonia_les_bathroom'] },
       ]);
     }
@@ -1590,8 +1590,8 @@ function enterSoniaEv(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Suggest you and Sonia fuck Vasily together', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'group', 'self');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['vasily_home_sex', 'vasily_3some_sex'] },
       ]);
     }
@@ -1782,7 +1782,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    qspCall(st, 'cum_cleanup', '', 2);
+    qspCall(st, 'cum_cleanup', '2');
     (st as any).pcs_breath = 0;
     // TODO-QSP: dynamic text: You happily eat a bowl of soup. <<$serg_obr>> Sergey sure knows how to cook!
     scene.text(`You happily eat a bowl of soup. ${((st as any).serg_obr ?? '')} Sergey sure knows how to cook!`);

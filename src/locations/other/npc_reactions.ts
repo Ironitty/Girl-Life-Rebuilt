@@ -20,7 +20,7 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_preferences ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
   }
   if (!isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
-    (s as any).nr_temp_npc_name = ((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    (s as any).nr_temp_npc_name = (((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   } else {
     (s as any).nr_temp_npc_name = ((s as any).locArgs?.[1] ?? 0);
   }
@@ -95,7 +95,7 @@ function enterGeneral(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: $npc_reaction_choice[] = 'makeup'
           }
         }
-        (s as any).npc_reaction_chosen = ((s as any).npc_reaction_choice ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))];
+        (s as any).npc_reaction_chosen = (((s as any).npc_reaction_choice ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))] ?? 0);
         if (((s as any).npc_reaction_chosen ?? 0) === '') {
           (s as any).result = '';
         } else {

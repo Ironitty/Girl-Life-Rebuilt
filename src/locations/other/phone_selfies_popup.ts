@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc } from '../_shared/qspBridge';
+import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -25,7 +25,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).selfie_last_chosen = (s as any).selfie_last_chosen ?? {})['location'] = ((s as any).locArgs?.[1] ?? 0);
     ((s as any).selfie_last_chosen = (s as any).selfie_last_chosen ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
-    // TODO-QSP: gt $temp_ssh_ret_loc, $temp_ssh_ret_arg, 'images/pc/activities/phone/selfies/<<$ARGS[1]>>/<<$ARGS[2]...
+    dynamicGoto(s, 'temp_ssh_ret_loc', 'temp_ssh_ret_arg');
   }
   // TODO-QSP: end
   scene.build();

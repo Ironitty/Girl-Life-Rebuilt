@@ -42,14 +42,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'restoranM', 'a'
   } },
     { label: 'Smile', handler: (st: GameState) => {
     // TODO-QSP: xgt 'restoranM', 'a'
   } },
     { label: 'It\'s not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'restoranM', 'a'
   } },
   ]);

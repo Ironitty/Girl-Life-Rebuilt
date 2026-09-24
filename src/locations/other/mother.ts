@@ -712,7 +712,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     (st as any).mqwtRand = (Math.floor(Math.random() * 10) + 1);
     if (((st as any).mqwtRand ?? 0) <= 2) {
-      // TODO-QSP: gs 'npc_relationship', 'modify', 'A29', -rand(1, 5)
+      qspCall(st, 'npc_relationship', 'modify', 'A29', -(Math.floor(Math.random() * 5) + 1));
       (st as any).minut = ((st as any).minut ?? 0) + 30;
       // TODO-QSP: dynamic text: You try to talk with your <<$npc_nickname[''A29'']>> to hopefully patch up your ...
       scene.text(`You try to talk with your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} to hopefully patch up your relationship. You're not sure whether you said something wrong, or whether she's just in a bad mood, but your attempt to reconcile backfires horribly; within seconds, the conversation turns into a screaming contest and your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} ends up disliking you even more.`);
@@ -3156,7 +3156,7 @@ function enterMotherYogaPav(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Do some yoga', handler: (st: GameState) => {
     (st as any).timemult = 6;
-    // TODO-QSP: gs 'exercise', 'tier2', (timemult*5), 'sprt', 'agil'
+    qspCall(st, 'exercise', 'tier2', (((st as any).timemult ?? 0)*5), 'sprt', 'agil');
     (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + ((Math.floor(Math.random() * 7) + 6));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/pavyoga2.jpg');

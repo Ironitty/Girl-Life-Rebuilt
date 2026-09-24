@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_wkey ?? 0) === 'prude') {
         (s as any).temp_color = ((s as any).theme_hex ?? 0)?.['neutral'];
       } else {
-        (s as any).temp_color = ((s as any).theme_hex ?? 0)?.[String((s as any).temp_wkey ?? 0)];
+        (s as any).temp_color = (((s as any).theme_hex ?? 0)?.[String((s as any).temp_wkey ?? 0)] ?? 0);
       }
     }
   }

@@ -507,7 +507,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Apologize', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).sorryday = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A28', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify_exact', 'A28', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
     scene.actions([
@@ -540,7 +540,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               { label: 'Try to get on his good side', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).sorryday = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A28', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify_exact', 'A28', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([
@@ -617,7 +617,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Apologize', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).sorryday = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A28', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify_exact', 'A28', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
     scene.actions([
@@ -650,7 +650,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               { label: 'Try to get on his good side', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).sorryday = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A28', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify_exact', 'A28', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([

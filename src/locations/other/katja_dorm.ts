@@ -1524,7 +1524,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['movie_temp'] === 4) {
     (s as any).t = (Math.floor(Math.random() * 4) + 1);
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (((s as any).t ?? 0) * 10);
-    // TODO-QSP: gs 'arousal', 'erotic', -(t * 5)
+    qspCall(s, 'arousal', 'erotic', -(((s as any).t ?? 0) * 5));
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/movie_erotic.jpg');
     scene.text('You end up watching a drama which is quite erotic and barely eat your popcorn.');
     if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['horny'] + Math.min(((s as any).katjaQW ?? 0)?.['slut'] / 3, 34) >= 100  &&  (Math.floor(Math.random() * 4) + 0) < 3  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
@@ -1610,7 +1610,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['movie_temp'] === 1) {
           (s as any).t = (Math.floor(Math.random() * 7) + 0);
           ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (((s as any).t ?? 0) * 6);
-          // TODO-QSP: gs 'arousal', 'erotic', -(t * 3)
+          qspCall(s, 'arousal', 'erotic', -(((s as any).t ?? 0) * 3));
           scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/movie_funny.jpg');
           // TODO-QSP: 'You watch a romantic comedy while eating your popcorn. ' + iif(t > 3, 'The movie centers around som...
           if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['horny'] + Math.min(((s as any).katjaQW ?? 0)?.['slut'] / 3, 34) >= 100  &&  (Math.floor(Math.random() * 4) + 0) < 3  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
@@ -1639,7 +1639,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).t = (Math.floor(Math.random() * (6 - (-2) + 1)) + ((-2)));
           ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(((s as any).t ?? 0) * 5, 0));
-          // TODO-QSP: gs 'arousal', 'erotic', -(max(t, 0) * 3)
+          qspCall(s, 'arousal', 'erotic', -(Math.max(((s as any).t ?? 0), 0) * 3));
           scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/movie_action.jpg');
           // TODO-QSP: 'You watch an action movie while eating your popcorn. ' + iif(t > 3, 'The movie includes a lot of me...
           if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['horny'] + Math.min(((s as any).katjaQW ?? 0)?.['slut'] / 3, 34) >= 100  &&  (Math.floor(Math.random() * 4) + 0) < 3  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {

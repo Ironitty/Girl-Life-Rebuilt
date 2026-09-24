@@ -78,7 +78,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesson(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', ml_guitarlesson['lessoncost']
+  qspCall(s, 'money', 'pay', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']);
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['nextlesson'] = 0;
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;

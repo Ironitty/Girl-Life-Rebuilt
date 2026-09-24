@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).papa = ((s as any).locArgs?.[0] ?? 0);
       // TODO-QSP: :kiddieloop
       ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
-      (s as any).value = ((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)];
+      (s as any).value = (((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
       if (((s as any).surefather ?? 0)?.[String((s as any).j ?? 0)] === 0) {
         // TODO-QSP: pl '    <a href="exec:func(''pattest'', value, 1) & pattest -= 1 & gs ''stat''"><<$kidname[j]>></a>'
       }

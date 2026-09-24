@@ -13,9 +13,9 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).tempFetish = (s as any).tempFetish ?? {})['maxi'] = 0;
   // TODO-QSP: :fetish_cikl_loop
   ((s as any).tempFetish = (s as any).tempFetish ?? {})['name'] = qspUntranslated(s, "fetish_name[tempFetish['i']]", { location: "fetish" });
-  // TODO-QSP: gs 'fetish', 'add_bonuses', $tempFetish['name']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).tempFetish ?? 0)?.['name']]; enterAddBonuses(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: fetishes[$tempFetish['name'] + '_pref'] = max(-100, min(fetishes[$tempFetish['name'] + '_pref'], 100...
-  // TODO-QSP: gs 'fetish', 'check_for_traits', $tempFetish['name']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).tempFetish ?? 0)?.['name']]; enterCheckForTraits(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).tempFetish = (s as any).tempFetish ?? {})['i'] = ((s as any).tempFetish['i'] ?? 0) + (1);
   if (((s as any).tempFetish ?? 0)?.['i'] < ((s as any).tempFetish ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'fetish_cikl_loop'
@@ -28,16 +28,16 @@ function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fetishes ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_pref_bonus'] !== 0) {
     ((s as any).temp = (s as any).temp ?? {})['j'] = 0;
     // TODO-QSP: :fetish_cikl_loop1
-    ((s as any).temp = (s as any).temp ?? {})['link'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'];
-    ((s as any).temp = (s as any).temp ?? {})['strength'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_strength'];
+    ((s as any).temp = (s as any).temp ?? {})['link'] = (((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'] ?? 0);
+    ((s as any).temp = (s as any).temp ?? {})['strength'] = (((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_strength'] ?? 0);
     if (((s as any).temp ?? 0)?.['link'] !== '') {
       ((s as any).temp = (s as any).temp ?? {})['exp_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] * (((s as any).temp ?? {})?.['strength'] ?? 0) / 100;
       ((s as any).temp = (s as any).temp ?? {})['pref_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] * (((s as any).temp ?? {})?.['strength'] ?? 0) / 100;
       if (((s as any).temp ?? 0)?.['exp_bonus'] !== 0) {
-        // TODO-QSP: gs 'fetish', 'add_exp', $temp['link'], temp['exp_bonus'], 'no_bonus'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp ?? 0)?.['link'], ((s as any).temp ?? 0)?.['exp_bonus'], 'no_bonus']; enterAddExp(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp ?? 0)?.['pref_bonus'] !== 0) {
-        // TODO-QSP: gs 'fetish', 'add_pref', $temp['link'], temp['pref_bonus'], 'no_bonus'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp ?? 0)?.['link'], ((s as any).temp ?? 0)?.['pref_bonus'], 'no_bonus']; enterAddPref(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       ((s as any).temp = (s as any).temp ?? {})['j'] = ((s as any).temp['j'] ?? 0) + (1);
       // TODO-QSP: jump 'fetish_cikl_loop1'
@@ -98,7 +98,7 @@ function enterGetExp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Error in gs 'fetish', 'get_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  (s as any).result = ((s as any).fetishes ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_exp'];
+  (s as any).result = (((s as any).fetishes ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_exp'] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -146,7 +146,7 @@ function enterGetPref(s: GameState, scene: SceneBuilder): void {
     return;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_pref'] = max(-100, min(fetishes[$ARGS[1] + '_pref'], 100))
-  (s as any).result = ((s as any).fetishes ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_pref'];
+  (s as any).result = (((s as any).fetishes ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_pref'] ?? 0);
   // TODO-QSP: end
   scene.build();
 }

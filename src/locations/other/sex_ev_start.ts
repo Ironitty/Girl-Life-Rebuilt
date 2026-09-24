@@ -12,7 +12,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['locat'] = ((s as any).locArgs?.[2] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterNpcstatInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_stam'] = (30 * (2 * ((s as any).npc_vital ?? 0) + ((s as any).npc_agil ?? 0) + ((s as any).npc_stren ?? 0)) + 1000) / 13;
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_color');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== ''  &&  ((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== ''  &&  ((s as any).pcs_haircol ?? 0) <= 3) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_likes_hair'] = 1;
   }
@@ -50,10 +50,10 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((String(';dating;fuckbuddy;sugar_daddy;daddy;boyfriend;husband;').indexOf(String(';' + (((s as any).npcRelat ?? 0)) + ';'))) + 1) > 0) {
-      // TODO-QSP: xgt 'sex_ev_start', 'lover_initiate', $sex_ev['loc']
+      qspGoto(s, 'sex_ev_start', 'lover_initiate', (((s as any).sex_ev ?? {})['loc']));
     } else {
       if ((String(((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
-        // TODO-QSP: xgt 'sex_ev_start', 'lover_initiate', $sex_ev['loc']
+        qspGoto(s, 'sex_ev_start', 'lover_initiate', (((s as any).sex_ev ?? {})['loc']));
       } else {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHookupInitiate(s, scene); (s as any).locArgs = __savedLocArgs; }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBegin(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -67,7 +67,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcstatInit(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
+    qspCall(s, 'npcStat', '$ARGS[1]');
   }
   // TODO-QSP: end
   scene.build();
@@ -297,12 +297,12 @@ function enterLoverInitiate(s: GameState, scene: SceneBuilder): void {
 function enterHookupInitiate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcID ?? 0) !== ((s as any).npclastgenerated ?? 0)  &&  ((s as any).npcID ?? 0) !== ((s as any).npclastsaved ?? 0)) {
     if (((s as any).npcgen_lastrun ?? 0) >= 1  &&  ((s as any).npcgen_lastrun ?? 0) <= 2) {
-      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcStat', '$npclastgenerated');
     }
   } else {
     if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
-      qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
-      qspCall(s, 'npcStat', '', ((s as any).npclastsaved ?? 0));
+      qspCall(s, 'npcpreservec', '$npclastgenerated');
+      qspCall(s, 'npcStat', '$npclastsaved');
     }
   }
   // TODO-QSP: $npc_rel_type[$npcID] = 'hookup'
@@ -320,11 +320,11 @@ function enterHookupInitiate(s: GameState, scene: SceneBuilder): void {
 function enterPcHomeImgInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = 'pc_home';
   if (((s as any).loc ?? 0) === 'korrPar'  ||  ((s as any).home ?? 0)?.['current'] === 'parents_home') {
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/kuhrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/sitrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-    ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/korrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/kuhrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/sitrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+    ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/home/korrpar.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   }
   // TODO-QSP: end
   scene.build();
@@ -332,33 +332,33 @@ function enterPcHomeImgInit(s: GameState, scene: SceneBuilder): void {
 
 function enterLoverHomeImgInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = 'npc_home';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center>' + ((s as any).npc_apt_bedroom ?? 0)?.[String((s as any).npcID ?? 0)] + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center>' + ((s as any).npc_apt_bathroom ?? 0)?.[String((s as any).npcID ?? 0)] + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = '<center>' + ((s as any).npc_apt_kitchen ?? 0)?.[String((s as any).npcID ?? 0)] + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center>' + ((s as any).npc_apt_livingroom ?? 0)?.[String((s as any).npcID ?? 0)] + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center>' + ((s as any).npc_apt_hall ?? 0)?.[String((s as any).npcID ?? 0)] + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center>' + (((s as any).npc_apt_bedroom ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center>' + (((s as any).npc_apt_bathroom ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = '<center>' + (((s as any).npc_apt_kitchen ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center>' + (((s as any).npc_apt_livingroom ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center>' + (((s as any).npc_apt_hall ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '<img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPavHotelImgInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = 'hotel_room';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal1.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal1.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = 'none';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.normal.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCityHotelImgInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['loc'] = 'hotel_room';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bed_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['bath_room'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best1.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['kitchen_room'] = 'none';
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['living_room'] = 'none';
-  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + ((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] + '"></center>';
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})['hall_way'] = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/hotel/hotel.room.best.jpg"><img ' + ((s as any).set_imgh ?? 0) + ' src="' + (((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) + '"></center>';
   // TODO-QSP: end
   scene.build();
 }

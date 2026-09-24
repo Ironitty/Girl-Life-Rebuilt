@@ -187,7 +187,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "used_car[\u00000\u0000]", { location: "autotraidF" })) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', used_car['<<autotraidF_carnum>>_price']
+      qspCall(st, 'money', 'pay', ((st as any).used_car ?? 0)?.[String(((st as any).autotraidF_carnum ?? 0)) + '_price']);
       qspGoto(st, 'autotraidF', 'buy_car');
     }
   } },
@@ -222,7 +222,7 @@ function enterBuyCar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'car_attributes', '', 1);
+  qspCall(s, 'car_attributes', '1');
   scene.text('<center><b>2107 (Broken engine)</b></center>');
   scene.img('images/pc/items/accessories/car/car1.jpg');
   if (((s as any).used_car ?? 0)?.['wrek_condition'] === 0  &&  ((s as any).used_car ?? 0)?.['wrek_price'] === 0) {
@@ -237,7 +237,7 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).used_car ?? 0)?.['wrek_price']) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', used_car['wrek_price']
+      qspCall(st, 'money', 'pay', ((st as any).used_car ?? 0)?.['wrek_price']);
       qspGoto(st, 'autotraidF', 'buy_wreck');
     }
   } },

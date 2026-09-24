@@ -295,7 +295,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to next class', goto: ['gschool_lessons', 'schedule'] },
           { label: 'Skip next class', handler: (st: GameState) => {
     (st as any).school_period = ((st as any).school_period ?? 0) + (1);
-    qspCall(st, 'archetypes', 'gain', 'punk', 'tiny', 'Skipping class', 1);
+    qspCall(st, 'archetypes', '');
   }, goto: ['gschool_lessons', 'skip'] },
         ]);
       } else {

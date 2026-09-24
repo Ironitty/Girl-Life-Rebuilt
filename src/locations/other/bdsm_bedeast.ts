@@ -67,8 +67,8 @@ function enterEvent_3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub') {
     scene.actions([
       { label: 'Join them', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Dominant man from the Club', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Dominant man from the Club', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/city/suburb/bdsm_club/sex/snowball.jpg');
     scene.text('Seeing you watching them, the couple beckons you over. You obey them and come over and kneel down next to the well dressed woman. She offers the cock to you and you dutifully suck it and soon the two of you are trading it back and forth.');
     scene.text('The man begins to grunt getting close, when he does the woman takes the cock completely to herself no longer sharing, after another minute or so the man cums in her mouth.');

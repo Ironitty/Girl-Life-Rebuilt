@@ -97,7 +97,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 8, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '8', 'asscheeks', 'spank');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/peter/4_1.jpg');

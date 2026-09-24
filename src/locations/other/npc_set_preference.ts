@@ -163,7 +163,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
-    (s as any).result = ((s as any).temp_pref_values ?? 0)?.[((s as any).locArgs?.[2] ?? 0)];
+    (s as any).result = (((s as any).temp_pref_values ?? 0)?.[((s as any).locArgs?.[2] ?? 0)] ?? 0);
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === ((s as any).temp_pref_values ?? 0)?.['neutral']) {
       (s as any).result = 'neutral';

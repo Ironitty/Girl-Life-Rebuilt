@@ -709,7 +709,7 @@ function enterNpcSugarDaddyHaggle(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Haggle', handler: (st: GameState) => {
     // TODO-QSP: :invalid_counter_offer
-    // TODO-QSP: sex_ev['sugar_daddy_input'] = input ('Name your price. Enter the amount in Roubles (between <<func(''money'', ''profit'', 1000)>> and <<func(''money'', ''profit'', 5000)>>).')
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['sugar_daddy_input'] = window.prompt("Name your price. Enter the amount in Roubles (between " + (qspFunc(s, 'money', 'profit', 1000)) + " and " + (qspFunc(s, 'money', 'profit', 5000)) + ").") ?? '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['sugar_daddy_counteroffer'] = qspFunc(s, 'money', 'base_profit', ((st as any).sex_ev ?? 0)?.['sugar_daddy_input']) / 100;
     if (((st as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] > 50  ||  ((st as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] < 10) {
       // TODO-QSP: jump 'invalid_counter_offer'

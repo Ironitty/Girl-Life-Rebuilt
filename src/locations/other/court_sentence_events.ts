@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterJudgeStart(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'shoplift') {
-    // TODO-QSP: gt 'court_sentence_events', 'judge_shoplift', $mid($ARGS[1], 10)
+    qspGoto(s, 'court_sentence_events', 'judge_shoplift', '$mid($ARGS[1], 10)');
   } else {
     if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'prostitution') {
-      // TODO-QSP: gt 'court_sentence_events', 'judge_prostitution', $mid($ARGS[1], 14)
+      qspGoto(s, 'court_sentence_events', 'judge_prostitution', '$mid($ARGS[1], 14)');
     } else {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'hearing');
     }
@@ -185,11 +185,11 @@ function enterJudgeProstitution(s: GameState, scene: SceneBuilder): void {
 function enterPunishmentStart(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'shoplift') {
     ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_counter'] = ((s as any).policeQW['shoplift_counter'] ?? 0) + (1);
-    // TODO-QSP: gs 'court_sentence_events', 'punishment_shoplift', $mid($ARGS[1], 10)
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (String(((s as any).locArgs?.[1] ?? 0)).slice((10)-1))]; enterPunishmentShoplift(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'prostitution') {
       ((s as any).policeQW = (s as any).policeQW ?? {})['prostitution_counter'] = ((s as any).policeQW['prostitution_counter'] ?? 0) + (1);
-      // TODO-QSP: gs 'court_sentence_events', 'punishment_shoplift', $mid($ARGS[1], 14)
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (String(((s as any).locArgs?.[1] ?? 0)).slice((14)-1))]; enterPunishmentShoplift(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'punishment', ((s as any).locArgs?.[1] ?? 0));
     }

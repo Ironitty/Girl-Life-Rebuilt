@@ -628,8 +628,8 @@ function enterGetLastnameSetter(s: GameState, scene: SceneBuilder): void {
 
 function enterGetBirthdaySetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'init_monthends', ((s as any).birthyear ?? 0));
-  (s as any).temp_action_left_day = 'birthday = ((birthday - 2 + ' + ((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] + ') mod ' + ((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] + ') + 1';
-  (s as any).temp_action_right_day = 'birthday = ((birthday + ' + ((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] + ') mod ' + ((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] + ') + 1';
+  (s as any).temp_action_left_day = 'birthday = ((birthday - 2 + ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') mod ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') + 1';
+  (s as any).temp_action_right_day = 'birthday = ((birthday + ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') mod ' + (((s as any).monthsend ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + ') + 1';
   (s as any).temp_value_day = '' + ((s as any).birthday ?? 0) + '' + qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? 0));
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Birth Day', ((s as any).temp_value_day ?? 0), 0, ((s as any).temp_action_left_day ?? 0), ((s as any).temp_action_right_day ?? 0));
   qspCall(s, 'time', 'init_monthends', ((s as any).year ?? 0));
@@ -642,7 +642,7 @@ function enterGetBirthmonthSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'init_monthnames');
   (s as any).temp_action_left_month = 'birthmonth = ((birthmonth - 2 + 12) mod 12) + 1';
   (s as any).temp_action_right_month = 'birthmonth = ((birthmonth + 12) mod 12) + 1';
-  (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Birth Month', ((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)], 0, ((s as any).temp_action_left_month ?? 0), ((s as any).temp_action_right_month ?? 0));
+  (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Birth Month', (((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0), 0, ((s as any).temp_action_left_month ?? 0), ((s as any).temp_action_right_month ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -1141,7 +1141,7 @@ function enterGetStartTimeSetter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTrait(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'traits', '', ((s as any).locArgs?.[1] ?? 0), 'overview');
+  qspCall(s, 'traits', '$ARGS[1]', 'overview');
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', ((s as any).trait_temp ?? 0)?.['ov_label'], ((s as any).trait_temp ?? 0)?.['ov_val'], 0, ((s as any).trait_temp ?? 0)?.['ov_left'], ((s as any).trait_temp ?? 0)?.['ov_right']);
   return;
   // TODO-QSP: end
@@ -1151,7 +1151,7 @@ function enterGetTrait(s: GameState, scene: SceneBuilder): void {
 function enterGetArchetypes(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tr_name = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_tr_display = (String((String(((s as any).temp_tr_name ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).temp_tr_name ?? 0)).slice((2)-1));
-  (s as any).temp_tr_val_label = qspFunc(s, 'intro_overview', 'get_archetype_label', ((s as any).arch_vars ?? 0)?.[((s as any).temp_tr_name ?? 0) + '_points']);
+  (s as any).temp_tr_val_label = qspFunc(s, 'intro_overview', 'get_archetype_label', (((s as any).arch_vars ?? 0)?.[((s as any).temp_tr_name ?? 0) + '_points'] ?? 0));
   // TODO-QSP: $temp_tr_val_label += ' (' + arch_vars[$temp_tr_name + '_points'] / 250 + ')'
   (s as any).temp_tr_left = 'arch_vars[\'' + ((s as any).temp_tr_name ?? 0) + '_points\'] = func(\'math\', \'int_clamp\', arch_vars[\'' + ((s as any).temp_tr_name ?? 0) + '_points\'] - 25000, 0, 500000)';
   (s as any).temp_tr_right = 'arch_vars[\'' + ((s as any).temp_tr_name ?? 0) + '_points\'] = func(\'math\', \'int_clamp\', arch_vars[\'' + ((s as any).temp_tr_name ?? 0) + '_points\'] + 25000, 0, 500000)';
@@ -1318,7 +1318,7 @@ function enterCycleGroup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
+  qspCall(s, 'intro_character_templates', 'set_template', ((s as any).start_type ?? 0)?.['cat']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -1433,7 +1433,7 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
+  qspCall(s, 'intro_character_templates', 'set_template', ((s as any).start_type ?? 0)?.['cat']);
   return;
   // TODO-QSP: end
   scene.build();

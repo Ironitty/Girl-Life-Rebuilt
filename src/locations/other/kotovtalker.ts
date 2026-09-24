@@ -221,7 +221,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).loc ?? 0) === 'pav_disco') {
         if (((s as any).fame ?? 0)?.['pav_slut'] < 280) {
           // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>>: "<<$pcs_nickname>> Hey, let''s get drunk and th...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? ''}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')}: "${((s as any).pcs_nickname ?? '')} Hey, let's get drunk and then do something dumb."`);
           qspCall(s, 'willpower', 'drink', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
@@ -255,10 +255,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>>: "Then what the fuck are you doing here cumwhore...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? ''}: "Then what the fuck are you doing here cumwhore? Came to suck some dick?"`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')}: "Then what the fuck are you doing here cumwhore? Came to suck some dick?"`);
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).static_num ?? 0), (-5));
+    qspCall(st, 'npc_relationship', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);

@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('After some time walking and struggling not to get stuck, you can see the hut on the opposite side.');
       scene.actions([
         { label: 'Success!', handler: (st: GameState) => {
-    qspCall(st, 'exp_gain', 'bushcraft', 5);
+    qspCall(st, 'exp_gain', '');
   }, goto: ['gad_forest', 'forest_center'] },
       ]);
     } else {
@@ -85,7 +85,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('Seems like the forest can camouflage parts of the swamp, fooling careless hikers.');
         scene.actions([
           { label: 'If only you knew', handler: (st: GameState) => {
-    qspCall(st, 'exp_gain', 'bushcraft', 3);
+    qspCall(st, 'exp_gain', '');
   }, goto: ['gad_swamp', 'stuck'] },
         ]);
       } else {
@@ -97,7 +97,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('You can see broken branches and prints ahead of you, marking the direction you initially started walking towards.');
         scene.actions([
           { label: 'That\'s interesting…', handler: (st: GameState) => {
-    qspCall(st, 'exp_gain', 'bushcraft', 2);
+    qspCall(st, 'exp_gain', '');
   }, goto: ['gad_swamp_woods', 'start'] },
         ]);
       }

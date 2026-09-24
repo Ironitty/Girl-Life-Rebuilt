@@ -572,7 +572,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'custom';
     (st as any).orgasm_txt = 'You\'re no longer able to hold back your screams of pleasure as your body begins to twitch. It\'s a violent orgasm and you\'re certain you\'ve never felt anything like this before. It\'s exactly as you fantasized about, when you met him for the first time.';
     qspCall(st, 'arousal', 'vaginal', 5, 'incest');
-    qspCall(st, 'cum_call', '', '', 'A35', 1, 0, 12500, (Math.floor(Math.random() * 21) + 20));
+    qspCall(st, 'cum_call', '', 'A35', 1, 0, 12500, (Math.floor(Math.random() * 21) + 20));
     qspCall(st, 'stat', '');
     scene.text('Moments later Mikhail begins to groan loudly, his cock starts growing inside you and shortly thereafter you feel his warm cum shoot inside of you. As he finishes you fall over him as you\'re completely exhausted. You embrace him and lay still for a while…');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }

@@ -42,13 +42,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['kinoM', 'a'] },
     { label: 'Smile', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kinoM', 'a'
   } },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-3));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['kinoM', 'a'] },
   ]);
   scene.build();
@@ -105,7 +105,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You reach over and undo his pants, opening his fly and pulling the front of his ...
   scene.text(`You reach over and undo his pants, opening his fly and pulling the front of his boxers just far enough down for his dick to spring free - he was already rock-hard. Looking around to make sure no one is watching, ${((s as any).npcdesc ?? '')} takes out a condom and puts it on his penis; while he does that, you adjust your clothes so that you can pull your panties down to allow access to your pussy. With a final look around you lift up slightly and slide across his lap, reaching between your legs to take his dick in your hand and guide it inside your moist cunt. You bite your lip as his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock enters your pussy, to keep from moaning out loud. Then you begin to slowly move, sneakily fucking your lover in the dark theatre behind the rest of the audience.`);
   qspCall(s, 'arousal', 'vaginal', 10, 'sub');
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 90) {
     qspCall(s, 'mood', 'raise', 'small');

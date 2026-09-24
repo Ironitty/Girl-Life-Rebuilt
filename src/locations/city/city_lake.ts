@@ -1154,9 +1154,9 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     if (((st as any).PSwim ?? 0) === 1) {
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
       scene.text('You enter the changing booth and strip out of your swimwear before putting your regular clothes back on.');
     }
     scene.text('The three of you start to walk toward your home and you feel safe accompanied by them. They keep the conversation light and also enjoy plenty of flirtatious padding and groping. You reach the front entrance of your apartment eventually and bid them goodbye after some farewell kisses.');
@@ -1259,14 +1259,14 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Relax and enjoy it', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'c');
     (st as any).guy = ((st as any).guy ?? 0) + (4);
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake3.jpg');
     scene.text('You lie back and enjoy what\'s happening before one of the men suddenly pulls his dick out and holds it to your face. You grin and start licking it as the others get excited and pull their dicks out as well. You get up on your knees in the middle of the group, trying to please all of them at once.');
@@ -1334,7 +1334,7 @@ function enterVlake1cum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['city_lake', 'start'] },
     { label: 'Masturbate', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'clit_finger', 5, 'masturbation');
@@ -1394,10 +1394,10 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Kneel', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake3.jpg');
     scene.text('You get up on your knees and remove your bikini as they pull their cocks out. You take them in your hands and begin sucking both in turn.');
@@ -1514,8 +1514,8 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey3.jpg');
     scene.text('You beckon him over and the shy young man slowly walks up to you. "Well, what are you waiting for? Undress and get inside her already!" Andrew shouts as he turns you over and spreads your buttocks with his hands. The young man moves in behind and pushes his dick into your ass. You moan loudly as the two cocks thrust in and out of you until the young man pulls out and finishes on your ass. Andrew then gets up and cums in your mouth.');
     qspCall(st, 'cum_call', 'mouth', 'A46', 1);
-    qspCall(st, 'npcgeneratec', '', 0, 'a voyeur at the beach', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'a voyeur at the beach', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'boyStat', '$npclastgenerated', 'a');
     qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0));
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0));
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
@@ -1567,8 +1567,8 @@ function enterKater1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'vaginal_finger', 5);
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/kater1/kater2.jpg');
@@ -1652,10 +1652,10 @@ function enterKater1cum(s: GameState, scene: SceneBuilder): void {
 
 function enterKater2(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/kater2/kater1.jpg');
   scene.text('While riding on the banana, you lose your grip and fall into the water. You swallow a lot of water and begin to sink, but you thankfully notice two guys in a boat heading towards you. They pull you out of the lake and you catch your breath, relax and start to look around. You notice that both your saviors are naked…');
@@ -1748,8 +1748,8 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
 
 function enterKater3(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/kater3/1.jpg');
   scene.text('While riding on the jet ski, you make a turn that\'s too steep and are thrown into the water. You swallow a lot of water and begin to sink, but are suddenly pulled out of the water by a man in a boat. Once you\'re aboard, he ties the jet ski to the boat and sets off. After coughing up water, you catch your breath and start to feel better. The guy stops the boat and walks up to you.');
@@ -1784,8 +1784,8 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Give blowjob', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/city/residential/lake/sex/kater3/4.jpg');
     scene.text('You sit the guy down and start licking his cock before opening your lips and taking it into your mouth. You start passionately sucking until you see a second boat approaching. Your saviour obviously knows him and waves him aboard. He quickly jumps over into the boat and walks up to you. After checking you out, he pulls his cock out and slides it into your pussy.');
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
@@ -1830,10 +1830,10 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
 
 function enterHorse1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/horse1/horse1.jpg');
   scene.text('While riding along the beach, you notice the two men on quad bikes approaching. They wave at you and offer to keep you company.');
@@ -1847,7 +1847,7 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_lake', 'start'] },
     ]);
   }
@@ -1872,7 +1872,7 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Push them away', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_lake', 'start'] },
       ]);
     }
@@ -1955,10 +1955,10 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHorse2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/horse2/horse1.jpg');
   scene.text('As you\'re riding along the beach, you encounter two men who are also on horseback. They stop and ask if you want join them for a walk.');

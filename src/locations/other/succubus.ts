@@ -366,7 +366,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
     scene.text('As you make ready to leave, you look down upon your would-be-rapist-turned-meal as he lies there utterly exhausted and wonder if this experience will discourage him from such activities in the future…');
     // TODO-QSP: dynamic text: Before you leave him to contemplate such things you check his wallet and grab <<...
     scene.text(`Before you leave him to contemplate such things you check his wallet and grab ${qspFunc(s, 'money', 'string_profit', ((st as any).succubusQW ?? 0)?.['rapist_cash'] ?? '')} as a bonus reward.`);
-    // TODO-QSP: gs 'money', 'earn', succubusQW['rapist_cash'], 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).succubusQW ?? 0)?.['rapist_cash'], 'cash');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -651,7 +651,7 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
       (st as any).tatianaSex = 1;
     }
     (st as any).orgasm_or = 'no';
-    // TODO-QSP: gs 'arousal', 'cuni', 15 * rand(1, 8), 'dom', 'lesbian'
+    qspCall(st, 'arousal', 'cuni', 15 * (Math.floor(Math.random() * 8) + 1), 'dom', 'lesbian');
     qspCall(st, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
     qspCall(st, 'arousal', 'end');
     (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
@@ -777,10 +777,10 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_succubus_x = 0;
   (s as any).temp_succubus_j = 0;
   // TODO-QSP: :loopclotype
-  // TODO-QSP: gs 'clothing', 'totals', $succlocat[temp_succubus_j]
+  qspCall(s, 'clothing', 'totals', (((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)] ?? 0));
   (s as any).temp_succubus_i = 1;
   // TODO-QSP: :loopclonum
-  if (qspFunc(s, 'clothing', 'can_wear', ((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)], ((s as any).temp_succubus_i ?? 0))) {
+  if (qspFunc(s, 'clothing', 'can_wear', (((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)] ?? 0), ((s as any).temp_succubus_i ?? 0))) {
     // TODO-QSP: $succlolistn[temp_succubus_x] = $succlocat[temp_succubus_j]
     ((s as any).succlolisti = (s as any).succlolisti ?? {})[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
     (s as any).temp_succubus_x = ((s as any).temp_succubus_x ?? 0) + (1);
@@ -799,7 +799,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).succlolistn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
       // TODO-QSP: jump 'oops'
     }
-    // TODO-QSP: gs 'clothing', 'wear', $succlolistn[clopickrand], succlolisti[clopickrand]
+    qspCall(s, 'clothing', 'wear', (((s as any).succlolistn ?? 0)?.[String((s as any).clopickrand ?? 0)] ?? 0), (((s as any).succlolisti ?? 0)?.[String((s as any).clopickrand ?? 0)] ?? 0));
     qspGoto(s, 'succubus', 'sucwalkinggo');
   }
   (s as any).z = 0;
@@ -808,10 +808,10 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   (s as any).y = 0;
   // TODO-QSP: :randpoploop_bimbo_inner
   if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
-    // TODO-QSP: gs 'clothing_attributes', $succlolistn[y], succlolisti[y]
+    qspCall(s, 'clothing_attributes', '', (((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)] ?? 0), (((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)] ?? 0));
     if (((s as any).CloBimbo ?? 0) === 1) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = (((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)] ?? 0);
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
   }
@@ -839,7 +839,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :randpoploop_full_inner
     if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      ((s as any).succlorandi = (s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = (((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)] ?? 0);
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
     (s as any).y = ((s as any).y ?? 0) + (1);
@@ -872,7 +872,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succlorandn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
     // TODO-QSP: jump 'oops2'
   }
-  // TODO-QSP: gs 'clothing', 'wear', $succlorandn[clopickrand], succlorandi[clopickrand]
+  qspCall(s, 'clothing', 'wear', (((s as any).succlorandn ?? 0)?.[String((s as any).clopickrand ?? 0)] ?? 0), (((s as any).succlorandi ?? 0)?.[String((s as any).clopickrand ?? 0)] ?? 0));
   if (((s as any).succublvl ?? 0) < 4) {
     qspGoto(s, 'succubus', 'sucwalkinggo');
   }
@@ -964,7 +964,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succublvl ?? 0) >= 4  &&  qspFunc(s, 'car_funcs', 'has_car')  &&  qspFunc(s, 'car_funcs', 'has_wreck') === 0) {
     if (((s as any).car ?? 0)?.['fuel'] < 5) {
       if (qspFunc(s, 'money', 'can_afford', (30 * (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'])), 'cash')) {
-        // TODO-QSP: gs 'money', 'pay', (30 * (car['fuel'] - car['fuel'])), 'cash'
+        qspCall(s, 'money', 'pay', (30 * ((((s as any).car ?? {})?.['fuel'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0))), 'cash');
         ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
       } else {
         if (((s as any).kanistra ?? 0) > 0) {

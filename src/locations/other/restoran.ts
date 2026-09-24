@@ -50,7 +50,7 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
       scene.text(`The maître d' informs you that there will be a VIP charge of ${qspFunc(s, 'money', 'string_price', 5000)}`);
       scene.actions([
         { label: 'Follow the maître d\' ', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', 5000);
+    qspCall(st, 'money', '');
   }, goto: ['restoran', 'vip'] },
         { label: 'Change your mind', goto: ['restoran', 'maitred'] },
       ]);
@@ -152,7 +152,7 @@ function enterComtable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     { label: 'Get up from the table', goto: ['restoran', 'zal'] },
   ]);
@@ -169,7 +169,7 @@ function enterViptable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     { label: 'Get up from the table', goto: ['restoran', 'vip'] },
   ]);

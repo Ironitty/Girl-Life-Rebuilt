@@ -119,8 +119,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[0] ?? '') === 101) {
-    qspCall(s, 'npcgeneratec', '', 0, 'Truck Driver', (Math.floor(Math.random() * 11) + 30));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'Truck Driver', (Math.floor(Math.random() * 11) + 30));
+    qspCall(s, 'boyStat', '$npclastgenerated');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).furibj = ((s as any).furibj ?? 0) + (1);
     (s as any).furiswallow = ((s as any).furiswallow ?? 0) + (1);

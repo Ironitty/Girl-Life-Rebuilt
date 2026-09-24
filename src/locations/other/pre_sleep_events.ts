@@ -90,10 +90,10 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   }
   qspGoto(s, 'pre_sleep_events', 'event_end');
   // TODO-QSP: end
@@ -164,7 +164,7 @@ function enterSucchoice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to ignore it and go to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
     { label: 'Push the Energy out for all time', goto: ['pre_sleep_events', 'succhoiceNO'] },
     { label: 'Pull the Energy in and let it change you permanently', goto: ['pre_sleep_events', 'succhoiceYES'] },
@@ -241,7 +241,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
   ]);
   scene.build();

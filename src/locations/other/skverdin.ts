@@ -180,8 +180,8 @@ function enterDPpSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Other guy', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Other guy', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   (s as any).parkslut = ((s as any).parkslut ?? 0) + (10);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.img('images/locations/pavlovsk/park/sex/ppbjdouble.jpg');

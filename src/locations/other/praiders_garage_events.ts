@@ -547,7 +547,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['pav_complex', 'garages'] },
     ]);
   } },
@@ -567,7 +567,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['pav_complex', 'garages'] },
     ]);
   } },

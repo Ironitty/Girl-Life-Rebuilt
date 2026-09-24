@@ -195,7 +195,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
       (st as any).i = 0;
       // TODO-QSP: :marrid_looop
       if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-        (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+        (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
         if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''telling_ma...
         }
@@ -425,7 +425,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
   if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
+    (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''tell_about_generic_boyfri...
     }
@@ -1169,7 +1169,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
       (st as any).i = 0;
       // TODO-QSP: :marrid_loop_hc
       if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-        (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+        (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
         if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
           scene.actions([
             { label: 'Get married', handler: (st: GameState) => {

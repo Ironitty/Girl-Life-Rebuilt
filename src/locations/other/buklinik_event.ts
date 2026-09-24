@@ -98,7 +98,7 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
 
 function enterPos7(s: GameState, scene: SceneBuilder): void {
   (s as any).buklinikDay = ((s as any).daystart ?? 0);
-  // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 3)
+  qspCall(s, 'exp_gain', 'medcn', 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/mercyclinic/bukli_eat2.jpg');
   if (((s as any).bumtolik ?? 0) > 7) {
@@ -118,7 +118,7 @@ function enterPos7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPos8(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 3)
+  qspCall(s, 'exp_gain', 'medcn', 0);
   if (((s as any).bumtolik ?? 0) === 8) {
     (s as any).bumtolik = 9;
   }
@@ -161,7 +161,7 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
 function enterPos10(s: GameState, scene: SceneBuilder): void {
   (s as any).bumtolik = 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 3)
+  qspCall(s, 'exp_gain', 'medcn', 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/mercyclinic/bukli_mission1.jpg');
   scene.text('You have the perfect idea that might persuade the old drunk. You sit in front of the makeshift shelter and tell the others to back off while you tell him that you have something to show him.');

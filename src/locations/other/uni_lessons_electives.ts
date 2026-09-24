@@ -72,7 +72,7 @@ function enterStudyWithFriends(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :study_with_friends_loop
     if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_ule_i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
       if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).temp_ule_i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_ule_i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).temp_ule_i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_ule_i ?? 0)]) + '_optional_weekly_max']) {
-        qspCall(s, 'grades', 'optional_activity_attribute', '' + ((s as any).class_list_institution ?? 0)?.[String((s as any).temp_ule_i ?? 0)] + '', '' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_ule_i ?? 0)] + '', 'yes', '' + ((s as any).temp_hours_studied_with_friend ?? 0) + '');
+        qspCall(s, 'grades', 'optional_activity_attribute', '' + (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_ule_i ?? 0)] ?? 0) + '', '' + (((s as any).class_list_name ?? 0)?.[String((s as any).temp_ule_i ?? 0)] ?? 0) + '', 'yes', '' + ((s as any).temp_hours_studied_with_friend ?? 0) + '');
         (s as any).temp_ule_i = ((s as any).temp_ule_i_max ?? 0) + 10;
       }
     }
@@ -81,7 +81,7 @@ function enterStudyWithFriends(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'study_with_friends_loop'
     }
     if (((s as any).temp_ule_i ?? 0) < ((s as any).temp_ule_i_max ?? 0) + 10) {
-      // TODO-QSP: gs 'exp_gain', 'intel', temp_hours_studied_with_friend + rand(-1, 1)
+      qspCall(s, 'exp_gain', 'intel', ((s as any).temp_hours_studied_with_friend ?? 0) + (Math.floor(Math.random() * (1 - (-1) + 1)) + ((-1))));
     }
   }
   qspCall(s, 'stat', '');

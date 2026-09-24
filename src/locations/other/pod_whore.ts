@@ -997,20 +997,20 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pod_whore', 'hide', 'clean');
+    qspCall(st, 'pod_whore', '');
   }, goto: ['korrPar', ''] },
           ]);
         } else {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pod_whore', 'hide', 'clean');
+    qspCall(st, 'pod_whore', '');
   }, goto: ['pod_ezd', 'etaj_2'] },
           ]);
         }
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev1') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1023,8 +1023,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev2') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'vaginal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1038,8 +1038,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev3') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'anal', (Math.floor(Math.random() * 9) + 7), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1052,8 +1052,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev4') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 10) + 3), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1085,8 +1085,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev6') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1109,8 +1109,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_ev7') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 11) + 5), 'prostitution');
         qspCall(s, 'stat', '');
@@ -1168,21 +1168,21 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_groupsexev1') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '1');
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated', '1');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-        qspCall(s, 'npcgeneratec', '', 0, 'client', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '2');
+        qspCall(s, 'npcgeneratec', '0', 'client', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated', '2');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-        // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[1], 'prostitution', 'group'
-        // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[2], 'prostitution', 'group'
+        qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
+        qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/1_1_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_groupbj']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(5, 11), $npcID[1], 'prostitution', 'group'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 7) + 5), (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/st...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/1_2_` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
@@ -1191,18 +1191,18 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'gopsex', 'hide', 'accview_ggsex');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(7, 12), $npcID[2], 'prostitution', 'group'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 7), (((st as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/1_3.jpg');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'text_pod_whore_groupsex']; enterHide(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cum_call', 'face', $boy[1], 0, '', '', 10
-    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 0, '', '', 30
-    // TODO-QSP: gs 'cum_call', 'face', $boy[2], 0, '', '', 10
-    // TODO-QSP: gs 'cum_call', 'mouth', $boy[2], 0, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'breasts', $boy[2], 0, '', '', 10
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[1] ?? 0), 0, '', '', 10);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 0, '', '', 30);
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[2] ?? 0), 0, '', '', 10);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[2] ?? 0), 0, '', '', 20);
+    qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[2] ?? 0), 0, '', '', 10);
     if (((st as any).pcs_energy ?? 0) >= 15) {
       (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) - (8);
     }
@@ -1227,7 +1227,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text(`One guy produces the money you were promised, and hands you the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))}. He smiles happily: "You were great, girl. We'll definitely be back."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
-    qspCall(st, 'pod_whore', 'hide', 'clean');
+    qspCall(st, 'pod_whore', '');
   }, goto: ['pod_ezd', 'etaj_2'] },
     ]);
   } },
@@ -1238,14 +1238,14 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (String((s as any).locArgs?.[1] ?? '') === 'pod_whore_groupsexev2') {
-        qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '1');
+        qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated', '1');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-        qspCall(s, 'npcgeneratec', '', 0, 'client', (Math.floor(Math.random() * 23) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '2');
+        qspCall(s, 'npcgeneratec', '0', 'client', (Math.floor(Math.random() * 23) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated', '2');
         ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-        // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[1], 'prostitution', 'group'
-        // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[2], 'prostitution', 'group'
+        qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
+        qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 3) + 3), (((s as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/resid...
         scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/stairs/sex/2_1_` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');
@@ -1256,8 +1256,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text('The guys indicate they want to fuck you now. As soon as you lean over, the man behind you immediately grabs onto your hips and begins to fuck you with long, hard thrusts.');
     scene.text('The other guy gets in front of you and says: "Go on, whore. Put that mouth of yours to work as well, I\'m not just going to stand here and wait."');
     scene.text('You obediently open your mouth and take his dick in your mouth. It\'s a bit difficult to give him a good blowjob while your pussy is also getting pounded, especially with him moving his hips like that, but after a while they get into a steady pace and you just let the guys have their way with you.');
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(5, 10), $npcID[2], 'prostitution', 'group'
-    // TODO-QSP: gs 'arousal', 'bj', -5, $npcID[1], 'prostitution', 'group'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), (((st as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
+    qspCall(st, 'arousal', 'bj', (-5), (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
     qspCall(st, 'gopsex', 'hide', 'accview_ggsex');
     qspCall(st, 'stat', '');
@@ -1265,8 +1265,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/2_3_1.mp4');
     scene.text('Then they switch places, and you now have the other guy fucking you. You can taste your pussy juices on his dick as he makes you suck it. You\'re still not very comfortable in this position, but you steady yourself on the man\'s belt and after a while you get back into that steady pace.');
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(5, 10), $npcID[1], 'prostitution', 'group'
-    // TODO-QSP: gs 'arousal', 'bj', -5, $npcID[2], 'prostitution'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution', 'group');
+    qspCall(st, 'arousal', 'bj', (-5), (((st as any).npcID ?? 0)?.[2] ?? 0), 'prostitution');
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1281,8 +1281,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(5, 10), $npcID[2], 'prostitution', 'group'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'prostitution'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 5), (((st as any).npcID ?? 0)?.[2] ?? 0), 'prostitution', 'group');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/2_3_2.mp4');
     scene.text('The man you\'ve been blowing for the past 10 minutes suddenly pulls you up, and lowers himself to the ground before he tells you to get on his dick. He pulls your hips closer against him once you rub his hard cock against your pussy lips, and begins to fuck you vigorously.');
@@ -1291,10 +1291,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'gopsex', 'gg_sex_orgasm');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cum_call', 'stomach', $boy[2], 0, '', '', 10
-    // TODO-QSP: gs 'cum_call', '', $boy[2], 0, '', '', 30
-    // TODO-QSP: gs 'cum_call', 'face', $boy[1], 0, '', '', 10
-    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 0, '', '', 30
+    qspCall(st, 'cum_call', 'stomach', (((st as any).boy ?? 0)?.[2] ?? 0), 0, '', '', 10);
+    qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[2] ?? 0), 0, '', '', 30);
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[1] ?? 0), 0, '', '', 10);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 0, '', '', 30);
     if (((st as any).pcs_energy ?? 0) >= 15) {
       (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) - (8);
     }
@@ -1315,7 +1315,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text(`Then one guy turns to you and gives you the money: "You're a pretty decent fuck, ${((st as any).pcs_nickname ?? '')}. Here are the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))} we agreed upon. See you around."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
-    qspCall(st, 'pod_whore', 'hide', 'clean');
+    qspCall(st, 'pod_whore', '');
   }, goto: ['pod_ezd', 'etaj_2'] },
     ]);
   } },

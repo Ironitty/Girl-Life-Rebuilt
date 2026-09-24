@@ -388,7 +388,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pos ?? 0) === 3) {
         scene.text('He groans loudly, spraying his seed deep inside your pussy.');
-        qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+        qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
         qspCall(s, 'cuminsidereact', '');
       } else {
         scene.text('He groans loudly, spraying his seed deep inside your ass.');

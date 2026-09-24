@@ -1298,7 +1298,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     (st as any).i = 0;
     // TODO-QSP: :lover_looop
     if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-      (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+      (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
       if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''ludahome'', ''tell_about_generic_boyfrei...
       }

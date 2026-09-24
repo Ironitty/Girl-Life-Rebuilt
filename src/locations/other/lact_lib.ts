@@ -892,10 +892,10 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_var ?? 0) < 0) {
       (s as any).pcs_stam = 0;
       (s as any).energytomilkpump = 1;
-      // TODO-QSP: gs 'sweat', 'add', pumptime/30
+      qspCall(s, 'sweat', 'add', ((s as any).pumptime ?? 0)/30);
     } else {
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).lactation ?? {})?.['max_sucktion_demand'] ?? 0)/30000);
-      // TODO-QSP: gs 'sweat', 'add', pumptime/30
+      qspCall(s, 'sweat', 'add', ((s as any).pumptime ?? 0)/30);
       (s as any).energytomilkpump = 1;
     }
     if (((s as any).pumptime ?? 0) < 10) {

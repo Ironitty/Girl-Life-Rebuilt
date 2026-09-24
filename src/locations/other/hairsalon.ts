@@ -1378,7 +1378,7 @@ function enterBraidhair(s: GameState, scene: SceneBuilder): void {
 function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '$$face_image')}`);
+  scene.img(`${qspFunc(s, '$face_image')}`);
   scene.text('You take a long look at your new hairstyle in the mirror. You\'re really pleased with the work that the hairdresser did.');
   // TODO-QSP: end
   scene.actions([

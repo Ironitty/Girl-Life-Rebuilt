@@ -357,8 +357,8 @@ function enterParksvid21(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'African guy', (Math.floor(Math.random() * 15) + 21));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'African guy', (Math.floor(Math.random() * 15) + 21));
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('You beckon the African over. He carefully approaches, cautiously glancing at your guy.');
@@ -423,8 +423,8 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Annoy him', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'African guy', (Math.floor(Math.random() * 15) + 21));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'African guy', (Math.floor(Math.random() * 15) + 21));
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     ((st as any).npc_rel = (st as any).npc_rel ?? {})[String((st as any).npcID ?? 0)] = 0;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('"And what if I do want to suck him off?" you snap back at him.');

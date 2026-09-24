@@ -758,10 +758,10 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Lev', (Math.floor(Math.random() * 2) + 17), 1);
+  qspCall(s, 'npcgeneratec', '0', 'Lev', (Math.floor(Math.random() * 2) + 17), 1);
   // TODO-QSP: $npc_firstname[$npclastgenerated] = 'Lev'
   // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Lev'
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 0, 'normal');
+  qspCall(s, 'npcStat', '$npclastgenerated', 0, 'normal');
   qspCall(s, 'npcStat', 'A13', 'a');
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_1.jpg');
   scene.text('Lev showed up pretty quick, he must not live too far away. The three of you start kissing while stripping each other, unrushed but eager.');

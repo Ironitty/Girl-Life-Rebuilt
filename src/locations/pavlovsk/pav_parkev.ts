@@ -297,8 +297,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                                                           scene.text('When he reaches you, he extends his hand. "Hi there, young lady! If you have a minute, come with me! I have something for you!"');
                                                           scene.actions([
                                                             { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npcgeneratec', 0, 'Old Man from the park', rand(50, 70)
-    // TODO-QSP: gs 'boyStat', $npclastgenerated
+    qspCall(st, 'npcgeneratec', '');
+    qspCall(st, 'boyStat', '');
   }, goto: ['parkBimbo', 'pos1'] },
                                                           ]);
                                                         }

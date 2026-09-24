@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -22,7 +20,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hotelRoomDays ?? 0)?.['pav'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_pav'] = 'Your room at the Pavlosk hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_pav', 'neg');
-        // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['hotel_pav'], 'neg'
+        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['hotel_pav'], 'neg');
       }
     }
   }
@@ -34,7 +32,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hotelRoomDays ?? 0)?.['city'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 11) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['hotel_city'] = 'Your room at the St Petersburg hotel checks out today at ' + qspFunc(s, 'time', 'get_time_string', 11, 0) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'hotel_city', 'neg');
-        // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['hotel_city'], 'neg'
+        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['hotel_city'], 'neg');
       }
     }
   }
@@ -131,9 +129,9 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
     (s as any).suctempi = 0;
     // TODO-QSP: :SuccAbsorbLoop
     if (((s as any).sparrvol ?? 0)?.[String((s as any).suctempi ?? 0)] > 0) {
-      (s as any).suctemploc = ((s as any).sparrloc ?? 0)?.[String((s as any).suctempi ?? 0)];
+      (s as any).suctemploc = (((s as any).sparrloc ?? 0)?.[String((s as any).suctempi ?? 0)] ?? 0);
       if ((((s as any).suctemploc ?? 0) <= 1  ||  ((s as any).suctemploc ?? 0) === 3  ||  ((s as any).suctemploc ?? 0) === 4  ||  ((s as any).suctemploc ?? 0) >= 8)) {
-        (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) - (((s as any).sparrvol ?? 0)?.[String((s as any).suctempi ?? 0)]);
+        (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) - ((((s as any).sparrvol ?? 0)?.[String((s as any).suctempi ?? 0)] ?? 0));
         (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
         (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
         (s as any).succubxp = ((s as any).succubxp ?? 0) + (5);
@@ -171,7 +169,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sucabslez = 0;
     (s as any).sucabscum = 0;
-    // TODO-QSP: gs 'mood', 'raise', 5 * pcs_mood / 100
+    qspCall(s, 'mood', 'raise', 5 * ((s as any).pcs_mood ?? 0) / 100);
     if (((s as any).pcs_energy ?? 0) > 100) {
       (s as any).entemp = (((s as any).pcs_energy ?? 0) - 100);
     }
@@ -223,7 +221,8 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
 
 function enterApplyStretch(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).analplay ?? 0) >= 2  &&  ((s as any).pcs_ass ?? 0) <= 10)  ||  (((s as any).analplay ?? 0) >= 4  &&  ((s as any).pcs_ass ?? 0) <= 15)  ||  (((s as any).analplay ?? 0) >= 8  &&  ((s as any).pcs_ass ?? 0) <= 20)) {
-    // TODO-QSP: gs 'arousal_funcs', 'stretch', 'anal', 1 & analplay = 0
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    (s as any).analplay = 0;
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
     if (((s as any).pain ?? 0)?.['throat'] > 0) {
@@ -259,8 +258,8 @@ function enterApplyStretch(s: GameState, scene: SceneBuilder): void {
     ((s as any).agape = (s as any).agape ?? {})[5] = ((s as any).agape ?? 0)[4] * 5;
     ((s as any).vgape = (s as any).vgape ?? {})[5] = ((s as any).vgape ?? 0)[4] * 5;
   } else {
-    ((s as any).agape = (s as any).agape ?? {})[5] = qspUntranslated(s, "agape[4]", { location: "stat" });
-    ((s as any).vgape = (s as any).vgape ?? {})[5] = qspUntranslated(s, "vgape[4]", { location: "stat" });
+    ((s as any).agape = (s as any).agape ?? {})[5] = (((s as any).agape ?? 0)?.[4] ?? 0);
+    ((s as any).vgape = (s as any).vgape ?? {})[5] = (((s as any).vgape ?? 0)?.[4] ?? 0);
   }
   if (((s as any).vgape ?? 0) > ((s as any).vgape ?? 0)[1]) {
     ((s as any).vgape = (s as any).vgape ?? {})[3] = ((s as any).totminut ?? 0);
@@ -424,7 +423,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).orgasm ?? 0) > ((s as any).orgasm_count ?? 0)) {
     (s as any).temp_orgasm = ((s as any).temp_orgasm ?? 0) + (((s as any).orgasm ?? 0) - ((s as any).orgasm_count ?? 0));
-    // TODO-QSP: gs 'mood', 'raise', 30 / temp_orgasm
+    qspCall(s, 'mood', 'raise', 30 / ((s as any).temp_orgasm ?? 0));
     (s as any).orgasm_count = ((s as any).orgasm ?? 0);
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).succublvl ?? 0) > 2  &&  ((s as any).stat ?? 0)?.['rape_count'] !== ((s as any).rape_count ?? 0)) {
@@ -432,7 +431,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).stat ?? 0)?.['rape_count'] !== ((s as any).rape_count ?? 0)) {
       qspCall(s, 'mood', 'lower', 'min');
-      // TODO-QSP: gs 'mood', 'raise_trauma', (stat['rape_count'] - rape_count) * 3
+      qspCall(s, 'mood', 'raise_trauma', ((((s as any).stat ?? {})?.['rape_count'] ?? 0) - ((s as any).rape_count ?? 0)) * 3);
       (s as any).rape_count = ((s as any).stat ?? 0)?.['rape_count'];
       (s as any).rape_day = ((s as any).daystart ?? 0);
     }
@@ -482,7 +481,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).stat_seen_oral = ((s as any).temp_oral ?? 0);
   if (((s as any).temp_base_act_fired ?? 0) === 1) {
     if (((s as any).daystart ?? 0) - ((s as any).temp_prev_last_sex_day ?? 0) >= ((s as any).arch_const ?? 0)?.['sex_chastity_days']) {
-      // TODO-QSP: gs 'archetypes', 'change', 0, 0, -arch_const['sex_chastity_bonus_prude'], 0, 0, 1, 'story', 'Breakin...
+      qspCall(s, 'archetypes', 'change', 0, 0, -(((s as any).arch_const ?? {})?.['sex_chastity_bonus_prude'] ?? 0), 0, 0, 1, 'story', 'Breaking a long dry spell');
     }
   }
   (s as any).temp_mast = ((s as any).stat ?? 0)?.['mast'];
@@ -537,7 +536,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).prevtotmin ?? 0) !== ((s as any).totminut ?? 0)) {
-    qspCall(s, 'spellTimer', '', ((s as any).prevtotmin ?? 0), ((s as any).totminut ?? 0));
+    qspCall(s, 'spellTimer', 'prevtotmin', ((s as any).totminut ?? 0));
     if (((s as any).deodorant_on ?? 0) === 1  &&  ((s as any).totminut ?? 0) > ((s as any).deodorant_time ?? 0)) {
       qspCall(s, 'sweat', 'remove_deo');
     }
@@ -565,7 +564,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat = (s as any).stat ?? {})['last_workout'] = ((s as any).totminut ?? 0);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyStretch(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'outfit', 'stat', totminut - prevtotmin
+  qspCall(s, 'outfit', 'stat', ((s as any).totminut ?? 0) - ((s as any).prevtotmin ?? 0));
   if (((s as any).kid ?? 0) > 0) {
     (s as any).i = 0;
     // TODO-QSP: :LoopKidAgeCounter
@@ -624,7 +623,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).hydra_check = ((s as any).pcs_hydra ?? 0);
   if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude'  &&  ((s as any).pcs_faith ?? 0) <= 0) {
-    // TODO-QSP: gs 'mood', 'lower', 3 * (1 - pcs_faith)
+    qspCall(s, 'mood', 'lower', 3 * (1 - ((s as any).pcs_faith ?? 0)));
     qspCall(s, 'archetypes', 'lose', 'prude', 200, 'Neglecting faith');
     (s as any).pcs_faith = 1;
   }

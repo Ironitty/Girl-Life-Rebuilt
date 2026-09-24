@@ -142,7 +142,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterPierce(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_owned'] = 1;
-  // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], ARGS[2]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (String((s as any).locArgs?.[1] ?? '') === 'brow'  ||  String((s as any).locArgs?.[1] ?? '') === 'nose'  ||  String((s as any).locArgs?.[1] ?? '') === 'lip'  ||  String((s as any).locArgs?.[1] ?? '') === 'tongue') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Facial piercing');
     qspCall(s, 'archetypes', 'gain', 'goth', 'tiny', 'Facial piercing');
@@ -179,7 +179,7 @@ function enterWearLast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] >= 0) {
     // TODO-QSP: exit
   }
-  // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], -pcs_piercings[$ARGS[1]]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), -((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)]]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -288,8 +288,8 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You buy the piercing.');
   }
-  // TODO-QSP: gs 'money', 'pay', ARGS[3]
-  // TODO-QSP: gs 'piercing_management', 'add', $ARGS[1], ARGS[2]
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[3] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -808,7 +808,7 @@ function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'piercing_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  qspCall(s, 'piercing_view', 'view_item', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();

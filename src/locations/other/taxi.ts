@@ -47,8 +47,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Offer to trade sex for a ride', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'prostitution', 'self');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['taxi', 'ride'] },
       ]);
     }
@@ -134,8 +134,8 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) + (1);
   qspCall(s, 'fame', 'city', 'prostitute', 2);
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', (Math.floor(Math.random() * 17) + 30));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Taxi Driver', (Math.floor(Math.random() * 17) + 30));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).temp = qspFunc(s, 'sexprefrand', '\'');
   scene.img('images/locations/shared/taxi/showtits.jpg');
   scene.text('"I don\'t have any money," you blurt out once seated in the back seat.');
@@ -258,7 +258,7 @@ function enterCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cuminsidereact', '');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'cum_call', '', '', 'Taxi Driver');
+  qspCall(s, 'cum_call', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -270,7 +270,7 @@ function enterCum3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cuminsidereact', '');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'cum_call', '', '', 'Taxi Driver');
+  qspCall(s, 'cum_call', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -290,8 +290,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBj(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', (Math.floor(Math.random() * 15) + 21));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Taxi Driver', (Math.floor(Math.random() * 15) + 21));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).taxioffer = 1;
   // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/shared/taxi/se...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/shared/taxi/sex/bj0,` + (Math.floor(Math.random() * 3) + 0) + '.mp4"></video></center>');
@@ -358,8 +358,8 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(s, 'prevLoc', 'prevArg');
   } else {
     (s as any).taxi_pay = 0;
-    qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', (Math.floor(Math.random() * 17) + 30));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'Taxi Driver', (Math.floor(Math.random() * 17) + 30));
+    qspCall(s, 'boyStat', '$npclastgenerated');
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/shared/taxi/base'+rand(1, 5)+'...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/taxi/base` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('Having told the driver where you need to go, he chats in a friendly way as he drives. After a while, you finally tell him you don\'t have any money.');
@@ -394,7 +394,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 0) < 25) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlleyvag(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
-      qspCall(st, 'cum_call', '', '', 'Taxi Driver');
+      qspCall(st, 'cum_call', '', 'Taxi Driver');
     } else {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlleyanal(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'arousal', 'anal', 5, 'sub', 'unknown', 'rough');
@@ -415,7 +415,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) > 50) {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlleyvag(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
-      qspCall(st, 'cum_call', '', '', 'Taxi Driver');
+      qspCall(st, 'cum_call', '', 'Taxi Driver');
     } else {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterAlleyanal(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'arousal', 'anal', 5, 'sub', 'unknown', 'rough');

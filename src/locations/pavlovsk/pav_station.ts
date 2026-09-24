@@ -134,7 +134,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 250) {
     // TODO-QSP: dynamic text: He notices that it''s you. "Aren''t you <<$pcs_firstname>> <<$pcs_lastname>>, on...
@@ -177,7 +177,7 @@ function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstProstitution(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
     if (((s as any).pcs_hotcat ?? 0) < 3) {
@@ -219,7 +219,7 @@ function enterFirstProstitution(s: GameState, scene: SceneBuilder): void {
 
 function enterRepeat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
     // TODO-QSP: dynamic text: "You''re way too young to be doing all these things, Miss <<$pcs_lastname>>. We ...
@@ -256,7 +256,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
 
 function enterMultiple(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).temp_tot_booked_pav ?? 0) === 6) {
     scene.text('"Parents like yours should stop having kids if they can\'t raise them well."');
@@ -291,7 +291,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
 
 function enterRegular(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   (s as any).temp_rand = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).temp_rand ?? 0) === 1) {

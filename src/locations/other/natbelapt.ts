@@ -591,7 +591,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Take a selfie', handler: (st: GameState) => {
-    qspCall(st, 'telefon', 'Phone_selfie_image_bathing', 'shower');
+    qspCall(st, 'telefon', '');
   } },
         { label: 'Get out of the shower', goto: ['natbelapt', 'bathroom'] },
       ]);
@@ -767,7 +767,7 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
       if (((s as any).lernHome ?? 0) > 0) {
         scene.actions([
           { label: 'Study together', handler: (st: GameState) => {
-    qspCall(st, 'natbelEv', 'study_together');
+    qspCall(st, 'natbelEv', '');
   } },
         ]);
       }

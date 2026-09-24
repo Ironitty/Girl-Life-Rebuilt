@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -201,7 +199,7 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).temperature = qspFunc(s, 'outdoors', 'get_temp_string', qspUntranslated(s, "temper[0]", { location: "outdoors" }), qspUntranslated(s, "temper[1]", { location: "outdoors" }));
+  (s as any).temperature = qspFunc(s, 'outdoors', 'get_temp_string', (((s as any).temper ?? 0)?.[0] ?? 0), (((s as any).temper ?? 0)?.[1] ?? 0));
   if (((s as any).month ?? 0) === 1) {
     (s as any).weather = '' + ((s as any).osadki ?? 0) + ' The temperature is ' + ((s as any).temperature ?? 0) + '.<br>There is snow on the street.';
   } else {

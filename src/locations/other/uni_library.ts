@@ -162,7 +162,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
       } else {
         // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
-        scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
+        scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -174,7 +174,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :exam_loop
       if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-        if (qspFunc(s, 'uni_programs', 'exam', 'is_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
+        if (qspFunc(s, 'uni_programs', 'exam', 'is_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
           // TODO-QSP: dynamic '  act ''Study intensely for your <<$class_list_name[i]>> exam (30 minutes)'': gt ''uni_libr...
         }
       }
@@ -248,7 +248,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/city/island/university/library...
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/island/university/library/study` + (Math.floor(Math.random() * 7) + 1) + '.jpg"></center>');
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
-  // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
+  qspCall(s, 'mood', 'raise', ((((s as any).trait_vars ?? {})?.['academic'] ?? 0)*5 -10));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> exam. The library is...
   scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} exam. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it's a good environment to study in and you can see a number of other students studying as well.`);

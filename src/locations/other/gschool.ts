@@ -170,7 +170,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_sched[4] = 'English, Geography, Science, Shop, Computer and Music.'
     // TODO-QSP: $sd_sched[5] = 'Math, Russian, Literature, Art, History and P.E.'
     if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['school_schedule'] = ' You have the following lessons today: ' + ((s as any).sd_sched ?? 0)?.[String((s as any).week ?? 0)] + '';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['school_schedule'] = ' You have the following lessons today: ' + (((s as any).sd_sched ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + '';
     }
     if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).week ?? 0) < 6) {
       if (((s as any).hour ?? 0) < 9) {

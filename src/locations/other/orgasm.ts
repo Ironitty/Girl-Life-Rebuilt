@@ -56,7 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).stim ?? {}).length > 0) {
     (s as any).orgasm_i = 0;
     // TODO-QSP: :fetish_loop
-    (s as any).temp_fetish_name = ((s as any).fetish_name ?? 0)?.[String((s as any).orgasm_i ?? 0)];
+    (s as any).temp_fetish_name = (((s as any).fetish_name ?? 0)?.[String((s as any).orgasm_i ?? 0)] ?? 0);
     if (((s as any).temp_fetish_name ?? 0) !== 'creampie') {
       if (((s as any).stim ?? 0)?.[String((s as any).temp_fetish_name ?? 0)] === 1) {
         qspCall(s, 'fetish', 'add_pref', ((s as any).temp_fetish_name ?? 0), 2);

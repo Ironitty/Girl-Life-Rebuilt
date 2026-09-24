@@ -152,7 +152,7 @@ function enterPornTypeSelector(s: GameState, scene: SceneBuilder): void {
 function enterDoContract(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dc_offset = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_dc_slot = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).temp_dc_film_type = ((s as any).pornplan ?? 0)?.[String(((s as any).temp_dc_offset ?? 0)) + ',' + String(((s as any).temp_dc_slot ?? 0))];
+  (s as any).temp_dc_film_type = (((s as any).pornplan ?? 0)?.[String(((s as any).temp_dc_offset ?? 0)) + ',' + String(((s as any).temp_dc_slot ?? 0))] ?? 0);
   (s as any).temp_dc_daystart = ((s as any).daystart ?? 0) + ((s as any).temp_dc_offset ?? 0);
   (s as any).temp_dc_result = qspFunc(s, 'jobs', 'book_slot', 'city_pornstudio_actress', ((s as any).temp_dc_daystart ?? 0), ((s as any).temp_dc_slot ?? 0), String(((s as any).temp_dc_film_type ?? 0)));
   if (((s as any).temp_dc_result ?? 0) === 1) {
@@ -277,7 +277,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pornofday ?? 0) !== '') {
         // TODO-QSP: dynamic text: <<$monthName[m1]>> <<d1>>, <<$weekName[w1]>>: 
-        scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 ?? '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
+        scene.text(`${(((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? '')} ${((s as any).d1 ?? '')}, ${(((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? '')}: `);
         // TODO-QSP: dynamic text: <<$pornofday>>
         scene.text(`${((s as any).pornofday ?? '')}`);
         (s as any).pornofday = '';
@@ -313,14 +313,14 @@ function enterCanceling(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_nc_daystart = ((s as any).daystart ?? 0) + ((s as any).ps_i ?? 0);
   if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).temp_nc_daystart ?? 0)) === 1) {
     // TODO-QSP: dynamic text: <<$monthName[m1]>> <<d1>>, <<$weekName[w1]>>: 
-    scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 ?? '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
+    scene.text(`${(((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? '')} ${((s as any).d1 ?? '')}, ${(((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? '')}: `);
   }
   (s as any).porns = 0;
   // TODO-QSP: :nopornplanloop
   (s as any).temp_nc_booking = qspFunc(s, 'jobs', 'get_booking_data', 'city_pornstudio_actress', ((s as any).temp_nc_daystart ?? 0), ((s as any).porns ?? 0));
   if (((s as any).temp_nc_booking ?? 0) !== '') {
     // TODO-QSP: dynamic text: <a href="exec:gs ''pornschedule'', ''do_cancel'', <<ps_i>>, <<porns>>"><<$pornde...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027do_cancel/u0027); return false;">${((s as any).porndesc ?? 0)?.[parseFloat(((s as any).temp_nc_booking ?? ''))]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027do_cancel/u0027); return false;">${(((s as any).porndesc ?? 0)?.[parseFloat(((s as any).temp_nc_booking ?? ''))] ?? '')}</a>`);
   }
   (s as any).porns = ((s as any).porns ?? 0) + (1);
   if (((s as any).porns ?? 0) < 4) {
@@ -390,7 +390,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   (s as any).w1 = 1;
   // TODO-QSP: :monthloop
   // TODO-QSP: dynamic text: <table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown"...
-  scene.text(`<table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown">${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''}</font></i></b></th></tr>`);
+  scene.text(`<table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown">${(((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? '')}</font></i></b></th></tr>`);
   scene.text('<tr align="center"><th>   Monday    </th><th>   Tuesday   </th><th>Wednesday</th><th>  Thursday   </th><th>     Friday     </th><th>  Saturday   </th><th>    Sunday    </th></tr>');
   // TODO-QSP: :weekloop
   ((s as any).selected = (s as any).selected ?? {})[String((s as any).p1 ?? 0)] = ((s as any).p1 ?? 0);
@@ -429,9 +429,9 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).inversefilter ?? 0) === 1) {
     if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] === 1) {
-      ((s as any).datefilter = (s as any).datefilter ?? {})[String(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] = 0;
+      ((s as any).datefilter = (s as any).datefilter ?? {})[String((((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] ?? 0))] = 0;
     } else {
-      ((s as any).datefilter = (s as any).datefilter ?? {})[String(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] = 1;
+      ((s as any).datefilter = (s as any).datefilter ?? {})[String((((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] ?? 0))] = 1;
     }
   }
   if (((s as any).m1 ?? 0) === 1  &&  ((s as any).d1 ?? 0) >= 1  &&  ((s as any).d1 ?? 0) <= 8) {
@@ -464,7 +464,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
       if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] === 1  ||  (((s as any).weekdayfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) < 6)  ||  (((s as any).weekendfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) >= 6)) {
         (s as any).option = '<font color="grey"><del>' + ((s as any).d1 ?? 0) + '</del></font>';
       } else {
-        (s as any).option = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.datefilter ??= {})/u0027' + ((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] + '/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">' + ((s as any).d1 ?? 0) + '</a>';
+        (s as any).option = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.datefilter ??= {})/u0027' + (((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] ?? 0) + '/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">' + ((s as any).d1 ?? 0) + '</a>';
       }
     }
   }

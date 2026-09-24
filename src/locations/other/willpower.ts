@@ -265,7 +265,7 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSimpleAct(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+  qspCall(s, 'willpower', '$ARGS[3]', ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     // TODO-QSP: act $ARGS[1] + $func('willpower', 'get_willcost_string'): $noWillpower
   } else {

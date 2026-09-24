@@ -432,8 +432,8 @@ function enterContractOfferSign(s: GameState, scene: SceneBuilder): void {
     scene.text('You are forced into a very awkward position. Resting on your knees is painful and more than just a little uncomfortable since it requires tension in nearly all of your body. But if you relax the collar begins to strangle you.');
     scene.text('"This is your first lesson, slave. Your whole purpose is to serve and entertain me now. And I enjoy watching you struggle."');
     scene.text('She goes over to her leather chair and sits down. She drinks a glass of wine while she watches you struggle.');
-    qspCall(st, 'pain', '', 2, 'legL', 'ache');
-    qspCall(st, 'pain', '', 2, 'legR', 'ache');
+    qspCall(st, 'pain', '2', 'legL', 'ache');
+    qspCall(st, 'pain', '2', 'legR', 'ache');
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
     if (((st as any).pcs_stren ?? 0) >= 50) {
@@ -466,7 +466,7 @@ function enterContractOfferSign(s: GameState, scene: SceneBuilder): void {
 
 function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
-    qspCall(s, 'pain', '', 10, 'nipples', 'pinch');
+    qspCall(s, 'pain', '10', 'nipples', 'pinch');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/gala/slave/taras/intro2.jpg');
@@ -486,7 +486,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 2) {
-      qspCall(s, 'pain', '', 10, 'nipples', 'pinch');
+      qspCall(s, 'pain', '10', 'nipples', 'pinch');
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.img('images/characters/city/gala/slave/taras/intro2.jpg');
@@ -509,8 +509,8 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
         scene.text('Just as you are starting to wonder why she chose small sizes you feel them inflating. Gala pumps them up until they are quite uncomfortable.');
         scene.text('You try pressing them out, but they don\'t move a tiny bit.');
         scene.text('Gala stands up and steps in front of you. You can see nothing but her feet in her high heel shoes.');
-        qspCall(s, 'pain', '', 4, 'vaginal', 'stretch');
-        qspCall(s, 'pain', '', 4, 'asshole', 'stretch');
+        qspCall(s, 'pain', '4', 'vaginal', 'stretch');
+        qspCall(s, 'pain', '4', 'asshole', 'stretch');
         qspCall(s, 'arousal', 'vaginal_dildo', 10, 'bound', 'rough', 'lesbian');
         qspCall(s, 'arousal', 'anal_dildo', (-10), 'bound', 'rough', 'lesbian');
         qspCall(s, 'arousal', 'end');
@@ -816,8 +816,8 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
         scene.text('"I will make sure you remember that you might carry your pussy around but that it is my property."');
         scene.text('She starts whipping you, paying careful attention to hitting your breasts and your vagina.');
         scene.text('After about 15 minutes she unties you and leaves you alone.');
-        qspCall(s, 'pain', '', 7, 'breasts', 'hit');
-        qspCall(s, 'pain', '', 7, 'pubic', 'hit');
+        qspCall(s, 'pain', '7', 'breasts', 'hit');
+        qspCall(s, 'pain', '7', 'pubic', 'hit');
         (s as any).nichGalaImplantCount = 0;
         (s as any).nichGalaImplantDay = ((s as any).daystart ?? 0);
         (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -932,15 +932,15 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                   scene.text('Gala grins and leaves the bar.');
                   scene.text('It doesn\'t take long before the first woman walks up to you, bends you over and starts whipping your ass. Clearly enjoying herself she encourages the other guests to follow her example.');
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
-                  qspCall(s, 'pain', '', 3, 'asscheeks', 'hit');
+                  qspCall(s, 'pain', '3', 'asscheeks', 'hit');
                   qspCall(s, 'stat', '');
                   scene.actions([
                     { label: 'Continue', goto: ['nichGala', 'slaveImplant', '121 + rand(1, 2)'] },
                   ]);
                 } else {
                   if (String((s as any).locArgs?.[1] ?? '') === 122) {
-                    qspCall(s, 'npcgeneratec', '', 0, 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
-                    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+                    qspCall(s, 'npcgeneratec', '0', 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
+                    qspCall(s, 'npcStat', '$npclastgenerated');
                     scene.img('images/characters/city/gala/slave/pubhum1x3.jpg');
                     scene.text('Next in line is a couple. The guy pushes you down to your knees and forces his dick into your mouth.');
                     scene.text('The girl pushes your head from behind to force her boyfriends cock further down your throat.');
@@ -955,8 +955,8 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (String((s as any).locArgs?.[1] ?? '') === 123) {
-                      qspCall(s, 'npcgeneratec', '', 0, 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
-                      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+                      qspCall(s, 'npcgeneratec', '0', 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
+                      qspCall(s, 'npcStat', '$npclastgenerated');
                       scene.img('images/characters/city/gala/slave/pubhum1x4.jpg');
                       scene.text('Next comes a guy who bends you over without saying a word and starts ramming is dick into your ass.');
                       scene.text('His friends stand around you cheering at him.');
@@ -971,8 +971,8 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                       ]);
                     } else {
                       if (String((s as any).locArgs?.[1] ?? '') === 124) {
-                        qspCall(s, 'npcgeneratec', '', 1, 'Some biker girl', 0, (Math.floor(Math.random() * 2) + 3), 1);
-                        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+                        qspCall(s, 'npcgeneratec', '1', 'Some biker girl', 0, (Math.floor(Math.random() * 2) + 3), 1);
+                        qspCall(s, 'npcStat', '$npclastgenerated');
                         scene.img('images/characters/city/gala/slave/pubhum1x5.jpg');
                         scene.text('A girl steps right in front of you and pulls down her top.');
                         scene.text('Being pushed down by one of her friends she forces you to suck on her breasts.');
@@ -984,10 +984,10 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (String((s as any).locArgs?.[1] ?? '') === 125) {
-                          // TODO-QSP: gs 'npcgeneratec', 0, 'Married guy', 45 + rand(0, 10), rand(3, 4), 1
-                          qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-                          // TODO-QSP: gs 'npcgeneratec', 1, 'Married woman', 45 + rand(0, 10), rand(3, 4), 1
-                          qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+                          qspCall(s, 'npcgeneratec', '0', 'Married guy', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
+                          qspCall(s, 'npcStat', '$npclastgenerated');
+                          qspCall(s, 'npcgeneratec', '1', 'Married woman', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
+                          qspCall(s, 'npcStat', '$npclastgenerated', 'a');
                           qspCall(s, 'npcStat', 'D4', 'b');
                           scene.img('images/characters/city/gala/slave/pubhum1x6.jpg');
                           scene.text('A married couple, about 50 years old, is next. They force you down on a table.');
@@ -1002,10 +1002,10 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                           ]);
                         } else {
                           if (String((s as any).locArgs?.[1] ?? '') === 126) {
-                            qspCall(s, 'npcgeneratec', '', 0, 'A biker barkeep', 0, (Math.floor(Math.random() * 2) + 3), 1);
-                            qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-                            // TODO-QSP: gs 'npcgeneratec', 1, 'Barkeep''s girlfriend', 45 + rand(0, 10), rand(3, 4), 1
-                            qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+                            qspCall(s, 'npcgeneratec', '0', 'A biker barkeep', 0, (Math.floor(Math.random() * 2) + 3), 1);
+                            qspCall(s, 'npcStat', '$npclastgenerated');
+                            qspCall(s, 'npcgeneratec', '1', 'Barkeep\'s girlfriend', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
+                            qspCall(s, 'npcStat', '$npclastgenerated', 'a');
                             scene.img('images/characters/city/gala/slave/pubhum1x7.jpg');
                             scene.text('The barkeeper is next. While his girlfriend uses a vibrator on your vagina he roughly fucks your ass.');
                             qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'humiliation', 'unknown', 'bound', 'group');
@@ -1019,8 +1019,8 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                             ]);
                           } else {
                             if (String((s as any).locArgs?.[1] ?? '') === 127) {
-                              // TODO-QSP: gs 'npcgeneratec', 1, 'Rocker''s girl', age + rand(0, 1), rand(3, 4), 1
-                              qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+                              qspCall(s, 'npcgeneratec', '1', 'Rocker\'s girl', ((s as any).age ?? 0) + (Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * 2) + 3), 1);
+                              qspCall(s, 'npcStat', '$npclastgenerated');
                               scene.img('images/characters/city/gala/slave/pubhum1x8.jpg');
                               scene.text('An old rocker steps next to you. He is accompanied by a girl who is about your age.');
                               scene.text('"I know exactly what bitches like this one need."');
@@ -1086,7 +1086,7 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
     scene.text('The pain is intense and you can\'t help but scream. It feels as if your breasts are ripped off.');
     scene.text('Gala grins and circles you from time to time, smacking your butt each time.');
     scene.text('Finally she lets you down and orders you to put your clothes back on.');
-    qspCall(s, 'pain', '', 8, 'breasts', 'bind');
+    qspCall(s, 'pain', '8', 'breasts', 'bind');
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1112,7 +1112,7 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/city/gala/slave/whipped'+rand...
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/whipped` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text('Gala leads you to her bedroom. There she makes you undress, ties you up and takes out her whip.');
-        qspCall(s, 'pain', '', 3, 'tummy', 'hit');
+        qspCall(s, 'pain', '3', 'tummy', 'hit');
         (s as any).minut = ((s as any).minut ?? 0) + 15;
         qspCall(s, 'stat', '');
         scene.text('For about 15 minutes she whips you and calls you degrading names before finally releasing you.');
@@ -1157,7 +1157,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/gala/slave/taras/intro1.jpg');
       scene.text('Without saying a word Taras grabs a crop and starts hitting your back with it.');
       scene.text('He expertly administers his strokes to inflict the most pain without leaving any visible damage.');
-      qspCall(s, 'pain', '', 3, 'back', 'spank');
+      qspCall(s, 'pain', '3', 'back', 'spank');
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1180,7 +1180,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
         scene.text('"Do you want me to fuck you then? I have to ask. After all I am no rapist."');
         scene.text('Knowing that he will start choking you again if you decline you can\'t do anything but nod.');
         scene.text('"Of course you do. You are nothing but a dirty slut."');
-        qspCall(s, 'pain', '', 1, 'throat', 'bind');
+        qspCall(s, 'pain', '1', 'throat', 'bind');
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'stat', '');
         scene.actions([
@@ -1191,7 +1191,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/gala/slave/taras/intro3.jpg');
           scene.text('He pulls down his pants and climbs into the bed. Then he begins to fuck you.');
           scene.text('He pushes into you while holding you tightly by your wrist.');
-          qspCall(s, 'cum_call', '', '', 'A233', 1);
+          qspCall(s, 'cum_call', '', 'A233', 1);
           qspCall(s, 'arousal', 'vaginal', 10, 'bound', 'rough');
           qspCall(s, 'arousal', 'end');
           scene.text('It takes about ten minutes before he finally cums.');

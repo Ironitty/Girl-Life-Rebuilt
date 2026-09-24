@@ -121,7 +121,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1  &&  ((s as any).pcs_stam ?? 0) >= (5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
     scene.actions([
       { label: 'Go for a swim', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 4);
+    qspCall(st, 'cum_cleanup', '4');
     (st as any).minut = ((st as any).minut ?? 0) + 25;
     qspCall(st, 'mood', 'raise', 'tiny');
     qspCall(st, 'exercise', 'tier1', 5, 'stren', 'vital');
@@ -757,7 +757,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID1 ?? 0), 'sub', 'group', 'rough');
       (st as any).orgasm_or = 'yes';
       qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID1 ?? 0), 'sub', 'group', 'rough');
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID1 ?? 0), 1);
+      qspCall(st, 'cum_call', '', ((st as any).npcID1 ?? 0), 1);
     } else {
       if (((st as any).temp_randD ?? 0) === 1) {
         scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex10.jpg');

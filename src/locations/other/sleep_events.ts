@@ -140,10 +140,10 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   }
   qspGoto(s, 'sleep_events', 'event_end', 'sleep');
   // TODO-QSP: end
@@ -155,7 +155,7 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'sleep_events', 'continue', 'dream');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'wake') {
-      // TODO-QSP: gs 'sleep_events', 'exit', ARGS[2]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspGoto(s, 'wakeup', 'start');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'no_interrupt') {
@@ -387,7 +387,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     } else {
       if ((((s as any).loc ?? 0) === 'bedr'  ||  ((s as any).loc ?? 0) === 'bedr2x')  &&  ((s as any).husID ?? 0) !== '') {
         // TODO-QSP: dynamic text: You could wake <<$npc_usedname[$husID]>> up and see if he can help you…
-        scene.text(`You could wake ${((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? ''} up and see if he can help you…`);
+        scene.text(`You could wake ${(((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? '')} up and see if he can help you…`);
       }
     }
   }
@@ -439,7 +439,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     } else {
       if ((((s as any).loc ?? 0) === 'bedr'  ||  ((s as any).loc ?? 0) === 'bedr2x')  &&  ((s as any).husID ?? 0) !== '') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Wake ' + String(((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? '' ?? '') + ' up', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Wake ' + String((((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? '') ?? '') + ' up', handler: (st: GameState) => {
     (st as any).strip_here = 0;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspGoto(st, 'husbSex', 'variant');

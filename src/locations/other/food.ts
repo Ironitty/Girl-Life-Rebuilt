@@ -65,7 +65,7 @@ function enterSetExit(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
       ]);
     }
@@ -94,7 +94,7 @@ function enterPiroshStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (4);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -103,7 +103,7 @@ function enterPiroshStats(s: GameState, scene: SceneBuilder): void {
 
 function enterPirosh(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPiroshStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPiroshText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -112,7 +112,7 @@ function enterPirosh(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostPirosh(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPiroshStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -143,7 +143,7 @@ function enterGolubStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (8);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (10) : (20)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -152,7 +152,7 @@ function enterGolubStats(s: GameState, scene: SceneBuilder): void {
 
 function enterGolub(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGolubStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGolubText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -161,7 +161,7 @@ function enterGolub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostGolub(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGolubStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -192,7 +192,7 @@ function enterPozharStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (6);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (70);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -201,7 +201,7 @@ function enterPozharStats(s: GameState, scene: SceneBuilder): void {
 
 function enterPozhar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPozharStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPozharText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -210,7 +210,7 @@ function enterPozhar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostPozhar(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPozharStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -241,7 +241,7 @@ function enterReubenStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (12);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (110);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -250,7 +250,7 @@ function enterReubenStats(s: GameState, scene: SceneBuilder): void {
 
 function enterReuben(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReubenStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReubenText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -259,7 +259,7 @@ function enterReuben(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostReuben(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReubenStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -290,7 +290,7 @@ function enterBlinyStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (8);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -299,7 +299,7 @@ function enterBlinyStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBliny(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlinyStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlinyText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -308,7 +308,7 @@ function enterBliny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostBliny(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlinyStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -335,7 +335,7 @@ function enterVarenfanStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (10);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -344,7 +344,7 @@ function enterVarenfanStats(s: GameState, scene: SceneBuilder): void {
 
 function enterVarenfan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVarenfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVarenfanText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -353,7 +353,7 @@ function enterVarenfan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostVarenfan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVarenfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -380,7 +380,7 @@ function enterSalfanStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (12);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -389,7 +389,7 @@ function enterSalfanStats(s: GameState, scene: SceneBuilder): void {
 
 function enterSalfan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSalfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSalfanText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -398,7 +398,7 @@ function enterSalfan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostSalfan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSalfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -425,7 +425,7 @@ function enterStrofanStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (6);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (120);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -434,7 +434,7 @@ function enterStrofanStats(s: GameState, scene: SceneBuilder): void {
 
 function enterStrofan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 35;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrofanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrofanText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -443,7 +443,7 @@ function enterStrofan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostStrofan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrofanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -470,7 +470,7 @@ function enterBorfanStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (4);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (20) : (40)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -479,7 +479,7 @@ function enterBorfanStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBorfan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBorfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBorfanText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -488,7 +488,7 @@ function enterBorfan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostBorfan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBorfanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -515,7 +515,7 @@ function enterBlifanStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (6);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -524,7 +524,7 @@ function enterBlifanStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBlifan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlifanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlifanText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -533,7 +533,7 @@ function enterBlifan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostBlifan(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlifanStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -560,7 +560,7 @@ function enterRyesnaStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (4);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -569,7 +569,7 @@ function enterRyesnaStats(s: GameState, scene: SceneBuilder): void {
 
 function enterRyesna(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRyesnaStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRyesnaText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -578,7 +578,7 @@ function enterRyesna(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostRyesna(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRyesnaStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -605,7 +605,7 @@ function enterCrispsStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (16);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -614,7 +614,7 @@ function enterCrispsStats(s: GameState, scene: SceneBuilder): void {
 
 function enterCrisps(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCrispsStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCrispsText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -623,7 +623,7 @@ function enterCrisps(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostCrisps(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCrispsStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -650,7 +650,7 @@ function enterOnringStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (16);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -659,7 +659,7 @@ function enterOnringStats(s: GameState, scene: SceneBuilder): void {
 
 function enterOnring(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOnringStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOnringText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -668,7 +668,7 @@ function enterOnring(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostOnring(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOnringStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -695,7 +695,7 @@ function enterVegburgStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (8);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -704,7 +704,7 @@ function enterVegburgStats(s: GameState, scene: SceneBuilder): void {
 
 function enterVegburg(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVegburgStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVegburgText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -713,7 +713,7 @@ function enterVegburg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostVegburg(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVegburgStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -740,7 +740,7 @@ function enterTurburgStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (10);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -749,7 +749,7 @@ function enterTurburgStats(s: GameState, scene: SceneBuilder): void {
 
 function enterTurburg(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTurburgStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTurburgText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -758,7 +758,7 @@ function enterTurburg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostTurburg(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTurburgStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -785,7 +785,7 @@ function enterBatfishStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (11);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -794,7 +794,7 @@ function enterBatfishStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBatfish(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBatfishStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBatfishText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -803,7 +803,7 @@ function enterBatfish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostBatfish(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBatfishStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -830,7 +830,7 @@ function enterCheeseburgerStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (14);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (120);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((((s as any).pcs_hydra ?? 0) >= 100) ? (5) : (10)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -839,7 +839,7 @@ function enterCheeseburgerStats(s: GameState, scene: SceneBuilder): void {
 
 function enterCheeseburger(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheeseburgerStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheeseburgerText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -848,7 +848,7 @@ function enterCheeseburger(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostCheeseburger(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheeseburgerStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -873,7 +873,7 @@ function enterSnackStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) + (6);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -882,7 +882,7 @@ function enterSnackStats(s: GameState, scene: SceneBuilder): void {
 
 function enterSnack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -891,7 +891,7 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostSnack(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -916,7 +916,7 @@ function enterLightSnackStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) + (3);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -925,7 +925,7 @@ function enterLightSnackStats(s: GameState, scene: SceneBuilder): void {
 
 function enterLightSnack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLightSnackStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLightSnackText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -934,7 +934,7 @@ function enterLightSnack(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostLightSnack(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLightSnackStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Added to your order');
   qspGoto(s, 'food_menu', '');
@@ -957,7 +957,7 @@ function enterFastFoodStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (14);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (70);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (35) : (70)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -966,7 +966,7 @@ function enterFastFoodStats(s: GameState, scene: SceneBuilder): void {
 
 function enterFastFood(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFastFoodStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFastFoodText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -975,7 +975,7 @@ function enterFastFood(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostFastFood(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFastFoodStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1002,7 +1002,7 @@ function enterSmallMealStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (4);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (20) : (40)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1011,7 +1011,7 @@ function enterSmallMealStats(s: GameState, scene: SceneBuilder): void {
 
 function enterSmallMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSmallMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSmallMealText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1020,7 +1020,7 @@ function enterSmallMeal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostSmallMeal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSmallMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1047,7 +1047,7 @@ function enterMediumMealStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (8);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (30) : (60)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1056,7 +1056,7 @@ function enterMediumMealStats(s: GameState, scene: SceneBuilder): void {
 
 function enterMediumMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMediumMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMediumMealText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1065,7 +1065,7 @@ function enterMediumMeal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostMediumMeal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMediumMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1092,7 +1092,7 @@ function enterLargeMealStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (14);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (100);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (50) : (100)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1101,7 +1101,7 @@ function enterLargeMealStats(s: GameState, scene: SceneBuilder): void {
 
 function enterLargeMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLargeMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLargeMealText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1110,7 +1110,7 @@ function enterLargeMeal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostLargeMeal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLargeMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1136,7 +1136,7 @@ function enterBaggedLunchStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (5);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (30) : (60)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1179,7 +1179,7 @@ function enterHotelFoodStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (7);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (30) : (60)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1189,7 +1189,7 @@ function enterHotelFoodStats(s: GameState, scene: SceneBuilder): void {
 function enterHotelFood(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
   qspCall(s, 'money', 'pay', 100, 'cash');
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotelFoodStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotelFoodText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1198,7 +1198,7 @@ function enterHotelFood(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostHotelFood(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotelFoodStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1224,7 +1224,7 @@ function enterHealthyMealStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (1);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (25) : (50)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1233,7 +1233,7 @@ function enterHealthyMealStats(s: GameState, scene: SceneBuilder): void {
 
 function enterHealthyMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 25;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHealthyMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHealthyMealText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1242,7 +1242,7 @@ function enterHealthyMeal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostHealthyMeal(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHealthyMealStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1268,7 +1268,7 @@ function enterJerkyStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (1);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (15);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1277,7 +1277,7 @@ function enterJerkyStats(s: GameState, scene: SceneBuilder): void {
 
 function enterJerky(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJerkyStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJerkyText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1286,7 +1286,7 @@ function enterJerky(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostJerky(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJerkyStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1313,7 +1313,7 @@ function enterMeatStewStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (3);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((((s as any).pcs_hydra ?? 0) >= 100) ? (10) : (20)));
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1322,7 +1322,7 @@ function enterMeatStewStats(s: GameState, scene: SceneBuilder): void {
 
 function enterMeatStew(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMeatStewStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMeatStewText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1331,7 +1331,7 @@ function enterMeatStew(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostMeatStew(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMeatStewStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1368,7 +1368,7 @@ function enterMushSoupStats(s: GameState, scene: SceneBuilder): void {
 
 function enterMushSoup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMushSoupStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMushSoupText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1377,7 +1377,7 @@ function enterMushSoup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostMushSoup(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMushSoupStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;
@@ -1403,7 +1403,7 @@ function enterBilberryStats(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (1);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (10);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1412,7 +1412,7 @@ function enterBilberryStats(s: GameState, scene: SceneBuilder): void {
 
 function enterBilberry(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBilberryStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBilberryText(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetExit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1421,7 +1421,7 @@ function enterBilberry(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOnlyCostBilberry(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', _eat['<<args[1]>>,price']
+  qspCall(s, 'money', 'pay', ((s as any)._eat ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + ',price']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBilberryStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).loc ?? 0) === 'uni_cafe') {
     (s as any).uni_lunch_bought = 1;

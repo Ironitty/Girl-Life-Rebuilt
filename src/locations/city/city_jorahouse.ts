@@ -132,7 +132,7 @@ function enterEv5(s: GameState, scene: SceneBuilder): void {
   scene.text('Into the room comes Semyon, "Suck my cock baby, yeah."');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   (s as any).cumprecheck = 1;
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -148,7 +148,7 @@ function enterEv6(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora fucks you in your pussy, Semyon fucks you in the mouth.');
   (s as any).klofQW = ((s as any).klofQW ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
   (s as any).orgasm_txt = 'The combination is enough to take you past your peak and you orgasm.';
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group');
@@ -389,10 +389,10 @@ function enterEv19(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   if (((s as any).jorasemyon ?? 0) === 1) {
     qspCall(s, 'cum_call', 'mouth', 'A44', 1);
-    qspCall(s, 'cum_call', '', '', 'A45', 1);
+    qspCall(s, 'cum_call', '', 'A45', 1);
   } else {
     qspCall(s, 'cum_call', 'mouth', 'A45', 1);
-    qspCall(s, 'cum_call', '', '', 'A44', 1);
+    qspCall(s, 'cum_call', '', 'A44', 1);
   }
   (s as any).picrand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).picrand ?? 0) === 1) {
@@ -536,8 +536,8 @@ function enterEv24(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEv25(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Boss', (Math.floor(Math.random() * 11) + 30), 3, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'Boss', (Math.floor(Math.random() * 11) + 30), 3, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   scene.img('images/characters/city/jora/klof26_1.jpg');
   scene.text('You bare your breasts.');
   scene.text('"Show me your ass!" Orders the boss');
@@ -964,9 +964,9 @@ function enterEv42(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -996,9 +996,9 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1028,9 +1028,9 @@ function enterEv44(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1067,9 +1067,9 @@ function enterEv45(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1095,9 +1095,9 @@ function enterEv46(s: GameState, scene: SceneBuilder): void {
     { label: 'Go into the water and remove bikini bottoms', goto: ['city_jorahouse', 'ev47'] },
     { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspGoto(st, 'city_center', '');
   } },
   ]);
@@ -1124,9 +1124,9 @@ function enterEv47(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1159,9 +1159,9 @@ function enterEv48(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1194,9 +1194,9 @@ function enterEv49(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1228,9 +1228,9 @@ function enterEv50(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1261,9 +1261,9 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1296,9 +1296,9 @@ function enterEv52(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1342,9 +1342,9 @@ function enterEv54(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1389,9 +1389,9 @@ function enterEv56(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1463,9 +1463,9 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_center', '');
   } },
@@ -1479,16 +1479,16 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEv62(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'd');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'd');
   scene.img('images/characters/city/jora/sex/bas23.jpg');
   scene.text('You haven\'t got any choice and you are gangbanged by the group of men.');
   scene.text('Someone bends you over and sticks his dick in your ass, another your throat and a third in your cunt. You remain fully stuffed as they all try each of your holes.');
@@ -1519,42 +1519,42 @@ function enterEv62(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEv63(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 2);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 3);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 4);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 5);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 6);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 7);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 1);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 2);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 3);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 4);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 5);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 6);
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 7);
   scene.img('images/characters/city/jora/sex/bas24.jpg');
   scene.text('You continue to suck, while you are pounded in the ass and pussy. Your only saving grace being that the show has them so aroused none of them last long before they cum.');
   scene.text('Some of the men finish on your face or in your mouth while the others have started to finish in and on you butt leaving you covered in cum.');
-  // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[4], 'exhibitionism', 'sub', 'unknown'
-  // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[5], 'exhibitionism', 'sub', 'unknown'
-  // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[6], 'exhibitionism', 'sub', 'unknown'
-  // TODO-QSP: gs 'arousal', 'bj', 4, $npcID[7], 'exhibitionism', 'sub', 'unknown'
+  qspCall(s, 'arousal', 'bj', 4, (((s as any).npcID ?? 0)?.[4] ?? 0), 'exhibitionism', 'sub', 'unknown');
+  qspCall(s, 'arousal', 'bj', 4, (((s as any).npcID ?? 0)?.[5] ?? 0), 'exhibitionism', 'sub', 'unknown');
+  qspCall(s, 'arousal', 'bj', 4, (((s as any).npcID ?? 0)?.[6] ?? 0), 'exhibitionism', 'sub', 'unknown');
+  qspCall(s, 'arousal', 'bj', 4, (((s as any).npcID ?? 0)?.[7] ?? 0), 'exhibitionism', 'sub', 'unknown');
   (s as any).orgasm_or = 'yes';
-  // TODO-QSP: gs 'arousal', 'vaginal', -7, $npcID[0], 'exhibitionism', 'sub', 'unknown', 'gangbang'
-  // TODO-QSP: gs 'arousal', 'vaginal', -7, $npcID[1], 'exhibitionism', 'sub', 'unknown', 'gangbang'
-  // TODO-QSP: gs 'arousal', 'anal', -7, $npcID[2], 'exhibitionism', 'sub', 'unknown', 'gangbang'
-  // TODO-QSP: gs 'arousal', 'anal', -7, $npcID[3], 'exhibitionism', 'sub', 'unknown', 'gangbang'
-  // TODO-QSP: gs 'cum_call', 'butt', $npcID[0]
-  // TODO-QSP: gs 'cum_call', 'butt', $npcID[1]
-  // TODO-QSP: gs 'cum_call', 'anus', $npcID[2]
-  // TODO-QSP: gs 'cum_call', 'anus', $npcID[3]
-  // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID[4]
-  // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID[5]
-  // TODO-QSP: gs 'cum_call', 'face', $npcID[6]
-  // TODO-QSP: gs 'cum_call', 'face', $npcID[7]
+  qspCall(s, 'arousal', 'vaginal', (-7), (((s as any).npcID ?? 0)?.[0] ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
+  qspCall(s, 'arousal', 'vaginal', (-7), (((s as any).npcID ?? 0)?.[1] ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
+  qspCall(s, 'arousal', 'anal', (-7), (((s as any).npcID ?? 0)?.[2] ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
+  qspCall(s, 'arousal', 'anal', (-7), (((s as any).npcID ?? 0)?.[3] ?? 0), 'exhibitionism', 'sub', 'unknown', 'gangbang');
+  qspCall(s, 'cum_call', 'butt', (((s as any).npcID ?? 0)?.[0] ?? 0));
+  qspCall(s, 'cum_call', 'butt', (((s as any).npcID ?? 0)?.[1] ?? 0));
+  qspCall(s, 'cum_call', 'anus', (((s as any).npcID ?? 0)?.[2] ?? 0));
+  qspCall(s, 'cum_call', 'anus', (((s as any).npcID ?? 0)?.[3] ?? 0));
+  qspCall(s, 'cum_call', 'mouth_swallow', (((s as any).npcID ?? 0)?.[4] ?? 0));
+  qspCall(s, 'cum_call', 'mouth_swallow', (((s as any).npcID ?? 0)?.[5] ?? 0));
+  qspCall(s, 'cum_call', 'face', (((s as any).npcID ?? 0)?.[6] ?? 0));
+  qspCall(s, 'cum_call', 'face', (((s as any).npcID ?? 0)?.[7] ?? 0));
   (s as any).guy = ((s as any).guy ?? 0) + (8);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1566,12 +1566,12 @@ function enterEv63(s: GameState, scene: SceneBuilder): void {
 
 function enterEv64(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (3);
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'a random man', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'a random man', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   if (((s as any).pcs_ass ?? 0) < 16) {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   }
@@ -1605,9 +1605,9 @@ function enterEv65(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora comes out of the locker room and says, "Well, you put on a good show here, the boss is delighted!"');
   scene.text('He hands you a business card with an address in the residential area on it and a handful of rubles. "If you ever need money, go to the sauna, show them this card and tell them we sent you."');
   qspCall(s, 'arousal', 'end');
-  // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-  // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-  // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+  qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['swim'], ((s as any).lastwornclothingnumber ?? 0)?.['swim']);
+  qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['swim'], ((s as any).lastwornpantynumber ?? 0)?.['swim']);
+  qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['swim'], ((s as any).lastwornbranumber ?? 0)?.['swim']);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

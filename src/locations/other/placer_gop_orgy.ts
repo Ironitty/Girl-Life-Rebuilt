@@ -57,8 +57,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', (-15), 'group', 'sub');
     qspCall(st, 'stat', '');
     if (((st as any).ciklkm ?? 0) > 0) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Gopnik from the park', (Math.floor(Math.random() * 11) + 18));
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Gopnik from the park', (Math.floor(Math.random() * 11) + 18));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       // TODO-QSP: jump 'markgopgang'
     }
     // TODO-QSP: dynamic text: The guys are finally done with the two of you, and you feel a tad embarrassed wh...

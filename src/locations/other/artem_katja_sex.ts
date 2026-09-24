@@ -1620,7 +1620,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Let Artem cum', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
+    qspCall(st, 'stat', '');
   }, goto: ['artem_katja_sex', 'after_home_work_premature_eruption'] },
       ]);
     }

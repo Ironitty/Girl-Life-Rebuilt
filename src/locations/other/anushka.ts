@@ -350,7 +350,7 @@ function enterWedgieFight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Punishment', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', (-5), 'humiliation');
-    qspCall(st, 'pain', '', 3, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '3', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/detention/ffspank1.jpg');
     scene.text('"Very well, since you both wanted to be naked so badly, take off your clothes," she demands as she pulls a chair close to her leather couch and takes a seat. Anushka quickly takes off all her clothes, seemingly not caring in the slightest. You, however, are a little slower, but finally manage to remove your clothes as well. Once you\'re both naked, Miss Volkov motions you over. As soon as you\'re within arms reach, she grabs you and pulls you across her lap. She proceeds to spank your bare ass until your cheeks are cherry red and stinging. Anushka takes a seat on the couch, silently watching you get spanked.');
@@ -667,7 +667,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (st as any).i = 0;
     // TODO-QSP: :marrid_looop
     if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-      (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+      (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
       if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushka'', ''telling_marr...
       }
@@ -941,7 +941,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     (st as any).i = 0;
     // TODO-QSP: :lover_looop
     if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-      (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+      (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
       if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
         // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushka'', ''tell_about_generic_boyfrein...
       }

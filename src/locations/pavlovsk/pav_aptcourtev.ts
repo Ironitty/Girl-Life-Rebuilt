@@ -1988,10 +1988,10 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
 function enterSmokeblowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'fame', 'pav', 'sex', 3);
-  qspCall(s, 'npcgeneratec', '', 0, 'Smoker', (Math.floor(Math.random() * 4) + 17), 1, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Smoker', (Math.floor(Math.random() * 4) + 17), 1, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Smoker', (Math.floor(Math.random() * 4) + 17), 1, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Smoker', (Math.floor(Math.random() * 4) + 17), 1, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   scene.img('images/locations/pavlovsk/resident/apartment/events/sex/smokebj1.jpg');
   scene.text('You get down on your knees. "Oh shit, I can\'t believe she\'s really going to do it!" one of them says as they both quickly pull their dicks out. You start sucking the cock of the one that told you to get down on your knees and jerking the other one off with your free hand.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group', 'exhibitionism');
@@ -2107,7 +2107,7 @@ function enterTwoBoys(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>>, pushes you over so you''re laying on your side, and sticks his dic...
     scene.text(`${((st as any).npcdesc ?? '')}, pushes you over so you're laying on your side, and sticks his dick back in your mouth, making you unable to see what the other one is doing, but you feel him moving in behind you. A moment later, you feel slick fingers lubing up your asshole before you feel the head of his cock against it.`);
     scene.text('With a quick shove, he pops his cock into your ass and starts fucking it. It hurts a little, but at least he used lube and it isn\'t too bad. You lay on your side as one of them fucks your mouth and the other fucks your ass.');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'sub', 'group');
     qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID1 ?? 0), 'sub', 'group');
     qspCall(st, 'stat', '');
@@ -2167,8 +2167,8 @@ function enterTwoBoys(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you get fucked some more, ${((st as any).npcdesc1 ?? '')} speaks up. "Let's switch again. I want to fuck her some more."`);
     // TODO-QSP: dynamic text: His friend doesn''t stop fucking you. "You already had a turn." They argue back ...
     scene.text(`His friend doesn't stop fucking you. "You already had a turn." They argue back and forth until they reach a compromise. They make you crawl up and mount ${((st as any).npcdesc ?? '')} while his friend moves up behind you and presses the head of his cock against your asshole until it pops in. You feel a moment of pain as he slides it in further and they both start to fuck you.`);
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0), 'sub', 'group');
     qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID ?? 0), 'sub', 'group');
     qspCall(st, 'stat', '');

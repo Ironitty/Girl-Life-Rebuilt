@@ -19,9 +19,9 @@ function enterPush(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPop(s: GameState, scene: SceneBuilder): void {
-  (s as any).loc = ((s as any).loc_stack ?? 0)?.[0];
-  (s as any).loc_arg = ((s as any).loc_arg_stack ?? 0)?.[0];
-  (s as any).BACKIMAGE = ((s as any).background_stack ?? 0)?.[0];
+  (s as any).loc = (((s as any).loc_stack ?? 0)?.[0] ?? 0);
+  (s as any).loc_arg = (((s as any).loc_arg_stack ?? 0)?.[0] ?? 0);
+  (s as any).BACKIMAGE = (((s as any).background_stack ?? 0)?.[0] ?? 0);
   // TODO-QSP: killobj
   // TODO-QSP: p $stat_stack[arrsize('$stat_stack')-1]
   // TODO-QSP: dynamic text: $main_stack[arrsize('$main_stack')-1]

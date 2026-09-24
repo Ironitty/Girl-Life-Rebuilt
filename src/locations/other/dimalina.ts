@@ -54,7 +54,7 @@ function enterDimkalina1(s: GameState, scene: SceneBuilder): void {
   scene.text('Swallowing hard, you nod your head in agreement. "A ball gag?"');
   scene.text('"That\'s right! I was wondering what perverted shit a slut like you would want as a gift, and here it is, all for you. But before that, take this." In his hand, there is a pair of pink pills. Just as you open your mouth to question him, he shoves the pills in. You try to push them out, but Dimka immediately stuffs the ball gag into your mouth and straps it in. It\'s so big, you begin to think that he chose the wrong size as your jaw starts to hurt.');
   scene.text('"Now look at this, whore," He says as he opens the closet door.');
-  qspCall(s, 'pain', '', 2, 'jaw', 'bind');
+  qspCall(s, 'pain', '2', 'jaw', 'bind');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -90,7 +90,7 @@ function enterDimkalina1(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'mood', 'lower', 'small');
     }
     qspCall(st, 'npc_relationship', 'modify', 'A1', 'loathe');
-    qspCall(st, 'pain', '', 3, 'throat', 'choke');
+    qspCall(st, 'pain', '3', 'throat', 'choke');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Listen carefully', goto: ['dimalina', 'Listen'] },
@@ -231,8 +231,8 @@ function enterHelp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mood ?? 0) > 5) {
     qspCall(s, 'mood', 'lower', 'small');
   }
-  qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-  qspCall(s, 'pain', '', 2, 'mouth', 'bind');
+  qspCall(s, 'pain', '2', 'wrists', 'bind');
+  qspCall(s, 'pain', '2', 'mouth', 'bind');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -276,7 +276,7 @@ function enterWatch(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Dimka', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'pain', '', 1, 'neck', 'bind');
+    qspCall(st, 'pain', '1', 'neck', 'bind');
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     if (((st as any).dimbadgirl ?? 0) === 1) {
       scene.text('After that, Dimka opens the closet and you look up at him to see him smirking down at you.');
@@ -290,7 +290,7 @@ function enterWatch(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'mood', 'lower', 'small');
       }
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
-      qspCall(st, 'pain', '', 3, 'throat', 'choke');
+      qspCall(st, 'pain', '3', 'throat', 'choke');
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
       (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
       qspCall(st, 'stat', '');
@@ -441,7 +441,7 @@ function enterDistraction(s: GameState, scene: SceneBuilder): void {
   scene.text('"Look Lina… can we just start over? I don\'t want things to end likes this… come here, babe." Dimka pulls her closer into a deep kiss and all her doubt seems to melt away as they make out. By the end of it, Lina doesn\'t say anything, she just grabs his zipper and takes out his dick before she starts to stroke him.');
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (20);
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'loathe');
-  qspCall(s, 'pain', '', 3, 'throat', 'choke');
+  qspCall(s, 'pain', '3', 'throat', 'choke');
   if (((s as any).pcs_mood ?? 0) > 10) {
     qspCall(s, 'mood', 'lower', 'small');
   }
@@ -1041,9 +1041,9 @@ function enterHooksex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
-  qspCall(s, 'pain', '', 2, 'hair', 'pull');
-  qspCall(s, 'pain', '', 2, 'cheeks', 'slap');
-  qspCall(s, 'pain', '', 2, 'mouth', 'bind');
+  qspCall(s, 'pain', '2', 'hair', 'pull');
+  qspCall(s, 'pain', '2', 'cheeks', 'slap');
+  qspCall(s, 'pain', '2', 'mouth', 'bind');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBindpain(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal']; enterSexpain(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anal']; enterSexpain(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1113,7 +1113,7 @@ function enterHelplina(s: GameState, scene: SceneBuilder): void {
     scene.text('Dimka then leaves for the restroom. As you and Lina redress, she embraces you.');
     // TODO-QSP: dynamic text: "Thanks <<$pcs_firstname>>"
     scene.text(`"Thanks ${((st as any).pcs_firstname ?? '')}"`);
-    qspCall(st, 'pain', '', 3, 'throat', 'choke');
+    qspCall(st, 'pain', '3', 'throat', 'choke');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'vaginal']; enterSexpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).pcs_mood ?? 0) > 5) {
       qspCall(st, 'mood', 'lower', 'small');
@@ -1215,15 +1215,15 @@ function enterWalklina(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBindpain(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 2, 'neck', 'bind');
-  qspCall(s, 'pain', '', 2, 'back', 'bind');
-  qspCall(s, 'pain', '', 2, 'legs', 'bind');
-  qspCall(s, 'pain', '', 2, 'shoulders', 'bind');
-  qspCall(s, 'pain', '', 2, 'armL', 'bind');
-  qspCall(s, 'pain', '', 2, 'armR', 'bind');
-  qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-  qspCall(s, 'pain', '', 2, 'ankles', 'bind');
-  qspCall(s, 'pain', '', 2, 'breasts', 'bind');
+  qspCall(s, 'pain', '2', 'neck', 'bind');
+  qspCall(s, 'pain', '2', 'back', 'bind');
+  qspCall(s, 'pain', '2', 'legs', 'bind');
+  qspCall(s, 'pain', '2', 'shoulders', 'bind');
+  qspCall(s, 'pain', '2', 'armL', 'bind');
+  qspCall(s, 'pain', '2', 'armR', 'bind');
+  qspCall(s, 'pain', '2', 'wrists', 'bind');
+  qspCall(s, 'pain', '2', 'ankles', 'bind');
+  qspCall(s, 'pain', '2', 'breasts', 'bind');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -1232,23 +1232,23 @@ function enterBindpain(s: GameState, scene: SceneBuilder): void {
 function enterSexpain(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'vaginal') {
     if (((s as any).pcs_vag ?? 0) < 10  &&  ((s as any).sucskill ?? 0) < 4) {
-      qspCall(s, 'pain', '', 7, 'vaginal', 'ache');
+      qspCall(s, 'pain', '7', 'vaginal', 'ache');
     } else {
       if (((s as any).pcs_vag ?? 0) < 20  &&  ((s as any).sucskill ?? 0) < 4) {
-        qspCall(s, 'pain', '', 5, 'vaginal', 'ache');
+        qspCall(s, 'pain', '5', 'vaginal', 'ache');
       } else {
-        qspCall(s, 'pain', '', 3, 'vaginal', 'ache');
+        qspCall(s, 'pain', '3', 'vaginal', 'ache');
       }
     }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'anal') {
       if (((s as any).pcs_ass ?? 0) < 10  &&  ((s as any).sucskill ?? 0) < 4) {
-        qspCall(s, 'pain', '', 7, 'asshole', 'ache');
+        qspCall(s, 'pain', '7', 'asshole', 'ache');
       } else {
         if (((s as any).pcs_ass ?? 0) < 20  &&  ((s as any).sucskill ?? 0) < 4) {
-          qspCall(s, 'pain', '', 5, 'asshole', 'ache');
+          qspCall(s, 'pain', '5', 'asshole', 'ache');
         } else {
-          qspCall(s, 'pain', '', 3, 'asshole', 'ache');
+          qspCall(s, 'pain', '3', 'asshole', 'ache');
         }
       }
     }
@@ -1268,7 +1268,7 @@ function enterEscape(s: GameState, scene: SceneBuilder): void {
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBindpain(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'pain', '', 2, 'mouth', 'bind');
+  qspCall(s, 'pain', '2', 'mouth', 'bind');
   if (((s as any).pcs_mood ?? 0) > 10) {
     qspCall(s, 'mood', 'lower', 'small');
   }
@@ -1314,10 +1314,10 @@ function enterSuccubusdimka(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think… you can go?" he mumbles tiredly. With a smile, you leave him trying to catch his breath. After taking a quick shower in the restroom, you redress and leave.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'dom');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
-    qspCall(st, 'pain', '', 2, 'hair', 'pull');
-    qspCall(st, 'pain', '', 2, 'cheeks', 'slap');
-    qspCall(st, 'pain', '', 2, 'mouth', 'bind');
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'pain', '2', 'hair', 'pull');
+    qspCall(st, 'pain', '2', 'cheeks', 'slap');
+    qspCall(st, 'pain', '2', 'mouth', 'bind');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) - (20);
     qspCall(st, 'stat', '');
@@ -1391,7 +1391,7 @@ function enterSuccubuslina(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'cuni', (Math.floor(Math.random() * 6) + 10), ((st as any).npcID1 ?? 0), 'dom');
     qspCall(st, 'arousal', 'cuni_give', (Math.floor(Math.random() * 6) + 10), ((st as any).npcID1 ?? 0), 'dom');
     qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 6) + 10), ((st as any).npcID ?? 0), 'dom');
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'cum_call', 'labia', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID ?? 0), 1);
@@ -1453,7 +1453,7 @@ function enterLinaundress(s: GameState, scene: SceneBuilder): void {
     scene.text('"Clean her up and get her out of here."');
     scene.text('He leaves for the bathroom and you help Lina redress and walk her out of this house.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBindpain(st, scene); (st as any).locArgs = __savedLocArgs; }
-    qspCall(st, 'pain', '', 2, 'mouth', 'bind');
+    qspCall(st, 'pain', '2', 'mouth', 'bind');
     if (((st as any).pcs_mood ?? 0) > 5) {
       qspCall(st, 'mood', 'lower', 'small');
     }

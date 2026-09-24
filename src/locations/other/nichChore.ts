@@ -502,7 +502,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('She emphasizes each word with a smack on your butt. She repeats her sentence several times.');
     scene.text('"Do you understand? Yes? Then back to work!"');
     scene.text('You pull down your skirt and get back up.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -529,7 +529,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('She emphasizes each word with a smack on your butt. She repeats her sentence several times.');
     scene.text('"Do you understand? Yes? Then back to work!"');
     scene.text('You pull down your skirt and get back up.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -771,20 +771,20 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((s as any).nichTempPic ?? '')}`);
     // TODO-QSP: $nichChoreDesc
   } else {
-    (s as any).nichRand = ((s as any).nichRand ?? 0) - (((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]);
+    (s as any).nichRand = ((s as any).nichRand ?? 0) - ((((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)] ?? 0));
     (s as any).nichI = ((s as any).nichI ?? 0) + (1);
     // TODO-QSP: jump 'nichChoreResultLoop'
   }
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
-    // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
+    qspCall(s, 'exp_gain', 'cleaning', 0);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
-      // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
+      qspCall(s, 'exp_gain', 'cleaning', 0);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligent ?? 0));
-      // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
+      qspCall(s, 'exp_gain', 'cleaning', 0);
     }
   }
   ((s as any).nichChoreState = (s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
@@ -807,7 +807,7 @@ function enterCleanApartment(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichChoreCurrent ?? 0) === '') {
       (s as any).nichChoreCurrent = 'hallway';
     }
-    // TODO-QSP: gt 'nichChore', 'inspect', $nichChoreCurrent, 1
+    qspGoto(s, 'nichChore', 'inspect', ((s as any).nichChoreCurrent ?? ''), '1');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'end') {
       dynamicGoto(s, 'prevLoc');

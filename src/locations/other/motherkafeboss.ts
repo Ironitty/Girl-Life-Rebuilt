@@ -286,7 +286,7 @@ function enterWorkShift(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/waitress_client.jpg');
   scene.text('Placeholder');
   (s as any).pcafetip = (Math.floor(Math.random() * 101) + 40);
-  // TODO-QSP: gs 'money', 'earn', 300 + pcafetip
+  qspCall(s, 'money', 'earn', 300 + ((s as any).pcafetip ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   if (((s as any).pcs_servng ?? 0) < 100) {
     qspCall(s, 'exp_gain', 'servng', 1);
@@ -316,7 +316,7 @@ function enterWorkCock(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/waitress_client.jpg');
   scene.text('Placeholder');
   (s as any).pcafetip = (Math.floor(Math.random() * 101) + 40);
-  // TODO-QSP: gs 'money', 'earn', 300 + pcafetip
+  qspCall(s, 'money', 'earn', 300 + ((s as any).pcafetip ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   // TODO-QSP: dynamic text: You worked as a waitress for 2 hours and made <<$func(''money'', ''string_profit...
   scene.text(`You worked as a waitress for 2 hours and made ${qspFunc(s, 'money', 'string_profit', 300)} plus ${qspFunc(s, 'money', 'string_profit', ((s as any).pcafetip ?? ''))} in tips.`);

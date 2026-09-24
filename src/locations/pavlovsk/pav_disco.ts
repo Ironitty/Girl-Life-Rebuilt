@@ -473,15 +473,15 @@ function enterWallStand(s: GameState, scene: SceneBuilder): void {
 function enterDancePartner(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp = (s as any).temp ?? {})['pav_disco_partner'] = (Math.floor(Math.random() * 300) + 1);
   if (((s as any).temp ?? 0)?.['pav_disco_partner'] > ((s as any).boynum ?? 0)  ||  (Object.keys((s as any).hookup_partners ?? {}).length === 0)) {
-    qspCall(s, 'npcgeneratec', '', 0, 'guy from the disco', 0, (Math.floor(Math.random() * 4) + 1), 1, 'like');
+    qspCall(s, 'npcgeneratec', '0', 'guy from the disco', 0, (Math.floor(Math.random() * 4) + 1), 1, 'like');
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((s as any).npc_age ?? 0)?.[String((s as any).npcID ?? 0)] < 26) {
       ((s as any).npc_age = (s as any).npc_age ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 20) + 26);
     }
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcStat', '$npclastgenerated');
     ((s as any).temp = (s as any).temp ?? {})['pav_disco_partner'] = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
       // TODO-QSP: dynamic text: A guy dressed in <<$npc_outfit[$npcID]>> dances his way over to you.
-      scene.text(`A guy dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} dances his way over to you.`);
+      scene.text(`A guy dressed in ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} dances his way over to you.`);
       if ((Math.floor(Math.random() * 101) + 0) > 70) {
         ((s as any).temp = (s as any).temp ?? {})['drunk_guy'] = 1;
         scene.text('He\'s clearly drunk.');
@@ -490,7 +490,7 @@ function enterDancePartner(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: A guy dressed in <<$npc_outfit[$npcID]>> dances his way over to you. His clothes...
-      scene.text(`A guy dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} dances his way over to you. His clothes look expensive.`);
+      scene.text(`A guy dressed in ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} dances his way over to you. His clothes look expensive.`);
     }
     scene.actions([
       { label: 'Move away', goto: ['pav_disco', ''] },
@@ -901,7 +901,7 @@ function enterInviteOutside(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: $npc_usedname[$npcID] = $npc_nickname[$npcID]
-    qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+    qspCall(s, 'npcStat', '$npcID');
     if (((s as any).temp ?? 0)?.['drunk_guy'] === 0) {
       scene.text('The man dances with confidence and elegance. When the song ends, he offers to take you outside for some fresh air.');
       scene.actions([
@@ -1093,7 +1093,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKnownPartner(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+  qspCall(s, 'npcStat', '$npcID');
   qspCall(s, 'stat', '');
   if ((Array.isArray((s as any).fuckbuddy) ? ((s as any).fuckbuddy as any[]).indexOf(((s as any).npcID ?? 0)) : -1) > 0) {
     scene.text('"Hey."');
@@ -1106,15 +1106,15 @@ function enterKnownPartner(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
     scene.img('images/locations/pavlovsk/community/disco/normal1.jpg');
     // TODO-QSP: dynamic text: A man you recognize, dressed in <<$npc_outfit[$npcID]>>, dances his way over to ...
-    scene.text(`A man you recognize, dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}, dances his way over to you.`);
+    scene.text(`A man you recognize, dressed in ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}, dances his way over to you.`);
   } else {
     scene.img('images/locations/pavlovsk/community/disco/normal1.jpg');
     // TODO-QSP: dynamic text: A man you recognize, dressed in expensive looking <<$npc_outfit[$npcID]>>, dance...
-    scene.text(`A man you recognize, dressed in expensive looking ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}, dances his way over to you.`);
+    scene.text(`A man you recognize, dressed in expensive looking ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}, dances his way over to you.`);
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
     // TODO-QSP: dynamic text: "Hey <<$pcs_usedname[$npcID]>>," he smiles, wrapping his arm around you possessi...
-    scene.text(`"Hey ${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}," he smiles, wrapping his arm around you possessively. "Fancy seeing you here."`);
+    scene.text(`"Hey ${(((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}," he smiles, wrapping his arm around you possessively. "Fancy seeing you here."`);
     scene.text('He leans over to whisper in your ear.');
     scene.text('"I have a hotel and cash to burn. Why don\'t we get out of here so I can spend it?"');
     scene.actions([

@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 480;
     (st as any).film = ((st as any).film ?? 0) + 1;
     (st as any).BDSMfilm = ((st as any).BDSMfilm ?? 0) + 1;
-    // TODO-QSP: gs 'money', 'earn', pcs_apprnc * 125
+    qspCall(st, 'money', 'earn', ((st as any).pcs_apprnc ?? 0) * 125);
     (st as any).actr = 0;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/studio_porn/dvd-disx.jpg');

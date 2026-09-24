@@ -375,16 +375,16 @@ function enterChangeIntoProstituteOutfit(s: GameState, scene: SceneBuilder): voi
   ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})['prostitute'] = ((s as any).currentpursenumber ?? 0);
   ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})['prostitute'] = ((s as any).coatworntype ?? 0);
   ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})['prostitute'] = ((s as any).coatwornnumber ?? 0);
-  // TODO-QSP: gs 'clothing', 'wear', $prostitute['clothingworntype'], prostitute['clothingwornnumber']
+  qspCall(s, 'clothing', 'wear', ((s as any).prostitute ?? 0)?.['clothingworntype'], ((s as any).prostitute ?? 0)?.['clothingwornnumber']);
   if (((s as any).prostitute ?? 0)?.['underweartype'] === 2) {
-    // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype['prostitute'], lastwornbodysuitnumber['prost...
+    qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0)?.['prostitute'], ((s as any).lastwornbodysuitnumber ?? 0)?.['prostitute']);
   } else {
-    // TODO-QSP: gs 'panties', 'wear', $prostitute['pantyworntype'], prostitute['pantywornnumber']
-    // TODO-QSP: gs 'bras', 'wear', $prostitute['braworntype'], prostitute['brawornnumber']
+    qspCall(s, 'panties', 'wear', ((s as any).prostitute ?? 0)?.['pantyworntype'], ((s as any).prostitute ?? 0)?.['pantywornnumber']);
+    qspCall(s, 'bras', 'wear', ((s as any).prostitute ?? 0)?.['braworntype'], ((s as any).prostitute ?? 0)?.['brawornnumber']);
   }
-  // TODO-QSP: gs 'shoes', 'wear', $prostitute['shoeworntype'], prostitute['shoewornnumber']
-  // TODO-QSP: gs 'purses', 'wear', $prostitute['currentpursetype'], prostitute['currentpursenumber']
-  // TODO-QSP: gs 'coats', 'wear', $prostitute['coatworntype'], prostitute['coatwornnumber']
+  qspCall(s, 'shoes', 'wear', ((s as any).prostitute ?? 0)?.['shoeworntype'], ((s as any).prostitute ?? 0)?.['shoewornnumber']);
+  qspCall(s, 'purses', 'wear', ((s as any).prostitute ?? 0)?.['currentpursetype'], ((s as any).prostitute ?? 0)?.['currentpursenumber']);
+  qspCall(s, 'coats', 'wear', ((s as any).prostitute ?? 0)?.['coatworntype'], ((s as any).prostitute ?? 0)?.['coatwornnumber']);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (String((s as any).locArgs?.[1] ?? '') === 'work') {
     ((s as any).prostitute = (s as any).prostitute ?? {})['changed_for_work'] = 1;
@@ -622,8 +622,8 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   (s as any).sexcontra = 0;
   (s as any).pro_client_condom = 'tbd';
   (s as any).pro_client_cumshot = 'tbd';
-  qspCall(s, 'npcgeneratec', '', 0, 'client', (Math.floor(Math.random() * 48) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'client', (Math.floor(Math.random() * 48) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   if (((s as any).hour ?? 0) > 19  ||  ((s as any).hour ?? 0) < 7) {
     (s as any).pro_work_time = 'night';
   } else {
@@ -1104,8 +1104,8 @@ function enterPavClient(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['pav_condom_refusal'] = 0;
   }
-  qspCall(s, 'npcgeneratec', '', 0, 'pavlovsk client', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'pavlovsk client', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   // TODO-QSP: end
   scene.build();
 }

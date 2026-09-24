@@ -91,16 +91,16 @@ function enterGustav(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gustavday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).pcs_energy ?? 0) >= 20) {
     scene.actions([
       { label: 'Develop strength (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'tatiana_lab', 'GustavDevelop', 'stren');
+    qspCall(st, 'tatiana_lab', '');
   } },
       { label: 'Develop agility (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'tatiana_lab', 'GustavDevelop', 'agil');
+    qspCall(st, 'tatiana_lab', '');
   } },
       { label: 'Develop reactions (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'tatiana_lab', 'GustavDevelop', 'react');
+    qspCall(st, 'tatiana_lab', '');
   } },
       { label: 'Develop endurance (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'tatiana_lab', 'GustavDevelop', 'vital');
+    qspCall(st, 'tatiana_lab', '');
   } },
     ]);
   } else {

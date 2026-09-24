@@ -218,22 +218,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).nichTanya ?? 0)?.['Relationship'] > 0  &&  ((s as any).nichTanya ?? 0)?.['Relationship'] < 4  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).nichTanya ?? 0)?.['FuckLast'] !== ((s as any).daystart ?? 0)) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027visitTanya/u0027); return false;">Apartment</a> where Tanya lives', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'nichApartment\', \'visitTanya\'">Apartment</a> where Tanya lives', '3');
     }
     if (((s as any).nichWork ?? 0) === 2) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027/u0027); return false;">Nicholas\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'nichApartment\'">Nicholas\'s</a> apartment', '3');
     }
     if (((s as any).izoldaQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027qwIzoldaApp/u0027, /u0027/u0027); return false;">Isolde\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'qwIzoldaApp\'">Isolde\'s</a> apartment', '3');
     }
     if (((s as any).mainQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027tatiana_lab/u0027, /u0027start/u0027); return false;">You can visit Tatiana</a> at the Myrkov Investigative Agency.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'tatiana_lab\', \'start\'">You can visit Tatiana</a> at the Myrkov Investigative Agency.', '3');
     }
     if (((s as any).yaq ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027yarik/u0027, /u0027start/u0027); return false;">Yaroslav\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'yarik\', \'start\'">Yaroslav\'s</a> apartment', '3');
     }
     if (((s as any).peter ?? 0) > 0) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027peterroom/u0027, /u0027start_door/u0027); return false;">Peter\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'peterroom\', \'start_door\'">Peter\'s</a> apartment', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table border=1><<$show_table>></tr></table>
@@ -477,22 +477,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).nichTanya ?? 0)?.['Relationship'] > 0  &&  ((s as any).nichTanya ?? 0)?.['Relationship'] < 4  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).nichTanya ?? 0)?.['FuckLast'] !== ((s as any).daystart ?? 0)) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027visitTanya/u0027); return false;">Apartment</a> where Tanya lives', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'nichApartment\', \'visitTanya\'">Apartment</a> where Tanya lives', '3');
     }
     if (((s as any).nichWork ?? 0) === 2) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichApartment/u0027, /u0027/u0027); return false;">Nicholas\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'nichApartment\'">Nicholas\'s</a> apartment', '3');
     }
     if (((s as any).izoldaQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027qwIzoldaApp/u0027, /u0027/u0027); return false;">Isolde\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'qwIzoldaApp\'">Isolde\'s</a> apartment', '3');
     }
     if (((s as any).mainQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027tatiana_lab/u0027, /u0027start/u0027); return false;">You can visit Tatiana</a> at the Myrkov Investigative Agency.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'tatiana_lab\', \'start\'">You can visit Tatiana</a> at the Myrkov Investigative Agency.', '3');
     }
     if (((s as any).yaq ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027yarik/u0027, /u0027start/u0027); return false;">Yaroslav\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'yarik\', \'start\'">Yaroslav\'s</a> apartment', '3');
     }
     if (((s as any).peter ?? 0) > 0) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027peterroom/u0027, /u0027start_door/u0027); return false;">Peter\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'peterroom\', \'start_door\'">Peter\'s</a> apartment', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table border=1><<$show_table>></tr></table>

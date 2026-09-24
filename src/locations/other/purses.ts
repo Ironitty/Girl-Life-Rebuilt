@@ -68,7 +68,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'purse_attributes', $ARGS[1] + '_purses', ARGS[2]
+    qspCall(s, 'purse_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_purses', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'purses', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -95,7 +95,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'purse_attributes', $ARGS[1] + '_purses', ARGS[2]
+    qspCall(s, 'purse_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_purses', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'purses', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -192,7 +192,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  // TODO-QSP: gs 'purse_attributes', $ARGS[1], ARGS[2]
+  qspCall(s, 'purse_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).PursePrice ?? 0))) {
     // TODO-QSP: exit
   }

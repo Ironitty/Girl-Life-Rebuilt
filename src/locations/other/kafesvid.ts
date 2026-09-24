@@ -91,7 +91,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   scene.img('images/characters/city/boyfriend/sex/event/1.jpg');
   // TODO-QSP: dynamic text: The cafe is pretty empty, and you are in the far corner, where it is kind of dar...
   scene.text(`The cafe is pretty empty, and you are in the far corner, where it is kind of dark. ${((s as any).telsob ?? '')} uses this little bit of privacy to slowly hike up her shirt. When she notices you staring, she puts a leg up right between your thighs. It gives you an excellent view of her already wet panties.`);
@@ -191,7 +191,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter11(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   (s as any).kafesvidsex = ((s as any).kafesvidsex ?? 0) + (1);
   scene.img('images/characters/city/boyfriend/sex/event/8.jpg');
   // TODO-QSP: dynamic text: You take your time sliding the dildo in, as you let her get used to it. When she...
@@ -212,7 +212,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter12(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   (s as any).kafesvidsex = ((s as any).kafesvidsex ?? 0) + (1);
   scene.img('images/characters/city/boyfriend/sex/event/9.jpg');
   // TODO-QSP: dynamic text: You tap the dildo on the side of the table a couple times. Realizing what you wa...
@@ -234,7 +234,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter13(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   (s as any).kafesvidsex = ((s as any).kafesvidsex ?? 0) + (1);
   scene.img('images/characters/city/boyfriend/sex/event/7.jpg');
@@ -258,7 +258,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   scene.img('images/characters/city/boyfriend/sex/event/10.jpg');
   scene.text('After you make your order at he cafe, you notice the waiter is still hovering around your table, and looking in your direction.');
   // TODO-QSP: dynamic text: "I think he like you," <<$telsob>> says, giving you a wink.

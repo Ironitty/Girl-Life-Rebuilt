@@ -47,7 +47,7 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
       (s as any).npcRelSetVal = ((s as any).npcRelSetVal ?? 0) - ((((s as any).npcRelSetVal ?? 0)*((s as any).pcs_humint ?? 0))/200);
     }
   }
-  (s as any).npcRelSetVal = ((s as any).npcRelSetVal ?? 0) + (((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]);
+  (s as any).npcRelSetVal = ((s as any).npcRelSetVal ?? 0) + ((((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
   if (((s as any).npcRelSetVal ?? 0) > 100) {
     (s as any).npcRelSetVal = 100;
   }
@@ -58,12 +58,12 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') > ((s as any).npc_rel_daily ?? 0)[String((s as any).locArgs?.[1] ?? '')+String((s as any).locArgs?.[4] ?? '')]) {
       // TODO-QSP: npc_rel_daily[$ARGS[1]+$ARGS[4]] += 1
     } else {
-      (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+      (s as any).npcRelSetVal = (((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'A1') {
     if (((((s as any).dimaRevenge ?? 0) === 6  &&  (((s as any).dimaRevChoice ?? 0) === 3  ||  ((s as any).dimaRevChoice ?? 0) === 5  ||  ((s as any).dimaRevChoice ?? 0) === 6))  ||  (((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 2)  ||  (((s as any).dimaRevenge ?? 0) === 8  &&  (((s as any).dimaRevChoice ?? 0) === 1  ||  ((s as any).dimaRevChoice ?? 0) === 4)))) {
-      (s as any).npcRelSetVal = ((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+      (s as any).npcRelSetVal = (((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
     }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'A18') {
@@ -182,7 +182,7 @@ function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): voi
     (s as any).i = ((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).r ?? 0))];
     if (((s as any).i ?? 0) > 0) {
       if (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] !== 0) {
-        // TODO-QSP: gs 'npc_relationship', 'modify', 'A<<r>>', ARGS[i]
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + ((s as any).r ?? 0) + '', (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] ?? 0)]; enterModify(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -196,21 +196,21 @@ function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): voi
 
 function enterSocialgroupSetting(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 0;
-  // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterSocialgroupSettingInternal(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialgroupSettingBoys(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 1;
-  // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterSocialgroupSettingInternal(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialgroupSettingGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 2;
-  // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterSocialgroupSettingInternal(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

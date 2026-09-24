@@ -56,8 +56,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Police Officer', (Math.floor(Math.random() * 11) + 25));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Police Officer', (Math.floor(Math.random() * 11) + 25));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/city/industrial/police/sex/a3.jpg');
     scene.text('When you refuse again, she angrily swoops all the items off the desk. "Take off your clothes, scum", she hisses as she unlocks your cuffs off and threatens to beat you with her baton.');
     scene.text('Once you\'re naked, she cuffs you again and orders you to lie down on the table, undressing as well. After taking her clothes off, she climbs on top of you and sits on your face, forcing you to lick her.');

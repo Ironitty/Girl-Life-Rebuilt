@@ -20,7 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('A small room with a low, smoky ceiling, a small stove, a couple of stainless steel water tanks, and a blackened wooden shelf.');
   scene.text('Grandma\'s enema bulb is hidden behind some stuff on the shelf.');
   // TODO-QSP: dynamic text: You can check your weight on your grandma''s old mechanical <a href="exec:msg ''...
-  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "gad_gpbath" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "gad_gpbath" })}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "gad_gpbath" })}</center>/u0027 */ return s; }); return false;">scales</a>.`);
+  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027<center>Your weight is ${(((s as any).pcs_weight ?? 0)?.[0] ?? '')}.${(((s as any).pcs_weight ?? 0)?.[1] ?? '')} kg<br>Your body mass index (BMI) is ${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "gad_gpbath" })}</center>/u0027 */ return s; }); return false;">scales</a>.`);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
@@ -67,8 +67,8 @@ function enterSetLeaveActs(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s undoubtedly risky leaving the bathhouse like this. But, while it\'s unlikely anyone saw you go outside in your underwear, there\'s a thrill in potentially getting caught.');
     qspCall(st, 'arousal', 'flashlite', 10, 'exhibitionism');
     if ((((st as any).pantyworntype ?? 0) !== 'none'  ||  ((st as any).braworntype ?? 0) !== 'none')) {
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     }
     qspCall(st, 'stat', '');
     scene.actions([

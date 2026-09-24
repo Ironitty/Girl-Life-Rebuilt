@@ -247,7 +247,7 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaPay(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', ARGS[1] * 420, 'cash'
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0) * 420, 'cash');
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/cocainebag.jpg');

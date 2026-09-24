@@ -1097,7 +1097,7 @@ function enterNushChat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
     { label: 'Talk to her', goto: ['foto_models2', 'nush_chat1'] },
   ]);
@@ -1127,7 +1127,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1151,7 +1151,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
       { label: 'What else?', handler: (st: GameState) => {
@@ -1197,7 +1197,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1228,7 +1228,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1254,7 +1254,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1279,7 +1279,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1297,7 +1297,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1314,7 +1314,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
       { label: 'Ask for modeling advice', handler: (st: GameState) => {
@@ -1328,7 +1328,7 @@ function enterNushChat1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep chatting', goto: ['foto_models2', 'nush_chat1'] },
     ]);
@@ -1344,7 +1344,7 @@ function enterNushModeling(s: GameState, scene: SceneBuilder): void {
     ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
   }
   if (((s as any).anushkaQW ?? 0)?.['model'] < 6) {
-    // TODO-QSP: gt 'foto_models2', 'nush_photoshoot<<anushkaQW[''model'']>>'
+    qspGoto(s, 'foto_models2', 'nush_photoshoot' + ((s as any).anushkaQW ?? 0)?.['model'] + '');
   } else {
     qspGoto(s, 'foto_models2', 'nush_photoshoot' + (Math.floor(Math.random() * 5) + 1) + '');
   }
@@ -1401,7 +1401,7 @@ function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1415,7 +1415,7 @@ function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1427,7 +1427,7 @@ function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Finish watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1441,7 +1441,7 @@ function enterNushPhotoshoot1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Talk to her', goto: ['foto_models2', 'nush_chat'] },
     ]);
@@ -1495,7 +1495,7 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1507,7 +1507,7 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1519,7 +1519,7 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1531,7 +1531,7 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Finish watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1545,7 +1545,7 @@ function enterNushPhotoshoot2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Talk to her', goto: ['foto_models2', 'nush_chat'] },
     ]);
@@ -1609,7 +1609,7 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1622,7 +1622,7 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1635,7 +1635,7 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1647,7 +1647,7 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Finish watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1660,7 +1660,7 @@ function enterNushPhotoshoot3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Talk to her', goto: ['foto_models2', 'nush_chat'] },
     ]);
@@ -1732,7 +1732,7 @@ function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1744,7 +1744,7 @@ function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1757,7 +1757,7 @@ function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Finish watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1772,7 +1772,7 @@ function enterNushPhotoshoot4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Talk to her', goto: ['foto_models2', 'nush_chat'] },
     ]);
@@ -1835,7 +1835,7 @@ function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1847,7 +1847,7 @@ function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1862,7 +1862,7 @@ function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1874,7 +1874,7 @@ function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Finish watching', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1887,7 +1887,7 @@ function enterNushPhotoshoot5(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['foto', 'studio'] },
       { label: 'Talk to her', goto: ['foto_models2', 'nush_chat'] },
     ]);

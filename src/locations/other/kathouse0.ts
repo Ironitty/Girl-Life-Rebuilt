@@ -22,8 +22,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Invite him over', handler: (st: GameState) => {
     (st as any).sexloc = 'katspalnya';
-    qspCall(st, 'npcgeneratec', '', 0, 'Kat\'s lover', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Kat\'s lover', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = (Math.floor(Math.random() * 41) + 0);
     qspGoto(st, 'sex', 'start');
   } },

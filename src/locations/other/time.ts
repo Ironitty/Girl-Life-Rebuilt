@@ -394,7 +394,7 @@ function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).day_of_year ?? 0);
   } else {
     if (((s as any).dateVars ?? 0)?.['daystart'] !== String((s as any).locArgs?.[1] ?? '')) {
-      // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterToDate(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['day_of_year'] = ((s as any).dateVars ?? 0)?.['day_of_year'];
   }
@@ -443,12 +443,12 @@ function enterGetDurationString(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = ((s as any).temp_dur['n'] ?? 0) + (1);
   }
   if (((s as any).temp_dur ?? 0)?.['n'] === 1) {
-    (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" });
+    (s as any).result = (((s as any).temp_dur_part ?? 0)?.[0] ?? 0);
   } else {
     if (((s as any).temp_dur ?? 0)?.['n'] === 2) {
-      (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" }) + ' and ' + qspUntranslated(s, "temp_dur_part[1]", { location: "time" });
+      (s as any).result = (((s as any).temp_dur_part ?? 0)?.[0] ?? 0) + ' and ' + (((s as any).temp_dur_part ?? 0)?.[1] ?? 0);
     } else {
-      (s as any).result = qspUntranslated(s, "temp_dur_part[0]", { location: "time" }) + ', ' + qspUntranslated(s, "temp_dur_part[1]", { location: "time" }) + ' and ' + qspUntranslated(s, "temp_dur_part[2]", { location: "time" });
+      (s as any).result = (((s as any).temp_dur_part ?? 0)?.[0] ?? 0) + ', ' + (((s as any).temp_dur_part ?? 0)?.[1] ?? 0) + ' and ' + (((s as any).temp_dur_part ?? 0)?.[2] ?? 0);
     }
   }
   return;

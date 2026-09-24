@@ -423,7 +423,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Sex', handler: (st: GameState) => {
-    qspCall(st, 'RimmaSexQW', 'rimmasexdi');
+    qspCall(st, 'RimmaSexQW', '');
   } },
       ]);
     }

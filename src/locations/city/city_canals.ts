@@ -59,7 +59,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
         if (String((s as any).locArgs?.[1] ?? '') === 'residential') {
           qspGoto(s, 'city_suburbs', 'start');
         } else {
-          // TODO-QSP: gt $ARGS[1], $ARGS[2]
+          { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
         }
       }
     }

@@ -59,24 +59,24 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'price');
   if (String((s as any).locArgs?.[2] ?? '') === 'cash') {
     if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'cash')) {
-      // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'pay'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'bank') {
       if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'bank')) {
-        // TODO-QSP: gs 'money', '_bank_payment', temp_moneyVars['amount'], 'pay'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'pay']; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === 'desk') {
         if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'cash')) {
-          // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'pay'
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'desk')) {
-            // TODO-QSP: gs 'money', '_desk_payment', temp_moneyVars['amount'], 'pay'
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'pay']; enterDeskPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       } else {
-        // TODO-QSP: gs 'money', '_payment_method', temp_moneyVars['amount'], 'pay'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'pay']; enterPaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -91,12 +91,12 @@ function enterEarn(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'profit');
   if (String((s as any).locArgs?.[2] ?? '') === 'cash') {
-    // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'earn'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'earn']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'bank') {
-      // TODO-QSP: gs 'money', '_bank_payment', temp_moneyVars['amount'], 'earn'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'earn']; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      // TODO-QSP: gs 'money', '_payment_method', temp_moneyVars['amount'], 'earn'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'earn']; enterPaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   return;
@@ -352,58 +352,58 @@ function enterPaymentMethod(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 'pay') {
     if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
       if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'cash') === 1) {
-        // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).cfg_vars ?? 0)?.['pay_opt_backup'] === 0) {
           if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'bank') === 1) {
-            // TODO-QSP: gs 'money', '_bank_payment', ARGS[1], 'pay'
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            // TODO-QSP: gs 'money', '_hybrid_payment', ARGS[1]
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHybridPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).cfg_vars ?? 0)?.['pay_opt_backup'] === 1) {
-            // TODO-QSP: gs 'money', '_hybrid_payment', ARGS[1]
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHybridPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            // TODO-QSP: gs 'money', '_choose_payment_method', ARGS[1], 'pay'
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterChoosePaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
     } else {
       if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1) {
         if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'bank') === 1) {
-          // TODO-QSP: gs 'money', '_bank_payment', ARGS[1], 'pay'
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).cfg_vars ?? 0)?.['pay_opt_backup'] === 0) {
             if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'cash') === 1) {
-              // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              // TODO-QSP: gs 'money', '_hybrid_payment', ARGS[1]
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHybridPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).cfg_vars ?? 0)?.['pay_opt_backup'] === 1) {
-              // TODO-QSP: gs 'money', '_hybrid_payment', ARGS[1]
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHybridPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              // TODO-QSP: gs 'money', '_choose_payment_method', ARGS[1], 'pay'
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterChoosePaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
       } else {
-        // TODO-QSP: gs 'money', '_choose_payment_method', ARGS[1], 'pay'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterChoosePaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'earn') {
       if (((s as any).cfg_vars ?? 0)?.['income_opt'] === 0) {
-        // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'earn'
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'earn']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).cfg_vars ?? 0)?.['income_opt'] === 1) {
           if (((s as any).bankAccount ?? 0) === 1) {
-            // TODO-QSP: gs 'money', '_bank_payment', ARGS[1], 'earn'
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'earn']; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'earn'
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'earn']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
-          // TODO-QSP: gs 'money', '_choose_payment_method', ARGS[1], 'earn'
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'earn']; enterChoosePaymentMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -437,10 +437,10 @@ function enterBankPayment(s: GameState, scene: SceneBuilder): void {
 
 function enterDeskPayment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).money ?? 0) >= String((s as any).locArgs?.[1] ?? '')) {
-    // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['cash_portion'] = ((s as any).money ?? 0);
-    // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['cash_portion'], 'pay'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_moneyVars ?? 0)?.['cash_portion'], 'pay']; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).locArgs?.[1] ?? 0) - (((s as any).temp_moneyVars ?? {})?.['cash_portion'] ?? 0));
   }
   return;
@@ -495,7 +495,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_result'] = window.prompt("$cpm_temp_moneyVars['input_msg']") ?? '';
+  ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_result'] = window.prompt(((s as any).cpm_temp_moneyVars ?? 0)?.['input_msg'] ?? '') ?? '';
   if (((s as any).cpm_temp_moneyVars ?? 0)?.['input_result'] !== ''  &&  !isNaN(((s as any).cpm_temp_moneyVars ?? 0)?.['input_result']) && ((s as any).cpm_temp_moneyVars ?? 0)?.['input_result'] !== '') {
     ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['choice'] = parseFloat(((s as any).cpm_temp_moneyVars ?? 0)?.['input_result']);
   }
@@ -513,13 +513,13 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] === 1) {
-    // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterCashPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] === 2) {
-      // TODO-QSP: gs 'money', '_bank_payment', ARGS[1], $ARGS[2]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterBankPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] === 3) {
-        // TODO-QSP: gs 'money', '_hybrid_payment', ARGS[1]
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHybridPayment(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }

@@ -187,7 +187,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
     // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...
-    scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? ''}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
+    scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? '')}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
   }
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
     scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast Intro/u0027); return false;">train tracks</a> from here.');
@@ -457,7 +457,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
     // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...
-    scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? ''}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
+    scene.text(`You see <a href="#" onclick="window.__gameStore.setState((s) => { s.numnpc = s.SkverBoy; return s; }); window.__gameStore.getState().doGoto(/u0027Gnpc/u0027, /u0027/u0027); return false;">${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? '')}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
   }
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
     scene.text('You can see the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Outcast Intro/u0027); return false;">train tracks</a> from here.');

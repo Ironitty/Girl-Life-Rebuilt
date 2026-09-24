@@ -28,7 +28,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) < Object.keys((s as any).spellComplete ?? {}).length) {
     (s as any).NumTicks = ((s as any).AfterTime ?? 0) - ((s as any).BeforeTime ?? 0);
     if (((s as any).spellComplete ?? 0)?.[String((s as any).i ?? 0)] <= ((s as any).AfterTime ?? 0)) {
-      (s as any).NumTicks = ((s as any).NumTicks ?? 0) - (((s as any).AfterTime ?? 0) - ((s as any).spellComplete ?? 0)?.[String((s as any).i ?? 0)]);
+      (s as any).NumTicks = ((s as any).NumTicks ?? 0) - (((s as any).AfterTime ?? 0) - (((s as any).spellComplete ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
       (s as any).SpellEnds = 1;
     } else {
       (s as any).SpellEnds = 0;

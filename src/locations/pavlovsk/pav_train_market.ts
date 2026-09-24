@@ -146,7 +146,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Sell all of your tapestries', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: 'You show Roman your tapestries, and he gives you '+$func('money', 'string_profi...
     scene.text('You show Roman your tapestries, and he gives you \'+$func(\'money\', \'string_profit\', mc_inventory[\'tapestry\'] * 1000)+\'. You take the money and give him the tapestries.');
-    // TODO-QSP: gs 'money', 'earn', mc_inventory['tapestry'] * 1000
+    qspCall(st, 'money', 'earn', (((st as any).mc_inventory ?? {})?.['tapestry'] ?? 0) * 1000);
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tapestry'] = 0;
     qspCall(st, 'stat', '');
     scene.actions([
@@ -345,7 +345,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if ((!(Math.floor(Math.random() * 4) + 0))) {
-    // TODO-QSP: gt 'pav_train_market', rand(1, 19)
+    qspGoto(s, 'pav_train_market', 'rand(1, 19)');
   }
   // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') === 1) {

@@ -52,7 +52,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVehicleTableRow(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'car_attributes', ARGS[1]
+  qspCall(s, 'car_attributes', '', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = '<tr>';
   // TODO-QSP: $result +=  '<td><a href="exec:gs ''autosalonF'', ''display_vehicle'', <<ARGS[1]>>"><<$CarName>></a>...
   // TODO-QSP: $result +=  '<td> - </td>'
@@ -69,7 +69,7 @@ function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if ((!((s as any).autosalonF_carnum ?? 0))) {
     (s as any).autosalonF_carnum = ((s as any).locArgs?.[1] ?? 0);
-    qspCall(s, 'car_attributes', '', ((s as any).autosalonF_carnum ?? 0));
+    qspCall(s, 'car_attributes', 'autosalonF_carnum');
   }
   if (((s as any).CarName ?? 0) === '') {
     scene.text('It appears the car you selected does not actually exist.');
@@ -142,7 +142,7 @@ function enterManager1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'car_attributes', ARGS[1]
+  qspCall(s, 'car_attributes', '', ((s as any).locArgs?.[1] ?? 0));
   if (qspFunc(s, 'money', 'can_afford', ((s as any).CarPrice ?? 0), 'bank') === 0) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Buy a ' + String(((s as any).CarName ?? '') ?? '') + '  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
@@ -161,7 +161,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuy(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'car_funcs', 'add_car', ARGS[1]
+  qspCall(s, 'car_funcs', 'add_car', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'money', 'pay', ((s as any).CarPrice ?? 0), 'bank');
   ((s as any).car = (s as any).car ?? {})['fuel'] = 3;
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');

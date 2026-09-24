@@ -160,7 +160,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'danilovich_swimsuit');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, Clothingstock mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, ((s as any).Clothingstock ?? 0) % 2);
     qspCall(s, 'shop_utils', 'init', 'set_default_exceptions');
     qspCall(s, 'shop_utils', 'init', 'end');
   }
@@ -228,7 +228,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'purses', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'danilovich');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, (Clothingstock / 6) mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, (((s as any).Clothingstock ?? 0) / 6) % 2);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');

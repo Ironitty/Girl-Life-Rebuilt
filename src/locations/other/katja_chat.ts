@@ -501,7 +501,7 @@ function enterBrunch(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['brunch_bought'] = 1
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     { label: 'Say you don\'t need anything', goto: ['katja_chat', 'coffee_hole_event'] },
   ]);
@@ -1043,7 +1043,7 @@ function enterCoffeeHoleHangout(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['brunch_bought'] = 1
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
       { label: 'Continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
       { label: 'Try to convince her to do something else', goto: ['katja_chat', 'coffee_hole_have_fun'] },
@@ -1627,7 +1627,7 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Stay and order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['brunch_bought'] = 1
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
         { label: 'Stay and continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
         { label: 'Say goodbye and leave', goto: ['city_coffee_hole', 'inner'] },

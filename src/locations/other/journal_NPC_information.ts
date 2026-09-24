@@ -271,7 +271,7 @@ function enterA1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A1'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A1'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -298,7 +298,7 @@ function enterA4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A4'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A4'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -325,7 +325,7 @@ function enterA14(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A14'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A14'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -352,7 +352,7 @@ function enterA15(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A15'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A15'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -378,7 +378,7 @@ function enterA17(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A17'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A17'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -404,7 +404,7 @@ function enterA22(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A22'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A22'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -441,7 +441,7 @@ function enterA25(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A25'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A25'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -467,7 +467,7 @@ function enterA139(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A139'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A139'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -494,7 +494,7 @@ function enterA140(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A140'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A140'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -520,7 +520,7 @@ function enterA146(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A146'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A146'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -546,7 +546,7 @@ function enterA147(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A147'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A147'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -559,12 +559,12 @@ function enterA148(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Mefodiy Utkin is reasonably intelligent, with middle-of-the-road grades. He is fairly average looking, but possesses a good sense of humor and timing. He isn\'t too popular, just popular enough to hang among the cool kids, who like his humor.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A148'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A148'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Mefodiy Utkin was reasonably intelligent, with middle-of-the-road grades. He was fairly average looking, but possessed a good sense of humor and timing. He wasn\'t too popular, just popular enough to hang among the cool kids, who liked his humor.');
       scene.text('He just packed up and left right after graduation. Rumors are he is traveling around Europe.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A148'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A148'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -584,12 +584,12 @@ function enterA3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Ivan Prokhorov is a talented athlete who is able to succeed in any sport he takes part in. He is mostly into boxing and running and spends a lot of training and is regularly away competing. Despite being considered very good looking by the girls in school, he isn\'t very sociable and, other than when he is training, tends to keep to himself, although he occasionally hangs out with Fedor. He is calm and collected by nature, some might even say apathetic.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A3'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A3'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Ivan Prokhorov is a talented athlete who was able to succeed in any sport he took part in. He is mostly into boxing and running and was considered to be very good looking by the girls in school. He spends a lot of time training and is regularly away competing. He wasn\'t very sociable and, other than when he is training, tended to keep to himself, although he occasionally hung out with Fedor. He was calm and collected by nature, some might even say apathetic.');
       scene.text('He stayed in Pavlovsk to work and support his family, though he does go to the city to train in boxing and has started boxing professionally.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A3'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A3'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -614,7 +614,7 @@ function enterA5(s: GameState, scene: SceneBuilder): void {
         scene.text('Ever since Fedor gave Vasily a blowjob outside the school in front of everyone, he has been an outcast. Fedor claims he was forced and had no choice, but most people think he actually wanted to do it. Many of the boys mock him and even his former friend Ivan ignores him. The girls are nearly as bad, as many of them make fun of him as well. Fedor now mostly keeps to himself and tries to avoid the other students.');
       }
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A5'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A5'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       if (((s as any).npc_grupTipe ?? 0)?.['A5'] === 2) {
@@ -625,7 +625,7 @@ function enterA5(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.text('He stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A3'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A3'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -644,12 +644,12 @@ function enterA8(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Svyatoslav Voinov is an athletic guy with a very competitive spirit, always engaged in sports one way or another. He\'s always trying to one up Ivan or Lazar, but rarely manages to beat either of them at anything.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A8'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A8'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Svyatoslav Voinov is an athletic guy with a very competitive spirit. He ran track and often competed with Ivan to be the fastest boy at school. His other focus was football, as well as many other sports the school offered. He was always trying to one up Ivan or Lazar, but rarely managed to beat either of them at anything.');
       scene.text('He left Pavlovsk to attend a university in Moscow.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A8'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A8'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -698,7 +698,7 @@ function enterA13(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A13'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A13'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -750,7 +750,7 @@ function enterA19(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A19'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A19'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -802,12 +802,12 @@ function enterA141(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Veronika Sokolov is called the "Ice Queen" by her fellow students behind her back for two reasons. One is that she is a very talented ice skater; there is even talk about how she might compete in the next winter Olympics. The other is because she is cold and indifferent and never lets anyone get close to her. She comes from one of the wealthier families in Pavlovsk.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A141'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A141'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Veronika Sokolov was called the "Ice Queen" by her fellow students behind her back for two reasons. One is that she was a very talented ice skater, while the other is because she was cold and indifferent and never let anyone get close to her. She came from one of the wealthier families in Pavlovsk.');
       scene.text('She left to join the Russian Olympic skating team.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A141'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A141'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -839,7 +839,7 @@ function enterA149(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A149'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A149'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -852,12 +852,12 @@ function enterA150(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Erast Vagin is a huge boy, nearly two meters tall, and is very strong. He is not a looker or even clever, but is always polite and a little shy, especially around girls. He often defends girls from being bullied by the other boys, not afraid to stand up to several gopniks at once. Most of the girls are nice to him because of it, though a few of them love to tease him and make him blush. No one that has seem him play sports would mistake him for a big teddy bear, as he can be ferocious when he chooses to be. He is an average athlete and relies on his size and strength to win the day for him. Other than playing sports, he sometimes boxes with Ivan.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A150'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A150'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Erast Vagin was a huge boy, nearly two meters tall, and was very strong. He wasn\'t a looker or even clever, but was always polite and a little shy, especially around girls. He often defended girls from being bullied by the other boys, not afraid to stand up to several gopniks at once. Most of the girls were nice to him because of it, though a few of them loved to tease him and make him blush. No one that seen him play sports would mistake him for a big teddy bear, as he could be ferocious when he chose to be. He was an average athlete and relied on his size and strength to win the day for him. Other than playing sports, he sometimes boxed with Ivan.');
       scene.text('He stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A150'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A150'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -890,7 +890,7 @@ function enterA165(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A165'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A165'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -918,7 +918,7 @@ function enterA2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A2'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A2'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -944,7 +944,7 @@ function enterA6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A6'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A6'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -971,7 +971,7 @@ function enterA12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A12'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A12'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -998,7 +998,7 @@ function enterA16(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A16'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A16'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1025,7 +1025,7 @@ function enterA142(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A142'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A142'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1038,12 +1038,12 @@ function enterA151(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Evgeny Kuznetsov is the school chess champion and you can always find him at the chess club at the community center. He is shy and very intelligent, but has not shown any interest in girls, or anyone else for that matter. No one would be surprised if he has mild autism.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A151'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A151'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Evgeny Kuznetsov was the Pavlovsk school chess champion and you could always find him at the chess club at the community center. He was shy and very intelligent, but didn\'t show any interest in girls, or anyone else for that matter. No one would be surprised if he had mild autism.');
       scene.text('He left to attend the university in Moscow.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A151'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A151'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1075,7 +1075,7 @@ function enterA152(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A152'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A152'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1101,7 +1101,7 @@ function enterA153(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A153'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A153'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1110,12 +1110,12 @@ function enterA240(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Natalia "Nat" Pavlova</center>');
   if (String((s as any).locArgs?.[1] ?? '') === 'gschool') {
     scene.text('Natalia is a very smart, but weak willed girl. She constantly struggles to maintain friendships, but her friendly attitude and eagerness to help others prevents her from being an outcast, despite her not being overly attractive. She is rarely seen hanging out with anyone and fiercely guards a notebook she likes to keep private, never letting anyone read or even touch it.');
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A240'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A240'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Natalia was a very smart, but weak willed girl. She constantly struggled to maintain friendships, but her good looks and eagerness to help others prevented her from being an outcast. Despite this, she was rarely seen hanging out with anyone. She also fiercely guarded a notebook she liked to keep private, never letting anyone read or even touch it.');
       scene.text('She left to attend the university in Moscow.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A240'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A240'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1135,12 +1135,12 @@ function enterA9(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Vitek Kotov is an aggressive and strong guy who considers himself to be a "gangsta". He is very loud, obnoxious, and not very attractive. Lena is his twin sister, whom he is overly protective of, which has caused more than a fair share of drama. He is the leader of the local gopniks and as such is the most feared boy in school. Even some adults are afraid of him. He is rumored to be involved with the local organized crime selling drugs.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A9'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A9'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Vitek Kotov was an aggressive and strong guy who considered himself to be a "gangsta". He was very loud, obnoxious, and not very attractive. Lena was his twin sister, whom he was overly protective of, which has caused more than a fair share of drama. He was the leader of the local gopniks and as such was the most feared boy in school. Even some adults were afraid of him. He was even rumored to be involved with the local organized crime selling drugs.');
       scene.text('He stayed in Pavlovsk and got more involved with Vadim Bely.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A9'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A9'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.build();
@@ -1155,12 +1155,12 @@ function enterA10(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Dan Ryzhov is a tall and skinny guy whose body language screams his disdain and contempt for others. A very stubborn guy who will never let an argument be, he\'s best friends with Vitek and Vasily and is considered to be the smartest of the bunch, which most people don\'t consider to be that much of a feat.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A10'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A10'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Dan Ryzhov was a tall and skinny guy whose body language screamed his disdain and contempt for others. He was a very stubborn guy who would never let an argument be and was best friends with Vitek and Vasily. He was considered to be the smartest of the bunch, which most didn\'t consider to be that much of a feat.');
       scene.text('He stayed in Pavlovsk, still hanging out with Vitek.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A10'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A10'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1179,12 +1179,12 @@ function enterA11(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Also known as Shulga, Vasily is always hanging out with Dan and Vitek since they are his best friends. He\'s considered the physically weakest one of the bunch, but is a bit of a prankster and is always making the others laugh, which makes him popular with the gopniks. He was raised by his father after his mother left when he was still an infant and you were good friends when you were younger, but have somewhat drifted apart as you grew up.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A11'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A11'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Also known as Shulga, Vasily was always hanging out with Dan and Vitek since they were his best friends. He was considered the physically weakest one of the bunch, but was a bit of a prankster and was always making the others laugh, which made him popular with the gopniks. He was raised by his father after his mother left when he was still an infant.');
       scene.text('He stayed in Pavlovsk, still hanging out with Vitek.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A11'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A11'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1203,12 +1203,12 @@ function enterA20(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Lena Kotov is Vitek\'s twin sister. Just like her brother, she is one of the local gopniks. She often bullies the nerds and outcasts, even targeting some of the jocks and cool kids at times. She\'s best friends with Lera and they can often be found together smoking in the school\'s restrooms or hanging out after school.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A20'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A20'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Lena Kotov was Vitek\'s twin sister. Just like her brother, she was one of the local gopniks. She often bullied the nerds and outcasts, even targeting some of the jocks and cool kids at times. She was best friends with Lera and they could often be found together smoking in the school\'s restrooms or hanging out after school.');
       scene.text('She stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A20'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A20'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1227,12 +1227,12 @@ function enterA21(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Lera Tsarev comes from a poor family. Her father works at the school as a teacher and her cousin Lesco recently moved in with them and attends the same school. She often picks on him and the other outcasts at school, where she hangs out with the gopniks in your class and is liked by them. She\'s best friends with Lena and they can often be found together, smoking in the school\'s restrooms or hanging out after school. She is protective of Lena and always takes her lead. It is rumored that she is a lesbian and is in love with Lena.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A21'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A21'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Lera Tsarev came from a poor family. Her father works at the school as a teacher. After her cousin Lesco moved in with them, she often picked on him and the other outcasts at school. She often hung out with the gopniks in your class and was liked by them. She was best friends with Lena and they could often be found together, smoking in the school\'s restrooms or hanging out after school. She was protective of Lena and always took her lead. It was rumored that she is a lesbian and was in love with Lena.');
       scene.text('She stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A21'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A21'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1251,12 +1251,12 @@ function enterA24(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Pauline Sebagotulina is a bit of a wild child, which makes her very unpredictable. She often hangs out with the gopniks in your class and is liked by them. No one dares to mess with her because she\'s been in more fights than anyone else. She and Katyusha can sometimes be found sparring together and starting fights with others.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A24'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A24'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Pauline Sebagotulina was a bit of a wild child, which made her very unpredictable. She often hung out with the gopniks in your class and was liked by them. No one dared to mess with her because she was in more fights than anyone else. She and Katyusha could sometimes be found sparring together and starting fights with others.');
       scene.text('She stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A24'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A24'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1275,12 +1275,12 @@ function enterA143(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Alyona Zima is a hardcore troublemaker. She lives to cause trouble and jumps into any trouble she can find. She can often be found drinking alcohol, and is drunk more often than not. The only person she seems to spend a lot of time around is Anushka, although she occasionally hangs out with the boys from the band or Lena and Lera. It is well known that she carries a knife with her everywhere she goes, which causes others to give her a wide berth. Rumor is her mother is a drug addict and her father is an alcoholic bully. Most people view her as the apple that didn\'t fall far from the tree.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A143'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A143'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Alyona Zima was a hardcore troublemaker. She lived to cause trouble and jumped into any trouble she can find. She could often be found drinking alcohol, and was drunk more often than not. The only person she seemed to spend a lot of time around was Anushka, although she occasionally hung out with the boys from the band or Lena and Lera. It was well known that she carried a knife with her everywhere she went, which caused others to give her a wide berth. Rumor is her mother is a drug addict and her father is an alcoholic bully. Most people viewed her as the apple that didn\'t fall far from the tree.');
       scene.text('She moved to the city and moved in with the boys from the band.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A143'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A143'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1314,7 +1314,7 @@ function enterA144(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A144'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A144'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1328,12 +1328,12 @@ function enterA145(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Katyusha Maksimov is the least attractive girl in school. Her face and body are too masculine, she tends to dress like a boy and never shaves her arm pits or legs. She only seems to care about two things; booze and fighting. Regardless of the weather, she practices Sambo in the park every day before school. She often taunts or makes fun of the boxers by claiming "boxing is for pussies" and that real fighters fight without rules. She doesn\'t see herself as a gopnik, but other people consider her one.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A145'], 'f'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A145'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Katyusha Maksimov was the least attractive girl in school. Her face and body were too masculine and she tended to dress like a boy while never shaving her arm pits or legs. She only seemed to care about two things; booze and fighting. Regardless of the weather, she practiced Sambo in the park every day before school, often taunting or making fun of the boxers by claiming "boxing is for pussies" and that real fighters fight without rules. She didn\'t see herself as a gopnik, but other people considered her one.');
       scene.text('Shortly after graduation, she moved away without telling anyone where she was going. Rumors are she joined the army.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A145'], 'f'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A145'], 'f']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1352,12 +1352,12 @@ function enterA154(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Radomir Popov is the lead singer, backup guitarist and leader of a local underground rock/punk band named Pizdá Reydery (Pussy Raiders). They are considered fairly talented, but he is more or less an asshole who thinks he should already be a star and thus can be arrogant to almost everybody. Some girls adore him because they think he\'s cool or are just groupies that latch onto his limited fame, but he is more than happy to use his small amount of fame to let him use as many girls as he can, as often as he can. He seems to think girls only exist to provide him with sexual gratification.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A154'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A154'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Radomir Popov is the lead singer, backup guitarist and leader of a local underground rock/punk band named Pizdá Reydery (Pussy Raiders). They were considered fairly talented, but he was more or less an asshole who thinks he should already be a star. He could thus be arrogant to almost everybody. Some girls adored him because they think he was cool or were just groupies that latched onto his limited fame, but he was more than happy to use his small amount of fame to let him use as many girls as he can, as often as he can. He seemed to think girls only exist to provide him with sexual gratification. He used to date Anushka, but they broke up over a year ago.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A154'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A154'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1389,7 +1389,7 @@ function enterA155(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A155'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A155'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1402,12 +1402,12 @@ function enterA156(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Arkadi Fyodorov is the drummer in Radomir\'s band. His family recently moved from Saint Petersburg to Pavlovsk. He was held back a year at some point, so is a year older than his fellow students. He is very violent when angry, especially with anyone outside the gopniks. He is also not shy about reminding everyone how much harder the city is and how lame Pavlovsk is.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A156'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A156'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Arkadi Fyodorov is the drummer in Radomir\'s band. His family moved from Saint Petersburg to Pavlovsk. He was held back a year at some point, so was a year older than his fellow students. He was very violent when angry, especially with anyone outside the gopniks. He was also not shy about reminding everyone how much harder the city is and how lame Pavlovsk was.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A156'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A156'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1426,12 +1426,12 @@ function enterA157(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Roman Yakovlev is an absolute psychopath and just about everyone is afraid of him. He\'s one of the smaller students, but he is always causing trouble. He\'ll start fights out of boredom, knowing that the other gopniks will have his back. He enjoys being especially cruel or sadistic to his victims, once smashing a bottle over a guy\'s head and stabbing him in the face with it, simply because he said the guy looked at him funny. He always has a snide remark and is not afraid to speak back to the teachers or other adults. He\'s not doing great at school because he doesn\'t care, but the other gopniks find his attitude amusing and seem to like that he\'s always getting them into funny situations.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A157'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A157'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Roman Yakovlev was an absolute psychopath and just about everyone was afraid of him. He was one of the smaller students, but he was always causing trouble. He would start fights out of boredom, knowing that the other gopniks would have his back. He enjoyed being especially cruel or sadistic to his victims. He once smashed a bottle over a guy\'s head and then stabbed him in the face with it, simply because he said the guy looked at him funny. He always had a snide remark and wasn\'t afraid to speak back to the teachers or other adults. He didn\'t do great at school because he didn\'t care, but the other gopniks found his attitude amusing and seemed to like that he was always getting them into funny situations.');
       scene.text('He stayed in Pavlovsk.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A157'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A157'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1450,12 +1450,12 @@ function enterA158(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Valentin Bogdanov is the bassist in Radomir\'s band and the nicest guy in the band. However, this doesn\'t stop him from using his small amount of fame to use girls. He is just rarely a dick about it. His goal is to make enough cash from the band to buy an old American motorbike and ride it across the country. He can often be found hanging out with Anushka\'s dad, working on his motorcycle when he\'s not hanging out with the band.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A158'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A158'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Valentin Bogdanov is the bassist in Radomir\'s band and the nicest guy in the band. However, this didn\'t stop him from using his small amount of fame to use girls. He was just rarely a dick about it. His goal was to make enough cash from the band to buy an old American motorbike and ride it across the country. He could often be found hanging out with Anushka\'s dad, working on his motorcycle when he wasn\'t hanging out with the band.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A158'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A158'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1474,12 +1474,12 @@ function enterA189(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Niko Volkov is clever, but short tempered. When he\'s not drinking and partying, he is hanging out with Lavrenti, with many saying that he only spends time with Lavrenti for his money. He always seems confident and well spoken, but can sometimes come off as paranoid and unstable.');
     }
-    // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A189'], 'm'
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A189'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'uni') {
       scene.text('Niko Volkov was clever, but short tempered. When he wasn\'t drinking and partying, he was hanging out with Lavrenti, with many saying that he only spent time with Lavrenti for his money. He always seemed confident and well spoken, but could sometimes come off as paranoid and unstable.');
       scene.text('He disappeared just after graduation and no one has seen him since.');
-      // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A189'], 'm'
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A189'], 'm']; enterPast_Relationship(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'city') {
         scene.text('');
@@ -1505,7 +1505,7 @@ function enterA7(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A7'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A7'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1523,7 +1523,7 @@ function enterA159(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A159'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A159'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1532,7 +1532,7 @@ function enterA77(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/77.jpg');
   scene.text('<center>Tryndin Maximovich</center>');
   scene.text('Tryndin lives in apartment 37 in the residential area of the city and attends the city university.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A77'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A77'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1540,7 +1540,7 @@ function enterA82(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/82.jpg');
   scene.text('<center>Djibril Maina</center>');
   scene.text('Djibril is from Africa. He is the nephew of Oluuosegun, your aunt\'s boyfriend, and lives in the student dorms. He is studying for a business degree.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A82'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A82'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1548,7 +1548,7 @@ function enterA83(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/83.jpg');
   scene.text('<center>Goshi Sidorov</center>');
   scene.text('Goshi has lived in Saint Petersburg his whole life and comes from a well off family; not rich, but not wanting for things. He is used to always getting his way. His mother is a stay at home mom and his dad is a business man. He is going to the university to follow in his father\'s footsteps by getting a business degree.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A83'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A83'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1556,7 +1556,7 @@ function enterA84(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/84.jpg');
   scene.text('<center>Kendra Abiodun</center>');
   scene.text('Kendra is from South Africa and attends the university in Saint Petersburg. She is well known to have a dominant personality, often trying to dominate those around her. Some believe she is a racist as she seems to especially love dominating white students that attend the university. She is studying for a business degree.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A84'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A84'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1564,42 +1564,42 @@ function enterA220(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/220.jpg');
   scene.text('<center>Vika Kirilova</center>');
   scene.text('Vika lives in the dorms and attends the city university. She comes from a town in a truly remote part of Russia. Her family is poor, yet she seems to always have money.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A220'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A220'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterA242(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Lebogang "Lebo" Kayode</center>');
   scene.text('Djibril\'s closest friend, who is also from Africa. They live on the same floor in the dorm.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A242'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A242'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterA243(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Ermias Okeke</center>');
   scene.text('Ermias is Lebogang\'s dorm roommate and friend. He is also from Africa.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A243'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A243'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterA244(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Farai Ihejirika</center>');
   scene.text('Farai is Djibril\'s roommate at the university. He is also from Africa.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A244'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A244'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterA245(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Haruna Babatunde</center>');
   scene.text('Haruna is close friends with Djibril, having met in their freshman year. He lives on the same floor of the dorms, and is also from Africa.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A245'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A245'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
 function enterA246(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Arendse Idowu</center>');
   scene.text('Arendse is Haruna\'s roommate and friend. They live in the same dorm room and both attend the university. He is also from Africa.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A246'], 'm'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A246'], 'm']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1608,7 +1608,7 @@ function enterA247(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Liliya Lyubimova</center>');
   scene.text('Liliya is a very attractive and rather tall girl. Nobody knows too much about her other than that she is a true tease. She finds amusement in teasing the boys by flashing them or just looking seductively. She refuses any advances made towards her and doesn\'t let anybody to touch or even try to flirt with her. Those who attempt to do so end up receiving a slap or some emasculating comeback line.');
   scene.text('She is getting a teaching degree at the university.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A247'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A247'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1616,7 +1616,7 @@ function enterA267(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/267.jpg');
   scene.text('<center>Amelia "Mia" Radimova</center>');
   scene.text('The elder of the identical twins studying nursing at the university. She and Yana are inseparable and are seen almost everywhere together. Like her younger sister, she enjoys playing pranks on her professors and classmates and causing confusion about who is actually who. Her parents are divorced, but her father pays for her tuition. There is a rumor spreading across campus claiming that he is a porn star.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A267'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A267'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -1624,7 +1624,7 @@ function enterA268(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/267.jpg');
   scene.text('<center>Yuliana "Yana" Radimova</center>');
   scene.text('The younger of the identical twins studying nursing at the university. She and Mia are inseparable and are seen almost everywhere together. Like her older sister, she enjoys playing pranks on her professors and classmates and causing confusion about who is actually who. Her parents are divorced, but her father pays for her tuition. There is a rumor spreading across campus claiming that he is a porn star.');
-  // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A268'], 'f'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).npc_rel ?? 0)?.['A268'], 'f']; enterRelationship(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

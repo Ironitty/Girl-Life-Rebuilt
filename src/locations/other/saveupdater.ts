@@ -236,9 +236,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :danilovichfix
     if (((s as any).danilovich ?? 0)?.[String((s as any).i ?? 0)] === 1) {
       ((s as any).danilovich_outfits = (s as any).danilovich_outfits ?? {})[String((s as any).i ?? 0)] = 1;
-      ((s as any).danilovich_outfits_s = (s as any).danilovich_outfits_s ?? {})[String((s as any).i ?? 0)] = ((s as any).danilovich_s ?? 0)?.[String((s as any).i ?? 0)];
-      ((s as any).danilovich_outfits_h = (s as any).danilovich_outfits_h ?? {})[String((s as any).i ?? 0)] = ((s as any).danilovich_h ?? 0)?.[String((s as any).i ?? 0)];
-      ((s as any).danilovich_outfits_b = (s as any).danilovich_outfits_b ?? {})[String((s as any).i ?? 0)] = ((s as any).danilovich_b ?? 0)?.[String((s as any).i ?? 0)];
+      ((s as any).danilovich_outfits_s = (s as any).danilovich_outfits_s ?? {})[String((s as any).i ?? 0)] = (((s as any).danilovich_s ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).danilovich_outfits_h = (s as any).danilovich_outfits_h ?? {})[String((s as any).i ?? 0)] = (((s as any).danilovich_h ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).danilovich_outfits_b = (s as any).danilovich_outfits_b ?? {})[String((s as any).i ?? 0)] = (((s as any).danilovich_b ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 170) {
@@ -343,8 +343,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :loopcatsbrassave
     if (((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      ((s as any).cats_brasS = (s as any).cats_brasS ?? {})[String((s as any).i ?? 0)] = ((s as any).kats_brasS ?? 0)?.[String((s as any).i ?? 0)];
-      ((s as any).cats_bras = (s as any).cats_bras ?? {})[String((s as any).i ?? 0)] = ((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)];
+      ((s as any).cats_brasS = (s as any).cats_brasS ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_brasS ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).cats_bras = (s as any).cats_bras ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= Object.keys((s as any).kats_bras ?? {}).length) {
@@ -353,8 +353,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :loopcatspantiessave
     if (((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      ((s as any).cats_pantiesS = (s as any).cats_pantiesS ?? {})[String((s as any).i ?? 0)] = ((s as any).kats_pantiesS ?? 0)?.[String((s as any).i ?? 0)];
-      ((s as any).cats_panties = (s as any).cats_panties ?? {})[String((s as any).i ?? 0)] = ((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)];
+      ((s as any).cats_pantiesS = (s as any).cats_pantiesS ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_pantiesS ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+      ((s as any).cats_panties = (s as any).cats_panties ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= Object.keys((s as any).kats_panties ?? {}).length) {
@@ -748,7 +748,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).internet ?? 0) > 0) {
       (s as any).old_internet_value = 10 * ((s as any).internet ?? 0);
       if (((s as any).property ?? 0)?.['internet_enabled'] === 1) {
-        // TODO-QSP: gs 'internet_mobile', 'buy_subscription', $home['current'], 900
+        qspCall(s, 'internet_mobile', 'buy_subscription', ((s as any).home ?? 0)?.['current'], 900);
         if ((((s as any).old_internet_value ?? 0) - 900) >= 0) {
           (s as any).money = ((s as any).money ?? 0) + ((((s as any).old_internet_value ?? 0) - 900));
         }
@@ -759,7 +759,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).money = ((s as any).money ?? 0) + ((((s as any).old_internet_value ?? 0) - 1200));
           }
         } else {
-          // TODO-QSP: gs 'internet_mobile', 'top_up_metered', 'metered_mobile', internet * 60
+          qspCall(s, 'internet_mobile', 'top_up_metered', 'metered_mobile', ((s as any).internet ?? 0) * 60);
         }
       }
     }
@@ -1014,7 +1014,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_current_save_version ?? 0) < 90003) {
     if (((s as any).home ?? 0)?.['current'] !== ''  &&  ((s as any).home ?? 0)?.['bathroom'] === '') {
-      // TODO-QSP: gs 'homes_properties', 'set_home', $home['current']
+      qspCall(s, 'homes_properties', 'set_home', ((s as any).home ?? 0)?.['current']);
     }
     if (((s as any).makeup ?? 0)?.['base'] < 1) {
       ((s as any).makeup = (s as any).makeup ?? {})['base'] = 1;
@@ -1796,7 +1796,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).accessible_property ?? 0)?.['accessible_home_count'] < 1) {
       qspCall(s, 'homes_properties', 'set_homeless');
     } else {
-      // TODO-QSP: gs 'homes_properties', 'set_home', $home['current']
+      qspCall(s, 'homes_properties', 'set_home', ((s as any).home ?? 0)?.['current']);
     }
   }
   if (((s as any).temp_current_save_version ?? 0) < 90101) {
@@ -1927,10 +1927,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).bodyVars = (s as any).bodyVars ?? {})['desc'] = ((s as any).body ?? 0);
       // TODO-QSP: killvar 'body'
     }
-    if ((String(qspUntranslated(s, "start_type[0]", { location: "saveupdater" })).slice((1)-1, ((1)-1)+(2))) === 'sg') {
+    if ((String((((s as any).start_type ?? 0)?.[0] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'sg') {
       // TODO-QSP: $temp_st[0] = 'sg'
     } else {
-      if ((String(qspUntranslated(s, "start_type[0]", { location: "saveupdater" })).slice((1)-1, ((1)-1)+(3))) === 'uni') {
+      if ((String((((s as any).start_type ?? 0)?.[0] ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'uni') {
         // TODO-QSP: $temp_st[0] = 'uni'
       } else {
         // TODO-QSP: $temp_st[0] = 'city'
@@ -2030,10 +2030,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).start_type = (s as any).start_type ?? {})['loc'] = qspUntranslated(s, "temp_st[0]", { location: "saveupdater" });
-    ((s as any).start_type = (s as any).start_type ?? {})['magic'] = qspUntranslated(s, "temp_st[1]", { location: "saveupdater" });
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = qspUntranslated(s, "temp_st[2]", { location: "saveupdater" });
-    ((s as any).start_type = (s as any).start_type ?? {})['cat'] = qspUntranslated(s, "temp_st[3]", { location: "saveupdater" });
+    ((s as any).start_type = (s as any).start_type ?? {})['loc'] = (((s as any).temp_st ?? 0)?.[0] ?? 0);
+    ((s as any).start_type = (s as any).start_type ?? {})['magic'] = (((s as any).temp_st ?? 0)?.[1] ?? 0);
+    ((s as any).start_type = (s as any).start_type ?? {})['group'] = (((s as any).temp_st ?? 0)?.[2] ?? 0);
+    ((s as any).start_type = (s as any).start_type ?? {})['cat'] = (((s as any).temp_st ?? 0)?.[3] ?? 0);
     if (((s as any).start_type ?? 0)?.['loc']  === '') {
       ((s as any).start_type = (s as any).start_type ?? {})['loc'] = 'city';
     }
@@ -2050,9 +2050,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :loopfashionista2
       if (((s as any).fashionista ?? 0)?.[String((s as any).i ?? 0)] === 1) {
         ((s as any).fashionista_dress = (s as any).fashionista_dress ?? {})[String((s as any).i ?? 0)] = 1;
-        ((s as any).fashionista_dress_h = (s as any).fashionista_dress_h ?? {})[String((s as any).i ?? 0)] = ((s as any).fashionista_h ?? 0)?.[String((s as any).i ?? 0)];
-        ((s as any).fashionista_dress_b = (s as any).fashionista_dress_b ?? {})[String((s as any).i ?? 0)] = ((s as any).fashionista_b ?? 0)?.[String((s as any).i ?? 0)];
-        ((s as any).fashionista_dress_s = (s as any).fashionista_dress_s ?? {})[String((s as any).i ?? 0)] = ((s as any).fashionista_s ?? 0)?.[String((s as any).i ?? 0)];
+        ((s as any).fashionista_dress_h = (s as any).fashionista_dress_h ?? {})[String((s as any).i ?? 0)] = (((s as any).fashionista_h ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+        ((s as any).fashionista_dress_b = (s as any).fashionista_dress_b ?? {})[String((s as any).i ?? 0)] = (((s as any).fashionista_b ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+        ((s as any).fashionista_dress_s = (s as any).fashionista_dress_s ?? {})[String((s as any).i ?? 0)] = (((s as any).fashionista_s ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
       }
       (s as any).i = ((s as any).i ?? 0) + (4);
       if (((s as any).i ?? 0) <= 200) {
@@ -2064,7 +2064,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'Trainpass_day'
     }
     if (((s as any).therapist_key ?? 0)[1] > 0) {
-      ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_day'] = qspUntranslated(s, "therapist_key[1]", { location: "saveupdater" });
+      ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_day'] = (((s as any).therapist_key ?? 0)?.[1] ?? 0);
       // TODO-QSP: killvar 'therapist_key', 1
     }
     if (((s as any).therapist_key ?? 0) > 0) {
@@ -2154,9 +2154,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'tltp'
     // TODO-QSP: killvar 'insdlpflag'
     if (((s as any).x ?? 0) === 1) {
-      (s as any).attskltmp = ((s as any).att_name ?? 0)?.[String((s as any).i ?? 0)];
+      (s as any).attskltmp = (((s as any).att_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     } else {
-      (s as any).attskltmp = ((s as any).skl_name ?? 0)?.[String((s as any).i ?? 0)];
+      (s as any).attskltmp = (((s as any).skl_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if ((((s as any).x ?? 0) === 1  &&  ((s as any).i ?? 0) < Object.keys((s as any).att_name ?? {}).length)  ||  (((s as any).x ?? 0) === 2  &&  ((s as any).i ?? 0) < Object.keys((s as any).skl_name ?? {}).length)) {
@@ -2882,7 +2882,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0) / 5) * 10;
     }
     if (((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)] > 1  &&  ((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)] !== ((s as any).soniaQW ?? 0)?.['soniafall_block']) {
-      ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)];
+      ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = (((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)] ?? 0);
       if (((s as any).soniaQW ?? 0)?.['homeinvite'] > 0) {
         ((s as any).soniaQW = (s as any).soniaQW ?? {})['homeinvite'] = 1;
       }
@@ -2896,16 +2896,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A108') : -1) > -1) {
       (s as any).temp_pos = qspUntranslated(s, "arrpos('contact', 'A108')", { location: "saveupdater" });
-      if (((String(((s as any).contactICode ?? 0)?.[String((s as any).temp_pos ?? 0)]).indexOf(String('telefon'))) + 1) > 0) {
+      if (((String((((s as any).contactICode ?? 0)?.[String((s as any).temp_pos ?? 0)] ?? 0)).indexOf(String('telefon'))) + 1) > 0) {
         // TODO-QSP: $contactICode[temp_pos] = replace($contactICode[temp_pos], "'telefon', 'vladimir'", "'vladimirQW_loc...
       }
-      if (((String(((s as any).contactISche ?? 0)?.[String((s as any).temp_pos ?? 0)]).indexOf(String('vladimirday'))) + 1) > 0) {
+      if (((String((((s as any).contactISche ?? 0)?.[String((s as any).temp_pos ?? 0)] ?? 0)).indexOf(String('vladimirday'))) + 1) > 0) {
         // TODO-QSP: $contactISche[temp_pos] = replace($contactISche[temp_pos], "vladimirday", "vladimirQW['day']")
       }
     }
     if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A192') : -1) > -1) {
       (s as any).temp_pos = qspUntranslated(s, "arrpos('contact', 'A192')", { location: "saveupdater" });
-      if (((String(((s as any).contactOCode ?? 0)?.[String((s as any).temp_pos ?? 0)]).indexOf(String('telefon'))) + 1) > 0) {
+      if (((String((((s as any).contactOCode ?? 0)?.[String((s as any).temp_pos ?? 0)] ?? 0)).indexOf(String('telefon'))) + 1) > 0) {
         // TODO-QSP: $contactOCode[temp_pos] = replace($contactOCode[temp_pos], 'telefon', 'nastja')
       }
     }
@@ -3569,7 +3569,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).su_i = 0;
     // TODO-QSP: :appearance_update_loop
     if (((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)] > 0) {
-      ((s as any).npc_apprnc = (s as any).npc_apprnc ?? {})[String((s as any).su_i ?? 0)] = 3 * ((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)];
+      ((s as any).npc_apprnc = (s as any).npc_apprnc ?? {})[String((s as any).su_i ?? 0)] = 3 * (((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0);
       if (((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)] > 190) {
         ((s as any).npc_apprnc = (s as any).npc_apprnc ?? {})[String((s as any).su_i ?? 0)] = 190;
       }
@@ -4147,7 +4147,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).su_j = ((s as any).su_j ?? 0) + (1);
       } else {
-        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).su_i ?? 0)-4) + '_folder'] = ((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)];
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).su_i ?? 0)-4) + '_folder'] = (((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)] ?? 0);
         (s as any).su_j = 0;
         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       }
@@ -4645,22 +4645,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).su_i = 0;
     (s as any).su_max_i = 0;
     // TODO-QSP: :su_pref_update_loop_904
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('npc_trait_values'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('npc_trait_values'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], 'npc_trait_values', 'npc_pref_values')
     }
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('clothes_thin'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('clothes_thin'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], "'clothes_thin'", "'clothes_thin_high'")
     }
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('cosmetics_piercing'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('cosmetics_piercing'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], "'cosmetics_piercing'", "'cosmetics_piercin...
     }
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('cosmetics_tattoo'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('cosmetics_tattoo'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], "'cosmetics_tattoo'", "'cosmetics_tattoo_vi...
     }
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('cosmetics_makeup'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('cosmetics_makeup'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], "'cosmetics_makeup'", "'cosmetics_makeup_an...
     }
-    if (((String(((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)]).indexOf(String('body_strength'))) + 1) > 0) {
+    if (((String((((s as any).npc_preferences ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0)).indexOf(String('body_strength'))) + 1) > 0) {
       // TODO-QSP: $npc_preferences[su_i] = replace($npc_preferences[su_i], "'body_strength'", "'stats_strength'")
     }
     (s as any).su_i = ((s as any).su_i ?? 0) + (1);
@@ -4716,27 +4716,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_finance[$saveupdaterVars['npcID']]  = loverfinance[saveupdaterVars['lover_number']]
       // TODO-QSP: $npc_outfit[$saveupdaterVars['npcID']]  = $loverClo[saveupdaterVars['lover_number']]
       if (((s as any).figurlover ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 0) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_starving', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_underweight', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_starving', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_underweight', 'like');
       } else {
         if (((s as any).figurlover ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_normal', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_normal', 'like');
         } else {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_overweight', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_obese', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_overweight', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_obese', 'like');
         }
       }
       if (((s as any).titlover ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 0) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_small', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_small', 'like');
         } else {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_average', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_average', 'like');
         }
       } else {
         if (((s as any).titlover ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_large', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_large', 'like');
         } else {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_huge', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_huge', 'like');
         }
       }
       if (((s as any).npc_rel ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 0) {
@@ -4765,136 +4765,136 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).clotTypePref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
             // TODO-QSP: clotQualPref[saveupdaterVars['lover_number']] = 2
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_style_wealthy', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_style_wealthy', 'like');
           } else {
             if (((s as any).clotTypePref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 4) {
               // TODO-QSP: clotQualPref[saveupdaterVars['lover_number']] = 1
-              // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_style_fetish', 'like'
+              qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_style_fetish', 'like');
             }
           }
         }
       }
       if (((s as any).clotQualPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_quality_low', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_quality_medium', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_quality_low', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_quality_medium', 'like');
       } else {
         if (((s as any).clotQualPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_quality_high', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_quality_high', 'like');
         }
       }
       if (((s as any).clotTopPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_cleavage_none', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_cleavage_none', 'like');
       } else {
         if (((s as any).clotTopPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_cleavage_small', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_cleavage_small', 'like');
         } else {
           if (((s as any).clotTopPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_cleavage_medium', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_cleavage_medium', 'like');
           } else {
             if (((s as any).clotTopPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 4) {
-              // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_cleavage_large', 'like'
+              qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_cleavage_large', 'like');
             }
           }
         }
       }
       if (((s as any).bottShorPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_pants_long', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_skirt_long', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_pants_long', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_skirt_long', 'like');
       } else {
         if (((s as any).bottShorPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_pants_normal', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_skirt_normal', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_pants_normal', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_skirt_normal', 'like');
         } else {
           if (((s as any).bottShorPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_pants_short', 'like'
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_skirt_short', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_pants_short', 'like');
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_skirt_short', 'like');
           }
         }
       }
       if (((s as any).clotThinPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_thin_low', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_thin_low', 'like');
       } else {
         if (((s as any).clotThinPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_thin_medium', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_thin_medium', 'like');
         } else {
           if (((s as any).clotThinPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_thin_high', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_thin_high', 'like');
           }
         }
       }
       if (((s as any).bimbPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'clothes_style_bimbo', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'clothes_style_bimbo', 'like');
       }
       if (((s as any).pierPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_piercings_none', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_piercings_few', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_piercings_none', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_piercings_few', 'like');
       } else {
         if (((s as any).pierPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_piercings_multiple', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_piercings_multiple', 'like');
         } else {
           if (((s as any).pierPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_piercings_lot', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_piercings_lot', 'like');
           }
         }
       }
       if (((s as any).tattPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_tattoos_none', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_tattoos_few', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_tattoos_none', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_tattoos_few', 'like');
       } else {
         if (((s as any).tattPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_tattoos_multiple', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_tattoos_multiple', 'like');
         } else {
           if (((s as any).tattPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_tattoos_lot', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_tattoos_lot', 'like');
           }
         }
       }
       if (((s as any).lipsPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_lips_normal', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_lips_plump', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_lips_normal', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_lips_plump', 'like');
       } else {
         if (((s as any).lipsPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_lips_big', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_lips_pillowy', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_lips_big', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_lips_pillowy', 'like');
         }
       }
       if (((s as any).bodyPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_starving', 'like'
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_underweight', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_starving', 'like');
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_underweight', 'like');
       } else {
         if (((s as any).bodyPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_normal', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_normal', 'like');
         } else {
           if (((s as any).bodyPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_overweight', 'like'
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_obese', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_overweight', 'like');
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_bmi_obese', 'like');
           }
         }
       }
       if (((s as any).makePref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_makeup_light', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_makeup_light', 'like');
       } else {
         if (((s as any).makePref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_makeup_moderate', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_makeup_moderate', 'like');
         } else {
           if (((s as any).makePref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'cosmetics_makeup_heavy', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'cosmetics_makeup_heavy', 'like');
           }
         }
       }
       if (((s as any).IQPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'stats_intel_dumb'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'stats_intel_dumb');
       } else {
         if (((s as any).IQPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'stats_intel_normal'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'stats_intel_normal');
         } else {
           if (((s as any).IQPref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'stats_intel_smart'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'stats_intel_smart');
           }
         }
       }
-      // TODO-QSP: gs 'telefon', 'AddContact', $saveupdaterVars['npcID'], $npc_icon[$saveupdaterVars['npcID']]
-      // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', $saveupdaterVars['npcID'], "gt 'lover_call', 'callingTheLover', ...
+      qspCall(s, 'telefon', 'AddContact', ((s as any).saveupdaterVars ?? 0)?.['npcID'], (((s as any).npc_icon ?? 0)?.[((s as any).saveupdaterVars ?? 0)?.['npcID']] ?? 0));
+      qspCall(s, 'telefon', 'SetOutCallSchedule', ((s as any).saveupdaterVars ?? 0)?.['npcID'], 'gt \'lover_call\', \'callingTheLover\', \'' + ((s as any).saveupdaterVars ?? 0)?.['npcID'] + '\'', 'hour > 6 and hour < 20');
       ((s as any).saveupdaterVars = (s as any).saveupdaterVars ?? {})['lover_number'] = ((s as any).saveupdaterVars['lover_number'] ?? 0) + (1);
       if (((s as any).saveupdaterVars ?? 0)?.['lover_number'] < Object.keys((s as any).lover ?? {}).length) {
         // TODO-QSP: jump 'su_lover_to_npcgeneratec_loop'
@@ -4940,7 +4940,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      ((s as any).npc_weight = (s as any).npc_weight ?? {})[String((s as any).husID ?? 0)] = (((s as any).saveupdaterVars ?? {})?.['bmi'] ?? 0) * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] / 10000;
+      ((s as any).npc_weight = (s as any).npc_weight ?? {})[String((s as any).husID ?? 0)] = (((s as any).saveupdaterVars ?? {})?.['bmi'] ?? 0) * (((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] ?? 0) * (((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] ?? 0) / 10000;
       ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).husID ?? 0)] = ((s as any).husDick ?? 0);
       ((s as any).npc_gentle = (s as any).npc_gentle ?? {})[String((s as any).husID ?? 0)] = 0;
       ((s as any).npc_rough = (s as any).npc_rough ?? {})[String((s as any).husID ?? 0)] = 0;
@@ -5020,7 +5020,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).su_max_i = 0;
     (s as any).su_i = 0;
     // TODO-QSP: :fix_Barray_loop_904
-    ((s as any).saveupdaterVars = (s as any).saveupdaterVars ?? {})['npcID'] = ((s as any).npc_index ?? 0)?.[String((s as any).su_i ?? 0)];
+    ((s as any).saveupdaterVars = (s as any).saveupdaterVars ?? {})['npcID'] = (((s as any).npc_index ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0);
     if (((s as any).npc_usedname ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] !== '') {
       if (((s as any).npc_girth ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] <= 8) {
         if (((s as any).npc_thdick ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 'skinny') {
@@ -5145,31 +5145,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).npc_bush_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_shaven', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_shaven', 'like');
       } else {
         if (((s as any).npc_bush_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_shaven', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_stubble', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_patch', 'like'
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_trimmed', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_shaven', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_stubble', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_patch', 'like');
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_trimmed', 'like');
         } else {
           if (((s as any).npc_bush_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_bush', 'like'
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'hair_pubes_untrimmed', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_bush', 'like');
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'hair_pubes_untrimmed', 'like');
           }
         }
       }
       if (((s as any).npc_tit_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 1) {
-        // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_small', 'like'
+        qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_small', 'like');
       } else {
         if (((s as any).npc_tit_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 2) {
-          // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_average', 'like'
+          qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_average', 'like');
         } else {
           if (((s as any).npc_tit_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 3) {
-            // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_big', 'like'
+            qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_big', 'like');
           } else {
             if (((s as any).npc_tit_pref ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 4) {
-              // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_huge', 'like'
+              qspCall(s, 'npc_set_preference', '$saveupdaterVars[\'npcID\']', 'body_tits_huge', 'like');
             }
           }
         }
@@ -5183,28 +5183,28 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'fix_Barray_loop_904'
     }
     if (((s as any).boy1 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy1 ?? 0), 'a');
+      qspCall(s, 'npcStat', '$boy1', 'a');
     }
     if (((s as any).boy2 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy2 ?? 0), 'b');
+      qspCall(s, 'npcStat', '$boy2', 'b');
     }
     if (((s as any).boy3 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy3 ?? 0), 'c');
+      qspCall(s, 'npcStat', '$boy3', 'c');
     }
     if (((s as any).boy4 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy4 ?? 0), 'd');
+      qspCall(s, 'npcStat', '$boy4', 'd');
     }
     if (((s as any).boy5 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy5 ?? 0), 'e');
+      qspCall(s, 'npcStat', '$boy5', 'e');
     }
     if (((s as any).boy6 ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).boy6 ?? 0), 'f');
+      qspCall(s, 'npcStat', '$boy6', 'f');
     }
     (s as any).su_i = 0;
     (s as any).su_max_i = 0;
     // TODO-QSP: :boyStat_updater_loop_904
     if (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0)) {
-      // TODO-QSP: gs 'npcStat', $boy[su_i], su_i
+      qspCall(s, 'npcStat', '', (((s as any).boy ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0), ((s as any).su_i ?? 0));
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       // TODO-QSP: jump 'boyStat_updater_loop_904'
     }
@@ -5274,7 +5274,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).blackmailQW ?? 0)?.['stage'] === 9) {
                 ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 7;
-                // TODO-QSP: gs 'post_office', 'add_mail', 'city', "gs 'blackmailer', 'set_post_act'"
+                qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
                 ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).blackmailQW ?? 0)?.['smsday'];
               } else {
                 if (((s as any).blackmailQW ?? 0)?.['stage'] >= 10) {
@@ -5594,7 +5594,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'shemale'
     }
     if (((s as any).sex_ev ?? 0) > 0) {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['sex_stamina'] = ((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)];
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['sex_stamina'] = (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0);
     }
     if (((s as any).bimbo_flag ?? 0)    > 0) {
       ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['bimbo_flag'] = ((s as any).bimbo_flag ?? 0);
@@ -5834,98 +5834,98 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'fetish', '');
     if (((s as any).maso ?? 0)?.['exp'] !== 0  ||  ((s as any).maso ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'maso', maso['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'maso', maso['pref']
+      qspCall(s, 'fetish', 'set_exp', 'maso', ((s as any).maso ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'maso', ((s as any).maso ?? 0)?.['pref']);
     }
     if (((s as any).bound ?? 0)?.['exp'] !== 0  ||  ((s as any).bound ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'bound', bound['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'bound', bound['pref']
+      qspCall(s, 'fetish', 'set_exp', 'bound', ((s as any).bound ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'bound', ((s as any).bound ?? 0)?.['pref']);
     }
     if (((s as any).beast ?? 0)?.['exp'] !== 0  ||  ((s as any).beast ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'beast', beast['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'beast', beast['pref']
+      qspCall(s, 'fetish', 'set_exp', 'beast', ((s as any).beast ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'beast', ((s as any).beast ?? 0)?.['pref']);
     }
     if (((s as any).creampie ?? 0)?.['exp'] !== 0  ||  ((s as any).creampie ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'creampie', creampie['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'creampie', creampie['pref']
+      qspCall(s, 'fetish', 'set_exp', 'creampie', ((s as any).creampie ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'creampie', ((s as any).creampie ?? 0)?.['pref']);
     }
     if (((s as any).impregnation ?? 0)?.['exp'] !== 0  ||  ((s as any).impregnation ?? 0)?.['pref'] !== 0) {
     }
     if (((s as any).pregnant ?? 0)?.['exp'] !== 0  ||  ((s as any).pregnant ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'pregnant', pregnant['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'pregnant', pregnant['pref']
+      qspCall(s, 'fetish', 'set_exp', 'pregnant', ((s as any).pregnant ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'pregnant', ((s as any).pregnant ?? 0)?.['pref']);
     }
     if (((s as any).exhibitionism ?? 0)?.['exp'] !== 0  ||  ((s as any).exhibitionism ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'exhibitionism', exhibitionism['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'exhibitionism', exhibitionism['pref']
+      qspCall(s, 'fetish', 'set_exp', 'exhibitionism', ((s as any).exhibitionism ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'exhibitionism', ((s as any).exhibitionism ?? 0)?.['pref']);
     }
     if (((s as any).rough ?? 0)?.['exp'] !== 0  ||  ((s as any).rough ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'rough', rough['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'rough', rough['pref']
+      qspCall(s, 'fetish', 'set_exp', 'rough', ((s as any).rough ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'rough', ((s as any).rough ?? 0)?.['pref']);
     }
     if (((s as any).prostitution ?? 0)?.['exp'] !== 0  ||  ((s as any).prostitution ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'prostitution', prostitution['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'prostitution', prostitution['pref']
+      qspCall(s, 'fetish', 'set_exp', 'prostitution', ((s as any).prostitution ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'prostitution', ((s as any).prostitution ?? 0)?.['pref']);
     }
     if (((s as any).dom ?? 0)?.['exp'] !== 0  ||  ((s as any).dom ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'dom', dom['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'dom', dom['pref']
+      qspCall(s, 'fetish', 'set_exp', 'dom', ((s as any).dom ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'dom', ((s as any).dom ?? 0)?.['pref']);
     }
     if (((s as any).sub ?? 0)?.['exp'] !== 0  ||  ((s as any).sub ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'sub', sub['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'sub', sub['pref']
+      qspCall(s, 'fetish', 'set_exp', 'sub', ((s as any).sub ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'sub', ((s as any).sub ?? 0)?.['pref']);
     }
     if (((s as any).incest ?? 0)?.['exp'] !== 0  ||  ((s as any).incest ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'incest', incest['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'incest', incest['pref']
+      qspCall(s, 'fetish', 'set_exp', 'incest', ((s as any).incest ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'incest', ((s as any).incest ?? 0)?.['pref']);
     }
     if (((s as any).feet ?? 0)?.['exp'] !== 0  ||  ((s as any).feet ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'feet', feet['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'feet', feet['pref']
+      qspCall(s, 'fetish', 'set_exp', 'feet', ((s as any).feet ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'feet', ((s as any).feet ?? 0)?.['pref']);
     }
     if (((s as any).lesbian ?? 0)?.['exp'] !== 0  ||  ((s as any).lesbian ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'lesbian', lesbian['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'lesbian', lesbian['pref']
+      qspCall(s, 'fetish', 'set_exp', 'lesbian', ((s as any).lesbian ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'lesbian', ((s as any).lesbian ?? 0)?.['pref']);
     }
     if (((s as any).group ?? 0)?.['exp'] !== 0  ||  ((s as any).group ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'group', group['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'group', group['pref']
+      qspCall(s, 'fetish', 'set_exp', 'group', ((s as any).group ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'group', ((s as any).group ?? 0)?.['pref']);
     }
     if (((s as any).gang ?? 0)?.['exp'] !== 0  ||  ((s as any).gang ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'gangbang', gang['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'gangbang', gang['pref']
+      qspCall(s, 'fetish', 'set_exp', 'gangbang', ((s as any).gang ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'gangbang', ((s as any).gang ?? 0)?.['pref']);
     }
     if (((s as any).gangbang ?? 0)?.['exp'] !== 0  ||  ((s as any).gangbang ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'add_exp', 'gangbang', gangbang['exp']
-      // TODO-QSP: gs 'fetish', 'add_pref', 'gangbang', gangbang['pref']
+      qspCall(s, 'fetish', 'add_exp', 'gangbang', ((s as any).gangbang ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'add_pref', 'gangbang', ((s as any).gangbang ?? 0)?.['pref']);
     }
     if (((s as any).humiliation ?? 0)?.['exp'] !== 0  ||  ((s as any).humiliation ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'humiliation', humiliation['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'humiliation', humiliation['pref']
+      qspCall(s, 'fetish', 'set_exp', 'humiliation', ((s as any).humiliation ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'humiliation', ((s as any).humiliation ?? 0)?.['pref']);
     }
     if (((s as any).deepthroat ?? 0)?.['exp'] !== 0  ||  ((s as any).deepthroat ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'deepthroat', deepthroat['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'deepthroat', deepthroat['pref']
+      qspCall(s, 'fetish', 'set_exp', 'deepthroat', ((s as any).deepthroat ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'deepthroat', ((s as any).deepthroat ?? 0)?.['pref']);
     }
     if (((s as any).unknown ?? 0)?.['exp'] !== 0  ||  ((s as any).unknown ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'unknown', unknown['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'unknown', unknown['pref']
+      qspCall(s, 'fetish', 'set_exp', 'unknown', ((s as any).unknown ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'unknown', ((s as any).unknown ?? 0)?.['pref']);
     }
     if (((s as any).gloryhole ?? 0)?.['exp'] !== 0  ||  ((s as any).gloryhole ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'gloryhole', gloryhole['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'gloryhole', gloryhole['pref']
+      qspCall(s, 'fetish', 'set_exp', 'gloryhole', ((s as any).gloryhole ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'gloryhole', ((s as any).gloryhole ?? 0)?.['pref']);
     }
     if (((s as any).rape ?? 0)?.['exp'] !== 0  ||  ((s as any).rape ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'rape', rape['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'rape', rape['pref']
+      qspCall(s, 'fetish', 'set_exp', 'rape', ((s as any).rape ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'rape', ((s as any).rape ?? 0)?.['pref']);
     }
     if (((s as any).shemale ?? 0)?.['exp'] !== 0  ||  ((s as any).shemale ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'shemale', shemale['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'shemale', shemale['pref']
+      qspCall(s, 'fetish', 'set_exp', 'shemale', ((s as any).shemale ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'shemale', ((s as any).shemale ?? 0)?.['pref']);
     }
     if (((s as any).masturbate ?? 0)?.['exp'] !== 0  ||  ((s as any).masturbate ?? 0)?.['pref'] !== 0) {
-      // TODO-QSP: gs 'fetish', 'set_exp', 'masturbate', masturbate['exp']
-      // TODO-QSP: gs 'fetish', 'set_pref', 'masturbate', masturbate['pref']
+      qspCall(s, 'fetish', 'set_exp', 'masturbate', ((s as any).masturbate ?? 0)?.['exp']);
+      qspCall(s, 'fetish', 'set_pref', 'masturbate', ((s as any).masturbate ?? 0)?.['pref']);
     }
     qspCall(s, 'tattoo_management', 'count');
   }
@@ -6142,7 +6142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: subscription[$property_code[saveupdaterVars['i']] + '-suspension_day'] += daystart - day
         }
       }
-      // TODO-QSP: gs 'array', 'remove_element', 'subscription', $property_code[saveupdaterVars['i']] + '-suspension_mo...
+      qspCall(s, 'array', 'remove_element', 'subscription', qspUntranslated(s, "property_code[saveupdaterVars['i']]", { location: "saveupdater" }) + '-suspension_month');
       ((s as any).saveupdaterVars = (s as any).saveupdaterVars ?? {})['i'] = ((s as any).saveupdaterVars['i'] ?? 0) + (1);
       if (((s as any).saveupdaterVars ?? 0)?.['i'] < ((s as any).saveupdaterVars ?? 0)?.['max_i']) {
         // TODO-QSP: jump 'home_internet_subscription_loop'

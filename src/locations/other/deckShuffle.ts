@@ -45,10 +45,10 @@ function enterShuffle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop3
   if (((s as any).i ?? 0) < 52) {
     (s as any).j = (Math.floor(Math.random() * 52) + 0);
-    (s as any).temp = ((s as any).deckFace ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).i ?? 0)] = ((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)];
+    (s as any).temp = (((s as any).deckFace ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).i ?? 0)] = (((s as any).deckFace ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
     ((s as any).deckFace = (s as any).deckFace ?? {})[String((s as any).j ?? 0)] = ((s as any).temp ?? 0);
-    (s as any).text = ((s as any).deckImg ?? 0)?.[String((s as any).i ?? 0)];
+    (s as any).text = (((s as any).deckImg ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     // TODO-QSP: $deckImg[i] = $deckImg[j]
     // TODO-QSP: $deckImg[j] = $text
     (s as any).i = ((s as any).i ?? 0) + (1);

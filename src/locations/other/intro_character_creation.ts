@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -28,7 +26,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
       scene.img('images/system/1_openings/4_csb/16.jpg');
     } else {
-      scene.img(`${qspFunc(s, '$$face_image')}`);
+      scene.img(`${qspFunc(s, '$face_image')}`);
     }
     scene.text('<center>Choose your date of birth:</center>');
     if (((s as any).birthmonth ?? 0) === 2) {
@@ -47,7 +45,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     (s as any).birthmonth = qspFunc(s, 'math', 'int_clamp', ((s as any).birthmonth ?? 0), 1, 12);
     (s as any).birthday = qspFunc(s, 'math', 'int_clamp', ((s as any).birthday ?? 0), 1, ((s as any).monthdays ?? 0));
     // TODO-QSP: dynamic text: <center><<iif($start_type[''magic''] = ''tg'', ''Her'', ''Your'')>> birthday: <b...
-    scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? ''} ${((s as any).birthday ?? '')}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? ''))}, ${((s as any).birthyear ?? '')}</b></center>`);
+    scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${(((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? '')} ${((s as any).birthday ?? '')}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? ''))}, ${((s as any).birthyear ?? '')}</b></center>`);
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 5 & gs ''intro_character_creation'', ''core_bi...
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">+5 Days</a></center>');
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 1 & gs ''intro_character_creation'', ''core_bi...
@@ -67,13 +65,13 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<center><table style="border:2px solid ' + $theme_hex['goth'] + '; background-c...
     scene.text('\'<center><table style="border:2px solid \' + $theme_hex[\'goth\'] + \'; background-color:\' + $theme_hex[\'table_bg\'] + \'; border-spacing:4px; margin:6px;" cellpadding="0" cellspacing="0">\'');
     // TODO-QSP: dynamic text: <tr><<$bm_lnk[1]>><<$bm_lnk[2]>><<$bm_lnk[3]>></tr>
-    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[1]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[2]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[3]", { location: "intro_character_creation" })}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[1] ?? '')}${(((s as any).bm_lnk ?? 0)?.[2] ?? '')}${(((s as any).bm_lnk ?? 0)?.[3] ?? '')}</tr>`);
     // TODO-QSP: dynamic text: <tr><<$bm_lnk[4]>><<$bm_lnk[5]>><<$bm_lnk[6]>></tr>
-    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[4]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[5]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[6]", { location: "intro_character_creation" })}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[4] ?? '')}${(((s as any).bm_lnk ?? 0)?.[5] ?? '')}${(((s as any).bm_lnk ?? 0)?.[6] ?? '')}</tr>`);
     // TODO-QSP: dynamic text: <tr><<$bm_lnk[7]>><<$bm_lnk[8]>><<$bm_lnk[9]>></tr>
-    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[7]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[8]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[9]", { location: "intro_character_creation" })}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[7] ?? '')}${(((s as any).bm_lnk ?? 0)?.[8] ?? '')}${(((s as any).bm_lnk ?? 0)?.[9] ?? '')}</tr>`);
     // TODO-QSP: dynamic text: <tr><<$bm_lnk[10]>><<$bm_lnk[11]>><<$bm_lnk[12]>></tr>
-    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[10]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[11]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[12]", { location: "intro_character_creation" })}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[10] ?? '')}${(((s as any).bm_lnk ?? 0)?.[11] ?? '')}${(((s as any).bm_lnk ?? 0)?.[12] ?? '')}</tr>`);
     scene.text('</table></center>');
     scene.actions([
       { label: '<b>Done</b>', handler: (st: GameState) => {
@@ -182,24 +180,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcstatic1', '');
     qspCall(s, 'npcstatic2', '');
     qspCall(s, 'npcstatic3', '');
-    // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 1
+    qspGoto(s, 'intro_character_creation', 'start', String((s as any).locArgs?.[1] ?? ''), '1');
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 1) {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-        // TODO-QSP: gt 'intro_character_creation', 'start', $ARGS[1], 2
+        qspGoto(s, 'intro_character_creation', 'start', String((s as any).locArgs?.[1] ?? ''), '2');
       } else {
         if (((s as any).pcs_firstname ?? 0) === '') {
           qspCall(s, 'intro_functions', 'set_default', 'name');
         }
-        (s as any).temp = window.prompt("What is your first name? (Leave blank for \"<<$pcs_firstname>>\")") ?? '';
+        (s as any).temp = window.prompt("What is your first name? (Leave blank for \"" + (((s as any).pcs_firstname ?? 0)) + "\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_firstname = ((s as any).temp ?? 0);
         }
-        (s as any).temp = window.prompt("What is your family name? (Leave blank for \"<<$pcs_lastname>>\")") ?? '';
+        (s as any).temp = window.prompt("What is your family name? (Leave blank for \"" + (((s as any).pcs_lastname ?? 0)) + "\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_lastname = ((s as any).temp ?? 0);
         }
-        (s as any).temp = window.prompt("What is your nickname? (Leave blank for \"<<$pcs_nickname>>\")") ?? '';
+        (s as any).temp = window.prompt("What is your nickname? (Leave blank for \"" + (((s as any).pcs_nickname ?? 0)) + "\")") ?? '';
         if (((s as any).temp ?? 0) !== '') {
           (s as any).pcs_nickname = ((s as any).temp ?? 0);
         }
@@ -234,7 +232,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           (s as any).tg_init_cat = 'goodgirl';
           qspCall(s, 'intro_character_templates', 'set_template', ((s as any).tg_init_cat ?? 0));
         }
-        // TODO-QSP: gt 'intro_character_creation', 'start2', $ARGS[1]
+        qspGoto(s, 'intro_character_creation', 'start2', String((s as any).locArgs?.[1] ?? ''));
       }
     }
   }
@@ -381,7 +379,7 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cool']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' a lot of friends', handler: (st: GameState) => {
-    qspCall(st, 'intro_character_creation', 'group_desc', 'cool', 'socialite');
+    qspCall(st, 'intro_character_creation', '');
   } },
         { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' beautiful', goto: ['intro_character_creation', 'group_desc', 'cool', 'beautiful'] },
         { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' just hanging in there', goto: ['intro_character_creation', 'group_desc', 'cool', 'anorexic'] },
@@ -867,7 +865,7 @@ function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: '<b>Confirm this starting option</b>', handler: (st: GameState) => {
     ((st as any).start_type = (st as any).start_type ?? {})['cat'] = ((st as any).temp_cat ?? 0);
-    // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
+    qspCall(st, 'intro_character_templates', 'set_template', ((st as any).start_type ?? 0)?.['cat']);
     qspGoto(st, 'intro_character_creation', 'appearance_hub');
   } },
 { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
@@ -911,7 +909,7 @@ function enterAppearanceHub(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Allows you to alter hair and eyes, use to match fixed profile picture if in use.</b></center>');
   if (((s as any).start_type ?? 0)?.['magic'] === 'tg'  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).face_style ?? 0)?.['type'] === 1) {
-      scene.img(`${qspFunc(s, '$$face_image')}`);
+      scene.img(`${qspFunc(s, '$face_image')}`);
       scene.text('She looks exactly like the picture she sent you.');
     } else {
       scene.img('images/system/1_openings/shared/character_creation_2.jpg');

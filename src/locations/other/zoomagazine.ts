@@ -166,8 +166,8 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Show your body', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npcgeneratec', '', 0);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0');
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet1.jpg');
     // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs ''obj_din'', ''show_tit...

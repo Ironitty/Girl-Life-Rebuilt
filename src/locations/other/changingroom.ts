@@ -48,7 +48,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     qspCall(s, 'outfit', 'backup', 'swim');
-    // TODO-QSP: gs 'shoes', 'wear', $lastwornshoetype['swim'], lastwornshoenumber['swim']
+    qspCall(s, 'shoes', 'wear', ((s as any).lastwornshoetype ?? 0)?.['swim'], ((s as any).lastwornshoenumber ?? 0)?.['swim']);
   }
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
   // TODO-QSP: :loopdanilovich_swimsuit
@@ -123,7 +123,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'changingroom', 'leave');
+    qspCall(st, 'changingroom', '');
   } },
     { label: 'Choose an outfit', handler: (st: GameState) => {
     // TODO-QSP: killvar 'locclass'
@@ -133,7 +133,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
+  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   // TODO-QSP: dynamic text: <<$ARGS[1]>> no.<<ARGS[2]>>
   scene.text(`${((s as any).locArgs?.[1] ?? '')} no.${((s as any).locArgs?.[2] ?? '')}`);
@@ -166,7 +166,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'underwear', 'remove');
     qspCall(st, 'shoes', 'strip');
-    // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
+    qspCall(st, 'clothing', 'wear', ((st as any).locArgs?.[1] ?? 0), ((st as any).locArgs?.[2] ?? 0));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
@@ -178,7 +178,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
               { label: 'Wear', handler: (st: GameState) => {
     qspCall(st, 'underwear', 'remove');
     qspCall(st, 'shoes', 'strip');
-    // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
+    qspCall(st, 'clothing', 'wear', ((st as any).locArgs?.[1] ?? 0), ((st as any).locArgs?.[2] ?? 0));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
@@ -193,7 +193,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
         { label: 'Wear', handler: (st: GameState) => {
     qspCall(st, 'underwear', 'remove');
     qspCall(st, 'shoes', 'strip');
-    // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
+    qspCall(st, 'clothing', 'wear', ((st as any).locArgs?.[1] ?? 0), ((st as any).locArgs?.[2] ?? 0));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);

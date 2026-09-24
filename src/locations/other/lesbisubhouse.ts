@@ -486,7 +486,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).cocsuckedonday = (Math.floor(Math.random() * 3) + 1);
     (st as any).cocsuckedonday = ((st as any).cocsuckedonday ?? 0) * (((st as any).daystart ?? 0) - ((st as any).slavepay ?? 0));
-    // TODO-QSP: gs 'money', 'earn', 300 * cocsuckedonday
+    qspCall(st, 'money', 'earn', 300 * ((st as any).cocsuckedonday ?? 0));
     (st as any).slavejoballexp = ((st as any).slavejoballexp ?? 0) + (((st as any).daystart ?? 0) - ((st as any).slavejobdayexp ?? 0));
     (st as any).slavejobQW = 0;
     qspCall(st, 'stat', '');
@@ -507,7 +507,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).cocsuckedonday = (Math.floor(Math.random() * 3) + 1);
     (st as any).cocsuckedonday = ((st as any).cocsuckedonday ?? 0) * (((st as any).daystart ?? 0) - ((st as any).slavepay ?? 0));
-    // TODO-QSP: gs 'money', 'earn', 900 * cocsuckedonday
+    qspCall(st, 'money', 'earn', 900 * ((st as any).cocsuckedonday ?? 0));
     (st as any).slavejoballexp = ((st as any).slavejoballexp ?? 0) + (((st as any).daystart ?? 0) - ((st as any).slavejobdayexp ?? 0));
     (st as any).slavejobQW = 0;
     qspCall(st, 'stat', '');

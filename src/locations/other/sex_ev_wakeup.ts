@@ -344,7 +344,7 @@ function enterLateForSchool(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'exit');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } },
@@ -379,7 +379,7 @@ function enterLateSchoolNotAtHome(s: GameState, scene: SceneBuilder): void {
     scene.text(`With one last quick check, you make sure all your clothes are in place and rush out the door, leaving ${((st as any).npcdesc ?? '')} and your night together behind you.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'exit');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } },
@@ -407,7 +407,7 @@ function enterLateSchoolNotAtHome(s: GameState, scene: SceneBuilder): void {
     scene.text('With one last quick check, you make sure all your clothes are in place and call, "See you later!" over your shoulder as you rush out the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'exit');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } },
@@ -461,7 +461,7 @@ function enterThrowUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_in_shower'] = 0;
     // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> peeks his head in through the door.
-    scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} peeks his head in through the door.`);
+    scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} peeks his head in through the door.`);
     scene.text('"Hey, you okay?"');
     // TODO-QSP: act'No idea':
     scene.text('"No idea," you groan.');
@@ -475,7 +475,7 @@ function enterThrowUp(s: GameState, scene: SceneBuilder): void {
       scene.text('"Oh <i>shit</i>..." you whisper before hurling up your guts again.');
     } else {
       // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> makes a face and leaves you to keep throwing up until ...
-      scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} makes a face and leaves you to keep throwing up until you feel you can stand.`);
+      scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} makes a face and leaves you to keep throwing up until you feel you can stand.`);
     }
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   }
@@ -514,7 +514,7 @@ function enterThrowUp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   // TODO-QSP: end
   // TODO-QSP: dynamic text: When your guts stop coming up, you stumble to your feet and stagger out the door...
-  scene.text(`When your guts stop coming up, you stumble to your feet and stagger out the door to see ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} still snoring in bed.`);
+  scene.text(`When your guts stop coming up, you stumble to your feet and stagger out the door to see ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} still snoring in bed.`);
   qspCall(s, 'sex_ev_morning', 'morning_menu1');
   // TODO-QSP: end
   // TODO-QSP: end
@@ -564,7 +564,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Kiss ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'kiss', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'kiss', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['boy_asleep'] = 0;
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     scene.img('images/shared/sex/kiss/bed1.jpg');
@@ -580,7 +580,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -593,7 +593,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -606,7 +606,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_morning', 'morning_menu1');
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     scene.text('"Let me make it up to you," you smile, throwing back the covers and wrapping your lips around his morning wood.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBjWake(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -619,7 +619,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sex_ev_morning', 'morning_menu1');
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Give ' + String(((st as any).npcdesc ?? '') ?? '') + ' a blowjob', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'bj', 1, 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     scene.img('images/shared/sex/blowjob/bj47.mp4');
     // TODO-QSP: dynamic text: You break the kiss from <<$npcdesc>>''s lips and start trailing them down his ne...
     scene.text(`You break the kiss from ${((st as any).npcdesc ?? '')}'s lips and start trailing them down his neck and then his chest and then his stomach and soon you have your lips wrapped around his morning wood.`);
@@ -636,7 +636,7 @@ function enterKissWake(s: GameState, scene: SceneBuilder): void {
 
 function enterBjWake(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_asleep'] = 0;
-  // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+  qspCall(s, 'arousal', 'bj', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
   if (((s as any).npc_end_free_time ?? 0) <= ((s as any).hour ?? 0) + 2) {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['npc_late_work'] = 1;
     scene.text('"Nngh," he grunts as you start sucking his cock. "I\'m gonna be late for work..."');
@@ -848,7 +848,7 @@ function enterCumshotWakeupBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWakeupFondling(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'arousal', 'foreplay', -rand(5,10), 'no_orgasm_msg', $sex_ev['prostitution_flag']
+  qspCall(s, 'arousal', 'foreplay', -(Math.floor(Math.random() * 6) + 5), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
   scene.img('images/shared/sex/sleep/fondle1.jpg');
   scene.text('You stir as you feel a hands roaming your body. One passes over your breasts, squeezing them on the way down to your stomach. The other is already snaking its way between your legs. Something stiff and warm is poking into your lower back.');
   // TODO-QSP: end
@@ -1102,7 +1102,7 @@ function enterCheatNoGuiltStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Your boyfriend (no guilt)', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['cheat'] = 'boyfriend'
-    qspCall(st, 'sex_ev_wakeup', 'cheat_no_guilt1');
+    qspCall(st, 'sex_ev_wakeup', '');
   } },
         ]);
       }
@@ -1110,7 +1110,7 @@ function enterCheatNoGuiltStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Your girlfriend (no guilt)', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['cheat'] = 'girlfriend'
-    qspCall(st, 'sex_ev_wakeup', 'cheat_no_guilt1');
+    qspCall(st, 'sex_ev_wakeup', '');
   } },
         ]);
       }
@@ -1184,7 +1184,7 @@ function enterGuiltStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Your boyfriend', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['cheat'] = 'boyfriend'
-    qspCall(st, 'sex_ev_wakeup', 'cheat_guilt1');
+    qspCall(st, 'sex_ev_wakeup', '');
   } },
         ]);
       }
@@ -1192,7 +1192,7 @@ function enterGuiltStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Your girlfriend', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['cheat'] = 'girlfriend'
-    qspCall(st, 'sex_ev_wakeup', 'cheat_guilt1');
+    qspCall(st, 'sex_ev_wakeup', '');
   } },
         ]);
       }
@@ -1200,7 +1200,7 @@ function enterGuiltStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Julia', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['cheat'] = 'Julia'
-    qspCall(st, 'sex_ev_wakeup', 'cheat_guilt1');
+    qspCall(st, 'sex_ev_wakeup', '');
   } },
         ]);
       }

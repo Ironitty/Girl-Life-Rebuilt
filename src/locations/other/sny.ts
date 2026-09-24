@@ -204,8 +204,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).NosovRevenge ?? 0))) {
       (st as any).partyPantyCum = 1;
-      qspCall(st, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 28) + 18));
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 28) + 18));
+      qspCall(st, 'npcStat', '$npclastgenerated');
       scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/vom.jpg');
       scene.text('You wake up on the bed in Dimka\'s room. Your head hurts, your whole body aches and you feel a wet spot on your panties. Turning your head, you see some sort of white mucus. You poke a finger in the mucus and hold the finger to your nose. The pungent smell of sperm hits you. At this moment, Dimka enters the room. Seeing your panties smeared with sperm, he begins to laugh "Dammit. I thought no one else would get you before I got back, but hell, it looks like someone already fucked you."');
       qspCall(st, 'cum_call', 'clothes', ((st as any).npcID ?? 0));
@@ -387,7 +387,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
       if (((s as any).NosovRevenge ?? 0) === 1  ||  ((s as any).dimaFilm ?? 0) !== 1) {
         scene.actions([
           { label: 'Push him away', handler: (st: GameState) => {
-    qspCall(st, 'sny', 'no');
+    qspCall(st, 'sny', '');
   } },
         ]);
       }

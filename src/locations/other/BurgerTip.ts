@@ -35,7 +35,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -64,7 +64,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -96,7 +96,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -219,7 +219,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -263,7 +263,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -293,7 +293,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                     scene.actions([
                       { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                     ]);
                   }
@@ -325,7 +325,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -374,7 +374,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                     scene.actions([
                       { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                     ]);
                   }
@@ -392,7 +392,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                       scene.actions([
                         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                       ]);
                     }
@@ -408,7 +408,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                         scene.actions([
                           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                         ]);
                       }
@@ -424,7 +424,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                           scene.actions([
                             { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                           ]);
                         }
@@ -493,22 +493,22 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).sexcontra ?? 0) === 3) {
       scene.text('Anatoly groans and twitches a few times, then he pulled out of you. You see that his condom is filled with sperm.');
-      qspCall(st, 'cum_call', '', '', 'A74', 1, 3);
+      qspCall(st, 'cum_call', '', 'A74', 1, 3);
     } else {
       if (((st as any).sexcontra ?? 0) === 7) {
         scene.text('Anatoly groaned and twitches a few times, then he pulled out of you. You smile when you see that his condom wasn\'t quite as full as it should be.');
-        qspCall(st, 'cum_call', '', '', 'A74', 1, 7);
+        qspCall(st, 'cum_call', '', 'A74', 1, 7);
       } else {
         if (((st as any).sexcontra ?? 0) === 4) {
           scene.text('Anatoly groans and twitches a few times, then he pulls out of you. You see that his condom is torn.');
           scene.text('"If you get pregnant, it\'s not mine. Take this money and make sure of it." He says to you.');
-          qspCall(st, 'cum_call', '', '', 'A74', 1, 4);
+          qspCall(st, 'cum_call', '', 'A74', 1, 4);
           qspCall(st, 'money', 'earn', 500);
         } else {
           if (((st as any).sexcontra ?? 0) === 5) {
             scene.text('Anatoly groans and twitches a few times, then he pulls out of you. You see that his condom is missing. OMG, it must be inside you!');
             scene.text('"If you get pregnant, it\'s not mine. Take this money and make sure of it." He says to you.');
-            qspCall(st, 'cum_call', '', '', 'A74', 1, 5);
+            qspCall(st, 'cum_call', '', 'A74', 1, 5);
             qspCall(st, 'money', 'earn', 500);
           }
         }
@@ -586,7 +586,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -631,7 +631,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                 scene.actions([
                   { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                 ]);
               }
@@ -647,7 +647,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                 scene.actions([
                   { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                 ]);
               }
@@ -668,7 +668,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
               scene.actions([
                 { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
               ]);
             }
@@ -687,7 +687,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                 scene.actions([
                   { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                 ]);
               }
@@ -704,7 +704,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                   scene.actions([
                     { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                   ]);
                 }
@@ -723,7 +723,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                       scene.actions([
                         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                       ]);
                     }
@@ -873,7 +873,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
                       scene.actions([
                         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
                       ]);
                     }
@@ -913,7 +913,7 @@ function enterToiletWash(s: GameState, scene: SceneBuilder): void {
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
       scene.actions([
         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
       ]);
     }
@@ -945,7 +945,7 @@ function enterToiletWash2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
       scene.actions([
         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
       ]);
     }
@@ -1015,7 +1015,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
           scene.actions([
             { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
           ]);
         }
@@ -1047,7 +1047,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
           scene.actions([
             { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
           ]);
         }
@@ -1112,7 +1112,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -1148,7 +1148,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
       scene.actions([
         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
       ]);
     }
@@ -1180,7 +1180,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -1216,7 +1216,7 @@ function enterAnal2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
       scene.actions([
         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
       ]);
     }
@@ -1250,7 +1250,7 @@ function enterIlyWork(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -1330,7 +1330,7 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
         scene.actions([
           { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
         ]);
       }
@@ -1357,7 +1357,7 @@ function enterIlyWork3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 2) {
       scene.actions([
         { label: 'Leave work', handler: (st: GameState) => {
-    qspCall(st, 'burgerWork', 'work2');
+    qspCall(st, 'burgerWork', '');
   } },
       ]);
     }

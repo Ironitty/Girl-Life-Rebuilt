@@ -260,7 +260,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s better to tell her yourself soon before she finds out from someone else.');
     scene.actions([
       { label: 'Remain in the hallway', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A33', (-15));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['korrPar', ''] },
     ]);
   } },
@@ -301,7 +301,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s better to tell her yourself soon before she finds out from someone else.');
     scene.actions([
       { label: 'Remain in the hallway', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A33', (-15));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['korrPar', ''] },
     ]);
   } },

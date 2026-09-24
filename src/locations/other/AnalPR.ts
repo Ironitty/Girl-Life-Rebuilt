@@ -13,7 +13,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'AnalPR';
   (s as any).location_type = 'event';
   (s as any).prosti = 0;
-  // TODO-QSP: gs 'money', 'earn', ProsMoney*100
+  qspCall(s, 'money', 'earn', ((s as any).ProsMoney ?? 0)*100);
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
@@ -139,7 +139,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter4(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'earn', ProsMoney * 100
+  qspCall(s, 'money', 'earn', ((s as any).ProsMoney ?? 0) * 100);
   qspCall(s, 'mood', 'lower', 'large');
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).pcs_health ?? 0)/5);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -185,7 +185,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
 
 function enter6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  // TODO-QSP: gs 'money', 'earn', ProsMoney*110
+  qspCall(s, 'money', 'earn', ((s as any).ProsMoney ?? 0)*110);
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/sex/car/sexcar20.jpg');
   scene.text('You lie down obediently while giving the man a humble look as he takes his place between your legs. He quickly puts a condom on, not taking any more chances with you. You still have that awful taste in your mouth, but do your best to focus on giving the man pleasure.');

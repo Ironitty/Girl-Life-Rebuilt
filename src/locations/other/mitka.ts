@@ -279,7 +279,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'boyStat', 'A63');
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A63'] = 1;
-    qspCall(st, 'cum_call', '', '', 'A63', 1);
+    qspCall(st, 'cum_call', '', 'A63', 1);
     qspCall(st, 'arousal', 'vaginal', 10, 'sub');
     qspCall(st, 'arousal', 'end');
     scene.actions([

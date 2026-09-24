@@ -579,7 +579,7 @@ function enterDTRVaginal(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
       // TODO-QSP: dynamic text: Kolka''s thrusts suddenly become slower, but harder as he empties himself inside...
       scene.text(`Kolka's thrusts suddenly become slower, but harder as he empties himself inside your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
-      qspCall(st, 'cum_call', '', '', 'A34', 1);
+      qspCall(st, 'cum_call', '', 'A34', 1);
       qspCall(st, 'stat', '');
     }
     qspCall(st, 'arousal', 'vaginal', 3, 'incest');
@@ -1783,7 +1783,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kolka</b></center>');
-  scene.img(`${qspFunc(s, '$$brother_face_image')}`);
+  scene.img(`${qspFunc(s, '$brother_face_image')}`);
   // TODO-QSP: dynamic text: "Ok <<$pcs_nickname>>, I dare you… too…" he say as he looks around as if he is t...
   scene.text(`"Ok ${((s as any).pcs_nickname ?? '')}, I dare you… too…" he say as he looks around as if he is thinking about what to dare you to do.`);
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
@@ -2303,7 +2303,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: act iif(losedare_sexcount = 4, '<font color="red"><b>Eek-!</b></font>', 'Keep fucking him'):
                     if (((s as any).losedare_sexcount ?? 0) !== 4) {
                       (s as any).losedare_sexcount = ((s as any).losedare_sexcount ?? 0) + (1);
-                      // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'sex', $dare_location
+                      qspGoto(s, 'brother2', 'lose_dares3', '3', 'sex');
                     } else {
                       qspCall(s, 'brother2', 'dare_sexcum_end');
                     }
@@ -2374,7 +2374,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: act iif(losedare_sexcount = 6, '<font color="red"><b>Eek-!</b></font>', 'Keep fucking him'):
                     if (((s as any).losedare_sexcount ?? 0) !== 6) {
                       (s as any).losedare_sexcount = ((s as any).losedare_sexcount ?? 0) + (1);
-                      // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'sex', $dare_location
+                      qspGoto(s, 'brother2', 'lose_dares3', '3', 'sex');
                     } else {
                       qspCall(s, 'brother2', 'dare_sexcum_end');
                     }
@@ -2430,7 +2430,8 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'brother_disc', 'arousal', 'light');
         qspCall(s, 'stat', '');
         if (((s as any).pantyworntype ?? 0) !== 'none') {
-          // TODO-QSP: gs 'clothing', 'strip' & sofa_redress = 1
+          qspCall(s, 'clothing', 'strip');
+          (s as any).sofa_redress = 1;
           scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/lap/remove_clothing.mp4');
         } else {
           scene.img('images/locations/pavlovsk/resident/apartment/home/bed/clothing.mp4');
@@ -2597,7 +2598,8 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'brother_disc', 'arousal', 'light');
             qspCall(s, 'stat', '');
             if (((s as any).pantyworntype ?? 0) !== 'none') {
-              // TODO-QSP: gs 'clothing', 'strip' & sofa_redress = 1
+              qspCall(s, 'clothing', 'strip');
+              (s as any).sofa_redress = 1;
               scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/lap/remove_clothing.mp4');
             } else {
               scene.img('images/locations/pavlovsk/resident/apartment/home/bed/clothing.mp4');

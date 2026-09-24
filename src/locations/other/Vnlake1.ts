@@ -35,7 +35,7 @@ function enterUkuni(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -50,7 +50,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -65,7 +65,7 @@ function enterAnuli(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -80,7 +80,7 @@ function enterBvag(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -95,7 +95,7 @@ function enterBanal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -124,7 +124,7 @@ function enterUbanal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();
@@ -139,7 +139,7 @@ function enterUbsit(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['Nudelake', ''] },
   ]);
   scene.build();

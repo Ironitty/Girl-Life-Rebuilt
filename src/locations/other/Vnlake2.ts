@@ -24,11 +24,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Touch member', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
+    qspCall(st, 'npcgeneratec', '0', 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
     (st as any).boy1 = ((st as any).npclastgenerated ?? 0);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'a');
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake2.jpg');
     scene.text('You touch one of their members and smile invitingly as you get up onto your knees. The men rise and stand next to you, their members close to you. You take them in your hands and begin to suck them, alternating between one and the other.');

@@ -101,7 +101,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/dk_night.jpg');
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]) {
     // TODO-QSP: $npc_usedname[$npcID] = $npc_nickname[$npcID]
-    qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+    qspCall(s, 'npcStat', '$npcID');
     scene.text('You leave the disco with the guy and walk into a quiet garden area.');
     // TODO-QSP: dynamic text: "I thought maybe we could just talk for a bit," he smiles at you. "I''m <<$npcde...
     scene.text(`"I thought maybe we could just talk for a bit," he smiles at you. "I'm ${((s as any).npcdesc ?? '')}. What's your name?"`);
@@ -182,7 +182,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'You go to the disco a lot?', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOutsideImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"So, do you come out here a lot? To the disco I mean."');
-    if (((String('I').indexOf(String(((st as any).npc_perstype ?? 0)?.[String((st as any).npcID ?? 0)]))) + 1) > 0) {
+    if (((String('I').indexOf(String((((st as any).npc_perstype ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0)))) + 1) > 0) {
       if (((st as any).npc_rel_goal ?? 0)?.[String((st as any).npcID ?? 0)] === 'sex') {
         if (((st as any).npc_misogynist ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
           scene.text('"More often than I\'d like to," he says with a wry smile. "But it\'s the best way to find sluts to fuck."');
@@ -309,7 +309,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
       scene.text('<i>Fuck it,</i> you think and surge forward to press your lips against his.');
       if (((st as any).npc_rel_goal ?? 0)?.[String((st as any).npcID ?? 0)] === 'sex') {
         // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> matches your energy instantly, immediately responding ...
-        scene.text(`${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} matches your energy instantly, immediately responding by pushing his tongue between your lips`);
+        scene.text(`${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} matches your energy instantly, immediately responding by pushing his tongue between your lips`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> stiffens beneath you in momentary surprise but quickly recovers, re...
         scene.text(`${((st as any).npcdesc ?? '')} stiffens beneath you in momentary surprise but quickly recovers, responding to your kiss with equal enthusiasm.`);
@@ -323,10 +323,10 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Reach for his cock', handler: (st: GameState) => {
     if (((st as any).temp ?? 0)?.['curr_action'] === 'kissing') {
       // TODO-QSP: dynamic text: Reach down into <<$npcdesc>>''s pants, you feel a stiff, <<$npc_dick_desc[$npcID...
-      scene.text(`Reach down into ${((st as any).npcdesc ?? '')}'s pants, you feel a stiff, ${((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness without ever breaking the kiss.`);
+      scene.text(`Reach down into ${((st as any).npcdesc ?? '')}'s pants, you feel a stiff, ${(((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness without ever breaking the kiss.`);
     } else {
       // TODO-QSP: dynamic text: You reach down into <<$npcdesc>>''s pants, feeling a stiff, <<$npc_dick_desc[$np...
-      scene.text(`You reach down into ${((st as any).npcdesc ?? '')}'s pants, feeling a stiff, ${((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness`);
+      scene.text(`You reach down into ${((st as any).npcdesc ?? '')}'s pants, feeling a stiff, ${(((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness`);
     }
     qspGoto(st, 'pav_disco_sex', 'handjob');
   } },
@@ -355,7 +355,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_shy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     if (((s as any).temp ?? 0)?.['curr_action'] === 'handjob'  ||  ((s as any).temp ?? 0)?.['curr_action'] === 'blowjob') {
       // TODO-QSP: dynamic text: "Oh, shit-" he stammers, suddenly looking bashful and embarrassed all at once an...
-      scene.text(`"Oh, shit-" he stammers, suddenly looking bashful and embarrassed all at once and starts trying to stuff his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} back inside so it isn't just hanging out in front of you. "Sorry, you're just so pretty, and I got caught up, and-"`);
+      scene.text(`"Oh, shit-" he stammers, suddenly looking bashful and embarrassed all at once and starts trying to stuff his ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} back inside so it isn't just hanging out in front of you. "Sorry, you're just so pretty, and I got caught up, and-"`);
     } else {
       scene.text('"Oh, shit-" he stammers, suddenly looking bashful and embarrassed all at once. "Sorry, you\'re just so pretty, and I got caught up, and-"');
     }
@@ -420,7 +420,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp ?? 0)?.['curr_action'] === 'handjob'  ||  ((s as any).temp ?? 0)?.['curr_action'] === 'blowjob') {
         // TODO-QSP: dynamic text: "Oh, fuck- Sorry," he stammers, literally caught with his pants down and starts ...
-        scene.text(`"Oh, fuck- Sorry," he stammers, literally caught with his pants down and starts to stuff his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} back inside so it isn't just hanging out in front of you.`);
+        scene.text(`"Oh, fuck- Sorry," he stammers, literally caught with his pants down and starts to stuff his ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} back inside so it isn't just hanging out in front of you.`);
       } else {
         scene.text('"Oh, fuck- Sorry," he stammers, looking confused and unsure of what to do.');
       }
@@ -637,7 +637,7 @@ function enterBoysexHandjob(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.img('images/shared/sex/handjob/hj.jpg');
     // TODO-QSP: dynamic text: "Feel how hard I am for you," <<$npcdesc>> growls in your ear, taking your hand ...
-    scene.text(`"Feel how hard I am for you," ${((s as any).npcdesc ?? '')} growls in your ear, taking your hand and shoving it down his pants, forcing you to wrap your fingers around his <b>${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock</b> and pull it free.`);
+    scene.text(`"Feel how hard I am for you," ${((s as any).npcdesc ?? '')} growls in your ear, taking your hand and shoving it down his pants, forcing you to wrap your fingers around his <b>${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} cock</b> and pull it free.`);
     scene.actions([
       { label: 'This is too much', handler: (st: GameState) => {
     // TODO-QSP: xgt 'pav_disco_outside', 'toomuch_exit', 'handjob_stop'

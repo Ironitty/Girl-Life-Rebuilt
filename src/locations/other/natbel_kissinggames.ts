@@ -159,7 +159,7 @@ function enterSetSexActs1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(st, 'natbel_kissinggames', 'set_sex_acts1');
+    qspCall(st, 'natbel_kissinggames', '');
   } },
       { label: 'Satisfied', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

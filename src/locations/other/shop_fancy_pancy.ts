@@ -56,7 +56,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'fancy_burlesque');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, Clothingstock mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, ((s as any).Clothingstock ?? 0) % 2);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');

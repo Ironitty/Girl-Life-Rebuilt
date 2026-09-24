@@ -543,7 +543,7 @@ function enterBushcraft(s: GameState, scene: SceneBuilder): void {
     (s as any).forest_lostday = ((s as any).daystart ?? 0);
     if (((s as any).pcs_bushcraft ?? 0) < ((s as any).lostrand ?? 0)) {
       (s as any).lost_girl = 1;
-      // TODO-QSP: gt 'gad_forest_lost', $ARGS[1]
+      qspGoto(s, 'gad_forest_lost', String((s as any).locArgs?.[1] ?? ''));
     }
   }
   // TODO-QSP: end

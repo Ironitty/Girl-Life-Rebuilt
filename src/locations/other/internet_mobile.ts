@@ -43,13 +43,13 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
     // TODO-QSP: :home_internet_subscription_loop
     if ((((s as any).property_status ?? 0)?.[String((s as any).im_i ?? 0)] === 1  ||  ((s as any).property_status ?? 0)?.[String((s as any).im_i ?? 0)] === 2)  &&  ((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]] === 1) {
       if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-date'] === ((s as any).day ?? 0)) {
-        // TODO-QSP: gs 'internet_mobile', 'renew_subscription', $property_code[im_i]
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] ?? 0)]; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-suspension_day'] > 0) {
           if (((s as any).subscription ?? 0)[(((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)]) + '-suspension_day'] >= ((s as any).daystart ?? 0)) {
-            // TODO-QSP: gs 'internet_mobile', 'renew_subscription', $property_code[im_i]
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] ?? 0)]; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            // TODO-QSP: gs 'internet_mobile', 'suspend_subscription', $property_code[im_i]
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).property_code ?? 0)?.[String((s as any).im_i ?? 0)] ?? 0)]; enterSuspendSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }

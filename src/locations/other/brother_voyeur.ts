@@ -916,7 +916,7 @@ function enterShaveAlternatives(s: GameState, scene: SceneBuilder): void {
     scene.text('You could cheer him up with something sexual.');
     scene.actions([
       { label: 'Put his hand on your pussy', handler: (st: GameState) => {
-    qspCall(st, 'brother_shower_sex', 'sex_menu');
+    qspCall(st, 'brother_shower_sex', '');
   } },
     ]);
   }
@@ -2123,7 +2123,7 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).brotherQW = (s as any).brotherQW ?? {})['fuck'] = ((s as any).brotherQW['fuck'] ?? 0) + (1);
   qspCall(s, 'mood', 'raise', 'small');
   (s as any).orgasm_or = 'yes';
-  qspCall(s, 'cum_call', '', '', 'A34', 1);
+  qspCall(s, 'cum_call', '', 'A34', 1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/kolka/event/shower/broshower.mp4');
   scene.text('After you gesture for Kolka to enter the room, he closes the latch on the door.');

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -19,7 +17,7 @@ function enterReceptionOptionLabel(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rol_id = ((((s as any).temp_rol_recur ?? 0) !== '') ? (((s as any).temp_rol_recur ?? 0)) : (qspFunc(s, 'appointments', 'get_appointment_id', ((s as any).locArgs?.[1] ?? 0))));
     (s as any).temp_rol_time = qspFunc(s, 'calendar_query', 'ts_to_str', qspFunc(s, 'appointments', 'get_event_display_ts', ((s as any).temp_rol_id ?? 0)));
     if (((s as any).temp_rol_state ?? 0) === 'pending') {
-      (s as any).temp_rol_daystart = ((((s as any).temp_rol_recur ?? 0) !== '') ? (((s as any).daystart ?? 0)) : (((s as any).event_daystart ?? 0)?.[String((s as any).temp_rol_id ?? 0)]));
+      (s as any).temp_rol_daystart = ((((s as any).temp_rol_recur ?? 0) !== '') ? (((s as any).daystart ?? 0)) : ((((s as any).event_daystart ?? 0)?.[String((s as any).temp_rol_id ?? 0)] ?? 0)));
       if (((s as any).temp_rol_daystart ?? 0) === ((s as any).daystart ?? 0)) {
         (s as any).result = 'Check on your appointment with ' + ((s as any).locArgs?.[2] ?? 0) + ' (at ' + ((s as any).temp_rol_time ?? 0) + ')';
       } else {
@@ -106,7 +104,7 @@ function enterRequestAppointment(s: GameState, scene: SceneBuilder): void {
   (s as any).doc_category = ((s as any).locArgs?.[1] ?? 0);
   (s as any).doc_loc = ((((s as any).region ?? 0)[1] !== 'pav') ? ('City Clinic') : ('Pavlovsk Clinic'));
   (s as any).doc_title = ((((s as any).doctorname ?? 0) === '') ? (((s as any).doctortype ?? 0)) : (((s as any).doctorname ?? 0))) + ' Appointment';
-  (s as any).tmp_doc_seed = qspFunc(s, 'random', 'string_hash', ((s as any).locArgs?.[1] ?? 0) + '_' + qspUntranslated(s, "region[1]", { location: "clinic_functions" }));
+  (s as any).tmp_doc_seed = qspFunc(s, 'random', 'string_hash', ((s as any).locArgs?.[1] ?? 0) + '_' + (((s as any).region ?? 0)?.[1] ?? 0));
   (s as any).tmp_doc_duration = 4;
   (s as any).tmp_doc_range_min = 27;
   (s as any).appointment_offer_duration = ((s as any).tmp_doc_duration ?? 0);
@@ -199,7 +197,7 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).same_day_free ?? 0) === 1) {
       scene.actions([
         { label: 'Wait for the opening today, free of charge', handler: (st: GameState) => {
-    (st as any).temp_wait_minutes = ((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] * 15 - (((st as any).totminut ?? 0) % 1440);
+    (st as any).temp_wait_minutes = (((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] ?? 0) * 15 - (((st as any).totminut ?? 0) % 1440);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'appointments', 'resolve', ((st as any).doc_category ?? 0));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).doc_category ?? 0), ((st as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -212,7 +210,7 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(st, 'money', 'pay', 1000);
-      (st as any).temp_wait_minutes = ((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] * 15 - (((st as any).totminut ?? 0) % 1440);
+      (st as any).temp_wait_minutes = (((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] ?? 0) * 15 - (((st as any).totminut ?? 0) % 1440);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(st, scene); (st as any).locArgs = __savedLocArgs; }
       qspCall(st, 'appointments', 'resolve', ((st as any).doc_category ?? 0));
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).doc_category ?? 0), ((st as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -236,10 +234,10 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
 
 function enterOfferRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_or_i = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_or_offset = ((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_or_i ?? 0)] - ((s as any).daystart ?? 0);
+  (s as any).temp_or_offset = (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_or_i ?? 0)] ?? 0) - ((s as any).daystart ?? 0);
   (s as any).temp_or_rel = (((!((s as any).temp_or_offset ?? 0))) ? ('Today') : (((((s as any).temp_or_offset ?? 0) === 1) ? ('in 1 day') : ('in ' + ((s as any).temp_or_offset ?? 0) + ' days'))));
   (s as any).temp_or_label = ((s as any).weekName ?? 0)[(((s as any).week ?? 0) + ((s as any).temp_or_offset ?? 0) - 1) % 7 + 1] + ' (' + ((s as any).temp_or_rel ?? 0) + ')';
-  (s as any).temp_or_time = qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_or_i ?? 0)]) + '–' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_or_i ?? 0)] + ((s as any).appointment_offer_duration ?? 0));
+  (s as any).temp_or_time = qspFunc(s, 'calendar_query', 'ts_to_str', (((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_or_i ?? 0)] ?? 0)) + '–' + qspFunc(s, 'calendar_query', 'ts_to_str', (((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_or_i ?? 0)] ?? 0) + ((s as any).appointment_offer_duration ?? 0));
   (s as any).temp_or_note = qspFunc(s, 'clinic_functions', '_offer_row_conflicts', ((s as any).temp_or_i ?? 0));
   (s as any).temp_or_link = '<a href="exec: appointment_selected_index = ' + ((s as any).temp_or_i ?? 0) + ' & gt \'clinic_functions\', \'request_appointment_offer\'" style="text-decoration:none;color:inherit;display:block;">';
   // TODO-QSP: dynamic text: '<tr' + $iif(appointment_selected_index = temp_or_i, ' style="font-weight:bold;"...
@@ -251,7 +249,7 @@ function enterOfferRow(s: GameState, scene: SceneBuilder): void {
 
 function enterOfferRowConflicts(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_orc_i = ((s as any).locArgs?.[1] ?? 0);
-  // TODO-QSP: gs 'calendar_query', 'get_events_for_time_range', appointment_offer_day[temp_orc_i], appointment_off...
+  qspCall(s, 'calendar_query', 'get_events_for_time_range', (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0), (((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0) - ((s as any).appointment_offer_buffer ?? 0), ((s as any).appointment_offer_buffer ?? 0) + ((s as any).appointment_offer_duration ?? 0));
   // TODO-QSP: copyarr '$temp_orc_events', '$query_events_for_time_range'
   (s as any).result = '';
   if (Object.keys((s as any).temp_orc_events ?? {}).length > 0) {
@@ -262,7 +260,7 @@ function enterOfferRowConflicts(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_orc_k ?? 0) > 0) {
         // TODO-QSP: $result += ', '
       }
-      // TODO-QSP: gs 'calendar_query', 'get_event_display_range', $temp_orc_events[temp_orc_k], appointment_offer_day[...
+      qspCall(s, 'calendar_query', 'get_event_display_range', (((s as any).temp_orc_events ?? 0)?.[String((s as any).temp_orc_k ?? 0)] ?? 0), (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0));
       // TODO-QSP: $result += $event_vars['title'] + ' (' + $func('calendar_query', 'ts_to_str', result_start_ts) + '-'...
       (s as any).temp_orc_k = ((s as any).temp_orc_k ?? 0) + (1);
       // TODO-QSP: jump 'offer_row_conflicts_loop'
@@ -287,7 +285,7 @@ function enterAttendAppointment(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m sorry, but your slot has already been given to someone else," the nurse tells you. "You will need to make a new appointment."');
       scene.actions([
         { label: 'Make a new appointment', handler: (st: GameState) => {
-    qspCall(st, 'clinic_functions', 'request_appointment', ((st as any).appt_attend_category ?? 0));
+    qspCall(st, 'clinic_functions', '');
   } },
       ]);
     } else {
@@ -352,7 +350,7 @@ function enterWaitForAppointment(s: GameState, scene: SceneBuilder): void {
     (s as any).tmp_remain = ((s as any).locArgs?.[2] ?? 0);
     scene.actions([
       { label: 'Take a seat in the waiting area', handler: (st: GameState) => {
-    qspCall(st, 'clinic_functions', 'wait_for_appointment_wait', ((st as any).tmp_doc ?? 0), ((st as any).tmp_remain ?? 0));
+    qspCall(st, 'clinic_functions', '');
   } },
     ]);
   } else {
@@ -372,7 +370,7 @@ function enterWaitForAppointmentWait(s: GameState, scene: SceneBuilder): void {
     if (((s as any).global_appointment_custom_wait_call ?? 0) !== '') {
       (s as any).tmp_appointment_wait = '';
       qspCall(s, 'string', 'parse_string', '$tmp_appointment_wait', ((s as any).global_appointment_custom_wait_call ?? 0), ';');
-      // TODO-QSP: gs $tmp_appointment_wait[0], $tmp_appointment_wait[1], $tmp_appointment_wait[2], $tmp_appointment_wa...
+      qspCall(s, '$tmp_appointment_wait[0]', '$tmp_appointment_wait[1]', (((s as any).tmp_appointment_wait ?? 0)?.[2] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[3] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[4] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[5] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[6] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[7] ?? 0), (((s as any).tmp_appointment_wait ?? 0)?.[8] ?? 0));
     } else {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWaitingGenericScene(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
@@ -449,7 +447,7 @@ function enterWaitForAppointmentEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookAppointmentConfirm(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'appointments', 'book', $doc_category, ARGS[1], $doc_title, $doc_loc
+  qspCall(s, 'appointments', 'book', ((s as any).doc_category ?? 0), ((s as any).locArgs?.[1] ?? 0), ((s as any).doc_title ?? 0), ((s as any).doc_loc ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBookAppointmentCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -586,7 +584,7 @@ function enterSetDentistAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the dentist', handler: (st: GameState) => {
-    qspCall(st, 'clinic_functions', 'dentist_inspection');
+    qspCall(st, 'clinic_functions', '');
   } },
   ]);
   scene.build();
@@ -704,7 +702,7 @@ function enterFixTeeth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_missing_teeth ?? 0) > 0) {
     scene.actions([
       { label: 'Get the rest of your denture fixed', handler: (st: GameState) => {
-    qspCall(st, 'clinic_functions', 'dentist_inspection');
+    qspCall(st, 'clinic_functions', '');
   } },
     ]);
   }
@@ -729,7 +727,7 @@ function enterFixMissingTeeth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_teeth ?? 0) > 0  &&  ((s as any).pcs_brace ?? 0) === 1) {
     scene.actions([
       { label: 'Get the rest of your denture fixed', handler: (st: GameState) => {
-    qspCall(st, 'clinic_functions', 'dentist_inspection');
+    qspCall(st, 'clinic_functions', '');
   } },
     ]);
   }

@@ -2310,7 +2310,7 @@ function enterShopPunishment(s: GameState, scene: SceneBuilder): void {
         scene.text('You put your clothes back in place as best you can before walking out.');
         qspCall(st, 'arousal', 'foreplay', 5, 'rough');
         qspCall(st, 'arousal', 'end');
-        qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+        qspCall(st, 'pain', '1', 'asscheeks', 'spank');
         qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Leave school', handler: (st: GameState) => {
@@ -2323,7 +2323,7 @@ function enterShopPunishment(s: GameState, scene: SceneBuilder): void {
         scene.text('You put your clothes back in place as best you can before walking out.');
         qspCall(st, 'arousal', 'foreplay', 5, 'rough');
         qspCall(st, 'arousal', 'end');
-        qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+        qspCall(st, 'pain', '1', 'asscheeks', 'spank');
         qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Leave school', handler: (st: GameState) => {

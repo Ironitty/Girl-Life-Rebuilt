@@ -119,7 +119,7 @@ function enterInitBlackmail(s: GameState, scene: SceneBuilder): void {
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['package_day'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).blackmailQW ?? 0)?.['package_day']  &&  ((s as any).blackmailQW ?? 0)?.['package'] > 0) {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = 0;
-    // TODO-QSP: gs 'post_office', 'remove_mail', "gs 'blackmailer', 'set_post_act'"
+    qspCall(s, 'post_office', 'remove_mail', 'gs \'blackmailer\', \'set_post_act\'');
   }
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
     if (((s as any).daystart ?? 0) === ((s as any).blackmailQW ?? 0)?.['smsday']) {
@@ -147,13 +147,13 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCiklSetReminder(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_reminder'", "(totminut ...
+  qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_reminder\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCiklSetFailure(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_failure'", "(totminut >...
+  qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_failure\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
   // TODO-QSP: end
   scene.build();
 }
@@ -181,32 +181,32 @@ function enterCiklSetSmsday(s: GameState, scene: SceneBuilder): void {
 
 function enterCiklSetSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['stage'] === 3) {
-    // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS1'", "(totminut > <<totm...
+    qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS1\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
   } else {
     if (((s as any).blackmailQW ?? 0)?.['stage'] === 7) {
       if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 0  &&  ((s as any).blackmailQW ?? 0)?.['package'] === 0  &&  ((s as any).blackmailQW ?? 0)?.['inventory'] === 0  &&  ((s as any).blackmailQW ?? 0)?.['package_day'] === 0) {
-        // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_package1'", "(totminut ...
+        qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_package1\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
       } else {
         if (((s as any).blackmailQW ?? 0)?.['inventory'] > 0  ||  ((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 1) {
-          // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_outfit1'", "(totminut >...
+          qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_outfit1\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
         } else {
           if (((s as any).blackmailQW ?? 0)?.['package_day'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).blackmailQW ?? 0)?.['package_day']) {
-            // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_failure'", "(totminut >...
+            qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_failure\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
           }
         }
       }
     } else {
       if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 2) {
-        // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS2'", "(totminut > <<totm...
+        qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS2\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
       } else {
         if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 3) {
-          // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS2_reminder'", "(totminut...
+          qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS2_reminder\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
         } else {
           if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 4) {
-            // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS3'", "(totminut > <<totm...
+            qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS3\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
           } else {
             if (((s as any).blackmailQW ?? 0)?.['stage'] >= 5) {
-              // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_repeat'", "(totminut > ...
+              qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_repeat\'', '(totminut > ' + ((s as any).totminut ?? 0) + 840 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 1162 + ')');
             }
           }
         }
@@ -219,10 +219,10 @@ function enterCiklSetSms(s: GameState, scene: SceneBuilder): void {
 
 function enterCiklSetPackage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 1) {
-    // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS_package_repeat'", "(tot...
+    qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS_package_repeat\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
   } else {
     if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] >= 5) {
-      // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $blackmailQW['nerdvana_phone_ID'], "gs 'blackmailer', 'Add_SMS_pac...
+      qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'gs \'blackmailer\', \'Add_SMS_package_repeat2\'', '(totminut > ' + ((s as any).totminut ?? 0) + 480 + ' and rand(0, 50) = 0) or (totminut > ' + ((s as any).totminut ?? 0) + 802 + ')');
     }
   }
   // TODO-QSP: end
@@ -329,7 +329,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] >= 5) {
         // TODO-QSP: dynamic text: Your actions have alerted your blackmailer, and he has used your clothed selfies...
-        scene.text(`Your actions have alerted your blackmailer, and he has used your clothed selfies to trick Nerdvana clerk ${((s as any).npc_usedname ?? 0)?.[((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'] ?? '']}.`);
+        scene.text(`Your actions have alerted your blackmailer, and he has used your clothed selfies to trick Nerdvana clerk ${(((s as any).npc_usedname ?? 0)?.[((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'] ?? ''] ?? '')}.`);
       }
     }
   }
@@ -383,7 +383,7 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 3) {
     (s as any).temp_index = qspUntranslated(s, "arrpos('contact', 'Blackmailer')", { location: "blackmailer" });
     if (((s as any).temp_index ?? 0) >= 0) {
-      (s as any).temp_ISMSCode = ((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)];
+      (s as any).temp_ISMSCode = (((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)] ?? 0);
       if (((s as any).temp_ISMSCode ?? 0) !== "") {
         scene.text('    Blackmailer will contact you today.  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027cheatmenu_force_sendsms/u0027); return false;">Force sms now</a>');
       } else {
@@ -406,7 +406,7 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
 function enterCheatmenuForceSendsms(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_index = qspUntranslated(s, "arrpos('contact', 'Blackmailer')", { location: "blackmailer" });
   if (((s as any).temp_index ?? 0) >= 0) {
-    (s as any).temp_ISMSCode = ((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)];
+    (s as any).temp_ISMSCode = (((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)] ?? 0);
     if (((s as any).temp_ISMSCode ?? 0) !== "") {
     }
   }
@@ -417,7 +417,7 @@ function enterCheatmenuForceSendsms(s: GameState, scene: SceneBuilder): void {
 function enterPurgeAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'DeleteContact', 'Blackmailer');
   qspCall(s, 'telefon', 'DeleteContact', 'Officer_bm');
-  // TODO-QSP: gs 'telefon', 'DeleteContact', $blackmailQW['nerdvana_phone_ID']
+  qspCall(s, 'telefon', 'DeleteContact', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID']);
   qspCall(s, 'calendar', 'remove', 'blackmail_payment_deadline');
   // TODO-QSP: end
   scene.build();
@@ -451,7 +451,7 @@ function enterMakePayment(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
   }
   if (String((s as any).locArgs?.[2] ?? '') === 'money') {
-    // TODO-QSP: gs 'money', 'pay', ARGS[1], 'cash'
+    qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0), 'cash');
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_payment'] = ((s as any).blackmailQW['total_payment'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['alter_payment'] = ((s as any).blackmailQW['alter_payment'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
@@ -499,7 +499,7 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
 function enterChooseBlackmailImage(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
   if ((Math.floor(Math.random() * 11) + 0) > 0  ||  String((s as any).locArgs?.[1] ?? '') === 1) {
-    (s as any).result = ((s as any).blackmailQW ?? 0)['selfie_image_' + (Math.floor(Math.random() * (((s as any).in ?? 0)(((s as any).blackmailQW ?? 0)?.[String((s as any).total_material ?? 0)]-1, 9) - 0 + 1)) + (0)) + ''];
+    (s as any).result = ((s as any).blackmailQW ?? 0)['selfie_image_' + (Math.floor(Math.random() * (((s as any).in ?? 0)((((s as any).blackmailQW ?? 0)?.[String((s as any).total_material ?? 0)] ?? 0)-1, 9) - 0 + 1)) + (0)) + ''];
   }
   if (((s as any).result ?? 0) === '') {
     (s as any).result = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
@@ -556,7 +556,7 @@ function enterOpenPackage(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf(String(';' + (String(100 + ((s as any).blackmailQW ?? 0)?.['inventory']).slice((2)-1)) + ';'))) + 1) <= 0) {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['packages_opened'] = ((s as any).blackmailQW['packages_opened'] ?? 0) + ((String(100 + (((s as any).blackmailQW ?? {})?.['inventory'] ?? 0)).slice((2)-1)) + ';');
   }
-  // TODO-QSP: gs 'blackmailer', 'get_package_content', blackmailQW['inventory']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['inventory']]; enterGetPackageContent(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
   }
   (s as any).result = ((s as any).temp_package ?? 0)?.['image'];
@@ -566,7 +566,7 @@ function enterOpenPackage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecreaseToyFund(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'blackmailer', 'get_package_content', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetPackageContent(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['toy_fund'] = ((s as any).blackmailQW['toy_fund'] ?? 0) - (((s as any).CloPrice ?? 0));
   } else {
@@ -978,7 +978,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 3;
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 6;
     qspCall(s, 'telefon', 'AddContact', 'Blackmailer', 'icon_na', 1);
-    // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'Blackmailer', "gs 'blackmailer', 'Add_SMS1'", "daystart > blackma...
+    qspCall(s, 'telefon', 'SetInSMSSchedule', 'Blackmailer', 'gs \'blackmailer\', \'Add_SMS1\'', 'daystart > blackmailQW[\'smsday\'] and (hour >= 14 and hour <= 19 and rand(0, 100) = 0 or hour = 19 and minut >= 22 or hour >= 20)');
   }
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['dreamday'] = ((s as any).daystart ?? 0) + 3;
   if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A29'] >= 10) {
@@ -1027,7 +1027,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('The lingering feelings of a happy family quickly fading.');
     scene.actions([
       { label: 'Continue sleeping', handler: (st: GameState) => {
-    qspCall(st, 'sleep_events', 'event_end', 'sleep');
+    qspCall(st, 'sleep_events', '');
   } },
     ]);
   } },
@@ -1165,7 +1165,7 @@ function enterPark1(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(st, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
-      // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'money'
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1218,7 +1218,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
       ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['cosplay_stage'] = 1;
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 7]; enterRegisterCosplayUsed(st, scene); (st as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'money'
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(st, scene); (st as any).locArgs = __savedLocArgs; }
       (st as any).minut = ((st as any).minut ?? 0) + 1;
       qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1282,7 +1282,7 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
         } else {
           ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['worn_costume'] = (-1);
         }
-        // TODO-QSP: gt 'blackmailer', 'park_repeat_hide', -1
+        qspGoto(st, 'blackmailer', 'park_repeat_hide', '-1');
       }
     }
   } },
@@ -1300,7 +1300,7 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
 function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
-  // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'money'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'money']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
@@ -1488,7 +1488,7 @@ function enterPoliceDeleted(s: GameState, scene: SceneBuilder): void {
 function enterSetOfficerContact(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['Officer_bm'] = 'Officer Sokolov';
   qspCall(s, 'telefon', 'AddContact', 'Officer_bm', 'images/system/phone/icons/icon_police.png', 0);
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'Officer_bm', "gt 'blackmailer', 'call_officer'", "hour >= 8 and...
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'Officer_bm', 'gt \'blackmailer\', \'call_officer\'', 'hour >= 8 and hour < 21');
   // TODO-QSP: end
   scene.build();
 }
@@ -1544,7 +1544,7 @@ function enterSetPostAct(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pick up the package', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    // TODO-QSP: gs 'post_office', 'remove_mail', "gs 'blackmailer', 'set_post_act'"
+    qspCall(st, 'post_office', 'remove_mail', 'gs \'blackmailer\', \'set_post_act\'');
     qspCall(st, 'stat', '');
     if (((st as any).blackmailQW ?? 0)?.['stage'] === 7) {
       qspGoto(st, 'blackmailer', 'post_office1');
@@ -1807,7 +1807,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
+    qspCall(st, 'blackmailer', '');
   } },
   ]);
   scene.build();
@@ -1890,7 +1890,7 @@ function enterNerdvanaCosplayTalk1_1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Give up for now', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
+    qspCall(st, 'blackmailer', '');
   } },
       { label: '', labelFn: (s: GameState) => 'Bribe ' + String(((st as any).xem ?? '') ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
@@ -1916,7 +1916,7 @@ function enterNerdvanaCosplayTalk1_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Give up for now', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
+    qspCall(st, 'blackmailer', '');
   } },
   ]);
   scene.build();
@@ -2024,12 +2024,12 @@ function enterNerdvanaCosplayTalk1_3(s: GameState, scene: SceneBuilder): void {
   scene.text('You take out your phone and note down the phone account numbers: 945-977-7397 and 5334 7262 3618 0390');
   scene.text('Before you leave you quickly add your blackmailer\'s phone number.');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['nerdvana_phone_ID'] = ((s as any).npcID ?? 0);
-  // TODO-QSP: gs 'telefon', 'AddContact', $blackmailQW['nerdvana_phone_ID'], 'icon_na', 1
+  qspCall(s, 'telefon', 'AddContact', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'icon_na', 1);
   qspCall(s, 'telefon', 'AddContact', 'Blackmailer', 'images/system/phone/icons/icon_blackmailer.png', 1);
   // TODO-QSP: end
   scene.actions([
     { label: 'leave', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana');
+    qspCall(st, 'blackmailer', '');
   } },
   ]);
   scene.build();
@@ -2057,11 +2057,11 @@ function enterAdd_SMS1(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Leave ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' beneath the fourth park bench, I know you know which one.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'You have two days';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMSText_builder', 'receive_img', $blackmailQW['blackmail_image_chosen']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2076,8 +2076,8 @@ function enterAdd_SMSReminder(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t leave \' + $func(\'money\', \'string_price\', blackmailQW[\'next_payment\']) + \' beneath the fourth park bench, you will regret it';
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-    // TODO-QSP: gs 'SMSText_builder', 'receive_img', $blackmailQW['blackmail_image_chosen']
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
     qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
     qspCall(s, 'SMStext_builder', 'end');
   }
@@ -2098,9 +2098,9 @@ function enterAdd_SMSFailure(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'or you didn\'t think I\'d go through with it';
     ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'we\'ll see';
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
     qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
     qspCall(s, 'SMStext_builder', 'end');
     if (((s as any).blackmailQW ?? 0)?.['init_flashregion'] === 'city') {
@@ -2123,12 +2123,12 @@ function enterAdd_SMSPackage1(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 2;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).blackmailQW ?? 0)?.['smsday'];
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = 7;
-  // TODO-QSP: gs 'post_office', 'add_mail', 'city', "gs 'blackmailer', 'set_post_act'"
+  qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'The package has arrived at the St. Petersburg post office';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'Pick it up in the next 2 days, or you know what will happen';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2145,10 +2145,10 @@ function enterAdd_SMSOutfit1(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'You don\'t want to upset us';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'Drop ' + qspFunc(s, 'money', 'string_price', ((s as any).blackmailQW ?? 0)?.['next_payment']) + ' off at the park in the two days';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2164,8 +2164,8 @@ function enterAdd_SMS2(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Today we\'re going to have a mixup, to see if you\'re still a good girl';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'You have four days to send us 4 fully clothed selfies taken in your bedroom';
   qspCall(s, 'SMSText_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
   qspCall(s, 'SMStext_builder', 'send_selfie', 'Send a clothed selfie', 'c', 'blackmailer', 'Add_SMS2_1', 0);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMSText_builder', 'end');
@@ -2180,17 +2180,17 @@ function enterAdd_SMS2_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['d'] = 'Good girl! That wasn\'t too hard now was it.';
   qspCall(s, 'SMSText_builder', 'start');
   qspCall(s, 'SMSText_builder', 'send_img', ((s as any).locArgs?.[3] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   if (String((s as any).locArgs?.[4] ?? '') !== 'bedroom') {
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a']
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['a']);
   } else {
     if (((s as any).blackmailQW ?? 0)?.['catfish_pic_0'] === String((s as any).locArgs?.[3] ?? '')  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_1'] === String((s as any).locArgs?.[3] ?? '')  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_2'] === String((s as any).locArgs?.[3] ?? '')) {
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b']
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b']);
     } else {
       if (String((s as any).locArgs?.[1] ?? '') < 3) {
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c']
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['c']);
       } else {
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d']
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['d']);
       }
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['catfish_pic_' + String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
@@ -2198,12 +2198,12 @@ function enterAdd_SMS2_1(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') < 4) {
-    // TODO-QSP: gs 'SMStext_builder', 'send_selfie', 'Send a clothed selfie', 'c', 'blackmailer', 'Add_SMS2_1', ARGS...
+    qspCall(s, 'SMStext_builder', 'send_selfie', 'Send a clothed selfie', 'c', 'blackmailer', 'Add_SMS2_1', ((s as any).locArgs?.[1] ?? 0));
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 4;
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 4;
   }
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMSText_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2216,8 +2216,8 @@ function enterAdd_SMS2Reminder(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t send four clothed pictures by the end of today, you will regret it.';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMSText_builder', 'receive_img', $blackmailQW['blackmail_image_chosen']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2228,16 +2228,16 @@ function enterAdd_SMS3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 5;
-  // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $blackmailQW['nerdvana_phone_ID'], "gs 'blackmailer', 'Add_SMS_Ner...
+  qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).blackmailQW ?? 0)?.['nerdvana_phone_ID'], 'gs \'blackmailer\', \'Add_SMS_Nerdvana\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 + (Math.floor(Math.random() * 61) + 0) + '');
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'You thought you could abuse our generousity';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'That you could use that loser over at Nerdvana to spy for you';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'Well you fucked up!';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['3'] = 'And we\'ve got another toy';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2245,7 +2245,7 @@ function enterAdd_SMS3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'npcStat', $blackmailQW['nerdvana_phone_ID'], 'i'
+  qspCall(s, 'npcStat', '$blackmailQW[\'nerdvana_phone_ID\']', 'i');
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Is this ' + ((s as any).pcs_firstname ?? 0) + '? ';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'Yeah, who are you?';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'It\'s ' + ((s as any).npcdesc9 ?? 0) + ', from Nerdvana.';
@@ -2281,82 +2281,82 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['1'], 'blackmailer', 'Add_SMS_Nerdvana', '1'
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['1'], 'blackmailer', 'Add_SMS_Nerdvana', '1');
     qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === '1') {
       qspCall(s, 'SMStext_builder', 'start');
-      // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['1']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['1']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'telefon', 'AddContact', ((s as any).npcID9 ?? 0), 'images/characters/shared/headshots_main/' + (String(((s as any).npcID9 ?? 0)).slice((2)-1)) + '.jpg', 0);
-      // TODO-QSP: gs 'SMStext_builder', 'receive_img', $blackmailQW['catfish_pic_<<rand(0, 3)>>']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['4']
-      // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['5'], 'blackmailer', 'Add_SMS_Nerdvana', '2'
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['catfish_pic_' + String((Math.floor(Math.random() * 4) + 0))]);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['4']);
+      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['5'], 'blackmailer', 'Add_SMS_Nerdvana', '2');
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'SMStext_builder', 'end');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === '2') {
         qspCall(s, 'SMStext_builder', 'start');
-        // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['5']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['6']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['7']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['8']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['9']
-        // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['10'], 'blackmailer', 'Add_SMS_Nerdvana', '3'
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['5']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['6']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['7']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['8']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['9']);
+        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['10'], 'blackmailer', 'Add_SMS_Nerdvana', '3');
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
         qspCall(s, 'SMStext_builder', 'end');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === '3') {
           qspCall(s, 'SMStext_builder', 'start');
-          // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['10']
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-          // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['11']
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-          // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['12']
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-          // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['13']
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-          // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['14']
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-          // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['15']
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['16'], 'blackmailer', 'Add_SMS_Nerdvana', '4'
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+          qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['10']);
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['11']);
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['12']);
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['13']);
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['14']);
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+          qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['15']);
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['16'], 'blackmailer', 'Add_SMS_Nerdvana', '4');
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
           qspCall(s, 'SMStext_builder', 'end');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === '4') {
             qspCall(s, 'SMStext_builder', 'start');
-            // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['16']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['17']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['18']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['19']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['20']
-            // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['21'], 'blackmailer', 'Add_SMS_Nerdvana', '5'
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+            qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['16']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['17']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['18']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['19']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['20']);
+            qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['21'], 'blackmailer', 'Add_SMS_Nerdvana', '5');
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             qspCall(s, 'SMStext_builder', 'end');
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === '5') {
               qspCall(s, 'SMStext_builder', 'start');
-              // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['21']
-              // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-              // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['22']
-              // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-              // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['23']
-              // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+              qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['21']);
+              qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+              qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['22']);
+              qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+              qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['23']);
+              qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
               qspCall(s, 'SMStext_builder', 'end');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSms_EOC(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
@@ -2486,25 +2486,25 @@ function enterAdd_SMSRepeat(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['blackmail_image_chosen'] = qspFunc(s, 'blackmailer', 'choose_blackmail_image');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMSText_builder', 'receive_img', $blackmailQW['blackmail_image_chosen']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMSText_builder', 'receive_img', ((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['3']);
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 8) {
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['x3']
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['x3']);
   }
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] < 2000  &&  ((s as any).blackmailQW ?? 0)?.['total_payment'] < 5000) {
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a4'], 'blackmailer', 'sms_repeat_end1', $SMSTree['a4']
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a4']);
   } else {
     if (((s as any).blackmailQW ?? 0)?.['stage'] <= 5  ||  (((s as any).blackmailQW ?? 0)?.['stage'] === 6  &&  (((s as any).blackmailQW ?? 0)?.['next_payment'] < 3000  ||  ((s as any).pcs_inhib ?? 0) < 20))) {
-      // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a4'], 'blackmailer', 'sms_repeat_switch1', 'a', $SMSTre...
+      qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'a', ((s as any).SMSTree ?? 0)?.['a4']);
     } else {
       if (((s as any).blackmailQW ?? 0)?.['stage'] <= 6) {
-        // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a4'], 'blackmailer', 'sms_repeat_switch1', 'b', $SMSTre...
+        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'b', ((s as any).SMSTree ?? 0)?.['a4']);
       } else {
-        // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a4'], 'blackmailer', 'sms_repeat_switch1', 'c', $SMSTre...
-        // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['b4'], 'blackmailer', 'sms_repeat_switch1', 'd', $SMSTre...
+        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a4'], 'blackmailer', 'sms_repeat_switch1', 'c', ((s as any).SMSTree ?? 0)?.['a4']);
+        qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b4'], 'blackmailer', 'sms_repeat_switch1', 'd', ((s as any).SMSTree ?? 0)?.['b4']);
       }
     }
   }
@@ -2518,11 +2518,11 @@ function enterSmsRepeatEnd1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['5']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['6']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['5']);
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['6']);
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2535,27 +2535,27 @@ function enterSmsRepeatSwitch1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[2] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['10' + $ARGS[1]]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['10' + ((s as any).locArgs?.[1] ?? 0)] ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') === 'c') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (1000);
   }
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['11' + $ARGS[1]]
-  // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a12'], 'blackmailer', 'sms_repeat_end1', $SMSTree['a12'...
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['11' + ((s as any).locArgs?.[1] ?? 0)] ?? 0));
+  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a12'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a12']);
   if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 0) {
-    // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['b12'], 'c;sw;u', 'blackmailer', 'sms_repeat_selfie1'
+    qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['b12'], 'c;sw;u', 'blackmailer', 'sms_repeat_selfie1');
   } else {
     if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 1) {
-      // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['c12'], 'c;sw;u;ft;fa', 'blackmailer', 'sms_repeat_sel...
+      qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['c12'], 'c;sw;u;ft;fa', 'blackmailer', 'sms_repeat_selfie1');
     } else {
-      // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['d12'], 'c;sw;u;n;b;sh;ft;fa;fp', 'blackmailer', 'sms_...
+      qspCall(s, 'SMStext_builder', 'send_selfie', ((s as any).SMSTree ?? 0)?.['d12'], 'c;sw;u;n;b;sh;ft;fa;fp', 'blackmailer', 'sms_repeat_selfie1');
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'b') {
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['e12'], 'blackmailer', 'sms_repeat_first_favour', $SMSTr...
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['e12'], 'blackmailer', 'sms_repeat_first_favour', ((s as any).SMSTree ?? 0)?.['e12']);
   }
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[3] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2565,13 +2565,13 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send_img', ((s as any).locArgs?.[2] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[1] ?? 0));
   if (String((s as any).locArgs?.[4] ?? '') === 'clothed') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (500);
     (s as any).temp_path = 'a';
   } else {
     if (((String('bikini;underwear').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1) > 0) {
-      // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterAddBlackmailSelfie(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 0) {
         ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_stage'] = 1;
       }
@@ -2584,7 +2584,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((String('bath;shower;titflash;assflash').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1) > 0) {
-        // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterAddBlackmailSelfie(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 1) {
           ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_stage'] = 2;
         }
@@ -2597,7 +2597,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((String('nude;pussyflash').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1) > 0) {
-          // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterAddBlackmailSelfie(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 2) {
             ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_stage'] = 3;
           }
@@ -2612,18 +2612,18 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$temp_path + '20']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$temp_path + '21']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).temp_path ?? 0) + '20'] ?? 0));
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).temp_path ?? 0) + '21'] ?? 0));
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[1] ?? 0));
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$temp_path + '22']
+    qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).temp_path ?? 0) + '22'] ?? 0));
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = 0;
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['x22']
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['x22']);
   }
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2633,14 +2633,14 @@ function enterSmsRepeatFirstFavour(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet_SMSTree(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['30']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['31']
-  // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['a32'], 'blackmailer', 'sms_repeat_end1', $SMSTree['a32'...
-  // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['b32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'b...
-  // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['c32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'c...
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['30']);
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['31']);
+  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['a32'], 'blackmailer', 'sms_repeat_end1', ((s as any).SMSTree ?? 0)?.['a32']);
+  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['b32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'b');
+  qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['c32'], 'blackmailer', 'sms_repeat_setup_first_gift', 'c');
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2652,21 +2652,21 @@ function enterSmsRepeatSetupFirstGift(s: GameState, scene: SceneBuilder): void {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 7;
   }
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 14;
-  // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'favour'
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'favour']; enterMakePayment(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree[$ARGS[1] + '32']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$ARGS[1] + '33']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree[$ARGS[1] + '34']
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'send', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '32'] ?? 0));
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '33'] ?? 0));
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '34'] ?? 0));
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSmsRepeatSwitch2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'blackmailer', 'sms_repeat_EOC', $ARGS[1], ARGS[2]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterSmsRepeat_EOC(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -2676,15 +2676,15 @@ function enterSmsRepeat_EOC(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = 0;
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'receive', '<i>This content is not ready yet.</i>');
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'receive', '<i>As a freebie your debt will be set to 0!</i>');
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'receive', '<i>Thank you for enjoying the Blackmailer\'s content</i>');
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'receive', '<i>Love, Anjuna</i>');
-  // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+  qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
   scene.build();
@@ -2692,15 +2692,15 @@ function enterSmsRepeat_EOC(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd_SMSPackageRepeat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
-  // TODO-QSP: gs 'post_office', 'add_mail', 'city', "gs 'blackmailer', 'set_post_act'"
+  qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).daystart ?? 0) + 14;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChoosePackage(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'blackmailer', 'decrease_toy_fund', blackmailQW['package']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['package']]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'We\'ve send you another package. You can pick it up at the St. Petersburg post office.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'You can pick it up in the next two weeks';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
   qspCall(s, 'SMStext_builder', 'add_sms', 'Blackmailer');
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end
@@ -2708,19 +2708,19 @@ function enterAdd_SMSPackageRepeat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd_SMSPackageRepeat2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'npcStat', $blackmailQW['nerdvana_phone_ID'], 'i'
+  qspCall(s, 'npcStat', '$blackmailQW[\'nerdvana_phone_ID\']', 'i');
   qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).npcID9 ?? 0));
-  // TODO-QSP: gs 'post_office', 'add_mail', 'city', "gs 'blackmailer', 'set_post_act'"
+  qspCall(s, 'post_office', 'add_mail', 'city', 'gs \'blackmailer\', \'set_post_act\'');
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package_day'] = ((s as any).daystart ?? 0) + 14;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChoosePackage(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'blackmailer', 'decrease_toy_fund', blackmailQW['package']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).blackmailQW ?? 0)?.['package']]; enterDecreaseToyFund(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = 'Hey ' + ((s as any).pcs_nickname ?? 0) + ', it\'s ' + ((s as any).npcdesc9 ?? 0) + ', from Nerdvana.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['1'] = 'I\'ve just deliverd a package for you at the St. Petersburg post office.';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['2'] = 'It\'ll be there for the next fourteen days.';
   qspCall(s, 'SMStext_builder', 'start');
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['1']
-  // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['1']);
+  qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['2']);
   qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).npcID9 ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   // TODO-QSP: end

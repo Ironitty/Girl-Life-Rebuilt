@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);

@@ -62,7 +62,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     { label: 'Buy something', goto: ['city_pharmacy', 'cart'] },
     { label: 'Leave the pharmacy', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['city_residential', ''] },
   ]);
   scene.build();
@@ -99,7 +99,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Buy something', goto: ['city_pharmacy', 'cart'] },
     { label: 'Leave the pharmacy', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['city_residential', ''] },
   ]);
   scene.build();
@@ -138,7 +138,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['city_pharmacy', 'start'] },
   ]);
   scene.build();

@@ -83,7 +83,7 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set this apartment as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['city_mansion_residence_1', 'yfoyer'] },
     ]);
   } else {

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -14,7 +14,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  dynamicGoto(s, 'ARGS[1]', 'ARGS[2]');
+  { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
   // TODO-QSP: end
   scene.build();
 }
@@ -37,7 +37,7 @@ function enterHotelEnter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
   ]);
   scene.build();
@@ -57,7 +57,7 @@ function enterSet_Hotelacts(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Play on your laptop', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'komp', 'start');
+    qspCall(st, 'therapist_home', '');
   } },
     ]);
   }
@@ -77,7 +77,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
   ]);
   scene.build();
@@ -93,7 +93,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take a break', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
     { label: 'Continue studying (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -102,7 +102,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend another hour studying before you feel like you need a break.');
     scene.actions([
       { label: 'Take a break', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
     ]);
   } },
@@ -139,7 +139,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/therapist/naked.jpg');
     scene.actions([
       { label: 'Leave the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
     ]);
   } },
@@ -163,7 +163,7 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
     scene.text('You give him his plate and he gives your boob a squeeze before he eats and you sit on the bed behind him and eat yourself.');
     scene.actions([
       { label: 'Finish eating', handler: (st: GameState) => {
-    qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    qspCall(st, 'therapist_home', '');
   } },
     ]);
   } },
@@ -212,7 +212,7 @@ function enterWakeup1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cook breakfast', handler: (st: GameState) => {
-    qspCall(st, 'wakeup_events', 'exit');
+    qspCall(st, 'wakeup_events', '');
   }, goto: ['therapist_home', 'cook'] },
   ]);
   scene.build();
@@ -242,7 +242,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
@@ -281,7 +281,7 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 15, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('You know deep down something is wrong but you only know that you are able to get off with him and accept his form of love. With each thrust inside you, you have a small orgasm. After a few minutes, you feel him dump a large load inside you and holds you close to him, not pulling out.');

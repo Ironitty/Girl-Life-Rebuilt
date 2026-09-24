@@ -322,7 +322,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'eroto_dress');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, Clothingstock mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, ((s as any).Clothingstock ?? 0) % 2);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -345,7 +345,7 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'eroto_outfits');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, (Clothingstock / 2) mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, (((s as any).Clothingstock ?? 0) / 2) % 2);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -553,8 +553,8 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     scene.text('The stranger slips ' + ((((st as any).ghnow ?? 0) < 5) ? (qspFunc(s, 'money', 'string_price', 300)) : (qspFunc(s, 'money', 'string_price', 150))) + ' into the hole, followed by his erect cock.');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy at the gloryhole', (Math.floor(Math.random() * 30) + 21));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Guy at the gloryhole', (Math.floor(Math.random() * 30) + 21));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     ((st as any).stat = (st as any).stat ?? {})['gloryhole'] = ((st as any).stat['gloryhole'] ?? 0) + (1);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
     (st as any).ghprand = (Math.floor(Math.random() * 36) + 1);
@@ -966,7 +966,7 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
     scene.text('She slams the strap-on balls deep into your ass and starts hammering you as hard and fast as she can. "You\'ll learn your place, right this instant, slave! You will submit to me <i>now</i>, or I\'ll stay here all day and fuck your ass until you weep and beg me to stop!"');
     scene.text('She keeps fucking your ass for a few minutes before she asks again. "Tell me your ass belongs to me right now, slave!"');
     qspCall(st, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
-    qspCall(st, 'pain', '', 1, 'asshole', 'tear');
+    qspCall(st, 'pain', '1', 'asshole', 'tear');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
@@ -978,7 +978,7 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
     scene.text('Despite the pain, you moan in pleasure as she continues fucking your ass. "My ass belongs to you, and you can fuck it anytime you want, Mistress Kendra!" you scream.');
     scene.text('She fucks your ass for a few more minutes, as if to make her point, before she pulls out of you. As she does, she pulls you off the table onto your feet.');
     qspCall(st, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
-    qspCall(st, 'pain', '', 1, 'asshole', 'tear');
+    qspCall(st, 'pain', '1', 'asshole', 'tear');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['shop_erotomaniac', 'kendrafinish'] },
@@ -1149,7 +1149,7 @@ function enterShprod(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him', handler: (st: GameState) => {
-    qspCall(st, 'boyStat', 'A181');
+    qspCall(st, 'boyStat', '');
   }, goto: ['sex', 'kuni'] },
     ]);
   } },

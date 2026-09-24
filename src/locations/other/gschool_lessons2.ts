@@ -59,12 +59,12 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -113,7 +113,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing: Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you close your shirt before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -140,7 +140,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing: Artem\'s mouth drops open and he just stares at your naked ass while Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you drop your skirt back in place before he gets his phone up. ');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -169,7 +169,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing: Artem\'s mouth drops open and he just stares at your ass while Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -196,7 +196,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the others students notice what you\'re doing: Artem just stares with his mouth wide open, Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you close your legs before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -223,7 +223,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('Artem\'s mouth drops open and he just stares at your ass, Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -251,7 +251,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You step out of them, but as you\'re bending over to pick them up, you realize a few of the other students have noticed. You quickly pick up your panties, stuff them into your purse and ignore the stares.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -260,14 +260,14 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       { label: 'Draw dick in margin', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/drawdick.jpg');
     scene.text('Mr. Ivanov is arrogantly droning on about something you don\'t really care about, so you start doodling to pass the time, which turns into you drawing dicks, complete with balls, on the margin of your notebook. You even share your handwork with the girl sitting next to you when she glances over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -299,7 +299,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -320,7 +320,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -333,7 +333,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which keep before deleting the rest. You manage to take them without Mr. Ivanov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -367,7 +367,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head and Vasily frowns, having heard or guessed what Sonia had tried to get you to do. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for class to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -396,7 +396,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head and Vasily frowns as you pull your skirt back down and turn back to face the front of the class. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for the lesson to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -429,7 +429,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You forcefully pull his hand away and Vasily frowns as you pull your skirt back down and turn back to face the front of the class. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for the lesson to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -449,7 +449,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, you pull your panties back in place, pull your skirt back down and turn to face the front of class again. Vasily looks crestfallen, obviously hoping for it to have lasted longer, but you ignore his pleading looks and look to the front of the class as the thrill of what you just did keeps the rest of class from being boring.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -477,7 +477,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull your shirt down quickly when another student looks over, which causes Sonia to giggle and Vasily to shake his head. Several other students look over as if they just realized they have missed something. You ignore their looks, Vasily\'s stare and Sonia\'s giggles and wait for class to end.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -588,7 +588,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes at him when he turns his back and sit through the rest of the lesson in silence. Despite your best efforts, you struggle to pay attention and don\'t learn anything.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -602,7 +602,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want to get in trouble, so you straighten up in your chair and apologize. Mr. Ivanov gives you one final look before he goes back to teaching the class as you do your best to pay attention.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -638,7 +638,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
         ]);
       } else {
@@ -660,7 +660,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Mr. Ivanov\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       ]);
     } else {
@@ -715,7 +715,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -759,7 +759,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I'll be holding onto this, ${((st as any).pcs_lastname ?? '')}. Now pay attention and you might actually learn something for once!" he says as he walks back to the front of the class.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev2', 'geography');
+    qspCall(st, 'gschool_lessonsev2', '');
   } },
     ]);
   } },
@@ -775,7 +775,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to aggravate the situation and put your phone away. Mr. Ivanov gives you one final hard look before continuing with the lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'computer');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -829,12 +829,12 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov nods approvingly. She happily spends some extra time explaining the topic again to you, and answers any extra questions you might have. She only moves on with the lesson once she\'s sure she\'s fully answered your question. You feel like you learned a lot, thoroughly understanding today\'s lesson now.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -867,7 +867,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who stares with his mouth open.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -894,7 +894,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor\'s mouth drops open and he just stares at your naked ass, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -923,7 +923,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor\'s mouth drops open and he just stares at your ass, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -950,7 +950,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing: Fedor\'s mouth drops open and he just stares at your panties, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -977,7 +977,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor\'s mouth drops open and he just stares at your panties, Andrey and Vanya grin, Stasya gives you an annoyed look when Andrey reacts and Irina starts texting on her phone.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1006,7 +1006,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('You step out of them, but as you\'re bending over to pick them up, you realize a few of the other students have noticed. You quickly pick up your panties, stuff them into your purse and ignore the stares.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1015,14 +1015,14 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       { label: 'Draw dick in margin', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/drawdick.jpg');
     scene.text('You get bored and start doodling, which turns into you drawing dicks, complete with balls, on the margin of your notebook. You even share your handwork with the girl sitting next to you when she glances over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1054,7 +1054,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1075,7 +1075,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1088,7 +1088,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Miss Orlov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1164,7 +1164,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov smiles as you seem to be paying attention and quickly goes back into her lesson. She doesn\'t notice you roll your eyes at her before you sit through the rest of the lesson in silence. Despite your best efforts, you struggle to pay attention and don\'t learn anything.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1191,7 +1191,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
         ]);
       } else {
@@ -1223,7 +1223,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Miss Orlov\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       ]);
     } else {
@@ -1273,7 +1273,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov looks at what\'s on the screen and she blushes deep red before quickly turning your phone off. She hurries back to the front of the class, tosses your phone in her desk and takes a moment to compose herself before she continues the lesson feeling somewhat flustered.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1314,7 +1314,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('She tries her best to give you a stern look before returning to the front of the class, placing your phone on her desk and resuming the lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1330,7 +1330,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to aggravate the situation and put your phone away. Miss Orlov gives you an appreciative smile before continuing with the lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -1389,12 +1389,12 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('Mr. Vasilyev smiles, always happy to see his students engaged in his class. He happily spends some extra time explaining the topic again and answers any extra questions you might have. You feel smarter, thoroughly understanding today\'s lesson now.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1428,7 +1428,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who stares with his mouth open. Lavrenti tries to take a picture, but you close your shirt before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1455,7 +1455,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('Petka\'s mouth drops open and he just stares at your naked ass, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away and Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1484,7 +1484,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away, Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1511,7 +1511,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing: Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away and Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you close your legs before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1538,7 +1538,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('Petka\'s mouth drops open and he just stares at you, Katja looks shocked then grins at what you\'re doing, Bella gives you a slightly disgusted look before turning away and Lariska and Lina smile about it before Lina starts texting on her phone. Lavrenti tries to take a picture, but you drop your skirt back in place before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1567,7 +1567,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You step out of them, but as you\'re bending over to pick them up, you realize a few of the other students have noticed. You quickly pick up your panties, stuff them into your purse and ignore the stares.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1576,14 +1576,14 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
       { label: 'Draw dick in margin', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/drawdick.jpg');
     scene.text('You get bored and start doodling, which turns into you drawing dicks, complete with balls, on the margins of your notebook. You even share your handwork with the girl sitting next to you when she glances over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1615,7 +1615,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? (' You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1636,7 +1636,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1649,7 +1649,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Mr. Vasilyev even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1683,7 +1683,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head and Lavrenti frowns, having heard or guessed what Katja had tried to get you to do. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for the lesson to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1713,7 +1713,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head and Lavrenti frowns as you pull your skirt back down and turn back to face the front of the class. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for the lesson to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1746,7 +1746,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You forcefully pull his hand away and Lavrenti frowns as you pull your skirt back down and turn back to face the front of the class. After a few minutes, the class goes back to normal and you find yourself once more bored and waiting for the lesson to be over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1766,7 +1766,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, you pull your panties back in place, pull your skirt back down and turn to face the front of the class again. Lavrenti looks crestfallen, obviously hoping for it to have lasted longer, but you ignore his pleading looks and look to the front of the class. The thrill of what you just did keeps the rest of class from being boring.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1795,7 +1795,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull your shirt down quickly when another student looks over, which causes Katja to giggle and Lavrenti to shake his head. Several other students look over as if they just realized they have missed something. You ignore their looks, Lavrenti\'s stare and Katja\'s giggles and wait for class to end.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1878,7 +1878,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes at him when he turns his back and sit through the rest of the lesson in silence. Despite your best efforts, you struggle to pay attention and don\'t learn anything.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1903,7 +1903,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
         ]);
       } else {
@@ -1923,7 +1923,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Mr. Vasilyev\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
       ]);
     } else {
@@ -2008,7 +2008,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('He tuts and shakes his head before walking back to the front of the class. "You can have it back after class. Now pay attention please."');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -2024,7 +2024,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to aggravate the situation and put your phone away. Mr. Vasilyev looks at you gratefully before continuing the lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'music');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -2078,12 +2078,12 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov nods approvingly. She happily spends some extra time explaining the topic again and answers any extra questions you might have. She only moves on with the lesson once she\'s sure she\'s fully answered your question. You feel like you learned a lot, thoroughly understanding today\'s lesson now.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2116,7 +2116,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who continues to stare at you with his mouth open.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2143,7 +2143,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at your naked ass while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2171,7 +2171,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at you while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2198,7 +2198,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at your panties while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2225,7 +2225,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Lesco and Artem\'s mouths drop open as they just stare at your panties while Dan, Lavrenti and Lazar grin. Irina starts texting on her phone, likely telling everyone about what you just did.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2254,7 +2254,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('You step out of them, but as you\'re bending over to pick them up, you realize a few of the other students have noticed. You quickly pick up your panties, stuff them into your purse and ignore the stares.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2263,14 +2263,14 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       { label: 'Draw dick in margin', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/drawdick.jpg');
     scene.text('You get bored and start doodling, which turns into you drawing dicks, complete with balls, in the margin of your notebook. You even share your handwork with the girl sitting next to you when she glances over.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2302,7 +2302,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2323,7 +2323,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'science');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2336,7 +2336,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Miss Orlov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2391,7 +2391,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov doesn\'t know what to say and looks like she\'s going to cry. After composing herself, she decides to just continue her lesson. You hear one of the boys behind you call you a bitch, so you turn around and flip him off.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2412,7 +2412,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov smiles as you seem to be paying attention and quickly goes back into her lesson. She doesn\'t seem to notice when you roll your eyes and you sit through the rest of the lesson in silence. Despite your best efforts, you struggle to pay attention and don\'t learn anything.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2439,7 +2439,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
         ]);
       } else {
@@ -2471,7 +2471,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Miss Orlov\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
       ]);
     } else {
@@ -2522,7 +2522,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('Miss Orlov looks at what\'s on the screen and she blushes deep red before quickly turning your phone off. She hurries back to the front of the class, tosses your phone in her desk and takes a moment to compose herself before she continues the lesson feeling somewhat flustered.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },
@@ -2580,7 +2580,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to aggravate the situation and put your phone away. Miss Orlov gives you appreciative smile before continuing with the lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev1', 'biology');
+    qspCall(st, 'gschool_lessonsev1', '');
   } },
     ]);
   } },

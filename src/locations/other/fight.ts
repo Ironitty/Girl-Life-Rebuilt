@@ -15,7 +15,7 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_clear_check = 0;
   // TODO-QSP: :ClearAllyLoop
   if (((s as any).temp_clear_check ?? 0) > 1) {
-    // TODO-QSP: gs 'fight', 'clearPCSArray', temp_clear_check - 1
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_clear_check ?? 0) - 1]; enterClearPCSArray(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_clear_check = ((s as any).temp_clear_check ?? 0) - (1);
     // TODO-QSP: jump 'ClearAllyLoop'
   }
@@ -138,14 +138,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :PCSTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
-    ((s as any).pcs_timer = (s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).pcs_timer = (s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'PCSTimerInit'
   }
   (s as any).i = 0;
   // TODO-QSP: :OppTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
-    ((s as any).opp_timer = (s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).opp_timer = (s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'OppTimerInit'
   }
@@ -169,7 +169,7 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
-          (s as any).fightTimLow = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
+          (s as any).fightTimLow = (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
           (s as any).fightTimNum = ((s as any).i ?? 0);
         }
       }
@@ -185,7 +185,7 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
-          (s as any).fightTimLow = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
+          (s as any).fightTimLow = (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
           (s as any).fightTimNum = ((s as any).i ?? 0);
           (s as any).fightTimType = 'opponent';
         }
@@ -219,27 +219,27 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightPStats = (s as any).fightPStats ?? {})['CharType'] = ((s as any).locArgs?.[1] ?? 0);
   (s as any).i = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).fightPStats ?? 0)?.['CharType'] === 'opp') {
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = ((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = ((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = ((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = ((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = ((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = ((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = ((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = ((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = ((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = (((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = (((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = (((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = (((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = (((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = (((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = (((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
   } else {
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = ((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = ((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = ((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = ((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = ((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = ((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = ((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = ((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = ((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Name'] = (((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Health'] = (((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Mana'] = (((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Willpower'] = (((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Shield'] = (((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Fog'] = (((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Clone'] = (((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Stun'] = (((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Timer'] = (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = (((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
   }
   // TODO-QSP: <td rowspan=4 align=left valign=center>"
   if (((s as any).fightPStats ?? 0)?.['Shield'] > 0) {
@@ -342,27 +342,27 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   (s as any).fightAtk_AttackerNumber = ((s as any).locArgs?.[4] ?? 0);
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     (s as any).fightAtk_AttackerType = 'pcs';
-    ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = (((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)] ?? 0);
     ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = 'You';
-    // TODO-QSP: gs 'exp_gain', $AttackSkill[fightAtk_Type], rand(1, 3)
+    qspCall(s, 'exp_gain', '', (((s as any).AttackSkill ?? 0)?.[String((s as any).fightAtk_Type ?? 0)] ?? 0), (Math.floor(Math.random() * 3) + 1));
     qspCall(s, 'exp_gain', 'def', (Math.floor(Math.random() * 3) + 0));
   } else {
     if (((s as any).fightAtk_TargetType ?? 0) === 'opp') {
-      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = (((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)] ?? 0);
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = (((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)] ?? 0);
       (s as any).fightAtk_AttackerType = 'pcs';
     } else {
       (s as any).fightAtk_AttackerType = 'opp';
-      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = (((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)] ?? 0);
+      ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = (((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)] ?? 0);
     }
   }
   ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerSkillValue'] = 0;
   ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetReactValue'] = 0;
   ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetAgilValue'] = 0;
   ((s as any).fightAtk = (s as any).fightAtk ?? {})['TargetHealthBefore'] = 0;
-  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
-  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MinDamage'] = (((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)] ?? 0);
+  ((s as any).fightAtk = (s as any).fightAtk ?? {})['MaxDamage'] = (((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)] ?? 0);
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
     scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);

@@ -33,10 +33,10 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
         ((s as any).mbarrfill = (s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
         // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
-        scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
+        scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${(((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0)/10}ml bottle. You can use it to store your breast milk.`);
       } else {
         // TODO-QSP: '<br><<vmb_i + 1>>. - A <<mbarrtype[vmb_i]/10>>ml bottle. There is <<mbarrfill[vmb_i]/10>>ml of milk...
-        (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)]);
+        (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + ((((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] ?? 0));
       }
     }
     (s as any).vmb_i = ((s as any).vmb_i ?? 0) + (1);
@@ -68,7 +68,7 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).locArgs?.[1] ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterViewMilkBottles(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -160,7 +160,7 @@ function enterTimeStamp(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] <= 0) {
-    // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).mbarrfill ?? 0)[String((s as any).locArgs?.[1] ?? '')] > ((s as any).mbarrtype ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
       // TODO-QSP: mbarrfill[ARGS[1]] = mbarrtype[ARGS[1]]

@@ -196,16 +196,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((st as any).KGD = (st as any).KGD ?? {})['partyCreate'] = 0;
     scene.actions([
       { label: 'Warrior', handler: (st: GameState) => {
-    qspCall(st, 'KGDgame', 'KGDhire', 'Warrior', 100, 10);
+    qspCall(st, 'KGDgame', '');
   } },
       { label: 'Magician', handler: (st: GameState) => {
-    qspCall(st, 'KGDgame', 'KGDhire', 'Magician', 60, 20);
+    qspCall(st, 'KGDgame', '');
   } },
       { label: 'Archer', handler: (st: GameState) => {
-    qspCall(st, 'KGDgame', 'KGDhire', 'Archer', 80, 15);
+    qspCall(st, 'KGDgame', '');
   } },
       { label: 'Priest', handler: (st: GameState) => {
-    qspCall(st, 'KGDgame', 'KGDhire', 'Priest', 40, 20);
+    qspCall(st, 'KGDgame', '');
   } },
     ]);
   } },

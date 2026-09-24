@@ -1596,7 +1596,7 @@ function enterInappropriateClothes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOffer(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '5', 'asscheeks', 'spank');
   scene.img('images/locations/pavlovsk/school/detention/detspank.mp4');
   scene.text('You get up and walk up to him. "I would rather just take my punishment here."');
   scene.text('He nods and pulls a large wooden paddle out of the desk. "Alright, bend over the desk."');

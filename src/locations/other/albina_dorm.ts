@@ -461,7 +461,7 @@ function enterAlbinaNotHereErmias_SMS(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2) {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['SMSID'] = ((s as any).temp_SMSID ?? 0);
-      // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A23', "gs 'albina_dorm', 'albina_not_here_ermias_SMS_response'", ...
+      qspCall(s, 'telefon', 'SetInSMSSchedule', 'A23', 'gs \'albina_dorm\', \'albina_not_here_ermias_SMS_response\'', 'totminut > ' + ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 11) + 0) + '');
     }
   }
   // TODO-QSP: end
@@ -485,7 +485,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
     if (((s as any).temp_rand ?? 0) === 1) {
       qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' is a little busy right now');
       qspCall(s, 'SMStext_builder', 'send', 'Who is this?');
-      // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she is busy"
+      qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she is busy');
       qspCall(s, 'SMStext_builder', 'send', 'Doing what?');
       qspCall(s, 'SMStext_builder', 'receive', 'Having fun');
       qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/albina/selfies/bbc_selfie1.jpg');
@@ -494,14 +494,14 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
       if (((s as any).temp_rand ?? 0) === 2) {
         qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot use her phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
-        // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she cannot talk right now"
+        qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she cannot talk right now');
         qspCall(s, 'SMStext_builder', 'send', 'What do you mean?');
         qspCall(s, 'SMStext_builder', 'receive', 'She is using her mouth for other things right now');
         qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/albina/selfies/bbc_selfie2.jpg');
       } else {
         qspCall(s, 'SMStext_builder', 'receive', '' + ((s as any).npc_usedname ?? 0)?.['A23'] + ' cannot come to the phone right now');
         qspCall(s, 'SMStext_builder', 'send', 'What? Who is this?');
-        // TODO-QSP: gs 'SMStext_builder', 'receive', "A friend. Like I said, she is busy right now"
+        qspCall(s, 'SMStext_builder', 'receive', 'A friend. Like I said, she is busy right now');
         qspCall(s, 'SMStext_builder', 'send', 'Doing what?');
         qspCall(s, 'SMStext_builder', 'receive_video', 'images/characters/pavlovsk/school/girl/albina/selfies/bbc_selfie3.mp4');
         qspCall(s, 'SMStext_builder', 'receive', 'She is busy showing me how tight her little white pussy is');
@@ -509,7 +509,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
     }
   }
   if (qspFunc(s, 'SMStext_builder', 'check_if_sms_exists_from_id', ((s as any).AlbinaQW ?? 0)?.['SMSID'])) {
-    // TODO-QSP: gs 'SMStext_builder', 'update_sms_from_id', AlbinaQW['SMSID'], 'set_unread'
+    qspCall(s, 'SMStext_builder', 'update_sms_from_id', ((s as any).AlbinaQW ?? 0)?.['SMSID'], 'set_unread');
   } else {
     qspCall(s, 'SMStext_builder', 'add_sms', 'A23');
   }

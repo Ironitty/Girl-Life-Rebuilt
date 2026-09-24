@@ -172,7 +172,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Sorry, I have to go', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_smalloffice', 'start'] },
       ]);
     }
@@ -479,7 +479,7 @@ function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_smalloffice', 'start'] },
       ]);
     }
@@ -506,7 +506,7 @@ function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_smalloffice', 'start'] },
       ]);
     }

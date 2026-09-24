@@ -30,7 +30,7 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
       // TODO-QSP: if arrpos('$contact', 'A152') = -1: gs 'telefon', 'AddContact', 'A152', 'icon_na', 1
     }
-    // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A152', "gs 'nerd_game_night', 'game_invite_sms_switch'", "totminu...
+    qspCall(s, 'telefon', 'SetInSMSSchedule', 'A152', 'gs \'nerd_game_night\', \'game_invite_sms_switch\'', 'totminut > ' + ((s as any).totminut ?? 0) + (11 - ((s as any).hour ?? 0)) * 60 + (Math.floor(Math.random() * 261) + 20) - ((s as any).minut ?? 0) + '');
   }
   if (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 6  &&  ((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 0) {
     ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['on_tour'] = 1;
@@ -44,10 +44,10 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  ((s as any).anushkaQW ?? 0)?.['tour_SMS_send'] < ((s as any).daystart ?? 0)  &&  ((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] < 11) {
     if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] <= 9  &&  ((s as any).week ?? 0) === 6) {
-      // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A144', "gs 'band_tour_anushka_SMS', 'start'", "totminut > <<totmi...
+      qspCall(s, 'telefon', 'SetInSMSSchedule', 'A144', 'gs \'band_tour_anushka_SMS\', \'start\'', 'totminut > ' + ((s as any).totminut ?? 0) + (12 - ((s as any).hour ?? 0)) * 60 + (Math.floor(Math.random() * 81) + 20) - ((s as any).minut ?? 0) + '');
     } else {
       if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 10  &&  ((s as any).week ?? 0) === 2) {
-        // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A144', "gs 'band_tour_anushka_SMS', 'start'", "totminut > <<totmi...
+        qspCall(s, 'telefon', 'SetInSMSSchedule', 'A144', 'gs \'band_tour_anushka_SMS\', \'start\'', 'totminut > ' + ((s as any).totminut ?? 0) + (19 - ((s as any).hour ?? 0)) * 60 + (Math.floor(Math.random() * 81) + 20) - ((s as any).minut ?? 0) + '');
       }
     }
   }

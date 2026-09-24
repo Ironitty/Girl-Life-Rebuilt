@@ -222,7 +222,7 @@ function enterAttendance(s: GameState, scene: SceneBuilder): void {
     ((s as any).unisemestrstats = (s as any).unisemestrstats ?? {})['lectures_attendad'] = ((s as any).locArgs?.[2] ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'update') {
-    // TODO-QSP: gs 'uniutil', 'attendance', 'set', func('uniutil', 'attendance', 'get') + 1
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'attendance', 'get') + 1]; enterAttendance(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterAttendance(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -274,7 +274,7 @@ function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'update') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset']; enterAssignmentProgress(s, scene); (s as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: gs 'uniutil', 'assignments_done', 'set', func('uniutil', 'assignments_done', 'get') + 1
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', qspFunc(s, 'uniutil', 'assignments_done', 'get') + 1]; enterAssignmentsDone(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'reset') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set', 0]; enterAssignmentsDone(s, scene); (s as any).locArgs = __savedLocArgs; }

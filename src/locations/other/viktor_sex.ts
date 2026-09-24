@@ -86,7 +86,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  qspCall(s, 'cum_call', '', '', 'A293', 1);
+  qspCall(s, 'cum_call', '', 'A293', 1);
   qspCall(s, 'stat', '');
   scene.img('images/shared/prostitution/car/normal/sex/cum/pussy_1.mp4');
   scene.text('You don\'t want him to stop. "Yes, cum inside me! Fill my tight little pussy with your hot cum!" you cry out and he thrusts as deep as he can into you. He groans loudly in pleasure as you feel his thick, warm cum spurting deep into your pussy.');
@@ -95,7 +95,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smoke.jpg');
     scene.text('You\'re craving a smoke after that performance and eagerly accept it. You lean back in your seat as you take a long drag and exhale.');
@@ -109,7 +109,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smile.jpg');
     scene.text('You shake your head and he just shrugs before taking a long drag and exhaling as you check your phone.');
@@ -133,7 +133,7 @@ function enterFirstSwallow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 2);
+    qspCall(st, 'cum_cleanup', '2');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smoke.jpg');
     scene.text('You\'re craving a smoke after that performance and eagerly accept it. You lean back in your seat as you take a long drag and exhale.');
@@ -147,7 +147,7 @@ function enterFirstSwallow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 2);
+    qspCall(st, 'cum_cleanup', '2');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smile.jpg');
     scene.text('You shake your head and he just shrugs before taking a long drag and exhaling as you check your phone.');
@@ -171,7 +171,7 @@ function enterFirstPullout(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smoke.jpg');
     scene.text('You\'re craving a smoke after that performance and eagerly accept it. You lean back in your seat as you take a long drag and exhale.');
@@ -185,7 +185,7 @@ function enterFirstPullout(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/viktor_car_smile.jpg');
     scene.text('You shake your head and he just shrugs before taking a long drag and exhaling as you check your phone.');
@@ -245,7 +245,7 @@ function enterSetHomeActs(s: GameState, scene: SceneBuilder): void {
 function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, ((s as any).rough ?? 0));
   qspCall(s, 'arousal', 'clit_finger', (-2));
-  qspCall(s, 'pain', '', 2, 'hair', 'pull');
+  qspCall(s, 'pain', '2', 'hair', 'pull');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/oral5.mp4');
   // TODO-QSP: dynamic text: Viktor wastes no time and immediately drags you into the bedroom, where he pulls...
@@ -276,7 +276,7 @@ function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cowgirl', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 3, 'rough');
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/cowgirl/hard4.mp4');
     scene.text('He falls on his back and you straddle him as he starts roughly thrusting up into your pussy, causing you to moan loudly as the sound of flesh frantically slapping against flesh once again fills the room.');
@@ -294,8 +294,8 @@ function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Doggy', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 3, 'rough');
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
-    qspCall(st, 'pain', '', 2, 'hair', 'pull');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'hair', 'pull');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/dog11.mp4');
     scene.text('After a few minutes, he suddenly pulls out and drops you down on the bed on all fours. You straddle a pillow and spread your legs before Viktor moves in behind you, pinning you down with a single hand before he slides his dick back inside you and starts roughly fucking you doggystyle while continuing to spank your stinging ass cheeks.');
@@ -333,7 +333,7 @@ function enterViktorSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterViktorCreampie(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 1, 'rough');
-  qspCall(s, 'cum_call', '', '', 'A293', 1);
+  qspCall(s, 'cum_call', '', 'A293', 1);
   qspCall(s, 'arousal', 'end');
   scene.img('images/shared/sex/cum/vagcreampie/doggy5.mp4');
   scene.text('"Do... Do it! Fill... Fill my slutty pussy... With your hot cum..." you manage to say softly between waves of pleasure.');
@@ -345,7 +345,7 @@ function enterViktorCreampie(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I have my own', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke');
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You shake your head. "Thanks, but I\'ve got my own." He just nods as you bend over the edge of the bed to grab a cigarette from your purse.');
@@ -364,7 +364,7 @@ function enterViktorCreampie(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You nod and he hands the cigarette. You light it and take a deep drag as you sit back on the bed, relaxing in satisfied silence with Viktor.');
@@ -379,7 +379,7 @@ function enterViktorCreampie(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/phone.jpg');
     scene.text('You shake your head and grab some tissues from his bedside table to clean yourself up as he takes a long drag and exhales, filling the room with smoke.');
@@ -405,7 +405,7 @@ function enterViktorPullout(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I have my own', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke');
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You shake your head. "Thanks, but I\'ve got my own." He just nods as you bend over the edge of the bed to grab a cigarette from your purse.');
@@ -424,7 +424,7 @@ function enterViktorPullout(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You nod and he hands the cigarette. You light it and take a deep drag as you sit back on the bed, relaxing in satisfied silence with Viktor.');
@@ -439,7 +439,7 @@ function enterViktorPullout(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/phone.jpg');
     scene.text('You shake your head and grab some tissues from his bedside table to clean yourself up as he takes a long drag and exhales, filling the room with smoke.');
@@ -465,7 +465,7 @@ function enterViktorFacial(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I have my own', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke');
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You shake your head. "Thanks, but I\'ve got my own."');
@@ -485,7 +485,7 @@ function enterViktorFacial(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(st, 'drugs', 'smoke', 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/bed_smoke3.jpg');
     scene.text('You nod and he hands the cigarette. You light it and take a deep drag as you sit back on the bed, relaxing in satisfied silence with Viktor.');
@@ -500,7 +500,7 @@ function enterViktorFacial(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/after/phone.jpg');
     scene.text('You shake your head and grab some tissues from his bedside table to clean yourself up as he takes a long drag and exhales, filling the room with smoke.');
@@ -1145,7 +1145,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Creampie', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 2);
-    qspCall(st, 'cum_call', '', '', 'A293', 1);
+    qspCall(st, 'cum_call', '', 'A293', 1);
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/cowgirl1.jpg');
     scene.text('"Cum inside me! I want to feel your hot cum inside my pussy!" you cry out and Viktor goes even faster until he thrusts as deeply as he can inside you. You feel his dick twitching inside you as spurt after spurt of warm cum shoot deep into your pussy.');
@@ -1160,7 +1160,7 @@ function enterWakeupViktorBj(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'cum_cleanup', '3');
     qspCall(st, 'din_van', 'showerdin');
     if (((st as any).deodorant_on ?? 0) === 1) {
       qspCall(st, 'sweat', 'remove_deo');

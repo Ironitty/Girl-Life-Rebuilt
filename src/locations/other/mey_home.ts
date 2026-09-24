@@ -136,7 +136,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0  &&  qspFunc(s, 'homes_properties', 'can_live_here')  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 30) {
     scene.actions([
       { label: 'Set this household as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['mey_home', 'start'] },
     ]);
   }
@@ -214,13 +214,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['mey_home', 'start'] },
     { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'large_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
   ]);
   scene.build();

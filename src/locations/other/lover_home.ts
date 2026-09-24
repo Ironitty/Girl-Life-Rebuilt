@@ -128,17 +128,17 @@ function enterLocInit(s: GameState, scene: SceneBuilder): void {
 function enterDressCloth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornclothingtype ?? 0)?.['lover_ev'] !== 'nude') {
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['lover_ev'], lastwornclothingnumber['lover_ev']
+      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['lover_ev'], ((s as any).lastwornclothingnumber ?? 0)?.['lover_ev']);
     }
   }
   if (((s as any).pantyworntype ?? 0) === 'none') {
     if (((s as any).lastwornpantytype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornpantytype ?? 0)?.['lover_ev'] !== 'none') {
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['lover_ev'], lastwornpantynumber['lover_ev']
+      qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['lover_ev'], ((s as any).lastwornpantynumber ?? 0)?.['lover_ev']);
     }
   }
   if (((s as any).braworntype ?? 0) === 'none') {
     if (((s as any).lastwornbratype ?? 0)?.['lover_ev'] !== ''  &&  ((s as any).lastwornbratype ?? 0)?.['lover_ev'] !== 'none') {
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['lover_ev'], lastwornbranumber['lover_ev']
+      qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['lover_ev'], ((s as any).lastwornbranumber ?? 0)?.['lover_ev']);
     }
   }
   qspCall(s, 'outfit', 'remove_backup', 'lover_ev');
@@ -185,7 +185,7 @@ function enterLocMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
+    qspCall(s, 'npcStat', '$ARGS[1]');
   }
   qspCall(s, 'stat', '');
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
@@ -309,7 +309,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Relax in ' + String(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '' ?? '') + '\'s bed', goto: ['bed', 'start'] },
+      { label: '', labelFn: (s: GameState) => 'Relax in ' + String((((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '') ?? '') + '\'s bed', goto: ['bed', 'start'] },
     ]);
   }
   // TODO-QSP: end

@@ -15,7 +15,7 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_curReplies = qspUntranslated(s, "SMSReplies[SMSSelfieVars['SMSIndex']]", { location: "SMS_selfies" });
   // TODO-QSP: $SMSMessage[SMSSelfieVars['SMSIndex']] = $SMSSelfieVars['text']
   // TODO-QSP: $SMSReplies[SMSSelfieVars['SMSIndex']] = ''
-  // TODO-QSP: gs 'telefon', 'show_sms', SMSSelfieVars['SMSIndex']
+  qspCall(s, 'telefon', 'show_sms', ((s as any).SMSSelfieVars ?? 0)?.['SMSIndex']);
   // TODO-QSP: $SMSMessage[SMSSelfieVars['SMSIndex']] = $temp_curSMS
   // TODO-QSP: $SMSReplies[SMSSelfieVars['SMSIndex']] = $temp_curReplies
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = '';
@@ -24,7 +24,7 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'telefon', 'show_sms', SMSSelfieVars['SMSIndex']
+  qspCall(s, 'telefon', 'show_sms', ((s as any).SMSSelfieVars ?? 0)?.['SMSIndex']);
   // TODO-QSP: end
   scene.build();
 }
@@ -71,7 +71,7 @@ function enterSelfieMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = '<table width=80%><tr><th><font color="maroon">' + qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "SMS_selfies" }) + ' selfies</font></th></tr>';
-  // TODO-QSP: gs 'SMS_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "SMS_selfies" })]; enterListretrieve(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<tr><td colspan=3><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027SMS_selfies/u0027, /u0027selfie_menu/u0027); return false;">Go Back</a></td></tr>');
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<tr><td colspan=3><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027SMS_selfies/u0027, /u0027exit/u0027); return false;">Exit</a></td></tr></table>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowSms(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -81,31 +81,31 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
 
 function enterListretrieve(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('c'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_clothed_selfies',    ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveClothedSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('sw'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_swim_selfies',      ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveSwimSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('u'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_underwear_selfies',    ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveUnderwearSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('n'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_nude_selfies',      ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveNudeSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('b'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_bath_selfies',      ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveBathSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('sh'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_shower_selfies',    ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveShowerSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('ft'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_titflash_selfies',    ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveTitflashSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('fa'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_assflash_selfies',    ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrieveAssflashSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('fp'))) + 1)  > 0) {
-    // TODO-QSP: gs 'SMS_selfies', 'retrieve_pussyflash_selfies',  ARGS[1], $ARGS[2]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterRetrievePussyflashSelfies(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();

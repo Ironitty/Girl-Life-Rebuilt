@@ -25,13 +25,13 @@ function enterContinueRate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLocImg(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs $date_ev['loc'], $date_ev['loc_img']
+  qspCall(s, '$date_ev[\'loc\']', '$date_ev[\'loc_img\']');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterTalkImg(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs $date_ev['loc'], $date_ev['talk_img']
+  qspCall(s, '$date_ev[\'loc\']', '$date_ev[\'talk_img\']');
   // TODO-QSP: end
   scene.build();
 }
@@ -242,7 +242,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Flash him', handler: (st: GameState) => {
-    // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
+    qspCall(st, '$date_ev[\'loc\']', 'flash_mov');
     scene.text('"Sure."');
     if ((!((st as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: Without hesitation, you pull up your top giving <<$npcdesc>> an unobstructed loo...
@@ -281,7 +281,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Prove it', handler: (st: GameState) => {
-    // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
+    qspCall(st, '$date_ev[\'loc\']', 'flash_mov');
     scene.text('"Here, let me show you."');
     if ((!((st as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: Before <<$npcdesc>> can say anything, you pull up your top, giving him an unobst...
@@ -1333,7 +1333,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> leans close and whispers to you.
   scene.text(`${((s as any).npcdesc ?? '')} leans close and whispers to you.`);
   // TODO-QSP: dynamic text: "<<$pcs_usedname[$npcID]>>, show me your tits."
-  scene.text(`"${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}, show me your tits."`);
+  scene.text(`"${(((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}, show me your tits."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Protest', handler: (st: GameState) => {
@@ -1351,7 +1351,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Give in', handler: (st: GameState) => {
-    // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
+    qspCall(st, '$date_ev[\'loc\']', 'flash_mov');
     // TODO-QSP: dynamic text: Taking another look around, you can''t help but feel hesitant about what <<$npcd...
     scene.text(`Taking another look around, you can't help but feel hesitant about what ${((st as any).npcdesc ?? '')} is asking you to do.`);
     scene.text('<i>Oh fuck it.</i>');
@@ -1383,7 +1383,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
       scene.text('"Oh come on, please? Fuck, you\'re so hot."');
       scene.actions([
         { label: 'Flash him', handler: (st: GameState) => {
-    // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
+    qspCall(st, '$date_ev[\'loc\']', 'flash_mov');
     scene.text('"Flattery will get you everywhere."');
     if ((!((st as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: You take a quick look around to see if anybody is watching and pull up your top,...
@@ -1398,7 +1398,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Flash him', handler: (st: GameState) => {
-    // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
+    qspCall(st, '$date_ev[\'loc\']', 'flash_mov');
     if ((!((st as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: "Is that a dare?" You grin at him and with no more hesitation than a glance to s...
       scene.text(`"Is that a dare?" You grin at him and with no more hesitation than a glance to see if anybody is watching, pull up your top and flash him your ${((st as any).pcdesc_breasts ?? '')} breasts. You give him a good two second view before tugging your top back down into place.`);

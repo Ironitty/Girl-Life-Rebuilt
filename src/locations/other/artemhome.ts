@@ -289,7 +289,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Dress yourself', handler: (st: GameState) => {
-    qspCall(st, 'shortgs', 'dress');
+    qspCall(st, 'shortgs', '');
   }, goto: ['artemhome', 'artemroom'] },
     ]);
   } else {

@@ -31,10 +31,10 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Leave it alone', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Photographer', (Math.floor(Math.random() * 28) + 18), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 1, 'Model', (Math.floor(Math.random() * 6) + 20), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Photographer', (Math.floor(Math.random() * 28) + 18), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '1', 'Model', (Math.floor(Math.random() * 6) + 20), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/city/citycenter/photo/photoshoot/f1.jpg');
     scene.text('You bite your lip and leave your bra alone, feeling a little embarrassed as the other girl awkwardly uses her hands to hide your nipples from view.');
     scene.text('After a while, the photographer tells you to change into a specific position before he walks up and kisses your neck as his hand rests on your ass.');
@@ -136,10 +136,10 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree to do the shoot', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 1, 'Photographer', (Math.floor(Math.random() * 26) + 20), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 1, 'Model', (Math.floor(Math.random() * 6) + 20), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '1', 'Photographer', (Math.floor(Math.random() * 26) + 20), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '1', 'Model', (Math.floor(Math.random() * 6) + 20), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     qspCall(st, 'money', 'earn', 2500);
     scene.img('images/locations/city/citycenter/photo/photoshoot/f4.jpg');
     scene.text('"It\'s only for abroad, right?" you check. When the photographer nods with a hopeful look in her eyes, you shrug.');
@@ -291,8 +291,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).picrand = 81;
-    qspCall(st, 'npcgeneratec', '', 0, 'Shy Painter', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Shy Painter', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'sex', 'var');
   } },
     ]);
@@ -322,8 +322,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).picrand = 82;
-    qspCall(st, 'npcgeneratec', '', 0, 'Dejected Painter', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Dejected Painter', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'sex', 'var');
   } },
     ]);
@@ -372,8 +372,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Let it happen', handler: (st: GameState) => {
     (st as any).picrand = 85;
-    qspCall(st, 'npcgeneratec', '', 0, 'Painter', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Painter', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'sex', 'kuni');
   } },
           ]);
@@ -419,8 +419,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).picrand = 31;
-    qspCall(st, 'npcgeneratec', '', 0, 'Painter', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Painter', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'podrsex', 'suck');
   } },
     ]);
@@ -468,8 +468,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).picrand = 32;
-    qspCall(st, 'npcgeneratec', '', 0, 'Painter\'s Husband', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Painter\'s Husband', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'podrsex', 'suck');
   } },
     ]);
@@ -489,8 +489,8 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Leave the apartment', goto: ['city_center', ''] },
                 { label: 'Seduce him', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Painter', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Painter', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = 86;
     qspGoto(st, 'sex', 'minet');
   } },

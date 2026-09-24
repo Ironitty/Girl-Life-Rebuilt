@@ -34,7 +34,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_buskingevents', 'finish');
+    qspCall(st, 'music_buskingevents', '');
   } },
   ]);
   scene.build();
@@ -166,7 +166,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -179,7 +179,7 @@ function enterLenaAndLera(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();

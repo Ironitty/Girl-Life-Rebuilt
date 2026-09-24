@@ -36,7 +36,7 @@ function enterFronty(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home', ((s as any).loc ?? 0)) === 0) {
     scene.actions([
       { label: 'Set this house as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['city_house_res_misc', 'fronty'] },
     ]);
   }

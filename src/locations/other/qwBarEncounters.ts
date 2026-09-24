@@ -224,8 +224,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(s, 'stat', '');
-      qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 18) + 18));
-      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 18) + 18));
+      qspCall(s, 'npcStat', '$npclastgenerated');
       scene.img('images/locations/city/industrial/bar/sex/bar/bargrind1.jpg');
       scene.text('Martin nods and prepares your beverage, then places it in front of you.');
       scene.text('"Thank you," you smile at him and earn a half-smile in return before he leaves you to yourself.');
@@ -262,7 +262,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Take charge', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrindd1.jpg');
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     scene.text('Once you are good and wet, you pull his hands away, sit down on a bar stool, move your clothes out of the way enough to reveal your pussy and spread your legs as you pull him close. You gently push down on his shoulders and he gets the idea, smiles and goes down to his knees to lick your pussy.');
     scene.text('He laps at your cunt without a hint of reservation. One of his hands is squeezing your tits through your clothes while the other joins his mouth, his fingers inside you adding to the overwhelming sensations you are feeling. You notice some people watching but not as many as you expected; you don\'t care though, this simply feels too great to think about consequences, and your guy friend seems unconcerned with the looks of other patrons too, maybe even enjoying the fact that he can show off his conquest right here.');
     scene.text('He keep going, working your sex tirelessly until an orgasm rocks your body and you have to bite down on your lip to keep yourself from moaning out loud. As the shuddering subsides, he stands up with a shit-eating grin and his hands move to unbutton his pants.');
@@ -280,7 +280,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Return the favor', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds1.mp4');
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     scene.text('Seeing as he got down on you right then and there, it seems only fair for you to do the same for him, so you get down on your knees, squatted down in front of him with your back against the counter, hidden from most views.');
     // TODO-QSP: dynamic text: The strangers pulls out his cock and shoves it in your open mouth - you already ...
     scene.text(`The strangers pulls out his cock and shoves it in your open mouth - you already knew what to expect and at this point, you are eager to suck his cock. He leans in close and starts fucking your mouth, and you are reveling in it, masturbating as he shoves his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock down your throat again and again. You don't know if anybody's watching and you are too drunk to feel anything but excitement at the prospect.`);
@@ -291,7 +291,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrinds2.jpg');
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     scene.text('You are not quite sure for how long you are squatting there while he fucks your mouth, but at some point, he picks up the pace and starts to groan, then suddenly pulls his cock out of your mouth and the first hot jet of sperm hits your face, then another shoots into your mouth. Several more follow and cover your lips, chin and tongue with cum.');
     scene.text('Once the last spurt is out, he wipes the tip of dick against your lips to get the last drops off cum off. Then he tucks his cock back in his pants, orders another drink for each of you and, before you\'re even fully back on your feet, takes his drink and walks off.');
     qspCall(st, 'arousal', 'end');

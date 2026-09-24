@@ -423,7 +423,7 @@ function enterDelivery(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Disagree', handler: (st: GameState) => {
     (st as any).bomzQW = (-1);
-    qspCall(st, 'jobs', 'set_terminated', 'city_pornstudio_delivery');
+    qspCall(st, 'jobs', '');
   }, goto: ['city_redlight', 'start'] },
     { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -548,7 +548,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
     ((st as any).job_last_miss_cost = (st as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
     (st as any).pfilmNOPAY = 1;
     ((st as any).porntaken = (st as any).porntaken ?? {})['1,' + String(((st as any).missday ?? 0))] = 2;
-    // TODO-QSP: gs 'jobs', 'book_slot', 'city_pornstudio_actress', daystart + 1, missday, $str(pornplan['1,<<missday...
+    qspCall(st, 'jobs', 'book_slot', 'city_pornstudio_actress', ((st as any).daystart ?? 0) + 1, ((st as any).missday ?? 0), String(((st as any).pornplan ?? 0)?.['1,' + String(((st as any).missday ?? 0))]));
     qspGoto(st, 'pornstudio', '');
   } },
             ]);
@@ -639,7 +639,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
-    // TODO-QSP: gs 'jobs', 'book_slot', 'city_pornstudio_actress', daystart + 1, 0, '1'
+    qspCall(st, 'jobs', 'book_slot', 'city_pornstudio_actress', ((st as any).daystart ?? 0) + 1, 0, '1');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: '"Cool. We shoot tomorrow, so be here between '+$func('time', 'get_time_string',...
     scene.text('"Cool. We shoot tomorrow, so be here between 9:00 and 10:00. Please don\'t be late."');
@@ -709,20 +709,20 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 1  ||  (((s as any).pfilmNOPAY ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)) {
     scene.actions([
       { label: 'Cancel a contract', handler: (st: GameState) => {
-    qspCall(st, 'pornschedule', 'canceling');
+    qspCall(st, 'pornschedule', '');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Filter by date', handler: (st: GameState) => {
-    qspCall(st, 'pornschedule', 'selection');
+    qspCall(st, 'pornschedule', '');
   } },
     { label: 'Filter by participants', handler: (st: GameState) => {
-    qspCall(st, 'pornschedule', 'displaynum');
+    qspCall(st, 'pornschedule', '');
   } },
     { label: 'Porn production schedule', handler: (st: GameState) => {
-    qspCall(st, 'pornschedule', 'contracting');
+    qspCall(st, 'pornschedule', '');
   } },
     { label: 'Leave', handler: (st: GameState) => {
     qspGoto(st, 'pornstudio', '');
@@ -893,7 +893,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose your name', handler: (st: GameState) => {
     (st as any).firstkasting = 1;
     qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_actress');
-    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for <<$pcs_nickname>> Starr)") ?? '';
+    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for " + (((st as any).pcs_nickname ?? 0)) + " Starr)") ?? '';
     if (((st as any).pfname ?? 0) === '') {
       (st as any).pfname = '' + ((st as any).pcs_nickname ?? 0) + ' Starr';
     }
@@ -941,7 +941,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose your name', handler: (st: GameState) => {
     (st as any).firstkasting = 1;
     qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_actress');
-    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for <<$pcs_nickname>> Starr)") ?? '';
+    (st as any).pfname = window.prompt("What will your porn name be? (Leave blank for " + (((st as any).pcs_nickname ?? 0)) + " Starr)") ?? '';
     if (((st as any).pfname ?? 0) === '') {
       (st as any).pfname = '' + ((st as any).pcs_nickname ?? 0) + ' Starr';
     }

@@ -122,28 +122,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).katkey ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027start/u0027); return false;">Kat\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'katspalnya\', \'start\'">Kat\'s</a> apartment', '3');
     }
     if (((s as any).IrinaQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_irinaroom/u0027, /u0027start/u0027); return false;">Irene\'s</a> apartment is not far from yours.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_irinaroom\', \'start\'">Irene\'s</a> apartment is not far from yours.', '3');
     }
     if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).dimaQW ?? 0) > 0) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_dima/u0027, /u0027start/u0027); return false;">Dima\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_dima\', \'start\'">Dima\'s</a> apartment', '3');
     }
     if (((s as any).klofQW ?? 0) >= 2) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_jorahouse/u0027, /u0027start/u0027); return false;">Jora\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_jorahouse\', \'start\'">Jora\'s</a> apartment', '3');
     }
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbidomhouse/u0027, /u0027start/u0027); return false;">Natalya Petrovna\'s</a> apartment.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'lesbidomhouse\', \'start\'">Natalya Petrovna\'s</a> apartment.', '3');
     } else {
       if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).subdom ?? 0) === 2) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbisubhouse/u0027, /u0027start/u0027); return false;">Your slave\'s</a> apartment.', '3');
+        qspCall(s, 'show_table', '<a href="exec:gt \'lesbisubhouse\', \'start\'">Your slave\'s</a> apartment.', '3');
       } else {
         if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) >= 2  &&  ((s as any).lesbiQW ?? 0) < 13) {
-          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbidomhouse/u0027, /u0027start/u0027); return false;">Mistress\'s</a> apartment.', '3');
+          qspCall(s, 'show_table', '<a href="exec:gt \'lesbidomhouse\', \'start\'">Mistress\'s</a> apartment.', '3');
         } else {
           if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) >= 13) {
-            qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbimistress/u0027, /u0027start/u0027); return false;">Mistress\'s</a> apartment.', '3');
+            qspCall(s, 'show_table', '<a href="exec:gt \'lesbimistress\', \'start\'">Mistress\'s</a> apartment.', '3');
           }
         }
       }
@@ -373,28 +373,28 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).katkey ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027start/u0027); return false;">Kat\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'katspalnya\', \'start\'">Kat\'s</a> apartment', '3');
     }
     if (((s as any).IrinaQW ?? 0) >= 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_irinaroom/u0027, /u0027start/u0027); return false;">Irene\'s</a> apartment is not far from yours.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_irinaroom\', \'start\'">Irene\'s</a> apartment is not far from yours.', '3');
     }
     if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).dimaQW ?? 0) > 0) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_dima/u0027, /u0027start/u0027); return false;">Dima\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_dima\', \'start\'">Dima\'s</a> apartment', '3');
     }
     if (((s as any).klofQW ?? 0) >= 2) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_jorahouse/u0027, /u0027start/u0027); return false;">Jora\'s</a> apartment', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'city_jorahouse\', \'start\'">Jora\'s</a> apartment', '3');
     }
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) === 1) {
-      qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbidomhouse/u0027, /u0027start/u0027); return false;">Natalya Petrovna\'s</a> apartment.', '3');
+      qspCall(s, 'show_table', '<a href="exec:gt \'lesbidomhouse\', \'start\'">Natalya Petrovna\'s</a> apartment.', '3');
     } else {
       if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).subdom ?? 0) === 2) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbisubhouse/u0027, /u0027start/u0027); return false;">Your slave\'s</a> apartment.', '3');
+        qspCall(s, 'show_table', '<a href="exec:gt \'lesbisubhouse\', \'start\'">Your slave\'s</a> apartment.', '3');
       } else {
         if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) >= 2  &&  ((s as any).lesbiQW ?? 0) < 13) {
-          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbidomhouse/u0027, /u0027start/u0027); return false;">Mistress\'s</a> apartment.', '3');
+          qspCall(s, 'show_table', '<a href="exec:gt \'lesbidomhouse\', \'start\'">Mistress\'s</a> apartment.', '3');
         } else {
           if (((s as any).lesbiday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) >= 13) {
-            qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lesbimistress/u0027, /u0027start/u0027); return false;">Mistress\'s</a> apartment.', '3');
+            qspCall(s, 'show_table', '<a href="exec:gt \'lesbimistress\', \'start\'">Mistress\'s</a> apartment.', '3');
           }
         }
       }

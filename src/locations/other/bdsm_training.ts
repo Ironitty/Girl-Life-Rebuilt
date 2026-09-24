@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 1, 'Elektra', 27);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '1', 'Elektra', 27);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 0) {
     ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['subtraining'] = 1;
@@ -530,7 +530,7 @@ function enterDom(s: GameState, scene: SceneBuilder): void {
     scene.text('"A sub should be obedient and not speak unless spoken to, unless naked or wearing bondage gear, sub women should dress as maids and men as butlers."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 1, 'Elektra\'s sub', 32);
+    qspCall(st, 'npcgeneratec', '1', 'Elektra\'s sub', 32);
     scene.img('images/locations/city/suburb/bdsm_club/sex/r2_6.jpg');
     scene.text('Elektra helps the sub into a harness and boots then points to the floor. The submissive woman kneels down, being careful to position her legs and arms very precisely.');
     scene.text('"This is the "slave" position, it displays your dominance over the sub. A dominant can do anything to a sub, but must not cause lasting harm."');

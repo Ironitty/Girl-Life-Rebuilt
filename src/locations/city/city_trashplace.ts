@@ -119,7 +119,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['city_industrial', ''] },
         ]);
       }
@@ -161,7 +161,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).bomzQW = 1;
-    qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_delivery');
+    qspCall(st, 'jobs', '');
   }, goto: ['city_industrial', ''] },
     ]);
   } },
@@ -172,7 +172,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).bomzQW = 1;
-    qspCall(st, 'jobs', 'set_employed', 'city_pornstudio_delivery');
+    qspCall(st, 'jobs', '');
   }, goto: ['city_industrial', ''] },
       ]);
     }
@@ -378,12 +378,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Beg', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '0', 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'hobo', (Math.floor(Math.random() * 21) + 35), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'b');
     scene.img('images/locations/city/residential/street/sex/hobosdeepthroat.jpg');
     scene.text('"Please let me go! I\'m sorry!" you plead, your heart pounding as the dirty old men look at you with clear lust in their eyes.');
     scene.text('"We have to make sure you understand your lesson, bitch!" the one holding your arm says as the men drag you in a dark back alley.');

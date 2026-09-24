@@ -59,7 +59,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the table', goto: ['pushkin_cafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
   ]);
   scene.build();

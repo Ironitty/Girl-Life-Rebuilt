@@ -69,17 +69,17 @@ function enterCheattabs(s: GameState, scene: SceneBuilder): void {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
     }
   }
-  qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  qspCall(s, 'tabhead', 'menu_page');
   // TODO-QSP: end
   scene.actions([
     { label: 'Settings menu', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_din', 'menu_exit');
+    qspCall(st, 'cheatmenu_din', '');
   }, goto: ['$menu_settings', ''] },
     { label: 'Emergency Exit', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_din', 'menu_exit');
+    qspCall(st, 'cheatmenu_din', '');
   }, goto: ['obj_din', 'emergency'] },
     { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_din', 'menu_exit');
+    qspCall(st, 'cheatmenu_din', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
   ]);
@@ -236,7 +236,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
     (s as any).imax = 0;
     // TODO-QSP: :chlp
     // TODO-QSP: dynamic text:   <<i+1>>. baby''s pregnancy type: <<babyptype[i]>>
-    scene.text(`  ${((s as any).i ?? '')+1}. baby's pregnancy type: ${((s as any).babyptype ?? 0)?.[String((s as any).i ?? 0)] ?? ''}`);
+    scene.text(`  ${((s as any).i ?? '')+1}. baby's pregnancy type: ${(((s as any).babyptype ?? 0)?.[String((s as any).i ?? 0)] ?? '')}`);
     if (((s as any).i ?? 0) < ((s as any).imax ?? 0)) {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'chlp'
@@ -324,7 +324,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
       (s as any).pilltype = 'fertility hormone ';
     }
     // TODO-QSP: dynamic text: <<pillsleft[ptype]>> <<$pilltype>>pills left of your currently used pack
-    scene.text(`${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} ${((s as any).pilltype ?? '')}pills left of your currently used pack`);
+    scene.text(`${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} ${((s as any).pilltype ?? '')}pills left of your currently used pack`);
   }
   // TODO-QSP: end
   ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['index'] = 'gt \'cheatmenu_din\', \'index\'';
@@ -604,8 +604,8 @@ function enterSetNoPeriods(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterForcePreg(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'A sperm donor', (Math.floor(Math.random() * 18) + 18), 0, 1);
-  qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'A sperm donor', (Math.floor(Math.random() * 18) + 18), 0, 1);
+  qspCall(s, 'npcpreservec', '$npclastgenerated');
   qspCall(s, 'fertility', 'force_preg_by', ((s as any).npclastsaved ?? 0));
   return;
   // TODO-QSP: end
@@ -880,15 +880,15 @@ function enterAvatarHairSet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRename(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = window.prompt("What is your first name? (Leave blank for <<$pcs_firstname>>)") ?? '';
+  (s as any).temp_input = window.prompt("What is your first name? (Leave blank for " + (((s as any).pcs_firstname ?? 0)) + ")") ?? '';
   if (((s as any).temp_input ?? 0) !== '') {
     (s as any).pcs_firstname = ((s as any).temp_input ?? 0);
   }
-  (s as any).temp_input = window.prompt("What is your family name? (Leave blank for <<$pcs_lastname>>)") ?? '';
+  (s as any).temp_input = window.prompt("What is your family name? (Leave blank for " + (((s as any).pcs_lastname ?? 0)) + ")") ?? '';
   if (((s as any).temp_input ?? 0) !== '') {
     (s as any).pcs_lastname = ((s as any).temp_input ?? 0);
   }
-  (s as any).temp_input = window.prompt("What is your nickname? (Leave blank for <<$pcs_nickname>>)") ?? '';
+  (s as any).temp_input = window.prompt("What is your nickname? (Leave blank for " + (((s as any).pcs_nickname ?? 0)) + ")") ?? '';
   if (((s as any).temp_input ?? 0) !== '') {
     (s as any).pcs_nickname = ((s as any).temp_input ?? 0);
   }
@@ -907,7 +907,7 @@ function enterResetName(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLooks(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], ARGS[2]
+  qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   qspGoto(s, 'cheatmenu_din', 'looks');
   // TODO-QSP: end
   ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['setLooksInput'] = 'gs \'cheatmenu_din\', \'setLooksInput\', $ARGS[0], $ARGS[1]';
@@ -915,7 +915,7 @@ function enterSetLooks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLooksInput(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = window.prompt("Set your <<$ARGS[2]>> level:") ?? '';
+  (s as any).temp_input = window.prompt("Set your " + (String((s as any).locArgs?.[2] ?? '')) + " level:") ?? '';
   if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
     qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), parseFloat(((s as any).temp_input ?? 0)));
   } else {
@@ -1109,7 +1109,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.vshrinkdays -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027looks/u0027); return false;">Reduce number of days it takes</a>');
   }
   // TODO-QSP: dynamic text: When gaped your vagina will reduce each stage (up to 4 for maximum gape) every <...
-  scene.text(`When gaped your vagina will reduce each stage (up to 4 for maximum gape) every ${qspUntranslated(s, "vgape[5]", { location: "cheatmenu_din" })} minutes.`);
+  scene.text(`When gaped your vagina will reduce each stage (up to 4 for maximum gape) every ${(((s as any).vgape ?? 0)?.[5] ?? '')} minutes.`);
   if (((s as any).vgape ?? 0)[4] < 60) {
     // TODO-QSP: dynamic text: <a href="exec:vgape[4] += 5 & gt ''cheatmenu_din'', ''looks''">Increase time by ...
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: vgape[4] += 5 */ return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027looks/u0027); return false;">Increase time by 5 minutes (before traits)</a>');
@@ -1142,7 +1142,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ashrinkdays -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027looks/u0027); return false;">Reduce number of days it takes</a>');
   }
   // TODO-QSP: dynamic text: When gaped your anus will reduce each stage (up to 4 for maximum gape) every <<a...
-  scene.text(`When gaped your anus will reduce each stage (up to 4 for maximum gape) every ${qspUntranslated(s, "agape[5]", { location: "cheatmenu_din" })} minutes.`);
+  scene.text(`When gaped your anus will reduce each stage (up to 4 for maximum gape) every ${(((s as any).agape ?? 0)?.[5] ?? '')} minutes.`);
   if (((s as any).agape ?? 0)[4] < 60) {
     // TODO-QSP: dynamic text: <a href="exec:agape[4] += 5 & gt ''cheatmenu_din'', ''looks''">Increase time by ...
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: agape[4] += 5 */ return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027looks/u0027); return false;">Increase time by 5 minutes (before traits)</a>');
@@ -1268,7 +1268,7 @@ function enterChangeAvatarPath(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangePcsMassBody(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'body', 'Set_mass_distribution_using_body', pcs_mass['body'] + ARGS[1]
+  qspCall(s, 'body', 'Set_mass_distribution_using_body', (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + ((s as any).locArgs?.[1] ?? 0));
   qspGoto(s, 'cheatmenu_din', 'looks');
   // TODO-QSP: end
   scene.build();
@@ -1417,7 +1417,7 @@ function enterVneshpara(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: attributeBonus = <<attributeBonus>> (pcs_agil + pcs_vital) / 5
   scene.text(`attributeBonus = ${((s as any).attributeBonus ?? '')} (pcs_agil + pcs_vital) / 5`);
   // TODO-QSP: dynamic text: these are adjusted by BMI (<<pcs_bmi[0]>>.<<pcs_bmi[1]>>) if it is outside 19.0 ...
-  scene.text(`these are adjusted by BMI (${qspUntranslated(s, "pcs_bmi[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "cheatmenu_din" })}) if it is outside 19.0 - 24.9`);
+  scene.text(`these are adjusted by BMI (${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}) if it is outside 19.0 - 24.9`);
   // TODO-QSP: dynamic text: pcs_apprncbase = <<pcs_apprncbase>>
   scene.text(`pcs_apprncbase = ${((s as any).pcs_apprncbase ?? '')}`);
   scene.text('Bonus');
@@ -1484,9 +1484,9 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: vitalbuf = <<vitalbuf>>
   scene.text(`vitalbuf = ${((s as any).vitalbuf ?? '')}`);
   // TODO-QSP: dynamic text: BMI (pcs_bmi) = <<pcs_bmi[0]>>.<<pcs_bmi[1]>>
-  scene.text(`BMI (pcs_bmi) = ${qspUntranslated(s, "pcs_bmi[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "cheatmenu_din" })}`);
+  scene.text(`BMI (pcs_bmi) = ${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}`);
   // TODO-QSP: dynamic text: weight (pcs_weight) = <<pcs_weight[0]>>.<<pcs_weight[1]>> kg
-  scene.text(`weight (pcs_weight) = ${qspUntranslated(s, "pcs_weight[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "cheatmenu_din" })} kg`);
+  scene.text(`weight (pcs_weight) = ${(((s as any).pcs_weight ?? 0)?.[0] ?? '')}.${(((s as any).pcs_weight ?? 0)?.[1] ?? '')} kg`);
   // TODO-QSP: dynamic text: bust (pcs_bust) = <<pcs_bust>>
   scene.text(`bust (pcs_bust) = ${((s as any).pcs_bust ?? '')}`);
   // TODO-QSP: dynamic text: band (pcs_band) = <<pcs_band>>
@@ -1581,7 +1581,7 @@ function enterTatoo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStat(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], ARGS[2]
+  qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   qspGoto(s, 'cheatmenu_din', 'stats');
   // TODO-QSP: end
   ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['setStatInput'] = 'gs \'cheatmenu_din\', \'setStatInput\', $ARGS[0], $ARGS[1]';
@@ -1589,7 +1589,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatInput(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = window.prompt("Set your <<$ARGS[2]>> level:") ?? '';
+  (s as any).temp_input = window.prompt("Set your " + (String((s as any).locArgs?.[2] ?? '')) + " level:") ?? '';
   if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
     qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), parseFloat(((s as any).temp_input ?? 0)));
   } else {
@@ -1603,9 +1603,9 @@ function enterSetStatInput(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatInputInverted(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = window.prompt("Set your <<$ARGS[2]>> level:") ?? '';
+  (s as any).temp_input = window.prompt("Set your " + (String((s as any).locArgs?.[2] ?? '')) + " level:") ?? '';
   if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
-    // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], (100 - val($temp_input))
+    qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), (100 - parseFloat(((s as any).temp_input ?? 0))));
   } else {
     if (((s as any).temp_input ?? 0) !== '') {
     }
@@ -1623,7 +1623,7 @@ function enterSetAttrs(s: GameState, scene: SceneBuilder): void {
     (s as any).loop_index_max = ((s as any).loop_index_max ?? 0) - (1);
   }
   // TODO-QSP: :set_attrs_loop
-  // TODO-QSP: gs 'shortgs', 'setStat', $att_name[loop_index], ARGS[1]
+  qspCall(s, 'shortgs', 'setStat', (((s as any).att_name ?? 0)?.[String((s as any).loop_index ?? 0)] ?? 0), ((s as any).locArgs?.[1] ?? 0));
   (s as any).loop_index = ((s as any).loop_index ?? 0) + (1);
   if (((s as any).loop_index ?? 0) < ((s as any).loop_index_max ?? 0)) {
     // TODO-QSP: jump 'set_attrs_loop'
@@ -1639,7 +1639,7 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
   (s as any).loop_index_max = 0;
   // TODO-QSP: :set_skills_loop
   if (((s as any).skl_name ?? 0)?.[String((s as any).loop_index ?? 0)] !== 'inhib') {
-    // TODO-QSP: gs 'shortgs', 'setStat', $skl_name[loop_index], ARGS[1]
+    qspCall(s, 'shortgs', 'setStat', (((s as any).skl_name ?? 0)?.[String((s as any).loop_index ?? 0)] ?? 0), ((s as any).locArgs?.[1] ?? 0));
   }
   (s as any).loop_index = ((s as any).loop_index ?? 0) + (1);
   if (((s as any).loop_index ?? 0) < ((s as any).loop_index_max ?? 0)) {
@@ -2118,8 +2118,8 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cmd_max_i = 0;
   // TODO-QSP: :loverrelationshiploop
   if (((s as any).temp_cmd_i ?? 0) < ((s as any).temp_cmd_max_i ?? 0)) {
-    (s as any).cmd_temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).temp_cmd_i ?? 0)];
-    if ((String(((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
+    (s as any).cmd_temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_cmd_i ?? 0)] ?? 0);
+    if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
       (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
       // TODO-QSP: jump 'loverrelationshiploop'
     }
@@ -2134,19 +2134,19 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'girlfriend') {
       // TODO-QSP: dynamic text: You are dating <<$npc_usedname[$cmd_temp_npcid]>>.
-      scene.text(`You are dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
+      scene.text(`You are dating ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
     } else {
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'wife') {
         // TODO-QSP: dynamic text: You are married to <<$npc_usedname[$cmd_temp_npcid]>>.
-        scene.text(`You are married to ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
+        scene.text(`You are married to ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
       } else {
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'fuckbuddy') {
           // TODO-QSP: dynamic text: You are fuckbuddies with <<$npc_usedname[$cmd_temp_npcid]>>.
-          scene.text(`You are fuckbuddies with ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
+          scene.text(`You are fuckbuddies with ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
         } else {
           if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'sugar_daddy') {
             // TODO-QSP: dynamic text: <<$npc_usedname[$cmd_temp_npcid]>> is your sugar daddy.
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} is your sugar daddy.`);
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} is your sugar daddy.`);
           }
         }
       }
@@ -2171,9 +2171,9 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
       scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Perverted</a>`);
     }
     // TODO-QSP: dynamic text: Relationship: <<npc_rel[$cmd_temp_npcid]>> <a href="exec: gs ''npc_relationship'...
-    scene.text(`Relationship: ${((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).cmd_temp_npcid ?? '')}/u0027); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).cmd_temp_npcid ?? '')}/u0027); return false;">-10</a>`);
+    scene.text(`Relationship: ${(((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).cmd_temp_npcid ?? '')}/u0027); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).cmd_temp_npcid ?? '')}/u0027); return false;">-10</a>`);
     // TODO-QSP: dynamic text: You''ve been on <<npc_dates[$cmd_temp_npcid]>> dates. <a href="exec: npc_dates['...
-    scene.text(`You've been on ${((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 -=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">-5</a>`);
+    scene.text(`You've been on ${(((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 -=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">-5</a>`);
     (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
     // TODO-QSP: jump 'loverrelationshiploop'
   }
@@ -2207,7 +2207,7 @@ function enterWeek(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>></b> of <b><<$monthName>></b>, <b>...
   scene.text(`Current time: <b>${((s as any).weekName ?? '')}</b>, <b>${((s as any).day ?? '')}</b> of <b>${((s as any).monthName ?? '')}</b>, <b>${((s as any).year ?? '')}</b>, ${((s as any).tempcurtime ?? '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>></b> of <b><<$month...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day ?? '')}</b> of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
+  scene.text(`Target time: <b>${(((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? '')}</b>, <b>${((s as any).temp_day ?? '')}</b> of <b>${(((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? '')}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
   // TODO-QSP: dynamic text: <a href="exec:temp_daystart += 1 - temp_week & gt ''cheatmenu_din'', ''time''">M...
   scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.temp_daystart +=1 - temp_week; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027time/u0027); return false;">Monday</a>');
   // TODO-QSP: dynamic text: <a href="exec:temp_daystart += 2 - temp_week & gt ''cheatmenu_din'', ''time''">T...
@@ -2233,7 +2233,7 @@ function enterMonth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>></b>, of <b><<$monthName>></b>, <b...
   scene.text(`Current time: <b>${((s as any).weekName ?? '')}</b>, <b>${((s as any).day ?? '')}</b>, of <b>${((s as any).monthName ?? '')}</b>, <b>${((s as any).year ?? '')}</b>, ${((s as any).tempcurtime ?? '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>></b>, of <b><<$mont...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day ?? '')}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
+  scene.text(`Target time: <b>${(((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? '')}</b>, <b>${((s as any).temp_day ?? '')}</b>, of <b>${(((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? '')}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
   if (((s as any).temp_year ?? 0) > 2016) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027month2/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">January</a>');
   }
@@ -2262,7 +2262,7 @@ function enterMonth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMonth2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'time', 'to_daystart', temp_year, ARGS[1], 1
+  qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).locArgs?.[1] ?? 0), 1);
   (s as any).temp_daystart = ((s as any).dateVars ?? 0)?.['daystart'];
   qspGoto(s, 'cheatmenu_din', 'time');
   // TODO-QSP: end
@@ -2312,7 +2312,7 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>><<$day_suffix>></b>, of <b><<$mont...
   scene.text(`Current time: <b>${((s as any).weekName ?? '')}</b>, <b>${((s as any).day ?? '')}${((s as any).day_suffix ?? '')}</b>, of <b>${((s as any).monthName ?? '')}</b>, <b>${((s as any).year ?? '')}</b>, ${((s as any).tempcurtime ?? '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>><<$temp_day_suffix>...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day ?? '')}${((s as any).temp_day_suffix ?? '')}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
+  scene.text(`Target time: <b>${(((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? '')}</b>, <b>${((s as any).temp_day ?? '')}${((s as any).temp_day_suffix ?? '')}</b>, of <b>${(((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? '')}</b>, <b>${((s as any).temp_year ?? '')}</b>, ${((s as any).temptime ?? '')}`);
   // TODO-QSP: dynamic text: Daychange: <<temp_daystart - daystart>>
   scene.text(`Daychange: ${((s as any).temp_daystart ?? '') - ((s as any).daystart ?? '')}`);
   scene.text('Select <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027month/u0027); return false;">Month</a>');
@@ -2409,7 +2409,7 @@ function enterMagicTable(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).spellFlipper = '<a href="EXEC: spellKnown[\'' + ((s as any).ThisSpellName ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
     }
-    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + ((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] + '</td><td>' + ((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] + '</td><td>' + ((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] + '</td></tr>';
+    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td></tr>';
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'CheatDinSpell1'
   }
@@ -2454,14 +2454,14 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <tr><td><a href=""EXEC: spellKnown['teleport']=<<iif(spellKnown['teleport']=1,'0','1')>> & gt 'cheat...
   (s as any).i = 0;
   // TODO-QSP: :CheatDinTP1
-  (s as any).ThisLocation = ((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)];
+  (s as any).ThisLocation = (((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
   if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
     if (((s as any).tpKnown ?? 0)?.[String((s as any).ThisLocation ?? 0)] === 1) {
       (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 0 & gt \'cheatmenu_din\', \'magic\'">[Unlearn]</a>';
     } else {
       (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
     }
-    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + ((s as any).treeCircName ?? 0)?.[String((s as any).ThisLocation ?? 0)] + '</td></tr>';
+    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).treeCircName ?? 0)?.[String((s as any).ThisLocation ?? 0)] ?? 0) + '</td></tr>';
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'CheatDinTP1'
   }
@@ -2829,7 +2829,7 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: pain[<<$ARGS[2]>>] = <<pain[$ARGS[1]]>> <a href="exec:pain[''<<$ARGS[1]>>''] -= ...
-  scene.text(`pain[${((s as any).locArgs?.[2] ?? '')}] = ${((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">-10</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">+10</a>`);
+  scene.text(`pain[${((s as any).locArgs?.[2] ?? '')}] = ${(((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 -=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">-10</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">+10</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -2875,7 +2875,7 @@ function enterCheatTattoo(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cheat_key = 'school_' + ((s as any).locArgs?.[1] ?? 0) + '_grade';
-  (s as any).temp_cheat_val = ((s as any).class ?? 0)?.[String((s as any).temp_cheat_key ?? 0)];
+  (s as any).temp_cheat_val = (((s as any).class ?? 0)?.[String((s as any).temp_cheat_key ?? 0)] ?? 0);
   // TODO-QSP: dynamic text: <<$ARGS[2]>> grade: <<temp_cheat_val>>
   scene.text(`${((s as any).locArgs?.[2] ?? '')} grade: ${((s as any).temp_cheat_val ?? '')}`);
   if (((s as any).temp_cheat_val ?? 0) > 0) {
@@ -2901,13 +2901,13 @@ function enterCheatBoolRow(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatNpcRel(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '') === '') {
-    (s as any).temp_cheat_name = ((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] + ' ' + ((s as any).npc_lastname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    (s as any).temp_cheat_name = (((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0) + ' ' + (((s as any).npc_lastname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   } else {
     (s as any).temp_cheat_name = ((s as any).locArgs?.[3] ?? 0);
   }
   (s as any).temp_cheat_page = ((String((s as any).locArgs?.[2] ?? '') === '') ? ('npcs') : (((s as any).locArgs?.[2] ?? 0)));
   // TODO-QSP: dynamic text: <<$temp_cheat_name>>: <<npc_rel[$ARGS[1]]>>  <a href="exec:gs ''npc_relationship...
-  scene.text(`${((s as any).temp_cheat_name ?? '')}: ${((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}  <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">-10</a>`);
+  scene.text(`${((s as any).temp_cheat_name ?? '')}: ${(((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')}  <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">-10</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -2935,11 +2935,11 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cheat_arch[0] = 'bimbo' & $cheat_arch[1] = 'preppy' & $cheat_arch[2] = 'prude' & $cheat_arch[3] = '...
   (s as any).cheat_tp_i = 0;
   // TODO-QSP: :cheat_tp_loop
-  (s as any).cheat_tp_t = ((s as any).cheat_arch ?? 0)?.[String((s as any).cheat_tp_i ?? 0)];
+  (s as any).cheat_tp_t = (((s as any).cheat_arch ?? 0)?.[String((s as any).cheat_tp_i ?? 0)] ?? 0);
   (s as any).cheat_tp_title = (String((String(((s as any).cheat_tp_t ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).cheat_tp_t ?? 0)).slice((2)-1));
   (s as any).cheat_tp_k = ((s as any).cheat_tp_t ?? 0) + '_points';
   // TODO-QSP: dynamic text: <b><<$cheat_tp_title>></b> (<<arch_vars[$cheat_tp_k]>>): 
-  scene.text(`<b>${((s as any).cheat_tp_title ?? '')}</b> (${((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)] ?? ''}): `);
+  scene.text(`<b>${((s as any).cheat_tp_title ?? '')}</b> (${(((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)] ?? '')}): `);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 10000 & gs 'archetypes', 'clamp',...
   scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 +=s.10000; /* TODO-QSP: ${((s as any).cheat_tp_refresh ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027${((s as any).cheat_tp_t ?? '')}/u0027); return false;">+10k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 1000 & gs 'archetypes', 'clamp', ...

@@ -87,7 +87,7 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     if (((st as any).NatbelQW ?? 0)?.['KolkaSex'] > 5) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'natkolEv', 'softsex');
+    qspCall(st, 'natkolEv', '');
   } },
       ]);
     }
@@ -110,13 +110,13 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     if (((st as any).NatbelQW ?? 0)?.['KolkaSex'] > 5) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'natkolEv', 'softsex');
+    qspCall(st, 'natkolEv', '');
   } },
       ]);
     }
     scene.actions([
       { label: 'Let Kolka cum', handler: (st: GameState) => {
-    qspCall(st, 'natkolEv', 'kolkacum', 0);
+    qspCall(st, 'natkolEv', '');
   } },
     ]);
   } },
@@ -365,7 +365,7 @@ function enterNatkolkaanalprep(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['anal'] >= 5) {
     scene.actions([
       { label: 'Skip straight to anal', handler: (st: GameState) => {
-    qspCall(st, 'natkolEv', 'natkolkaanalsex');
+    qspCall(st, 'natkolEv', '');
   } },
     ]);
   }
@@ -393,7 +393,7 @@ function enterNatkolkaanalprep(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Anal sex', handler: (st: GameState) => {
-    qspCall(st, 'natkolEv', 'natkolkaanalsex');
+    qspCall(st, 'natkolEv', '');
   } },
     ]);
   } },
@@ -995,7 +995,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Resist the urge', handler: (st: GameState) => {
     // TODO-QSP: killvar 'temp_loc'
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['natbelapt', 'natroom'] },
     ]);
   }

@@ -141,7 +141,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     if (((st as any).cumloc ?? 0)[11] > 0) {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
-      qspCall(st, 'pain', '', 4, 'tummy', 'hit');
+      qspCall(st, 'pain', '4', 'tummy', 'hit');
       qspCall(st, 'stat', '');
       scene.img('images/locations/shared/postoffice/punch.mp4');
       scene.text('The man punches you in the gut. "Go away bitch, your face is covered in cum!"');
@@ -153,8 +153,8 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 28) + 18));
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 28) + 18));
+      qspCall(st, 'npcStat', '$npclastgenerated');
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 4) + 2));
       qspCall(st, 'arousal', 'bj', 10, 'sub');
       qspCall(st, 'stat', '');

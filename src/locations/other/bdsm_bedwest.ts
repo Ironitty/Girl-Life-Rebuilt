@@ -87,7 +87,7 @@ function enterMasterEvent_3(s: GameState, scene: SceneBuilder): void {
 function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '4', 'asscheeks', 'spank');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/city/suburb/bd...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/bdsm_club/sex/spank` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');

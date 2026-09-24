@@ -28,8 +28,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).textEvent = 'A lonely old man with a newspaper in his hand is strolling down a path. He looks at you greedily when he sees your appearance and walks over to you. When he reaches you, he extends his hand and says: "Hi there, young lady! If you have a minute, come with me! I have something for you!"';
           scene.actions([
             { label: 'Go see what he has', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npcgeneratec', 0, 'Old Man from the park', rand(50, 70)
-    // TODO-QSP: gs 'boyStat', $npclastgenerated
+    qspCall(st, 'npcgeneratec', '');
+    qspCall(st, 'boyStat', '');
   }, goto: ['parkBimbo', 'pos1'] },
           ]);
         }

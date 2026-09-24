@@ -43,7 +43,7 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
     scene.text('You imagine that the guests would enjoy seeing you wearing this, though.');
     scene.actions([
       { label: 'Get to work', handler: (st: GameState) => {
-    qspCall(st, 'jobs', 'clock', 'pav_hotel_maid');
+    qspCall(st, 'jobs', '');
   }, goto: ['pav_hotelWork', 'maid'] },
     ]);
   } },
@@ -73,9 +73,9 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
 
 function enterMaid(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 19) {
-    // TODO-QSP: gs 'exp_gain', 'cleaning', rand (5, 15)
+    qspCall(s, 'exp_gain', 'cleaning', 0);
     if (((s as any).lastwornclothingtype ?? 0)?.['maid'] !== '') {
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['maid'], lastwornclothingnumber['maid']
+      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['maid'], ((s as any).lastwornclothingnumber ?? 0)?.['maid']);
       (s as any).lastwornclothingtype = ((s as any).lastwornclothingtype ?? 0)?.['maid'];
       (s as any).lastwornclothingnumber = ((s as any).lastwornclothingnumber ?? 0)?.['maid'];
     }
@@ -341,7 +341,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Take the children to the hotel conference room', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'head', 'ache');
+    qspCall(st, 'pain', '2', 'head', 'ache');
     qspCall(st, 'mood', 'lower', 'small');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/children2.jpg');
@@ -419,8 +419,8 @@ function enterWork3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'arousal', 'bj', 10);
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'npcgeneratec', '', 0, 'unlucky stranger', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'unlucky stranger', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/sex/maid_blow.jpg');
     scene.text('You get an idea on how to cheer him up.');
@@ -1109,7 +1109,7 @@ function enterWork12(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'voyeur', 10);
     scene.actions([
       { label: 'Get back to work', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_hotelWork', 'maid'] },
       { label: 'Stay and watch a little longer', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/work/events/masturbate3.jpg');
@@ -1119,7 +1119,7 @@ function enterWork12(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get back to work', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_hotelWork', 'maid'] },
       { label: 'Stay to watch her finish', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/work/events/masturbate4.jpg');
@@ -1359,11 +1359,11 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
 
 function enterHotcouple(s: GameState, scene: SceneBuilder): void {
   (s as any).hcday = ((s as any).daystart ?? 0);
-  qspCall(s, 'npcgeneratec', '', 0, 'Motya', (Math.floor(Math.random() * 11) + 30), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 1, 'Uliana', (Math.floor(Math.random() * 11) + 30), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 1);
-  // TODO-QSP: gs 'arousal', 'foreplay', 10, $npcID[1], 'lesbian'
+  qspCall(s, 'npcgeneratec', '0', 'Motya', (Math.floor(Math.random() * 11) + 30), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '1', 'Uliana', (Math.floor(Math.random() * 11) + 30), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 1);
+  qspCall(s, 'arousal', 'foreplay', 10, (((s as any).npcID ?? 0)?.[1] ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/sex/hotcouple1.jpg');
   scene.text('You go up to the room and knock on the door. Uliana opens it and invites you into the room.');
@@ -1381,8 +1381,8 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'massage', 10, $npcID[0]
-    // TODO-QSP: gs 'arousal', 'cuni', 10, $npcID[1], 'lesbian'
+    qspCall(st, 'arousal', 'massage', 10, (((st as any).npcID ?? 0)?.[0] ?? 0));
+    qspCall(st, 'arousal', 'cuni', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/sex/hotcouple2.jpg');
     scene.text('You both start undressing while Motya joins you on the bed.');
@@ -1392,8 +1392,8 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('This is clearly not her first time doing this, so you close your eyes and start enjoying the feeling.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'cuni', 10, $npcID[0]
-    // TODO-QSP: gs 'arousal', 'foreplay', -10, $npcID[1], 'lesbian'
+    qspCall(st, 'arousal', 'cuni', 10, (((st as any).npcID ?? 0)?.[0] ?? 0));
+    qspCall(st, 'arousal', 'foreplay', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/sex/hotcouple3.jpg');
     scene.text('The feeling suddenly stops, but not even three seconds later, it continues, but much more forceful this time.');
@@ -1404,8 +1404,8 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('Motya continues to enthusiastically lick your slit and your clit through your orgasm before he stops and moves his head back. You can feel your body convulsing a few more times while your orgasm slowly fades away.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[0]
-    // TODO-QSP: gs 'arousal', 'vaginal_finger', 5, $npcID[1], 'lesbian'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[0] ?? 0));
+    qspCall(st, 'arousal', 'vaginal_finger', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'lesbian');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/sex/hotcouple5.jpg');
     scene.text('After catching your breath, you decide to give something back. ');
@@ -1468,8 +1468,8 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotcoupledoggy(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[0]
-  // TODO-QSP: gs 'arousal', 'kiss', 5, $npcID[1], 'lesbian'
+  qspCall(s, 'arousal', 'vaginal', 10, (((s as any).npcID ?? 0)?.[0] ?? 0));
+  qspCall(s, 'arousal', 'kiss', 5, (((s as any).npcID ?? 0)?.[1] ?? 0), 'lesbian');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/sex/hotcouple7.jpg');
   scene.text('Uliana lays on her back on the bed as you crawl on top of her and engage in a very passionate kiss.');
@@ -1484,7 +1484,7 @@ function enterHotcoupledoggy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotcoupfin(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'cum_call', 'face', $npcID[0], 1, '', '', 10
+  qspCall(s, 'cum_call', 'face', (((s as any).npcID ?? 0)?.[0] ?? 0), 1, '', '', 10);
   qspCall(s, 'arousal', 'end');
   scene.img('images/locations/pavlovsk/hotel/sex/hotcouple8.jpg');
   scene.text('Motya stands over you and starts jerking his cock as Uliana holds your hair back and tells you to open your mouth.');
@@ -1520,10 +1520,10 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'On to the main event', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Black guy', (Math.floor(Math.random() * 23) + 18), 0, 1);
+    qspCall(st, 'npcgeneratec', '0', 'Black guy', (Math.floor(Math.random() * 23) + 18), 0, 1);
     ((st as any).npc_dick = (st as any).npc_dick ?? {})[String((st as any).npclastgenerated ?? 0)] = (Math.floor(Math.random() * 7) + 20);
     // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'npcStat', 'A217', 1);
     scene.img('images/locations/pavlovsk/hotel/sex/hotel_threesome2.jpg');
     scene.text('As you continue servicing Pavlin, the black guy moves behind you and grabs you by the hips before yanking you up into a standing bent-over position.');
@@ -1545,8 +1545,8 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t get distracted, skank. You\'ve got plenty of dick right here too!" Pavlin says as he forces his cock back into your mouth.');
     scene.text('You ignore the degrading comment and start sucking Pavlin as best you can. Almost involuntarily moans begin to escape your lips as the massive cock in your pussy pleasures every single inch of your insides.');
     scene.text('"Okay slut, that\'s enough warm up!" Mr. Black says almost the moment you feel his hips smack into your ass, signaling that his entire length is inside you "Now for the real action."');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'prostitution'
-    // TODO-QSP: gs 'arousal', 'vaginal', 5, $npcID[0], 'prostitution'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'prostitution');
+    qspCall(st, 'arousal', 'vaginal', 5, (((st as any).npcID ?? 0)?.[0] ?? 0), 'prostitution');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Real action?', handler: (st: GameState) => {
@@ -1563,7 +1563,7 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     scene.text('Showing a bit of chivalry this time, Mr. Black waits a moment so you can get used to the feeling, but all too soon the mercy disappears as he starts pumping his dick into your ass, driving deeper with each thrust.');
     scene.text('The intense feeling melds into a mix of extreme pleasure and pain, and you can\'t decide If it\'s enjoyable or not. Before your mind can decide, Pavlin once again forces his dick back into your throat and starts face-fucking you at full force.');
     scene.img('images/locations/pavlovsk/hotel/sex/hotel_threesome4.jpg');
-    // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[0], 'prostitution'
+    qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[0] ?? 0), 'prostitution');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1579,8 +1579,8 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'About the money…', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[0]
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[1], 1
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[0] ?? 0));
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[1] ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     qspCall(st, 'fame', 'pav', 'prostitute', 1);
@@ -1802,7 +1802,7 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0  &&  qspFunc(s, 'money', 'can_afford', 1000 - ((st as any).montake ?? 0), 'cash') === 0) {
       (st as any).montake = ((st as any).montake ?? 0) + (((st as any).money ?? 0));
       qspCall(st, 'money', 'set', 0, 'cash');
-      qspCall(st, 'pain', '', 5, 'asscheeks', 'hit');
+      qspCall(st, 'pain', '5', 'asscheeks', 'hit');
       qspCall(st, 'stat', '');
       scene.text('"Hey!" you exclaim, instinctively reaching out to take it back, but the glare he shoots your way freezes you in your tracks.');
       scene.text('He rummages through your purse until he finds your wallet and takes all of your cash, giving it a disdainful glance before stuffing it into his pocket and roughly throwing your purse back at you.');
@@ -1815,7 +1815,7 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['pav_hotel', ''] },
       ]);
     } else {
-      // TODO-QSP: gs 'money', 'pay', 1000 - montake
+      qspCall(st, 'money', 'pay', 1000 - ((st as any).montake ?? 0));
       qspCall(st, 'stat', '');
       (st as any).pavhotprosQW = 3;
       scene.text('"Hey!" you exclaim, instinctively reaching out to take it back, but the glare he shoots your way freezes you in your tracks.');

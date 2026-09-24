@@ -308,13 +308,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lariskalove ?? 0) >= 6) {
     scene.actions([
       { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'large_meal');
+    qspCall(st, 'food', '');
   } },
       { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
       { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
     ]);
   }

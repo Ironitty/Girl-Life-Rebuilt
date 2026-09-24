@@ -18,13 +18,13 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   (s as any).foresteventrand = (Math.floor(Math.random() * 40) + 1);
   if (((s as any).foresteventrand ?? 0) <= (2+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) >= ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).mushroom_pickers = 2;
-    // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'pickers', 'forest_outskirts'
+    qspGoto(s, 'gad_forest_lost', 'rescue', 'pickers', 'forest_outskirts');
   }
   if (((s as any).foresteventrand ?? 0) <= (4+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1) {
-    // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'hunters', 'forest_outskirts'
+    qspGoto(s, 'gad_forest_lost', 'rescue', 'hunters', 'forest_outskirts');
   }
   if (((s as any).foresteventrand ?? 0) <= (6+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)) {
-    // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_outskirts'
+    qspGoto(s, 'gad_forest_lost', 'rescue', 'ranger', 'forest_outskirts');
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*5))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
     qspGoto(s, 'gad_forest_lost', 'wolves', 'forest_outskirts');
@@ -50,10 +50,10 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGadForestLostPicture(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).foresteventrand = (Math.floor(Math.random() * 40) + 1);
   if (((s as any).foresteventrand ?? 0) <= (1+(((s as any).bonfire ?? 0)*2))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)) {
-    // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'hunters', 'forest_center'
+    qspGoto(s, 'gad_forest_lost', 'rescue', 'hunters', 'forest_center');
   }
   if (((s as any).foresteventrand ?? 0) <= (3+(((s as any).bonfire ?? 0)*2))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1) {
-    // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_center'
+    qspGoto(s, 'gad_forest_lost', 'rescue', 'ranger', 'forest_center');
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*2))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
     qspGoto(s, 'gad_forest_lost', 'wolves', 'forest_center');
@@ -146,22 +146,22 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
     (s as any).foresteventrand = (Math.floor(Math.random() * 30) + 1);
     if (((s as any).foresteventrand ?? 0) <= (2+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) >= ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).mushroom_pickersday ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).mushroom_pickers = 2;
-      // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'pickers', $forest_args1
+      qspGoto(s, 'gad_forest_lost', 'rescue', 'pickers', ((s as any).forest_args1 ?? ''));
     }
     if (((s as any).foresteventrand ?? 0) <= (4+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-      // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'hunters', $forest_args1
+      qspGoto(s, 'gad_forest_lost', 'rescue', 'hunters', ((s as any).forest_args1 ?? ''));
     }
     if (((s as any).foresteventrand ?? 0) <= (6+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)+1) {
-      // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', $forest_args1
+      qspGoto(s, 'gad_forest_lost', 'rescue', 'ranger', ((s as any).forest_args1 ?? ''));
     }
   } else {
     if (((s as any).forest_args1 ?? 0) === 'forest_center') {
       (s as any).foresteventrand = (Math.floor(Math.random() * 40) + 1);
       if (((s as any).foresteventrand ?? 0) <= (1+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0)  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-        // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'hunters', $forest_args1
+        qspGoto(s, 'gad_forest_lost', 'rescue', 'hunters', ((s as any).forest_args1 ?? ''));
       }
       if (((s as any).foresteventrand ?? 0) <= (3+(((s as any).bonfire ?? 0)*5))  &&  ((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1) {
-        // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', $forest_args1
+        qspGoto(s, 'gad_forest_lost', 'rescue', 'ranger', ((s as any).forest_args1 ?? ''));
       }
     }
   }

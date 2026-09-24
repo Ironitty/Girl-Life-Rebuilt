@@ -68,13 +68,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.actions([
         { label: 'Go to bed', handler: (st: GameState) => {
-    qspCall(st, 'shortgs', 'autosave');
+    qspCall(st, 'shortgs', '');
   }, goto: ['pre_sleep', 'start'] },
       ]);
     } else {
       scene.actions([
         { label: 'Undress and go to bed', handler: (st: GameState) => {
-    qspCall(st, 'shortgs', 'autosave');
+    qspCall(st, 'shortgs', '');
   }, goto: ['pre_sleep', 'start'] },
       ]);
     }
@@ -95,7 +95,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get out of bed', goto: ['bed_get_out', 'start'] },
     { label: 'Take a nap (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'sleep_simple', 'nap_bed');
+    qspCall(st, 'sleep_simple', '');
   } },
   ]);
   scene.build();

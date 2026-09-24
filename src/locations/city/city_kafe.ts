@@ -86,7 +86,7 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get up from the table', goto: ['city_kafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
   ]);
   scene.build();
@@ -720,7 +720,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   if (((s as any).workKafe ?? 0)?.['tips_total'] > 500) {
     ((s as any).workKafe = (s as any).workKafe ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
-  // TODO-QSP: gs 'money', 'earn', workKafe['tips_total']
+  qspCall(s, 'money', 'earn', ((s as any).workKafe ?? 0)?.['tips_total']);
   ((s as any).workKafe = (s as any).workKafe ?? {})['tips_roll'] = 0;
   if (((s as any).pcs_servng ?? 0) < 100) {
     qspCall(s, 'exp_gain', 'servng', 1);

@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
     scene.text('Vincent fires his rifle and a zombie falls to the ground with a hole in its head.');
     if (((s as any).KGZVars ?? 0)?.['dead'] <= 0) {
-      // TODO-QSP: gt $curloc
+      dynamicGoto(s, 'curloc');
     }
   }
   if (((s as any).KGZVars ?? 0)?.['gun'] > 0  &&  ((s as any).KGZVars ?? 0)?.['bullet'] > 0) {

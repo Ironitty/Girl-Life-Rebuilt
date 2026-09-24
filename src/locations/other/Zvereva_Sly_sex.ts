@@ -305,7 +305,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('He spanks your ass several times while fucking you, leaving red handmarks all over your asscheeks. The rough treatment has you leaking like crazy, running down your thighs and onto the bed below.');
-  qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '2', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
@@ -344,8 +344,8 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('He smacks your ass a bit, then pulls on your hair as he pumps his cock in and out of you. Every time he does, you squeal out and tighten down on his dick. He seems to enjoy the feeling, as he does it on and off for several minutes.');
-  qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
-  qspCall(s, 'pain', '', 2, 'hair', 'pull');
+  qspCall(s, 'pain', '2', 'asscheeks', 'spank');
+  qspCall(s, 'pain', '2', 'hair', 'pull');
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
@@ -374,7 +374,7 @@ function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You try to spread your cheeks wider, so it will hurt less, but he\'s pounding you too hard and fast for it to make much difference.');
-  qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '2', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
@@ -400,7 +400,7 @@ function enterAnalStomach_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You beg for more, and he complies, more for his own pleasure than any need to please you. The humiliation of being treated as a human fleshlight only makes you more aroused.');
   }
-  qspCall(s, 'pain', '', 2, 'nipples', 'pinch');
+  qspCall(s, 'pain', '2', 'nipples', 'pinch');
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
@@ -459,7 +459,7 @@ function enterVagDoggyCum_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/shared/sex/cum/vagcreampie/doggy` + (Math.floor(Math.random() * 3) + 1) + '.mp4"></video></center>');
   scene.text('You suddenly find yourself bent over, his dick shoved in your pussy. You can feel it twitching inside you, and a warmth is spreading. He pulls out, and you feel his cum leaking out.');
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
-  qspCall(s, 'cum_call', '', '', 'A248', 1);
+  qspCall(s, 'cum_call', '', 'A248', 1);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end

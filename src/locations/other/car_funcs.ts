@@ -1,4 +1,4 @@
-import { dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -92,7 +92,7 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddCar(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'car_attributes', ARGS[1]
+  qspCall(s, 'car_attributes', '', ((s as any).locArgs?.[1] ?? 0));
   ((s as any).car = (s as any).car ?? {})['ID'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).car = (s as any).car ?? {})['name'] = ((s as any).CarName ?? 0);
   ((s as any).car = (s as any).car ?? {})['new_condition'] = ((s as any).CarCondition ?? 0);

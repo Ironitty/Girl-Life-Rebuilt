@@ -22,7 +22,7 @@ function enterArrestFor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddFine(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'debt_add', 'policeQW[''legal_fine'']', ARGS[1]
+  qspCall(s, 'money', 'debt_add', 'policeQW[\'legal_fine\']', ((s as any).locArgs?.[1] ?? 0));
   (s as any).temp_tot_missed = Math.max(0, (((s as any).policeQW ?? {})?.['tot_court_dates_missed'] ?? 0) + (((s as any).policeQW ?? {})?.['tot_fines_deadlines_missed'] ?? 0));
   (s as any).temp_current_missed = Math.max(0, (((s as any).policeQW ?? {})?.['missed_fine_deadlines'] ?? 0) + (((s as any).policeQW ?? {})?.['missed_court_dates'] ?? 0) - 1);
   if (((s as any).policeQW ?? 0)?.['fine_deadline'] === 0) {

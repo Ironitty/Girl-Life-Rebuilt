@@ -531,7 +531,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '4', 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
@@ -551,7 +551,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '4', 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
@@ -565,7 +565,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'cheeks', 'spank');
+    qspCall(st, 'pain', '2', 'cheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment1.jpg');
     if (((st as any).pantyworntype ?? 0) !== 'none') {
@@ -578,7 +578,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '4', 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
@@ -599,7 +599,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '4', 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');

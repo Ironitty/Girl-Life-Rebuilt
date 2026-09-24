@@ -405,7 +405,7 @@ function enterPregnancyMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_reflection', 'top_menu');
+    qspCall(st, 'sex_ev_reflection', '');
   } },
   ]);
   scene.build();

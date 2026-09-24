@@ -1,4 +1,6 @@
-import { qspGoto } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -139,12 +141,12 @@ function enterFriendless(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSgSettings(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_initialization', 'sg_settings'  & exit
+  qspCall(s, 'intro_initialization', '', qspUntranslated(s, "'sg_settings'  & exit", { location: "intro_sg_select" }));
   scene.build();
 }
 
 function enterSetExitActs(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_character_creation', 'set_exit_acts', $ARGS[1]  & exit
+  qspCall(s, 'intro_character_creation', 'set_exit_acts', 0);
   scene.build();
 }
 

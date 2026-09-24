@@ -137,8 +137,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1_1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Nice man', 38);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Nice man', 38);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/shared/postoffice/sex/postevent1-4.jpg');
   scene.text('"Just a blowjob? You could literally ask me to do anything you can think of, and all you ask for is a blowjob?" you grin at him. "That\'s… kind of sweet, actually. I\'ll make it a good one!"');
   scene.text('You help him out of his pants and drop to your knees before him, giving his cock a few strokes with your hand.');
@@ -352,7 +352,7 @@ function enter2_1(s: GameState, scene: SceneBuilder): void {
     scene.text('The alcohol is really hitting you hard now, and the room feels a bit wobbly when Arsen pulls you on top of him. He guides his cock to your pussy and grunts in your ear. "Sit down on it. Go on."');
     scene.text('You slowly lower yourself onto his cock, feeling it penetrate you further and further. Jenya is smiling at you from the corner of the bed, idly jerking off Maksim as he continues taking photos.');
     scene.text('Arsen spanks your ass cheeks repeatedly until you move your hips back and forth.');
-    qspCall(st, 'pain', '', 2, 'asscheeks');
+    qspCall(st, 'pain', '2', 'asscheeks');
     scene.text('"That\'s it, cutie! Ride that cock! Isn\'t it the best cock you ever had?" Jenya grins, happy to see how enthusiastic you are. Is it because of the alcohol or just because his cock makes you feel really good?');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'stat', '');
@@ -522,7 +522,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).cumprecheck = 1;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'pain', '', 1, 'asscheeks');
+    qspCall(st, 'pain', '1', 'asscheeks');
     scene.img('images/locations/shared/postoffice/sex/postevent2-8.jpg');
     scene.text('Without saying a word, you throw your leg over Arsen and straddle him before slowly guiding his cock to your wet slit.');
     scene.text('You groan loudly as you feel his cock parting your pussy lips and slowly sink into your body. Jenya is smiling at you from the corner of the bed while idly jerking off Maksim as he continues taking photos.');
@@ -758,8 +758,8 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
 function enter4(s: GameState, scene: SceneBuilder): void {
   ((s as any).post_vars = (s as any).post_vars ?? {})['qw_4'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'npcgeneratec', '', 0, 'Sleazy man', 38);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Sleazy man', 38);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/shared/postoffice/sex/postevent4-3.jpg');
   scene.text('With a deep sigh, you drop your bag. "Fine. Just promise you won\'t report me?" you ask and he smiles benevolently. "You have my word. Come, this way."');
   scene.text('He tosses the envelope aside and guides you to his bed, where he lies down on his back. You\'d swear his erection looks like it\'s throbbing with anticipation as it pokes up into the air.');
@@ -782,7 +782,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I hope not!" you yell back at him before you close the door behind you.');
     scene.actions([
       { label: 'Continue your round', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['post_deliveries', 'resume'] },
     ]);
   } },
@@ -883,7 +883,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue your round', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['post_deliveries', 'resume'] },
     ]);
   } },
@@ -904,7 +904,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly check your face in the mirror to see if you missed anything before heading out.');
     scene.actions([
       { label: 'Continue your round', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['post_deliveries', 'resume'] },
     ]);
   } },
@@ -919,7 +919,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uhh, I\'ll keep it in mind," you tell him as you stand up to leave his apartment.');
     scene.actions([
       { label: 'Continue your round', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['post_deliveries', 'resume'] },
     ]);
   } },

@@ -365,10 +365,10 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: The doctors clean up <<$kidname[nextBaby]>>.
-  scene.text(`The doctors clean up ${((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''}.`);
+  scene.text(`The doctors clean up ${(((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? '')}.`);
   if (((s as any).BabyEmbryo ?? 0) > 0) {
     // TODO-QSP: dynamic text: You don''t have much time to look at your <<$polreb[nextBaby]>> because you''re ...
-    scene.text(`You don't have much time to look at your ${((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''} because you're having an another contraction. Your next baby is coming!`);
+    scene.text(`You don't have much time to look at your ${(((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? '')} because you're having an another contraction. Your next baby is coming!`);
     // TODO-QSP: jump 'multikidloop'
   }
   (s as any).preg = 0;

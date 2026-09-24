@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   if (String((s as any).locArgs?.[1] ?? '') === 'knock') {
     // TODO-QSP: dynamic text: You knock on the door and <<$npcdesc>> opens up.
     scene.text(`You knock on the door and ${((s as any).npcdesc ?? '')} opens up.`);
@@ -35,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <center><<$npc_apt_hall[$npcID]>></center>
-  scene.text(`<center>${((s as any).npc_apt_hall ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}</center>`);
+  scene.text(`<center>${(((s as any).npc_apt_hall ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}</center>`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSettleIn(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -56,7 +56,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLocImg(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -405,10 +405,10 @@ function enterWatchTurnon(s: GameState, scene: SceneBuilder): void {
     ((s as any).date_ev = (s as any).date_ev ?? {})['boy_turned_on'] = 1;
     if (((s as any).date_ev ?? 0)?.['cuddle_active'] === 1) {
       // TODO-QSP: dynamic text: <<$npcdesc>> is faring no better and you can feel his <<$npc_dick_desc[$npcID]>>...
-      scene.text(`${((s as any).npcdesc ?? '')} is faring no better and you can feel his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock hardening against your ass, consciously or unconsciously grinding his hips into yours a little bit.`);
+      scene.text(`${((s as any).npcdesc ?? '')} is faring no better and you can feel his ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} cock hardening against your ass, consciously or unconsciously grinding his hips into yours a little bit.`);
     } else {
       // TODO-QSP: dynamic text: A glance over shows a similar effect happening to <<$npcdesc>>. You can already ...
-      scene.text(`A glance over shows a similar effect happening to ${((s as any).npcdesc ?? '')}. You can already see the hard outline of his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock, bulging in his pants.`);
+      scene.text(`A glance over shows a similar effect happening to ${((s as any).npcdesc ?? '')}. You can already see the hard outline of his ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} cock, bulging in his pants.`);
     }
   } else {
     // TODO-QSP: dynamic text: You shoot a quick glance at <<$npcdesc>> to see if he notices, but he''s still a...
@@ -461,7 +461,7 @@ function enterPcMakingMoves(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') === 'watching') {
       if (((s as any).date_ev ?? 0)?.['boy_turned_on'] === 1) {
         // TODO-QSP: dynamic text: Heart pounding inside your chest, you scooch over to <<$npcdesc>>. Your hand lig...
-        scene.text(`Heart pounding inside your chest, you scooch over to ${((s as any).npcdesc ?? '')}. Your hand lightly trails up the inside of his thigh until it bumps up against his rock hard ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock in his pants. You let your fingers trace the outline of it, all but grabbing hold of it, with your gaze fixed on him, the movie forgotten in the background. Desire burns in his eyes to match your own.`);
+        scene.text(`Heart pounding inside your chest, you scooch over to ${((s as any).npcdesc ?? '')}. Your hand lightly trails up the inside of his thigh until it bumps up against his rock hard ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} cock in his pants. You let your fingers trace the outline of it, all but grabbing hold of it, with your gaze fixed on him, the movie forgotten in the background. Desire burns in his eyes to match your own.`);
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
           if (((s as any).PCloSkirtShortness ?? 0) > 0) {
             scene.text('Suddenly you feel <i>his</i> hand, reaching under your skirt...');
@@ -478,7 +478,7 @@ function enterPcMakingMoves(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: Heart pounding inside your chest, you scooch over to <<$npcdesc>>. Your hand lig...
-        scene.text(`Heart pounding inside your chest, you scooch over to ${((s as any).npcdesc ?? '')}. Your hand lightly trails up the inside of his thigh until it bumps up against his soft ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock in his pants. You let your fingers trace the outline of it, all but grabbing hold of it, with your gaze fixed on him, the movie forgotten in the background.`);
+        scene.text(`Heart pounding inside your chest, you scooch over to ${((s as any).npcdesc ?? '')}. Your hand lightly trails up the inside of his thigh until it bumps up against his soft ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} cock in his pants. You let your fingers trace the outline of it, all but grabbing hold of it, with your gaze fixed on him, the movie forgotten in the background.`);
         if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  ||  (Math.floor(Math.random() * 10) + 1) <= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
           // TODO-QSP: dynamic text: Your attentions startle <<$npcdesc>>, but his cock stiffens at your touch noneth...
           scene.text(`Your attentions startle ${((s as any).npcdesc ?? '')}, but his cock stiffens at your touch nonetheless.`);

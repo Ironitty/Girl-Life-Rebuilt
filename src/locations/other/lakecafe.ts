@@ -110,7 +110,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.text('The diner has a single <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027laketoilet/u0027, /u0027main/u0027); return false;">toilet</a> available, for both males and females.');
     scene.actions([
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
       { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
@@ -687,7 +687,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).intinp ?? 0) > 0  &&  ((st as any).intinp ?? 0) <= 2000000) {
           qspCall(st, 'money', 'earn', ((st as any).intinp ?? 0));
-          // TODO-QSP: gs 'money', 'debt_add', 'workDolg', intinp + (intinp/100)*20
+          qspCall(st, 'money', 'debt_add', 'workDolg', ((st as any).intinp ?? 0) + (((st as any).intinp ?? 0)/100)*20);
           (st as any).workDolgDay = 7;
           scene.text('One of them extends his hand out at you. "Passport. Now."');
           scene.text('With your passport in his hand, he makes a few quick phone calls. He writes some stuff down before handing you your passport back, along with your money.');

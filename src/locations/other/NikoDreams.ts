@@ -506,7 +506,7 @@ function enterWoodsHide(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
   } else {
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.text('You quickly duck behind a tree and stare into the forest. You wait for a few seconds before realizing that there\'s nothing there. You get out from behind the tree and brush the dirt from your leg.');
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods ?? '')}.jpg`);
   }

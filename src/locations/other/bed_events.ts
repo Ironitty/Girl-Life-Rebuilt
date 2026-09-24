@@ -62,10 +62,10 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (String((s as any).locArgs?.[1] ?? '') === 'priority') {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   } else {
     (s as any).temp_slev_id = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-    (s as any).temp_sleep_event_chosen = ((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
+    (s as any).temp_sleep_event_chosen = (((s as any).sleep_events ?? 0)?.[String((s as any).temp_slev_id ?? 0)] ?? 0);
   }
   qspGoto(s, 'bed_events', 'event_end');
   // TODO-QSP: end
@@ -147,7 +147,7 @@ function enterRab2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Breathe', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
     ]);
   } },
@@ -187,7 +187,7 @@ function enterRab2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
     ]);
   } },
@@ -262,16 +262,16 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey, sweet cheeks. Something tells me you like to fuck," the first one says.');
     scene.actions([
       { label: 'Plead', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Rapist 1', (Math.floor(Math.random() * 23) + 18), 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Rapist 2', (Math.floor(Math.random() * 23) + 18), 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 1);
+    qspCall(st, 'npcgeneratec', '0', 'Rapist 1', (Math.floor(Math.random() * 23) + 18), 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Rapist 2', (Math.floor(Math.random() * 23) + 18), 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 1);
     scene.img('images/locations/city/residential/apartment/sex/g1.jpg');
     scene.text('You\'re struck with fear. "Kneel down and open your mouth, whore. If we so much as feel a tooth, I\'ll cut your throat from ear to ear!" the second one says while pulling his cock out.');
     scene.text('You start pleading with them, but they just push you to your knees and he jabs his dick against your lips. You reluctantly open your mouth and his cock slides into your mouth.');
     scene.text('His hands clench your head and he starts fucking your face before they start taking turns with you.');
     scene.text('"Get her on all fours," one of them eventually commands.');
-    // TODO-QSP: gs 'arousal', 'bj', 15, $npcID[0], 'rough', 'sub', 'group', 'bound'
+    qspCall(st, 'arousal', 'bj', 15, (((st as any).npcID ?? 0)?.[0] ?? 0), 'rough', 'sub', 'group', 'bound');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get up', handler: (st: GameState) => {
@@ -279,8 +279,8 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand up and bend over as one of them stands behind you and stuffs his dick into your pussy.');
     scene.text('"Open your mouth!" the second guy growls and he inserts his dick into your mouth. They proceed to rape you from both sides before they untie your hands and get off you. "Let\'s see what she can do with her hands free," one of them says.');
     (st as any).orgasm_or = 'yes';
-    // TODO-QSP: gs 'arousal', 'bj', 15, $npcID[0], 'rough', 'sub', 'group', 'bound'
-    // TODO-QSP: gs 'arousal', 'vaginal', -15, $npcID[1], 'rough', 'sub', 'group', 'bound'
+    qspCall(st, 'arousal', 'bj', 15, (((st as any).npcID ?? 0)?.[0] ?? 0), 'rough', 'sub', 'group', 'bound');
+    qspCall(st, 'arousal', 'vaginal', (-15), (((st as any).npcID ?? 0)?.[1] ?? 0), 'rough', 'sub', 'group', 'bound');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -326,7 +326,7 @@ function enterVorend(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
   ]);
   scene.build();
@@ -375,14 +375,14 @@ function enterMast1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
   ]);
   scene.build();
 }
 
 function enterMast2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', '$husID');
   scene.img('images/characters/city/husband/sex/m21.jpg');
   scene.text('You bend over and start fucking your pussy with your dildo.');
   qspCall(s, 'arousal', 'vaginal_dildo', 15, 'D1');
@@ -407,7 +407,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
       ]);
     } else {
@@ -436,7 +436,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
     ]);
   } },
@@ -463,7 +463,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Anything for such a lovely audience, but first an intermission," you laugh and ${((s as any).boydesc ?? '')} helps you down from the table.`);
         scene.actions([
           { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'bed_events', 'event_end');
+    qspCall(st, 'bed_events', '');
   } },
         ]);
       } else {

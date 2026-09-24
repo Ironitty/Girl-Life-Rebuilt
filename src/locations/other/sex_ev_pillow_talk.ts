@@ -977,7 +977,7 @@ function enterCondomBuyFight2(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCondomBuyApology(st, scene); (st as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Refuse to respond', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_pillow_talk', 'angry_end');
+    qspCall(st, 'sex_ev_pillow_talk', '');
   } },
         ]);
       }
@@ -1395,7 +1395,7 @@ function enterSorryCondoms1(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
         // TODO-QSP: dynamic text: "Don''t be sorry. I''m not the one who has to deal with the consequences if you ...
-        scene.text(`"Don't be sorry. I'm not the one who has to deal with the consequences if you get pregnant." ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} softly rests his hand on the side of your hip. "It's your body."`);
+        scene.text(`"Don't be sorry. I'm not the one who has to deal with the consequences if you get pregnant." ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} softly rests his hand on the side of your hip. "It's your body."`);
       } else {
         scene.text('"Would\'ve been better without it," he replies wistfully.');
       }
@@ -1924,7 +1924,7 @@ function enterThankNoCreampie(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I wish you could too', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I wish you could <<$npc_lovername[$npcID]>>, I really do," you say wistfully. "...
-    scene.text(`"I wish you could ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}, I really do," you say wistfully. "I love creampies too. But I'm not on birth control."`);
+    scene.text(`"I wish you could ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}, I really do," you say wistfully. "I love creampies too. But I'm not on birth control."`);
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
     ]);

@@ -87,10 +87,10 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Look at them', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'First shower guy', (Math.floor(Math.random() * 4) + 17), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Second shower guy', (Math.floor(Math.random() * 4) + 17), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'First shower guy', (Math.floor(Math.random() * 4) + 17), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Second shower guy', (Math.floor(Math.random() * 4) + 17), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/ptu_shower_5.jpg');
     scene.text('Frightened, you jump back and try to cover yourself, but it\'s too late—they\'ve already blocked your exit. Looking down at their pants, you clearly see their erections pressing against the fabric.');
     scene.text('They look at you with lust in their eyes as they get ready to join you. They quickly undress and enter the shower. Before you can react, one of them reaches out and starts playing with your nipple, making you involuntarily moan.');
@@ -136,7 +136,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn around to make him stop, but he\'s already started, and there\'s no stopping him now. You start to moan, not sure if it\'s from pain or pleasure. You try your best to relax your anus to relieve the pressure, but his cock is too big and is stretching you.');
     scene.text('Trying to escape the pain, you begin to fantasize about getting your pussy fucked again. Before you know it, the pain subsides and you begin to enjoy his long, hard thrusts. Just as you\'ve finally adjusted to his pace and started to play along with him, suddenly…');
     scene.text('He begins groaning loudly, and his cock stiffens. He pulls out, and after a few jerks, he shoots all over your face while you eagerly try to catch every drop with your mouth.');
-    qspCall(st, 'pain', '', 3, 'asshole', 'pierce');
+    qspCall(st, 'pain', '3', 'asshole', 'pierce');
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0), 'rough', 'unknown');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
     qspCall(st, 'stat', '');

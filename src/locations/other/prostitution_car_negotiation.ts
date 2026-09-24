@@ -169,7 +169,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/prostitution/car/regular/negotiation/approach.mp4');
     // TODO-QSP: dynamic text: "Hi <<$prostitute_names[$prostitution_location]>>. I was looking for you." He sa...
-    scene.text(`"Hi ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}. I was looking for you." He says in a good mood clearly happy to see you.`);
+    scene.text(`"Hi ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}. I was looking for you." He says in a good mood clearly happy to see you.`);
     scene.text('"Hey sweetie, good to see you again." You say to him with a smile on your lips.');
     scene.actions([
       { label: 'Lean inside the car', handler: (st: GameState) => {
@@ -216,7 +216,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
     if (((st as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  ||  ((st as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
       // TODO-QSP: dynamic text: 'You pull out a condom out of your '+iif(bag = 1, 'purse', 'pocket')+' and he no...
-      scene.text('You pull out a condom out of your ' + ((((st as any).bag ?? 0) === 1) ? ('purse') : ('pocket')) + ` and he nods. "No problem ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}, better safe than sorry."`);
+      scene.text('You pull out a condom out of your ' + ((((st as any).bag ?? 0) === 1) ? ('purse') : ('pocket')) + ` and he nods. "No problem ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}, better safe than sorry."`);
       scene.actions([
         { label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] },
       ]);
@@ -239,7 +239,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: He sighs and after a second he shrugs. "Fine," he looks at you and reassures you...
-        scene.text(`He sighs and after a second he shrugs. "Fine," he looks at you and reassures you. "Don't worry about it ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}, you're always worth waiting for."`);
+        scene.text(`He sighs and after a second he shrugs. "Fine," he looks at you and reassures you. "Don't worry about it ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}, you're always worth waiting for."`);
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'work');
@@ -268,7 +268,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
     scene.text('… can cum inside you. "And don\'t be afraid to cum inside me if you want and pay for it."');
     // TODO-QSP: dynamic text: "Of course I''ll pay for it. You''re the best, <<$prostitute_names[$prostitution...
-    scene.text(`"Of course I'll pay for it. You're the best, ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}."`);
+    scene.text(`"Of course I'll pay for it. You're the best, ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}."`);
     scene.actions([
       { label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] },
     ]);
@@ -281,7 +281,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     (st as any).prostitute_client_condom = 'No';
     scene.text('… never use a condom. "You want to fuck me raw as always?"');
     // TODO-QSP: dynamic text: He nods. "Of course, it just isn''t the same with a condom. It''s really great t...
-    scene.text(`He nods. "Of course, it just isn't the same with a condom. It's really great that you do that, ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}. You know that, right? There aren't many girls your age that do it raw."`);
+    scene.text(`He nods. "Of course, it just isn't the same with a condom. It's really great that you do that, ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}. You know that, right? There aren't many girls your age that do it raw."`);
     scene.text('You smile and tell him that he…');
     scene.actions([
       { label: 'Can\'t cum inside you', handler: (st: GameState) => {
@@ -298,7 +298,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
     scene.text('… can cum inside you. "Yeah, raw is the best way to fuck and remember don\'t be afraid to cum anywhere you want."');
     // TODO-QSP: dynamic text: "You''re the best whore in the whole area, <<$prostitute_names[$prostitution_loc...
-    scene.text(`"You're the best whore in the whole area, ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}."`);
+    scene.text(`"You're the best whore in the whole area, ${(((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? '')}."`);
     scene.actions([
       { label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] },
     ]);
@@ -358,7 +358,7 @@ function enterClientRegularFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '"I''m sorry sweetie, I know you really like to fuck my '+iif($prostitute['clien...
   scene.text('"I\'m sorry sweetie, I know you really like to fuck my ' + ((((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') ? ('pussy') : ('ass')) + ' but I\'m not up for that today."');
   // TODO-QSP: dynamic text: "Shit? Really?" You nod and he looks disheartened. After a moment he shrugs and ...
-  scene.text(`"Shit? Really?" You nod and he looks disheartened. After a moment he shrugs and throws you a grin. "Don't worry about it ${((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] ?? ''}, it's fine, you're always worth the wait."`);
+  scene.text(`"Shit? Really?" You nod and he looks disheartened. After a moment he shrugs and throws you a grin. "Don't worry about it ${(((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] ?? '')}, it's fine, you're always worth the wait."`);
   // TODO-QSP: '"Thanks," you say and step away from the car.'+iif(prostitute['std_mod'] = 1 and mc_inventory['norm...
   // TODO-QSP: end
   scene.actions([
@@ -401,7 +401,7 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'breasts', 2);
     ((st as any).prostitute = (st as any).prostitute ?? {})['earnings_day'] = ((st as any).prostitute['earnings_day'] ?? 0) + (((st as any).prostitute ?? 0)?.['payment']);
     if (((st as any).prostitute ?? 0)?.['payment_method'] === 1) {
-      // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
+      qspCall(st, 'money', 'earn', ((st as any).prostitute ?? 0)?.['payment'], 'cash');
     }
     ((st as any).prostitute = (st as any).prostitute ?? {})['payment'] = 0;
     qspCall(st, 'stat', '');
@@ -419,7 +419,7 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
       scene.text('Now it\'s for you to keep up your end of the bargain.');
       ((st as any).prostitute = (st as any).prostitute ?? {})['earnings_day'] = ((st as any).prostitute['earnings_day'] ?? 0) + (((st as any).prostitute ?? 0)?.['payment']);
       if (((st as any).prostitute ?? 0)?.['payment_method'] === 1) {
-        // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
+        qspCall(st, 'money', 'earn', ((st as any).prostitute ?? 0)?.['payment'], 'cash');
       }
       ((st as any).prostitute = (st as any).prostitute ?? {})['payment'] = 0;
       qspCall(st, 'stat', '');
@@ -953,7 +953,7 @@ function enterMoney(s: GameState, scene: SceneBuilder): void {
   scene.text(`He pulls out his wallet and hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
   ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 1) {
-    // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
+    qspCall(s, 'money', 'earn', ((s as any).prostitute ?? 0)?.['payment'], 'cash');
   }
   ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
   qspCall(s, 'stat', '');

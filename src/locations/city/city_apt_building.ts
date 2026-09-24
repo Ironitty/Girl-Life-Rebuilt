@@ -303,7 +303,7 @@ function enterCheckLiftEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 31) + 0) >= 7) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'city_apt_building', qspUntranslated(s, "''lift_event_<<rand(1'", { location: "city_apt_building" }), '7)>>', '$ARGS[1]');
+  qspGoto(s, 'city_apt_building', qspUntranslated(s, "''lift_event_<<rand(1'", { location: "city_apt_building" }), '7)>>', String((s as any).locArgs?.[1] ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -442,7 +442,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor1Events(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'city_apt_building', 'floor1_event_1', '$ARGS[1]');
+  qspGoto(s, 'city_apt_building', 'floor1_event_1', String((s as any).locArgs?.[1] ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -523,30 +523,30 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
 function enterFloor2Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor2 = (Math.floor(Math.random() * 15) + 1);
   if (((s as any).floor2 ?? 0) < 3) {
-    // TODO-QSP: gt 'city_apt_building', 'floor2_event_1', $ARGS[1]
+    qspGoto(s, 'city_apt_building', 'floor2_event_1', String((s as any).locArgs?.[1] ?? ''));
   } else {
     if (((s as any).floor2 ?? 0) < 6) {
-      // TODO-QSP: gt 'city_apt_building', 'floor2_event_2', $ARGS[1]
+      qspGoto(s, 'city_apt_building', 'floor2_event_2', String((s as any).locArgs?.[1] ?? ''));
     } else {
       if (((s as any).floor2 ?? 0) === 6) {
-        // TODO-QSP: gt 'city_apt_building', 'floor2_event_3', $ARGS[1]
+        qspGoto(s, 'city_apt_building', 'floor2_event_3', String((s as any).locArgs?.[1] ?? ''));
       } else {
         if (((s as any).floor2 ?? 0) < 10) {
-          // TODO-QSP: gt 'city_apt_building', 'floor2_event_4', $ARGS[1]
+          qspGoto(s, 'city_apt_building', 'floor2_event_4', String((s as any).locArgs?.[1] ?? ''));
         } else {
           if (((s as any).floor2 ?? 0) < 12) {
-            // TODO-QSP: gt 'city_apt_building', 'floor2_event_5', $ARGS[1]
+            qspGoto(s, 'city_apt_building', 'floor2_event_5', String((s as any).locArgs?.[1] ?? ''));
           } else {
             if (((s as any).floor2 ?? 0) === 12) {
-              // TODO-QSP: gt 'city_apt_building', 'floor2_event_6', $ARGS[1]
+              qspGoto(s, 'city_apt_building', 'floor2_event_6', String((s as any).locArgs?.[1] ?? ''));
             } else {
               if (((s as any).floor2 ?? 0) === 13) {
-                // TODO-QSP: gt 'city_apt_building', 'floor2_event_7', $ARGS[1]
+                qspGoto(s, 'city_apt_building', 'floor2_event_7', String((s as any).locArgs?.[1] ?? ''));
               } else {
                 if (((s as any).floor2 ?? 0) === 14) {
-                  // TODO-QSP: gt 'city_apt_building', 'floor2_event_8', $ARGS[1]
+                  qspGoto(s, 'city_apt_building', 'floor2_event_8', String((s as any).locArgs?.[1] ?? ''));
                 } else {
-                  // TODO-QSP: gt 'city_apt_building', 'floor2_event_9', $ARGS[1]
+                  qspGoto(s, 'city_apt_building', 'floor2_event_9', String((s as any).locArgs?.[1] ?? ''));
                 }
               }
             }
@@ -675,40 +675,40 @@ function enterFloor2Event_9(s: GameState, scene: SceneBuilder): void {
 function enterFloor3Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor3 = (Math.floor(Math.random() * 19) + 1);
   if (((s as any).floor3 ?? 0) < 3) {
-    // TODO-QSP: gt 'city_apt_building', 'floor3_event_1', $ARGS[1]
+    qspGoto(s, 'city_apt_building', 'floor3_event_1', String((s as any).locArgs?.[1] ?? ''));
   } else {
     if (((s as any).floor3 ?? 0) < 5) {
-      // TODO-QSP: gt 'city_apt_building', 'floor3_event_2', $ARGS[1]
+      qspGoto(s, 'city_apt_building', 'floor3_event_2', String((s as any).locArgs?.[1] ?? ''));
     } else {
       if (((s as any).floor3 ?? 0) === 5) {
-        // TODO-QSP: gt 'city_apt_building', 'floor3_event_3', $ARGS[1]
+        qspGoto(s, 'city_apt_building', 'floor3_event_3', String((s as any).locArgs?.[1] ?? ''));
       } else {
         if (((s as any).floor3 ?? 0) < 9) {
-          // TODO-QSP: gt 'city_apt_building', 'floor3_event_4', $ARGS[1]
+          qspGoto(s, 'city_apt_building', 'floor3_event_4', String((s as any).locArgs?.[1] ?? ''));
         } else {
           if (((s as any).floor3 ?? 0) < 12) {
-            // TODO-QSP: gt 'city_apt_building', 'floor3_event_5', $ARGS[1]
+            qspGoto(s, 'city_apt_building', 'floor3_event_5', String((s as any).locArgs?.[1] ?? ''));
           } else {
             if (((s as any).floor3 ?? 0) === 12) {
-              // TODO-QSP: gt 'city_apt_building', 'floor3_event_6', $ARGS[1]
+              qspGoto(s, 'city_apt_building', 'floor3_event_6', String((s as any).locArgs?.[1] ?? ''));
             } else {
               if (((s as any).floor3 ?? 0) === 13) {
-                // TODO-QSP: gt 'city_apt_building', 'floor3_event_7', $ARGS[1]
+                qspGoto(s, 'city_apt_building', 'floor3_event_7', String((s as any).locArgs?.[1] ?? ''));
               } else {
                 if (((s as any).floor3 ?? 0) === 14) {
-                  // TODO-QSP: gt 'city_apt_building', 'floor3_event_8', $ARGS[1]
+                  qspGoto(s, 'city_apt_building', 'floor3_event_8', String((s as any).locArgs?.[1] ?? ''));
                 } else {
                   if (((s as any).floor3 ?? 0) < 17) {
-                    // TODO-QSP: gt 'city_apt_building', 'floor3_event_9', $ARGS[1]
+                    qspGoto(s, 'city_apt_building', 'floor3_event_9', String((s as any).locArgs?.[1] ?? ''));
                   } else {
                     if (((s as any).floor3 ?? 0) === 17) {
-                      // TODO-QSP: gt 'city_apt_building', 'floor3_event_10', $ARGS[1]
+                      qspGoto(s, 'city_apt_building', 'floor3_event_10', String((s as any).locArgs?.[1] ?? ''));
                     } else {
                       if (((s as any).floor3 ?? 0) === 18) {
-                        // TODO-QSP: gt 'city_apt_building', 'floor3_event_11', $ARGS[1]
+                        qspGoto(s, 'city_apt_building', 'floor3_event_11', String((s as any).locArgs?.[1] ?? ''));
                       } else {
                         if (((s as any).floor3 ?? 0) === 19  &&  (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 2)  &&  ((s as any).porn_studio ?? 0)?.['know_alli_home'] === 0) {
-                          // TODO-QSP: gt 'city_apt_building', 'floor3_event_12', $ARGS[1]
+                          qspGoto(s, 'city_apt_building', 'floor3_event_12', String((s as any).locArgs?.[1] ?? ''));
                         }
                       }
                     }
@@ -984,43 +984,43 @@ function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
 function enterFloor4Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor4 = (Math.floor(Math.random() * 21) + 1);
   if (((s as any).floor4 ?? 0) < 3) {
-    // TODO-QSP: gt 'city_apt_building', 'floor4_event_1', $ARGS[1]
+    qspGoto(s, 'city_apt_building', 'floor4_event_1', String((s as any).locArgs?.[1] ?? ''));
   } else {
     if (((s as any).floor4 ?? 0) < 6) {
-      // TODO-QSP: gt 'city_apt_building', 'floor4_event_2', $ARGS[1]
+      qspGoto(s, 'city_apt_building', 'floor4_event_2', String((s as any).locArgs?.[1] ?? ''));
     } else {
       if (((s as any).floor4 ?? 0) === 6) {
-        // TODO-QSP: gt 'city_apt_building', 'floor4_event_3', $ARGS[1]
+        qspGoto(s, 'city_apt_building', 'floor4_event_3', String((s as any).locArgs?.[1] ?? ''));
       } else {
         if (((s as any).floor4 ?? 0) < 10) {
-          // TODO-QSP: gt 'city_apt_building', 'floor4_event_4', $ARGS[1]
+          qspGoto(s, 'city_apt_building', 'floor4_event_4', String((s as any).locArgs?.[1] ?? ''));
         } else {
           if (((s as any).floor4 ?? 0) < 13) {
-            // TODO-QSP: gt 'city_apt_building', 'floor4_event_5', $ARGS[1]
+            qspGoto(s, 'city_apt_building', 'floor4_event_5', String((s as any).locArgs?.[1] ?? ''));
           } else {
             if (((s as any).floor4 ?? 0) === 13) {
-              // TODO-QSP: gt 'city_apt_building', 'floor4_event_6', $ARGS[1]
+              qspGoto(s, 'city_apt_building', 'floor4_event_6', String((s as any).locArgs?.[1] ?? ''));
             } else {
               if (((s as any).floor4 ?? 0) < 17) {
-                // TODO-QSP: gt 'city_apt_building', 'floor4_event_7', $ARGS[1]
+                qspGoto(s, 'city_apt_building', 'floor4_event_7', String((s as any).locArgs?.[1] ?? ''));
               } else {
                 if (((s as any).floor4 ?? 0) === 17) {
-                  // TODO-QSP: gt 'city_apt_building', 'floor4_event_8', $ARGS[1]
+                  qspGoto(s, 'city_apt_building', 'floor4_event_8', String((s as any).locArgs?.[1] ?? ''));
                 } else {
                   if (((s as any).floor4 ?? 0) === 18) {
-                    // TODO-QSP: gt 'city_apt_building', 'floor4_event_9', $ARGS[1]
+                    qspGoto(s, 'city_apt_building', 'floor4_event_9', String((s as any).locArgs?.[1] ?? ''));
                   } else {
                     if (((s as any).floor4 ?? 0) === 19) {
-                      // TODO-QSP: gt 'city_apt_building', 'floor4_event_10', $ARGS[1]
+                      qspGoto(s, 'city_apt_building', 'floor4_event_10', String((s as any).locArgs?.[1] ?? ''));
                     } else {
                       if (((s as any).floor4 ?? 0) === 20) {
-                        // TODO-QSP: gt 'city_apt_building', 'floor4_event_11', $ARGS[1]
+                        qspGoto(s, 'city_apt_building', 'floor4_event_11', String((s as any).locArgs?.[1] ?? ''));
                       } else {
                         if (((s as any).floor4 ?? 0) === 21) {
-                          // TODO-QSP: gt 'city_apt_building', 'floor4_event_12', $ARGS[1]
+                          qspGoto(s, 'city_apt_building', 'floor4_event_12', String((s as any).locArgs?.[1] ?? ''));
                         } else {
                           if (((s as any).floor4 ?? 0) < 24  &&  (((s as any).hour ?? 0) >= 19  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
-                            // TODO-QSP: gt 'city_apt_building', 'floor4_event_13', $ARGS[1]
+                            qspGoto(s, 'city_apt_building', 'floor4_event_13', String((s as any).locArgs?.[1] ?? ''));
                           }
                         }
                       }
@@ -1239,34 +1239,34 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
 function enterFloor5Events(s: GameState, scene: SceneBuilder): void {
   (s as any).floor5 = (Math.floor(Math.random() * 18) + 1);
   if (((s as any).floor5 ?? 0) < 3) {
-    // TODO-QSP: gt 'city_apt_building', 'floor5_event_1', $ARGS[1]
+    qspGoto(s, 'city_apt_building', 'floor5_event_1', String((s as any).locArgs?.[1] ?? ''));
   } else {
     if (((s as any).floor5 ?? 0) < 6) {
-      // TODO-QSP: gt 'city_apt_building', 'floor5_event_2', $ARGS[1]
+      qspGoto(s, 'city_apt_building', 'floor5_event_2', String((s as any).locArgs?.[1] ?? ''));
     } else {
       if (((s as any).floor5 ?? 0) === 6) {
-        // TODO-QSP: gt 'city_apt_building', 'floor5_event_3', $ARGS[1]
+        qspGoto(s, 'city_apt_building', 'floor5_event_3', String((s as any).locArgs?.[1] ?? ''));
       } else {
         if (((s as any).floor5 ?? 0) < 10) {
-          // TODO-QSP: gt 'city_apt_building', 'floor5_event_4', $ARGS[1]
+          qspGoto(s, 'city_apt_building', 'floor5_event_4', String((s as any).locArgs?.[1] ?? ''));
         } else {
           if (((s as any).floor5 ?? 0) < 13) {
-            // TODO-QSP: gt 'city_apt_building', 'floor5_event_5', $ARGS[1]
+            qspGoto(s, 'city_apt_building', 'floor5_event_5', String((s as any).locArgs?.[1] ?? ''));
           } else {
             if (((s as any).floor5 ?? 0) === 13) {
-              // TODO-QSP: gt 'city_apt_building', 'floor5_event_6', $ARGS[1]
+              qspGoto(s, 'city_apt_building', 'floor5_event_6', String((s as any).locArgs?.[1] ?? ''));
             } else {
               if (((s as any).floor5 ?? 0) === 14) {
-                // TODO-QSP: gt 'city_apt_building', 'floor5_event_7', $ARGS[1]
+                qspGoto(s, 'city_apt_building', 'floor5_event_7', String((s as any).locArgs?.[1] ?? ''));
               } else {
                 if (((s as any).floor5 ?? 0) === 15  ||  ((s as any).floor5 ?? 0) === 16) {
-                  // TODO-QSP: gt 'city_apt_building', 'floor5_event_8', $ARGS[1]
+                  qspGoto(s, 'city_apt_building', 'floor5_event_8', String((s as any).locArgs?.[1] ?? ''));
                 } else {
                   if (((s as any).floor5 ?? 0) === 17) {
-                    // TODO-QSP: gt 'city_apt_building', 'floor5_event_9', $ARGS[1]
+                    qspGoto(s, 'city_apt_building', 'floor5_event_9', String((s as any).locArgs?.[1] ?? ''));
                   } else {
                     if (((s as any).floor5 ?? 0) === 18) {
-                      // TODO-QSP: gt 'city_apt_building', 'floor5_event_10', $ARGS[1]
+                      qspGoto(s, 'city_apt_building', 'floor5_event_10', String((s as any).locArgs?.[1] ?? ''));
                     }
                   }
                 }

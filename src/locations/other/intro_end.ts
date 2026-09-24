@@ -43,9 +43,9 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetRandomUniCourse(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetRandomUniElectives(s, scene); (s as any).locArgs = __savedLocArgs; }
-      // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
+      qspCall(s, 'npc_relationship', 'set', 'A29', 30 + 20 * (Math.floor(Math.random() * 3) + 0));
     } else {
-      // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
+      qspCall(s, 'npc_relationship', 'set', 'A29', 30 + 20 * (Math.floor(Math.random() * 3) + 0));
     }
   }
   qspGoto(s, 'intro_game_start', 'quick_start');

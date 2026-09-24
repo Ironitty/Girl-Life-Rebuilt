@@ -360,7 +360,7 @@ function enterStraponFucking(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Ass', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
   }, goto: ['soniaev1', 'strapon_anal'] },
       ]);
     }
@@ -399,7 +399,7 @@ function enterStraponPussy(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Fuck her ass', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
   }, goto: ['soniaev1', 'strapon_anal'] },
       ]);
     }
@@ -767,7 +767,7 @@ function enterStraponMagicBedroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Fuck her ass', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
   }, goto: ['soniaev1', 'strapon_magic_bedroom_anal'] },
       ]);
     }

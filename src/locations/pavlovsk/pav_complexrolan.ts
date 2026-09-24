@@ -177,14 +177,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.text(`It will hurt ${((st as any).pcs_lastname ?? '')}, clench your teeth.`);
     scene.actions([
       { label: 'Ouch', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     ((st as any).pain = (st as any).pain ?? {})['asscheeks'] = ((st as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan starts beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     ((st as any).pain = (st as any).pain ?? {})['asscheeks'] = ((st as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
@@ -260,7 +260,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     ((st as any).pain = (st as any).pain ?? {})['asscheeks'] = ((st as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
@@ -268,7 +268,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     (st as any).rolanblockhome = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanturncry.jpg');
@@ -326,14 +326,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ouch', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     ((st as any).pain = (st as any).pain ?? {})['asscheeks'] = ((st as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     ((st as any).pain = (st as any).pain ?? {})['asscheeks'] = ((st as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');

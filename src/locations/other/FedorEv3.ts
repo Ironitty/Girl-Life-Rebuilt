@@ -393,7 +393,7 @@ function enterBackPreg(s: GameState, scene: SceneBuilder): void {
     scene.text(`filling you with his seed. After a few seconds he pulls up his pants as you put on yours. He looks you in the eyes. "${((st as any).pcs_nickname ?? '')} You are so precious to me." he then kisses you softly as you both get seated looking around to see if anyone noticed.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
     qspCall(st, 'boyStat', 'A5');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'exhibitionism');
     qspCall(st, 'arousal', 'end');
@@ -611,7 +611,7 @@ function enterFedorRestroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor catches his breath then looks down to you. "I'm so lucky to have you ${((st as any).pcs_firstname ?? '')}, I hope we remain together forever." You can feel your cheeks growing`);
     scene.text('red as you reply, "Fedor you are so sweet, There is no one I care about more than you." as you both share a kiss before getting dressed.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
@@ -689,7 +689,7 @@ function enterFedorRestroom(s: GameState, scene: SceneBuilder): void {
     scene.text('remain together forever." You can feel your cheeks growing red as you reply, "Fedor you are so sweet, I can\'t picture myself with anyone other');
     scene.text('than you." as you both share a kiss before getting dressed.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
@@ -753,7 +753,7 @@ function enterRestroomLady(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Seduce her', handler: (st: GameState) => {
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/lady2.jpg');
     scene.text('You ask "See anything you like?" she shyly turns away clearly embarrassed that you caught her checking you out, so you decide to turn things up. You approach her from');
@@ -864,8 +864,8 @@ function enterRestroomMan(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk up behind him and grab his penis', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy in restroom', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Guy in restroom', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/scene5.jpg');
     scene.text('You walk up behind him and wait for him to finish peeing then you reach out and grab his penis. The man jumps up obviously surprised, he quickly turns to face you with a shocked look on his face but after looking you up and down he smiles and lays against the wall and enjoys your touch gently stroking your hair as you continue to slowly stroke his penis.');
     qspCall(st, 'arousal', 'hj', (-5), 'dom');
@@ -923,8 +923,8 @@ function enterRestroomMan(s: GameState, scene: SceneBuilder): void {
 
 function enterRestroomMan2(s: GameState, scene: SceneBuilder): void {
   (s as any).FedorRestTimes = ((s as any).FedorRestTimes ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Pyotr', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Pyotr', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/scene.jpg');
   scene.text('You approach the sink and turn on the water then suddenly you feel your shirt being pulled down and someone\'s hands on your breasts. You jump in shock and the man behind you whispers in your ear "Keep quiet bitch and this will be over quickly."');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'rough');
@@ -1089,8 +1089,8 @@ function enterRestroomGang(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/gang3.jpg');
     // TODO-QSP: dynamic text: Knowing that you are not strong enough to overpower them, you submit to them all...
     scene.text(`Knowing that you are not strong enough to overpower them, you submit to them allowing them to remove your top as they bend you over, so that one of the guys cock is pressing against your lips. You wrap your lips around his dick provoking a moan from him as the rest of the guys touch you all over your body. "Look at this slut. She looks a lot better than that girl from the party. I bet she's a better fuck too." and the other guy responds, "I bet you ${qspFunc(s, 'money', 'format', 200)} that she will be able to take all of our dicks without passing out." and the other guy gives him a high five.`);
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'foreplay', 5, 'sub', 'rough', 'gangbang');
     qspCall(st, 'arousal', 'bj', (-5), 'sub', 'rough', 'gangbang');
     qspCall(st, 'stat', '');
@@ -1121,20 +1121,20 @@ function enterRestroomGang(s: GameState, scene: SceneBuilder): void {
       { label: 'Beg them to pull out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/Cum/cum1.jpg');
     scene.text('"You plead. "Please pull out, I want your cum all over my body" and one of the guys responds, "You heard her gentlemen, let\'s cover this bitch from head to toe." as they begin to pull out of you and one by one they release their load on a different part of your body covering you with their cum.');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'face');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'breasts');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'stomach');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'legs');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'labia');
     qspCall(st, 'arousal', 'anal', 10, 'sub', 'rough', 'gangbang');
     qspCall(st, 'arousal', 'hj', (-5), 'sub', 'rough', 'gangbang');
@@ -1159,23 +1159,23 @@ function enterRestroomGang(s: GameState, scene: SceneBuilder): void {
     scene.text('You meekly nod yes and one of the guys says, "Alright boys, Lets fill this whore up." and one by one the guys begin to cum inside all of your holes and on your face and stomach. After they finish they pull out of you while slowly guiding you to the floor. You lay back to catch your breath as you feel the warm cum sliding down and dripping out of your vagina, anus and off your body. "This has got to be the filthiest whore I have ever seen." and another responds, "That\'s exactly what I said after I fucked your sister." Causing the first guy to tackle the other');
     scene.text('and the 2 guys begin fighting as the rest of them start cheering them on. You use this time to quickly grab your clothes then run out of the men\'s room and into the ladies room');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/fight.jpg');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'anus');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'face');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'breasts');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'stomach');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'legs');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'labia');
     qspCall(st, 'arousal', 'anal', 10, 'sub', 'rough', 'gangbang');
     qspCall(st, 'cum_call', '');

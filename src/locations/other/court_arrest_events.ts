@@ -74,7 +74,7 @@ function enterBookingEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
     scene.text('"I\'m not lying! That security guard forced me to have sex with him! Why won\'t you believe me?" you plead, but it does you no good.');
@@ -116,7 +116,7 @@ function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstProstitution(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
     if (((s as any).pcs_hotcat ?? 0) <= 3) {
@@ -158,7 +158,7 @@ function enterFirstProstitution(s: GameState, scene: SceneBuilder): void {
 
 function enterRepeat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   (s as any).police_event = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).police_event ?? 0) === 1) {
@@ -195,7 +195,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
 
 function enterMultiple(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   (s as any).police_event = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).police_event ?? 0) === 1) {
@@ -234,7 +234,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
 
 function enterRegular(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   (s as any).police_event = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).police_event ?? 0) === 1) {
@@ -567,7 +567,7 @@ function enterProstitutionHard(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstPublicIndecency(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'pain', '', 2, 'armR', 'pinch');
+  qspCall(s, 'pain', '2', 'armR', 'pinch');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/police/arrested.jpg');
   if (((s as any).pcs_hotcat ?? 0) >= 7) {

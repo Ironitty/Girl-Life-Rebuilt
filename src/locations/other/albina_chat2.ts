@@ -263,7 +263,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Still found you in all of two minutes of searching," she smirks before clicking a link that leads straight to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -274,7 +274,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"It felt weird going by something that wasn\'t my name," you shrug as she clicks a link you know leads straight to your nude debut. "My name is who I am after all."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -282,7 +282,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"It felt like a hassle, needing to remember to go by different names and all that," you shrug as she clicks a link you know leads straight to your nude debut.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -338,7 +338,7 @@ function enterFirstModelTalkTell(s: GameState, scene: SceneBuilder): void {
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -793,7 +793,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Still found you in all of two minutes of searching," she smirks before clicking a link that you suddenly realize leads straight to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude_shy1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -804,7 +804,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('You blush, but don\'t say anything as she clicks a link you know leads straight to your nude debut.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude_shy1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -812,7 +812,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wasn\'t thinking about getting caught when I started working there," you mumble, feeling the color drain from your face as she clicks a link you know leads straight to your nude debut.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude_shy1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -820,7 +820,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('"It felt weird going by something that wasn\'t my name," you mumble, feeling the color drain from your face as she clicks a link you know leads straight to your nude debut.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude_shy1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },
@@ -856,7 +856,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
-    qspCall(st, 'albina_chat2', 'first_model_talk_nude_shy1');
+    qspCall(st, 'albina_chat2', '');
   } },
     ]);
   } },

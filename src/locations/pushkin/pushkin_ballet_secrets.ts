@@ -57,7 +57,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[1] ?? '') === 'pushkin') {
       qspGoto(s, 'pushkin_sq', '');
     } else {
-      // TODO-QSP: gt $ARGS[1], $ARGS[2]
+      { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
     }
   }
   // TODO-QSP: end
@@ -290,34 +290,34 @@ function enterBalletCourses(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).balletqw = (s as any).balletqw ?? {})['ballet_session'] = ((s as any).daystart ?? 0);
     if (((s as any).pcs_danc ?? 0) < 50) {
-      qspCall(s, 'pain', '', 2, 'legL', 'stretch');
-      qspCall(s, 'pain', '', 2, 'legR', 'stretch');
-      qspCall(s, 'pain', '', 2, 'shoulders', 'stretch');
-      qspCall(s, 'pain', '', 2, 'armL', 'stretch');
-      qspCall(s, 'pain', '', 2, 'armR', 'stretch');
-      qspCall(s, 'pain', '', 2, 'back', 'stretch');
-      qspCall(s, 'pain', '', 2, 'chest', 'stretch');
+      qspCall(s, 'pain', '2', 'legL', 'stretch');
+      qspCall(s, 'pain', '2', 'legR', 'stretch');
+      qspCall(s, 'pain', '2', 'shoulders', 'stretch');
+      qspCall(s, 'pain', '2', 'armL', 'stretch');
+      qspCall(s, 'pain', '2', 'armR', 'stretch');
+      qspCall(s, 'pain', '2', 'back', 'stretch');
+      qspCall(s, 'pain', '2', 'chest', 'stretch');
       qspCall(s, 'exercise', 'tier2', 120, 'agil', 'stren', 'danc');
       scene.text('You enter the classroom and the practice barres are already set up for the class.. You start to perform your stretch exercises and warm ups before your introductory ballet lesson starts along your fellow students.');
     } else {
       if (((s as any).pcs_danc ?? 0) < 75) {
-        qspCall(s, 'pain', '', 4, 'legL', 'stretch');
-        qspCall(s, 'pain', '', 4, 'legR', 'stretch');
-        qspCall(s, 'pain', '', 3, 'shoulders', 'stretch');
-        qspCall(s, 'pain', '', 3, 'armL', 'stretch');
-        qspCall(s, 'pain', '', 3, 'armR', 'stretch');
-        qspCall(s, 'pain', '', 4, 'back', 'stretch');
-        qspCall(s, 'pain', '', 3, 'chest', 'stretch');
+        qspCall(s, 'pain', '4', 'legL', 'stretch');
+        qspCall(s, 'pain', '4', 'legR', 'stretch');
+        qspCall(s, 'pain', '3', 'shoulders', 'stretch');
+        qspCall(s, 'pain', '3', 'armL', 'stretch');
+        qspCall(s, 'pain', '3', 'armR', 'stretch');
+        qspCall(s, 'pain', '4', 'back', 'stretch');
+        qspCall(s, 'pain', '3', 'chest', 'stretch');
         qspCall(s, 'exercise', 'tier3', 120, 'agil', 'stren', 'danc');
         scene.text('You enter the classroom and the practice barres are already set up for the class. You start to perform your stretch exercises and warm ups before your intermediate lesson starts along your fellow students.');
       } else {
-        qspCall(s, 'pain', '', 4, 'legL', 'stretch');
-        qspCall(s, 'pain', '', 4, 'legR', 'stretch');
-        qspCall(s, 'pain', '', 3, 'shoulders', 'stretch');
-        qspCall(s, 'pain', '', 3, 'armL', 'stretch');
-        qspCall(s, 'pain', '', 3, 'armR', 'stretch');
-        qspCall(s, 'pain', '', 4, 'back', 'stretch');
-        qspCall(s, 'pain', '', 3, 'chest', 'stretch');
+        qspCall(s, 'pain', '4', 'legL', 'stretch');
+        qspCall(s, 'pain', '4', 'legR', 'stretch');
+        qspCall(s, 'pain', '3', 'shoulders', 'stretch');
+        qspCall(s, 'pain', '3', 'armL', 'stretch');
+        qspCall(s, 'pain', '3', 'armR', 'stretch');
+        qspCall(s, 'pain', '4', 'back', 'stretch');
+        qspCall(s, 'pain', '3', 'chest', 'stretch');
         qspCall(s, 'exercise', 'tier4', 120, 'agil', 'stren', 'danc');
         scene.text('You enter the classroom and the practice barres are already set up for the class. You start to perform your stretch exercises and warm ups before your advanced lesson starts along your fellow students.');
       }
@@ -408,13 +408,13 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + ((Math.floor(Math.random() * (((s as any).lesson_tier ?? 0) - 1 + 1)) + (1)));
-      qspCall(s, 'pain', '', 2, 'legL', 'stretch');
-      qspCall(s, 'pain', '', 2, 'legR', 'stretch');
-      qspCall(s, 'pain', '', 2, 'shoulders', 'stretch');
-      qspCall(s, 'pain', '', 2, 'armL', 'stretch');
-      qspCall(s, 'pain', '', 2, 'armR', 'stretch');
-      qspCall(s, 'pain', '', 2, 'back', 'stretch');
-      qspCall(s, 'pain', '', 2, 'chest', 'stretch');
+      qspCall(s, 'pain', '2', 'legL', 'stretch');
+      qspCall(s, 'pain', '2', 'legR', 'stretch');
+      qspCall(s, 'pain', '2', 'shoulders', 'stretch');
+      qspCall(s, 'pain', '2', 'armL', 'stretch');
+      qspCall(s, 'pain', '2', 'armR', 'stretch');
+      qspCall(s, 'pain', '2', 'back', 'stretch');
+      qspCall(s, 'pain', '2', 'chest', 'stretch');
       scene.actions([
         { label: 'Return to the studio reception', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

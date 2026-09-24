@@ -158,8 +158,8 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).nclass ?? 0) === 5  &&  ((s as any).school_daily_check ?? 0) !== ((s as any).daystart ?? 0)) {
-    ((s as any).ballet_daily_score = (s as any).ballet_daily_score ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
-    ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
+    ((s as any).ballet_daily_score = (s as any).ballet_daily_score ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + (((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + (((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + (((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + (((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0) - (((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)] ?? 0);
+    ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + ((((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   }
   if (String((s as any).locArgs?.[1] ?? '')=== 'grade') {
     ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['total'] = 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0) + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
@@ -175,7 +175,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
           ((s as any).balletqw = (s as any).balletqw ?? {})['rank'] = 1;
         } else {
           if (((s as any).ballet_grade_score ?? 0)?.['total'] >= 91) {
-            // TODO-QSP: gs 'pushkin_ballet_init', 'famemodifier', ballet_grade_score['total']
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).ballet_grade_score ?? 0)?.['total']]; enterFamemodifier(s, scene); (s as any).locArgs = __savedLocArgs; }
             ((s as any).balletqw = (s as any).balletqw ?? {})['school'] = 5;
             ((s as any).balletqw = (s as any).balletqw ?? {})['rank'] = 1;
           }
@@ -225,7 +225,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: gs $loc, 'cleanup_var'
+    qspCall(s, '$loc', 'cleanup_var');
     ((s as any).balletqw = (s as any).balletqw ?? {})['letter'] = 1;
   }
   // TODO-QSP: end
@@ -257,10 +257,10 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).debug_menu ?? 0) === 'open') {
     scene.actions([
       { label: 'Create Logs', handler: (st: GameState) => {
-    qspCall(st, 'pushkin_ballet_init', 'debug_vars');
+    qspCall(st, 'pushkin_ballet_init', '');
   } },
       { label: 'View Logs', handler: (st: GameState) => {
-    qspCall(st, 'pushkin_ballet_init', 'ballet_debug');
+    qspCall(st, 'pushkin_ballet_init', '');
   } },
       { label: 'Clear logs', handler: (st: GameState) => {
     scene.actions([
@@ -298,7 +298,7 @@ function enterScoreDebug(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ballet_log[] = '<h3>School Grading</h3>'
   (s as any).debug_day = 1;
   // TODO-QSP: :jmp_debug_score
-  (s as any).total_daily = ((s as any).ballet_daily_score ?? 0)?.[String((s as any).debug_day ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).debug_day ?? 0)];
+  (s as any).total_daily = (((s as any).ballet_daily_score ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).debug_day ?? 0)] ?? 0);
   // TODO-QSP: $ballet_log[] = '<b>Day: <<debug_day>></b>'
   // TODO-QSP: $ballet_log[] = 'Make-up Score: <<ballet_grade_mua[debug_day]>>'
   // TODO-QSP: $ballet_log[] = 'Appearance - hair: <<ballet_grade_braids[debug_day]>>'

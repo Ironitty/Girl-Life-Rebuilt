@@ -66,7 +66,7 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'flamingos_dress');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 3, Clothingstock mod 3
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 3, ((s as any).Clothingstock ?? 0) % 3);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -89,7 +89,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'flamingos_outfits');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, (Clothingstock / 3) mod 2
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 2, (((s as any).Clothingstock ?? 0) / 3) % 2);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');

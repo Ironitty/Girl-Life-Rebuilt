@@ -366,7 +366,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Dance', handler: (st: GameState) => {
     qspCall(st, 'exercise', 'tier2', 120, 'agil', 'danc');
-    // TODO-QSP: gs 'money', 'earn', albpayrand * 1000
+    qspCall(st, 'money', 'earn', ((st as any).albpayrand ?? 0) * 1000);
     (st as any).profiDanceTime = ((st as any).profiDanceTime ?? 0) + (1);
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 3));
     if (((st as any).perform_lvl ?? 0) < 35) {
@@ -493,7 +493,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'earn', AlbinaQW['StarletPay'] * 1000
+    qspCall(st, 'money', 'earn', (((st as any).AlbinaQW ?? {})?.['StarletPay'] ?? 0) * 1000);
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['StarletsWhore'] = ((st as any).AlbinaQW['StarletsWhore'] ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.text('You agree to be \'nice\' and Albina reluctantly hands over the money.');
@@ -650,7 +650,7 @@ function enterStarletsreact(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: npc_pregtalk['A23'] = 1
-    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    qspCall(st, 'calendar', '');
   }, goto: ['pav_commcenter', ''] },
   ]);
   scene.build();
@@ -667,7 +667,7 @@ function enterStarletsEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: AlbinaQW['StarletsJoined'] = -1
-    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    qspCall(st, 'calendar', '');
   }, goto: ['pav_commcenter', ''] },
   ]);
   scene.build();
@@ -705,7 +705,7 @@ function enterStarletsPracticeMissed(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: AlbinaQW['StarletsJoined'] = -1
-    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    qspCall(st, 'calendar', '');
   }, goto: ['pav_commcenter', ''] },
       ]);
     }
@@ -728,7 +728,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: AlbinaQW['StarletsJoined'] = -2
-    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    qspCall(st, 'calendar', '');
   }, goto: ['pav_commcenter', ''] },
   ]);
   scene.build();

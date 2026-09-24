@@ -45,7 +45,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) > 0) {
     (s as any).tmpPos = ((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1) - 1;
     (s as any).tmpVar = (String(((s as any).selobj ?? 0)).slice((1)-1, ((1)-1)+(((s as any).tmpPos ?? 0))));
-    (s as any).tmpVal = window.prompt("Enter a value for <<$tmpVar>>") ?? '';
+    (s as any).tmpVal = window.prompt("Enter a value for " + (((s as any).tmpVar ?? 0))) ?? '';
     if (((s as any).tmpVal ?? 0) !== '') {
       if (((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1) === 1) {
         // TODO-QSP: dyneval('<<$tmpVar>> = "<<$tmpVal>>"')

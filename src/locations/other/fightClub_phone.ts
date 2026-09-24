@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSultan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'AddContact', 'A295', 'images/locations/city/shared/fightclub/sultan_portrait.jpg', 0);
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A295', "gt 'fightClub_phone', 'dial'", "fightClubQW['sultancall...
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A295', 'gt \'fightClub_phone\', \'dial\'', 'fightClubQW[\'sultancall\'] ! daystart');
   // TODO-QSP: end
   scene.build();
 }

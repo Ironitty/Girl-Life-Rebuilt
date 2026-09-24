@@ -63,7 +63,7 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 2);
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"Umm, very unexpected but wow! Yeah, that would be great, I\'ll look forward to our date. Don\'t make me wait too long!');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -73,7 +73,7 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'No', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I really enjoyed it too, but it\'s probably best to leave it here. You never know, we might bump into each other again."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

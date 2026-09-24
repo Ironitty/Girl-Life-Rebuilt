@@ -91,10 +91,10 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
     scene.text('You are embarrassed and tell the plumber, that you do not have enough money. He is visibly angry. "You call a fucking plumber and don\'t have any money? What am I supposed to do now?"');
     scene.actions([
       { label: 'Shrug', handler: (st: GameState) => {
-    qspCall(st, 'kit_din', 'santehnikend1');
+    qspCall(st, 'kit_din', '');
   } },
       { label: 'Suggest a loan', handler: (st: GameState) => {
-    qspCall(st, 'kit_din', 'santehnikend2');
+    qspCall(st, 'kit_din', '');
   } },
     ]);
   } },
@@ -320,7 +320,7 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'medium_meal';
   }
-  qspCall(s, 'food', '', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'food', '$ARGS[1]');
   // TODO-QSP: end
   scene.build();
 }
@@ -360,7 +360,7 @@ function enterEdasnack(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Have a snack (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'snack');
+    qspCall(st, 'food', '');
   } },
   ]);
   scene.build();
@@ -402,7 +402,7 @@ function enterDritea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Have a cup of tea (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'tea');
+    qspCall(st, 'beverage', '');
   } },
   ]);
   scene.build();
@@ -474,7 +474,7 @@ function enterDriwater(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Drink some water (0:01)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
   ]);
   scene.build();
@@ -707,7 +707,7 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
       scene.text('There is already a warm meal on the table - no need to cook again.');
       scene.actions([
         { label: 'Nevermind', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
       ]);
     } else {
@@ -715,14 +715,14 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
         scene.text('You have no clean plates to cook with. Wash the dishes first.');
         scene.actions([
           { label: 'Nevermind', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
         ]);
       } else {
         scene.text('There is no food in the refrigerator to cook with.');
         scene.actions([
           { label: 'Nevermind', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
         ]);
       }
@@ -755,7 +755,7 @@ function enterCookMealPk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -795,13 +795,13 @@ function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
       (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
       scene.actions([
         { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
         { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
         { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'large_meal');
+    qspCall(st, 'food', '');
   } },
       ]);
     }
@@ -812,7 +812,7 @@ function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Nevermind', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -832,7 +832,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
     scene.actions([
       { label: 'Go to the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'abort');
+    qspCall(st, 'daily_routine', '');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['vanrPar', ''] },
     ]);
@@ -903,7 +903,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -946,7 +946,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((st as any).mtxt ?? '')} You accompany it with a mug of tea.`);
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -965,7 +965,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
     scene.actions([
       { label: 'Go to the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'abort');
+    qspCall(st, 'daily_routine', '');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['vanrPar', ''] },
     ]);
@@ -1029,7 +1029,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1061,13 +1061,13 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'large_meal');
+    qspCall(st, 'food', '');
   } },
           { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
           { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
         ]);
       }
@@ -1101,7 +1101,7 @@ function enterEatWarmPk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1133,7 +1133,7 @@ function enterEatCookedPk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1161,7 +1161,7 @@ function enterEatDietPk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();

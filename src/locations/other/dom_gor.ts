@@ -95,7 +95,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 23) {
     scene.actions([
       { label: 'Lie on the couch (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'sleep_simple', 'nap');
+    qspCall(st, 'sleep_simple', '');
   } },
     ]);
   }
@@ -121,7 +121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set this small room as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['dom_gor', ''] },
     ]);
   }

@@ -1,4 +1,4 @@
-import { qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -265,7 +265,7 @@ function enterGetDegLoss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddmoney(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'earn', ARGS[1]
+  qspCall(s, 'money', 'earn', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: end
   scene.build();
 }
@@ -277,7 +277,7 @@ function enterAddmoneystring(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpendmoney(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', ARGS[1]
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: end
   scene.build();
 }

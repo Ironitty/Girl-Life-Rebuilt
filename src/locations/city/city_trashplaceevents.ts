@@ -197,8 +197,8 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        qspCall(st, 'npcgeneratec', '', 0, 'Homeless man', (Math.floor(Math.random() * 31) + 25));
-        qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+        qspCall(st, 'npcgeneratec', '0', 'Homeless man', (Math.floor(Math.random() * 31) + 25));
+        qspCall(st, 'boyStat', '$npclastgenerated');
         if (((st as any).bomjshet ?? 0) >= 10) {
           scene.actions([
             { label: 'Give yourself to the homeless man', handler: (st: GameState) => {

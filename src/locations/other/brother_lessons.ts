@@ -166,13 +166,13 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
         if (((st as any).pcs_horny ?? 0) > 90) {
           scene.actions([
             { label: 'I thought you would never ask', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherSexStart');
+    qspCall(st, 'brother', '');
   } },
           ]);
         } else {
           scene.actions([
             { label: 'Sure, I\'m always willing to help my little brother', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherSexStart');
+    qspCall(st, 'brother', '');
   } },
             { label: 'Maybe next time…', goto: ['sitrPar', ''] },
           ]);
@@ -184,13 +184,13 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
         if (((st as any).pcs_horny ?? 0) > 80) {
           scene.actions([
             { label: 'How could I say no if you keep asking so nice?', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherSexStart');
+    qspCall(st, 'brother', '');
   } },
           ]);
         } else {
           scene.actions([
             { label: 'I think I could teach you a thing or two', handler: (st: GameState) => {
-    qspCall(st, 'brother', 'brotherSexStart');
+    qspCall(st, 'brother', '');
   } },
             { label: 'Maybe next time…', goto: ['sitrPar', ''] },
           ]);
@@ -1592,7 +1592,7 @@ function enterAnatomylessonConceptionCum(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterAnatomylessonConceptionCreampie(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
   scene.text('Kolka shudders, holding you tight with his cock twitching inside you, and you feel a warmth blossom inside your hips.');
@@ -1660,7 +1660,7 @@ function enterAnatomylessonConceptionPullout(s: GameState, scene: SceneBuilder):
 }
 
 function enterAnatomylessonConceptionPulloutFail(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
   scene.text('For a brief moment you feel Kolka\'s hips start to move backwards. Then suddenly he pushes into you with all of his weight. His cock pulses within you and heat floods your womb.');
@@ -1730,7 +1730,7 @@ function enterAnatomylessonConceptionPulloutFailEnd(s: GameState, scene: SceneBu
 }
 
 function enterAnatomylessonConceptionCondomCum(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
   scene.text('Kolka shudders, holding you tight with his cock twitch in your pussy and you feel the condom swell inside you.');

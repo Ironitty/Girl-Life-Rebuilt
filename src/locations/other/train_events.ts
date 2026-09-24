@@ -88,9 +88,9 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Old man', (Math.floor(Math.random() * 16) + 52));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'pain', '', 3, 'vaginal', 'ache');
+    qspCall(st, 'npcgeneratec', '0', 'Old man', (Math.floor(Math.random() * 16) + 52));
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'pain', '3', 'vaginal', 'ache');
     qspCall(st, 'arousal', 'vaginal', 15, 'rough', 'unknown');
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/train/sex/oldvag.jpg');
@@ -100,7 +100,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
     scene.text('The old man simply pulls you down to the ground, laying you on your side in a spoon position with himself right behind you, and slips his cock back into you. A second later, he has resumed pounding your pussy as hard as he physically can.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 3, 'asshole', 'ache');
+    qspCall(st, 'pain', '3', 'asshole', 'ache');
     qspCall(st, 'arousal', 'anal', 10, 'rough', 'unknown');
     scene.img('images/locations/shared/train/sex/oldanal.jpg');
     // TODO-QSP: dynamic text: He keeps this up for a while, and it is almost starting to feel okay when he pul...
@@ -163,15 +163,15 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_finger', (-15), 'unknown');
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Fit guy', (Math.floor(Math.random() * 11) + 32));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Fit guy', (Math.floor(Math.random() * 11) + 32));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/shared/train/sex/fitbj.jpg');
     // TODO-QSP: dynamic text: As much as you would have liked to feel his heavenly fingers some more, you drop...
     scene.text(`As much as you would have liked to feel his heavenly fingers some more, you drop to your knees and waste no time in taking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock deep into your mouth, immediately feeling his hand on back of your head. You wrap your lips tightly around the shaft of his cock and bob your head, sucking hard on him to give him an idea of the intense stimulation he gave you. Occasionally, he uses his hand to force you deeper down on him so you would gag a bit on his cock, but he seems mostly content with letting you pleasure him at your own pace.`);
     scene.text('You stay on your knees, blowing him, for quite a while - if the sore jaw muscles are anything to go by - and even with your discarded clothes to kneel on, you\'re probably going to have sore knees after this.');
     qspCall(st, 'arousal', 'bj', (-15), 'deepthroat', 'unknown');
-    qspCall(st, 'pain', '', 1, 'legL', 'ache');
-    qspCall(st, 'pain', '', 1, 'legR', 'ache');
+    qspCall(st, 'pain', '1', 'legL', 'ache');
+    qspCall(st, 'pain', '1', 'legR', 'ache');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him fuck you', handler: (st: GameState) => {
@@ -233,8 +233,8 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
     scene.text('When the train stops at the final station, he leads you off the car, and the two of you wait as people leave the platform and new passengers get on. When the train has left and there\'s nobody around anymore, he motions for you to follow him and takes you on a walk along the tracks.');
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Well dress guy', (Math.floor(Math.random() * 4) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Well dress guy', (Math.floor(Math.random() * 4) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/shared/train/sex/youngvag.jpg');
     scene.text('You keep looking back towards the station as you walk, making sure that nobody sees where you\'re headed. Your male companion on the other hand seems to be a lot more interested in your anatomy than potential observers. He puts his arm around your waist as you walk together and somehow manages to worm his way into your panties, rubbing your clit as you move. You somewhat lose interest in looking back after that, focusing entirely on the fingers playing with your pussy and dipping inside you. As soon as he has you good and soaking wet - and has put enough distance between you and the station that you\'re no longer in plain sight - he pulls down his pants and sits on the tracks, his erect cock an unmistakable invitation.');
     // TODO-QSP: dynamic text: Your need seems to explode at the sight, and you urgently pull your clothes asid...
@@ -569,8 +569,8 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.text('He leads you across the tracks to the less-used side of the platform and takes you behind one of the roofed waiting areas. Once there, he starts kissing you and pulling your top aside enough to bare your breasts, squeezing and caressing them as you make out. You groan into his mouth in response.');
     scene.text('You\'re turned on beyond reason and badly want to fuck him, or anybody else, as long as you just get to have a cock inside you. The XTC tells you that he\'s a great guy, that you can feel safe with him, that nothing you do here will backfire.');
     scene.text('You undo his pants and pull out his cock, stroking it with one hand while the other rubs your pussy through your clothes.');
-    qspCall(st, 'npcgeneratec', '', 0, 'Stoner', (Math.floor(Math.random() * 7) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Stoner', (Math.floor(Math.random() * 7) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'foreplay', 5, 'unknown');
     scene.actions([
       { label: 'Suck him', handler: (st: GameState) => {
@@ -664,8 +664,8 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Accept his offer', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/sex/ridebj.jpg');
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy on train', (Math.floor(Math.random() * 12) + 34));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Guy on train', (Math.floor(Math.random() * 12) + 34));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.text('You bite your lower lip before you step inside, close the door behind you and pull the privacy blinds down. When you turn back to him, you see that he already has his cock out and is looking at you with a strange, self-satisfied smile.');
     // TODO-QSP: dynamic text: Unfazed by his boldness, you kneel down in front of him and lick up and down his...
     scene.text(`Unfazed by his boldness, you kneel down in front of him and lick up and down his length a few times before you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your mouth, noticing that even it smells of that nice cologne.`);
@@ -752,8 +752,8 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Go with it', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 5);
-    qspCall(st, 'npcgeneratec', '', 0, 'Gopnik', (Math.floor(Math.random() * 8) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Gopnik', (Math.floor(Math.random() * 8) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/shared/train/sex/gopnik.jpg');
     scene.text('You return his kiss and allow him to paw at your body. You hear more than a few people comment on the two of you making out; several seem to be of the opinion that this is not the place to show this level of affection. Instead of deterring you however, all that does is tickle your rebellious streak and make you feel even more brazen.');
     scene.text('Once the train stops at your destination, you get off with him, but you barely make it onto the platform before he pulls you into another kiss. He\'s actually a pretty good kisser, and while his pawing hands might drive most innocent girls away, he seems to mostly know where he has to grope too.');

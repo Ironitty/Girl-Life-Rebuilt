@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -230,11 +228,11 @@ function enterUpdate_PubesAndLeghair(s: GameState, scene: SceneBuilder): void {
       ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[3] = ((s as any).pcs_pubecol[3] ?? 0) - (1);
     }
     if (((s as any).pcs_pubecol ?? 0)[3] === 0) {
-      ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
+      ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = (((s as any).pcs_pubecol ?? 0)?.[0] ?? 0);
     }
   }
   if (((s as any).pcs_pubes ?? 0) < 2) {
-    ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = qspUntranslated(s, "pcs_pubecol[0]", { location: "body" });
+    ((s as any).pcs_pubecol = (s as any).pcs_pubecol ?? {})[2] = (((s as any).pcs_pubecol ?? 0)?.[0] ?? 0);
   }
   if (((s as any).age ?? 0) < 18  &&  (Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).pcs_leghair ?? 0) > 0) {
     (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) - (1);
@@ -865,7 +863,7 @@ function enterInitial(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 20;
   }
-  // TODO-QSP: gs 'body', 'Set_mass_distribution_using_body', pcs_mass['body']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pcs_mass ?? 0)?.['body']]; enterSetMassDistributionUsingBody(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).strenbuf = ((s as any).pcs_stren ?? 0);
   (s as any).agilbuf = ((s as any).pcs_agil ?? 0);
   (s as any).vitalbuf = ((s as any).pcs_vital ?? 0);

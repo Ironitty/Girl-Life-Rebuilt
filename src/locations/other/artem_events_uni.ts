@@ -103,7 +103,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush1'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
           ]);
         } else {
@@ -112,7 +112,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
           ]);
         }
@@ -130,7 +130,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
             ]);
           } else {
@@ -140,7 +140,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
             ]);
           }
@@ -155,7 +155,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
             ]);
           } else {
@@ -166,7 +166,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
             ]);
           }
@@ -189,7 +189,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
         ]);
       } else {
@@ -203,7 +203,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
           ]);
         } else {
@@ -214,7 +214,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'nush2'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
           ]);
         }
@@ -225,7 +225,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'after_ordering'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     ]);
   }
@@ -584,7 +584,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'coffee_hole_katja_drink'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     ]);
   } },
@@ -835,7 +835,7 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: $loc_arg = 'coffee_hole_albina_drink'
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     ]);
   } },

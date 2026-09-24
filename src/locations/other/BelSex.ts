@@ -294,7 +294,7 @@ function enterVaginal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'prostitution');
   qspCall(s, 'stat', '');
   if (((s as any).belact ?? 0) <= 0) {
-    qspCall(s, 'cum_call', '', '', 'A113', 1);
+    qspCall(s, 'cum_call', '', 'A113', 1);
     qspCall(s, 'stat', '');
     (s as any).belsexpayment = 600;
     scene.img('images/shared/sex/cum/vagcreampie/creampie3.mp4');
@@ -344,7 +344,7 @@ function enterVaginal2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'prostitution');
   qspCall(s, 'stat', '');
   if (((s as any).belact ?? 0) <= 0) {
-    qspCall(s, 'cum_call', '', '', 'A113', 1);
+    qspCall(s, 'cum_call', '', 'A113', 1);
     qspCall(s, 'stat', '');
     (s as any).belsexpayment = 600;
     scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
@@ -393,7 +393,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'prostitution');
   qspCall(s, 'stat', '');
   if (((s as any).belact ?? 0) <= 0) {
-    qspCall(s, 'cum_call', '', '', 'A113', 1);
+    qspCall(s, 'cum_call', '', 'A113', 1);
     qspCall(s, 'stat', '');
     (s as any).belsexpayment = 600;
     scene.img('images/shared/sex/cum/vagcreampie/creampie4.mp4');
@@ -445,7 +445,7 @@ function enterCowgirl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'prostitution');
   qspCall(s, 'stat', '');
   if (((s as any).belact ?? 0) <= 0) {
-    qspCall(s, 'cum_call', '', '', 'A113', 1);
+    qspCall(s, 'cum_call', '', 'A113', 1);
     qspCall(s, 'stat', '');
     (s as any).belsexpayment = 600;
     scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
@@ -609,9 +609,9 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).PSwim ?? 0) === 1) {
-      // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-      // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-      // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+      qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+      qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     }
     qspCall(st, 'arousal', 'end');
     scene.actions([

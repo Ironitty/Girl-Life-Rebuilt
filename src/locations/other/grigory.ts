@@ -226,7 +226,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
     scene.text('Withdrawing, you can feel some of his cum, mingled with your virgin blood, drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
     scene.text('With his clothes in hand, he stops to look at you, "I want nothing more than to stay here with you, but I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later Kishka."');
     scene.text('Without another word, he exits the barn. After he is gone, you can\'t help but think about how happy he looked before leaving.');
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 10);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -246,7 +246,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
         scene.text('Withdrawing, you can feel some of his cum drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
         scene.text('"I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later little lady."');
         scene.text('Without another word, he exits the barn.');
-        qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+        qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1);
         qspCall(st, 'arousal', 'vaginal', 10);
         qspCall(st, 'arousal', 'end');
         scene.actions([
@@ -264,7 +264,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
         scene.text('Withdrawing, you can feel some of his cum drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
         scene.text('"I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later little lady."');
         scene.text('Without another word, he exits the barn.');
-        qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+        qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1);
         qspCall(st, 'arousal', 'vaginal', 10);
         qspCall(st, 'arousal', 'end');
         scene.actions([

@@ -145,7 +145,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Get fired', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'cheeks', 'slap');
+    qspCall(st, 'pain', '5', 'cheeks', 'slap');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.text('You shake your head. "No, I won\'t go with you."');

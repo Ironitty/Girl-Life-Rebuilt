@@ -37,7 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'kickboxing_funcs', 'init_fight_vars');
     ((st as any).kickbox = (st as any).kickbox ?? {})['opponent'] = (((st as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     ((st as any).temp_kickboxVars = (st as any).temp_kickboxVars ?? {})['fight_type'] = 1;
-    // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
+    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', ((st as any).kickbox ?? 0)?.['opponent']);
     qspGoto(st, 'havana_kickboxing', 'match');
   } },
           ]);
@@ -341,7 +341,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
       ((st as any).kickbox = (st as any).kickbox ?? {})['amateurWin'] = ((st as any).kickbox['amateurWin'] ?? 0) + (1);
       ((st as any).kickbox = (st as any).kickbox ?? {})['advancement'] = ((st as any).kickbox['advancement'] ?? 0) + (1);
-      // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
+      qspCall(st, 'money', 'earn', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0));
       (st as any).rikudo = ((st as any).rikudo ?? 0) + (5);
       // TODO-QSP: dynamic text: You''re awarded a cash prize of <<$func(''money'', ''string_profit'', 500 + kick...
       scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0))}.`);
@@ -375,7 +375,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         ((st as any).kickbox = (st as any).kickbox ?? {})['amateurWin'] = ((st as any).kickbox['amateurWin'] ?? 0) + (1);
         ((st as any).kickbox = (st as any).kickbox ?? {})['amateurWinKO'] = ((st as any).kickbox['amateurWinKO'] ?? 0) + (1);
         ((st as any).kickbox = (st as any).kickbox ?? {})['advancement'] = ((st as any).kickbox['advancement'] ?? 0) + (1);
-        // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
+        qspCall(st, 'money', 'earn', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0));
         (st as any).rikudo = ((st as any).rikudo ?? 0) + (10);
         // TODO-QSP: dynamic text: You''re awarded a cash prize of <<$func(''money'', ''string_profit'', 500 + kick...
         scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((st as any).kickbox ?? {})?.['money'] ?? 0))}.`);

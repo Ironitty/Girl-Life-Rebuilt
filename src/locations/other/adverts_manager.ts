@@ -216,7 +216,7 @@ function enterViewAdvert(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Advert</b></center>');
   scene.img(`${qspUntranslated(s, "adv_imgPath['<<args[1]", { location: "adverts_manager" })}']>>`);
   // TODO-QSP: adv_known[args[2]] = 1
-  // TODO-QSP: gs 'adverts_view', $args[1]
+  qspCall(s, 'adverts_view', '$args[1]');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: end

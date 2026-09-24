@@ -675,7 +675,7 @@ function enterBoy4(s: GameState, scene: SceneBuilder): void {
     scene.text('You glance back at him and grin. He gets the idea and redoubles his efforts to fuck you, his balls slapping against your clit with each powerful thrust. You feel your need for release grow with every thrust and everything he does only seems to make it better. Finally, you feel his dick pulsing inside you as he fills your pussy with his huge load. When he pulls out, you can feel his thick cum slowly leaking out and running down your inner leg.');
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0));
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gschool_boys_bathroom', 'boy4_end'] },
@@ -1019,19 +1019,19 @@ function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A10', 1);
     qspCall(st, 'npcStat', 'A9', 2);
     qspCall(st, 'npcStat', 'A157', 3);
-    // TODO-QSP: gs 'npcgeneratec', 0, 'unknown guy', (year - pcs_dob / 10000)
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 4);
-    // TODO-QSP: gs 'npcgeneratec', 0, 'unknown guy', (year - pcs_dob / 10000)
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 5);
+    qspCall(st, 'npcgeneratec', '0', 'unknown guy', (((st as any).year ?? 0) - ((st as any).pcs_dob ?? 0) / 10000));
+    qspCall(st, 'npcStat', '$npclastgenerated', 4);
+    qspCall(st, 'npcgeneratec', '0', 'unknown guy', (((st as any).year ?? 0) - ((st as any).pcs_dob ?? 0) / 10000));
+    qspCall(st, 'npcStat', '$npclastgenerated', 5);
     scene.text('<center><b>Boy\'s bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/gangvag.jpg');
     scene.text('Once your clothes are removed, or at least moved out of the way, one of them bends you over with a shove. Another grabs your hair and twists it painfully, then drags your head over to his crotch where he\'s already stroking his dick. You feel a cock getting shoved into your dry pussy and whoever it is drives it in as deep as it will go, trying to go for balls deep on the first thrust and, failing that, hammering into you with a vengeance. It\'s so painful that you can\'t stay silent, but just as you cry out over the rough treatment, the guy holding you by the hair shoves his dick into your mouth, tightening his grip around your head so much hurts, but he doesn\'t care - all he cares about is fucking your throat.');
     scene.text('They take turns, mostly switching out who is getting to fuck your pussy, but eventually exchanging who gets to fuck your mouth as well. The ones not currently fucking you often smack your ass hard, roughly squeeze one of your breasts or painfully pinch one of your nipples while they wait for their turn.');
-    qspCall(st, 'pain', '', 1, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'arousal', 'vaginal', 2, $npcID[4], 'group'
-    // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[4], 'group'
-    // TODO-QSP: gs 'arousal', 'vaginal', 2, $npcID[5], 'group'
-    // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[5], 'group'
+    qspCall(st, 'pain', '1', 'vaginal', 'stretch');
+    qspCall(st, 'arousal', 'vaginal', 2, (((st as any).npcID ?? 0)?.[4] ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 2, (((st as any).npcID ?? 0)?.[4] ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', 2, (((st as any).npcID ?? 0)?.[5] ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 2, (((st as any).npcID ?? 0)?.[5] ?? 0), 'group');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1039,13 +1039,13 @@ function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/ganganal1.jpg');
     scene.text('Your uncomfortable spit roasting is interrupted by Roman saying "Lift the bitch up, I want to fuck her ass." Before you even know what\'s going on, one of them on each side of you grabs you, lifting you off the ground. Holding you in a sitting position mid air, they spread your legs and you instinctively wrap your arm around one of their necks. Just as it dawns on you why they lifted you, you feel a cock painfully entering your ass.');
     scene.text('The sudden surge of agony causes you to cry out, the threat about keeping quiet momentarily forgotten, but it gets even worse: As soon as Roman has forced himself all the way in, he starts hammering away at your ass. You do your best to make as little noise as you can while tears run down your face, but it is difficult - the pain only seems to get worse. Before long, the dick is pulled out of your ass and you sigh in relief, but too soon: Another takes its place a few seconds later, and so it continues - the guys take turns fucking your ass or holding you up.');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
-    // TODO-QSP: gs 'arousal', 'anal', 6, $npcID[4], 'group'
-    // TODO-QSP: gs 'arousal', 'bj', -6, $npcID[5], 'group'
-    // TODO-QSP: gs 'arousal', 'anal', 1, $npcID[3], 'group'
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
+    qspCall(st, 'arousal', 'anal', 6, (((st as any).npcID ?? 0)?.[4] ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-6), (((st as any).npcID ?? 0)?.[5] ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'group');
     qspCall(st, 'arousal', 'anal', 1, ((st as any).npcID ?? 0), 'group');
-    // TODO-QSP: gs 'arousal', 'anal', 1, $npcID[1], 'group'
-    // TODO-QSP: gs 'arousal', 'anal', 1, $npcID[2], 'group'
+    qspCall(st, 'arousal', 'anal', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'group');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1055,8 +1055,8 @@ function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re so dazed by your suffering that you\'re barely even aware that they\'re talking, let alone that they\'re talking and joking about you. As they switch places, they start arguing about whose turn it is to fuck you where or who is taking too long on his turn.');
     (st as any).temp_i = 0;
     // TODO-QSP: :boy6_sub_loop1
-    // TODO-QSP: gs 'arousal', 'anal', 1, $npcID[temp_i], 'group'
-    // TODO-QSP: gs 'arousal', 'bj', -1, $npcID[temp_i], 'group'
+    qspCall(st, 'arousal', 'anal', 1, (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-1), (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
     (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
     if (((st as any).temp_i ?? 0) < 6) {
       // TODO-QSP: jump 'boy6_sub_loop1'
@@ -1071,10 +1071,10 @@ function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
     scene.text('At the very least, the guys seem to be much happier now that they\'re all getting some at the same time. They\'re not quite considerate of you but at least they have less frustrations to take out on you, making what could be utter torture almost tolerable. You lose track of time, and they trade positions so often you aren\'t even sure who is fucking you where.');
     (st as any).temp_i = 0;
     // TODO-QSP: :boy6_sub_loop2
-    // TODO-QSP: gs 'arousal', 'hj', 1, $npcID[temp_i], 'group'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[temp_i], 'group'
-    // TODO-QSP: gs 'arousal', 'vaginal', 1, $npcID[temp_i], 'group'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[temp_i], 'group'
+    qspCall(st, 'arousal', 'hj', 1, (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', 1, (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), 'group');
     (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
     if (((st as any).temp_i ?? 0) < 6) {
       // TODO-QSP: jump 'boy6_sub_loop2'
@@ -1093,11 +1093,11 @@ function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
     if (((st as any).temp_i ?? 0) >= 4) {
       (st as any).temp_is_known = 0;
     }
-    // TODO-QSP: gs 'cum_call', 'labia', $npcID[temp_i], temp_is_known, '', '', 8
-    // TODO-QSP: gs 'cum_call', 'butt', $npcID[temp_i], temp_is_known, '', '', 8
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[temp_i], temp_is_known, '', '', 8
-    // TODO-QSP: gs 'cum_call', 'breasts', $npcID[temp_i], temp_is_known, '', '', 8
-    // TODO-QSP: gs 'cum_call', 'hair', $npcID[temp_i], temp_is_known, '', '', 8
+    qspCall(st, 'cum_call', 'labia', (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), ((st as any).temp_is_known ?? 0), '', '', 8);
+    qspCall(st, 'cum_call', 'butt', (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), ((st as any).temp_is_known ?? 0), '', '', 8);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), ((st as any).temp_is_known ?? 0), '', '', 8);
+    qspCall(st, 'cum_call', 'breasts', (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), ((st as any).temp_is_known ?? 0), '', '', 8);
+    qspCall(st, 'cum_call', 'hair', (((st as any).npcID ?? 0)?.[String((st as any).temp_i ?? 0)] ?? 0), ((st as any).temp_is_known ?? 0), '', '', 8);
     (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
     if (((st as any).temp_i ?? 0) < 6) {
       // TODO-QSP: jump 'boy6_sub_loop3'
@@ -1342,7 +1342,7 @@ function enterCompanyb3(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Join them', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_boys_bathroom', 'Join them'] },
   ]);
   scene.build();

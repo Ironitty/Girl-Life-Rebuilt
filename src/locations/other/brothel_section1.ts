@@ -187,13 +187,13 @@ function enterSection1CageLeave(s: GameState, scene: SceneBuilder): void {
     ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['receptionist_annoy'] = 0;
     scene.text('The receptionist comes over and unlocks the cage, only to pull you out by the hair. "Someone needs to teach you not to annoy your betters."');
     scene.text('He pushes you onto the cage and painfully holds your hair as he proceeds to spank your ass repeatedly.');
-    qspCall(s, 'pain', '', 6, 'asscheeks', 'slap');
-    qspCall(s, 'pain', '', 5, 'hair', 'bind');
+    qspCall(s, 'pain', '6', 'asscheeks', 'slap');
+    qspCall(s, 'pain', '5', 'hair', 'bind');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/brothel/caressface.jpg');
-    qspCall(st, 'pain', '', 5, 'neck', 'choke');
+    qspCall(st, 'pain', '5', 'neck', 'choke');
     scene.text('He then pulls you up and pushes you against the wall "Now go and do whatever you need to do and then I want to see you back in there, being a good girl."');
     scene.actions([
       { label: 'Nod and flee into the girls room', goto: ['brothel', 'brothel_dressingroom'] },
@@ -236,8 +236,8 @@ function enterSection1ForceWork(s: GameState, scene: SceneBuilder): void {
 function enterSection1CageClient(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'clock_in', 'highway_brothel_prostitute');
   (s as any).hadOwnanalPlugIn = ((s as any).analPlugIn ?? 0);
-  qspCall(s, 'npcgeneratec', '', 0, 'Client', '', '', 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Client', '', '', 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = 0;
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['electro_counter'] = 0;
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['like'] = 0;
@@ -298,22 +298,22 @@ function enterSection1Start(s: GameState, scene: SceneBuilder): void {
     scene.text('"So what will we do today, my little painslut?"');
     scene.actions([
       { label: 'Be quiet and await what\'s next', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 0);
+    qspCall(st, 'brothel_section1', '');
   } },
       { label: 'Suggest an action', handler: (st: GameState) => {
     // TODO-QSP: 'You decide to suggest what your Master should do with you. You ask him: ' + $func('wrap', 'neg', '"...
     scene.actions([
       { label: '..I need to recharge my batteries', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 1);
+    qspCall(st, 'brothel_section1', '');
   } },
       { label: '..I\'ve been a bad girl, I should be punished', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 2);
+    qspCall(st, 'brothel_section1', '');
   } },
       { label: '..just bind me and use my holes', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 3);
+    qspCall(st, 'brothel_section1', '');
   } },
       { label: 'Reconsider and be quiet', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 0);
+    qspCall(st, 'brothel_section1', '');
   } },
     ]);
   } },
@@ -322,7 +322,7 @@ function enterSection1Start(s: GameState, scene: SceneBuilder): void {
     scene.text('Without a word Master leads you to a device…');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_pick', 0);
+    qspCall(st, 'brothel_section1', '');
   } },
     ]);
   }
@@ -504,10 +504,10 @@ function enterSection1ElectroAsshigh(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 2, 'legR', 'bind');
-  qspCall(s, 'pain', '', 2, 'legL', 'bind');
-  qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-  qspCall(s, 'pain', '', 2, 'thighs', 'bind');
+  qspCall(s, 'pain', '2', 'legR', 'bind');
+  qspCall(s, 'pain', '2', 'legL', 'bind');
+  qspCall(s, 'pain', '2', 'wrists', 'bind');
+  qspCall(s, 'pain', '2', 'thighs', 'bind');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/asshigh.mp4');
@@ -539,7 +539,7 @@ function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'anal_dildo', 2, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
+  qspCall(s, 'pain', '5', 'asshole', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).analPlugIn = 1;
@@ -568,20 +568,20 @@ function enterSection1ElectroPushPlug(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).analPlugIn = 0;
   (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
-  qspCall(s, 'pain', '', 6, 'asshole', 'cramp');
+  qspCall(s, 'pain', '6', 'asshole', 'cramp');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/pushplugout.mp4');
   scene.text('Unable to withstand all the pain, your muscles pull themselves in a massive cramp, causing the anal plug fall out like an apple from a tree.');
   if ((Math.floor(Math.random() * 100) + 1) <= 20) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_electro_rod');
+    qspCall(st, 'brothel_section1', '');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_electro_replug');
+    qspCall(st, 'brothel_section1', '');
   } },
     ]);
   }
@@ -592,7 +592,7 @@ function enterSection1ElectroPushPlug(s: GameState, scene: SceneBuilder): void {
 function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'pain', '', 9, 'asshole', 'shock');
+  qspCall(s, 'pain', '9', 'asshole', 'shock');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -605,7 +605,7 @@ function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'brothel_section1', 'section1_electro_replug');
+    qspCall(st, 'brothel_section1', '');
   } },
   ]);
   scene.build();
@@ -614,7 +614,7 @@ function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
 function enterSection1ElectroReplug(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'pain', '', 6, 'asshole', 'stretch');
+  qspCall(s, 'pain', '6', 'asshole', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -650,9 +650,9 @@ function enterSection1ElectroElectrodes(s: GameState, scene: SceneBuilder): void
 function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'pain', '', 4, 'asscheeks', 'shock');
-  qspCall(s, 'pain', '', 5, 'labia', 'shock');
-  qspCall(s, 'pain', '', 3, 'thighs', 'shock');
+  qspCall(s, 'pain', '4', 'asscheeks', 'shock');
+  qspCall(s, 'pain', '5', 'labia', 'shock');
+  qspCall(s, 'pain', '3', 'thighs', 'shock');
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough', 'maso', 'bound');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -678,8 +678,8 @@ function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder):
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough', 'maso', 'bound');
-  qspCall(s, 'pain', '', 6, 'asscheeks', 'shock');
-  qspCall(s, 'pain', '', 5, 'thighs', 'shock');
+  qspCall(s, 'pain', '6', 'asscheeks', 'shock');
+  qspCall(s, 'pain', '5', 'thighs', 'shock');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/electrocuteassmore.mp4');
@@ -704,11 +704,11 @@ function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder):
 function enterSection1ElectroElectrocuteMax(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough', 'maso', 'bound');
-  // TODO-QSP: gs 'pain', 7 + brothel_vars['electro_counter'], 'asscheeks', 'shock'
-  // TODO-QSP: gs 'pain', 6 + brothel_vars['electro_counter'], 'labia', 'shock'
-  // TODO-QSP: gs 'pain', 5 + brothel_vars['electro_counter'], 'vaginal', 'shock'
-  // TODO-QSP: gs 'pain', 4 + brothel_vars['electro_counter'], 'asshole', 'shock'
-  // TODO-QSP: gs 'pain', 6 + brothel_vars['electro_counter'], 'thighs', 'shock'
+  qspCall(s, 'pain', '', 7 + (((s as any).brothel_vars ?? {})?.['electro_counter'] ?? 0), 'asscheeks', 'shock');
+  qspCall(s, 'pain', '', 6 + (((s as any).brothel_vars ?? {})?.['electro_counter'] ?? 0), 'labia', 'shock');
+  qspCall(s, 'pain', '', 5 + (((s as any).brothel_vars ?? {})?.['electro_counter'] ?? 0), 'vaginal', 'shock');
+  qspCall(s, 'pain', '', 4 + (((s as any).brothel_vars ?? {})?.['electro_counter'] ?? 0), 'asshole', 'shock');
+  qspCall(s, 'pain', '', 6 + (((s as any).brothel_vars ?? {})?.['electro_counter'] ?? 0), 'thighs', 'shock');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -822,8 +822,8 @@ function enterSection1TitsHangNeck(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 2, 'neck', 'choke');
-  qspCall(s, 'pain', '', 3, 'wrists', 'bind');
+  qspCall(s, 'pain', '2', 'neck', 'choke');
+  qspCall(s, 'pain', '3', 'wrists', 'bind');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/hangbyneck.jpg');
@@ -843,7 +843,7 @@ function enterSection1TitsWhip(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 5, 'breasts', 'spank');
+  qspCall(s, 'pain', '5', 'breasts', 'spank');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/whiptits.mp4');
@@ -861,7 +861,7 @@ function enterSection1TitsCane(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 5, 'breasts', 'spank');
+  qspCall(s, 'pain', '5', 'breasts', 'spank');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/canetits.mp4');
@@ -879,7 +879,7 @@ function enterSection1TitsPinch(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 5, 'nipples', 'pinch');
+  qspCall(s, 'pain', '5', 'nipples', 'pinch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pinchtits.mp4');
@@ -898,7 +898,7 @@ function enterSection1TitsPunch(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 6, 'breasts', 'hit');
+  qspCall(s, 'pain', '6', 'breasts', 'hit');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/punchtits.mp4');
@@ -916,8 +916,8 @@ function enterSection1TitsPullNipples(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 7, 'nipples', 'stretch');
-  qspCall(s, 'pain', '', 4, 'breasts', 'stretch');
+  qspCall(s, 'pain', '7', 'nipples', 'stretch');
+  qspCall(s, 'pain', '4', 'breasts', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pullnipples.mp4');
@@ -936,9 +936,9 @@ function enterSection1TitsBind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 7, 'breasts', 'stretch');
-  qspCall(s, 'pain', '', 3, 'chest', 'bind');
-  qspCall(s, 'pain', '', 3, 'ribs', 'bind');
+  qspCall(s, 'pain', '7', 'breasts', 'stretch');
+  qspCall(s, 'pain', '3', 'chest', 'bind');
+  qspCall(s, 'pain', '3', 'ribs', 'bind');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/bindtits.jpg');
@@ -958,8 +958,8 @@ function enterSection1TitsPinchBound(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 7, 'breasts', 'stretch');
-  qspCall(s, 'pain', '', 6, 'nipples', 'stretch');
+  qspCall(s, 'pain', '7', 'breasts', 'stretch');
+  qspCall(s, 'pain', '6', 'nipples', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pinchboundtits.mp4');
@@ -977,9 +977,9 @@ function enterSection1TitsHangTits(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
-  qspCall(s, 'pain', '', 8, 'breasts', 'stretch');
-  qspCall(s, 'pain', '', 6, 'chest', 'stretch');
-  qspCall(s, 'pain', '', 6, 'ribs', 'bind');
+  qspCall(s, 'pain', '8', 'breasts', 'stretch');
+  qspCall(s, 'pain', '6', 'chest', 'stretch');
+  qspCall(s, 'pain', '6', 'ribs', 'bind');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/hangbytits.mp4');
@@ -1043,8 +1043,8 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
           }
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 4) {
-            qspCall(s, 'pain', '', 8, 'nipples', 'pierce');
-            qspCall(s, 'pain', '', 7, 'breasts', 'pierce');
+            qspCall(s, 'pain', '8', 'nipples', 'pierce');
+            qspCall(s, 'pain', '7', 'breasts', 'pierce');
             qspCall(s, 'stat', '');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
             scene.img('images/locations/shared/brothel/needlesintits.mp4');
@@ -1065,10 +1065,10 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
             ]);
           } else {
             if (String((s as any).locArgs?.[1] ?? '') === 5) {
-              qspCall(s, 'pain', '', 9, 'breasts', 'pierce');
-              qspCall(s, 'pain', '', 9, 'nails', 'pierce');
-              qspCall(s, 'pain', '', 6, 'chest', 'pierce');
-              qspCall(s, 'pain', '', 5, 'hair', 'stretch');
+              qspCall(s, 'pain', '9', 'breasts', 'pierce');
+              qspCall(s, 'pain', '9', 'nails', 'pierce');
+              qspCall(s, 'pain', '6', 'chest', 'pierce');
+              qspCall(s, 'pain', '5', 'hair', 'stretch');
               qspCall(s, 'stat', '');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
               scene.img('images/locations/shared/brothel/nailtits.mp4');
@@ -1084,7 +1084,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
               ]);
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === 6) {
-                qspCall(s, 'pain', '', 9, 'breasts', 'pierce');
+                qspCall(s, 'pain', '9', 'breasts', 'pierce');
                 qspCall(s, 'stat', '');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                 scene.img('images/locations/shared/brothel/nailedbytitstotheground.jpg');
@@ -1105,7 +1105,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                   } else {
                     if ((!((s as any).caneFeetCount ?? 0))) {
                       (s as any).caneFeetCount = ((s as any).caneFeetCount ?? 0) + (1);
-                      qspCall(s, 'pain', '', 6, 'feet', 'spank');
+                      qspCall(s, 'pain', '6', 'feet', 'spank');
                       qspCall(s, 'stat', '');
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                       scene.img('images/locations/shared/brothel/canefeet.mp4');
@@ -1119,10 +1119,10 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                       ]);
                     } else {
                       (s as any).caneFeetCount = ((s as any).caneFeetCount ?? 0) + (1);
-                      qspCall(s, 'pain', '', 8, 'feet', 'spank');
-                      qspCall(s, 'pain', '', 6, 'ankles', 'spank');
-                      qspCall(s, 'pain', '', 5, 'legR', 'spank');
-                      qspCall(s, 'pain', '', 5, 'legL', 'spank');
+                      qspCall(s, 'pain', '8', 'feet', 'spank');
+                      qspCall(s, 'pain', '6', 'ankles', 'spank');
+                      qspCall(s, 'pain', '5', 'legR', 'spank');
+                      qspCall(s, 'pain', '5', 'legL', 'spank');
                       qspCall(s, 'stat', '');
                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                       scene.img('images/locations/shared/brothel/canefeet.mp4');
@@ -1228,7 +1228,7 @@ function enterSection1TiedMain(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TiedLieBack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'pain', '', 3, 'neck', 'choke');
+  qspCall(s, 'pain', '3', 'neck', 'choke');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/onbackkneeshigh.jpg');
@@ -1250,9 +1250,9 @@ function enterSection1TiedOnBack(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'He brings some ropes and wooden sticks. ' + $func('wrap', 'bimbo', '(What does he need those for?)'...
   scene.text('Soon you get to know what for - your titties! Not that he ties you, that would be expected, but he secures your tender tits with the wooden sticks, forcing them to get fuller and fuller…');
   scene.text('You end up bound so securely, that all you can do is stare at him in expectation of what is coming next…');
-  qspCall(s, 'pain', '', 6, 'breasts', 'stretch');
-  qspCall(s, 'pain', '', 4, 'LegR', 'bind');
-  qspCall(s, 'pain', '', 4, 'LegL', 'bind');
+  qspCall(s, 'pain', '6', 'breasts', 'stretch');
+  qspCall(s, 'pain', '4', 'LegR', 'bind');
+  qspCall(s, 'pain', '4', 'LegL', 'bind');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1277,7 +1277,7 @@ function enterSection1TiedMouth(s: GameState, scene: SceneBuilder): void {
   scene.text('You choke, saliva everywhere, but it seems he won\'t stop until you either suffocate or he cums!');
   qspCall(s, 'arousal', 'bj', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 5, 'throat', 'stretch');
+  qspCall(s, 'pain', '5', 'throat', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'humiliation']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1304,8 +1304,8 @@ function enterSection1TiedAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('As if it wasn\'t enough, he slaps your tits every now and then, making the whole experience even more hopeless.');
   qspCall(s, 'arousal', 'anal', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 6, 'asshole', 'stretch');
-  qspCall(s, 'pain', '', 4, 'breasts', 'slap');
+  qspCall(s, 'pain', '6', 'asshole', 'stretch');
+  qspCall(s, 'pain', '4', 'breasts', 'slap');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1330,8 +1330,8 @@ function enterSection1TiedVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('But again you are unable to answer, because he starts to pound you so fast and deep, that every attempt to get a sound out of your mouth is futile.');
   scene.text('You can just helplessly endure the hard fucking he\'s giving you…');
   scene.text('As if it wasn\'t enough, he slaps your tits every now and then, making the whole experience even more hopeless.');
-  qspCall(s, 'pain', '', 6, 'vaginal', 'stretch');
-  qspCall(s, 'pain', '', 4, 'breasts', 'slap');
+  qspCall(s, 'pain', '6', 'vaginal', 'stretch');
+  qspCall(s, 'pain', '4', 'breasts', 'slap');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'vaginal', 10, 'bound', 'sub', 'prostitution', 'humiliation');
@@ -1356,7 +1356,7 @@ function enterSection1TiedTease(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice a large bulge rising from his (still worn) pants.');
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 4, 'nipples', 'stretch');
+  qspCall(s, 'pain', '4', 'nipples', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'humiliation']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1386,8 +1386,8 @@ function enterSection1TiedAnalfisting(s: GameState, scene: SceneBuilder): void {
   scene.text('He turns his fist from side to side, making your thin stomach bulge!');
   qspCall(s, 'arousal', 'anal_fist', 15, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 7, 'asshole', 'stretch');
-  qspCall(s, 'pain', '', 4, 'tummy', 'cramp');
+  qspCall(s, 'pain', '7', 'asshole', 'stretch');
+  qspCall(s, 'pain', '4', 'tummy', 'cramp');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1410,7 +1410,7 @@ function enterSection1TiedVibrate(s: GameState, scene: SceneBuilder): void {
   scene.text('Your fears come true in a few seconds - he takes out a giant vibration device!');
   scene.text('He puts the top of the device right on your exposed pussy lips, spreading them to get right onto your clitoris.');
   scene.text('Then he slowly reaches for the button with a big red ON.');
-  qspCall(s, 'pain', '', 6, 'clitoris', 'stretch');
+  qspCall(s, 'pain', '6', 'clitoris', 'stretch');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).orgasm_or = 'What comes next is too intensive for you, forcing you into an orgasm mixed with pain and loud screams!';
@@ -1430,10 +1430,10 @@ function enterSection1TiedWhip(s: GameState, scene: SceneBuilder): void {
   ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (5);
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'pain', '', 6, 'labia', 'spank');
-  qspCall(s, 'pain', '', 2, 'tummy', 'spank');
-  qspCall(s, 'pain', '', 4, 'clitoris', 'spank');
-  qspCall(s, 'pain', '', 4, 'pubic', 'spank');
+  qspCall(s, 'pain', '6', 'labia', 'spank');
+  qspCall(s, 'pain', '2', 'tummy', 'spank');
+  qspCall(s, 'pain', '4', 'clitoris', 'spank');
+  qspCall(s, 'pain', '4', 'pubic', 'spank');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1540,7 +1540,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
           // TODO-QSP: killvar 'hadOwnanalPlugIn'
-          qspCall(s, 'pain', '', 4, 'pussy', 'stretch');
+          qspCall(s, 'pain', '4', 'pussy', 'stretch');
           qspCall(s, 'stat', '');
         } else {
           scene.img('images/locations/shared/brothel/insertvaginalfrombehind.mp4');
@@ -1569,7 +1569,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
           if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
             scene.text('With a growing sense of horror, you realize that you aren\'t on the shot and have no idea when you last took a birth control pill.');
           }
-          qspCall(s, 'cum_call', '', '', 'Master');
+          qspCall(s, 'cum_call', '', 'Master');
           scene.actions([
             { label: 'Continue', goto: ['brothel_section1', 'section1_end'] },
           ]);
@@ -1610,7 +1610,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
           // TODO-QSP: killvar 'hadOwnanalPlugIn'
-          qspCall(s, 'pain', '', 4, 'anus', 'stretch');
+          qspCall(s, 'pain', '4', 'anus', 'stretch');
           qspCall(s, 'stat', '');
         } else {
           scene.img('images/locations/shared/brothel/fuckanalfrombehind2.mp4');
@@ -1631,7 +1631,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
           // TODO-QSP: killvar 'hadOwnanalPlugIn'
-          qspCall(s, 'pain', '', 7, 'anus', 'stretch');
+          qspCall(s, 'pain', '7', 'anus', 'stretch');
           qspCall(s, 'stat', '');
         } else {
           // TODO-QSP: 'Both your pussy and your anus are well on display… You say to yourself: ' + $func('wrap', 'bimbo', ...
@@ -1671,7 +1671,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
 function enterSection1EndFrontVaginal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'vaginal', 5, 'bound', 'sub', 'prostitution', 'humiliation', 'rough');
-  qspCall(s, 'pain', '', 3, 'cervix', 'ache');
+  qspCall(s, 'pain', '3', 'cervix', 'ache');
   qspCall(s, 'stat', '');
   scene.text('<h3>Playroom</h3>');
   scene.img('images/locations/shared/brothel/cummissionaryvaginal.mp4');
@@ -1680,7 +1680,7 @@ function enterSection1EndFrontVaginal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
     scene.text('With a growing sense of horror, you realize that you aren\'t on the shot and have no idea when you last took a birth control pill.');
   }
-  qspCall(s, 'cum_call', '', '', 'Master');
+  qspCall(s, 'cum_call', '', 'Master');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_end'] },
@@ -1691,7 +1691,7 @@ function enterSection1EndFrontVaginal(s: GameState, scene: SceneBuilder): void {
 function enterSection1EndFrontAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'anal', 5, 'bound', 'sub', 'prostitution', 'humiliation', 'rough');
-  qspCall(s, 'pain', '', 2, 'anus', 'stretch');
+  qspCall(s, 'pain', '2', 'anus', 'stretch');
   qspCall(s, 'stat', '');
   scene.text('<h3>Playroom</h3>');
   scene.img('images/locations/shared/brothel/cummissionaryanal.mp4');
@@ -1708,7 +1708,7 @@ function enterSection1EndFrontAnal(s: GameState, scene: SceneBuilder): void {
 function enterSection1EndMouth(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'bj', 5, 'bound', 'sub', 'prostitution', 'humiliation', 'rough');
-  qspCall(s, 'pain', '', 4, 'throat', 'stretch');
+  qspCall(s, 'pain', '4', 'throat', 'stretch');
   qspCall(s, 'stat', '');
   scene.text('<h3>Playroom</h3>');
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
@@ -1787,7 +1787,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<h3>Playroom</h3>');
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
-    qspCall(s, 'pain', '', 2, 'asscheeks', 'slap');
+    qspCall(s, 'pain', '2', 'asscheeks', 'slap');
     qspCall(s, 'fetish', 'add_exp', 'prostitution');
     if (((s as any).fetishes ?? 0)?.['sub_pref'] < -30  ||  ((s as any).fetishes ?? 0)?.['maso_pref'] < -30) {
       qspCall(s, 'mood', 'lower_disposition', 'tiny');
@@ -1813,7 +1813,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
         (s as any).analPlugIn = 0;
         (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
         // TODO-QSP: killvar 'hadOwnanalPlugIn'
-        qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
+        qspCall(s, 'pain', '5', 'asshole', 'stretch');
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Yell at him to untie you', goto: ['brothel_section1', 'section1_end', '2'] },
@@ -1848,7 +1848,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
           // TODO-QSP: killvar 'hadOwnanalPlugIn'
-          qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
+          qspCall(s, 'pain', '5', 'asshole', 'stretch');
           qspCall(s, 'stat', '');
           qspCall(s, 'arousal', 'end');
           scene.actions([

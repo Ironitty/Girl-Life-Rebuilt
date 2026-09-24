@@ -50,7 +50,7 @@ function enterGetBlockingEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_block_idx = 0;
   // TODO-QSP: :build_blocking_list
   if (((s as any).temp_block_idx ?? 0) < Object.keys((s as any).events_list ?? {}).length) {
-    (s as any).temp_block_id = ((s as any).events_list ?? 0)?.[String((s as any).temp_block_idx ?? 0)];
+    (s as any).temp_block_id = (((s as any).events_list ?? 0)?.[String((s as any).temp_block_idx ?? 0)] ?? 0);
     if (((s as any).temp_block_id ?? 0) !== ''  &&  ((s as any).event_blocking ?? 0)?.[String((s as any).temp_block_id ?? 0)] !== 0) {
       // TODO-QSP: $blocking_events_list[] = $temp_block_id
     }
@@ -64,7 +64,7 @@ function enterGetBlockingEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsDayHoliday(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+  qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = 0;
   if (((s as any).dateVars ?? 0)?.['month'] === 1  &&  ((s as any).dateVars ?? 0)?.['day'] >= 1  &&  ((s as any).dateVars ?? 0)?.['day'] <= 8) {
     (s as any).result = 1;
@@ -118,10 +118,10 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).event_vars ?? 0)?.['recur'] !== ''  &&  (((s as any).event_vars ?? 0)?.['recur_end'] === 0  ||  ((s as any).event_vars ?? 0)?.['recur_end'] >= String((s as any).locArgs?.[2] ?? ''))) {
     if (((s as any).event_vars ?? 0)?.['recur'] === 'yearly') {
-      // TODO-QSP: gs 'time', 'to_date', ARGS[2]
+      qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
       (s as any).temp_month_1 = ((s as any).dateVars ?? 0)?.['month'];
       (s as any).temp_day_1 = ((s as any).dateVars ?? 0)?.['day'];
-      // TODO-QSP: gs 'time', 'to_date', event_vars['daystart']
+      qspCall(s, 'time', 'to_date', ((s as any).event_vars ?? 0)?.['daystart']);
       (s as any).temp_month_2 = ((s as any).dateVars ?? 0)?.['month'];
       (s as any).temp_day_2 = ((s as any).dateVars ?? 0)?.['day'];
       if (((s as any).temp_month_1 ?? 0) === ((s as any).temp_month_2 ?? 0)  &&  ((s as any).temp_day_1 ?? 0) === ((s as any).temp_day_2 ?? 0)) {
@@ -129,7 +129,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if ((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
-        // TODO-QSP: gs 'time', 'to_date', ARGS[2]
+        qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
         (s as any).temp_check_month = ((s as any).dateVars ?? 0)?.['month'];
         (s as any).temp_check_day = ((s as any).dateVars ?? 0)?.['day'];
         (s as any).temp_check_mmdd = ((s as any).temp_check_month ?? 0) * 100 + ((s as any).temp_check_day ?? 0);
@@ -146,7 +146,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if ((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
-          // TODO-QSP: gs 'time', 'to_date', ARGS[2]
+          qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
           if (((s as any).dateVars ?? 0)?.['week'] === parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((11)-1, ((11)-1)+(1))))) {
             if ((((s as any).dateVars ?? 0)?.['day'] - 1) / 7 + 1 === parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((9)-1, ((9)-1)+(1))))) {
               (s as any).result = 1;
@@ -154,9 +154,9 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).event_vars ?? 0)?.['recur'] === 'monthly') {
-            // TODO-QSP: gs 'time', 'to_date', ARGS[2]
+            qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[2] ?? 0));
             (s as any).temp_month_day_1 = ((s as any).dateVars ?? 0)?.['day'];
-            // TODO-QSP: gs 'time', 'to_date', event_vars['daystart']
+            qspCall(s, 'time', 'to_date', ((s as any).event_vars ?? 0)?.['daystart']);
             (s as any).temp_month_day_2 = ((s as any).dateVars ?? 0)?.['day'];
             if (((s as any).temp_month_day_1 ?? 0) === ((s as any).temp_month_day_2 ?? 0)) {
               (s as any).result = 1;
@@ -236,7 +236,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
         if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
           (s as any).temp_N = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((9)-1, ((9)-1)+(1))));
           (s as any).temp_W = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((11)-1, ((11)-1)+(1))));
-          // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+          qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
           (s as any).temp_month = (((s as any).dateVars ?? {})?.['month'] ?? 0) + 1;
           (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
           if (((s as any).temp_month ?? 0) > 12) {
@@ -244,13 +244,13 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
             (s as any).temp_year = ((s as any).temp_year ?? 0) + (1);
           }
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), 1);
-          // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
+          qspCall(s, 'time', 'to_date', ((s as any).dateVars ?? 0)?.['daystart']);
           (s as any).temp_day = 1 + ((((s as any).temp_W ?? 0) - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + (((s as any).temp_N ?? 0) - 1) * 7;
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
           (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
         } else {
           if (((s as any).new_ev ?? 0)?.['recur'] === 'monthly') {
-            // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+            qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
             (s as any).temp_day = ((s as any).dateVars ?? 0)?.['day'];
             (s as any).temp_month = ((s as any).dateVars ?? 0)?.['month'];
             (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
@@ -263,7 +263,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
             (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
           } else {
             if (((s as any).new_ev ?? 0)?.['recur'] === 'yearly') {
-              // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+              qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
               (s as any).temp_day = ((s as any).dateVars ?? 0)?.['day'];
               (s as any).temp_month = ((s as any).dateVars ?? 0)?.['month'];
               (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
@@ -272,7 +272,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
               (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
             } else {
               if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
-                // TODO-QSP: gs 'time', 'to_date', ARGS[1]
+                qspCall(s, 'time', 'to_date', ((s as any).locArgs?.[1] ?? 0));
                 (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
                 (s as any).temp_start_mmdd = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((8)-1, ((8)-1)+(4))));
                 (s as any).temp_end_mmdd = parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((13)-1, ((13)-1)+(4))));
@@ -466,7 +466,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   (s as any).new_last = ((s as any).new_day ?? 0);
   (s as any).temp_i = 0;
   // TODO-QSP: :loop_existing_events
-  (s as any).temp_event_id = ((s as any).blocking_events_list ?? 0)?.[String((s as any).temp_i ?? 0)];
+  (s as any).temp_event_id = (((s as any).blocking_events_list ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
   if (((s as any).temp_event_id ?? 0) !== ''  &&  ((s as any).temp_event_id ?? 0) !== ((s as any).new_ev ?? 0)?.['id']) {
     if (((s as any).new_ev ?? 0)?.['exclude_prefix'] === ''  ||  ((String(((s as any).temp_event_id ?? 0)).indexOf(String(((s as any).new_ev ?? 0)?.['exclude_prefix']))) + 1) !== 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -571,25 +571,25 @@ function enterRemoveEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterGetEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).event_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = ((s as any).event_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = ((s as any).event_desc ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = ((s as any).event_daystart ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = ((s as any).event_all_day ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = ((s as any).event_color ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = ((s as any).event_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = ((s as any).event_priority ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = ((s as any).event_recur ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = ((s as any).event_recur_end ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = ((s as any).event_holiday ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = ((s as any).event_flex_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = (((s as any).event_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = (((s as any).event_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['desc'] = (((s as any).event_desc ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['daystart'] = (((s as any).event_daystart ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['all_day'] = (((s as any).event_all_day ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = (((s as any).event_color ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['blocking'] = (((s as any).event_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['priority'] = (((s as any).event_priority ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur'] = (((s as any).event_recur ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['recur_end'] = (((s as any).event_recur_end ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['holiday'] = (((s as any).event_holiday ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+  ((s as any).event_vars = (s as any).event_vars ?? {})['flex_type'] = (((s as any).event_flex_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   if (((s as any).event_flex_type ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 1) {
-    ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = ((s as any).event_window_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = ((s as any).event_window_end_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars = (s as any).event_vars ?? {})['window_start_ts'] = (((s as any).event_window_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['window_end_ts'] = (((s as any).event_window_end_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   } else {
-    ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = ((s as any).event_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars = (s as any).event_vars ?? {})['start_ts'] = (((s as any).event_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
+    ((s as any).event_vars = (s as any).event_vars ?? {})['duration_ts'] = (((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   }
   return;
   // TODO-QSP: end

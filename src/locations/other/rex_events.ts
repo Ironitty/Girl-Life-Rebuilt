@@ -737,7 +737,7 @@ function enterRexCarEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Home', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_residential', ''] },
   ]);
   scene.build();
@@ -973,7 +973,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want to send a reply and after a short while, once you are convinced that Rex won\'t send any more messages, you place the phone back in its spot.');
     scene.actions([
       { label: 'Put the phone on the spot', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['bedrPar', ''] },
     ]);
   } },
@@ -981,7 +981,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want to send a reply and after a short while, once you are convinced that Rex won\'t send any more messages, you place the phone back in its spot.');
     scene.actions([
       { label: 'Put the phone away', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['bedrPar', ''] },
     ]);
   } },
@@ -991,7 +991,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Put the phone away', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['bedrPar', ''] },
       ]);
     }
@@ -999,7 +999,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Put the phone away', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['bedrPar', ''] },
     ]);
   } },

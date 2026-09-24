@@ -16,7 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).lost_girl ?? 0) === 1) {
     if (((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1  &&  (Math.floor(Math.random() * (30 - ((s as any).forest_lostday ?? 0) - ((s as any).daystart ?? 0) + 1)) + (((s as any).forest_lostday ?? 0) - ((s as any).daystart ?? 0))) >= 30  &&  ((s as any).DayStage ?? 0) === 2) {
-      // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'gad_swamp_yard'
+      qspGoto(s, 'gad_forest_lost', 'rescue', 'ranger', 'gad_swamp_yard');
     }
   }
   scene.text('<center><b>The yard in front of the hut</b></center>');
@@ -151,14 +151,14 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
       if (((s as any).boletus ?? 0) > 0  &&  (!((s as any).mushroom_soup ?? 0))) {
         scene.actions([
           { label: 'Cook some mushroom soup (0:30)', handler: (st: GameState) => {
-    qspCall(st, 'hunter_favors', 'mushroom_soup');
+    qspCall(st, 'hunter_favors', '');
   } },
         ]);
       }
       if (((s as any).raw_meat ?? 0) > 0  &&  (!((s as any).meat_stew ?? 0))) {
         scene.actions([
           { label: 'Cook some meat stew (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'hunter_favors', 'meat_stew');
+    qspCall(st, 'hunter_favors', '');
   } },
         ]);
       }
@@ -415,7 +415,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       if ((!(Math.floor(Math.random() * 10) + 0))) {
-        // TODO-QSP: gt 'gad_swamp', 'start' else gt 'gad_swamp', 'stuck'
+        qspGoto(s, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
       }
     } else {
       // TODO-QSP: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/handshelp.jpg"></center>' & !! in...
@@ -428,7 +428,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
         { label: 'Ignore him and keep going', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      // TODO-QSP: gt 'gad_swamp', 'start' else gt 'gad_swamp', 'stuck'
+      qspGoto(st, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
     }
   } },
       ]);
@@ -436,7 +436,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21)  ||  (Math.floor(Math.random() * 10) + 0) < 3) {
-      // TODO-QSP: gt 'gad_swamp', 'start' else gt 'gad_swamp', 'stuck'
+      qspGoto(s, 'gad_swamp', 'start\' else gt \'gad_swamp', 'stuck');
     }
   }
   // TODO-QSP: end

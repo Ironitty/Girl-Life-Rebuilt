@@ -33,10 +33,10 @@ function enterAnushkaStudy(s: GameState, scene: SceneBuilder): void {
 
 function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A84', 'adore');
-  qspCall(s, 'npcgeneratec', '', 0, 'Black Guy', (Math.floor(Math.random() * 5) + 18), 2, 1, 'like');
+  qspCall(s, 'npcgeneratec', '0', 'Black Guy', (Math.floor(Math.random() * 5) + 18), 2, 1, 'like');
   qspCall(s, 'npcgeneratec', 'gen_dick', 'gigantic');
   qspCall(s, 'npcgeneratec', 'set_dick', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'npcStat', 'A84', 'a');
   ((s as any).kendraQW = (s as any).kendraQW ?? {})['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_kneel.jpg');

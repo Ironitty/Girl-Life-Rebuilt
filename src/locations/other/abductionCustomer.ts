@@ -1409,11 +1409,11 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).buyout ?? 0) === 1) {
-    qspCall(s, 'npcgeneratec', '', 0, ((s as any).bName ?? 0), (Math.floor(Math.random() * 17) + 18));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', ((s as any).bName ?? 0), (Math.floor(Math.random() * 17) + 18));
+    qspCall(s, 'boyStat', '$npclastgenerated');
   } else {
-    qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 17) + 18));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'customer', (Math.floor(Math.random() * 17) + 18));
+    qspCall(s, 'boyStat', '$npclastgenerated');
   }
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   (s as any).cumnostd = 1;

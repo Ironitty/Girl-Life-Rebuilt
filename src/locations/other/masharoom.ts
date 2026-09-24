@@ -351,8 +351,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Call him', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Unknown peeper', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Unknown peeper', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/characters/city/masha/sex/r5.jpg');
     scene.text('"Hey, you want to come have a lick?" you asked looking at the door. It was quiet for a few seconds, but soon the door creaked, it was a nerdy college boy, he stood on the verge of not knowing what to do.');
     scene.text('"Well do you want to lick my pussy or would you rather stand there and just watch? As a bonus if you lick me really good, I will jerk you off." you said, looking at him with a satisfied smile.');
@@ -372,7 +372,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Feeling a bit frustrated you tell him. "Just fuck me already." At those words he hastily takes off his pants and wastes no time at all. His cock went straight to and into your pussy. At least he seems to know the correct hole to fuck you in. You are just starting to enjoy it, when he grunts and starts cumming inside of you. Two pump chump indeed. "For fucks sake, are you really are worthless at pleasing a girl, get the fuck out." He grabs his pants and runs out with out even putting them back on.');
     qspCall(st, 'arousal', 'vaginal', 10, 'dom');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', 'Unknown peeper');
+    qspCall(st, 'cum_call', '', 'Unknown peeper');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['masharoom', 'start'] },
@@ -413,7 +413,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', 10, 'dom');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'cum_call', 'labia', 'Unknown peeper');
-    qspCall(st, 'cum_call', '', '', 'Unknown peeper');
+    qspCall(st, 'cum_call', '', 'Unknown peeper');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['masharoom', 'start'] },
@@ -461,8 +461,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 
 function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown dom', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown dom', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/characters/city/masha/sex/r20.jpg');
   scene.text('Trying another outfit with leather hand cuffs you click them into place and together and you hear them click. You thought they just snapped and unsnapped together but as you try and pull the fasteners apart they won\'t unclick. You frantically began trying to break free so you didn\'t notice the man walking in as you were trying to undo the cuffs, only when he clipped the leash on the collar you were wearing. At first you were happy, thinking Masha had returned, but as you turn around you see he has a hard look in his eye and holding a wooden paddle in his hand. "I see you got all dressed up and ready for me, now let\'s play." He says in a menacing tone.');
   scene.text('"Please help me take this off." showing him your cuffed hands as you beg him to take them off. "Shut up bitch, a slave should not speak without permission of the owner, get on your knees and open your mouth, quickly." he shouted.');

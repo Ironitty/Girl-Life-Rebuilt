@@ -138,7 +138,7 @@ function enterBuyfood_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t have enough money.');
   } else {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) + (((s as any).portion ?? 0));
-    // TODO-QSP: gs 'money', 'pay', portion * 50
+    qspCall(s, 'money', 'pay', ((s as any).portion ?? 0) * 50);
     scene.text('You paid cash for the food.');
   }
   // TODO-QSP: end
@@ -172,7 +172,7 @@ function enterBuyfood2_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t have enough money.');
   } else {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) + (((s as any).portion ?? 0));
-    // TODO-QSP: gs 'money', 'pay', portion * 250
+    qspCall(s, 'money', 'pay', ((s as any).portion ?? 0) * 250);
     scene.img('images/locations/pushkin/cafe/larek.jpg');
     scene.text('You paid cash for the food.');
   }

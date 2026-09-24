@@ -274,7 +274,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/pavlovsk/school/events/schoolhall_break.jpg');
     // TODO-QSP: 'As you walk through the hallways, a hand suddenly swoops in, giving you a hard swat on the ass.'+ii...
-    qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(s, 'pain', '2', 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
     if (((s as any).PCloSkirt ?? 0) > 0) {
       qspCall(s, 'willpower', 'exhib', 'self');
@@ -878,7 +878,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (2);
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (3);
-    qspCall(st, 'pain', '', 4, 'cheeks', 'slap');
+    qspCall(st, 'pain', '4', 'cheeks', 'slap');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     if (((st as any).mesec ?? 0) > 0) {
       scene.text('It\'s bad enough he did it, but it\'s worse because you\'re on your period. "You fucking pervert!" you shout angrily and slap him across the face as hard as you can. You shake the stinging out of your hand while he clutches his cheek in agony, the outline of your hand clearly visible. That\'s going to leave a bruise.');
@@ -1733,7 +1733,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ignore what\'s happening and leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_grounds', 'main'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/afterschool/strip4.jpg');
@@ -1766,7 +1766,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ignore what\'s happening and leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_grounds', 'main'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/afterschool/strip5.jpg');
@@ -2279,7 +2279,7 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
 function enterRandBoyArg(s: GameState, scene: SceneBuilder): void {
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_boy = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+    (s as any).rand_boy = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
   } else {
     (s as any).rand_boy = 'boy you don\'t know';
   }
@@ -2291,7 +2291,7 @@ function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rnd_boy1_loop
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_boy1 = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+    (s as any).rand_boy1 = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
     if (((s as any).rand_boy ?? 0) === ((s as any).rand_boy1 ?? 0)) {
       // TODO-QSP: jump 'rnd_boy1_loop'
     }
@@ -2305,7 +2305,7 @@ function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
 function enterRandGirlArg(s: GameState, scene: SceneBuilder): void {
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_girl = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+    (s as any).rand_girl = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
   } else {
     (s as any).rand_girl = 'girl you don\'t know';
   }
@@ -2317,7 +2317,7 @@ function enterRandGirlArg1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :rnd_girl1_loop
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_girl1 = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+    (s as any).rand_girl1 = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
     if (((s as any).rand_girl ?? 0) === ((s as any).rand_girl1 ?? 0)) {
       // TODO-QSP: jump 'rnd_girl1_loop'
     }
@@ -2331,7 +2331,7 @@ function enterRandGirlArg1(s: GameState, scene: SceneBuilder): void {
 function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_teacher = ((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)];
+    (s as any).rand_teacher = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
   } else {
     (s as any).rand_teacher = 'Tsarev';
   }
@@ -2343,7 +2343,7 @@ function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
 function enterRandomPers(s: GameState, scene: SceneBuilder): void {
   (s as any).tmpArrIdx = 0;
   // TODO-QSP: :rand_pers_fill_loop
-  (s as any).school_static_num = ((s as any).school_static_num ?? 0)?.[String((s as any).tmpArrIdx ?? 0)];
+  (s as any).school_static_num = (((s as any).school_static_num ?? 0)?.[String((s as any).tmpArrIdx ?? 0)] ?? 0);
   if (((s as any).schoolenable ?? 0)?.[String((s as any).school_static_num ?? 0)] === 1  &&  (String((s as any).locArgs?.[1] ?? '') === -1  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[1] ?? ''))  &&  (((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[2] ?? '')  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[3] ?? '')*2  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[4] ?? '')*3  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[5] ?? '')*4  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[6] ?? '')*5  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[7] ?? '')*6)) {
     // TODO-QSP: $tmpCandidateArr[] = $school_static_num
   }

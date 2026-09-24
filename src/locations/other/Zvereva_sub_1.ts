@@ -51,7 +51,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'mood', 'lower', 'small');
-    qspCall(st, 'pain', '', 1, 'labia', 'kick');
+    qspCall(st, 'pain', '1', 'labia', 'kick');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/christina/beach/onall4s.jpg');
     scene.text('You reluctantly nod your head and meekly agree. "Okay…"');
@@ -106,7 +106,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'mood', 'lower', 'small');
-    qspCall(st, 'pain', '', 1, 'labia', 'kick');
+    qspCall(st, 'pain', '1', 'labia', 'kick');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/christina/beach/onall4s.jpg');
     scene.text('You reluctantly nod your head and meekly agree. "Okay…"');
@@ -173,7 +173,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'mood', 'lower', 'small');
-    qspCall(st, 'pain', '', 1, 'labia', 'kick');
+    qspCall(st, 'pain', '1', 'labia', 'kick');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/christina/beach/onall4s.jpg');
     scene.text('You reluctantly nod your head and meekly agree. "Okay…"');
@@ -228,7 +228,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'mood', 'lower', 'small');
-    qspCall(st, 'pain', '', 1, 'labia', 'kick');
+    qspCall(st, 'pain', '1', 'labia', 'kick');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/christina/beach/onall4s.jpg');
     scene.text('You reluctantly nod your head and meekly agree. "Okay…"');
@@ -650,8 +650,8 @@ function enter6(s: GameState, scene: SceneBuilder): void {
       scene.text('"Good bitch. Now show us what you can do with it".');
       scene.text('You nod obediently and stick the dildo onto the tiled floor. Then you squat over it, guiding its head to your snatch. You sink yourself down on it until it\'s mostly inside you, and begin to ride it. The other girls watch you intently as you slowly increase the tempo… you can see one or two of them squirming in their seats.');
       if (((st as any).pcs_horny ?? 0) >= 100) {
-        qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-        qspCall(st, 'pain', '', 2, 'face', 'slap');
+        qspCall(st, 'pain', '2', 'nipples', 'pinch');
+        qspCall(st, 'pain', '2', 'face', 'slap');
         scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "Bad bitch! Whores don\'t get to cum on my dildo!"');
       }
       scene.text('After a few minutes, Christina tells you to stop and wash the dildo before handing it back to her. With your tongue. You quickly lick your juices off and hand it back, and she then allows you to get changed. Some girls avoid your gaze, the blush on their faces telling you that they definitely enjoyed today\'s show.');
@@ -679,8 +679,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     scene.text('Ride it… hmm. After you take a second to see how you could best approach this, Christina slaps your ass with a towel. "Today, bitch."');
     scene.text('Okay, okay. You turn your back towards the dildo, letting it rest in your ass crack before you bend over. One of the other girls quickly moves a bench over for you to rest your hands on, and you give her a grateful smile as you bend over further and guide the dildo into your pussy. You can feel your pussy getting wetter and wetter from the sensations, and within minutes the showers are filled with the squishy sound of your pussy getting filled by the dildo over and over.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "Bad bitch! Whores don\'t get to cum on my dildo!"');
     }
     scene.text('After a few minutes, Christina tells you to stop and to wash the dildo before giving it back to her. With your tongue. You quickly lick your juices off and hand it back, and then you\'re allowed to get changed.');
@@ -703,8 +703,8 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj14.jpg');
     scene.text('You try to hide your smile. You have gotten used to the idea that this is how gym class will be from now on, and today\'s assignment looks like it could even be fun. You stand directly over the dildo before you squat down and guide it inside you. You begin slowly, but soon enough you pick up the pace and need to support your weight with your arms as you grind your hips down on it.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "You know the rules, bitch! Whores don\'t get to cum on my dildo!"');
     }
     scene.text('You ride the dildo as Christina gets ready for her shower, and you close your eyes and pretend there aren\'t a dozen girls watching while you continue your task. Christina notices and puts a halt to that. "Eyes open, bitch. I want you to look everyone in the eye when you ride it."');
@@ -728,10 +728,10 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj15.jpg');
     scene.text('You sit down in front of the dildo and raise your hips to lower yourself down on it. Not fast enough for Christina\'s tastes however, and she slaps your inner thigh with a towel. "Faster, bitch! We all have other places to be today!"');
     scene.text('The other girls giggle as you slam your hips down on the rubber dong, and ride it. Christina instructs you to keep your legs spread while you ride the dildo, and keeps slapping you with her towel as you move your hips up and down. Your yelps of pain whenever the towel lands on your thighs put an evil grin on her face.');
-    qspCall(st, 'pain', '', 2, 'thigh', 'slap');
+    qspCall(st, 'pain', '2', 'thigh', 'slap');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says: "You know the rules, bitch! Whores don\'t get to cum on my dildo!"');
     }
     scene.text('After a while, Christina stops whipping you with her towel and begins to get ready for her shower. As you try to move up she snarks "I didn\'t say you could stop, bitch. Keep going!" You mumble an apology and keep riding it until she finally says you can stop. You gently rub your thighs as you give her the dildo back, after licking it clean as always.');
@@ -754,8 +754,8 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj16.jpg');
     scene.text('Several of the girls walk towards the dong and spit on it, and you gratefully nod at them as you spread the saliva over it with your fingers, adding some of your own. Then you squat directly over the dildo and slowly rub it against your pussy lips. You can feel your snatch being stretched to its limits when you lower yourself down on it, and when you begin to move your hips you feel your pussy lips gripping the dildo tightly.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "You know the rules, bitch! Whores don\'t get to cum on my dildo!"');
     }
     // TODO-QSP: dynamic text: Christina spends some time watching you, and asks the girls if they have any mor...
@@ -780,8 +780,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj17.jpg');
     scene.text('You accept the brush obediently and lie down on the ground, spreading your legs. You poke the handle between your legs and slowly spread your pussy lips with it before pushing it in. It doesn\'t quite feel as good as the dildos Christina usually has for you, and is not quite as big either. Nevertheless, the sloshing of your pussy is quite audible in the locker room while the girls in your class are changing or stripping for their showers. You do notice one of them glancing at her hairbrush with a dreamy look in her eyes.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and moan softly. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "The rules didn\'t change, bitch! Just because you don\'t have a dildo today doesn\'t mean you can cum all over my brush!"');
     }
     scene.text('After a few minutes Christina yanks her brush out of you and, noticing how wet the handle is, wipes it on your clothes leaving several wet strains on them. Then she holds it to your mouth with an expectant look on her face. You obediently open your mouth and take it in, sucking and licking the handle clean. After giving it an affirmatory sniff, she slips it back in her bag and heads into the showers without saying a word.');
@@ -804,8 +804,8 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     scene.text('Knowing she expects a show, you lean back against the wall with your legs spread wide. You rub your fingers over your pussy lips, and then begin to slide your fingers in, one by one, with a questioning look in your eyes. At three, Christina says "Stop. Three will do for today, bitch. Start fucking yourself with them."');
     scene.text('You slowly move your hand, and can\'t help but moan when you feel your pussy grasping around your fingers.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('When you are close to reaching orgasm, you close your eyes and try to hide it from Christina. Suddenly you feel a sharp pain in your nipples! It\'s Christina, pinching them hard. She slaps you in the face and says "Nice try, bitch. You know the rules… do that again and I\'ll have to punish you."');
     }
     scene.text('As you pick up the tempo your moans grow louder, and you can tell that your show is having an impact on more than a few girls in the room. Christina notices you looking and says "Not today, bitch. Maybe I\'ll allow one of them to play with you some day."');
@@ -830,8 +830,8 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/sex/christina/dildobj19,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('You nod and get comfortable, before squeezing your fingers together tightly. Several girls spit on your fingers for you and you push them against your vagina, slowly rotating your wrist as you work them in deeper and deeper. Taking deep breaths, you eventually manage to get your entire hand inside your snatch.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       // TODO-QSP: dynamic text: When you are close to reaching orgasm, you close your eyes and try to hide it fr...
       scene.text(`When you are close to reaching orgasm, you close your eyes and try to hide it from Christina. Suddenly you feel a sharp pain in your nipples! It's Christina, pinching them hard. She slaps you in the face and says "Orgasming on your own fist… you're such a nasty whore, ${((st as any).pcs_nickname ?? '')}. Good thing I was there to stop you."`);
     }
@@ -860,8 +860,8 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/school/gym/sex/christina/dildobj20,` + (Math.floor(Math.random() * 2) + 0) + '.jpg"></center>');
     scene.text('It\'s been so long, you barely even remember why you\'re doing this any more. Obeying Christina in front of the other girls after gym class has become your second nature, it\'s just part of your daily duties… and you wouldn\'t have it any other way. You quickly drop to your knees and crawl your way over to her, sexily waving your ass back and forth to the girls behind you. When you arrive at Christina\'s feet, you rise up and obediently run your tongue over her folds, tasting her sweet juices as you begin to lick away at her snatch.');
     if (((st as any).pcs_horny ?? 0) >= 100) {
-      qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-      qspCall(st, 'pain', '', 2, 'face', 'slap');
+      qspCall(st, 'pain', '2', 'nipples', 'pinch');
+      qspCall(st, 'pain', '2', 'face', 'slap');
       scene.text('While you do your best to give Christina a good licking, you feel your own orgasm encroaching upon you as well. Just when it\'s about to hit, Christina yanks your head back by the hair and slaps your face. She pinches your nipples hard for good measure and as you feel your arousal drop, she snarks "You\'re supposed to be focused on me, bitch. Don\'t make me remind you."');
     }
     scene.text('As you happily grind your face into Christina\'s pussy, you don\'t even notice the enthusiastic cheers of the other girls anymore. After you find her clit and give it a few good licks, Christina\'s body begins to shiver and a few drops of squirt land on your face as she orgasms, moaning loudly.');
@@ -919,7 +919,7 @@ function enterWs_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'Zvereva_sub_1', 'finished');
+    qspCall(st, 'Zvereva_sub_1', '');
   } },
     ]);
   } },

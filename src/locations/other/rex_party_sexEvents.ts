@@ -255,10 +255,10 @@ function enterIraFunBoys(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   scene.text('<center><b>Ira and Lena</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_7_4.jpg');
   scene.text('The three guys each pull one of you into the bathroom, they quickly help you girls finish getting undressed until your all naked. Once you are all completely naked the guys crowd around you in a circle and pull their dicks out of pants and begin stroking them, looking at you expectantly.');
@@ -298,7 +298,7 @@ function enterIraBoysFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Ira and Lena</b></center>');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_6_5.jpg');
     scene.text('As Lena, Ira, and you lay on the bed side by side, the two boys jerk themselves off to finish. Spraying all three of your naked bodies with their spunk. As the boys get dressed and leave, the three of you kiss and lick the sperm off each other\'s bodies until you get too tired and fall asleep in a tangle.');
-    qspCall(st, 'cum_cleanup', '', 14);
+    qspCall(st, 'cum_cleanup', '14');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Fall asleep', goto: ['rex_party_smallEvents', 'sleep'] },
@@ -728,8 +728,8 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).rex_love ?? 0))) {
     scene.actions([
       { label: 'Kiss it and make it better', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'The DJ at Rex\'s Party', (Math.floor(Math.random() * 6) + 17));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'The DJ at Rex\'s Party', (Math.floor(Math.random() * 6) + 17));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy_5.jpg');
     scene.text('You decide to make amends to the guy and kiss the head of his cock.');
     // TODO-QSP: dynamic text: You find you don''t want to stop and passionately start sucking his <<dick>>cm <...
@@ -774,10 +774,10 @@ function enterToiletBoysBj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     qspCall(st, 'arousal', 'hj', 5, ((st as any).npcID ?? 0), 'group', 'gangbang');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'group', 'gangbang');
     (st as any).guy = ((st as any).guy ?? 0) + (3);
@@ -868,18 +868,18 @@ function enterGirlOrgy(s: GameState, scene: SceneBuilder): void {
 
 function enterOrgy(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).rex_love ?? 0))) {
-    qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+    qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(s, 'npcStat', '$npclastgenerated');
+    qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   } else {
     qspCall(s, 'npcStat', 'A57');
-    qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+    qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+    qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_19.jpg');
@@ -913,7 +913,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0));
     qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
     qspCall(st, 'cum_call', 'clothes', ((st as any).npcID2 ?? 0));
-    qspCall(st, 'cuminsidereact', '', ((st as any).npcdesc ?? 0));
+    qspCall(st, 'cuminsidereact', '$npcdesc');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fall asleep', handler: (st: GameState) => {
@@ -945,12 +945,12 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c');
   (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_4.mp4');
@@ -1018,39 +1018,39 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_cumloc[12] = 'hair'
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID1 ?? 0));
-    // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1
+    qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID1 ?? 0));
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).i2 = 1;
     }
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID1 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID2 ?? 0));
-    // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2
+    qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID2 ?? 0));
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).i2 = 1;
     }
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID2 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
     }
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID3 ?? 0));
-    // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3
+    qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID3 ?? 0));
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).i2 = 1;
     }
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID3 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
@@ -1100,19 +1100,19 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID1 ?? 0), 0, 0, 20);
     }
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID2 ?? 0));
     qspCall(st, 'cum_call', 'vagina', ((st as any).npcID2 ?? 0));
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID2 ?? 0), 0, 0, 20);
     }
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID3 ?? 0));
     qspCall(st, 'cum_call', 'back', ((st as any).npcID3 ?? 0));
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (st as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID3 ?? 0), 0, 0, 20);
     }
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_10.jpg');
     // TODO-QSP: dynamic text: The guys a very drunk and soon begin to focus on your pussy and ass, fucking you...
@@ -1160,34 +1160,34 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID1 ?? 0));
     if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID1 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
     }
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID2 ?? 0));
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-    // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
+    qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID2 ?? 0), 0, 0, 0, 20);
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).i2 = 1;
     }
     if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID2 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
     }
-    qspCall(st, 'npcStat', '', ((st as any).npcID3 ?? 0));
+    qspCall(st, 'npcStat', '$npcID3');
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID3 ?? 0));
     (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-    // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
+    qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID3 ?? 0), 0, 0, 0, 20);
     if ((!((st as any).temp_rand ?? 0))) {
       (st as any).i2 = 1;
     }
     if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (st as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
-      // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
+      qspCall(st, 'cum_call', '', (((st as any).temp_cumloc ?? 0)?.[String((st as any).temp_rand ?? 0)] ?? 0), ((st as any).npcID3 ?? 0), 0, 0, 0, 20);
       if ((!((st as any).temp_rand ?? 0))) {
         (st as any).i2 = 1;
       }
@@ -1223,12 +1223,12 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGangbangIndoor(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c');
   qspCall(s, 'stat', '');
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_5_${(Math.floor(Math.random() * 7) + 7)}.jpg`);
   scene.text('You fall down on your knees in front of the annoying guys and put your hand on two of their members. Tightening your grip slightly, you cause a faint sigh from one of the boys. You lick their members from the bottom up closing your lips around their heads. You continue taking turns sucking on their dicks without stopping. Your lips slide up and down on each member, exploring every bump and vein on their rock-hard dicks. Greedily you take care of each one, leaving nobody unsatisfied. One of the guys starts to caress your back. He seems ready.');
@@ -1257,17 +1257,17 @@ function enterGangbangIndoor(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take their cum', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npcStat', '', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'npcStat', '$npcID1');
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID1 ?? 0));
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID1 ?? 0), 0, 0, 5);
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 0, 0, 10);
     qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 0, 0, 20);
-    qspCall(st, 'npcStat', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'npcStat', '$npcID2');
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID2 ?? 0));
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID2 ?? 0), 0, 0, 5);
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID2 ?? 0), 0, 0, 10);
     qspCall(st, 'cum_call', 'face', ((st as any).npcID2 ?? 0), 0, 0, 20);
-    qspCall(st, 'npcStat', '', ((st as any).npcID3 ?? 0));
+    qspCall(st, 'npcStat', '$npcID3');
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID3 ?? 0));
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID3 ?? 0), 0, 0, 5);
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID3 ?? 0), 0, 0, 10);
@@ -1324,8 +1324,8 @@ function enterBoobsYes(s: GameState, scene: SceneBuilder): void {
     if ((!((st as any).rex_love ?? 0))) {
       qspCall(st, 'npcStat', 'A57');
     } else {
-      qspCall(st, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Boy from Rex\'s Party', 17);
+      qspCall(st, 'npcStat', '$npclastgenerated');
     }
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     qspCall(st, 'stat', '');
@@ -1380,7 +1380,7 @@ function enterBoysSwalow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).i = 5;
   // TODO-QSP: :dinPartySwalloop
-  qspCall(s, 'npcgeneratec', '', 0, 'a guy from Rex\'s party', (Math.floor(Math.random() * 6) + 17));
+  qspCall(s, 'npcgeneratec', '0', 'a guy from Rex\'s party', (Math.floor(Math.random() * 6) + 17));
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npclastgenerated ?? 0));
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) > 0) {
@@ -1403,7 +1403,7 @@ function enterBoysSpit(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).i = 5;
   // TODO-QSP: :dinPartySpitloop
-  qspCall(s, 'npcgeneratec', '', 0, 'a guy from Rex\'s party', (Math.floor(Math.random() * 6) + 17));
+  qspCall(s, 'npcgeneratec', '0', 'a guy from Rex\'s party', (Math.floor(Math.random() * 6) + 17));
   qspCall(s, 'cum_call', 'mouth', ((s as any).npclastgenerated ?? 0));
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) > 0) {

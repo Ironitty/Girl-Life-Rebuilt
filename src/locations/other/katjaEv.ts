@@ -454,17 +454,17 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
     if (((st as any).hour ?? 0) >= 20) {
       scene.actions([
         { label: 'Accompany Katja back home', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-5));
+    qspCall(st, 'npc_relationship', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pav_residential', ''] },
       ]);
     } else {
       scene.actions([
         { label: 'Continue window shopping', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-5));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan14'] },
         { label: 'Look for something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-5));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
       ]);
     }
@@ -518,22 +518,22 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Continue window shopping', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-1));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: grupvalue[1] += 5
     // TODO-QSP: grupvalue[3] -= 5
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan14'] },
           { label: 'Look for something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-1));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: grupvalue[1] += 5
     // TODO-QSP: grupvalue[3] -= 5
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan'] },
           { label: 'Invite Natasha to hang around with you', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A16', (-1));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: grupvalue[1] += 5
     // TODO-QSP: grupvalue[3] -= 5
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan15'] },
         ]);
       }
@@ -927,8 +927,8 @@ function enterKathan18(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Leave them alone', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A15', 1);
-    qspCall(st, 'npc_relationship', 'modify', 'A165', 1);
+    qspCall(st, 'npc_relationship', '');
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
   ]);
   scene.build();
@@ -988,7 +988,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] -= 5
     // TODO-QSP: grupvalue[3] -= 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_residential', ''] },
         ]);
       } else {
@@ -999,7 +999,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] -= 5
     // TODO-QSP: grupvalue[3] -= 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan16'] },
           { label: 'Look for something else to do', handler: (st: GameState) => {
     // TODO-QSP: grupvalue[1] -= 5
@@ -1007,7 +1007,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] -= 5
     // TODO-QSP: grupvalue[3] -= 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
         ]);
       }
@@ -1031,7 +1031,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] += 5
     // TODO-QSP: grupvalue[3] += 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_residential', ''] },
           ]);
         } else {
@@ -1042,7 +1042,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] += 5
     // TODO-QSP: grupvalue[3] += 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan16'] },
             { label: 'Look for something else to do', handler: (st: GameState) => {
     // TODO-QSP: grupvalue[1] += 5
@@ -1050,7 +1050,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: grupvalue[3] += 5
     // TODO-QSP: grupvalue[3] += 5
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
           ]);
         }
@@ -1426,20 +1426,20 @@ function enterKathan23(s: GameState, scene: SceneBuilder): void {
       if (((st as any).hour ?? 0) >= 20) {
         scene.actions([
           { label: 'Accompany Katja back home', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 5);
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'npc_relationship', '');
+    qspCall(st, 'mood', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pav_residential', ''] },
         ]);
       } else {
         scene.actions([
           { label: 'Continue walking and talking', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 5);
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'npc_relationship', '');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan16'] },
           { label: 'Look for something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 5);
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'npc_relationship', '');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan'] },
         ]);
       }

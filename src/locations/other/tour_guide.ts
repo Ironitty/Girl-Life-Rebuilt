@@ -240,8 +240,8 @@ function enterTourran8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRivernude(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Beach boys', (Math.floor(Math.random() * 13) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Beach boys', (Math.floor(Math.random() * 13) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img(`images/locations/pavlovsk/palace/river/river${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   scene.text('The boys are too busy playing water games with each other to realize you have removed your clothes until you wade into the water with them. When they do notice, jaws drop, and you notice several of them have bulges in their shorts. A few whistle, and a couple of them start sliding closer to you.');
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -322,8 +322,8 @@ function enterRiverseduce1(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
     (st as any).orgasm_or = 'custom';
     (st as any).orgasm_txt = 'Throwing your head back, you surrender to the rising orgasm, waves of pleasure rolling through you, from head to toe. Reaching his own orgasm, he pulls out and you feel your stomach grow warm as he shoots his load onto you.';
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'vaginal', 10);
     qspCall(st, 'cum_call', 'stomach');
     qspCall(st, 'stat', '');
@@ -357,18 +357,18 @@ function enterRiverseduce2(s: GameState, scene: SceneBuilder): void {
   scene.text('The guy between your legs stands up and pushes his cock in between your lips, as another one dives between your legs. He was already close, so he cums almost right away, giving you a moment to breathe and swallow before the next guy jumps in.');
   qspCall(s, 'arousal', 'vaginal', 10, 'rough', 'gangbang');
   qspCall(s, 'arousal', 'bj', (-10), 'deepthroat', 'gangbang');
-  qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'cum_call', 'mouth_swallow');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep going', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'stomach');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'breasts');
     scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex14.jpg');
     scene.text('The guys take turns rotating, you have long since lost count of how many loads you have swallowed. Some have splattered on your breasts or stomach, but thankfully nobody has tried to give you a facial yet.');
@@ -532,7 +532,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     qspCall(s, 'arousal', 'BDSM', 10, 'maso', 'exhibitionism', 'rough', 'sub');
     qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(s, 'pain', '7', 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
   } else {
     if (((s as any).riverbusted ?? 0) === 1) {
@@ -542,7 +542,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
       scene.text('It seems to go on forever, you have long since lost count, and you suspect he has too. Every time you flinch away from a hit just before he lands it, he pulls back, orders you back into position, and informs you, you get one extra for doing it.');
       scene.text('When it does finally end, you collapse to the ground and just cry, you never expected a spanking could hurt this bad. He gives you a moment to collect yourself, then tells you to get dressed and get out.');
       qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
+      qspCall(s, 'pain', '5', 'asscheeks', 'spank');
       qspCall(s, 'stat', '');
     } else {
       scene.img('images/locations/pavlovsk/palace/office/office_spank1.jpg');
@@ -553,7 +553,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: After your 15th, he says he is done. "Let that be a lesson, <<$pcs_firstname>>. ...
       scene.text(`After your 15th, he says he is done. "Let that be a lesson, ${((s as any).pcs_firstname ?? '')}. If this has to happen again, it will be a lot worse." You can barely imagine worse, as you try and pull your underwear back up, fingers trembling.`);
       qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+      qspCall(s, 'pain', '3', 'asscheeks', 'spank');
       qspCall(s, 'stat', '');
     }
   }

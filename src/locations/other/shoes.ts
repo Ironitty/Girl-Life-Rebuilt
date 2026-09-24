@@ -53,49 +53,49 @@ function enterTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoncheri(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterCats(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterBomba(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterDolls(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterGm(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterEroto(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterScandalicious(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   scene.build();
 }
 
 function enterDanilovich(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[0], ARGS[1]
+  qspCall(s, 'shoe_attributes', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -109,7 +109,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
+    qspCall(s, 'shoe_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'shoes', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -144,7 +144,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
+    qspCall(s, 'shoe_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'shoes', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -276,7 +276,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
+  qspCall(s, 'shoe_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).ShoQuality ?? 0))) {
     // TODO-QSP: exit
   }

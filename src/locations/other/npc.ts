@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,7 +15,7 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :CiklNpcCleanLoop
   (s as any).i_gs_cl = ((s as any).i_gs_cl ?? 0) - (1);
   if (((s as any).i_gs_cl ?? 0) >= 0) {
-    if ((String((String(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) !== 'C') {
+    if ((String((String((((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) !== 'C') {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
     if (((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] === ((s as any).npclastgenerated ?? 0)) {
@@ -42,7 +42,7 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
     if ((Array.isArray((s as any).ChildThFath) ? ((s as any).ChildThFath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    // TODO-QSP: gs 'npccleanc', $ucase($npc_index[i_gs_cl])
+    qspCall(s, 'npccleanc', '', (String((((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] ?? 0)).toUpperCase()));
     // TODO-QSP: jump 'CiklNpcCleanLoop'
   }
   // TODO-QSP: end
@@ -204,7 +204,7 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
   (s as any).npcStat_update_max_i = 0;
   // TODO-QSP: :update_loop1
   if (((s as any).npcID ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] !== '') {
-    // TODO-QSP: gs 'npcStat', $npcID[npcStat_update_i], npcStat_update_i, $npcCondom[npcStat_update_i]
+    qspCall(s, 'npcStat', '', (((s as any).npcID ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] ?? 0), ((s as any).npcStat_update_i ?? 0), (((s as any).npcCondom ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] ?? 0));
   }
   (s as any).npcStat_update_i = ((s as any).npcStat_update_i ?? 0) + (1);
   if (((s as any).npcStat_update_i ?? 0) < ((s as any).npcStat_update_max_i ?? 0)) {
@@ -216,7 +216,7 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
   (s as any).npcStat_update_letter = (String('abcdefghijklmnopqrstuvwxyz').slice((((s as any).npcStat_update_i ?? 0))-1, ((((s as any).npcStat_update_i ?? 0))-1)+(1)));
   // TODO-QSP: dynamic "
   if (((s as any).npcID ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] !== '') {
-    // TODO-QSP: gs 'npcStat', $npcID<<npcStat_update_i>>, '<<$npcStat_update_letter>>', $npcCondom<<npcStat_update_i...
+    qspCall(s, 'npcStat', '', qspUntranslated(s, "npcID((s as any).npcStat_update_i ?? 0)", { location: "npc" }), '' + ((s as any).npcStat_update_letter ?? 0) + '', qspUntranslated(s, "npcCondom((s as any).npcStat_update_i ?? 0)", { location: "npc" }));
   }
   // TODO-QSP: "
   (s as any).npcStat_update_i = ((s as any).npcStat_update_i ?? 0) + (1);
@@ -232,22 +232,22 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *clear
   (s as any).static_num = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 20) {
-    (s as any).npc_cur_rel = 'You don\'t get along at all with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
+    (s as any).npc_cur_rel = 'You don\'t get along at all with ' + (((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0) + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 20  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 40) {
-    (s as any).npc_cur_rel = 'You don\'t get along very well with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
+    (s as any).npc_cur_rel = 'You don\'t get along very well with ' + (((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0) + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 40  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 60) {
-    (s as any).npc_cur_rel = 'You have a normal relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
+    (s as any).npc_cur_rel = 'You have a normal relationship with ' + (((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0) + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 60  &&  ((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] < 80) {
-    (s as any).npc_cur_rel = 'You have a good relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
+    (s as any).npc_cur_rel = 'You have a good relationship with ' + (((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0) + '.';
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).static_num ?? 0)] >= 80) {
-    (s as any).npc_cur_rel = 'You have a great relationship with ' + ((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] + '.';
+    (s as any).npc_cur_rel = 'You have a great relationship with ' + (((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0) + '.';
   }
   if (String((s as any).locArgs?.[2] ?? '') === '') {
-    (s as any).image_path = ((s as any).npc_pic ?? 0)?.[String((s as any).static_num ?? 0)];
+    (s as any).image_path = (((s as any).npc_pic ?? 0)?.[String((s as any).static_num ?? 0)] ?? 0);
   } else {
     (s as any).image_path = ((s as any).locArgs?.[2] ?? 0);
   }

@@ -37,11 +37,11 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
     }
   }
-  qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  qspCall(s, 'tabhead', 'menu_page');
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_character', 'menu_exit');
+    qspCall(st, '$menu_character', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
   ]);
@@ -660,10 +660,10 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp = (s as any).temp ?? {})['inverse'] = ((s as any).locArgs?.[5] ?? 0);
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
-    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = ((s as any).skl_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
+    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = (((s as any).skl_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']] ?? 0);
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
-    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = ((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
+    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = (((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']] ?? 0);
     ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = '<b>' + (String(((s as any).temp ?? 0)?.['skl_desc']).slice((1)-1, ((1)-1)+(3))) + '</b>' + (String(((s as any).temp ?? 0)?.['skl_desc']).slice((4)-1)) + '';
   }
   if (((s as any).temp ?? 0)?.['skl_name'] === 'stren') {
@@ -1257,12 +1257,12 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $su_ld_keys[] = 'last_mast_day'      & $su_ld_labels[] = 'Masturbation'
   (s as any).su_ld_i = 0;
   // TODO-QSP: :su_ld_loop
-  (s as any).su_ld_key = ((s as any).su_ld_keys ?? 0)?.[String((s as any).su_ld_i ?? 0)];
-  (s as any).su_ld_val = ((s as any).stat ?? 0)?.[String((s as any).su_ld_key ?? 0)];
+  (s as any).su_ld_key = (((s as any).su_ld_keys ?? 0)?.[String((s as any).su_ld_i ?? 0)] ?? 0);
+  (s as any).su_ld_val = (((s as any).stat ?? 0)?.[String((s as any).su_ld_key ?? 0)] ?? 0);
   if (((s as any).su_ld_val ?? 0) > 0) {
     // TODO-QSP: $table += '<li>' + $su_ld_labels[su_ld_i] + ': ' + iif(su_ld_val = daystart, 'earlier today', iif(su...
-    (s as any).su_ld_known = ((s as any).stat ?? 0)?.[((s as any).su_ld_key ?? 0) + '_known'];
-    (s as any).su_ld_hidden = ((s as any).stat ?? 0)?.[((s as any).su_ld_key ?? 0) + '_hidden'];
+    (s as any).su_ld_known = (((s as any).stat ?? 0)?.[((s as any).su_ld_key ?? 0) + '_known'] ?? 0);
+    (s as any).su_ld_hidden = (((s as any).stat ?? 0)?.[((s as any).su_ld_key ?? 0) + '_hidden'] ?? 0);
     if (((s as any).su_ld_known ?? 0) > 0  ||  ((s as any).su_ld_hidden ?? 0) > 0) {
       // TODO-QSP: $table += '<ul>'
       if (((s as any).su_ld_known ?? 0) > 0) {
@@ -1927,7 +1927,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   (s as any).kidnumber = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).kidage ?? 0)?.[String((s as any).kidnumber ?? 0)] < 1) {
     if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 1  &&  (((s as any).day ?? 0)-((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 7) {
-      ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)];
+      ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = ((s as any).day ?? 0) - (((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)] ?? 0);
       if (((s as any).kiddaycalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 0) {
         // TODO-QSP: $kidagetext[kidnumber] = 'was born today'
       } else {
@@ -1939,14 +1939,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 1) {
-        ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)]) / 7;
+        ((s as any).kiddaycalc = (s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).day ?? 0) - (((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)] ?? 0)) / 7;
         if (((s as any).kiddaycalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kiddaycalc[kidnumber]>> week old'
         } else {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kiddaycalc[kidnumber]>> weeks old'
         }
       } else {
-        ((s as any).kidmonthcalc = (s as any).kidmonthcalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]);
+        ((s as any).kidmonthcalc = (s as any).kidmonthcalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).month ?? 0) - (((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)] ?? 0));
         if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kidmonthcalc[kidnumber]>> month old'
         } else {

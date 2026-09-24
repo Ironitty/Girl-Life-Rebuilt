@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -395,16 +393,16 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'wear', ((s as any).lastwornpursetype ?? 0), ((s as any).lastwornpursenumber ?? 0));
     qspCall(s, 'coats', 'wear', ((s as any).lastworncoattype ?? 0), ((s as any).lastworncoatnumber ?? 0));
   } else {
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype[$ARGS[1]], lastwornclothingnumber[$ARGS[1]], 'force'
+    qspCall(s, 'clothing', 'wear', (((s as any).lastwornclothingtype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornclothingnumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), 'force');
     if (((s as any).lastwornunderwear ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 2) {
-      // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype[$ARGS[1]], lastwornbodysuitnumber[$ARGS[1]]
+      qspCall(s, 'underwear_bodysuits', 'wear', (((s as any).lastwornbodysuittype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornbodysuitnumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
     } else {
-      // TODO-QSP: gs 'panties',  'wear', $lastwornpantytype[$ARGS[1]],  lastwornpantynumber[$ARGS[1]]
-      // TODO-QSP: gs 'bras',    'wear', $lastwornbratype[$ARGS[1]],    lastwornbranumber[$ARGS[1]]
+      qspCall(s, 'panties', 'wear', (((s as any).lastwornpantytype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornpantynumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
+      qspCall(s, 'bras', 'wear', (((s as any).lastwornbratype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornbranumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
     }
-    // TODO-QSP: gs 'shoes',    'wear', $lastwornshoetype[$ARGS[1]],  lastwornshoenumber[$ARGS[1]]
-    // TODO-QSP: gs 'purses',  'wear', $lastwornpursetype[$ARGS[1]],  lastwornpursenumber[$ARGS[1]]
-    // TODO-QSP: gs 'coats',    'wear', $lastworncoattype[$ARGS[1]],  lastworncoatnumber[$ARGS[1]]
+    qspCall(s, 'shoes', 'wear', (((s as any).lastwornshoetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornshoenumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
+    qspCall(s, 'purses', 'wear', (((s as any).lastwornpursetype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastwornpursenumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
+    qspCall(s, 'coats', 'wear', (((s as any).lastworncoattype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0), (((s as any).lastworncoatnumber ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -435,7 +433,7 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecoverLostOutfit(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'clothing', 'recover_lost_clothes', $ARGS[1], ARGS[2]
+  qspCall(s, 'clothing', 'recover_lost_clothes', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   if (String((s as any).locArgs?.[2] ?? '') === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRestore(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -529,9 +527,9 @@ function enterCalcAccessoriesBonus(s: GameState, scene: SceneBuilder): void {
 
 function enterStat(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetImmutables(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'outfit', 'increase_outfit_dirt', ARGS[1]
-  // TODO-QSP: gs 'outfit', 'increase_outfit_wear', ARGS[1]
-  // TODO-QSP: gs 'outfit', 'heel_stat_skill_pain', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterIncreaseOutfitDirt(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterIncreaseOutfitWear(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterHeelStatSkillPain(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -578,7 +576,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]);
             }
             if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).bodysuitworntype ?? 0) === 'none') {
-              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (qspUntranslated(s, "sparrvol[15]", { location: "outfit" }));
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + ((((s as any).sparrvol ?? 0)?.[15] ?? 0));
             }
             if (((s as any).bodysuitworntype ?? 0) === 'none'  &&  ((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1) <= 0) {
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14]);
@@ -588,7 +586,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty'] = (((s as any).temp_outfitVars ?? {})?.['time_diff'] ?? 0) * Math.min((((s as any).temp_outfitVars ?? {})?.['sweat_penal'] ?? 0) + (((s as any).temp_outfitVars ?? {})?.['cum_penal'] ?? 0), 200) / 100;
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? 0)?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PCloBorrowed ?? 0))) {
-              // TODO-QSP: gs 'clothing', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
+              qspCall(s, 'clothing', 'increase_cur_dirt', (((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
             } else {
               (s as any).PCloDirt = ((s as any).PCloDirt ?? 0) + ((((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
             }
@@ -620,7 +618,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty'] = (((s as any).temp_outfitVars ?? {})?.['time_diff'] ?? 0) * Math.min((((s as any).temp_outfitVars ?? {})?.['sweat_penal'] ?? 0) + (((s as any).temp_outfitVars ?? {})?.['cum_penal'] ?? 0), 200) / 100;
             ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? 0)?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PPanBorrowed ?? 0))) {
-              // TODO-QSP: gs 'underwear_bodysuits', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
+              qspCall(s, 'underwear_bodysuits', 'increase_cur_dirt', (((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
             } else {
               (s as any).PPanDirt = ((s as any).PPanDirt ?? 0) + ((((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
             }
@@ -646,11 +644,11 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               if (((s as any).PBraFun ?? 0) === 1) {
                 ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
               }
-              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = qspUntranslated(s, "sparrvol[14]", { location: "outfit" });
+              ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).sparrvol ?? 0)?.[14] ?? 0);
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty'] = (((s as any).temp_outfitVars ?? {})?.['time_diff'] ?? 0) * Math.min((((s as any).temp_outfitVars ?? {})?.['sweat_penal'] ?? 0) + (((s as any).temp_outfitVars ?? {})?.['cum_penal'] ?? 0), 200) / 100;
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? 0)?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PBraBorrowed ?? 0))) {
-                // TODO-QSP: gs 'bras', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
+                qspCall(s, 'bras', 'increase_cur_dirt', (((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
               } else {
                 (s as any).PBraDirt = ((s as any).PBraDirt ?? 0) + ((((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
               }
@@ -680,7 +678,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty'] = (((s as any).temp_outfitVars ?? {})?.['time_diff'] ?? 0) * Math.min((((s as any).temp_outfitVars ?? {})?.['sweat_penal'] ?? 0) + (((s as any).temp_outfitVars ?? {})?.['cum_penal'] ?? 0), 200) / 100;
               ((s as any).temp_outfitVars = (s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? 0)?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PPanBorrowed ?? 0))) {
-                // TODO-QSP: gs 'panties', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
+                qspCall(s, 'panties', 'increase_cur_dirt', (((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
               } else {
                 (s as any).PPanDirt = ((s as any).PPanDirt ?? 0) + ((((s as any).temp_outfitVars ?? {})?.['dirty2'] ?? 0) / 2);
               }
@@ -721,7 +719,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
           }
           if ((!((s as any).PShoBorrowed ?? 0))) {
-            // TODO-QSP: gs 'shoes', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+            qspCall(s, 'shoes', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
           } else {
             (s as any).PShoStrength = ((s as any).PShoStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
           }
@@ -751,7 +749,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             }
           }
           if ((!((s as any).PCoatBorrowed ?? 0))) {
-            // TODO-QSP: gs 'coats', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+            qspCall(s, 'coats', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
           } else {
             (s as any).PCoatStrength = ((s as any).PCoatStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
           }
@@ -784,7 +782,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
               }
             }
             if ((!((s as any).PCloBorrowed ?? 0))) {
-              // TODO-QSP: gs 'clothing', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+              qspCall(s, 'clothing', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             } else {
               (s as any).PCloStrength = ((s as any).PCloStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             }
@@ -818,7 +816,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
               }
             }
             if ((!((s as any).PBraBorrowed ?? 0))) {
-              // TODO-QSP: gs 'underwear_bodysuits', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+              qspCall(s, 'underwear_bodysuits', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             } else {
               (s as any).PBraStrength = ((s as any).PBraStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
               (s as any).PPanStrength = ((s as any).PBraStrength ?? 0);
@@ -850,13 +848,13 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
               }
             }
             if ((!((s as any).PBraBorrowed ?? 0))) {
-              // TODO-QSP: gs 'bras', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+              qspCall(s, 'bras', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             } else {
               (s as any).PBraStrength = ((s as any).PBraStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             }
           }
           if ((!((s as any).PBraBorrowed ?? 0))) {
-            // TODO-QSP: gs 'bras', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+            qspCall(s, 'bras', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
           }
         }
       }
@@ -879,7 +877,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
               }
             }
             if ((!((s as any).PPanBorrowed ?? 0))) {
-              // TODO-QSP: gs 'panties', 'decrease_cur_strength', temp_outfitVars['strength_cost']
+              qspCall(s, 'panties', 'decrease_cur_strength', ((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             } else {
               (s as any).PPanStrength = ((s as any).PPanStrength ?? 0) - (((s as any).temp_outfitVars ?? 0)?.['strength_cost']);
             }
@@ -1012,10 +1010,10 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temp_outfitVars ?? 0)?.['heels_time'] < 0) {
-    // TODO-QSP: gs 'exp_deg', 'heels', -temp_outfitVars['heels_time']
+    qspCall(s, 'exp_deg', 'heels', -(((s as any).temp_outfitVars ?? {})?.['heels_time'] ?? 0));
   } else {
     if (((s as any).temp_outfitVars ?? 0)?.['heels_time'] > 0) {
-      // TODO-QSP: gs 'exp_gain', 'heels', temp_outfitVars['heels_time']
+      qspCall(s, 'exp_gain', 'heels', ((s as any).temp_outfitVars ?? 0)?.['heels_time']);
     }
   }
   return;
@@ -1524,7 +1522,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).stat_texts ?? 0)?.['bra'] !== '') {
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'bra', $temp_outfitVars['bra_color'], $temp_outfitVars['bra_...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'bra', ((s as any).temp_outfitVars ?? 0)?.['bra_color'], ((s as any).temp_outfitVars ?? 0)?.['bra_icon'], 4);
     }
   }
   ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties'] = '';
@@ -1687,7 +1685,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             } else {
               ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('filthy.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'v_neg');
-              // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['clothes_clean'], 'v_neg'
+              qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['clothes_clean'], 'v_neg');
             }
           }
         }
@@ -1707,7 +1705,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         if (((s as any).PCloStrength ?? 0) < ((s as any).PCloMaxStrength ?? 0) / 10) {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'v_neg');
-          // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['clothes_repair'], 'v_neg'
+          qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['clothes_repair'], 'v_neg');
         } else {
           if (((s as any).PCloStrength ?? 0) < ((s as any).PCloMaxStrength ?? 0) / 2) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -1759,7 +1757,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               } else {
                 ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
-                // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_clean'], 'v_neg'
+                qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['panties_clean'], 'v_neg');
                 ((s as any).temp_outfitvars = (s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
               }
             }
@@ -1780,7 +1778,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 10) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
-            // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_repair'], 'v_neg'
+            qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['panties_repair'], 'v_neg');
           } else {
             if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 2) {
               ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -1828,7 +1826,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               } else {
                 ((s as any).stat_texts = (s as any).stat_texts ?? {})['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'v_neg');
-                // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['bra_clean'], 'v_neg'
+                qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['bra_clean'], 'v_neg');
                 ((s as any).temp_outfitvars = (s as any).temp_outfitvars ?? {})['bra_imp'] = 1;
               }
             }
@@ -1849,7 +1847,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 10) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'v_neg');
-            // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['bra_repair'], 'v_neg'
+            qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['bra_repair'], 'v_neg');
           } else {
             if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 2) {
               ((s as any).stat_texts = (s as any).stat_texts ?? {})['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -1896,7 +1894,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               } else {
                 ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
-                // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_clean'], 'v_neg'
+                qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['panties_clean'], 'v_neg');
                 ((s as any).temp_outfitvars = (s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
               }
             }
@@ -1917,7 +1915,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           if (((s as any).PPanStrength ?? 0) < ((s as any).PPanMaxStrength ?? 0) / 10) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
-            // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_repair'], 'v_neg'
+            qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['panties_repair'], 'v_neg');
           } else {
             if (((s as any).PPanStrength ?? 0) < ((s as any).PPanMaxStrength ?? 0) / 2) {
               ((s as any).stat_texts = (s as any).stat_texts ?? {})['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -1954,7 +1952,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         if (((s as any).PShoStrength ?? 0) < ((s as any).PShoMaxStrength ?? 0) / 10) {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'v_neg');
-          // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['shoes_repair'], 'v_neg'
+          qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['shoes_repair'], 'v_neg');
         } else {
           if (((s as any).PShoStrength ?? 0) < ((s as any).PShoMaxStrength ?? 0) / 2) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -1989,7 +1987,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         if (((s as any).PCoatStrength ?? 0) < ((s as any).PCoatMaxStrength ?? 0) / 10) {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'v_neg');
-          // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['coat_repair'], 'v_neg'
+          qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).stat_texts ?? 0)?.['coat_repair'], 'v_neg');
         } else {
           if (((s as any).PCoatStrength ?? 0) < ((s as any).PCoatMaxStrength ?? 0) / 2) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('starting to show wear and tear.');
@@ -2027,16 +2025,16 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat_texts ?? 0)?.['clothes'] !== ''  ||  ((s as any).temp_outfitVars ?? 0)?.['clothes_style'] !== '') {
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'clothes', $stat_texts['clothes_color'], 'status/clothing/' ...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes', ((s as any).stat_texts ?? 0)?.['clothes_color'], 'status/clothing/' + ((s as any).temp_outfitVars ?? 0)?.['clothes_style'], 4);
   }
   if (((s as any).stat_texts ?? 0)?.['panties'] !== '') {
     if (((s as any).pantyworntype ?? 0) === 'none') {
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'panties', $stat_texts['panties_color'], 'status/clothing/co...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'panties', ((s as any).stat_texts ?? 0)?.['panties_color'], 'status/clothing/commando_black|status/clothing/commando_white', 4);
     } else {
       if (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0  &&  ((s as any).mesec ?? 0) > 0  &&  (!((s as any).preg ?? 0))) {
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'panties', $stat_texts['panties_color'], 'status/clothing/pa...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'panties', ((s as any).stat_texts ?? 0)?.['panties_color'], 'status/clothing/panties_red', 4);
       } else {
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'panties', $stat_texts['panties_color'], 'status/clothing/pa...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'panties', ((s as any).stat_texts ?? 0)?.['panties_color'], 'status/clothing/panties', 4);
       }
     }
   }

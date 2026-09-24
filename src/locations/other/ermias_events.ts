@@ -136,7 +136,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'bj', 2, 'sub');
     qspCall(s, 'arousal', 'hj', (-2), 'sub');
-    qspCall(s, 'pain', '', 2, 'jaw', 'ache');
+    qspCall(s, 'pain', '2', 'jaw', 'ache');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Missionary style', handler: (st: GameState) => {
@@ -163,7 +163,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He then pushes you down on his bed before he grabs a bottle of lube from a drawer on the desk and applies some to his cock. He then climbs on top of you and grinds the thick tip of his cock against your slit before he slowly pushes it inside you.');
     if (((st as any).pcs_vag ?? 0) < 20) {
       qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-      qspCall(st, 'pain', '', 7, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '7', 'vaginal', 'stretch');
       qspCall(st, 'stat', '');
       scene.text('You gasp loudly and wince in pain as it stretches you to what feels like the limit.');
       scene.text('"Fuck, oh <i>FUCK!</i>" you cry out as you glance down and see that barely half of his monstrous cock is inside you.');
@@ -189,7 +189,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias grins and gives you a small breather before he applies some more lube to his cock and continues fucking you, his groans telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -200,7 +200,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -232,7 +232,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -272,7 +272,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -297,7 +297,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).pcs_vag ?? 0) >= 20  &&  ((st as any).pcs_vag ?? 0) < 25) {
         qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-        qspCall(st, 'pain', '', 4, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '4', 'vaginal', 'stretch');
         scene.text('You gasp as he pushes further and stretches you to what feels like the limit, causing a tinge of pain to shoot through your abdomen.');
         scene.text('"Oh <i>fuck</i>!" you cry out as you glance down and see that he still has a few inches left to insert.');
         scene.text('"White girl pussy is the best!" he grunts as he starts thrusting, pushing himself deeper and stretching your pussy even further. "Always nice and tight for my big cock."');
@@ -322,7 +322,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a small breather before he continues fucking you, his groans telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -333,7 +333,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -365,7 +365,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -405,7 +405,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -429,7 +429,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-        qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '2', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You moan loudly as he pushes deep and you feel him bottom out inside you, stretching your pussy to what feels like the limit.');
         scene.text('"Fuck, I can feel it in my womb!" you cry out as your inner walls instinctively squeeze around his shaft.');
@@ -439,7 +439,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         scene.text('He gives you a small breather before he continues fucking you even harder, the bed squeaking beneath you with each thrust as you moan loudly. He in turn starts groaning, telling you he\'s close himself.');
         scene.actions([
           { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -450,7 +450,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -482,7 +482,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -530,7 +530,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He then moves in behind you and grinds the thick tip of his cock against your slit before he slowly pushes it inside you.');
     if (((st as any).pcs_vag ?? 0) < 20) {
       qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-      qspCall(st, 'pain', '', 7, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '7', 'vaginal', 'stretch');
       qspCall(st, 'stat', '');
       scene.text('You gasp loudly and wince in pain as it stretches you to what feels like the limit.');
       scene.text('"Fuck, oh <i>FUCK!</i>" you cry out as you glance back and realize that you\'re taking barely half of his monstrous cock inside you.');
@@ -556,7 +556,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias gives you a small breather and a smack on the ass before he applies some more lube to his cock and continues fucking you, his groans telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -567,7 +567,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -599,7 +599,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -639,7 +639,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -664,7 +664,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).pcs_vag ?? 0) >= 20  &&  ((st as any).pcs_vag ?? 0) < 25) {
         qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-        qspCall(st, 'pain', '', 4, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '4', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You gasp as he pushes further and stretches you to what feels like the limit, causing a tinge of pain to shoot through your abdomen.');
         scene.text('"Oh <i>fuck</i>!" you cry out as you glance back and see that he still has a few inches left to insert.');
@@ -690,7 +690,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a small breather and a smack on the ass before he continues fucking you, his groans telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -701,7 +701,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -733,7 +733,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -773,7 +773,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -797,7 +797,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(st, 'arousal', 'vaginal', 5, 'lube', 'sub');
-        qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '2', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You moan loudly as he pushes deep and you feel him bottom out inside you, stretching your pussy to what feels like the limit.');
         scene.text('"Fuck, I can feel it in my womb!" you cry out as your inner walls instinctively squeeze around his shaft.');
@@ -807,7 +807,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         scene.text('He gives you a small breather and a smack on the ass before he continues fucking you even harder, his hips smacking against your ass with each thrust as you moan loudly. He in turn starts groaning, telling you he\'s close himself.');
         scene.actions([
           { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -818,7 +818,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -854,7 +854,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -922,7 +922,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him and take a small breather before continuing. It doesn\'t take long before you recognize the usual grunts and know what awaits...');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -933,7 +933,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -965,7 +965,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1005,7 +1005,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1052,7 +1052,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a small breather before continuing. It doesn\'t take long before you recognize the usual grunts and know what awaits...');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -1063,7 +1063,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as waves of pleasure continue to wash over you.');
@@ -1095,7 +1095,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1135,7 +1135,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You grin up at him as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1166,7 +1166,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         scene.text('You take a small breather before continuing. It doesn\'t take long before you recognize the usual grunts and know what awaits...');
         scene.actions([
           { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.text('You\'re enjoying yourself so much that you don\'t even care if he cums inside you, continuing to ride his massive cock as his grunts become more frequent.');
     scene.text('You keep riding him until he grabs your hips and thrusts upwards. You feel his cock twitching inside you as spurt after spurt of thick, warm cum starts filling your pussy.');
@@ -1175,7 +1175,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('Once he\'s finished, you lift yourself off of him and roll over onto the bed next to him.');
@@ -1207,7 +1207,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('"That... That was... amazing!" you pant as thick blobs of cum drip from your chin and land on your breast.');
@@ -1418,12 +1418,12 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 2, 'sub');
   qspCall(s, 'arousal', 'hj', (-2), 'sub');
-  qspCall(s, 'pain', '', 2, 'jaw', 'ache');
+  qspCall(s, 'pain', '2', 'jaw', 'ache');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_ass ?? 0) > 10) {
     scene.actions([
       { label: 'Fuck my ass', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'anus', 'stretch');
+    qspCall(st, 'pain', '4', 'anus', 'stretch');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/mis/africananalmis3.mp4');
     scene.text('You slyly smile before flopping down on his bed and pulling your legs up to your chest. "I want you to fuck my ass this time."');
@@ -1449,7 +1449,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 3;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 4, 'asshole', 'stretch');
+    qspCall(st, 'pain', '4', 'asshole', 'stretch');
     (st as any).agape = 3;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
@@ -1477,7 +1477,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He pulls you to your feet and pushes you down on his bed. You spread your legs and watch as he grabs a bottle of lube from a drawer on the desk and applies some to his cock before he climbs on top of you.');
     scene.text('He then grinds the thick tip of his cock against your slit before he slowly slides it inside you.');
     if (((st as any).pcs_vag ?? 0) < 20) {
-      qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '5', 'vaginal', 'stretch');
       qspCall(st, 'stat', '');
       scene.text('You gasp loudly and wince in pain as his massive cock stretches you out. While it\'s not as painful as the first time, your pussy is still not used to such a massive insertion.');
       scene.text('"Your little white pussy is just as tight as last time! I will go slow for you again," he grunts before he slowly starts fucking you at his current depth.');
@@ -1485,7 +1485,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       scene.text('Once your orgasm passes, he suddenly pulls out and applies some more lube to his cock before he flops down next to you and pulls you on top of him.');
     } else {
       if (((st as any).pcs_vag ?? 0) >= 20  &&  ((st as any).pcs_vag ?? 0) < 25) {
-        qspCall(st, 'pain', '', 3, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '3', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You gasp as he pushes deeper and stretches you further, causing a tinge of pain to shoot through your abdomen.');
         scene.text('"Oh <i>fuck</i>!" you cry out as you glance down and see that he still has a few inches left to insert.');
@@ -1517,7 +1517,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias doesn\'t even wait for it to pass, smacking your ass and thrusting into your still sensitive pussy as he grunts and groans, telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('His thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -1527,7 +1527,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('Once he\'s finished, you lift yourself off of him and roll over onto the bed next to him, panting as thick blobs of cum spurt out of your pussy.');
@@ -1556,7 +1556,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You sit on your knees panting as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1582,7 +1582,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He pulls you to your feet and pushes you down on his bed on all fours. He then grabs a bottle of lube from a drawer on the desk and applies some to his cock before he moves in behind you.');
     scene.text('You feel him grinding the thick tip of his cock against your slit before he slowly slides it inside you.');
     if (((st as any).pcs_vag ?? 0) < 20) {
-      qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '5', 'vaginal', 'stretch');
       qspCall(st, 'stat', '');
       scene.text('You gasp loudly and wince in pain as his massive cock stretches you out. While it\'s not as painful as the first time, your pussy is still not used to such a massive insertion.');
       scene.text('"Your little white pussy is just as tight as last time! I will go slow for you again," he grunts before he slowly starts fucking you at his current depth.');
@@ -1590,7 +1590,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       scene.text('Once your orgasm passes, he suddenly pulls out and applies some more lube to his cock before he flops down next to you and pulls you on top of him.');
     } else {
       if (((st as any).pcs_vag ?? 0) >= 20  &&  ((st as any).pcs_vag ?? 0) < 25) {
-        qspCall(st, 'pain', '', 3, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '3', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You gasp as he pushes further and stretches your pussy, causing a tinge of pain to shoot through your abdomen.');
         scene.text('"Oh <i>fuck</i>!" you cry out as you glance back.');
@@ -1622,7 +1622,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias doesn\'t even wait for it to pass, smacking your ass and thrusting into your still sensitive pussy as he grunts and groans, telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip_doggy1.mp4');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid, but you\'re enjoying yourself too much. You don\'t care if he cums inside you, you don\'t want him to stop for even a second.');
@@ -1633,7 +1633,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You just lie on the bed for a few minutes as your body continues to shudder in pleasure.');
@@ -1660,7 +1660,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You sit on your knees panting as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1688,7 +1688,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He smiles and grabs a bottle of lube from his desk drawer, applying some to his cock before he flops down on his bed.');
     scene.text('You grin as you mount him, taking hold of his slick shaft and guiding it to your slit before slowly lowering yourself down onto his massive cock.');
     if (((st as any).pcs_vag ?? 0) < 20) {
-      qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '5', 'vaginal', 'stretch');
       qspCall(st, 'stat', '');
       scene.text('You gasp loudly and wince in pain as his massive cock stretches you out. While it\'s not as painful as the first time, your pussy is still not used to such a massive insertion.');
       scene.text('"Oh, you are still tight!" he grunts. "I will let you go slow."');
@@ -1697,7 +1697,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       scene.text('"I did not say you could stop, slut!" he barks as he smacks your ass. "Keep going."');
     } else {
       if (((st as any).pcs_vag ?? 0) >= 20  &&  ((st as any).pcs_vag ?? 0) < 25) {
-        qspCall(st, 'pain', '', 3, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '3', 'vaginal', 'stretch');
         qspCall(st, 'stat', '');
         scene.text('You gasp as it stretches your pussy, causing a tinge of pain to shoot through your abdomen.');
         scene.text('"Oh <i>fuck</i>!" you cry out as you glance down and see that you still have a few inches left to go.');
@@ -1730,7 +1730,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias doesn\'t even wait for it to pass, smacking your ass and thrusting into your still sensitive pussy as he grunts and groans, telling you he\'s close himself.');
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A243', 1);
+    qspCall(st, 'cum_call', '', 'A243', 1);
     qspCall(st, 'stat', '');
     scene.text('You\'re enjoying yourself so much that you don\'t even care if he cums inside you. You grip your thighs around his waist and continue bouncing on his cock as his grunts become more frequent.');
     scene.text('You keep riding him until he grabs your hips and thrusts upwards. You feel his cock twitching inside you as spurt after spurt of thick, warm cum starts filling your pussy.');
@@ -1739,7 +1739,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/drip2.mp4');
     scene.text('Once he\'s finished, you lift yourself off of him and roll over onto the bed next to him, panting as thick blobs of cum spurt out of your pussy.');
@@ -1767,7 +1767,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (50);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You sit on your knees panting as thick blobs of cum drip from your chin and land on your breasts.');
@@ -1820,7 +1820,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('"Tired already?" he grins. "You are going to have to do better than that."');
     qspCall(s, 'arousal', 'bj', 2, 'sub');
     qspCall(s, 'arousal', 'hj', (-2), 'sub');
-    qspCall(s, 'pain', '', 2, 'jaw', 'ache');
+    qspCall(s, 'pain', '2', 'jaw', 'ache');
     ((s as any).ErmiasQW = (s as any).ErmiasQW ?? {})['dorm_bj'] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1845,7 +1845,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (10);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 2, 'jaw', 'ache');
+    qspCall(st, 'pain', '2', 'jaw', 'ache');
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/university/boy/ermias/sex/film5.jpg');
     scene.text('You remain on your knees, smiling up at him as blobs of cum drip from your chin and land on your breasts.');
@@ -1913,7 +1913,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_mood = ((st as any).pcs_mood ?? 0) + (10);
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'jaw', 'ache');
+    qspCall(st, 'pain', '3', 'jaw', 'ache');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You remain on your knees as thick blobs of cum drip from your chin and land on your breasts.');
     scene.text('He offers you some wipes to clean yourself before you pull your top back on, your jaw still aching.');
@@ -2031,10 +2031,10 @@ function enterThreesome(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', ((st as any).npcID ?? 0), 5);
     qspCall(st, 'arousal', 'bj', ((st as any).npcID1 ?? 0), (-5));
     if (((st as any).pcs_vag ?? 0) < 20) {
-      qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '5', 'vaginal', 'stretch');
     } else {
       if (((st as any).pcs_vag ?? 0) <= 25) {
-        qspCall(st, 'pain', '', 3, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '3', 'vaginal', 'stretch');
       }
     }
     qspCall(st, 'stat', '');
@@ -2111,10 +2111,10 @@ function enterThreesome1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', ((st as any).npcID ?? 0), 5);
     qspCall(st, 'arousal', 'bj', ((st as any).npcID1 ?? 0), (-5));
     if (((st as any).pcs_vag ?? 0) < 20) {
-      qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+      qspCall(st, 'pain', '5', 'vaginal', 'stretch');
     } else {
       if (((st as any).pcs_vag ?? 0) <= 25) {
-        qspCall(st, 'pain', '', 3, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '3', 'vaginal', 'stretch');
       }
     }
     qspCall(st, 'stat', '');
@@ -2365,7 +2365,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if he wants to fuck your ass instead', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'anal', 5, 'lube', 'sub');
-    qspCall(st, 'pain', '', 4, 'asshole', 'stretch');
+    qspCall(st, 'pain', '4', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/mis/africananalmis3.mp4');
     scene.text('"If you\'re really looking for something to watch later, then why not fuck my tight little ass with that big cock of yours?" you ask teasingly while biting your lip.');
@@ -2377,7 +2377,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flip over', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'anal', 5, 'lube', 'sub');
-    qspCall(st, 'pain', '', 2, 'asshole', 'stretch');
+    qspCall(st, 'pain', '2', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/anal/doggy/africandoggy1.mp4');
     scene.text('You sit up and roll over onto your stomach before Ermias pulls you over so you\'re bent over the edge of the bed with your ass in the air.');
@@ -2492,7 +2492,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
       scene.text('"This oil makes your sexy ass look even better, bunny!" he says before he spanks you. "Time to go for a ride now."');
       scene.text('You lift yourself up and lower yourself down, his slick cock easily sliding into your wet pussy before you start riding him.');
       if (((st as any).pcs_vag ?? 0) < 25) {
-        qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '5', 'vaginal', 'stretch');
         scene.text('After starting out slow, you take him a little deeper with each thrust unil he\'s as deep as you can comfortably go.');
         scene.text('"I think you can take a bit more, bunny," he says between grunts of pleasure.');
         scene.text('Your pussy does feel a little looser from the constant stretching, so you brace yourself on your hands before taking him deeper, a sharp pain suddenly pulsing through your abdomen as his cock stretches you further and abruptly collides with your cervix.');
@@ -2504,7 +2504,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((st as any).pcs_vag ?? 0) < 25) {
-        qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+        qspCall(st, 'pain', '5', 'vaginal', 'stretch');
         scene.text('After starting out slow, you take him a little deeper with each thrust unil he\'s as deep as you can comfortably go.');
         scene.text('"I think you can take a bit more, bunny," he says between grunts of pleasure.');
         scene.text('Your pussy does feel a little looser from the constant stretching, so you brace yourself on your hands before taking him deeper, a sharp pain suddenly pulsing through your abdomen as his cock stretches you further and abruptly collides with your cervix.');
@@ -2528,7 +2528,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 3, 'cervix', 'ache');
+    qspCall(st, 'pain', '3', 'cervix', 'ache');
     ((st as any).ErmiasQW = (st as any).ErmiasQW ?? {})['filmed'] = 1;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
@@ -2635,8 +2635,8 @@ function enterThroatFuck(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).cumspclnt = 12;
     qspCall(st, 'cum_cleanup', '');
-    qspCall(st, 'pain', '', 4, 'throat', 'ache');
-    qspCall(st, 'pain', '', 3, 'jaw', 'ache');
+    qspCall(st, 'pain', '4', 'throat', 'ache');
+    qspCall(st, 'pain', '3', 'jaw', 'ache');
     (st as any).pcs_makeup = 1;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');

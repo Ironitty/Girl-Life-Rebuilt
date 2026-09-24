@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'setup_home_filters') {
-    // TODO-QSP: gs 'shop_utils', 'filter_builder', 'init', 'purse_view', 'view_grid', $shop_display['link']
+    qspCall(s, 'shop_utils', 'filter_builder', 'init', 'purse_view', 'view_grid', ((s as any).shop_display ?? 0)?.['link']);
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_number_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_quality_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_sort_direction');
@@ -76,13 +76,13 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    // TODO-QSP: gs 'purse_attributes', $ARGS[2], ARGS[3]
+    qspCall(s, 'purse_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).PurseQuality ?? 0))) {
       // TODO-QSP: exit
     }
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_quality', $ARGS[2], ARGS[3], PurseQuality
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_price', $ARGS[2], ARGS[3], PursePrice
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_number', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_quality', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).PurseQuality ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_price', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).PursePrice ?? 0));
     return;
   }
   return;
@@ -97,7 +97,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      // TODO-QSP: gs 'purse_attributes', $ARGS[4], ARGS[5]
+      qspCall(s, 'purse_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -113,7 +113,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      // TODO-QSP: gs 'purse_attributes', $ARGS[4], ARGS[5]
+      qspCall(s, 'purse_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -169,8 +169,8 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
   scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
-  // TODO-QSP: gs 'purse_attributes', $shop_utils_view['type'], shop_utils_view['number']
-  // TODO-QSP: gs 'purses', 'descriptions', $shop_utils_view['type']
+  qspCall(s, 'purse_attributes', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number']);
+  qspCall(s, 'purses', 'descriptions', ((s as any).shop_utils_view ?? 0)?.['type']);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
     qspGoto(s, 'purse_view', 'view_item_shop');
   }
@@ -215,10 +215,10 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Buy (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
-    // TODO-QSP: gs 'purses', 'add_item', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
+    qspCall(st, 'purses', 'add_item', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     if ((!((st as any).bag ?? 0))) {
-      // TODO-QSP: gs 'purses', 'wear', $shop_utils_view['type'], shop_utils_view['number']
+      qspCall(st, 'purses', 'wear', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     }
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
@@ -250,7 +250,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
 { label: 'Use this purse', handler: (st: GameState) => {
-    // TODO-QSP: gs 'purses', 'wear', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'purses', 'wear', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspCall(st, 'shop_utils', 'cleanup');
     qspGoto(st, 'wardrobe', 'main');
   } },
@@ -289,7 +289,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'purses', 'in_wardrobe', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
-    // TODO-QSP: gs 'purses', 'move_to_wardrobe', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'purses', 'move_to_wardrobe', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspGoto(st, 'purse_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
@@ -300,7 +300,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'purses', 'in_storage', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
-    // TODO-QSP: gs 'purses', 'move_to_storage', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'purses', 'move_to_storage', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspGoto(st, 'purse_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
@@ -308,7 +308,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'purses', 'in_unwanted', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
-    // TODO-QSP: gs 'purses', 'move_to_unwanted', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'purses', 'move_to_unwanted', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspGoto(st, 'purse_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
   } },
     ]);
@@ -317,7 +317,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   // TODO-QSP: act $func('wrap', 'neg', 'Throw this purse away'):
-  // TODO-QSP: gs 'purses', 'remove_item', $shop_utils_view['type'], shop_utils_view['number']
+  qspCall(s, 'purses', 'remove_item', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']);
   qspGoto(s, 'purse_view', 'view_grid', (((s as any).shop_utils_view ?? {})['link']));
   // TODO-QSP: end
   return;

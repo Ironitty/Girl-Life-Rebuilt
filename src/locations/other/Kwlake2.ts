@@ -40,8 +40,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Invite the man to join you', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Unknown guy', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Unknown guy', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'npc_relationship', 'modify', 'A219', 'adore');
     scene.img('images/locations/city/residential/lake/sex/kwlake2/kwlake3.jpg');
     scene.text('When you nod, Kat smiles at you and whispers: "Ask him over, come on!"');

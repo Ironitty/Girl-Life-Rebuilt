@@ -60,7 +60,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['pav_dropoff'] === 1  &&  ((s as any).drugVars ?? 0)?.['heroin_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Find the drug dealer', handler: (st: GameState) => {
-    qspCall(st, 'events', 'pav_drug_dropoff');
+    qspCall(st, 'events', '');
   } },
     ]);
   }

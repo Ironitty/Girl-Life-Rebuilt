@@ -899,7 +899,7 @@ function enterQW6(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Leave her apartment', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
-    qspCall(st, 'mood', 'lower', 'min');
+    qspCall(st, 'mood', '');
   }, goto: ['city_residential', ''] },
         ]);
       } else {
@@ -911,7 +911,7 @@ function enterQW6(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Leave her apartment', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
-    qspCall(st, 'mood', 'lower', 'min');
+    qspCall(st, 'mood', '');
   }, goto: ['city_residential', ''] },
           ]);
         }
@@ -1234,7 +1234,7 @@ function enterQW9(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Lick her boots', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
-    qspCall(st, 'pain', '', 3, 'pinch', 'breasts');
+    qspCall(st, 'pain', '3', 'pinch', 'breasts');
     (st as any).MistressAdoration = ((st as any).MistressAdoration ?? 0) + (1);
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/natalya/sex/sub41.jpg');

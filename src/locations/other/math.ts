@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -317,14 +315,14 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :long_mult_loop3
   if (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] > 9) {
     // TODO-QSP: long[math_i-1] += long[math_i] / 10
-    ((s as any).long = (s as any).long ?? {})[String((s as any).math_i ?? 0)] = (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] % 10);
+    ((s as any).long = (s as any).long ?? {})[String((s as any).math_i ?? 0)] = ((((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) % 10);
   }
-  (s as any).result = '' + ((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] + '' + ((s as any).result ?? 0);
+  (s as any).result = '' + (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) + '' + ((s as any).result ?? 0);
   (s as any).math_i = ((s as any).math_i ?? 0) - (1);
   if (((s as any).math_i ?? 0) > 0) {
     // TODO-QSP: jump 'long_mult_loop3'
   }
-  (s as any).result = '' + qspUntranslated(s, "long[0]", { location: "math" }) + '' + ((s as any).result ?? 0);
+  (s as any).result = '' + (((s as any).long ?? 0)?.[0] ?? 0) + '' + ((s as any).result ?? 0);
   (s as any).result = qspFunc(s, 'math', 'trim_long', ((s as any).result ?? 0));
   if (((s as any).temp_mult_sign ?? 0)[0] === 1) {
     (s as any).result = '-' + ((s as any).result ?? 0);

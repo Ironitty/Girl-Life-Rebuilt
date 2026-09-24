@@ -129,7 +129,7 @@ function enterPickEvent(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enter4(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_rand ?? 0) > 5) {
-            // TODO-QSP: gs 'post_deliveries', $str(temp_rand)
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', String(((s as any).temp_rand ?? 0))]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             qspGoto(s, 'post_deliveries', 'pick_event');
           }
@@ -562,7 +562,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
               }
             }
             if (((s as any).post_vars ?? 0)?.['bj'] <= 4) {
-              // TODO-QSP: gs 'boyStat', 'A'+str(rand(104, 105))
+              qspCall(s, 'boyStat', '', 'A' + String((Math.floor(Math.random() * 2) + 104)));
               scene.img(`images/locations/shared/postoffice/sex/postbj${((s as any).postbjrand ?? '')}.jpg`);
               // TODO-QSP: dynamic text: After the guys decide who gets to have you this time, <<$boydesc>> guides you in...
               scene.text(`After the guys decide who gets to have you this time, ${((s as any).boydesc ?? '')} guides you inside the apartment, where you obediently remove your clothes before kneeling down in front of him.`);
@@ -573,7 +573,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
             } else {
               if (((s as any).post_vars ?? 0)?.['bj'] > 4  &&  ((s as any).post_vars ?? 0)?.['bj'] <= 7) {
-                // TODO-QSP: gs 'boyStat', 'A'+str(rand(104, 105))
+                qspCall(s, 'boyStat', '', 'A' + String((Math.floor(Math.random() * 2) + 104)));
                 scene.img(`images/locations/shared/postoffice/sex/postbj${((s as any).postbjrand ?? '')}.jpg`);
                 // TODO-QSP: dynamic text: After the guys decide who gets to have you this time, <<$boydesc>> guides you in...
                 scene.text(`After the guys decide who gets to have you this time, ${((s as any).boydesc ?? '')} guides you inside the apartment, where you obediently remove your clothes before kneeling down in front of him and eagerly sucking him off, teasing him by licking his balls before you take his cock in your mouth again. He orgasms in no time at all, and you swallow his load without giving it another thought.`);
@@ -605,8 +605,8 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
                   scene.text('He\'s taken aback by how eager you are and quietly lets you take his cock out of his pants.');
                   scene.text('You start jerking and sucking him off immediately, trying to get him off as quick as possible so you can resume your round.');
                   scene.text('Sure enough, he doesn\'t last long. "That\'s it! There you go..." you smile sweetly at him when you feel his sperm land on your face.');
-                  qspCall(s, 'npcgeneratec', '', 0, 'Post office guy', (Math.floor(Math.random() * 28) + 18));
-                  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+                  qspCall(s, 'npcgeneratec', '0', 'Post office guy', (Math.floor(Math.random() * 28) + 18));
+                  qspCall(s, 'boyStat', '$npclastgenerated');
                   qspCall(s, 'arousal', 'bj', 10);
                   qspCall(s, 'cum_call', 'mouth', 'Post office guy');
                   scene.text('You quickly wipe the sperm into your mouth using your fingers and theatrically lick them clean one by one in front of him. All he can do is groan in response.');
@@ -1143,7 +1143,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No time', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    qspCall(st, 'pain', '', 3, 'feet', 'ache');
+    qspCall(st, 'pain', '3', 'feet', 'ache');
     qspCall(st, 'mood', 'lower', 'small');
     qspCall(st, 'stat', '');
     scene.text('Even though you\'d love to sit and rest for a minute, you decide it\'s better to just deliver your mail first. You can relax when you\'re done.');

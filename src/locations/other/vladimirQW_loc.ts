@@ -79,7 +79,7 @@ function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 20;
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     qspCall(st, 'telefon', 'AddContact', 'A108', 'icon_na', 1);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17');
     qspCall(st, 'stat', '');
     scene.text('You tell Vladimir your phone number and he writes it down in a small notebook with a leather cover.');
     scene.actions([
@@ -105,7 +105,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Oh, I have a lot to do today, I\'m sorry.', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 20;
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('You explain that you simply can\'t today, as busy as you are.');
     // TODO-QSP: dynamic text: '"Okay. Then I''ll call you tomorrow at '+func('time', 'get_time_string', 16, 0)...
     scene.text('"Okay. Then I\'ll call you tomorrow at 16:00." Vladimir promises.');
@@ -118,7 +118,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'I wouldn\'t mind', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 21;
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('"I would like that," you tell him.');
     // TODO-QSP: dynamic text: '"Wonderful!" says Vladimir. "Then I''ll meet you at the restaurant in the city ...
     scene.text('"Wonderful!" says Vladimir. "Then I\'ll meet you at the restaurant in the city center at 20:00."');
@@ -143,7 +143,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('You explain that you simply can\'t today, as busy as you are.');
     scene.text('"Okay. Then I\'ll call you another time." Vladimir promises.');
     scene.actions([
@@ -155,7 +155,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     { label: 'I\'d like that', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 30;
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('"I\'d like that." you tell him.');
     scene.text('You can hear that Vladimir\'s pleased over the phone. "Wonderful, my driver will come to pick you up."');
     scene.actions([
@@ -176,7 +176,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('You explain that you simply can\'t today, as busy as you are.');
     scene.text('"Okay. Then I\'ll call you another day." Vladimir promises.');
     scene.actions([
@@ -188,7 +188,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     { label: 'I\'d like that', handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 40;
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
+    qspCall(st, 'telefon', 'SetInCallSchedule', 'A108', 'gs \'vladimirQW_loc\', \'telephone_call\'', 'vladimirQW[\'day\'] ! daystart and hour >= 15 and hour <= 17 and week = 6');
     scene.text('"I\'d like that." you tell him.');
     scene.text('You can hear that Vladimir\'s pleased over the phone. "Wonderful, my driver will come to pick you up."');
     scene.actions([

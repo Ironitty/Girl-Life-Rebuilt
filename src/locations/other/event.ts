@@ -54,7 +54,7 @@ function enterCityPark(s: GameState, scene: SceneBuilder): void {
 function enterHand(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event.jpg');
   // TODO-QSP: dynamic text: Without breaking the kiss you deftly unbutton his pants <<$boydesc>> and start t...
-  scene.text(`Without breaking the kiss you deftly unbutton his pants ${((s as any).boydesc ?? '')} and start to wank your ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm friend. Unable to withstand such pressure he spills his seed on the ground.`);
+  scene.text(`Without breaking the kiss you deftly unbutton his pants ${((s as any).boydesc ?? '')} and start to wank your ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm friend. Unable to withstand such pressure he spills his seed on the ground.`);
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -328,7 +328,7 @@ function enterDima8(s: GameState, scene: SceneBuilder): void {
   scene.text('"You say you will, but this way I will know."');
   scene.text('He puts you doggy-style on the floor and starts beating your ass with the belt, you cry and beg him to stop. Ass burning with pain. Each hit getting more painful.');
   scene.text('"Get up bitch!" he ties your hands with the belt, "suck my dick before bedtime."');
-  qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '2', 'asscheeks', 'spank');
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['event', 'dima9'] },
@@ -816,8 +816,8 @@ function enterDima45(s: GameState, scene: SceneBuilder): void {
 
 function enterDima46(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'gloryhole stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'gloryhole stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_447.jpg');
@@ -842,8 +842,8 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
   // TODO-QSP: :gloryhole1
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
   ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
@@ -883,8 +883,8 @@ function enterDima48(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
   // TODO-QSP: :gloryhole2
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
   ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
@@ -949,8 +949,8 @@ function enterDima50(s: GameState, scene: SceneBuilder): void {
 
 function enterDima51(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/10022_paristommy_088.jpg');
   scene.text('You immediately understand the hint. Kneeling, you unzip his fly, and get down to business. Barely a couple of minutes later the guy begins to cum. Finished, he says goodbye to you, and quickly leaves.');
@@ -967,10 +967,10 @@ function enterDima51(s: GameState, scene: SceneBuilder): void {
 
 function enterDima52(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c');
   qspCall(s, 'money', 'set', 0, 'cash');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/10022_paristommy_308.jpg');
@@ -995,7 +995,7 @@ function enterDima52(s: GameState, scene: SceneBuilder): void {
 function enterDima53(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'arousal', 'end');
-  scene.img(`${qspFunc(s, '$$clothing_image', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$clothing_image', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
   scene.text('Enraged by your refusal, man pushes you, but you stand firm. Realizing that you\'re not to be messed with, he runs away.');
   scene.text('You sort out you clothing and dress yourself in the outfit you were wearing when this all started.');
   // TODO-QSP: end

@@ -850,7 +850,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Anna lays you across her lap and starts spanking your butt, hard. After the first 5 she stops and says, "You have to count them Sweetie, or they don\'t count and I can\'t be smacking you all night."');
     scene.text('She resumes and you starting counting each strike hoping to end the humiliation and pain as quickly as you can.');
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'BDSM', 3, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -860,7 +860,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
       scene.text('Jeanie interrupts Anna and loudly states: "A smack must be on a bare butt." She proceeds to pull down your panties before Anna continues.');
     }
     scene.text('Eventually as you count to 30 Anna stops. "That\'s enough for now Sweetie. I hope you have learnt more about how our world works. You will need time to think about it I\'m sure."');
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'BDSM', 5, 'sub');
     qspCall(st, 'stat', '');
     scene.text('You get up and quickly re-dress, you butt really stings from the spanking. There is also some arousal building as a result and you realize Anna is correct it will take time to understand that mixed feeling.');

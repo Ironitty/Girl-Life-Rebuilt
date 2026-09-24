@@ -322,8 +322,8 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Pay up', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/pool/poold1.jpg');
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     // TODO-QSP: dynamic text: 'Well, a bet is a bet. If you weren''t willing to do it, you shouldn''t have mad...
     scene.text('Well, a bet is a bet. If you weren\'t willing to do it, you shouldn\'t have made the bet. At least that\'s what\'s going through your head as you get down on your knees in front of him. Even being in a separate room and hidden from sight, the fact that everything that\'s between you and a whole bar full of people is a fluttering curtain ' + ((((st as any).trait_vars ?? 0)?.['exhibitionist'] < 1) ? ('terrifies') : ('excites')) + ' you.');
     scene.text('He has his pants unbuttoned in about two seconds and out comes his cock, standing at attention already and revealing his eagerness and anticipation.');

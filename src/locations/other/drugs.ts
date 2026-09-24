@@ -496,7 +496,7 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).frost = 0;
   (s as any).pcs_breath = 0;
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   qspCall(s, 'stat', '');
   return;
   // TODO-QSP: end
@@ -835,7 +835,7 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
 function enterAmphetamineHourlyEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['amphetamine_withdrawl'] >= 5) {
     ((s as any).drugVars = (s as any).drugVars ?? {})['amphetamine_withdrawl'] = ((s as any).drugVars['amphetamine_withdrawl'] ?? 0) + (1);
-    // TODO-QSP: gs 'mood', 'lower', drugVars['amphetamine_withdrawl'] / 5
+    qspCall(s, 'mood', 'lower', (((s as any).drugVars ?? {})?.['amphetamine_withdrawl'] ?? 0) / 5);
   }
   if (((s as any).drugVars ?? 0)?.['amphetamine_high'] > 0) {
     if (((s as any).drugVars ?? 0)?.['amphetamine_withdrawl'] < 2) {
@@ -843,7 +843,7 @@ function enterAmphetamineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).drugVars = (s as any).drugVars ?? {})['amphetamine_bonus'] = 2;
     ((s as any).drugVars = (s as any).drugVars ?? {})['amphetamine_high'] = ((s as any).drugVars['amphetamine_high'] ?? 0) - (4);
-    // TODO-QSP: gs 'mood', 'raise', 2 * drugVars['amphetamine_high']
+    qspCall(s, 'mood', 'raise', 2 * (((s as any).drugVars ?? {})?.['amphetamine_high'] ?? 0));
   } else {
     if (((s as any).drugVars ?? 0)?.['amphetamine_withdrawl'] === 2) {
       if (((s as any).drugVars ?? 0)?.['amphetamine_intake'] > 0) {
@@ -1043,7 +1043,7 @@ function enterHeroinHourlyEvents(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_hours_addicted'] = ((s as any).drugVars['heroin_hours_addicted'] ?? 0) + (1);
   }
   if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0) {
-    // TODO-QSP: gs 'mood', 'lower', 40 / drugVars['heroin_high']
+    qspCall(s, 'mood', 'lower', 40 / (((s as any).drugVars ?? {})?.['heroin_high'] ?? 0));
     ((s as any).drugVars = (s as any).drugVars ?? {})['heroin_high'] = ((s as any).drugVars['heroin_high'] ?? 0) - (1);
   } else {
     if (((s as any).drugVars ?? 0)?.['heroin_taper'] > 0) {

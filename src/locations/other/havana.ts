@@ -174,7 +174,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).pcs_makeup ?? 0) === 1  ||  ((s as any).cosmetic_tattoo ?? 0) > 0)  &&  ((s as any).PSwim ?? 0) === 1) {
     scene.actions([
       { label: 'Use the pool', handler: (st: GameState) => {
-    qspCall(st, 'shoes', 'strip');
+    qspCall(st, 'shoes', '');
   }, goto: ['havana_pool', 'start'] },
     ]);
   } else {
@@ -701,8 +701,8 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
           { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the gym', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy from the gym', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/bj9.jpg');
     scene.text('You nod and squat on the floor as the man gets up and eagerly pulls his shorts down, releasing his already rock hard dick. The head is already glistening with precum.');
@@ -830,10 +830,10 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'Join in', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).girl = ((st as any).girl ?? 0) + (1);
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 1, 'girl from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'guy from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '1', 'girl from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/city/citycenter/gym/sex/zal5.jpg');
     scene.text('You smile at the girl and she nods at her boyfriend, who starts groping your ass.');
     scene.text('"We\'re too exposed here. We should go to our usual spot," the girl says.');

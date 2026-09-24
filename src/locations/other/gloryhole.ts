@@ -89,7 +89,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gloryhole', 'mast', 'stage2');
+    qspCall(st, 'gloryhole', '');
   } },
     ]);
   }
@@ -161,11 +161,11 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHole(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', (Math.floor(Math.random() * 23) + 18));
+  qspCall(s, 'npcgeneratec', '0', 'unknown guy', (Math.floor(Math.random() * 23) + 18));
   if (((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] < 6) {
     ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 6;
   }
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/gloryhole/action/looking.jpg');
@@ -411,7 +411,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${(Math.floor(Math.random() * 5) + 1)}.mp4`);
   // TODO-QSP: dynamic text: You wrap your lips around his dick and take his <<npc_dick[$npclastgenerated]>>c...
-  scene.text(`You wrap your lips around his dick and take his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock in your mouth and start to suck it, you suck the cock enthusiastically.`);
+  scene.text(`You wrap your lips around his dick and take his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')}cm long ${(((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')} cock in your mouth and start to suck it, you suck the cock enthusiastically.`);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['vaginal'] > 0  ||  ((s as any).stat ?? 0)?.['anal'] > 0) {
@@ -549,7 +549,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You turn around and back up to the hole, you use one hand to guide his dick into...
-  scene.text(`You turn around and back up to the hole, you use one hand to guide his dick into your pussy. The ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock slides easily into your wet pussy, causing you to moan in pleasure as you move your hips back and forth. You start humping his dick with fast movements, taking the full length of him balls deep into you, which causes him to moan loudly. After several minutes, you hear him on the other side of the wall yell out, "I'm gonna cum."`);
+  scene.text(`You turn around and back up to the hole, you use one hand to guide his dick into your pussy. The ${(((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')}cm long ${(((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')} cock slides easily into your wet pussy, causing you to moan in pleasure as you move your hips back and forth. You start humping his dick with fast movements, taking the full length of him balls deep into you, which causes him to moan loudly. After several minutes, you hear him on the other side of the wall yell out, "I'm gonna cum."`);
   qspCall(s, 'arousal', 'vaginal', 10, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).protect ?? 0) !== 1) {
@@ -567,7 +567,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
           { label: 'Allow him to cum inside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'willpower', 'pay', 'resist');
-    qspCall(st, 'cum_call', '', '', 'an unknown guy from the gloryhole');
+    qspCall(st, 'cum_call', '', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghcreampie.mp4');
     scene.text('Instead of pulling away, you moan "Inside me, please," and push yourself hard against the opening in the wall. You feel his hot sperm fill your pussy in spurt after spurt. When you finally pull yourself off him, you can feel the sperm leaking out of your pussy.');
     qspCall(st, 'cuminsidereact', 'an unknown guy from the gloryhole');
@@ -583,7 +583,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Allow him to cum inside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    qspCall(st, 'cum_call', '', '', 'an unknown guy from the gloryhole');
+    qspCall(st, 'cum_call', '', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghcreampie.mp4');
     scene.text('Instead of pulling away, you moan "Inside me, please," and push yourself hard against the opening in the wall. You feel his hot sperm fill your pussy in spurt after spurt. When you finally pull yourself off him, you can feel the sperm leaking out of your pussy.');
     qspCall(st, 'cuminsidereact', 'an unknown guy from the gloryhole');
@@ -650,7 +650,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
 function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/gloryhole/sex/ghintoass.mp4');
   // TODO-QSP: dynamic text: You rub your wet pussy and get your fingers nice and wet and then rub it on your...
-  scene.text(`You rub your wet pussy and get your fingers nice and wet and then rub it on your asshole, you do the same to his dick, then you guide his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock into your ass. You feel his dick enter your tight ass, feelings of pain and pleasure rush through you.`);
+  scene.text(`You rub your wet pussy and get your fingers nice and wet and then rub it on your asshole, you do the same to his dick, then you guide his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')}cm ${(((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? '')} cock into your ass. You feel his dick enter your tight ass, feelings of pain and pleasure rush through you.`);
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   qspCall(s, 'arousal', 'clit_finger', 5, 'unknown', 'sub');
   qspCall(s, 'arousal', 'anal', (-5), 'unknown', 'sub');

@@ -95,7 +95,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gadukino', ''] },
       ]);
     } else {
@@ -126,7 +126,7 @@ function enterHornyTalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gadukino', ''] },
     ]);
   } else {
@@ -500,7 +500,7 @@ function enterMiralickStand1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gadukino', ''] },
     ]);
   }
@@ -559,7 +559,7 @@ function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gadukino', ''] },
     ]);
   }

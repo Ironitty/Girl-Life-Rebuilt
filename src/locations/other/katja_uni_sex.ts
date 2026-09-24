@@ -395,8 +395,8 @@ function enterLibraryLeaveActions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLibraryThreesome1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Hot Student', (Math.floor(Math.random() * 11) + 18), 2);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Hot Student', (Math.floor(Math.random() * 11) + 18), 2);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome1.jpg');
   scene.text('While you and Katja are sitting in one of the reading rooms of the library, a handsome guy comes into the room. He leans over you. "So how are the studies going my beautiful angels?"');
   scene.text('"Good. good. It\'s going good," you manage to say as you notice Katja trying extremely hard to not start laughing over his corny lines.');
@@ -600,7 +600,7 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, that wasn\'t bad," Katja replies. ' + ((((st as any).katjaQW ?? 0)?.['slut'] >= 100) ? ('"At least he knows how to use his dick, even if he doesn\'t know how to use his words,"') : ('"Yes. We did get something useful out of him after all, who would have thought with such a corny come on" you say.')) + ` ${((st as any).npcdesc ?? '')} doesn't seem to know how to react to that, and just puts on the rest of his clothes and leaves.`);
     scene.text('Once he\'s gone, you and Katja break down laughing before finally getting cleaned up, your clothes back on and returning to the books.');
     qspCall(st, 'cum_call', 'labia', ((st as any).npcID ?? 0), 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1000,7 +1000,7 @@ function enterLazarKatjaCum(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'katja_meynold_schedule', '');
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT2.jpg');

@@ -1281,7 +1281,7 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/poolfuck.mp4');
     qspCall(st, 'arousal', 'vaginal', (-3), 'exhibitionism', 'sub');
-    qspCall(st, 'cum_call', '', '', 'pool stranger', 0, '', 10000, 50);
+    qspCall(st, 'cum_call', '', 'pool stranger', 0, '', 10000, 50);
     qspCall(st, 'arousal', 'end');
     scene.text('You\'re far too horny now, so you untie your bikini bottom and pull it off before wrapping yourself around him, the tip of his dick pressing against your pussy.');
     scene.text('He doesn\'t hesitate and immediately slides you down onto his shaft, causing you to let out a quiet moan. You grip him tightly as he thrusts his full length in and out of your pussy, doing your best to stay as quiet as possible.');
@@ -1413,7 +1413,7 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
     scene.text('Your attention wanders around the pool. To your dismay, it\'s completely empty and you realize that nobody is coming to help you. Your thoughts are then interrupted when your assailant suddenly groans and you feel a warmth spilling into your pussy. He\'s cumming inside you!');
     scene.text('It might be shock, but you somehow manage to ignore the fact that you\'re being filled with a stranger\'s cum and instead concentrate on the eerie sounds of the deserted pool.');
     qspCall(st, 'arousal', 'vaginal', 10, 'rape');
-    qspCall(st, 'cum_call', '', '', 'pool rapist', 0, '', 15000, 60);
+    qspCall(st, 'cum_call', '', 'pool rapist', 0, '', 15000, 60);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

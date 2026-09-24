@@ -123,7 +123,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'dinsex', 'sexcum');
       qspCall(st, 'arousal', 'vaginal', 10);
     } else {
-      qspCall(st, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+      qspCall(st, 'dinSex', 'boy_wants_anal', '', 'lubri');
+      qspCall(st, 'dinsex', 'analsex');
       qspCall(st, 'arousal', 'anal', 10);
     }
     qspCall(st, 'arousal', 'end');

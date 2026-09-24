@@ -2123,15 +2123,15 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
         ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' and ');
       }
     }
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['hookup'], lastwornpantynumber['hookup']
+    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['hookup'], ((s as any).lastwornpantynumber ?? 0)?.['hookup']);
     if (((s as any).lastwornbratype ?? 0)?.['hookup'] !== 'none') {
       ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('fastening your bra around your chest');
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' then ');
       }
     }
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['hookup'], lastwornbranumber['hookup']
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['hookup'], lastwornclothingnumber['hookup'], 'force'
+    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['hookup'], ((s as any).lastwornbranumber ?? 0)?.['hookup']);
+    qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0)?.['hookup'], ((s as any).lastwornclothingnumber ?? 0)?.['hookup'], 'force');
     if (((s as any).CloDress ?? 0) === 1) {
       ((s as any).hookup = (s as any).hookup ?? {})['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('pulling your dress over your shoulders');
     } else {
@@ -2389,7 +2389,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) > 6) {
     ((s as any).hookup = (s as any).hookup ?? {})['hangover'] = 1;
     qspCall(s, 'sleep_simple', 'simple');
-    qspCall(s, 'pain', '', 3, 'head', 'ache');
+    qspCall(s, 'pain', '3', 'head', 'ache');
   } else {
     qspCall(s, 'sleep_simple', 'simple');
   }

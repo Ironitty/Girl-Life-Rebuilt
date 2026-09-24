@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -36,13 +34,13 @@ function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
 
 function enterStripShowEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strip_club ?? 0)?.['bra_type'] !== '') {
-    // TODO-QSP: gs 'bras', 'wear', $strip_club['bra_type'], strip_club['bra_number']
+    qspCall(s, 'bras', 'wear', ((s as any).strip_club ?? 0)?.['bra_type'], ((s as any).strip_club ?? 0)?.['bra_number']);
   }
   if (((s as any).strip_club ?? 0)?.['panty_type'] !== '') {
-    // TODO-QSP: gs 'panties', 'wear', $strip_club['panty_type'], strip_club['panty_number']
+    qspCall(s, 'panties', 'wear', ((s as any).strip_club ?? 0)?.['panty_type'], ((s as any).strip_club ?? 0)?.['panty_number']);
   }
   if (((s as any).strip_club ?? 0)?.['clothing_type'] !== '') {
-    // TODO-QSP: gs 'clothing', 'wear', $strip_club['clothing_type'], strip_club['clothing_number']
+    qspCall(s, 'clothing', 'wear', ((s as any).strip_club ?? 0)?.['clothing_type'], ((s as any).strip_club ?? 0)?.['clothing_number']);
   }
   qspGoto(s, 'stwork', 'start');
   // TODO-QSP: end
@@ -255,7 +253,7 @@ function enterSetCustomerMoodPole(s: GameState, scene: SceneBuilder): void {
       ((s as any).strip_club = (s as any).strip_club ?? {})['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) - (40);
       if ((Math.floor(Math.random() * 101) + 0) >= 75) {
         (s as any).fingal = ((s as any).fingal ?? 0) + ((Math.floor(Math.random() * 4) + 2));
-        qspCall(s, 'pain', '', 4, 'cheeks', 'Slam');
+        qspCall(s, 'pain', '4', 'cheeks', 'Slam');
         qspCall(s, 'stat', '');
         scene.text('As you fall, you hit the floor hard and feel a bruise forming on your face.');
       }
@@ -327,11 +325,11 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
     if (((st as any).strip_club ?? 0)?.['cust_angry'] === 0) {
       qspCall(st, 'mood', 'raise', 'tiny');
       // TODO-QSP: dynamic text: The positive responses make you smile as you unzip your <<$temp_bottom_desc>> an...
-      scene.text(`The positive responses make you smile as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off and looking several customers straight in the eye as you roll around on the stage in your underwear. Some of them throw some bills your way, so you make sure to some extra attention to them.`);
+      scene.text(`The positive responses make you smile as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} drop to your ankles before kicking ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} off and looking several customers straight in the eye as you roll around on the stage in your underwear. Some of them throw some bills your way, so you make sure to some extra attention to them.`);
     } else {
       qspCall(st, 'mood', 'lower', 'tiny');
       // TODO-QSP: dynamic text: The negative comments make you feel a bit uncomfortable as you unzip your <<$tem...
-      scene.text(`The negative comments make you feel a bit uncomfortable as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off, looking several customers straight in the eye as you roll around on the stage in your underwear.`);
+      scene.text(`The negative comments make you feel a bit uncomfortable as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} drop to your ankles before kicking ${(((st as any).temp_bottom_desc ?? 0)?.[1] ?? '')} off, looking several customers straight in the eye as you roll around on the stage in your underwear.`);
     }
     qspCall(st, 'stat', '');
     scene.actions([
@@ -779,7 +777,7 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'money', 'earn', 1000);
     qspCall(st, 'stat', '');
-    qspCall(st, 'npcgeneratec', '', 0, 'Private dance client', (Math.floor(Math.random() * 36) + 20));
+    qspCall(st, 'npcgeneratec', '0', 'Private dance client', (Math.floor(Math.random() * 36) + 20));
     scene.img('images/shared/sex/cum/facial/facial0,3.mp4');
     scene.text('You nod and get on your knees as the client pulls his cock out and starts jerking it. After a few seconds, he loudly grunts and you close your eyes before spurts of warm cum start splattering across your face. It drips down your chin as he squeezes the last few drops onto your forehead.');
     scene.text('You wipe the cum from your eyes as he puts his cock away and places your payment on the table before leaving. You gather up your clothes and wipe your face as best as you can as you hurry to the dressing room to clean up.');
@@ -923,8 +921,8 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPrivatdanceEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Accept', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Private dance client', (Math.floor(Math.random() * 16) + 25));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Private dance client', (Math.floor(Math.random() * 16) + 25));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0));
     qspCall(st, 'money', 'earn', 2000);

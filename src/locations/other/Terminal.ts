@@ -195,8 +195,8 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck them off', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
     (st as any).guy = ((st as any).guy ?? 0) + (1);
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'unknown');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
     qspCall(st, 'stat', '');
@@ -209,8 +209,8 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
     (st as any).guy = ((st as any).guy ?? 0) + (1);
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'unknown');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), '', '', 20000, 20);
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), '', '', 20000, 20);
@@ -267,7 +267,7 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['Terminal', ''] },
     ]);
@@ -297,7 +297,7 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['Terminal', ''] },
       ]);
@@ -313,27 +313,27 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long you are completely drunk, one of them says. "Well, slut you ready, to pay us back for our booze." before you can even answer another one grabs you from behind putting his hand over your mouth and starts to drag you off, while others grab your arms and legs, lifting you up. The quickly carry you into a dark area of the warehouse.');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'gangbang');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 5, 'gangbang');
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'anal', 5, 'gangbang');
     qspCall(st, 'cum_call', 'anal', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'vaginal', 5, 'gangbang');
     qspCall(st, 'cum_call', 'breasts', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'warehouseman', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'warehouseman', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'anal', 5, 'gangbang');
     qspCall(st, 'cum_call', 'butt', ((st as any).boy ?? 0));
     qspCall(st, 'arousal', 'end');

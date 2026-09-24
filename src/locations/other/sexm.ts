@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   // TODO-QSP: dynamic text: <<$npcdesc>> stops at the entrance of your building.
   scene.text(`${((s as any).npcdesc ?? '')} stops at the entrance of your building.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -389,7 +389,7 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
   }
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   // TODO-QSP: dynamic text: <<$npcdesc>> looks at you and waits for you to say something.
   scene.text(`${((s as any).npcdesc ?? '')} looks at you and waits for you to say something.`);
   if (((s as any).kunday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -430,7 +430,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
   (s as any).popolaini = 1;
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
   (s as any).bja = ((s as any).bja ?? 0) + (1);
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+  qspCall(s, 'npcStat', '$npcID');
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/blowjob/bj24.jpg');
   // TODO-QSP: dynamic text: You wrap your lips around <<$npcdesc>> ''s dick.
@@ -709,7 +709,7 @@ function enterMiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
   (s as any).sexa = ((s as any).sexa ?? 0) + (1);
   (s as any).pose = 0;
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+  qspCall(s, 'npcStat', '$npcID');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/vag/miss/vag.jpg');
@@ -730,7 +730,7 @@ function enterDog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
   (s as any).sexa = ((s as any).sexa ?? 0) + (1);
   (s as any).pose = 1;
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0));
+  qspCall(s, 'npcStat', '$npcID');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/vag/doggy/dog1.jpg');
@@ -935,8 +935,8 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
 
 function enterGangrape(s: GameState, scene: SceneBuilder): void {
   scene.text('You begin to struggle, and one of the guys hits you with his hand on your cheek, saying, "Shut up slut! Now spread your legs! We will fuck you up now!"');
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated', 'a');
   // TODO-QSP: end
   scene.actions([
     { label: 'Obey', goto: ['sexm', 'gangbang'] },
@@ -958,29 +958,29 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
   (s as any).cumprecheck = 1;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy1 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy1 ?? 0));
   (s as any).spafinloc = 11;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy1 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy1 ?? 0));
   (s as any).spafinloc = 12;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy1 ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'cum_manage', '', ((s as any).boy1 ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated', 'b');
   (s as any).spafinloc = 11;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
   (s as any).spafinloc = 12;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated', 'b');
   (s as any).spafinloc = 11;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
   (s as any).spafinloc = 12;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 28) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 28) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated', 'b');
   (s as any).spafinloc = 11;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
   (s as any).spafinloc = 12;
-  qspCall(s, 'cum_manage', '', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'cum_manage', '', ((s as any).boy2 ?? 0));
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -1038,8 +1038,8 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
 
 function enterPopala(s: GameState, scene: SceneBuilder): void {
   (s as any).sexpartkno = 1;
-  qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'a');
-  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', '$npcID', 'a');
+  qspCall(s, 'npcStat', '$husID');
   if (((s as any).popolaini ?? 0) === 1) {
     scene.img('images/characters/city/husband/sex/p0.jpg');
     scene.text('Just as you are about to go to the bathroom to wash up, you husband walks in and catches you kneeling in front of a naked man while you are covered in semen.');

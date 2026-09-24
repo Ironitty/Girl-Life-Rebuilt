@@ -12,9 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerdin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
-    qspCall(s, 'cum_cleanup', '', 1);
+    qspCall(s, 'cum_cleanup', '1');
   } else {
-    qspCall(s, 'cum_cleanup', '', 18);
+    qspCall(s, 'cum_cleanup', '18');
   }
   (s as any).body_write = 0;
   (s as any).face_write = 0;
@@ -80,14 +80,14 @@ function enterBteethDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
 }
 
 function enterBrushTeeth(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_cleanup', '', 2);
+  qspCall(s, 'cum_cleanup', '2');
   (s as any).pcs_breath = 1;
   ((s as any).teeth = (s as any).teeth ?? {})['brushed'] = ((s as any).teeth['brushed'] ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -100,7 +100,7 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get out and dry off', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -419,7 +419,7 @@ function enterSkincareDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -707,7 +707,7 @@ function enterTamponPadDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -724,7 +724,7 @@ function enterTamponTamponDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -761,7 +761,7 @@ function enterQuickwashDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -786,7 +786,7 @@ function enterQuickwash(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend minutes waiting between the sudden gushes of semen pouring out of you.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -820,7 +820,7 @@ function enterQuickwash(s: GameState, scene: SceneBuilder): void {
     scene.text('You fight the irrational urge to keep it inside you, and spend several minutes waiting between the sudden gushes draining out.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -993,13 +993,13 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cumloc ?? 0)[12] === 1) {
     scene.actions([
       { label: 'Rinse your mouth (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'cum_cleanup', '', 2);
+    qspCall(st, 'cum_cleanup', '2');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.text('You rinse your mouth and get rid of the taste of cum.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1015,7 +1015,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You wash your hands and get rid of any trace of cum.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1039,7 +1039,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You clean your face and hair and get rid of any trace of cum.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1062,7 +1062,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You clean your face and get rid of any trace of cum.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1084,7 +1084,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You clean your hair and get rid of any trace of cum.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1105,7 +1105,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend ten minutes wiping and rinsing the cum stains out of your clothes. In the end, all that remains of the stains are some damp spots that should dry up in a few minutes.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1123,7 +1123,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend minutes waiting between the sudden gushes of semen pouring out of you.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1156,7 +1156,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You fight the irrational urge to keep it inside you, and spend several minutes waiting between the sudden gushes draining out.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1176,7 +1176,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You wash off the indecent inscriptions on your body.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1208,7 +1208,7 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
     scene.text('You take the large pill with some water, this should help you infection.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1236,7 +1236,7 @@ function enterRemovemakeupDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1268,7 +1268,7 @@ function enterRemovelashesDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1290,7 +1290,7 @@ function enterDeodorantDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1314,7 +1314,7 @@ function enterEnemaDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1341,7 +1341,7 @@ function enterEnema(s: GameState, scene: SceneBuilder): void {
     scene.text('You give yourself a quick enema, feeling clean down there.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1377,7 +1377,7 @@ function enterEnema(s: GameState, scene: SceneBuilder): void {
     scene.text('You fight the irrational urge to keep it inside you, and give yourself a quick enema, feeling clean down there.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1436,7 +1436,7 @@ function enterButtplugOutDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1472,7 +1472,7 @@ function enterButtplugInDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1496,7 +1496,7 @@ function enterVibeOutDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1520,7 +1520,7 @@ function enterVibeInDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1545,7 +1545,7 @@ function enterPalelady(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1663,7 +1663,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
       scene.text('You take a painkiller and gulp it down with a glass of water.');
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
       ]);
     }
@@ -1694,7 +1694,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBteeth(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <a href="exec:msg ''<center>Your weight is <<pcs_weight[0]>>.<<pcs_weight[1]>> k...
-  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "din_van" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "din_van" })}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "din_van" })}</center>/u0027 */ return s; }); return false;">Check weight on the scales</a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027<center>Your weight is ${(((s as any).pcs_weight ?? 0)?.[0] ?? '')}.${(((s as any).pcs_weight ?? 0)?.[1] ?? '')} kg<br>Your body mass index (BMI) is ${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "din_van" })}</center>/u0027 */ return s; }); return false;">Check weight on the scales</a>`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPee(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBasin(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1711,7 +1711,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a tube of cream and rub it onto your itchy vulva.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1780,7 +1780,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1891,7 +1891,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend an hour washing your husband\'s dirty laundry.');
     scene.actions([
       { label: 'Leave the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1908,7 +1908,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1929,7 +1929,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend an hour washing your wife\'s dirty laundry.');
     scene.actions([
       { label: 'Leave the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1946,7 +1946,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -1996,7 +1996,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend an hour washing your husband\'s dirty laundry.');
     scene.actions([
       { label: 'Leave the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2013,7 +2013,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2034,7 +2034,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend an hour washing your wife\'s dirty laundry.');
     scene.actions([
       { label: 'Leave the bathroom', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2051,7 +2051,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2095,7 +2095,7 @@ function enterReliefReact(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2110,7 +2110,7 @@ function enterHappyReact(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2125,7 +2125,7 @@ function enterDisappointedReact(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2156,7 +2156,7 @@ function enterHorrifiedReact1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2184,7 +2184,7 @@ function enterConcernedReact1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2212,7 +2212,7 @@ function enterExcitedReact1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2240,7 +2240,7 @@ function enterArousedReact1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2256,7 +2256,7 @@ function enterWifeReact1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2271,7 +2271,7 @@ function enterWifeReact2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -2387,7 +2387,7 @@ function enterPrvtPeeEnd(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2592,7 +2592,7 @@ function enterPblcPeeEnd(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
     ]);
   } },
@@ -2655,13 +2655,13 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <table border=0 cellspacing=<<shave_img_hgt/25>> cellpadding=5>
   scene.text(`<table border=0 cellspacing=${((s as any).shave_img_hgt ?? '')/25} cellpadding=5>`);
   scene.img('images/pc/body/pussy/hair/pussy.jpg');
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 2);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 2);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 3);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 3);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 4);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 4);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 5);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 5);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 1) {
@@ -2699,15 +2699,15 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('Heart-shaped');
   }
   scene.text('</center></td></tr>');
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 6);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 6);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 7);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 7);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 8);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 8);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 9);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 9);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 26, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 10);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 26, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 10);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 6  &&  ((s as any).pcs_pubes ?? 0) > 15) {
@@ -2745,9 +2745,9 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('Full Bush');
   }
   scene.text('</center></td></tr>');
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 5, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 11);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 5, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 11);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
-  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, qspUntranslated(s, "pcs_pubecol[2]", { location: "din_van" }), 12);
+  (s as any).temp_pube_image = qspFunc(s, '$body_image', '', 'pubes', 16, (((s as any).pcs_pubecol ?? 0)?.[2] ?? 0), 12);
   scene.img(`${((s as any).temp_pube_image ?? '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 11  &&  ((s as any).pcs_pubes ?? 0) > 10) {

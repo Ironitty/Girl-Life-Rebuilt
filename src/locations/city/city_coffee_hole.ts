@@ -239,7 +239,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
         { label: 'Exit the cafe', goto: ['city_island', ''] },
         { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
         { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
       ]);
     } else {
@@ -251,7 +251,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
         { label: 'Exit the cafe', goto: ['city_island', ''] },
         { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
         { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
       ]);
     }
@@ -344,7 +344,7 @@ function enterAnushkaWork(s: GameState, scene: SceneBuilder): void {
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
   ]);
   scene.build();

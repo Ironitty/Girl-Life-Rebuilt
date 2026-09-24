@@ -1126,13 +1126,13 @@ function enterInformThem(s: GameState, scene: SceneBuilder): void {
     scene.text('There\'s a lot of loud moans. "I don\'t care how you feel about it! Vote!" Feofan commands.');
     scene.actions([
       { label: 'Vote to bash the Necromancer', handler: (st: GameState) => {
-    qspCall(st, 'nerd_game_night', 'vote_mansion');
+    qspCall(st, 'nerd_game_night', '');
   } },
       { label: 'Vote to go to the mansion', handler: (st: GameState) => {
-    qspCall(st, 'nerd_game_night', 'vote_mansion');
+    qspCall(st, 'nerd_game_night', '');
   } },
       { label: 'Vote to follow the information on the scroll', handler: (st: GameState) => {
-    qspCall(st, 'nerd_game_night', 'vote_mansion');
+    qspCall(st, 'nerd_game_night', '');
   } },
     ]);
   }
@@ -1442,10 +1442,10 @@ function enterNextWeek(s: GameState, scene: SceneBuilder): void {
   scene.text('There\'s a lot of loud moans. "I don\'t care how you feel about it! Vote!" Feofan commands.');
   scene.actions([
 { label: 'Vote to bash the Necromancer', handler: (st: GameState) => {
-    qspCall(st, 'nerd_game_night', 'vote_necromancer');
+    qspCall(st, 'nerd_game_night', '');
   } },
 { label: 'Vote to follow the information on the scroll', handler: (st: GameState) => {
-    qspCall(st, 'nerd_game_night', 'vote_necromancer');
+    qspCall(st, 'nerd_game_night', '');
   } },
 ]);
   return;
@@ -1843,11 +1843,11 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'Add SMS') {
     ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cd1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_a');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_b');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_c');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cd1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_d');
     qspCall(s, 'SMStext_builder', 'add_sms', 'A152');
     qspCall(s, 'SMStext_builder', 'end');
   } else {
@@ -1857,46 +1857,46 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Choice_a') {
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a1']
-    // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['a1']);
+    qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
     ((s as any).nerd_game = (s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
-    // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['a2']);
+    qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'Choice_b') {
       qspCall(s, 'SMStext_builder', 'start');
-      // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['b1']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b1']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       ((s as any).nerd_game = (s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b2']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b2']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'SMStext_builder', 'end');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'Choice_c') {
         qspCall(s, 'SMStext_builder', 'start');
-        // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['c1']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c2']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['c1']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['c2']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
         qspCall(s, 'SMStext_builder', 'end');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'Choice_d') {
           qspCall(s, 'SMStext_builder', 'start');
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cd2'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_a');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_b');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_c');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cd2'], 'nerd_game_night', 'summer_invite_sms', 'Choice_d1');
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
           qspCall(s, 'SMStext_builder', 'end');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'Choice_d1') {
             qspCall(s, 'SMStext_builder', 'start');
-            // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['d2']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+            qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['d2']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d3']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['d3']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             qspCall(s, 'SMStext_builder', 'end');
           }
         }
@@ -1929,11 +1929,11 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'Add SMS') {
     ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cb1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cc1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice...
-    // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cd1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice...
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['0']);
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ca1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice_a');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cb1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice_b');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cc1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice_c');
+    qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cd1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice_d');
     qspCall(s, 'SMStext_builder', 'add_sms', 'A152');
     qspCall(s, 'SMStext_builder', 'end');
   } else {
@@ -1943,50 +1943,50 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Choice_a') {
     qspCall(s, 'SMStext_builder', 'start');
-    // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a1']
-    // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+    qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['a1']);
+    qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
     ((s as any).nerd_game = (s as any).nerd_game ?? {})['fixed_uni_day'] = 2;
     qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
     qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
-    // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
-    // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+    qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['a2']);
+    qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'Choice_b') {
       qspCall(s, 'SMStext_builder', 'start');
-      // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['b1']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['b1']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       ((s as any).nerd_game = (s as any).nerd_game ?? {})['fixed_uni_day'] = 4;
       qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
       qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
-      // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b2']
-      // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+      qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['b2']);
+      qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
       qspCall(s, 'SMStext_builder', 'end');
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'Choice_c') {
         qspCall(s, 'SMStext_builder', 'start');
-        // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['c1']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-        // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c2']
-        // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+        qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['c1']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
+        qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['c2']);
+        qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
         qspCall(s, 'SMStext_builder', 'end');
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'Choice_d') {
           qspCall(s, 'SMStext_builder', 'start');
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['cd2'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
-          // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_a');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cb1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_b');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cc1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_c');
+          qspCall(s, 'SMStext_builder', 'add_reply', ((s as any).SMSTree ?? 0)?.['cd2'], 'nerd_game_night', 'summer_invite_sms', 'Choice_d1');
+          qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
           qspCall(s, 'SMStext_builder', 'end');
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'Choice_d1') {
             qspCall(s, 'SMStext_builder', 'start');
-            // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['d2']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+            qspCall(s, 'SMStext_builder', 'send', ((s as any).SMSTree ?? 0)?.['d2']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
-            // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d3']
-            // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
+            qspCall(s, 'SMStext_builder', 'receive', ((s as any).SMSTree ?? 0)?.['d3']);
+            qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[2] ?? 0));
             qspCall(s, 'SMStext_builder', 'end');
           }
         }

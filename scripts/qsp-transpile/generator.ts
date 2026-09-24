@@ -244,6 +244,17 @@ function generateSceneBody(
       case 'goto': {
         if (node.target.startsWith('$')) {
           let t = node.target.replace(/^\$/, '');
+          const argsMatch = t.match(/^ARGS\[(\d+)\]$/);
+          if (argsMatch) {
+            const idx = argsMatch[1];
+            const argVal = node.arg ? translateValue(`'${node.arg}'`, stateReads, todos) : "''";
+            const arg2Val = node.arg2 ? translateValue(`'${node.arg2}'`, stateReads, todos) : null;
+            const arg3Val = node.arg3 ? translateValue(`'${node.arg3}'`, stateReads, todos) : null;
+            const arg2Part = arg2Val ? `, ${arg2Val}` : '';
+            const arg3Part = arg3Val ? `, ${arg3Val}` : '';
+            out.push(`{ const __t = String((s as any).locArgs?.[${idx}] ?? ''); if (__t) qspGoto(s, __t, ${argVal}${arg2Part}${arg3Part}); }`);
+            break;
+          }
           const dictMatch = t.match(/^(\w+)\['([^']+)'\]$/);
           const argDictMatch = node.arg ? node.arg.replace(/^\$/, '').match(/^(\w+)\['([^']+)'\]$/) : null;
           if (dictMatch) {
@@ -301,10 +312,15 @@ function generateSceneBody(
             targets.add(node.target);
             const isVarRef = (v: string) => v !== '' && !/^\d+$/.test(v) && /^[a-zA-Z_$]\w*$/.test(v);
             const isDictAccess = (v: string) => !!v && /^\$\w+\['[^']*'\]$/.test(v);
+            const isArgsAccess = (v: string) => !!v && /^\$ARGS\[\d+\]$/.test(v);
             const translateArg = (v: string, quoted: boolean): string => {
               if (isDictAccess(v)) {
                 const m = v.replace(/^\$/, '').match(/^(\w+)\['([^']+)'\]$/);
                 if (m) return `(((s as any).${m[1]} ?? {})['${m[2]}'])`;
+              }
+              if (isArgsAccess(v)) {
+                const idx = v.match(/^\$ARGS\[(\d+)\]$/)![1];
+                return `String((s as any).locArgs?.[${idx}] ?? '')`;
               }
               if (quoted || !isVarRef(v)) return translateValue(`'${v}'`, stateReads, todos);
               return `((s as any).${v.replace(/^\$/, '')} ?? '')`;
@@ -322,8 +338,8 @@ function generateSceneBody(
       case 'gs': {
         gsCalls.push(`${node.module}.${node.func}`);
         const gargs = node.args.map(a => translateValue(a, stateReads, todos));
-        const funcName = node.func.includes('<<') ? translateValue(`'${node.func}'`, stateReads, todos) : `'${node.func}'`;
-        const moduleName = node.module.includes('<<') ? translateValue(`'${node.module}'`, stateReads, todos) : `'${node.module}'`;
+        const funcName = node.func.includes('<<') ? translateValue(`'${node.func}'`, stateReads, todos) : `'${esc(node.func)}'`;
+        const moduleName = node.module.includes('<<') ? translateValue(`'${node.module}'`, stateReads, todos) : `'${esc(node.module)}'`;
         const selfFn = node.module === locName && !node.func.includes('<<') && !node.module.includes('<<') ? argToFunc[node.func] : undefined;
         if (selfFn) {
           out.push(`{ const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ${gargs.join(', ')}]; ${selfFn}(s, scene); (s as any).locArgs = __savedLocArgs; }`);
@@ -524,7 +540,7 @@ function translateInlineAct(
   let goto: { target: string; arg: string; arg2?: string; arg3?: string } | null = null;
 
   for (const part of parts) {
-    const gtAnyMatch = part.match(/^gt\s+(.+)$/);
+    const gtAnyMatch = part.match(/^gt\s*(.+)$/);
     if (gtAnyMatch) {
       const argsStr = gtAnyMatch[1].trim();
       const args = argsStr.split(',').map(a => a.trim()).filter(Boolean);
@@ -709,18 +725,22 @@ function translateInlineAct(
       continue;
     }
     if (part.startsWith('gs ')) {
-      const gsMatch = part.match(/^gs\s+'([^']+)'\s*,\s*'([^']*)'\s*(.*)$/);
+      const gsMatch = part.match(/^gs\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+)\s*(?:,\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+))?\s*(?:,\s*(.+?))?\s*$/);
       if (gsMatch) {
-        const mod = gsMatch[1];
-        const fn = gsMatch[2];
-        gsCalls.push(`${mod}.${fn}`);
-        let rest = gsMatch[3].trim();
+        const modRaw = gsMatch[1];
+        const mod = modRaw.startsWith("'") ? modRaw.slice(1, -1) : translateValue(modRaw, stateReads, todos, 'st');
+        const fnRaw = gsMatch[6] || '';
+        const fn = fnRaw.startsWith("'") ? fnRaw.slice(1, -1) : (fnRaw ? translateValue(fnRaw, stateReads, todos, 'st') : '');
+        gsCalls.push(`${modRaw}.${fnRaw || 'unknown'}`);
+        let rest = gsMatch[11] || '';
         let restArgs: string[] = [];
         if (rest) {
           if (rest.startsWith(',')) rest = rest.slice(1);
           restArgs = splitTopLevel(rest).map(a => a.trim()).filter(a => a !== '').map(a => translateValue(a, stateReads, todos, 'st'));
         }
-        handlerBits.push(`qspCall(st, '${mod}', '${fn}'${restArgs.length ? ', ' + restArgs.join(', ') : ''});`);
+        const modExpr = modRaw.startsWith("'") ? `'${esc(modRaw.slice(1, -1))}'` : mod;
+        const fnExpr = fnRaw.startsWith("'") ? `'${esc(fnRaw.slice(1, -1))}'` : (fnRaw ? fn : "''");
+        handlerBits.push(`qspCall(st, ${modExpr}, ${fnExpr}${restArgs.length ? ', ' + restArgs.join(', ') : ''});`);
         continue;
       }
       handlerBits.push(`// TODO-QSP: ${truncate(part, 60)}`);
@@ -1065,12 +1085,17 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     stateReads.push(arrName);
     return ph;
   });
-  c = c.replace(/(?:\$)?ARGS\[\]/g, () => {
+  c = c.replace(/(?<!\w)(?:\$)?modARGS\[(\d+)\]/g, (_, idx) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    phs.push([ph, `String((${stateVar} as any).locArgs?.[${idx}] ?? '')`]);
+    return ph;
+  });
+  c = c.replace(/(?<!\w)(?:\$)?ARGS\[\]/g, () => {
     const ph = `\u0000${phs.length}\u0000`;
     phs.push([ph, `((${stateVar} as any).locArgs ?? 0)`]);
     return ph;
   });
-  c = c.replace(/(?:\$)?ARGS\[(\d+)\]/g, (_, idx) => {
+  c = c.replace(/(?<!\w)(?:\$)?ARGS\[(\d+)\]/g, (_, idx) => {
     const ph = `\u0000${phs.length}\u0000`;
     phs.push([ph, `String((${stateVar} as any).locArgs?.[${idx}] ?? '')`]);
     return ph;
@@ -1264,7 +1289,8 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       const args = splitTopLevel(inner).map(a => a.trim()).filter(a => a !== '');
       const fname = args[0] ? args[0].replace(/''/g, "'").replace(/^['"]|['"]$/g, '') : '';
       const rest = args.slice(1).map(a => translateValue(a, stateReads, todos, stateVar, textContext));
-      return `qspFunc(${stateVar}, '$${fname}'${rest.length ? ', ' + rest.join(', ') : ''})`;
+      const fmod = fname.startsWith('$') ? fname : `$${fname}`;
+      return `qspFunc(${stateVar}, '${fmod}'${rest.length ? ', ' + rest.join(', ') : ''})`;
     }
   }
   // Pre-pass: handle <<expr>> inside single-quoted strings BEFORE unescapeDoubled
@@ -1402,6 +1428,13 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   if (v === '' || v === "''" || v === '""') return "''";
   if (v.startsWith("'") && v.endsWith("'") && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
   if (v.startsWith('"') && v.endsWith('"') && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
+  // QSP modARGS[N] in value context (module args = locArgs)
+  const modArgsMatch = v.match(/^(?:\$)?modARGS\[(\d+)\]$/);
+  if (modArgsMatch) {
+    return textContext
+      ? `((${stateVar} as any).locArgs?.[${modArgsMatch[1]}] ?? '')`
+      : `((${stateVar} as any).locArgs?.[${modArgsMatch[1]}] ?? 0)`;
+  }
   // QSP $ARGS[N] in value context ($ARGS[0]=first arg=locArgs[0])
   const argsMatch = v.match(/^(?:\$)?ARGS\[(\d+)\]$/);
   if (argsMatch) {
@@ -1427,8 +1460,17 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     const obj = arrAccUnq[1].replace(/^\$/, '').replace(/\./g, '?.');
     const idx = arrAccUnq[2];
     stateReads.push(arrAccUnq[1].replace(/^\$/, ''), idx);
-    const fb = textContext ? " ?? ''" : '';
-    return `((${stateVar} as any).${obj} ?? 0)?.[String((${stateVar} as any).${idx} ?? 0)]${fb}`;
+    const fb = textContext ? " ?? ''" : " ?? 0";
+    return `(((${stateVar} as any).${obj} ?? 0)?.[String((${stateVar} as any).${idx} ?? 0)]${fb})`;
+  }
+  // QSP array access with literal integer key: WORD[1] or WORD[0]
+  const arrAccInt = v.match(/^(\$?[\w.]+)\[(\d+)\]$/);
+  if (arrAccInt) {
+    const obj = arrAccInt[1].replace(/^\$/, '').replace(/\./g, '?.');
+    const idx = arrAccInt[2];
+    stateReads.push(arrAccInt[1].replace(/^\$/, ''));
+    const fb = textContext ? " ?? ''" : " ?? 0";
+    return `(((${stateVar} as any).${obj} ?? 0)?.[${idx}]${fb})`;
   }
   // QSP array access with dynamic key: WORD['lit' + $var + 'lit'] or WORD[$var + 'lit']
   // Find matching ] by tracking bracket depth (handles nested WORD['key'] in the key).
@@ -1450,7 +1492,8 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
         if (rawKey.includes('+') || rawKey.includes('$')) {
           const keyExpr = translateValue(rawKey, stateReads, todos, stateVar, textContext);
           stateReads.push(obj.replace(/^\$/, ''));
-          return `((${stateVar} as any).${obj.replace(/^\$/, '').replace(/\./g, '?.')} ?? 0)?.[${keyExpr}]`;
+          const fb = textContext ? " ?? ''" : " ?? 0";
+          return `(((${stateVar} as any).${obj.replace(/^\$/, '').replace(/\./g, '?.')} ?? 0)?.[${keyExpr}]${fb})`;
         }
       }
     }
@@ -1641,14 +1684,43 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       return segments.join(' + ');
     }
   }
-  // QSP input function
-  const inputMatch = v.match(/^\$?input\s*\((.*)\)$/s) || v.match(/^\$?input\s+'(.*)'$/);
+  // QSP input function: argument is a QSP string expression (may contain <<...>>
+  // dynamics and/or concatenation like "str" + iif(...)). Translate the whole
+  // argument as a value so both dynamics and concatenation are evaluated.
+  const inputParen = v.match(/^\$?input\s*\((.*)\)$/s);
+  const inputSpace = v.match(/^\$?input\s+'(.*)'$/);
+  const inputMatch = inputParen || inputSpace;
   if (inputMatch) {
-    const arg = inputMatch[1].trim();
+    let arg = inputMatch[1].trim();
+    // Space form (input 'str') had its quotes stripped by the regex; re-quote so
+    // it is treated as a string literal, not a bare expression.
+    if (!inputParen && !/^['"]/.test(arg)) arg = `'${arg}'`;
     const strMatch = arg.match(/^['"](.*)['"]$/s);
-    const prompt = strMatch ? strMatch[1].replace(/''/g, "'") : arg;
-    todos.push(`input: ${truncate(prompt, 60)}`);
-    return `window.prompt(${JSON.stringify(prompt)}) ?? ''`;
+    let promptExpr: string;
+    if (strMatch) {
+      // Single quoted string: unescape '' and translate any <<...>> dynamics.
+      const prompt = strMatch[1].replace(/''/g, "'");
+      if (prompt.includes('<<')) {
+        const parts: string[] = [];
+        const re = /<<(.+?)>>/g;
+        let last = 0, m: RegExpExecArray | null;
+        while ((m = re.exec(prompt)) !== null) {
+          if (m.index > last) parts.push(JSON.stringify(prompt.slice(last, m.index)));
+          parts.push(`(${translateCondition(m[1].trim(), stateReads, todos, stateVar)})`);
+          last = m.index + m[0].length;
+        }
+        if (last < prompt.length) parts.push(JSON.stringify(prompt.slice(last)));
+        promptExpr = parts.join(' + ');
+      } else {
+        promptExpr = JSON.stringify(prompt);
+      }
+    } else {
+      // Complex expression (e.g. "str" + iif(...)): translate as a QSP value so
+      // concatenation and nested dynamics are evaluated.
+      promptExpr = translateValue(arg, stateReads, todos, stateVar, true);
+    }
+    todos.push(`input: ${truncate(arg, 60)}`);
+    return `window.prompt(${promptExpr}) ?? ''`;
   }
   // QSP & gs / & gt / & killvar statement separator
   const gsMatch = v.match(/^(.*?)\s*&\s*(gs|gt|killvar)\s+/);
@@ -1894,7 +1966,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     // WORD[$var] dynamic array indexing
     v = v.replace(/\b([a-zA-Z_]\w*)\[\$?([a-zA-Z_]\w*)\]/g, (_, obj, idx) => {
       const ph = `\u0000${phs.length}\u0000`;
-      phs.push([ph, `((${stateVar} as any).${obj} ?? 0)?.[String((${stateVar} as any).${idx} ?? 0)]`]);
+      phs.push([ph, `(((${stateVar} as any).${obj} ?? 0)?.[String((${stateVar} as any).${idx} ?? 0)] ?? 0)`]);
       stateReads.push(obj, idx);
       return ph;
     });
@@ -2747,7 +2819,8 @@ function replaceFuncCalls(c: string, stateReads: string[], todos: string[], stat
       const fargs = splitTopLevel(finner).map(a => a.trim()).filter(a => a !== '');
       const fname = fargs[0] ? fargs[0].replace(/''/g, "'").replace(/^['"]|['"]$/g, '') : '';
       const frest = fargs.slice(1);
-      pre += `$func('$${fname}'${frest.length ? ', ' + frest.join(', ') : ''})`;
+      const fmod = fname.startsWith('$') ? fname : `$${fname}`;
+      pre += `$func('${fmod}'${frest.length ? ', ' + frest.join(', ') : ''})`;
       pi = fend + 1;
     }
     c = pre;

@@ -721,7 +721,7 @@ function enterAnyaolusvet(s: GameState, scene: SceneBuilder): void {
     scene.text('He nods and you head out shortly after your sister. You see her heading down the stairs just as you walk out the door.');
     qspCall(st, 'arousal', 'foreplay', 5, 'group');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 1);
-    qspCall(st, 'cum_cleanup', '', 1);
+    qspCall(st, 'cum_cleanup', '1');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
@@ -1170,7 +1170,7 @@ function enterNatolusvet(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).cumspclnt = 20;
-    // TODO-QSP: gs 'cum_cleanup'
+    qspCall(st, 'cum_cleanup', '');
   }, goto: ['pod_ezd', 'etaj_4'] },
     ]);
   } },

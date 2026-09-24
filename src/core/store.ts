@@ -56,6 +56,9 @@ export const initialState = {
   forest_args1: '',
   eventtype: 'before_school',
   temp_kickboxVars: { round: 1, npc_health: 10, fight_type: 0, time: 0, active_init: 0 },
+  strip_club: { strip_tips: 50 },
+  pcs_eyecolor: 'brown',
+  noWillpower: '',
 
   scene: {
     mainText: '',
@@ -83,6 +86,7 @@ export const initialState = {
   pcs_chrsm: 5,
   pcs_prcptn: 5,
   pcs_magik: 0,
+  pcs_bushcraft: 20,
   pcs_faith: 50,
   pcs_inhib: 50,
   pcs_sweat: 0,

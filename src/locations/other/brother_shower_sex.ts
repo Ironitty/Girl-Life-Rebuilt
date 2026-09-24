@@ -299,7 +299,7 @@ function enterBrotherShowerFuckFirst2(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['brother_shower_sex', 'brother_fuck_cum'] },
       ]);
     } else {
-      qspCall(st, 'cum_call', '', '', 'A34', 1);
+      qspCall(st, 'cum_call', '', 'A34', 1);
       scene.text('Your incestuous shower sex continues and you vaguely think that Kolka trying to tell you something but you\'re too drunk on cock to hear what he\'s saying. Suddenly, he pulls you tight, pushing himself as far into you as he can. Something spurts inside you, filling you up, sending you over the edge, orgasming hard on your brother\'s cock.');
       scene.text('As your orgasm winds down and your legs stop quivering, you lean forward against the shower wall, Kolka\'s cock slipping from between your legs. You start to think about how empty you feel without a cock inside you when you realize you feel something dripping out from your pussy.');
       scene.text('"Is… is that cum? Did you come inside me?!" you pant.');
@@ -713,7 +713,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/shared/sex/shower/doggy${(Math.floor(Math.random() * 3) + 1)}.mp4`);
-    qspCall(st, 'cum_call', '', '', 'A34', 1);
+    qspCall(st, 'cum_call', '', 'A34', 1);
     scene.text('Suddenly Kolka grabs you tight, thrusting his cock into you as deep as it can go and you can feel him pulsating inside you.');
     if (((st as any).pcs_horny ?? 0) >= 95) {
       ((st as any).brotherQW = (st as any).brotherQW ?? {})['shower_fuck_day'] = ((st as any).daystart ?? 0);
@@ -1216,7 +1216,7 @@ function enterShowerCreampie(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t respond verbally but pick up the pace, slapping your ass back against Kolka\'s cock until he grabs you tight and you can feel his cock pulsating, spurts of cum pouring out inside you.');
   (s as any).orgasm_txt = 'The sensation sends you over the edge and you orgasm as well, your pussy gripping him and squeezing every last drop of cum from his cock.';
   qspCall(s, 'arousal', 'vaginal', 1, 'incest');
-  qspCall(s, 'cum_call', '', '', 'A34', 1);
+  qspCall(s, 'cum_call', '', 'A34', 1);
   qspCall(s, 'stat', '');
   scene.text('Looking back at Kolka with a self satisfied smirk, you slip off his cock, feeling cum gush from your pussy and spatter on the bath tub floor.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEndingRouteRoutine(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1250,7 +1250,7 @@ function enterShowerCreampie(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerForcedCreampie(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/shower/doggy${(Math.floor(Math.random() * 3) + 1)}.mp4`);
-  qspCall(s, 'cum_call', '', '', 'A34', 1);
+  qspCall(s, 'cum_call', '', 'A34', 1);
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 90) {
     (s as any).orgasm_or = 'custom';
@@ -1353,7 +1353,7 @@ function enterShowerForcedCreampie(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerFillMeUp(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/shower/doggy${(Math.floor(Math.random() * 3) + 1)}.mp4`);
-  qspCall(s, 'cum_call', '', '', 'A34', 1);
+  qspCall(s, 'cum_call', '', 'A34', 1);
   qspCall(s, 'stat', '');
   scene.text('"Yes! Yes!" you cry out. "Fill me up!"');
   if (((s as any).pcs_horny ?? 0) >= 90) {

@@ -1370,7 +1370,7 @@ function enterBella(s: GameState, scene: SceneBuilder): void {
         scene.text('"I… I…" you stammer while Bella just crosses her arms and stares at you.');
         scene.text('"What kind of perverted <i>freak</i> are you? Do you get off on watching other people have sex?" You\'re about to reply when she suddenly slaps you hard and you feel a sharp sting pulse through your cheek. "You won\'t tell <i>anyone</i> about what you just saw. Got it?"');
         scene.text('All of this happens as she\'s shoving you out of the locker room, giving you no time to react. "Fucking kids these days…" you hear her mumbling before the door closes in your face. You rub your stinging cheek before walking back to the locker room to grab your belongings.');
-        qspCall(st, 'pain', '', 5, 'cheeks', 'slap');
+        qspCall(st, 'pain', '5', 'cheeks', 'slap');
         qspCall(st, 'mood', 'lower', 'medium');
         qspCall(st, 'npc_relationship', 'modify', 'A22', (-5));
         qspCall(st, 'arousal', 'end');

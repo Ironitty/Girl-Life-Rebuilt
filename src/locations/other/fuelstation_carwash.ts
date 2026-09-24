@@ -427,8 +427,8 @@ function enterPussyFlash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHandjob(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'gas station customer', (Math.floor(Math.random() * 23) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'gas station customer', (Math.floor(Math.random() * 23) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   if (String((s as any).locArgs?.[1] ?? '') === 'Paid') {
     qspCall(s, 'money', 'earn', 200);
     if (((s as any).region ?? 0) === 'city') {
@@ -488,8 +488,8 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
 
 function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 'Question') {
-    qspCall(s, 'npcgeneratec', '', 0, 'gas station customer', (Math.floor(Math.random() * 23) + 18));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'gas station customer', (Math.floor(Math.random() * 23) + 18));
+    qspCall(s, 'boyStat', '$npclastgenerated');
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'Paid') {
     qspCall(s, 'money', 'earn', 200);
@@ -728,7 +728,7 @@ function enterVaginaCum(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (4);
-  qspCall(s, 'cum_call', '', '');
+  qspCall(s, 'cum_call', '');
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/carwash/sex/cumpussy${(Math.floor(Math.random() * 5) + 1)}.mp4`);
   if (String((s as any).locArgs?.[1] ?? '') === 'consensual') {
@@ -1033,7 +1033,7 @@ function enterPunishPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (4);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 6) + 5));
-  qspCall(s, 'cum_call', '', '');
+  qspCall(s, 'cum_call', '');
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/carwash/sex/punishpussy${(Math.floor(Math.random() * 5) + 1)}.mp4`);
   if (String((s as any).locArgs?.[1] ?? '') === 'virgin') {

@@ -592,7 +592,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You see several naked people in the corner of your eye and think that they\'re looking right at you. You blush and freeze in terror as tears well up in your eyes. After a few minutes, you find yourself looking at your feet.<br><dh>"Wha-… what am I doing?! Why do I feel like watching… am I a voyeur? Yes, I am! I\'m a girl who likes to watch nude people!"</dh> you think to yourself.<br> You then remember how you were recently watching others on the beach and think: <dh>"That was scary, cool and hot. I need to keep at least one eye always watching…"</dh>');
       scene.actions([
         { label: 'Watch the couple', handler: (st: GameState) => {
-    qspCall(st, 'pav_lake_nude_events', 'pav_lake_nude_sex');
+    qspCall(st, 'pav_lake_nude_events', '');
   } },
       ]);
     }

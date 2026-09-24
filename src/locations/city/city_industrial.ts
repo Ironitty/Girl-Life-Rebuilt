@@ -69,7 +69,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
               (s as any).minut = ((s as any).minut ?? 0) + 15;
               qspGoto(s, 'city_canals', 'start');
             } else {
-              // TODO-QSP: gt $ARGS[1], $ARGS[2]
+              { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, '$ARGS[2]'); }
             }
           }
         }

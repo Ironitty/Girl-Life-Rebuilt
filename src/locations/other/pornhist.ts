@@ -61,35 +61,35 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).i ?? 0) === 1) {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>><<$pfname>></font></b>
-      scene.text(`<b><font color="brown">${((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? ''}${((s as any).pfname ?? '')}</font></b>`);
+      scene.text(`<b><font color="brown">${(((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? '')}${((s as any).pfname ?? '')}</font></b>`);
     } else {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>></font></b>
-      scene.text(`<b><font color="brown">${((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font></b>`);
+      scene.text(`<b><font color="brown">${(((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font></b>`);
     }
   }
   if (((s as any).daystart ?? 0) - ((s as any).porndaystart ?? 0)?.[String((s as any).i ?? 0)] === 0) {
     // TODO-QSP: dynamic text:  <b>Production date:</b> <font size=2><<$pornfilmDate[i]>> (Today)</font>
-    scene.text(` <b>Production date:</b> <font size=2>${((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? ''} (Today)</font>`);
+    scene.text(` <b>Production date:</b> <font size=2>${(((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? '')} (Today)</font>`);
   } else {
     if (((s as any).daystart ?? 0) - ((s as any).porndaystart ?? 0)?.[String((s as any).i ?? 0)] === 1) {
       // TODO-QSP: dynamic text:  <b>Production date:</b> <font size=2><<$pornfilmDate[i]>> (Yesterday)</font>
-      scene.text(` <b>Production date:</b> <font size=2>${((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? ''} (Yesterday)</font>`);
+      scene.text(` <b>Production date:</b> <font size=2>${(((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? '')} (Yesterday)</font>`);
     } else {
       // TODO-QSP: dynamic text:  <b>Production date:</b> <font size=2><<$pornfilmDate[i]>> (<<daystart - pornday...
-      scene.text(` <b>Production date:</b> <font size=2>${((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? ''} (${((s as any).daystart ?? '') - ((s as any).porndaystart ?? 0)?.[String((s as any).i ?? 0)]} days ago)</font>`);
+      scene.text(` <b>Production date:</b> <font size=2>${(((s as any).pornfilmDate ?? 0)?.[String((s as any).i ?? 0)] ?? '')} (${((s as any).daystart ?? '') - (((s as any).porndaystart ?? 0)?.[String((s as any).i ?? 0)] ?? 0)} days ago)</font>`);
     }
   }
   // TODO-QSP: dynamic text:  <b>Actress age:</b> <font size=2><<pornfilmActAge[i]>></font> <font size=2>(App...
-  scene.text(` <b>Actress age:</b> <font size=2>${((s as any).pornfilmActAge ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font> <font size=2>(Appears: ${((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] ?? ''})</font>`);
+  scene.text(` <b>Actress age:</b> <font size=2>${(((s as any).pornfilmActAge ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font> <font size=2>(Appears: ${(((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] ?? '')})</font>`);
   if (((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] === 'Fifty fans of') {
     // TODO-QSP: dynamic text:  <b>Actors:</b> <font size=2><<$pornfilmActor[i]>> <<$pfname>> and <<$pfname>> h...
-    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} ${((s as any).pfname ?? '')} and ${((s as any).pfname ?? '')} herself</font>`);
+    scene.text(` <b>Actors:</b> <font size=2>${(((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? '')} ${((s as any).pfname ?? '')} and ${((s as any).pfname ?? '')} herself</font>`);
   } else {
     // TODO-QSP: dynamic text:  <b>Actors:</b> <font size=2><<$pornfilmActor[i]>> and <<$pfname>></font>
-    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} and ${((s as any).pfname ?? '')}</font>`);
+    scene.text(` <b>Actors:</b> <font size=2>${(((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? '')} and ${((s as any).pfname ?? '')}</font>`);
   }
   // TODO-QSP: dynamic text:  <b>Income:</b> <font size=2><<$func(''money'', ''string_profit'', pornfilmCash[...
-  scene.text(` <b>Income:</b> <font size=2>${qspFunc(s, 'money', 'string_profit', ((s as any).pornfilmCash ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font>`);
+  scene.text(` <b>Income:</b> <font size=2>${qspFunc(s, 'money', 'string_profit', (((s as any).pornfilmCash ?? 0)?.[String((s as any).i ?? 0)] ?? ''))}</font>`);
   if (((s as any).pornfilmacting ?? 0)?.[String((s as any).i ?? 0)] < 15) {
     scene.text(' <b>Acting:</b> <font size=2>Your acting was as fake as a bad boobjob. Did you get paid for this?</font>');
   } else {
@@ -138,7 +138,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">Missing story</a></font>');
   } else {
     // TODO-QSP: dynamic text:  <b>Story:</b> <font color=#1B4532 size=2><<$pornfilmstory[i]>></font>
-    scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font>`);
+    scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${(((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font>`);
   }
   // TODO-QSP: dynamic text:  <b>Tags: <font color=#541717 size=2><<$pfilmtags>></font></b>
   scene.text(` <b>Tags: <font color=#541717 size=2>${((s as any).pfilmtags ?? '')}</font></b>`);

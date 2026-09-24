@@ -1,4 +1,4 @@
-import { dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     ((s as any).debug = (s as any).debug ?? {})['code'] = 1;
   }
   if (((s as any).qstage ?? 0) !== 0) {
-    // TODO-QSP: gs $loc_id, 'quest_body', 'stage_<<qstage>>'
+    qspCall(s, '$loc_id', 'quest_body', 'stage_' + ((s as any).qstage ?? 0) + '');
   } else {
     dynamicGoto(s, 'loc_id');
   }

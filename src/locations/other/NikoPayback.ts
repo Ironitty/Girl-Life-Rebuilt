@@ -399,7 +399,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko grabs the back of your head and starts fucking your throat, causing you to gag heavily. "This is your place and you better remember that. You\'re my fucking bitch and nothing more." You\'re too focused on not gagging to respond. After a few more seconds, Niko groans as he fills your throat with his cum. You swallow as much of it as you can, knowing that you have no choice. He then buttons his pants and walks out of the restroom without saying another word.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -426,7 +426,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('He then tilts his head back and starts moaning before suddenly grabbing the back of your head as his warm cum starts spurting into your mouth. You try your best to swallow every drop of it and after he finishes, he turns to you and says "You\'re learning. Good. Keep it up." He then buttons his pants before leaving the restroom.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -451,7 +451,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('He catches his breath before replying. "Yeah sure. You\'re all paid up for today." You quickly grab a few paper towels and clean the blood off your legs before grabbing your clothes and getting dressed. Once you\'re fully dressed, you quickly run out of the restroom.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -476,7 +476,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn to Niko as he points toward the mirror and says "Look. Do you know what I see? A filthy whore, getting what she deserves. Get used to that sight." You do as he says as tears run down your cheeks. Seeing this must have pushed Niko to the edge as he suddenly pulls out and his cum starts splattering over your back. "Remember your place bitch and never try to avoid me again!" he snarls before buttoning his pants and leaving the restroom.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -500,7 +500,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass a firm smack. "You can go now, but never forget that you belong to me." You quickly clean yourself up before getting dressed and leaving the restroom.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -524,7 +524,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass a firm smack. "You can go now, but never forget that you belong to me." You quickly pick up your clothes and get dressed before leaving the restroom.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -549,7 +549,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text(`Knowing that the faster he cums, the quicker this torment will be over, you turn to stare into his eyes. He struggles to hold back and begins groaning as he blows his load in your ass. He pulls out once he's finished, causing a stream of cum to leak out of your ass and onto the floor. "You did good ${((st as any).pcs_nickname ?? '')}. I'll see you tomorrow." You gather your clothes and get dressed before leaving the restroom.`);
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -574,7 +574,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass a hard slap once he\'s finished. "Now hopefully you\'ve learned your lesson and won\'t try to avoid me again." You turn to him and meekly nod as he buttons his pants and leaves the restroom while you try to catch your breath.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['FedorMisc', 'Restroom'] },
     ]);
   } },
@@ -884,7 +884,7 @@ function enterVitekHelp2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk away', goto: ['pav_disco', ''] },
       { label: 'Have a drink and walk away', handler: (st: GameState) => {
-    qspCall(st, 'drugs', 'alcohol', 'beer');
+    qspCall(st, 'drugs', '');
   }, goto: ['pav_disco', ''] },
     ]);
   } },

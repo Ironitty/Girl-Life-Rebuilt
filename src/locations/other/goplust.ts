@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -217,7 +215,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $gopnik += $gopS_msg
   }
   if (((s as any).namgop ?? 0)[6] !== '') {
-    ((s as any).namgop = (s as any).namgop ?? {})[0] = ((s as any).namgop[0] ?? 0) + (qspUntranslated(s, "namgop[6]", { location: "goplust" }));
+    ((s as any).namgop = (s as any).namgop ?? {})[0] = ((s as any).namgop[0] ?? 0) + ((((s as any).namgop ?? 0)?.[6] ?? 0));
   }
   // TODO-QSP: $namgop[0] += ' strip off your clothes and get out their members'
   scene.build();

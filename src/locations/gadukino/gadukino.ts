@@ -114,10 +114,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_i = 0;
         (s as any).temp_max_i = 0;
         // TODO-QSP: :lover_pickup_loop
-        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)];
+        (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
         if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
           // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$temp_npcid>>''"><<$npc_used...
-          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid ?? '')}/u0027); return false;">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid ?? '')}/u0027); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting in the street.</b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
         if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
@@ -217,7 +217,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sell everything you\'ve gathered', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    // TODO-QSP: gs 'money', 'earn', boletus*25+bilberry*25
+    qspCall(st, 'money', 'earn', ((st as any).boletus ?? 0)*25+((st as any).bilberry ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your mushrooms and berries for <<$func(''money'', ''string_pr...
     scene.text(`You decide to sell your mushrooms and berries for ${qspFunc(s, 'money', 'string_profit', ((st as any).boletus ?? '')*25+((st as any).bilberry ?? '')*25)}.`);
@@ -235,7 +235,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sell all the mushrooms', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    // TODO-QSP: gs 'money', 'earn', boletus*25
+    qspCall(st, 'money', 'earn', ((st as any).boletus ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your mushrooms for <<$func(''money'', ''string_profit'', bole...
     scene.text(`You decide to sell your mushrooms for ${qspFunc(s, 'money', 'string_profit', ((st as any).boletus ?? '')*25)}.`);
@@ -252,7 +252,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sell all the berries', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    // TODO-QSP: gs 'money', 'earn', bilberry*25
+    qspCall(st, 'money', 'earn', ((st as any).bilberry ?? 0)*25);
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your berries for <<$func(''money'', ''string_profit'', bilber...
     scene.text(`You decide to sell your berries for ${qspFunc(s, 'money', 'string_profit', ((st as any).bilberry ?? '')*25)}.`);

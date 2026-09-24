@@ -37,8 +37,8 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['gate'] = ((s as any).locArgs?.[6] ?? 0);
     }
   }
-  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
-  ((s as any).sd_qm = (s as any).sd_qm ?? {})['display'] = ((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_tooltip'] !== '') ? ((((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip'] ?? 0)) : ((((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
+  ((s as any).sd_qm = (s as any).sd_qm ?? {})['display'] = (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   if (((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = ((s as any).sd_qm ?? 0)?.['action_arg'];
   } else {
@@ -224,7 +224,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = 0;
   // TODO-QSP: :sd_ap_bucket
   if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = ((s as any).sd_ap ?? 0)?.['v_' + String(((s as any).sd_ap ?? 0)?.['bi'])];
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = (((s as any).sd_ap ?? 0)?.['v_' + String(((s as any).sd_ap ?? 0)?.['bi'])] ?? 0);
     ((s as any).sd_ap = (s as any).sd_ap ?? {})['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
     if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
       // TODO-QSP: $sd_ap['high_' + $str(sd_ap['n_high'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
@@ -271,11 +271,11 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
         // TODO-QSP: :sd_ap_join_low
         if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_low'] - 1)) {
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['ji'])]));
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['ji'])] ?? 0)));
           ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
           // TODO-QSP: jump 'sd_ap_join_low'
         }
-        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (',  &&  ' + qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['n_low'] - 1)]));
+        ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (',  &&  ' + qspFunc(s, 'wrap', 'neg', (((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['n_low'] - 1)] ?? 0)));
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_verb'] = 'are lacking';
       }
     }
@@ -787,18 +787,18 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_pr = (s as any).sd_pr ?? {})['total'] = 0;
     if (((s as any).sd_pr ?? 0)?.['total'] === 0) {
       if (Object.keys((s as any).sd_pr_upbeat ?? {}).length > 0) {
-        (s as any).sd_status_prose = 'You feel fine, and ' + qspUntranslated(s, "sd_pr_upbeat[0]", { location: "stat_display_compute" }) + '.';
+        (s as any).sd_status_prose = 'You feel fine, and ' + (((s as any).sd_pr_upbeat ?? 0)?.[0] ?? 0) + '.';
       } else {
         (s as any).sd_status_prose = 'You feel fine overall.';
       }
     } else {
       if (((s as any).sd_pr ?? 0)?.['total'] === 1) {
-        (s as any).sd_status_prose = 'You are ' + qspUntranslated(s, "sd_pr_flat[0]", { location: "stat_display_compute" });
+        (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
       } else {
         if (((s as any).sd_pr ?? 0)?.['total'] === 2) {
-          (s as any).sd_status_prose = 'You are ' + qspUntranslated(s, "sd_pr_flat[0]", { location: "stat_display_compute" }) + ' and ' + qspUntranslated(s, "sd_pr_flat[1]", { location: "stat_display_compute" });
+          (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0) + ' and ' + (((s as any).sd_pr_flat ?? 0)?.[1] ?? 0);
         } else {
-          (s as any).sd_status_prose = 'You are ' + qspUntranslated(s, "sd_pr_flat[0]", { location: "stat_display_compute" });
+          (s as any).sd_status_prose = 'You are ' + (((s as any).sd_pr_flat ?? 0)?.[0] ?? 0);
           ((s as any).sd_pr = (s as any).sd_pr ?? {})['i'] = 1;
           // TODO-QSP: :sd_pr_join_loop
           if (((s as any).sd_pr ?? 0)?.['i'] < (((s as any).sd_pr ?? 0)?.['total'] - 1)) {
@@ -830,10 +830,10 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).opPRE ?? 0))) {
     if (((s as any).pcs_makeup ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['travel_mirror'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['travel_makeup'] > 0) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['makeup_icon_tooltip'] = '' + ((s as any).pcs_makeup_tooltip ?? 0) + ' Click to put on light makeup.';
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'makeup_icon', '', 'status/makeup_' + $str(pcs_makeup), 1, '...
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_icon', '', 'status/makeup_' + String(((s as any).pcs_makeup ?? 0)), 1, 'minut += 3 & gs \'exp_gain\', \'makupskl\', rand(1, 3) & pcs_makeup = 2 & mc_inventory[\'travel_makeup\'] -= 1 & gs \'stat\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['makeup_icon_tooltip'] = ((s as any).pcs_makeup_tooltip ?? 0);
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'makeup_icon', '', 'status/makeup_' + $str(min(pcs_makeup, 4...
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_icon', '', 'status/makeup_' + String(Math.min(((s as any).pcs_makeup ?? 0), 4)), 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if ((!((s as any).opPRE ?? 0))) {
@@ -1273,7 +1273,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = 0;
     // TODO-QSP: :sd_spell_loop
     if (((s as any).sd_cm ?? 0)?.['si'] < Object.keys((s as any).spellComplete ?? {}).length) {
-      ((s as any).sd_cm = (s as any).sd_cm ?? {})['spell_text'] = ((s as any).sd_cm['spell_text'] ?? 0) + (qspFunc(s, 'wrap', 'bimbo', '<br>' + ((s as any).spellName ?? 0)?.[qspUntranslated(s, "spellTimeName[sd_cm['si']]", { location: "stat_display_compute" })] + ''));
+      ((s as any).sd_cm = (s as any).sd_cm ?? {})['spell_text'] = ((s as any).sd_cm['spell_text'] ?? 0) + (qspFunc(s, 'wrap', 'bimbo', '<br>' + (((s as any).spellName ?? 0)?.[qspUntranslated(s, "spellTimeName[sd_cm['si']]", { location: "stat_display_compute" })] ?? 0) + ''));
       ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = ((s as any).sd_cm['si'] ?? 0) + (1);
       // TODO-QSP: jump 'sd_spell_loop'
     }
@@ -1393,15 +1393,15 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cm = (s as any).sd_cm ?? {})['label'] = 'lover_' + ((s as any).sd_cm ?? 0)?.['npcid'];
       if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
         // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> will be waiting for you near <<...
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', $sd_cm['label'], 'accent', 'status/date', 4
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_cm ?? 0)?.['label'], 'accent', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).hour ?? 0) >= ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] - 2) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + ((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] ?? 0) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
           // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> is waiting for you by <<$func('...
-          // TODO-QSP: gs 'stat_display_compute', 'queue_msg', $sd_cm['label'], 'v_neg', 'status/date', 4
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + ((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).sd_cm ?? 0)?.['label'], 'v_neg', 'status/date', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + (((s as any).npc_usedname ?? 0)?.[((s as any).sd_cm ?? 0)?.['npcid']] ?? 0) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1419,7 +1419,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $cal_upc_ids[cal_r['ci']]  = $upcoming_ids[cal_r['ci']]
         // TODO-QSP: cal_upc_days[cal_r['ci']]  = upcoming_days[cal_r['ci']]
         // TODO-QSP: cal_upc_ts[cal_r['ci']]    = upcoming_ts[cal_r['ci']]
-        // TODO-QSP: gs 'calendar_events', 'get_event', $upcoming_ids[cal_r['ci']]
+        qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "upcoming_ids[cal_r['ci']]", { location: "stat_display_compute" }));
         // TODO-QSP: cal_upc_all_day[cal_r['ci']] = event_vars['all_day']
         ((s as any).cal_r = (s as any).cal_r ?? {})['ci'] = ((s as any).cal_r['ci'] ?? 0) + (1);
         // TODO-QSP: jump 'cal_cache_copy'
@@ -1457,7 +1457,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         ((s as any).cal_r = (s as any).cal_r ?? {})['i'] = ((s as any).cal_r['i'] ?? 0) + (1);
         // TODO-QSP: jump 'cal_render_loop'
       }
-      // TODO-QSP: gs 'calendar_events', 'get_event', $cal_upc_ids[cal_r['i']]
+      qspCall(s, 'calendar_events', 'get_event', qspUntranslated(s, "cal_upc_ids[cal_r['i']]", { location: "stat_display_compute" }));
       ((s as any).cal_r = (s as any).cal_r ?? {})['rgb'] = qspFunc(s, 'calendar_render', 'get_event_color', ((s as any).event_vars ?? 0)?.['color']);
       if (((s as any).cal_upc_days ?? 0)[((s as any).cal_r ?? 0)?.['i']] === ((s as any).daystart ?? 0)) {
         ((s as any).cal_r = (s as any).cal_r ?? {})['day_lbl'] = 'Today';
@@ -1484,7 +1484,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).loc ?? 0) !== 'map') {
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'Map', '', 'map', 1, "gt 'map_view', '" + $loc + "'"
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Map', '', 'map', 1, 'gt \'map_view\', \'' + ((s as any).loc ?? 0) + '\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -1693,7 +1693,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $sd_mu_lbl[5] = 'Pro makeup'
       // TODO-QSP: $sd_mu_lbl[6] = 'Bimbo makeup'
       // TODO-QSP: $sd_mu_lbl[7] = 'Goth makeup'
-      ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? (((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)]) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
+      ((s as any).sd_img = (s as any).sd_img ?? {})['label_face'] = ((((s as any).pcs_makeup ?? 0) >= 1  &&  ((s as any).pcs_makeup ?? 0) <= 7) ? ((((s as any).sd_mu_lbl ?? 0)?.[String((s as any).pcs_makeup ?? 0)] ?? 0)) : (((((s as any).pcs_makeup ?? 0) <= 0) ? ('Smeared makeup') : ('Face'))));
     }
     ((s as any).sd_img = (s as any).sd_img ?? {})['short_face'] = ((s as any).sd_img ?? 0)?.['label_face'];
     ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');

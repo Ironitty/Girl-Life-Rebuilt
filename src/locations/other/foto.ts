@@ -1367,7 +1367,7 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fine by me," he replies, glancing between his screen and your passport to make sure he copies it down correctly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'foto', 'model_profile');
+    qspCall(st, 'foto', '');
   } },
     ]);
   } },
@@ -1392,7 +1392,7 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s correct," you say.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'foto', 'model_profile');
+    qspCall(st, 'foto', '');
   } },
     ]);
   } },
@@ -1450,7 +1450,7 @@ function enterGavePassport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the studio', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore', 'foto');
+    qspCall(st, 'outfit', '');
   }, goto: ['city_center', ''] },
     { label: 'Head to the back', goto: ['foto', 'studio'] },
   ]);
@@ -1558,7 +1558,7 @@ function enterMicrocameraAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy the microcamera from the photographer.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(st, 'foto', 'studio');
+    qspCall(st, 'foto', '');
   } },
     ]);
   } },
@@ -1590,25 +1590,25 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.text('You start trying to undress but your hands won\'t respond, but after the blond guy starts poking and probing your mental resistance fails. You take off your shirt and undo your bra, by then the guys are already taking matters into their own hands. The blond guy literally ripped the bra off you as the brunette pushes you back on to the bed and swiftly pulls your panties off.');
     scene.text('Foreplay is clearly not part of the scene as the blond guy flips you over on to all fours and abruptly enters you, you have no time to get in the mood and are not ready for it. It hurts, but he seems to have used a little lube as he is able to fuck you deeply with little resistance. His hands roughly grope at your chest and you feel sore and violated.');
     scene.text('The other guy having undress kneels in front of you and presents his erect cock to your mouth. You stare at it and your lack of action earns you a hard slap in the face, tears gush from your eyes with the pain.');
-    qspCall(st, 'npcgeneratec', '', 0, 'Brunette', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'blond', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '0', 'Brunette', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'blond', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'b');
     qspCall(st, 'arousal', 'vaginal', 5, 'rough');
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy1 ?? 0));
-    qspCall(st, 'boyStat', '', ((st as any).boy2 ?? 0));
+    qspCall(st, 'boyStat', '$boy2');
     qspCall(st, 'cum_manage', '');
     scene.img('images/locations/city/redlight/studio_porn/sex/studia.jpg');
     scene.text('You open your mouth, and he shoves his cock in as far as it will reach. You begin to choke, but you can\'t move and he just holds you there by the back of your head. Eventually he pulls back his penis trailing strings of your saliva as you gasp for breath.');
     scene.text('They settle in to a rhythm and fuck you together, all the while Victor walks around the three of you, shooting his film, shoot, shoot. In his hand was a lovely big camcorder.');
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     qspCall(st, 'arousal', 'vaginal', 15, 'rough');
-    qspCall(st, 'boyStat', '', ((st as any).boy2 ?? 0));
+    qspCall(st, 'boyStat', '$boy2');
     qspCall(st, 'arousal', 'bj', 15, 'rough');
     scene.text('They finish together. The blonde guy pouring everything into your uterus, while brunette forces you to swallow everything he has. You fall onto the bed.');
     qspCall(st, 'stat', '');
@@ -1626,10 +1626,10 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
       { label: 'No!', handler: (st: GameState) => {
     (st as any).noshampoo = 1;
     qspCall(st, 'din_van', 'showerdin');
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     (st as any).spafinloc = 3;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'boyStat', '', ((st as any).boy2 ?? 0));
+    qspCall(st, 'boyStat', '$boy2');
     (st as any).spafinloc = 12;
     (st as any).sexvolume = 5;
     qspCall(st, 'cum_manage', '');
@@ -1642,11 +1642,11 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.text('"For this scene you\'ll be getting your arse fucked, so do not fidget and try to relax."');
     scene.text('The brunette is already pushing two fingers in your butt. You start sobbing again as you are forced to suck the blonde guy. Three fingers.');
     scene.text('At that moment, with the blonde guy pumping quicker in your mouth and was ready to cum, the brunette placed his tip against your ring and abruptly entered. You yell again, but the blonde guy quickly plugs your mouth with his sperm shouting "Swallow, swallow, bitch"');
-    qspCall(st, 'boyStat', '', ((st as any).boy2 ?? 0));
+    qspCall(st, 'boyStat', '$boy2');
     qspCall(st, 'arousal', 'bj', 15, 'rough');
     scene.text('When he finally finishes, the brunette pins you to the bed and starts to roughly fuck you in the ass. It is just crazy sick - no lubrication and hurting a great deal, but he does not finish inside you.');
     scene.text('He pulls out entirely, then abruptly enters again, the pain doubles. He carries on like this speeding up your ass feeling like it\'s on fire, until eventually his semen fills your rectum. You could not imagine anything worse.');
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     qspCall(st, 'arousal', 'anal', 15, 'rough');
     if (((st as any).deodorant_on ?? 0) === 1) {
       qspCall(st, 'sweat', 'remove_deo');
@@ -1657,9 +1657,9 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
       { label: 'Finally', handler: (st: GameState) => {
     (st as any).noshampoo = 1;
     qspCall(st, 'din_van', 'showerdin');
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'boyStat', '', ((st as any).boy2 ?? 0));
+    qspCall(st, 'boyStat', '$boy2');
     (st as any).spafinloc = 3;
     qspCall(st, 'cum_manage', '');
     scene.img('images/locations/city/redlight/studio_porn/sex/studia3.jpg');
@@ -1670,7 +1670,7 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.text('You can feel the rubbing of the thin layers between their penises and think this must be what is like to be a whore.');
     scene.text('You no longer have the will to fight, even your mental block has slipped and you begrudgingly enjoy the sensations not even wanting to stop when they both cum at more or less the same time pumping their seed in both of your holes.');
     qspCall(st, 'arousal', 'anal', 15, 'rough');
-    qspCall(st, 'boyStat', '', ((st as any).boy1 ?? 0));
+    qspCall(st, 'boyStat', '$boy1');
     qspCall(st, 'arousal', 'vaginal', 15, 'rough');
     qspCall(st, 'arousal', 'end');
     (st as any).parkblackmail = 4;
@@ -1707,10 +1707,10 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
 
 function enterUnderwear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornunderwear ?? 0) === 2) {
-    // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype['foto'], lastwornbodysuitnumber['foto']
+    qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0)?.['foto'], ((s as any).lastwornbodysuitnumber ?? 0)?.['foto']);
   } else {
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['foto'], lastwornpantynumber['foto']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['foto'], lastwornbranumber['foto']
+    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['foto'], ((s as any).lastwornpantynumber ?? 0)?.['foto']);
+    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['foto'], ((s as any).lastwornbranumber ?? 0)?.['foto']);
   }
   // TODO-QSP: end
   scene.build();

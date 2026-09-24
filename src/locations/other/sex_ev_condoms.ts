@@ -373,7 +373,7 @@ function enterPcNoCondomsLeft2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_sex', 'reset');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
       ]);
     } else {
@@ -638,7 +638,7 @@ function enterCondomConsciousNpc(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
   ]);
   scene.build();
@@ -770,7 +770,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
-    scene.text(`"Sorry, ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smirk. "Gotta use a rubber this time."`);
+    scene.text(`"Sorry, ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smirk. "Gotta use a rubber this time."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -799,7 +799,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
-    scene.text(`"Sorry, ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smirk. "Gotta use a rubber this time."`);
+    scene.text(`"Sorry, ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smirk. "Gotta use a rubber this time."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -824,7 +824,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
-    scene.text(`"Sorry, ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smirk. "Gotta use a rubber this time."`);
+    scene.text(`"Sorry, ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smirk. "Gotta use a rubber this time."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -966,7 +966,7 @@ function enterDidntPullOutLastTime(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
-    scene.text(`"Sorry, ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smirk. "Gotta use a rubber this time."`);
+    scene.text(`"Sorry, ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smirk. "Gotta use a rubber this time."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -989,7 +989,7 @@ function enterDidntPullOutLastTime(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
-    scene.text(`"Sorry, ${((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smirk. "Gotta use a rubber this time."`);
+    scene.text(`"Sorry, ${(((st as any).npc_lovername ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smirk. "Gotta use a rubber this time."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcDangerousDayCondomInsist2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -1264,7 +1264,7 @@ function enterNoCondomPulloutAllow(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['position'] === '') {
       qspGoto(st, 'sex_ev_sex', 'position_choose');
     } else {
-      // TODO-QSP: xgt 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_goto'
+      dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '_goto');
     }
   } },
     { label: 'Allow it (trusting)', handler: (st: GameState) => {
@@ -1275,7 +1275,7 @@ function enterNoCondomPulloutAllow(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['position'] === '') {
       qspGoto(st, 'sex_ev_sex', 'position_choose');
     } else {
-      // TODO-QSP: xgt 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_goto'
+      dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '_goto');
     }
   } },
     { label: 'Allow it (carefree)', handler: (st: GameState) => {
@@ -1286,7 +1286,7 @@ function enterNoCondomPulloutAllow(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['position'] === '') {
       qspGoto(st, 'sex_ev_sex', 'position_choose');
     } else {
-      // TODO-QSP: xgt 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_goto'
+      dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), '' + ((st as any).sex_ev ?? 0)?.['position'] + '_goto');
     }
   } },
   ]);
@@ -1331,7 +1331,7 @@ function enterNoCondom1(s: GameState, scene: SceneBuilder): void {
           scene.text('"What the fuck! Why didn\'t you say so!" he says, immediately reaching for a condom.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
           ]);
         }
@@ -1356,7 +1356,7 @@ function enterNoCondom1(s: GameState, scene: SceneBuilder): void {
             scene.text(`"Ugh, fine," ${((st as any).npcdesc ?? '')} grumbles, reaching for a condom.`);
             scene.actions([
               { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
             ]);
           }
@@ -1549,7 +1549,7 @@ function enterNoSexOnly(s: GameState, scene: SceneBuilder): void {
       scene.text(`"I think I'd like that too," ${((st as any).npcdesc ?? '')} says with a dangerous glint in his eye.`);
       scene.actions([
         { label: 'Get eaten out', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_foreplay', 'pussy_lick_start');
+    qspCall(st, 'sex_ev_foreplay', '');
   } },
       ]);
     } else {
@@ -1573,7 +1573,7 @@ function enterNoSexOnly(s: GameState, scene: SceneBuilder): void {
         scene.text('"I guess I could..." he says.');
         scene.actions([
           { label: 'Get eaten out', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_foreplay', 'pussy_lick_start');
+    qspCall(st, 'sex_ev_foreplay', '');
   } },
         ]);
       }
@@ -1736,7 +1736,7 @@ function enterDisableCondomsOptions1(s: GameState, scene: SceneBuilder): void {
       scene.text('<i>Son of a bitch! Why is this guy so fucking careful?!</i>');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
       ]);
     } else {
@@ -2012,7 +2012,7 @@ function enterReenableCondoms2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
     ]);
   } },
@@ -2314,7 +2314,7 @@ function enterNpcNoCondomReact(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>A free pass to go bareback forever and he doesn\'t take it? What\'s with this guy?</i>');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
     ]);
   } else {
@@ -2348,7 +2348,7 @@ function enterNpcTempNoCondomReact(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>A free pass to go bareback and he doesn\'t take it? What\'s with this guy?</i>');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_condoms', 'npc_condom_use');
+    qspCall(st, 'sex_ev_condoms', '');
   } },
     ]);
   } else {

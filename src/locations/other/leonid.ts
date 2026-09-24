@@ -13,7 +13,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   (s as any).leonidSlave = 1;
   (s as any).leonidInFavour = 0;
   qspCall(s, 'jobs', 'set_employed', 'pav_leonid_slave');
-  // TODO-QSP: gs 'jobs', 'book_slot', 'pav_leonid_slave', daystart + 1, 0
+  qspCall(s, 'jobs', 'book_slot', 'pav_leonid_slave', ((s as any).daystart ?? 0) + 1, 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).painkiller_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['vitamins'] = ((s as any).vitamin_bak ?? 0);
@@ -475,7 +475,7 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
 function enterCumPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (50);
-  qspCall(s, 'cum_call', '', '', 'A160', 1);
+  qspCall(s, 'cum_call', '', 'A160', 1);
   qspCall(s, 'arousal', 'end');
   if (qspFunc(s, 'money', 'can_afford', 2000) === 0  &&  (!((s as any).leonidSecretary ?? 0))) {
     scene.actions([
@@ -554,7 +554,7 @@ function enterSecretRoom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).leonidVisitMissed ?? 0) > 0) {
       (s as any).leonidVisitMissed = ((s as any).leonidVisitMissed ?? 0) - (1);
     }
-    // TODO-QSP: gs 'jobs', 'book_slot', 'pav_leonid_slave', daystart + rand(1, 5), 0
+    qspCall(s, 'jobs', 'book_slot', 'pav_leonid_slave', ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 5) + 1), 0);
     scene.actions([
       { label: 'Continue', goto: ['leonid', 'bdsmGate'] },
     ]);
@@ -566,7 +566,7 @@ function enterSecretRoom(s: GameState, scene: SceneBuilder): void {
       if (((s as any).leonidVisitMissed ?? 0) > 0) {
         (s as any).leonidVisitMissed = ((s as any).leonidVisitMissed ?? 0) - (1);
       }
-      // TODO-QSP: gs 'jobs', 'book_slot', 'pav_leonid_slave', daystart + rand(1, 5), 0
+      qspCall(s, 'jobs', 'book_slot', 'pav_leonid_slave', ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 5) + 1), 0);
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/leonid/sex/kneeling1.jpg');
       // TODO-QSP: dynamic text: You go in the secret room, strip down and equip your collar. You kneel down expe...
@@ -642,7 +642,7 @@ function enterBdsmFuckVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).bName ?? '')} ties you up and positions you as he will.`);
   scene.text('Then he takes his hard cock and shoves it into your unprepared pussy.');
   qspCall(s, 'arousal', 'vaginal', 60, 'sub', 'rough', 'maso', 'bound');
-  qspCall(s, 'pain', '', 2, 'vaginal', 'stretch');
+  qspCall(s, 'pain', '2', 'vaginal', 'stretch');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -658,7 +658,7 @@ function enterBdsmFuckAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).bName ?? '')} ties you up and positions you as he will.`);
   scene.text('Then he takes his hard cock and shoves it into your unprepared anus.');
   qspCall(s, 'arousal', 'anal', 60, 'sub', 'rough', 'maso', 'bound');
-  qspCall(s, 'pain', '', 2, 'asshole', 'stretch');
+  qspCall(s, 'pain', '2', 'asshole', 'stretch');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -678,7 +678,7 @@ function enterBdsmHorse(s: GameState, scene: SceneBuilder): void {
   scene.text('With bound hands you are seaten on it. The top is dull but it hurts anyway - the wooden top is squeezing your labia against the crotch.');
   scene.text('As much as you try to twist and ease, it gets only worse.');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'pain', '', 3, 'labia', 'hit');
+  qspCall(s, 'pain', '3', 'labia', 'hit');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -698,10 +698,10 @@ function enterBdsmWhip(s: GameState, scene: SceneBuilder): void {
   scene.text('Then he takes a leather whip a gives you a hard whipping, targeting your sensitive areas.');
   scene.text('When he\'s done, your breast, belly, croctch and ass are red as a lobster, burning in pain.');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
-  qspCall(s, 'pain', '', 2, 'breasts', 'spank');
-  qspCall(s, 'pain', '', 2, 'tummy', 'spank');
-  qspCall(s, 'pain', '', 2, 'labia', 'spank');
+  qspCall(s, 'pain', '2', 'asscheeks', 'spank');
+  qspCall(s, 'pain', '2', 'breasts', 'spank');
+  qspCall(s, 'pain', '2', 'tummy', 'spank');
+  qspCall(s, 'pain', '2', 'labia', 'spank');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -723,10 +723,10 @@ function enterBdsmDildo(s: GameState, scene: SceneBuilder): void {
   scene.text('It hurts since he hits your cervix or instestinal walls often - the only thing you are able to do is moan loud as every stroke makes you cry some more.');
   qspCall(s, 'arousal', 'vaginal_dildo', 30, 'sub', 'bound', 'rough');
   qspCall(s, 'arousal', 'anal_dildo', (-30), 'sub', 'bound', 'rough');
-  qspCall(s, 'pain', '', 2, 'vaginal', 'stretch');
-  qspCall(s, 'pain', '', 2, 'cervix', 'hit');
-  qspCall(s, 'pain', '', 2, 'asshole', 'stretch');
-  qspCall(s, 'pain', '', 2, 'tummy', 'hit');
+  qspCall(s, 'pain', '2', 'vaginal', 'stretch');
+  qspCall(s, 'pain', '2', 'cervix', 'hit');
+  qspCall(s, 'pain', '2', 'asshole', 'stretch');
+  qspCall(s, 'pain', '2', 'tummy', 'hit');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -750,7 +750,7 @@ function enterBdsmMachine(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).bName ?? '')} points it toward your pussy and turns it on, stepping away with a remote controller.`);
   scene.text('Being bound like that, he just plays with the remote, sometime making you scream and sometime lowering the speed to ease your sensations.');
   qspCall(s, 'arousal', 'vaginal_dildo', 30, 'sub', 'bound', 'rough');
-  qspCall(s, 'pain', '', 2, 'vaginal', 'stretch');
+  qspCall(s, 'pain', '2', 'vaginal', 'stretch');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -773,7 +773,7 @@ function enterBdsmDeepthroat(s: GameState, scene: SceneBuilder): void {
   scene.text('He stuffs the dildo inside it and slowly starts to fuck it, with every stroke going deeper and deeper.');
   scene.text('After few minutes the dildo is being pushed all the way inside your throat, with your own saliva and tears running down your face.');
   qspCall(s, 'arousal', 'bj', 30, 'sub', 'bound', 'deepthroat');
-  qspCall(s, 'pain', '', 2, 'throat', 'stretch');
+  qspCall(s, 'pain', '2', 'throat', 'stretch');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -795,7 +795,7 @@ function enterBdsmForcedOrgasm(s: GameState, scene: SceneBuilder): void {
   scene.text('The sensation is so strong, you cannot differentiate if it hurts or if it\'s pleasurable.');
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_vibe', 30, 'sub', 'rough', 'maso', 'bound');
-  qspCall(s, 'pain', '', 3, 'clitoris', 'ache');
+  qspCall(s, 'pain', '3', 'clitoris', 'ache');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -950,7 +950,7 @@ function enterMassageEroticFuck(s: GameState, scene: SceneBuilder): void {
 function enterMassageEroticFuckFinish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'vaginal', 15);
-  qspCall(s, 'cum_call', '', '', 'A160', 1);
+  qspCall(s, 'cum_call', '', 'A160', 1);
   scene.img('images/characters/pavlovsk/resident/leonid/sex/massageeroticfuckfinish.mp4');
   scene.text('He fucks you until he cums. Inside…');
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (0);

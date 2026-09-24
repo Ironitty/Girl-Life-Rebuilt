@@ -331,8 +331,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    qspCall(st, 'npcgeneratec', '', 0, 'Stranger on the Metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Stranger on the Metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
     scene.img('images/locations/city/shared/metro/sex/grop/frotp.jpg');
     scene.text('You enjoy the sensation of the stranger caressing your ass as his other hand reaches around and starts fondling your left breast under your shirt.');
     qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
@@ -1654,10 +1654,10 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Squat', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Other black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Other black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     scene.img('images/locations/city/shared/metro/sex/station/2bbc2.jpg');
     scene.text('You squat down and rub his crotch through his pants; his cock is already rock-hard. He looks down at you and in accented Russian says "Suck it." He seems to speak Russian better than his friend, who seems to be trying to jam something under the door.');
     qspCall(st, 'arousal', 'foreplay_give', 3, ((st as any).npcID ?? 0), 'exhibitionism');
@@ -1737,7 +1737,7 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     scene.text('He pulls his dick out of you and rubs the tip against your anus before pushing against against it until the head of his cock pops into your ass, causing you to groan in pain. He starts fucking your ass as you suck his friend\'s dick, and it doesn\'t take him very long until he works his cock balls deep into your ass and starts hammering away at it. They excitedly talk back and forth while laughing.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
     qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Another ass pounding', handler: (st: GameState) => {
@@ -1746,7 +1746,7 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     scene.text('His friend wastes no time and shoves his cock into your much looser asshole. He very quickly works himself balls deep into your ass, grabbing you by the hips as he starts hammering away at your ass as fast as he can. Several minutes of this go by until they both pull out of you.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
     qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish them off with blowjobs', goto: ['metro_events', 'twobbcfinish'] },

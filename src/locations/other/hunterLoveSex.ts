@@ -2426,7 +2426,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum111.jpg');
@@ -2826,7 +2826,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/mouth/cum19.jpg');
@@ -3092,7 +3092,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum81.mp4');
@@ -3358,7 +3358,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum8.mp4');
@@ -3624,7 +3624,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum7.mp4');
@@ -3890,7 +3890,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum6.jpg');

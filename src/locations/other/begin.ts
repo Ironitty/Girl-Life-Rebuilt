@@ -74,7 +74,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Change game settings', handler: (st: GameState) => {
     (st as any).settingmode = 1;
-    // TODO-QSP: gs '$menu_settings'
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Manage mods', handler: (st: GameState) => {
     (st as any).settingmode = 1;

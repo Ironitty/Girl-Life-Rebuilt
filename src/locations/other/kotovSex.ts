@@ -395,7 +395,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text(`He laughs: "Wow ${((s as any).pcs_nickname ?? '')}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! It was great though…"`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'cum_call', '', '', 'A9', 1);
+  qspCall(s, 'cum_call', '', 'A9', 1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -560,7 +560,7 @@ function enterCum11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/cum61.jpg');
     scene.text('Suddenly Vitek\'s thrusts become shorter and more intense, and from his groaning you realize he must be shooting his load. Because he\'s wearing a condom, you don\'t feel any of it.');
     scene.text('He puts you back on the ground, and supports your weight when you warn him you\'re still a bit weak in the knees from the fucking he just gave you.');
-    qspCall(s, 'cum_call', '', '', 'A9', 1, 3);
+    qspCall(s, 'cum_call', '', 'A9', 1, 3);
     if (((s as any).sexcontra ?? 0) === 4) {
       scene.text('He pulls out of you. The condom is broken.');
       scene.text('Your guy completely relaxed, threw where-the condom and lay down contentedly on the bed.');
@@ -582,7 +582,7 @@ function enterCum11(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/cum/cum111.jpg');
       scene.text('Suddenly Vitek\'s thrusts become shorter and more intense and while he hammers his cock into you, hot jets of his sperm are being squirted deep inside your body.');
       scene.text('He puts you back on the ground, and supports your weight when you warn him you\'re still a bit weak in the knees from the fucking he just gave you. You give him a kiss and idly run your finger over your pussy lips, enjoying the slippery feeling. After a moment you say you\'re okay, and he kisses you again on the forehead before crashing down on his bed to relax for a while.');
-      qspCall(s, 'cum_call', '', '', 'A9', 1);
+      qspCall(s, 'cum_call', '', 'A9', 1);
       qspCall(s, 'cuminsidereact', '');
       qspCall(s, 'arousal', 'end');
       scene.actions([
@@ -615,7 +615,7 @@ function enterCum9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   if (((s as any).protect ?? 0) === 1) {
     scene.img('images/shared/sex/cum/cum91.jpg');
-    qspCall(s, 'cum_call', '', '', 'A9', 1, 3);
+    qspCall(s, 'cum_call', '', 'A9', 1, 3);
     scene.text('Vitek begins to groan, and after a few more powerful thrusts he holds still, gasping and holding onto your hips tightly. You realize he must be shooting his load. Because he\'s wearing a condom, you don\'t feel any of it.');
     if (((s as any).sexcontra ?? 0) === 4) {
       scene.text('He pulls out of you. The condom is broken.');
@@ -638,7 +638,7 @@ function enterCum9(s: GameState, scene: SceneBuilder): void {
     if (((s as any).protect ?? 0) !== 1) {
       scene.img('images/shared/sex/cum/cum111.jpg');
       scene.text('Suddenly Vitek\'s thrusts become shorter and more intense and while he hammers his cock into you, hot jets of his sperm are being squirted inside your body.');
-      qspCall(s, 'cum_call', '', '', 'A9', 1);
+      qspCall(s, 'cum_call', '', 'A9', 1);
       scene.text('Eventually he pulls out, and watches his cum slowly dribble out of your pussy with a satisfied grin.');
       qspCall(s, 'cuminsidereact', '');
       qspCall(s, 'arousal', 'end');
@@ -657,7 +657,7 @@ function enterCum8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).protect ?? 0) === 1) {
     scene.img('images/shared/sex/cum/cum81.jpg');
     scene.text('Suddenly Vitek\'s thrusts become short and intense, and from his groaning you realize he must be shooting his load. Because he\'s wearing a condom, you don\'t feel any of it.');
-    qspCall(s, 'cum_call', '', '', 'A9', 1, 3);
+    qspCall(s, 'cum_call', '', 'A9', 1, 3);
     if (((s as any).sexcontra ?? 0) === 4) {
       scene.text('He pulls out of you. The condom is broken.');
       scene.text('Your guy completely relaxed, threw where-the condom and lay down contentedly on the bed.');
@@ -679,7 +679,7 @@ function enterCum8(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/cum/cum8.mp4');
       scene.text('Suddenly Vitek\'s thrusts become shorter and more intense, and while he groans you feel hot jets of his sperm being squirted into your body. His cock remains erect for a while longer and you happily keep riding him while you can, not wanting to give up on this great feeling just yet.');
       scene.text('Eventually you get up, and give him a kiss on the cheek while he just relaxes on the bed in an euphoric haze.');
-      qspCall(s, 'cum_call', '', '', 'A9', 1);
+      qspCall(s, 'cum_call', '', 'A9', 1);
       qspCall(s, 'cuminsidereact', '');
       qspCall(s, 'arousal', 'end');
       scene.actions([
@@ -697,7 +697,7 @@ function enterCum7(s: GameState, scene: SceneBuilder): void {
   if (((s as any).protect ?? 0) === 1) {
     scene.img('images/shared/sex/cum/cum71.jpg');
     scene.text('Suddenly Vitek\'s thrusts become short and intense, and from his groaning you realize he must be shooting his load. Because he\'s wearing a condom, you don\'t feel any of it.');
-    qspCall(s, 'cum_call', '', '', 'A9', 1, 3);
+    qspCall(s, 'cum_call', '', 'A9', 1, 3);
     if (((s as any).sexcontra ?? 0) === 4) {
       scene.text('He pulls out of you. The condom is broken.');
       scene.text('Your guy completely relaxed, threw where-the condom and lay down contentedly on the bed.');
@@ -718,7 +718,7 @@ function enterCum7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).protect ?? 0) !== 1) {
       scene.img('images/shared/sex/cum/cum7.mp4');
       scene.text('Suddenly Vitek\'s thrusts become shorter and more intense, and while he groans you feel hot jets of his sperm being squirted into your body. Eventually he pulls out, and watches his cum slowly dribble out of your pussy with a satisfied grin.');
-      qspCall(s, 'cum_call', '', '', 'A9', 1);
+      qspCall(s, 'cum_call', '', 'A9', 1);
       qspCall(s, 'cuminsidereact', '');
       qspCall(s, 'arousal', 'end');
       scene.actions([
@@ -736,7 +736,7 @@ function enterCum6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).protect ?? 0) === 1) {
     scene.img('images/shared/sex/cum/cum61.jpg');
     scene.text('Suddenly Vitek\'s thrusts become shorter and more intense, and from his groaning you realize he must be shooting his load. Because he\'s wearing a condom, you don\'t feel any of it.');
-    qspCall(s, 'cum_call', '', '', 'A9', 1, 3);
+    qspCall(s, 'cum_call', '', 'A9', 1, 3);
     if (((s as any).sexcontra ?? 0) === 4) {
       scene.text('He pulls out of you. The condom is broken.');
       scene.text('Your guy completely relaxed, threw where-the condom and lay down contentedly on the bed.');
@@ -757,7 +757,7 @@ function enterCum6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).protect ?? 0) !== 1) {
       scene.img('images/shared/sex/cum/cum6.jpg');
       scene.text('Suddenly Vitek\'s thrusts become shorter and more intense, and while he groans you feel hot jets of his sperm being squirted into your body. Eventually he pulls out, and watches his cum slowly dribble out of your pussy with a satisfied grin.');
-      qspCall(s, 'cum_call', '', '', 'A9', 1);
+      qspCall(s, 'cum_call', '', 'A9', 1);
       qspCall(s, 'cuminsidereact', '');
       qspCall(s, 'arousal', 'end');
       scene.actions([

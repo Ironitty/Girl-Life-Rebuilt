@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -556,8 +554,8 @@ function enterNinel(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Trust me, ${((st as any).pcs_nickname ?? '')}. I will heal you. First, you need to breathe deeply…"`);
     scene.actions([
       { label: 'Breathe', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 1, 'Doctor Ninel', 32);
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '1', 'Doctor Ninel', 32);
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'foreplay', 5);
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/clinic/sex/exam13.jpg');
@@ -713,7 +711,7 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'ll like this." Ninel rolls you onto your side and tells you to pull your knees up to your chest.');
     scene.actions([
       { label: 'Hug your knees', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 1, 'Doctor Ninel', 32);
+    qspCall(st, 'npcgeneratec', '1', 'Doctor Ninel', 32);
     scene.img('images/locations/city/residential/clinic/sex/exam04.jpg');
     scene.text('You assume the position and Ninel starts fucking your ass with her thermometer. You get excited and moan softly as your pussy gets wet.');
     scene.text('"Oh, does baby like it? Come on, let\'s see how much."');
@@ -980,8 +978,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     { label: 'Have some fun', handler: (st: GameState) => {
     (st as any).picrand = 11;
     (st as any).guy = ((st as any).guy ?? 0) + (1);
-    qspCall(st, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'sex', 'var');
   } },
   ]);
@@ -1011,9 +1009,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Have some fun with them', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+    qspCall(st, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
     // TODO-QSP: $boy[0] = $npclastgenerated
-    qspCall(st, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+    qspCall(st, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
     // TODO-QSP: $boy[1] = $npclastgenerated
     (st as any).picrand = 11;
     (st as any).guy = ((st as any).guy ?? 0) + (2);
@@ -1051,10 +1049,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let her', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 1, 'Nurse', (Math.floor(Math.random() * 21) + 28));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '1', 'Nurse', (Math.floor(Math.random() * 21) + 28));
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).girl = ((st as any).girl ?? 0) + (1);
     scene.img('images/locations/city/residential/clinic/sex/hospsex5.jpg');
@@ -1524,7 +1522,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
       { label: 'Enough for today', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     if (((st as any).lact_ev ?? 0)?.['poli_donationsessioncount'] > 0) {
-      // TODO-QSP: gs 'money', 'earn', lact_ev['poli_donatemoney'], 'cash'
+      qspCall(st, 'money', 'earn', ((st as any).lact_ev ?? 0)?.['poli_donatemoney'], 'cash');
       ((st as any).lact_ev = (st as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((st as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((st as any).lact_ev ?? 0)?.['poli_donatemoney']);
       // TODO-QSP: dynamic text: You put your top back on and the employee hands you <<$func(''money'', ''string_...
       scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', ((st as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? '')} for your donated breast milk.`);
@@ -1568,11 +1566,11 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
 
 function enterDonateMilkBottle(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'small') {
-    (s as any).temp_id = qspUntranslated(s, "temp_small_mbottle_ids[0]", { location: "city_clinic" });
+    (s as any).temp_id = (((s as any).temp_small_mbottle_ids ?? 0)?.[0] ?? 0);
   } else {
-    (s as any).temp_id = qspUntranslated(s, "temp_medium_mbottle_ids[0]", { location: "city_clinic" });
+    (s as any).temp_id = (((s as any).temp_medium_mbottle_ids ?? 0)?.[0] ?? 0);
   }
-  (s as any).temp_pay = ((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)] / 10;
+  (s as any).temp_pay = (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)] ?? 0) / 10;
   if (((s as any).mbarrstat ?? 0)?.[String((s as any).temp_id ?? 0)] === 'normal') {
     (s as any).temp_pay = ((s as any).temp_pay ?? 0) / 2;
     // TODO-QSP: !! And 0.5 rbl / ml for normal milk
@@ -1580,8 +1578,8 @@ function enterDonateMilkBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_total_pay = ((s as any).temp_total_pay ?? 0) + (((s as any).temp_pay ?? 0));
   qspCall(s, 'money', 'earn', ((s as any).temp_pay ?? 0), 'cash');
   ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totaldonatemoney'] = ((s as any).lact_ev['poli_totaldonatemoney'] ?? 0) + (((s as any).temp_pay ?? 0));
-  (s as any).temp_total_milk = ((s as any).temp_total_milk ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)]);
-  ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)]);
+  (s as any).temp_total_milk = ((s as any).temp_total_milk ?? 0) + ((((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)] ?? 0));
+  ((s as any).lact_ev = (s as any).lact_ev ?? {})['poli_totalmilkdonated'] = ((s as any).lact_ev['poli_totalmilkdonated'] ?? 0) + ((((s as any).mbarrfill ?? 0)?.[String((s as any).temp_id ?? 0)] ?? 0));
   qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).temp_id ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') === 'small') {
   }

@@ -78,7 +78,7 @@ function enterPunishment(s: GameState, scene: SceneBuilder): void {
   scene.text(`The judge looks sternly at you. "You've caused quite ruckus, Miss ${((s as any).pcs_lastname ?? '')}. The law is quite stern, even when it comes to petty crimes."`);
   scene.text('You tremble a little in fear as he continues. "With that said, I believe in a more soft approach and that you can improve yourself by learning from your mistakes."');
   scene.text('You meekly nod and feel a little relieved.');
-  // TODO-QSP: gs 'court_sentence_events', 'punishment_start', $policeQW_courthearing_subjects[0]
+  qspCall(s, 'court_sentence_events', 'punishment_start', (((s as any).policeQW_courthearing_subjects ?? 0)?.[0] ?? 0));
   ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = ((s as any).policeQW['fine_deadline'] ?? 0) + (14);
   // TODO-QSP: end
   scene.actions([

@@ -307,7 +307,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;
     // TODO-QSP: showstat 1
-    // TODO-QSP: gs '$menu_settings'
+    qspCall(st, '$menu_settings', '');
   } },
     ]);
   } },
@@ -327,6 +327,7 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
     if (((st as any).initext ?? 0) === '') {
       // TODO-QSP: exit
     }
+    qspCall(st, 'themes', 'set_theme', ((st as any).theme ?? 0)?.['name'], ((st as any).theme ?? 0)?.['type']);
     if (((st as any).calendar_show ?? 0)?.['disco_party'] === 1) {
       qspCall(st, 'calendar', 'add', 'disco_party');
     } else {

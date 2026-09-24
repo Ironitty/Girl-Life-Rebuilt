@@ -420,9 +420,9 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/industrial/bar/sex/bar/martin/cumshot/cum_prezik.jpg');
       scene.text('But you make no attempts to pull him out of you and after a few more moments, you feel Martin tense and his penis grow inside you even more; two or three seconds later, he groans and cums, filling the condom with his seed.');
       if (((st as any).preziktype ?? 0) === 2) {
-        qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1, 7);
+        qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1, 7);
       } else {
-        qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1, 3);
+        qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1, 3);
       }
     } else {
       if (((st as any).martinpos ?? 0) === 'cowgirl') {
@@ -445,7 +445,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.text('But you make no attempts to pull him out of you and after a few more moments, you feel Martin tense and his penis grow inside you even more; two or three seconds later, he groans and cums, filling your pussy with hot sperm.');
-      qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+      qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     }
     qspCall(st, 'stat', '');
     if (((st as any).martinpos ?? 0) === 'cowgirl') {
@@ -838,7 +838,7 @@ function enterPainalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('But he just shakes his head. "Don\'t worry about me, mi amor. I\'m fine. Let\'s get you cleaned, shall we?"');
       scene.text('You wonder if he\'s trying to be chivalrous, but he doesn\'t seem sulky or annoyed, not even disappointed about how this attempt at anal sex ended with him getting blue-balled. Either he is genuinely not feeling any of that or he is extremely good at hiding it; choosing to believe the former, you let Martin help you to your feet.');
       (st as any).minut = ((st as any).minut ?? 0) + 4;
-      qspCall(st, 'pain', '', 2, 'asshole', 'tear');
+      qspCall(st, 'pain', '2', 'asshole', 'tear');
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (30);
       scene.actions([
         { label: 'Get cleaned up', goto: ['MartinSex2', 'MartinCleanup'] },

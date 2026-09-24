@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -38,7 +36,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterDSalf(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Tissues</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0) {
@@ -77,7 +75,7 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
 
 function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Mouth Wash</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).cumspclnt = 2;
@@ -91,8 +89,8 @@ function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'din_bad', '');
   } },
   ]);
   scene.build();
@@ -102,7 +100,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   (s as any).BACKIMAGE = '';
   qspCall(s, 'stat', '');
   scene.text('<center><h1>Purse</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
@@ -237,11 +235,11 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''contraceptive_pill'']>></b> unopened packages of <a...
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> and <b>${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''}</b> pills left in your opened package.`);
+    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''}</b> unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> and <b>${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')}</b> pills left in your opened package.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill']  === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <b><<pillsleft[ptype]>></b> <a href="exec:gs ''din_bad'', ''d_tabletkie...
-      scene.text(`You have <b>${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''}</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> left in your purse.`);
+      scene.text(`You have <b>${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')}</b> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkied/u0027); return false;">birth control pills</a> left in your purse.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory[''contraceptive_pill'']>></b> unopened packages of <a...
@@ -357,7 +355,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'obj_din', 'menu_exit');
+    qspCall(st, 'obj_din', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
   ]);
@@ -374,7 +372,7 @@ function enterDinalkowin1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
   ]);
   scene.build();
@@ -391,7 +389,7 @@ function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
   ]);
   scene.build();
@@ -400,7 +398,7 @@ function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
 function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDin_Update_Condom_Counts(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).i = 0;
@@ -422,7 +420,7 @@ function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
   ]);
   scene.build();
@@ -460,7 +458,7 @@ function enterDin_Table_Condom_Menu(s: GameState, scene: SceneBuilder): void {
 
 function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (String((s as any).locArgs?.[1] ?? '') === 1) {
@@ -594,18 +592,18 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
 
 function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Birth Control</h1></center>');
-  scene.img(`${qspFunc(s, '$$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).tabloc = 0;
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  ||  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} pills left in your opened package.`);
+      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> birth control pills left.
-        scene.text(`You have ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} birth control pills left.`);
+        scene.text(`You have ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} birth control pills left.`);
       } else {
         if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
           // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
@@ -665,7 +663,7 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
   ]);
   scene.build();
@@ -682,11 +680,11 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  ||  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
       // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
-      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} pills left in your opened package.`);
+      scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of birth control pills and ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} pills left in your opened package.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> birth control pills left.
-        scene.text(`You have ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} birth control pills left.`);
+        scene.text(`You have ${(((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? '')} birth control pills left.`);
       } else {
         if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
           // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of birth con...
@@ -802,7 +800,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
             if ((!((s as any).tabloc ?? 0))) {
               scene.actions([
                 { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
               ]);
             } else {
@@ -828,7 +826,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).tabloc ?? 0))) {
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_bag');
+    qspCall(st, 'din_bad', '');
   } },
     ]);
   } else {
@@ -941,7 +939,7 @@ function enterDCycreportChoice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
+    qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
@@ -990,10 +988,10 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
           scene.text('</td></tr></table></center>');
           scene.actions([
             { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_cycreport_choice');
+    qspCall(st, 'din_bad', '');
   } },
             { label: 'Exit', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
+    qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           ]);
@@ -1021,10 +1019,10 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
               scene.text('</td></tr></table></center>');
               scene.actions([
                 { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_cycreport_choice');
+    qspCall(st, 'din_bad', '');
   } },
                 { label: 'Exit', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
+    qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
               ]);
@@ -1044,7 +1042,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]...
                   }
                   // TODO-QSP: dynamic text: Potential father (<<potfather_counter + 1>>): <<$potfather_temp[2]>>
-                  scene.text(`Potential father (${((s as any).potfather_counter ?? '') + 1}): ${qspUntranslated(s, "potfather_temp[2]", { location: "din_bad" })}`);
+                  scene.text(`Potential father (${((s as any).potfather_counter ?? '') + 1}): ${(((s as any).potfather_temp ?? 0)?.[2] ?? '')}`);
                   (s as any).potfather_counter = ((s as any).potfather_counter ?? 0) + (1);
                   if (((s as any).potfather_counter ?? 0) < Object.keys((s as any).wombpotfath ?? {}).length) {
                     // TODO-QSP: jump 'potfather_loop'
@@ -1063,8 +1061,8 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
                   // TODO-QSP: dynamic text: <<$npc_usedname[$cumfthname[tempcurr]]>> (<<$cumfthname[tempcurr]>>) - <<cumtime...
-                  scene.text(`${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']} (${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''}) - ${((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''} ${((s as any).cum ?? '')}`);
-                  (s as any).sumcum = ((s as any).sumcum ?? 0) + (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)]);
+                  scene.text(`${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}) - ${(((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')} ${((s as any).cum ?? '')}`);
+                  (s as any).sumcum = ((s as any).sumcum ?? 0) + ((((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? 0));
                 }
                 if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {
                   (s as any).tempcurr = ((s as any).tempcurr ?? 0) + (1);
@@ -1082,10 +1080,10 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
                   if (((s as any).npc_usedname ?? 0)[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)]] !== '') {
                     // TODO-QSP: dynamic text: <a href="exec: $wombthfath = ''<<$npc_usedname[$cumfthname[tempcurr]]>>'' & $wom...
-                    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().7 ?? /u0027/u0027)); return false;">${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']} (${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''})</a>`);
+                    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().7 ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')} (${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')})</a>`);
                   } else {
                     // TODO-QSP: dynamic text:  <a href="exec: $wombthfath = ''<<$npc_usedname[$cumfthname[tempcurr]]>>'' & $wo...
-                    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().7 ?? /u0027/u0027)); return false;">Unknown (-)</a>`);
+                    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wombthfath = /u0027${(((s as any).npc_usedname ?? 0)?.[(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')] ?? '')}/u0027 */ /* TODO-QSP: $wombthfathID = /u0027${(((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().7 ?? /u0027/u0027)); return false;">Unknown (-)</a>`);
                   }
                 }
                 if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {
@@ -1094,10 +1092,10 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.actions([
                   { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'din_bad', 'd_cycreport_choice');
+    qspCall(st, 'din_bad', '');
   } },
                   { label: 'Exit', handler: (st: GameState) => {
-    // TODO-QSP: gs 'stat'
+    qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                 ]);
@@ -1111,7 +1109,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                   if (String((s as any).locArgs?.[1] ?? '') === 10) {
                     (s as any).temp = 0;
                     (s as any).temp = ((s as any).temp ?? 0) - (1);
-                    (s as any).cycreport_txt = 'You are currently recovering from childbirth. You gave birth on ' + ((s as any).monthkid ?? 0)?.[String((s as any).temp ?? 0)] + ' / ' + ((s as any).daykid ?? 0)?.[String((s as any).temp ?? 0)] + ' / ' + ((s as any).yearkid ?? 0)?.[String((s as any).temp ?? 0)] + '.';
+                    (s as any).cycreport_txt = 'You are currently recovering from childbirth. You gave birth on ' + (((s as any).monthkid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + ' / ' + (((s as any).daykid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + ' / ' + (((s as any).yearkid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + '.';
                     qspCall(s, 'stat', '');
                   }
                 }
@@ -1147,7 +1145,7 @@ function enterDCycreportUpdate(s: GameState, scene: SceneBuilder): void {
 function enterDCycreportUpduedate(s: GameState, scene: SceneBuilder): void {
   (s as any).implant_calc = ((s as any).daystart ?? 0) - ((s as any).lastovulation ?? 0) + 5;
   (s as any).gastation_time = (280 * 100) / Math.max(1, qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
-  // TODO-QSP: gs 'time', 'to_date', daystart + gastation_time - implant_calc
+  qspCall(s, 'time', 'to_date', ((s as any).daystart ?? 0) + ((s as any).gastation_time ?? 0) - ((s as any).implant_calc ?? 0));
   (s as any).pregduedate = '' + ((s as any).dateVars ?? 0)?.['day'] + ' ' + (String(((s as any).dateVars ?? 0)?.['monthName']).slice((1)-1, ((1)-1)+(3))) + ' ' + ((s as any).dateVars ?? 0)?.['year'] + '';
   return;
   // TODO-QSP: end
@@ -1376,7 +1374,7 @@ function enterDMouthwashDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1394,7 +1392,7 @@ function enterQuickTakepillDo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+    qspCall(st, 'daily_routine', '');
   } },
   ]);
   scene.build();
@@ -1412,7 +1410,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat_display_compute', 'queue_alert', 'You are out of birth control pills.', 'v_neg');
     } else {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['bc_status'] = 'It\'s time to take your birth control pill!';
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'bc_status', 'neg', 'status/cycle/bc_pills_reminder', 3, "gs...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'bc_status', 'neg', 'status/cycle/bc_pills_reminder', 3, 'gs \'din_bad\', \'quick_takepill\'');
       qspCall(s, 'stat_display_compute', 'queue_alert', 'Time to take your birth control pill.', 'neg');
     }
     // TODO-QSP: killvar 'bc_protected'
@@ -1617,7 +1615,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).preg ?? 0) === 2) {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Get to the hospital, ASAP! You\'re in labour!';
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/labour', 3, "gs 'din_b...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/labour', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in labour! Get to a hospital, now!', 'v_neg');
     return;
   }
@@ -1635,7 +1633,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant with ' + ((s as any).wombthfath ?? 0) + '\'s baby. Based on the last period you remember, your due date is probably around ' + ((s as any).pregduedate ?? 0) + '.';
       }
     }
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/know_pregnant', 3, "gs 'din...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/know_pregnant', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   if (((s as any).thinkpreg ?? 0) === 1) {
@@ -1649,7 +1647,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant with ' + ((s as any).wombthfath ?? 0) + '\'s baby. Based on the last period you remember, your due date would be around ' + ((s as any).pregduedate ?? 0) + '.';
       }
     }
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/think_pregnant', 3, "gs 'di...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/think_pregnant', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   if (((s as any).denypreg ?? 0) === 1) {
@@ -1682,25 +1680,25 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = ((s as any).stat_texts['cycle_state'] ?? 0) + (' You\'re not sure when you last had a period.');
       }
     }
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, "gs 'din_bad', 'd...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   if (((s as any).menoage ?? 0) <= ((s as any).age ?? 0)  &&  ((s as any).cycle ?? 0) === 6) {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You have gone through menopause.';
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/menopause', 3, "gs 'din_bad...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/menopause', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   if (((s as any).mesec ?? 0) > 0) {
     if (((s as any).isprokp ?? 0) > 0) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period and using a pad.';
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_pad', 3, "gs 'din_ba...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_pad', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     } else {
       if (((s as any).isprok ?? 0) > 0) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period and using a tampon.';
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_tampon', 3, "gs 'din...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_tampon', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
       } else {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period. You need to use your feminine hygiene products.';
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_now', 3, "gs 'd...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_now', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
       }
     }
     return;
@@ -1709,18 +1707,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
     (s as any).temp = ((((s as any).knowpregloss ?? 0) === 2) ? ('miscarriage') : ('abortion'));
     if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 13) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You\'re still in your recovery period after your ' + ((s as any).temp ?? 0) + '. Nothing to worry about.';
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     } else {
       if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 16) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You could still be in your recovery period after your ' + ((s as any).temp ?? 0) + ', but there might be a risk.';
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
       } else {
         if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 21) {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You should have recovered from your ' + ((s as any).temp ?? 0) + ' by now, right?';
-          // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, "gs '...
+          qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
         } else {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You should have definitely recovered from your ' + ((s as any).temp ?? 0) + ' by now.';
-          // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, "gs...
+          qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
         }
       }
     }
@@ -1729,22 +1727,22 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pregbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 73) {
     if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 41) {
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You\'re still in your recovery period after giving birth. Nothing to worry about.';
-      // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
+      qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     } else {
       if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 48) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You\'re probably still in your recovery period after giving birth.';
-        // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
+        qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
       } else {
         if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 55) {
           ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You could still be in your recovery period after giving birth, but there might be a risk.';
-          // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
+          qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
         } else {
           if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 70) {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You should have recovered from giving birth by now, right?';
-            // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, "gs '...
+            qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
           } else {
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'You should have definitely recovered from giving birth by now.';
-            // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, "gs...
+            qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
           }
         }
       }
@@ -1753,13 +1751,13 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  (!((s as any).knowpreg ?? 0))) {
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is due to start soon.';
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_soon', 3, "gs 'din_b...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_soon', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   if (((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).knowpreg ?? 0) === 0  &&  ((s as any).cycle ?? 0) !== 6  &&  ((s as any).pillcon2 ?? 0) <= 30000  &&  ((s as any).succubusflag ?? 0) !== 1  &&  ((s as any).cheatVars ?? 0)?.['no_periods'] === 0  &&  ((s as any).abortionbirthdate ?? 0) === 0  &&  ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 28) {
     ((s as any).temp = (s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) - 28;
     if (((s as any).temp ?? 0)[1] <= 7) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' \' + iif(temp[1] = 1, \'day\', \'days\') + \' late.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' \' + iif(temp[1] = 1, \'day\', \'days\') + \' late.';
     } else {
       if (((s as any).temp ?? 0)[1] <= 14) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is over a week late.';
@@ -1775,7 +1773,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_late', 3, "gs '...
+    qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_late', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
     return;
   }
   ((s as any).temp = (s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0);
@@ -1783,7 +1781,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat = (s as any).stat ?? {})['cycphase_symptom_rand'] = (Math.floor(Math.random() * 3) + 1);
     if (((s as any).bodyVars ?? 0)?.['bust_menst'] > 0) {
       if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
-        qspCall(s, 'pain', '', 2, 'breasts', 'ache');
+        qspCall(s, 'pain', '2', 'breasts', 'ache');
       }
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel a little swollen today.';
     } else {
@@ -1809,7 +1807,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
         if (((s as any).stat ?? 0)?.['cycle_phase'] === 'ovulation') {
           if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 1) {
             if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
-              qspCall(s, 'pain', '', 2, 'breasts', 'ache');
+              qspCall(s, 'pain', '2', 'breasts', 'ache');
             }
             ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel a little sore.';
           } else {
@@ -1828,7 +1826,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
           if (((s as any).stat ?? 0)?.['cycle_phase'] === 'luteal') {
             if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 1) {
               if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
-                qspCall(s, 'pain', '', 2, 'breasts', 'ache');
+                qspCall(s, 'pain', '2', 'breasts', 'ache');
               }
               ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel tender today.';
             } else {
@@ -1847,18 +1845,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
     if (((s as any).cycle ?? 0) === 2) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are ovulating.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are ovulating.';
     } else {
       if (((s as any).cycle ?? 0) === 1  &&  ((s as any).focH ?? 0) > ((s as any).focH_max ?? 0) - 96) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are approaching ovulation.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are approaching ovulation.';
       } else {
         if (((s as any).cycle ?? 0) === 1) {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your follicular phase.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your follicular phase.';
         } else {
           if (((s as any).cycle ?? 0) === 3) {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your luteal phase.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You are in your luteal phase.';
           } else {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since the start of your last period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
           }
         }
       }
@@ -1866,21 +1864,21 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_intel ?? 0) >= 50) {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe'  &&  ((s as any).temp ?? 0)[1] < 6) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your follicular phase, early in your cycle.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your follicular phase, early in your cycle.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your luteal phase.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your luteal phase.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe'  &&  ((s as any).temp ?? 0)[1] < 8) {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are approaching your fertile window.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are approaching your fertile window.';
           } else {
             if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-              ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are leaving your fertile window.';
+              ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are leaving your fertile window.';
             } else {
               if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
+                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
               } else {
-                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.';
+                ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.';
               }
             }
           }
@@ -1888,22 +1886,22 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It should be safe to have unprotected sex.';
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It should be safe to have unprotected sex.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It might be a little risky to have unprotected sex.';
+          ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' It might be a little risky to have unprotected sex.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + ' You think you are in your fertile window.';
           } else {
-            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]", { location: "din_bad" }) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
+            ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' days since you last remember having a period.' + ((s as any).stat_texts ?? 0)?.['cycle_feel'] + '';
           }
         }
       }
     }
   }
   ((s as any).stat = (s as any).stat ?? {})['cycphase_symptoms'] = ((s as any).daystart ?? 0);
-  // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, "gs 'din_bad', 'd...
+  qspCall(s, 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, 'gs \'din_bad\', \'d_cycreport_choice\'');
   // TODO-QSP: end
   scene.build();
 }

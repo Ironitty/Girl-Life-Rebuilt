@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -44,63 +42,63 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/dance/dancesexoi1.jpg');
     scene.text('You slowly wrap your mouth around his member…');
     scene.text('Sensing his chance, Igor suddenly shoves his entire dick down your throat before you can protest. Tears begin to well up in your eyes…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'deepthroat'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck on', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/dance/dancesexoi2.jpg');
     scene.text('Igor continues to batter your mouth, while Andrei and Sergei watch and even help him, pushing your head deeper on his cock…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'deepthroat'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck them all', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/dancesexoas...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/dancesexoasi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Andrei and Sergei aren\'t content to just watch you all night and put hands on their dicks as well. You began to suck and stroke the circle of guys around you, alternating attention to each member.');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie down on your back', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrva...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvaosi1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
     scene.text('The guys put you on the bed and Andrei settles down between your legs, while Igor and Sergei hover over you and put their members in front of your face…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[1], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie on your side', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrv2...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrv2aosi1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Andrei rolls you to the side and without even moving from between your legs, and Igor and Sergei reposition to put their dicks in the face again…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[1], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get on all fours', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvi...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvioas1.` + (Math.floor(Math.random() * 4) + 1) + '.jpg"></center>');
     scene.text('Igor pushes you down on all fours and then moves behind you. He begins to pound you from behind with increasing frequency. Sergei and Andrei refuse to give you a rest and shove their dicks in your mouth…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[2], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Sit down', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/gadukino/sex/dance/hantersgrvs...
     scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/sex/dance/hantersgrvsoia1.` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
     scene.text('Sergei sits on the bed, and pulls you on top of him. Igor and Andrei adjust to this new position accordingly…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[3], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/dance/dancesexoi3.jpg');
     scene.text('You continue to suck Igor, but then you feel someone\'s finger begins to penetrate your ass…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'arousal', 'anal_finger', (-2), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -119,9 +117,9 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     scene.text('Andrei gets on the ground and pulls you down with him. You feel his dick pop into your ass.');
     scene.text('Igor moves in front of you and lines up on your second exposed hole.');
     scene.text('You think, "At least I only have to suck one dick at a time now…"');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[2], 'sub', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[1], 'sub', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Kneel in front of the guys', handler: (st: GameState) => {
@@ -132,12 +130,12 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wait patiently', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gs 'cum_call', 'face', $boy[1], 1, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'face', $boy[3], 1, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'stomach', $boy[2], 1, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[1], 1, '', '', 20
-    // TODO-QSP: gs 'cum_call', 'breasts', $boy[3], 1, '', '', 20
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[1] ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[2] ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[3] ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'stomach', (((st as any).boy ?? 0)?.[2] ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'mouth_swallow', (((st as any).boy ?? 0)?.[1] ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'breasts', (((st as any).boy ?? 0)?.[3] ?? 0), 1, '', '', 20);
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/dance/dancesexoi6.jpg');
     scene.text('Finally, the guys started to cum. Jets of sperm struck your face, some got in your mouth and dripped onto your breast and stomach as well…');
@@ -252,7 +250,7 @@ function enterSexafterstrip3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: -<<$pcs_nickname>>, that was really cool, " he said, smiling. - Want to continue...
   scene.text(`-${((s as any).pcs_nickname ?? '')}, that was really cool, " he said, smiling. - Want to continue?`);
   scene.text('- Of course you reply, smiling right back.');
-  // TODO-QSP: gs 'arousal', 'foreplay', 5, $npcID[2], 'sub'
+  qspCall(s, 'arousal', 'foreplay', 5, (((s as any).npcID ?? 0)?.[2] ?? 0), 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -263,7 +261,7 @@ function enterSexafterstrip3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A173');
     qspCall(st, 'oral', 'start');
     scene.text('You try to swallow as Igor\'s dick as deeply as possible and he seems to like it…');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'deepthroat'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'deepthroat');
     qspCall(st, 'stat', '');
     if (((st as any).pcs_sleep ?? 0) < 10) {
       scene.actions([
@@ -302,7 +300,7 @@ function enterHuntersexnude(s: GameState, scene: SceneBuilder): void {
   scene.text('You approached the guys with a playful smile…');
   // TODO-QSP: dynamic text: - You know what to do <<$pcs_nickname>>, - said Andrei smiling.
   scene.text(`- You know what to do ${((s as any).pcs_nickname ?? '')}, - said Andrei smiling.`);
-  // TODO-QSP: gs 'arousal', 'foreplay', 5, $npcID[1], 'sub'
+  qspCall(s, 'arousal', 'foreplay', 5, (((s as any).npcID ?? 0)?.[1] ?? 0), 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -445,7 +443,7 @@ function enterDoubleloveOral12(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[5] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRng_1(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -485,7 +483,7 @@ function enterDoubleloveOralCum12_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRng_2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -525,7 +523,7 @@ function enterDoubleloveOralCum12_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRng_3(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -553,7 +551,7 @@ function enterDoubleloveDog112(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -575,7 +573,7 @@ function enterDoubleloveDog112(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[7] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -603,7 +601,7 @@ function enterDoubleloveDogCum112_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -625,7 +623,7 @@ function enterDoubleloveDogCum112_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -671,13 +669,13 @@ function enterDoubleloveDogCum112_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -722,7 +720,7 @@ function enterDoubleloveDog212(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[7] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -762,7 +760,7 @@ function enterDoubleloveDogCum212_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -808,7 +806,7 @@ function enterDoubleloveDogCum212_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -853,7 +851,7 @@ function enterDoubleloveSide12(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[7] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -893,7 +891,7 @@ function enterDoubleloveSideCum12_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
@@ -940,7 +938,7 @@ function enterDoubleloveSideCum12_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -969,7 +967,7 @@ function enterDoubleloveCow112(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -991,7 +989,7 @@ function enterDoubleloveCow112(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[7] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1026,7 +1024,7 @@ function enterDoubleloveCowCum112_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1044,7 +1042,7 @@ function enterDoubleloveCowCum112_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -1091,13 +1089,13 @@ function enterDoubleloveCowCum112_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1125,7 +1123,7 @@ function enterDoubleloveCow212(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1147,7 +1145,7 @@ function enterDoubleloveCow212(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[7] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1176,7 +1174,7 @@ function enterDoubleloveCowCum212_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1196,7 +1194,7 @@ function enterDoubleloveCowCum212_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -1242,14 +1240,14 @@ function enterDoubleloveCowCum212_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
     (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) - (1);
   }
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[6] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1280,7 +1278,7 @@ function enterDoubleloveSide2(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1322,7 +1320,7 @@ function enterDoubleloveSideCum2(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   (s as any).lubonus = 0;
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -1369,7 +1367,7 @@ function enterDoubleloveCow1(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1398,7 +1396,7 @@ function enterDoubleloveCowCum1(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   (s as any).lubonus = 0;
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
@@ -1443,7 +1441,7 @@ function enterDoubleloveOral1(s: GameState, scene: SceneBuilder): void {
   scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[2] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_sleep ?? 0) >= 10) {
@@ -1478,7 +1476,7 @@ function enterDoubleloveOralCum1(s: GameState, scene: SceneBuilder): void {
   scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   (s as any).lubonus = 0;
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1521,13 +1519,13 @@ function enterDoubleloveOral2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[2] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_sleep ?? 0) >= 10) {
@@ -1563,13 +1561,13 @@ function enterDoubleloveOralCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   (s as any).lubonus = 0;
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -1662,7 +1660,7 @@ function enterSluthomeORAL1(s: GameState, scene: SceneBuilder): void {
   scene.text('You slowly put his dick in your mouth and begin to suck on it…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[2] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).huntsexa = (Math.floor(Math.random() * 5) + 1);
@@ -1678,7 +1676,7 @@ function enterSluthomeOralCum1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end & !! --- sluthomeOralCum1 ---
@@ -1694,7 +1692,7 @@ function enterSluthomeORAL2(s: GameState, scene: SceneBuilder): void {
   scene.text('You continue sucking on his dick…');
   qspCall(s, 'oral', 'start');
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[2] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
   qspCall(s, 'stat', '');
   (s as any).huntsexa = (Math.floor(Math.random() * 4) + 2);
@@ -1710,7 +1708,7 @@ function enterSluthomeOralCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1763,7 +1761,7 @@ function enterSluthomeOralCum3(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? '')} he began to move faster and you realized that he was already ready to cum…`);
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1780,13 +1778,13 @@ function enterSluthomeORAL4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
     qspCall(s, 'mood', 'lower', 'small');
   }
   // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[2] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).huntsexa = (Math.floor(Math.random() * 13) + 1);
@@ -1806,7 +1804,7 @@ function enterSluthomeOralCum4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm ...
   scene.text(`Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm fills your mouth and runs down your chin, dripping down onto your breasts and stomach. ${((s as any).boydesc ?? '')} has you clean his dick before putting it back in his pants and going about their business, leaving you alone to freshen up.`);
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1840,7 +1838,7 @@ function enterSluthomeAnalDog1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -1856,7 +1854,7 @@ function enterSluthomeAnalDogCum1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1876,7 +1874,7 @@ function enterSluthomeAnalDog2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -1892,7 +1890,7 @@ function enterSluthomeAnalDogCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1912,7 +1910,7 @@ function enterSluthomeAnalCow1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -1928,7 +1926,7 @@ function enterSluthomeAnalCowCum1(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel his pace quicken and you are sure he is about to cum.');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1948,7 +1946,7 @@ function enterSluthomeAnalCow2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -1983,7 +1981,7 @@ function enterSluthomeAnalCowCum2(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel his pace quicken and you are sure he is about to cum.');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -2005,7 +2003,7 @@ function enterSluthomeAnalSide1(s: GameState, scene: SceneBuilder): void {
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).huntsexa = (Math.floor(Math.random() * 12) + 2);
@@ -2020,7 +2018,7 @@ function enterSluthomeAnalSideCum1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -2041,7 +2039,7 @@ function enterSluthomeAnalSide2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[4] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -2071,7 +2069,7 @@ function enterSluthomeAnalSideCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
-  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  scene.text(`${(((s as any).textsexhunter ?? 0)?.[3] ?? '')}`);
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -2109,7 +2107,7 @@ function enterHuntersgrVaOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2117,7 +2115,7 @@ function enterHuntersgrVaOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2142,7 +2140,7 @@ function enterHuntersgrVOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2150,7 +2148,7 @@ function enterHuntersgrVOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2178,7 +2176,7 @@ function enterHuntersgrVaO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2186,7 +2184,7 @@ function enterHuntersgrVaO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2218,7 +2216,7 @@ function enterHuntersgrVaOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2226,7 +2224,7 @@ function enterHuntersgrVaOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2256,7 +2254,7 @@ function enterHuntersgrVsOai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2264,7 +2262,7 @@ function enterHuntersgrVsOai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2290,7 +2288,7 @@ function enterHuntersgrVOai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2298,7 +2296,7 @@ function enterHuntersgrVOai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2326,7 +2324,7 @@ function enterHuntersgrVsOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2334,7 +2332,7 @@ function enterHuntersgrVsOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2363,7 +2361,7 @@ function enterHuntersgrVsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2371,7 +2369,7 @@ function enterHuntersgrVsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2413,7 +2411,7 @@ function enterHuntersgrViOas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2421,7 +2419,7 @@ function enterHuntersgrViOas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2447,7 +2445,7 @@ function enterHuntersgrViO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2455,7 +2453,7 @@ function enterHuntersgrViO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2497,7 +2495,7 @@ function enterHuntersgrVsOia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2505,7 +2503,7 @@ function enterHuntersgrVsOia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2531,7 +2529,7 @@ function enterHuntersgrVsOi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2539,7 +2537,7 @@ function enterHuntersgrVsOi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2569,7 +2567,7 @@ function enterHuntersgrVaOis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2577,7 +2575,7 @@ function enterHuntersgrVaOis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2603,7 +2601,7 @@ function enterHuntersgrVaOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2611,7 +2609,7 @@ function enterHuntersgrVaOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2641,7 +2639,7 @@ function enterHuntersgrVO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2649,7 +2647,7 @@ function enterHuntersgrVO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2686,7 +2684,7 @@ function enterHuntersgrV2aOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2694,7 +2692,7 @@ function enterHuntersgrV2aOsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2720,7 +2718,7 @@ function enterHuntersgrV2aOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2728,7 +2726,7 @@ function enterHuntersgrV2aOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2757,7 +2755,7 @@ function enterHuntersgrDPVaAiOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2789,7 +2787,7 @@ function enterHuntersgrDPVaAOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2819,7 +2817,7 @@ function enterHuntersgrAiOsa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2827,7 +2825,7 @@ function enterHuntersgrAiOsa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2854,7 +2852,7 @@ function enterHuntersgrAiO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2862,7 +2860,7 @@ function enterHuntersgrAiO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2940,7 +2938,7 @@ function enterHuntersgrAOsa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2948,7 +2946,7 @@ function enterHuntersgrAOsa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2975,7 +2973,7 @@ function enterHuntersgr2VaOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3000,7 +2998,7 @@ function enterHuntersgr2VOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3038,7 +3036,7 @@ function enterHuntersgr2VO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3071,7 +3069,7 @@ function enterHuntersgr2ViOa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3096,7 +3094,7 @@ function enterHuntersgr2ViO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickA ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3134,7 +3132,7 @@ function enterHuntersgr2VsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3172,7 +3170,7 @@ function enterHuntersgr2VaOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3197,7 +3195,7 @@ function enterHuntersgr2VaO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3227,7 +3225,7 @@ function enterHuntersgr2AiOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3253,7 +3251,7 @@ function enterHuntersgr2AOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3288,7 +3286,7 @@ function enterHuntersgr2AiO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3328,7 +3326,7 @@ function enterHuntersgr2AOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3363,7 +3361,7 @@ function enterHuntersgr2AsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }

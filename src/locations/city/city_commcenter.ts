@@ -56,7 +56,7 @@ function enterLessons(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayments(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', ARGS[2]
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[2] ?? 0));
   // TODO-QSP: dynamic text: 'You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the <<$ARGS[1]>> co...
   scene.text(`You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the ${((s as any).locArgs?.[1] ?? '')} course and are now booked in for your lesson. Please refer to the noticeboard for class times and rooms.`);
   qspCall(s, 'stat', '');

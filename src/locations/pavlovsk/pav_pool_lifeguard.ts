@@ -957,7 +957,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Creampie', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    qspCall(st, 'cum_call', '', '', 'A294');
+    qspCall(st, 'cum_call', '', 'A294');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/creampie1.mp4');
     scene.text('You\'re too bored to really care anymore. "You can finish inside me," you shrug.');
@@ -995,7 +995,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Creampie', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    qspCall(st, 'cum_call', '', '', 'A294');
+    qspCall(st, 'cum_call', '', 'A294');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/creampie1.mp4');
     scene.text('You\'re too bored to really care anymore. "You can finish inside me," you shrug.');
@@ -1102,7 +1102,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re just thankful that it\'s finally over.');
       scene.actions([
         { label: 'Creampie', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A294');
+    qspCall(st, 'cum_call', '', 'A294');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/creampie1.mp4');
@@ -1194,7 +1194,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re just thankful that it\'s finally over.');
       scene.actions([
         { label: 'Creampie', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'A294');
+    qspCall(st, 'cum_call', '', 'A294');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/shower/creampie1.mp4');

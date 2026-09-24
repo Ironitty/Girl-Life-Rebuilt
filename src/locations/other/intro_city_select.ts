@@ -1,4 +1,6 @@
-import { qspGoto } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -64,22 +66,22 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'nerdqueen'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd', 'nerdqueen');
   scene.build();
 }
 
 function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'goodstudent'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd', 'goodstudent');
   scene.build();
 }
 
 function enterComputergeek(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'computergeek'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd', 'computergeek');
   scene.build();
 }
 
 function enterChessplayer(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'chessplayer'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'nerd', 'chessplayer');
   scene.build();
 }
 
@@ -89,22 +91,22 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVolleyball(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'volleyball'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock', 'volleyball');
   scene.build();
 }
 
 function enterDancer(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'dancer'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock', 'dancer');
   scene.build();
 }
 
 function enterRunner(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'runner'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock', 'runner');
   scene.build();
 }
 
 function enterFootball(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'football'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'jock', 'football');
   scene.build();
 }
 
@@ -114,22 +116,22 @@ function enterCool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSocialite(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'socialite'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool', 'socialite');
   scene.build();
 }
 
 function enterBeautiful(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'beautiful'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool', 'beautiful');
   scene.build();
 }
 
 function enterAnorexic(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'anorexic'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool', 'anorexic');
   scene.build();
 }
 
 function enterBimbo(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'bimbo'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'cool', 'bimbo');
   scene.build();
 }
 
@@ -139,22 +141,22 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'gopnikstart'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik', 'gopnikstart');
   scene.build();
 }
 
 function enterTroublemaker(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'troublemaker'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik', 'troublemaker');
   scene.build();
 }
 
 function enterVitekgf(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'vitekgf'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik', 'vitekgf');
   scene.build();
 }
 
 function enterAlternative(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'alternative'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'gopnik', 'alternative');
   scene.build();
 }
 
@@ -164,42 +166,42 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFriendless(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'friendless'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'friendless');
   scene.build();
 }
 
 function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'uglyduckling'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'uglyduckling');
   scene.build();
 }
 
 function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'goodgirl'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'goodgirl');
   scene.build();
 }
 
 function enterSlut(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'slut'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'slut');
   scene.build();
 }
 
 function enterGoth(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'goth'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'goth');
   scene.build();
 }
 
 function enterPoor(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'poor'
+  qspGoto(s, 'intro_character_creation', 'group_desc', 'outcast', 'poor');
   scene.build();
 }
 
 function enterSgSettings(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_initialization', 'sg_settings'  & exit
+  qspCall(s, 'intro_initialization', '', qspUntranslated(s, "'sg_settings'  & exit", { location: "intro_city_select" }));
   scene.build();
 }
 
 function enterSetExitActs(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_character_creation', 'set_exit_acts', $ARGS[1]  & exit
+  qspCall(s, 'intro_character_creation', 'set_exit_acts', 0);
   scene.build();
 }
 

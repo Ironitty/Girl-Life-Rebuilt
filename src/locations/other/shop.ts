@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) !== '') {
     // TODO-QSP: $ARGS[0] = $shoplocation
-    // TODO-QSP: gt 'shop', $ARGS[0]
+    qspGoto(s, 'shop', String((s as any).locArgs?.[0] ?? ''));
   }
   // TODO-QSP: end
   scene.build();
@@ -134,7 +134,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
       qspCall(st, 'cum_call', 'mouth_swallow', 'A169', 1);
     } else {
-      qspCall(st, 'pain', '', 6, 'asscheeks', 'slap');
+      qspCall(st, 'pain', '6', 'asscheeks', 'slap');
       (st as any).spank = ((st as any).spank ?? 0) + (1);
       scene.img('images/locations/city/residential/street/sex/gostanal2.jpg');
       scene.text('Dima brings you to his house and begins to kiss and undress you in the hall. Once you\'re naked, he takes you to the bathroom.');
@@ -493,7 +493,7 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', 200);
       (st as any).paint_blue = 1;
-      // TODO-QSP: gt 'shop', $func('wrap', 'v_pos', 'You bought a tin of paint.')
+      qspGoto(st, 'shop', '$func(\'wrap\', \'v_pos\', \'You bought a tin of paint.\')');
     }
   } },
     ]);
@@ -711,7 +711,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).subscription ?? 0)[((s as any).home ?? 0)?.['current']] === 1) {
         (s as any).temp_home = '' + ((s as any).home ?? 0)?.['current'] + '-date';
-        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + ((s as any).home ?? 0)?.['display'] + ' that will renew next month on day ' + ((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + ((s as any).home ?? 0)?.['display'] + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
       } else {
         (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at your ' + ((s as any).home ?? 0)?.['display'] + '. Automatically renews every month</td>';
         if ((!((s as any).bankAccount ?? 0))) {

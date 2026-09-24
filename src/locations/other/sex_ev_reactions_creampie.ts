@@ -435,7 +435,7 @@ function enterCreampieConflicted(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumTogetherNoBc1(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Back', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_reactions', 'react_menu');
+    qspCall(st, 'sex_ev_reactions', '');
   } },
     ]);
   } },
@@ -455,7 +455,7 @@ function enterCreampieUnhappy(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPromisedNoCreampie(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Back', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_reactions', 'react_menu');
+    qspCall(st, 'sex_ev_reactions', '');
   } },
     ]);
   } },
@@ -542,7 +542,7 @@ function enterCreampieCumTogetherReact(s: GameState, scene: SceneBuilder): void 
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieReact(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -603,7 +603,7 @@ function enterCreampieEnjoyThat(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCreampieAskNextTime(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
       { label: 'I\'m glad', handler: (st: GameState) => {
     scene.text('"I\'m glad you liked it so much," you say, letting your smile grow wider.');
@@ -1549,7 +1549,7 @@ function enterThoughtNoCreampies(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ignore the question', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -2047,7 +2047,7 @@ function enterTakeInStride1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -2304,7 +2304,7 @@ function enterDelayedCreampieOrgasm1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
     (st as any).orgasm_or = 'yes';
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     qspCall(st, 'stat', '');
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/orgasm1.mp4');

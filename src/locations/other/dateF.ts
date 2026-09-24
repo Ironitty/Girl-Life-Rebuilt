@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'npcgeneratec', '', 1, '', (Math.floor(Math.random() * 18) + 18), 'like');
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '1', '', (Math.floor(Math.random() * 18) + 18), 'like');
+  qspCall(s, 'npcStat', '$npclastgenerated');
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
-    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
     // TODO-QSP: dynamic text: You notice <<$npcheight_pref>> girl with <<$npcbuild_pref>> body and <<$npchair>...
     scene.text(`You notice ${((s as any).npcheight_pref ?? '')} girl with ${((s as any).npcbuild_pref ?? '')} body and ${((s as any).npchair ?? '')} hair approaching you. She is wearing ${((s as any).npcClo ?? '')}.`);
     // TODO-QSP: dynamic text: As she nears you, she presents herself; "Hi. My name is <<$npcdesc>>. What are y...
@@ -22,14 +22,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Greet her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     // TODO-QSP: dynamic text: "Hi! My name is <<$pcs_nickname>>." you answer. "School just ended so I was tryi...
     scene.text(`"Hi! My name is ${((st as any).pcs_nickname ?? '')}." you answer. "School just ended so I was trying to figure out what to do for the rest of the day."`);
     // TODO-QSP: dynamic text: "Oh really." After a moment of silence <<$npcdesc>> finally speaks up; "Don''t t...
     scene.text(`"Oh really." After a moment of silence ${((st as any).npcdesc ?? '')} finally speaks up; "Don't take this the wrong way but what school do you attend?" she asks.`);
     scene.actions([
       { label: 'Don\'t tell her which school', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('You break out into laughter, "Why would I tell you that, for all I know you could be a weird stalker."');
     scene.text('"Did you just accuse me for being a stalker?" she asks as her voice changes to a more serious tone.');
     scene.text('"I didn\'t mean to make you upset, but don\'t you thinks it\'s a bit creepy for someone unknown to walk up a schoolgirl and ask what school they go to?" you answer.');
@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell her', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I don\'t really know if I should tell you that. For all I know you might be a creepy woman that wants to kidnap me."');
     scene.text('"I\'m sorry I knew I would come off as creepy, but I got a bit thrown off by your school outfit. I didn\'t mean anything by it."');
     if (((st as any).loc ?? 0) === 'pav_residential'  ||  ((st as any).loc ?? 0) === 'pav_commercial') {
@@ -61,7 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('As you\'re talking you get a creepy feeling about this girl, "I\'m sorry but I just remembered I was supposed to meet a friend."');
     // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed. "Oh, that''s a shame. Could I get-…"
     scene.text(`${((st as any).npcdesc ?? '')} looks at you disappointed. "Oh, that's a shame. Could I get-…"`);
@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Decline politely', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry but I\'m not interested. I sort of have a boyfriend…" you answer wanting to reject the girl as easy as possible.');
     scene.text('"That\'s too bad… I should have guessed a girl in that hot outfit would be taken."');
     scene.text('As you move away from her, you\'re glad you declined, especially after the last comment.');
@@ -84,7 +84,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I would love to', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"Sure, that sounds fun and I just so happen to have some time to kill." You say with a wink.');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do?".`);
@@ -92,7 +92,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry, I would love to go on a date with you but I\'m busy right. What if I give you my number so you can call me?"');
     // TODO-QSP: dynamic text: "I say that''s a great idea. I''ll be in touch." <<$npcdesc>> adds your number t...
     scene.text(`"I say that's a great idea. I'll be in touch." ${((st as any).npcdesc ?? '')} adds your number to her contact list.`);
@@ -110,7 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).grupTipe ?? 0) === 4) {
-      scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+      scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
       // TODO-QSP: dynamic text: You notice <<$npcheight_pref>> girl with <<$npcbuild_pref>> body and <<$npchair>...
       scene.text(`You notice ${((s as any).npcheight_pref ?? '')} girl with ${((s as any).npcbuild_pref ?? '')} body and ${((s as any).npchair ?? '')} hair approaching you. She is wearing ${((s as any).npcClo ?? '')}.`);
       scene.text('As she nears you, you hear her say, "Hey baby, you seem like a girl that likes to have fun. What do you say, wanna hang out?"');
@@ -118,12 +118,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Look at her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('You give her a once over and then give her an amused look, "What did you say? I hope you know what you\'re getting yourself into."');
     scene.text('Not fazed by your brashness she continues on, "I know it\'s just a front with girls like you. All of you just act hard but I\'ve got you all figured out. Tell me this instead, what is your name?"');
     scene.actions([
       { label: 'No', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"How about I kick your ass instead? Now get out of here before you know what my boot feels like shoved up your ass." you reply angrily.');
     scene.text('"Okay, okay, sheesh… take it easy." she says loudly as she\'s moving away from you.');
     scene.actions([
@@ -133,7 +133,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Answer her', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     // TODO-QSP: dynamic text: You give her a contemptuous look. "Oh, you have me all figured out do you? My na...
     scene.text(`You give her a contemptuous look. "Oh, you have me all figured out do you? My name is ${((st as any).pcs_nickname ?? '')}, not that it is any of your business."`);
     if (((st as any).loc ?? 0) === 'pav_residential'  ||  ((st as any).loc ?? 0) === 'pav_commercial') {
@@ -148,7 +148,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Not now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m busy right now." You tell her and watch her become disappointed. "But maybe I will get bored out of my skull and you will seem like a better open, so take my number and maybe I will answer if you call."');
     // TODO-QSP: dynamic text: She laughs at your response. "Thanks. I''ll try to make sure to call you when yo...
     scene.text(`She laughs at your response. "Thanks. I'll try to make sure to call you when you're really bored." ${((st as any).npcdesc ?? '')} adds your number to her contact list.`);
@@ -173,7 +173,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Fine', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('You give her a hard look and eye her up and down. "Fine I\'m fucking bored anyways, but you\'re paying."');
     scene.text('"Good, I expected no other outcome." she says. "I\'ll give it to you to decide what we should do?".');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDateChoice(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -185,14 +185,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).pcs_hotcat ?? 0) < 6) {
-        scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+        scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
         // TODO-QSP: dynamic text: You notice <<$npcheight_pref>> girl with <<$npcbuild_pref>> body and <<$npchair>...
         scene.text(`You notice ${((s as any).npcheight_pref ?? '')} girl with ${((s as any).npcbuild_pref ?? '')} body and ${((s as any).npchair ?? '')} hair approaching you. She is wearing ${((s as any).npcClo ?? '')}.`);
         // TODO-QSP: dynamic text: As she nears you, she reaches out her hand for a handshake. "Hi. My name is <<$n...
         scene.text(`As she nears you, she reaches out her hand for a handshake. "Hi. My name is ${((s as any).npcdesc ?? '')}."`);
         scene.actions([
           { label: 'Refuse and walk away', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('Not really impressed, you decide to teach her a lesson, "Sure thing, here\'s my number."');
     // TODO-QSP: dynamic text: <<$npcdesc>> quickly scribbles it down not knowing you''ve just given her a tota...
     scene.text(`${((st as any).npcdesc ?? '')} quickly scribbles it down not knowing you've just given her a totally unknown number.`);
@@ -205,14 +205,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Grasp hand', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     // TODO-QSP: dynamic text: You think <<$npcdesc>> is cute-looking and even though you''re not sure about th...
     scene.text(`You think ${((st as any).npcdesc ?? '')} is cute-looking and even though you're not sure about this you decide grasping her hand.`);
     scene.text('"Aren\'t you going to tell me your name?" she asks.');
     scene.actions([
       { label: 'Decline', goto: ['dateF', 'decline'] },
       { label: 'Happily tell her your name', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('All of a sudden you get a bubbly feeling in your stomach thinking if she\'s really asking your name?');
     // TODO-QSP: dynamic text: You break out in a smile telling her, "My name is <<$pcs_nickname>>."
     scene.text(`You break out in a smile telling her, "My name is ${((st as any).pcs_nickname ?? '')}."`);
@@ -223,7 +223,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Decline', goto: ['dateF', 'decline'] },
       { label: 'I would love to', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('You think about it a moment and figure why not "Sure I would love to out with you."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do?".`);
@@ -231,7 +231,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry, I would love to go on a date with you but I\'m busy right. What if I give you my number so you can call me?"');
     // TODO-QSP: dynamic text: "I say that''s a great idea. I''ll be in touch." <<$npcdesc>> adds your number t...
     scene.text(`"I say that's a great idea. I'll be in touch." ${((st as any).npcdesc ?? '')} adds your number to her contact list.`);
@@ -248,7 +248,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+        scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
         // TODO-QSP: dynamic text: You notice <<$npcheight_pref>> girl with <<$npcbuild_pref>> body and <<$npchair>...
         scene.text(`You notice ${((s as any).npcheight_pref ?? '')} girl with ${((s as any).npcbuild_pref ?? '')} body and ${((s as any).npchair ?? '')} hair approaching you. She is wearing ${((s as any).npcClo ?? '')}.`);
         scene.text('She walks up to full of confidence, "Damn, baby, on a scale from 1 to 10, you\'re an 11. How about a date?"');
@@ -256,13 +256,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Excuse me?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     // TODO-QSP: dynamic text: "Yeah, you heard me." said <<$npcdesc>>. "Don''t act all that surprised, you''re...
     scene.text(`"Yeah, you heard me." said ${((st as any).npcdesc ?? '')}. "Don't act all that surprised, you're good-looking, I'm good-looking we would be the perfect couple, so what do you say?"`);
     scene.text('"Isn\'t someone full of confidence." you comment, seizing control of the conversation, as you contemplate your next move…');
     scene.actions([
       { label: 'Remain silent', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"Come on, gorgeous, don\'t give me the silent treatment."');
     scene.text('As you hear the word gorgeous you melt straight away. You blush and mumble thanks, stammering like a buffoon.');
     // TODO-QSP: dynamic text: <<$npcdesc>> noticing that you''re having some trouble, smiles and tells you, "I...
@@ -276,7 +276,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Just as I expected a beautiful name for a beautiful girl…" ${((st as any).npcdesc ?? '')} quickly replies.`);
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry but I don\'t feel myself attracted to you enough and I don\'t want to lead you on."');
     // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed. "Oh well, I didn''t think I had a chance...
     scene.text(`${((st as any).npcdesc ?? '')} looks at you disappointed. "Oh well, I didn't think I had a chance but you can't blame me for trying."`);
@@ -288,7 +288,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Look at her in disgust', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry, it\'s good that you have all this confidence, but I\'m way out of your league. There\'s no way I would be caught seen out with you."');
     scene.text('"What did you say, you little…" you\'re not able to hear the rest as you walk away…');
     scene.actions([
@@ -298,7 +298,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Agree to a date', handler: (st: GameState) => {
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"Stop, you\'re making me blush again. Sure, sounds like fun, I would love to."');
     // TODO-QSP: dynamic text: "Great!" answers <<$npcdesc>> "So, what do you want to do gorgeous?".
     scene.text(`"Great!" answers ${((st as any).npcdesc ?? '')} "So, what do you want to do gorgeous?".`);
@@ -306,7 +306,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'I would love to but can\'t right now', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_girlfriend', ((st as any).npcID ?? 0));
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}`);
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}`);
     scene.text('"I\'m sorry, I would love to go on a date with you but I\'m busy right. What if I give you my number so you can call me?"');
     // TODO-QSP: dynamic text: "I say that''s a great idea. I''ll be in touch." <<$npcdesc>> adds your number t...
     scene.text(`"I say that's a great idea. I'll be in touch." ${((st as any).npcdesc ?? '')} adds your number to her contact list.`);
@@ -335,7 +335,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecline(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   scene.text('"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."');
   // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed and then shrugs. "Well can''t blame a gir...
   scene.text(`${((s as any).npcdesc ?? '')} looks at you disappointed and then shrugs. "Well can't blame a girl for trying, right?"`);

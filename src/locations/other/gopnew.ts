@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -293,7 +291,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
 
 function enterStart5(s: GameState, scene: SceneBuilder): void {
   (s as any).gnewQW = 5;
-  (s as any).gtalkrand = (Math.floor(Math.random() * 5) + 0);
+  qspGoto(s, 'alkrand = rand(0', '4)');
   if ((!((s as any).gtalkrand ?? 0))) {
     (s as any).goptalk = 'slut';
   }
@@ -309,7 +307,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gtalkrand ?? 0) === 4) {
     (s as any).goptalk = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
-  (s as any).gtalkrand = (Math.floor(Math.random() * 5) + 0);
+  qspGoto(s, 'alkrand = rand(0', '4)');
   if ((!((s as any).gtalkrand ?? 0))) {
     (s as any).goptalk2 = 'How many cocks have you sucked today?';
   }
@@ -707,7 +705,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
     scene.text('Vasan laughs and gives you an amused look: "Oh really, and why not? Are you saying I\'m a liar and that you\'re not a whore?"');
     scene.actions([
       { label: 'Tell him he\'s a liar', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 8, 'stomach', 'hit');
+    qspCall(st, 'pain', '8', 'stomach', 'hit');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/street/gopnews.jpg');
     scene.text('Vasan punches you in the stomach before you can even finish your sentence, besides himself with rage. "You fucking… you\'re the liar!"');
@@ -728,7 +726,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse to pay', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 8, 'head', 'hit');
+    qspCall(st, 'pain', '8', 'head', 'hit');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     scene.text('"You\'re stubborn, aren\'t you?" Vasan roars, clearly annoyed. Before you know it he punches you in the face, causing you to fall back onto the ground.');
@@ -779,7 +777,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse to blow him', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
-    qspCall(st, 'pain', '', 8, 'head', 'hit');
+    qspCall(st, 'pain', '8', 'head', 'hit');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/street/gopnews.jpg');
     scene.text('When you shake your head, you feel an intense pain on the side of your head and fall down to the ground. When you manage to focus your blurry gaze again, you see Vasan standing over you with a raised fist. "I wasn\'t fucking asking, whore! Open. Your. Mouth."');
@@ -794,7 +792,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Say you don\'t', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 8, 'stomach', 'hit');
+    qspCall(st, 'pain', '8', 'stomach', 'hit');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/street/gopnews.jpg');
     scene.text('"More lies!" Vasan spits in your face.');
@@ -959,7 +957,7 @@ function enterTf(s: GameState, scene: SceneBuilder): void {
 function enterDolg(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   (s as any).gnewQW = 7;
-  // TODO-QSP: gs 'money', 'debt_add', 'gopdolg', money + stolmoney + (karta - bankDebtLimit) + 10000
+  qspCall(s, 'money', 'debt_add', 'gopdolg', ((s as any).money ?? 0) + ((s as any).stolmoney ?? 0) + (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0)) + 10000);
   (s as any).gopdaydolg = ((s as any).daystart ?? 0) + 10;
   scene.img('images/locations/city/residential/street/gopnews.jpg');
   // TODO-QSP: dynamic text: Vasan says: "After 10 days, you will give us… let''s say we''re even at <<$func(...
@@ -1063,7 +1061,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Go with Vasan', handler: (st: GameState) => {
     (st as any).VasanTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                   ]);
                 } else {
@@ -1072,7 +1070,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                     scene.actions([
                       { label: 'Go with Bereza', handler: (st: GameState) => {
     (st as any).BerezaTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                     ]);
                   } else {
@@ -1082,7 +1080,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                       scene.actions([
                         { label: 'Go with Konstantin', handler: (st: GameState) => {
     (st as any).VitekTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                       ]);
                     } else {
@@ -1092,7 +1090,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                         scene.actions([
                           { label: 'Go with Kostil', handler: (st: GameState) => {
     (st as any).KostilTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                         ]);
                       } else {
@@ -1101,7 +1099,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Go with Udmurt', handler: (st: GameState) => {
     (st as any).UdmurtTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                           ]);
                         } else {
@@ -1109,7 +1107,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Go with Gray', handler: (st: GameState) => {
     (st as any).SeriTut = 3;
-    qspCall(st, 'gopnew', 'sexboy1');
+    qspCall(st, 'gopnew', '');
   } },
                           ]);
                         }
@@ -1244,7 +1242,7 @@ function enterSexboy1(s: GameState, scene: SceneBuilder): void {
 
 function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  qspCall(s, 'boyStat', '', ((s as any).guygop ?? 0));
+  qspCall(s, 'boyStat', '$guygop');
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   (s as any).spafinloc = 4;
@@ -1278,7 +1276,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 
 function enter11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  qspCall(s, 'boyStat', '', ((s as any).guygop ?? 0));
+  qspCall(s, 'boyStat', '$guygop');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 10) + 13);
   scene.img(`images/shared/sex/blowjob/bj${((s as any).picrand ?? '')}.jpg`);
@@ -1289,7 +1287,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your mouth', handler: (st: GameState) => {
-    qspCall(st, 'boyStat', '', ((st as any).guygop ?? 0));
+    qspCall(st, 'boyStat', '$guygop');
     (st as any).picrand = (Math.floor(Math.random() * 10) + 20);
     scene.img(`images/shared/sex/cum/mouth/cum${((st as any).picrand ?? '')}.jpg`);
     scene.text('Several powerful jets of sperm land in your mouth, and you keep sucking until you\'re sure he\'s finished.');
@@ -1327,7 +1325,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
       scene.text(`You catch his signals on time, and even manage to move out of the way while you jerk him to an orgasm. ${((st as any).boydesc ?? '')}'s sperm flies past you and lands on the ground, a short distance away.`);
     } else {
       if (((st as any).bjrand ?? 0) === 1) {
-        qspCall(st, 'boyStat', '', ((st as any).guygop ?? 0));
+        qspCall(st, 'boyStat', '$guygop');
         (st as any).spafinloc = 11;
         qspCall(st, 'cum_manage', '');
         (st as any).picrand = (Math.floor(Math.random() * 5) + 11);
@@ -1349,7 +1347,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
 
 function enter12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-  qspCall(s, 'boyStat', '', ((s as any).guygop ?? 0));
+  qspCall(s, 'boyStat', '$guygop');
   (s as any).spafinloc = 4;
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
@@ -1395,7 +1393,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'goptipr0loop'
       }
     } else {
-      // TODO-QSP: gs 'boyStat', 'A' + $str(101 + namgopctnc)
+      qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
       (s as any).sexpartkno = 1;
       if ((!(Math.floor(Math.random() * 4) + 0))) {
         (s as any).spafinloc = 12;
@@ -1412,7 +1410,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = (Math.floor(Math.random() * 11) + 1);
     scene.img(`images/shared/sex/group/tri${((s as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys make you kneel before them, and begin to slap their coc...
-    scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys make you kneel before them, and begin to slap their cocks against your face impatiently. You do your best to pay attention to all of them, sucking them off one by one and jerking off those you can't put in your mouth.`);
+    scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys make you kneel before them, and begin to slap their cocks against your face impatiently. You do your best to pay attention to all of them, sucking them off one by one and jerking off those you can't put in your mouth.`);
     scene.text('They cum all over your face and in your mouth, and your face looks like a mess by the time they finally let you go.');
     qspCall(s, 'arousal', 'bj', (-15), 'sub', 'humiliation', 'gangbang');
     qspCall(s, 'arousal', 'hj', (-15), 'sub', 'humiliation', 'gangbang');
@@ -1435,7 +1433,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: jump 'goptipr1loop'
         }
       } else {
-        // TODO-QSP: gs 'boyStat', 'A' + $str(101 + namgopctnc)
+        qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
         (s as any).sexpartkno = 1;
         if ((!(Math.floor(Math.random() * 4) + 0))) {
           (s as any).cumprecheck = 1;
@@ -1471,7 +1469,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
       scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
       // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys begin to fuck you in all of your holes at the same time...
-      scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys begin to fuck you in all of your holes at the same time!`);
+      scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys begin to fuck you in all of your holes at the same time!`);
       (s as any).horand = (Math.floor(Math.random() * 100) + 1);
       if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -1510,7 +1508,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'goptipr2loop'
     }
   } else {
-    // TODO-QSP: gs 'boyStat', 'A' + $str(101 + namgopctnc)
+    qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
     (s as any).sexpartkno = 1;
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).cumprecheck = 1;
@@ -1531,7 +1529,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
   scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys begin to fuck you in all of your holes at the same time...
-  scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys begin to fuck you in all of your holes at the same time!`);
+  scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys begin to fuck you in all of your holes at the same time!`);
   scene.text('They swap positions from time to time, making sure to finish in your mouth or on your face.');
   (s as any).horand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
@@ -1558,10 +1556,10 @@ function enterDegrading(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 10);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 10);
   (s as any).gopopusday = ((s as any).daystart ?? 0);
-  qspCall(s, 'pain', '', 6, 'cheeks', 'slap');
-  qspCall(s, 'pain', '', 6, 'breasts', 'slap');
-  qspCall(s, 'pain', '', 6, 'vaginal', 'stretch');
-  qspCall(s, 'pain', '', 6, 'anal', 'stretch');
+  qspCall(s, 'pain', '6', 'cheeks', 'slap');
+  qspCall(s, 'pain', '6', 'breasts', 'slap');
+  qspCall(s, 'pain', '6', 'vaginal', 'stretch');
+  qspCall(s, 'pain', '6', 'anal', 'stretch');
   qspCall(s, 'stat', '');
   if (((s as any).VasanTut ?? 0) === 2  &&  (!((s as any).vasansex ?? 0))) {
     (s as any).vasansex = 1;

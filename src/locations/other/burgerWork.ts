@@ -236,7 +236,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).cumspclnt = 12;
-    // TODO-QSP: gs 'cum_cleanup'
+    qspCall(st, 'cum_cleanup', '');
   }, goto: ['city_industrial', ''] },
     ]);
   } },

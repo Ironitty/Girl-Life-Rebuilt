@@ -1307,7 +1307,7 @@ function enterUseButtPlug(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/buttplug2.jpg');
     scene.text('There\'s a little resistance as she pushes the butt plug against your asshole. The tip goes in easily enough, but as she tries pushing it deeper and the plug widens out, it starts taking a bit more force.');
     scene.text('At it\'s widest point, you relax your ass and the plug suddenly and loudly pops firmly into you, causing you to gasp and moan a little in pleasure. With the plug firmly in your ass, she starts spanking your cheeks hard.');
-    qspCall(st, 'pain', '', 3, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '3', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'anal_dildo', 3, 'lesbian', 'sub');
     qspCall(st, 'stat', '');
     scene.actions([

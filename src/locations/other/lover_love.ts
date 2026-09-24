@@ -33,7 +33,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: '', labelFn: (s: GameState) => 'No (turn ' + String(((s as any).xem ?? '') ?? '') + ' down)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).pregtalk = 0;
-    // TODO-QSP: gs 'lover', 'remove_' + $npc_rel_type[$npcID], $npcID
+    qspCall(st, 'lover', '', 'remove_' + (((st as any).npc_rel_type ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0), ((st as any).npcID ?? 0));
     qspGoto(st, 'homes_properties', 'go_home');
   } },
         { label: 'Yes', handler: (st: GameState) => {

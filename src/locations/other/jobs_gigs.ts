@@ -77,7 +77,7 @@ function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['start_time'] = ((s as any).evt_transient['start_time'] ?? 0) - ((60 + (((s as any).evt_transient ?? {})?.['time_overshoot'] ?? 0) / 5 * 5));
   }
   // TODO-QSP: :find_open_date_loop
-  // TODO-QSP: gs 'time', 'to_date', evt_transient['search_day']
+  qspCall(s, 'time', 'to_date', ((s as any).evt_transient ?? 0)?.['search_day']);
   if (((String(((s as any).evt_transient ?? 0)?.['week_string']).indexOf(String(((s as any).dateVars ?? 0)?.['week']))) + 1) <= 0) {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
     if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
@@ -141,7 +141,7 @@ function enterDispEvt(s: GameState, scene: SceneBuilder): void {
 function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'job_evt');
   scene.text('I have this job for you do you want to accept it?');
-  // TODO-QSP: gs 'time', 'to_date', evt_transient['event_daystart']
+  qspCall(s, 'time', 'to_date', ((s as any).evt_transient ?? 0)?.['event_daystart']);
   // TODO-QSP: "Event Scheduled for: <<dateVars['day']>><<$dateVars['suffix']>>, <<$dateVars['monthName']>> <<dateV...
   // TODO-QSP: 'Job: ' + $evt_job[evt_transient['type']]
   // TODO-QSP: 'Pay: ' + $func('money', 'format', evt_transient['wage'])
@@ -153,7 +153,7 @@ function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept the job', handler: (st: GameState) => {
-    qspCall(st, 'jobs_gigs', 'save_evt_event');
+    qspCall(st, 'jobs_gigs', '');
   } },
     { label: 'Decline the job', handler: (st: GameState) => {
     qspGoto(st, 'jobs_gigs', 'evt_exit');
@@ -168,12 +168,12 @@ function enterDispEvt2(s: GameState, scene: SceneBuilder): void {
     (s as any).job_idx = 0;
     // TODO-QSP: :jmp_list_create
     if (((s as any).evt_verbose ?? 0)?.[String((s as any).job_idx ?? 0)] === 1) {
-      // TODO-QSP: gs 'time', 'to_date', evt_daystart[job_idx]
+      qspCall(s, 'time', 'to_date', (((s as any).evt_daystart ?? 0)?.[String((s as any).job_idx ?? 0)] ?? 0));
       // TODO-QSP: $evtbody +=  '<tr>'
       // TODO-QSP: $evtbody +=    "<td><<$dateVars['weekName']>> <<dateVars['day']>><<$dateVars['suffix']>>, <<$dateVar...
       // TODO-QSP: $evtbody +=    '<td><<$evt_job[evt_event[job_idx]]>></td>'
       // TODO-QSP: $evtbody +=    '<td>' + $func('money', 'format', evt_wages[job_idx]) + '</td>'
-      (s as any).temp_disp_time = (((s as any).evt_starttime ?? 0)?.[String((s as any).job_idx ?? 0)] + 15) / 30 * 30;
+      (s as any).temp_disp_time = ((((s as any).evt_starttime ?? 0)?.[String((s as any).job_idx ?? 0)] ?? 0) + 15) / 30 * 30;
       // TODO-QSP: $evtbody +=    '<td>' + $func('time', 'get_time_string', temp_disp_time / 60, temp_disp_time mod 60)...
       // TODO-QSP: $evtbody +=    '<td>' + evt_duration[job_idx] / 60 + iif(evt_duration[job_idx] < 120, ' hour', ' hou...
       // TODO-QSP: $evtbody +=    '<td>' + $evt_journal[job_idx] + '</td>'
@@ -220,8 +220,8 @@ function enterSetEventAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Attend your ' + String(qspUntranslated(s, "evt_job[evt_event[ARGS[1]]]", { location: "jobs_gigs" }) ?? '') + ' event', handler: (st: GameState) => {
-    // TODO-QSP: gs 'jobs_gigs', 'array_init', <<ARGS[1]>>
-    // TODO-QSP: gs 'jobs_gigs', 'del_evt2', <<ARGS[1]>>
+    qspCall(st, 'jobs_gigs', 'array_init', ((st as any).locArgs?.[1] ?? 0));
+    qspCall(st, 'jobs_gigs', 'del_evt2', ((st as any).locArgs?.[1] ?? 0));
     if (((st as any).evt_content_code ?? 0)[String((st as any).locArgs?.[1] ?? '')] !== '') {
     }
   } },

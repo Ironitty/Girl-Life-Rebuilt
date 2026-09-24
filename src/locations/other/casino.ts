@@ -73,7 +73,7 @@ function enterCashier(s: GameState, scene: SceneBuilder): void {
   if (((s as any).casino_chips ?? 0) > 0) {
     scene.actions([
       { label: 'Exchange chips for money', handler: (st: GameState) => {
-    // TODO-QSP: temp_chips = input('Enter the amount of chips you want to exchange for money, between 1 and <<casino_chips>>.')
+    (st as any).temp_chips = window.prompt("Enter the amount of chips you want to exchange for money, between 1 and " + (((st as any).casino_chips ?? 0)) + ".") ?? '';
     if (((st as any).temp_chips ?? 0) > 0  &&  ((st as any).temp_chips ?? 0) <= ((st as any).casino_chips ?? 0)) {
       qspCall(st, 'money', 'earn', ((st as any).temp_chips ?? 0));
       (st as any).casino_chips = ((st as any).casino_chips ?? 0) - (((st as any).temp_chips ?? 0));
@@ -89,7 +89,7 @@ function enterCashier(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 1) === 1  &&  ((s as any).casino_chips ?? 0) < 1000) {
     scene.actions([
       { label: 'Exchange money for chips', handler: (st: GameState) => {
-    // TODO-QSP: temp_chips = input('Enter the amount of chips you want to buy, between 1 and <<1000 - casino_chips>>.')
+    (st as any).temp_chips = window.prompt("Enter the amount of chips you want to buy, between 1 and " + (1000 - ((st as any).casino_chips ?? 0)) + ".") ?? '';
     if (((st as any).temp_chips ?? 0) > 0  &&  ((st as any).temp_chips ?? 0) <= 1000 - ((st as any).casino_chips ?? 0)) {
       if (qspFunc(s, 'money', 'can_afford', ((st as any).temp_chips ?? 0))) {
         qspCall(st, 'money', 'pay', ((st as any).temp_chips ?? 0));
@@ -735,11 +735,11 @@ function enterCardsCwplay(s: GameState, scene: SceneBuilder): void {
     (s as any).p_points = number;
     scene.text('Dealer\'s Card:');
     // TODO-QSP: dynamic text:   <<$d_card[1]>>
-    scene.text(`  ${qspUntranslated(s, "d_card[1]", { location: "casino" })}`);
+    scene.text(`  ${(((s as any).d_card ?? 0)?.[1] ?? '')}`);
     scene.text('__________________________');
     scene.text('Your Card:');
     // TODO-QSP: dynamic text:   <<$p_card[1]>>
-    scene.text(`  ${qspUntranslated(s, "p_card[1]", { location: "casino" })}`);
+    scene.text(`  ${(((s as any).p_card ?? 0)?.[1] ?? '')}`);
     if (((s as any).d_points ?? 0) > ((s as any).p_points ?? 0)) {
       scene.text(' ');
       scene.text('Casino won');
@@ -798,15 +798,15 @@ function enterCardsCwplay(s: GameState, scene: SceneBuilder): void {
     (st as any).p_points = number;
     scene.text('Dealer\'s Cards:');
     // TODO-QSP: dynamic text:   <<$d_card[1]>>
-    scene.text(`  ${qspUntranslated(s, "d_card[1]", { location: "casino" })}`);
+    scene.text(`  ${(((st as any).d_card ?? 0)?.[1] ?? '')}`);
     // TODO-QSP: dynamic text:   <<$d_card[2]>>
-    scene.text(`  ${qspUntranslated(s, "d_card[2]", { location: "casino" })}`);
+    scene.text(`  ${(((st as any).d_card ?? 0)?.[2] ?? '')}`);
     scene.text('__________________________');
     scene.text('Your Cards:');
     // TODO-QSP: dynamic text:   <<$p_card[1]>>
-    scene.text(`  ${qspUntranslated(s, "p_card[1]", { location: "casino" })}`);
+    scene.text(`  ${(((st as any).p_card ?? 0)?.[1] ?? '')}`);
     // TODO-QSP: dynamic text:   <<$p_card[2]>>
-    scene.text(`  ${qspUntranslated(s, "p_card[2]", { location: "casino" })}`);
+    scene.text(`  ${(((st as any).p_card ?? 0)?.[2] ?? '')}`);
     if (((st as any).d_points ?? 0) > ((st as any).p_points ?? 0)) {
       scene.text(' ');
       scene.text('Casino won');
@@ -931,7 +931,7 @@ function enterBet1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBet2(s: GameState, scene: SceneBuilder): void {
-  (s as any).betTotal = qspUntranslated(s, "temp_player_bets[0]", { location: "casino" });
+  (s as any).betTotal = (((s as any).temp_player_bets ?? 0)?.[0] ?? 0);
   qspCall(s, 'deckShuffle', 'shuffle');
   if ((((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[0]] === 1  &&  ((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[1]] > 9)  ||  (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[0]] > 9  &&  ((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[1]] === 1)) {
     qspGoto(s, 'casino', 'blackjack');
@@ -957,7 +957,7 @@ function enterBlackjack(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_player_points ?? 0)[0] === 21) {
       (s as any).casino_chips = ((s as any).casino_chips ?? 0) + (((s as any).temp_player_bets ?? 0)[0] * 3 / 2);
     } else {
-      (s as any).casino_chips = ((s as any).casino_chips ?? 0) - (qspUntranslated(s, "temp_player_bets[0]", { location: "casino" }));
+      (s as any).casino_chips = ((s as any).casino_chips ?? 0) - ((((s as any).temp_player_bets ?? 0)?.[0] ?? 0));
     }
   }
   // TODO-QSP: end
@@ -997,13 +997,13 @@ function enterInsurance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dealerPoints ?? 0) === 21  ||  ((s as any).deckFace ?? 0)[((s as any).temp_dealer_hand ?? 0)[1]] > 9) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterBlackjackView(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: The dealer takes your <<temp_player_bets[0]>> chips bet
-    scene.text(`The dealer takes your ${qspUntranslated(s, "temp_player_bets[0]", { location: "casino" })} chips bet`);
+    scene.text(`The dealer takes your ${(((s as any).temp_player_bets ?? 0)?.[0] ?? '')} chips bet`);
     if (((s as any).insurance ?? 0) > 0) {
       // TODO-QSP: dynamic text:  but also gives you <<insurance>> chips for your side bet
       scene.text(` but also gives you ${((s as any).insurance ?? '')} chips for your side bet`);
     }
     scene.text('.');
-    (s as any).casino_chips = ((s as any).casino_chips ?? 0) - (qspUntranslated(s, "temp_player_bets[0]", { location: "casino" }));
+    (s as any).casino_chips = ((s as any).casino_chips ?? 0) - ((((s as any).temp_player_bets ?? 0)?.[0] ?? 0));
     (s as any).casino_chips = ((s as any).casino_chips ?? 0) + (((s as any).insurance ?? 0));
     scene.actions([
       { label: 'Continue', goto: ['casino', 'blackjack_play'] },
@@ -1056,8 +1056,8 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_player_hand ?? 0)[((s as any).currentHand ?? 0) * 16 + 2] === 0  &&  ((((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).currentHand ?? 0) * 16]] > 9  &&  ((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).currentHand ?? 0) * 16 + 1]] > 9)  ||  ((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).currentHand ?? 0) * 16]] === ((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).currentHand ?? 0) * 16 + 1]])) {
           scene.actions([
             { label: '', labelFn: (s: GameState) => String(((s as any).text ?? '') ?? '') + 'Split', handler: (st: GameState) => {
-    (st as any).betTotal = ((st as any).betTotal ?? 0) + (((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)]);
-    ((st as any).temp_player_bets = (st as any).temp_player_bets ?? {})[String((st as any).numHands ?? 0)] = ((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)];
+    (st as any).betTotal = ((st as any).betTotal ?? 0) + ((((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)] ?? 0));
+    ((st as any).temp_player_bets = (st as any).temp_player_bets ?? {})[String((st as any).numHands ?? 0)] = (((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)] ?? 0);
     (st as any).numHands = ((st as any).numHands ?? 0) + (1);
     (st as any).i = (((st as any).currentHand ?? 0) + 1) * 16;
     // TODO-QSP: :loop3
@@ -1065,7 +1065,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
       (st as any).i = ((st as any).i ?? 0) + (16);
       // TODO-QSP: jump 'loop3'
     }
-    ((st as any).temp_player_hand = (st as any).temp_player_hand ?? {})[String((st as any).i ?? 0)] = ((st as any).temp_player_hand ?? 0)?.[((st as any).currentHand ?? 0) * 16 + 1];
+    ((st as any).temp_player_hand = (st as any).temp_player_hand ?? {})[String((st as any).i ?? 0)] = (((st as any).temp_player_hand ?? 0)?.[((st as any).currentHand ?? 0) * 16 + 1] ?? 0);
     // TODO-QSP: temp_player_hand[currentHand * 16 + 1] = cardsDealt
     (st as any).cardsDealt = ((st as any).cardsDealt ?? 0) + (1);
     // TODO-QSP: temp_player_hand[i + 1] = cardsDealt
@@ -1078,8 +1078,8 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '', labelFn: (s: GameState) => String(((s as any).text ?? '') ?? '') + 'Double', handler: (st: GameState) => {
     (st as any).doubleBet = 1;
-    (st as any).betTotal = ((st as any).betTotal ?? 0) + (((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)]);
-    ((st as any).temp_player_bets = (st as any).temp_player_bets ?? {})[String((st as any).currentHand ?? 0)] = ((st as any).temp_player_bets[String((st as any).currentHand ?? 0)] ?? 0) + (((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)]);
+    (st as any).betTotal = ((st as any).betTotal ?? 0) + ((((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)] ?? 0));
+    ((st as any).temp_player_bets = (st as any).temp_player_bets ?? {})[String((st as any).currentHand ?? 0)] = ((st as any).temp_player_bets[String((st as any).currentHand ?? 0)] ?? 0) + ((((st as any).temp_player_bets ?? 0)?.[String((st as any).currentHand ?? 0)] ?? 0));
     (st as any).i = ((st as any).currentHand ?? 0) * 16 + 2;
     // TODO-QSP: :loop2
     if (((st as any).temp_player_hand ?? 0)?.[String((st as any).i ?? 0)] !== 0) {
@@ -1145,7 +1145,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :loop5
       if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] <= 21) {
-        (s as any).betTotal = ((s as any).betTotal ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)]);
+        (s as any).betTotal = ((s as any).betTotal ?? 0) + ((((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
       if (((s as any).i ?? 0) < ((s as any).numHands ?? 0)) {
@@ -1162,13 +1162,13 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :loop6
       if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21) {
-        (s as any).betTotal = ((s as any).betTotal ?? 0) - (((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)]);
+        (s as any).betTotal = ((s as any).betTotal ?? 0) - ((((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
       } else {
         if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).dealerPoints ?? 0)) {
-          (s as any).betTotal = ((s as any).betTotal ?? 0) - (((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)]);
+          (s as any).betTotal = ((s as any).betTotal ?? 0) - ((((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
         } else {
           if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > ((s as any).dealerPoints ?? 0)) {
-            (s as any).betTotal = ((s as any).betTotal ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)]);
+            (s as any).betTotal = ((s as any).betTotal ?? 0) + ((((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
           }
         }
       }
@@ -1259,7 +1259,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   (s as any).j = 0;
   // TODO-QSP: :loop10
   if (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
-    scene.img(`${((s as any).deckImg ?? 0)?.[((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? '') * 16 + ((s as any).j ?? '')]]}`);
+    scene.img(`${(((s as any).deckImg ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? '') * 16 + ((s as any).j ?? '')] ?? '')] ?? '')}`);
     if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
       ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (11);
       (s as any).numAces = ((s as any).numAces ?? 0) + (1);
@@ -1267,7 +1267,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
       if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] > 9) {
         ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (10);
       } else {
-        ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (((s as any).deckFace ?? 0)?.[((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]]);
+        ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + ((((s as any).deckFace ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] ?? 0)] ?? 0));
       }
     }
     (s as any).j = ((s as any).j ?? 0) + (1);
@@ -1286,11 +1286,11 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
       scene.text('<br>BLACKJACK!');
     } else {
       // TODO-QSP: dynamic text: <br><<temp_player_points[i]>> points |
-      scene.text(`<br>${((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] ?? ''} points |`);
+      scene.text(`<br>${(((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] ?? '')} points |`);
     }
   }
   // TODO-QSP: dynamic text:  Bet = <<temp_player_bets[i]>> chips<br><br>
-  scene.text(` Bet = ${((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? ''} chips<br><br>`);
+  scene.text(` Bet = ${(((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? '')} chips<br><br>`);
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) < ((s as any).numHands ?? 0)) {
     // TODO-QSP: jump 'loop9'

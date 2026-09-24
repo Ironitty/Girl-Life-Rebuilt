@@ -2060,12 +2060,12 @@ function enterMistvisit(s: GameState, scene: SceneBuilder): void {
     (st as any).pcs_horny = 0;
     qspCall(st, 'mood', 'lower', 'large');
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) - (5);
-    qspCall(st, 'pain', '', 3, 'asscheeks', 'spank');
-    qspCall(st, 'pain', '', 3, 'breasts', 'spank');
-    qspCall(st, 'pain', '', 3, 'pubic', 'spank');
-    qspCall(st, 'pain', '', 3, 'feet', 'spank');
-    qspCall(st, 'pain', '', 3, 'thighs', 'spank');
-    qspCall(st, 'pain', '', 3, 'neck', 'spank');
+    qspCall(st, 'pain', '3', 'asscheeks', 'spank');
+    qspCall(st, 'pain', '3', 'breasts', 'spank');
+    qspCall(st, 'pain', '3', 'pubic', 'spank');
+    qspCall(st, 'pain', '3', 'feet', 'spank');
+    qspCall(st, 'pain', '3', 'thighs', 'spank');
+    qspCall(st, 'pain', '3', 'neck', 'spank');
     (st as any).fingal = 1;
     if (((st as any).pcs_makeup ?? 0) > ((st as any).makeup ?? 0)?.['base']) {
       (st as any).pcs_makeup = 0;

@@ -25,7 +25,7 @@ function enterToysPaddle(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course my dear, maybe another time if you desire." Anna leads you to the door');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -66,7 +66,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
     scene.text(`"It was a pleasure ${((st as any).pcs_nickname ?? '')}. We'll continue another time." You put on your clothes and let Anna lead you to the exit.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -99,7 +99,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
     scene.text(`"OK ${((st as any).pcs_nickname ?? '')}, it's time for you to go, we can continue another time." Anna leads you to the door.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -125,7 +125,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -158,7 +158,7 @@ function enterToysVacuum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, I told you I won\'t force you and I\'m faithful to my promise. Next time I\'ll teach you about restraints and maybe another time you can try the vacuum cups if you desire."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -178,7 +178,7 @@ function enterToysVacuum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, I told you I won\'t force you and I\'m faithful to my promise. Next time I\'ll teach you about restraints and maybe another time you can try the vacuum cups if you desire."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -201,7 +201,7 @@ function enterToysVacuum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, I told you I won\'t force you and i\'m faithful to my promise. Next time I\'l teach you about restraints and maybe another time you can try the vacuum cups if you desire."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -227,7 +227,7 @@ function enterToysVacuum2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Anna smiles, "Thank you it comes with experience. OK ${((st as any).pcs_nickname ?? '')} that's all for today."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -254,7 +254,7 @@ function enterToysVacuum3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Please, come find me when you want to learn some more ${((st as any).pcs_firstname ?? '')}."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -303,7 +303,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I cannot guess as to your feelings… What can I say is that you have a really sensitive skin: I\'ve used almost no strength to be honest… Anyway I don\'t know if this is good for you: you are the only one who can answer that, and that depends on what are you looking for… Anyway we\'re done for today, let me show you out you have things to do and I gotta do some housework."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -314,7 +314,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I cannot know your feelings… What can I say is that you have a really delicate skin: I\'ve used almost no strength to be honest… Anyway how painful this is for you I can\'t know: you are the only one who can know that, and that depends on what are you looking for… Anyway we\'re done for today, let me lead to the exit you have things to do and I have other things to attend to."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -325,7 +325,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I think you now have an idea about the mixed feelings we talked about. In time you will be able to more precisely what you are feeling if you want that is. Anyway we\'ve done for today, let me lead to the exit you have things to do and I have a tight schedule today."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -339,7 +339,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. I told you I will not force this on you and I always keep my promises." The session finish and after you exchange few other words Anna leads you to the exit.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -351,7 +351,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. I told you I won\'t make you do anything you don\'t want to and I always keep my promises." The session finish and after you exchange few other words Anna leads you to the exit.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -388,7 +388,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good! That was the main goal… Ok we\'ve done for today, let me show you out, you got have homework to do and I have to do some housework."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -399,7 +399,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe, or maybe it\'s something that simply isn\'t for you. In other words YKINMK: Your Kink Is Not My Kink. In a BDSM relationship there\'s never just one point of view; to have the maximal benefits from a BDSM relationship a good Dom should always consider a proper way to reward their Sub and the vice versa: a sub should always be faithful and consider their Dom\'s wishes. That can includes something that their counterpart maybe doesn\'t like; nonetheless it should be considered… and accepted, within limits of course. Ok we\'re done for today, let show you out, you have school tomorrow and I have to get the laundry."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -425,7 +425,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good! That was the goal… Ok we\'ve done for today, let show you out, you probably have dinner soon and I gotta get started on ours."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -436,7 +436,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s fair. In other words YKINMK: Your Kink Is Not My Kink. In a BDSM relationship there\'s never just one point of view; to have the maximum benefit from a BDSM relationship a good Dom should always consider a proper way to reward their Sub and vice versa: a sub should always be faithful and consider their Dom\'s wishes. That can includes something that their counterpart maybe doesn\'t like; nonetheless it should be considered… and accepted, within limits of course. Ok we\'re done for today, let me show you out"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -450,7 +450,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. I told you I will not force anything you don\'t want on you and I always keep my promises… Anyway the main things is that you have an idea. Ok we\'re done for today." The session ends and after you exchange few words Anna leads you to the exit.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -462,7 +462,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Tha\'s fair. Like I told you I won\'t force this on you and I always keep my promises." The session ends and after you exchange few words, Anna leads you to the exit');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -500,7 +500,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I must say that you have really sensitive skin: i\'ve used almost no strength at all… Anyway You should think about if this is what you are looking for and if it feels good for you… Anyway we\'re done for today, let me lead to the door you gotta get home and I have to go get my daughter."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -511,7 +511,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'d say that you have very delicate skin: i\'ve used almost no strength at all to be honest… So you need to ask yourself if feeling mostly pain is the sensation you are looking for… Anyway we\'re done for today, let me lead to the door you probably got homework to do and I\'ve got to get started on dinner."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -522,7 +522,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I think you have an idea about the mixed feelings I mentioned. So if being kept at a mixed balance between pain and pleasure is what you are looking for this might be just what you are looking for… Anyway we\'re done for today, let me lead to the door your mother is probably wondering where you are and I got some laundry to do."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -536,7 +536,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"I understand. I told you I won\'t force this on you and I always keep my promises." The session ends and after you exchange few words Anna leads you to the exit.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -548,7 +548,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.text('"I understand. Like I told you I won\'t make you do anything you don\'t want to and I always keep my promises." The session ends and after you exchange few words Anna leads you to the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -597,7 +597,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmm… I see. Anyway you have nothing to worry about. Stimulation has its purpose after all, and how sensations could be feels can be totally different from person to person. But we have done enough for today, I don\'t want to keep you here all evening. Let me show you out." You say thank you and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -607,7 +607,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmm… I see. Anyway there is nothing to worry about. Stimulation has its purpose after all, and how these sensations are felt are totally different from person to person. But we have done enough for today, you probably have some homework to do. Let me show you out." You say thank you and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -618,7 +618,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Interesting… A friend of mine would be really interested in that… it's not everybody that gets so aroused by such a low current; I assume you got wet? Ok ${((st as any).pcs_nickname ?? '')}, I want you to know that's normal and you shouldn't worry. You are very sensitive to electro stimulation, This is one of the purposes of the violet wand. Okay I think that's enough for today, let me show you out, we can continue this another time."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -630,7 +630,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well assuming you are telling the truth… that\'s totally normal as I was saying… but it\'s not something that\'s usually a surprise to people; it\'s something that\'s expected from playing with electricity. Anyway, if you are telling the truth then I must say you are really impressionable. But we\'re done for today. Let me show you out." You shake her hand and leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -642,7 +642,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s because you don\'t often see these. And this was only a small taste of what it can offer but we\'ll explore that another day. Let me lead show you out it\'s getting late, and I need to get Lariska and I\'m sure you have things to do." You shake her hand and head out the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -653,7 +653,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t be silly… if that was enough to move your finger you definitely felt something. Never left yourself be led by the rush, especially in BDSM world. It\'s easy to over estimate your limits, and that could be dangerous. As I said you must always, be honest with yourself. I think you\'ve learned something new today so we\'ll end it at that for today. Let me show you out, I gotta get started at dinner and you probably got homework." You shake her hand and leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -667,7 +667,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"I understand, we can do this another time if you\'d like, but next time come a little earlier so you don\'t waste my time." You exchange few words with Anna and she shows you out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -699,7 +699,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s certainly a unique little thing with the pleasure it can bring. And it can offer more than this, this was only a little demonstration… But I think that\'s enough for today. Let me show you out, I have to do some laundry and you probably need to get home." You exchange an handshake and turn to your road.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -711,7 +711,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Playng the tough girl eh?. ${((st as any).pcs_nickname ?? '')}… if that was enough to move your finger you felt something for sure. Never let yourself be seduced by the rush, especially in the BDSM world. It's easy to over estimate your limits, and that can be dangerous when we talk about BDSM. Always be honest with yourself and your partner: misjudgments could happen from both parts, and that has to be avoided, are we clear? We'll end it at that. Let me show you to the door, You need to get home and eat something and I need to do some housework." You shake her hand and walk out of the apartment.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -738,7 +738,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s certainly a unique little thing with the pleasure it can bring. This was only a little taste of what it can give you. But I think you\'ve learned enough for today. Let me show you out, You need to get home before you mother starts to worry and I need to make some dinner." You shake her hand and leave the apartment.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -750,7 +750,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Such bravery. ${((st as any).pcs_nickname ?? '')}… don't be silly… if that was enough to move your finger you felt something for sure. Never let yourself be seduced by the rush, especially in the BDSM world. It's easy to over estimate your limits, and that can be dangerous when we talk about BDSM. Always be honest with yourself and your partner: misjudgments could happen from both parts, and that has to be avoided, are we clear? We'll end it at that. Let me show you to the door, You need to get home and eat something and I need to do some housework." You shake her hand and walk out of the apartment.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -764,7 +764,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Understandable. Not all of these toys are for everyone… The main things is that you have an idea. Alright we\'re done for today." You exchange few more words with Anna and she leads you out');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -812,7 +812,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmm… I can understand that… Anyway you have nothing to be worried about. Stimulation is the purpose after all, and how sensations are felt can be totally different from person to person. I think we\'ll end it for today, you probably have some chores to do. Let me show you out." You shake her hand and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -822,7 +822,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmm… feels nice dosen\'t it?… Anyway you have nothing to be worried about. Stimulation is the purpose after all, and how sensations feel totally different from person to person. But I thinks that\'s enough for today, I don\'t want to waste your time and I got to get started on dinner. Let me show you out." You shake her hand and head outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -833,7 +833,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Interesting… A friend of mine would be really interested in that… I think you saw her once… You showed arousal in both your nipples and clit… and I assume you were wet? Ok ${((st as any).pcs_nickname ?? '')}, I want you to know that's normal and you shouldn't be embarrassed. You are really sensitive to electro stimulation, but do not forget that this is one of the purpose of the wand… I have to warn you that you can't play with this without the right tools. Alright, I think we should end it here, we can continue another time… you got to get home… and… emmmh… I got something else to take care of."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -845,7 +845,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well assuming you are telling the truth… that\'s totally normal it\'s not something that usually surprises people; it something that\'s expected from playing with the wand. Anyway, if you are telling the truth you are really impressionable, I have to say. But we\'re done for today. Let me show you out, you got homework to do and I have to do some laundry." You shake her hand and go outside');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -857,7 +857,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"The wand does have a unique way of stimulating. Well it can offer much more than this. This was only a little demonstration of what it can do… But I think this is enough for today, you learned something new so we\'ll end it here, let me show you out, we can continue this next time." Anna leads you to the door, you shake her hand and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -867,7 +867,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was enough to move your finger you felt something that\'s for sure, don\'t be silly. Never left yourself be blinded by the rush, especially in the BDSM world. It\'s easy to over estimate your limits, and that can be dangerous. Always, be honest with yourself. I think that\'s enough for today. Let me show you out, we can continue this another time." Anna leads you to the door, you shake her hand and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -880,7 +880,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. We can continue this another time." You exchange few more words with Anna and she leads you to the door, you shake her hand and go out into the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -891,7 +891,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. We can continue this another time." You exchange few more words with Anna and she leads you to the door, you shake her hand and go out into the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -922,7 +922,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s nothing to worry about. Stimulation is the purpose after all, and how sensations feel can be completely different from person to person. But I believe that\'s enough for today. Let me show you to the door." Anna leads you to the door, you shake her hand and head outside to the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -932,7 +932,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"And do you like it?. Stimulation is the purpose after all. The sensations felt can be totally different from one person to another. But I think we\'ll end it at that for today. Let me show you out." Anna leads you to the door, you shake her hand and go outside and head towards the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -943,7 +943,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Interesting… A friend of mine would be really interested to hear about this… not everybody get's so aroused by a little shock; you seemed to show both on your breasts and you clitoris, did you get wet?. Ok ${((st as any).pcs_nickname ?? '')}, I want you to know that's normal and you shouldn't worry. It just means you are really sensitive to electro stimulation, but don't forget that this is the purpose of the wand. I believe we should say that's enough for today, let me show you out, we can pick this up another time." Anna leads you to the door, you shake her hand and head out to the residential area.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -954,7 +954,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well assuming you are telling the truth… that\'s normal. It\'s not something that usually surprise people. Anyway, if you were telling the truth you are really impressionable, I have to say. But we\'ll leave that for another day. Let\'s head to the door, you probably have homework to do." Anna leads you to the door, you shake her hand and you return to the hotel lobby.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -965,7 +965,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"The wand does have it\'s own special way of stimulating. It can offer so much more than this. This was only a little demonstration of what it can do… But I think this is enough for today, you learned something new so we\'ll end it here, let me show you out, we can continue this next time." Anna leads you to the door, you shake her hand and return to the hotel lobby.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -975,7 +975,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was enough to move your finger so you definitely felt something that\'s for sure. Don\'t be blinded by the excitement, especially in BDSM world. It\'s easy to over estimate your limits, and that is dangerous when we talk about BDSM. Always, be honest with yourself. That\'s enough today. Let me follow you out." Anna leads you to the door, you shake her hand and return to the hotel lobby.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },
@@ -988,7 +988,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.text('"As you wish. Don\'t feel like I\'m trying to push this on you, if you don\'t want to that\'s fine." The session ends and after you exchange few more words with Anna she leads you to the door');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'hotel_anna_gear', 'toys_images_clear');
+    qspCall(st, 'hotel_anna_gear', '');
   }, goto: ['pav_hotel', ''] },
     ]);
   } },

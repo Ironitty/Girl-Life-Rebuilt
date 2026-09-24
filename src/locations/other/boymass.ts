@@ -1,3 +1,5 @@
+import { qspCall } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -33,7 +35,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
         ((s as any).bmTOTSEX = (s as any).bmTOTSEX ?? {})[String((s as any).Tboynum ?? 0)] = 1;
       }
     }
-    // TODO-QSP: gs 'boystat', $bmNane[Tboynum]
+    qspCall(s, 'boystat', '', (((s as any).bmNane ?? 0)?.[String((s as any).Tboynum ?? 0)] ?? 0));
   }
   // TODO-QSP: end
   scene.build();

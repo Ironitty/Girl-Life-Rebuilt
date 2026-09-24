@@ -1,3 +1,5 @@
+import { qspCall } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -58,11 +60,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   if (((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)]((s as any)._w ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     // TODO-QSP: <<$loc_clothestypes[j]>>_w[i] = 0
-    // TODO-QSP: gs 'clothing', 'decrease_strength', $loc_clothestypes[j], i, 1
+    qspCall(s, 'clothing', 'decrease_strength', (((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? 0), ((s as any).i ?? 0), 1);
   }
   // TODO-QSP: "
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < Object.keys((s as any)['' + ((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w'] ?? {}).length) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)['' + (((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? 0) + '_w'] ?? {}).length) {
     // TODO-QSP: jump 'loopclonum'
   }
   (s as any).j = ((s as any).j ?? 0) + (1);

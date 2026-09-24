@@ -938,7 +938,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 0));
       qspCall(st, 'mood', 'raise', 'tiny');
       (st as any).minut = ((st as any).minut ?? 0) + 20;
-      qspCall(st, 'pain', '', 1, 'fingers', 'ache');
+      qspCall(st, 'pain', '1', 'fingers', 'ache');
       qspCall(st, 'stat', '');
       scene.text('You gently brush your fingers over the strings. The feeling of the coarse strings against your fingers is exhilarating. You come up with a song you want to try to play and start to work your magic…');
       scene.text('Unfortunately, playing the guitar is a lot harder than it looks. It takes you several tries to hit the right notes and several more to play even the tiny first fraction of the song without making a mistake. The strings cut into your tender, uncalloused fingertips and you eventually decide to stop.');

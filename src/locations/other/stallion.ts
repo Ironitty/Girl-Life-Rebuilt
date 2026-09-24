@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -243,7 +241,7 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
     (s as any).stallionQ = 5;
   }
   // TODO-QSP: dynamic text: There is a note next to your clothing. ''<<$temp[1]>>You were a pretty good fuck...
-  scene.text(`There is a note next to your clothing. '${qspUntranslated(s, "temp[1]", { location: "stallion" })}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp ?? '')}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
+  scene.text(`There is a note next to your clothing. '${(((s as any).temp ?? 0)?.[1] ?? '')}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp ?? '')}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },

@@ -358,15 +358,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         ((s as any).KGZVars = (s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 10 - (((s as any).KGZVars ?? {})?.['day'] ?? 0) * 5 + 1)) + ((((s as any).KGZVars ?? {})?.['day'] ?? 0) * 5));
                         if (((s as any).KGZVars ?? 0)?.['placeA'] === 20) {
                           ((s as any).KGZVars = (s as any).KGZVars ?? {})['place'] = 100;
-                          // TODO-QSP: gt $curloc
+                          dynamicGoto(s, 'curloc');
                         }
                         if (((s as any).KGZVars ?? 0)?.['placeA'] === 10) {
                           ((s as any).KGZVars = (s as any).KGZVars ?? {})['place'] = 11;
-                          // TODO-QSP: gt $curloc
+                          dynamicGoto(s, 'curloc');
                         }
                         if (((s as any).KGZVars ?? 0)?.['placeA'] === 0) {
                           ((s as any).KGZVars = (s as any).KGZVars ?? {})['place'] = 8;
-                          // TODO-QSP: gt $curloc
+                          dynamicGoto(s, 'curloc');
                         }
                         scene.text('<center><b>Road to Fort Bragg</b></center>');
                         scene.text('A road that apparently leads to a military base right on the outskirts of the established quarantine zone. It is littered with abandoned cars and is all but impassable by vehicle.');

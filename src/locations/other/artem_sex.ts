@@ -313,7 +313,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: You quickly roll over onto your back and spread your legs wide, offering yoursel...
     scene.text(`You quickly roll over onto your back and spread your legs wide, offering yourself to him. He gets up and crawls over to you, crawling between your legs as he kneels before you. He rubs the tip of his dick against your wet slit, getting the head of his dick wet before he slowly and gently pushes himself inside you. You feel his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock stretching your pussy and filling it. As he goes in further, you feel the sharp pain of your hymen tearing, but after a few minutes of him slowly making love to you while looking in your eyes with love and affection, the pain fades. After a while, you make a suggestion. "Why don't you lay on your back and let me get on top?"`);
-    qspCall(st, 'pain', '', 2, 'vaginal', 'tear');
+    qspCall(st, 'pain', '2', 'vaginal', 'tear');
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -434,7 +434,7 @@ function enterCumSurprise(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile as you get off him. "It\'s okay, don\'t worry about it." He looks relieved, obviously thinking you\'re on birth control.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'artem_sex', 'after_sex', 'cp');
+    qspCall(st, 'artem_sex', '');
   } },
     ]);
   } else {
@@ -451,7 +451,7 @@ function enterCumSurprise(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly climb off him and he rolls up to his knees. You start jerking his cock and a stream of cum hits you in the face. You open your eyes once the last of his cum has landed on you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'artem_sex', 'after_sex', 'facial');
+    qspCall(st, 'artem_sex', '');
   } },
     ]);
   }
@@ -469,7 +469,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You get up and start getting dressed and cleaned up. "I should probably get going," you tell him.');
   if (String((s as any).locArgs?.[1] ?? '') === 'cp') {
-    qspCall(s, 'cum_call', '', '', 'A2', 1);
+    qspCall(s, 'cum_call', '', 'A2', 1);
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'facial') {
       qspCall(s, 'cum_call', 'face', 'A2', 1);

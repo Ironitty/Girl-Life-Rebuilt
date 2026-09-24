@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Order him to lick you', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'kuni'] },
       ]);
     }
@@ -115,10 +115,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Lie on your back and spread your legs', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'sex'] },
               { label: 'Stand on all fours', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'sex2'] },
             ]);
           }
@@ -142,12 +142,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: '"I do not want to!" Lie on your back and spread your legs', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'anal', 'resist', 'easy');
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'sex'] },
                 { label: '"I\'ll do it doggy style, but not in the ass!"', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'anal', 'resist', 'easy');
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'sex2'] },
               ]);
             }
@@ -161,8 +161,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Take him into your mouth', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'bj', 'force');
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['BDsex', 'minet'] },
               ]);
             }

@@ -127,7 +127,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Wash up and return to the cinema lobby', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'cum_cleanup', '', 2);
+    qspCall(st, 'cum_cleanup', '2');
     qspGoto(st, 'pav_cinema', '');
   } },
     { label: 'Return to the cinema lobby', goto: ['pav_cinema', ''] },
@@ -142,12 +142,12 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
   (s as any).guy = ((s as any).guy ?? 0) + (3);
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+  qspCall(s, 'npcgeneratec', '0', 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Armenian Male', (Math.floor(Math.random() * 7) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
   qspCall(s, 'fame', 'pav', 'sex', 8);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/3.jpg');
@@ -155,7 +155,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 50, ((s as any).npcID2 ?? 0), 'rough', 'rape', 'humiliation', 'group');
   qspCall(s, 'arousal', 'vaginal', 50, ((s as any).npcID ?? 0), 'rough', 'rape', 'humiliation', 'group');
   qspCall(s, 'arousal', 'anal', (-50), ((s as any).npcID1 ?? 0), 'rough', 'rape', 'humiliation', 'group');
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0));
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0));
   qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0));
   qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0));
   qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0));
@@ -256,10 +256,10 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   (s as any).guyondiscotime = 600 / ((s as any).guyondisco ?? 0);
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: :geventgondloop
-  qspCall(s, 'npcgeneratec', '', 0, 'guy from the disco', (Math.floor(Math.random() * 9) + 19), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'guy from the disco', (Math.floor(Math.random() * 9) + 19), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'bj', ((s as any).guyondiscotime ?? 0), ((s as any).npcID ?? 0), 'rough', 'rape', 'humiliation', 'group');
-  // TODO-QSP: gs 'arousal', 'vaginal', -guyondiscotime, $npcID, 'rough', 'rape', 'humiliation', 'group'
+  qspCall(s, 'arousal', 'vaginal', -((s as any).guyondiscotime ?? 0), ((s as any).npcID ?? 0), 'rough', 'rape', 'humiliation', 'group');
   qspCall(s, 'cum_call', 'vagina', ((s as any).npcID ?? 0));
   qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0));
   qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0));
@@ -297,10 +297,10 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Apartment Boy', (Math.floor(Math.random() * 7) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Apartment Boy', (Math.floor(Math.random() * 7) + 19));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Apartment Boy', (Math.floor(Math.random() * 7) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Apartment Boy', (Math.floor(Math.random() * 7) + 19));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/7.jpg');
   scene.text('The guys bring you back to their apartment, where they swiftly strip you of your clothes and subsequently fuck you in all holes, taking turns spitroasting you. When they\'re close to cumming, they force you down on your knees and they both release their loads onto your face. Before you even get a chance to wash up they kick you out, leaving you to get dressed on the streets. You desperately grab your clothes from the ground and quickly hide behind a car as you put them on, hoping no random passers-by spotted you. One of the guys is watching you through the window the whole time, and you can hear his laughter while you run away as quickly as you can.');

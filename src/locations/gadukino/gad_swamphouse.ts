@@ -185,7 +185,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) < 80) {
     scene.actions([
       { label: 'Grab something to eat', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'food');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   }
@@ -372,7 +372,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Oh, look who's showed up. ${((s as any).pcs_nickname ?? '')}, join us for a drink!" they invite you in.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -387,7 +387,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, join us for a drink!" says Andrei.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -402,7 +402,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, come join us for a drink!" Sergei says, noticing you entering.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -417,7 +417,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, come join us for a drink!" Igor shouts, ignoring the other conversation.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -434,7 +434,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Oh, ${((s as any).pcs_nickname ?? '')}, you're just in time, come join us!"`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -676,7 +676,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) < 80) {
     scene.actions([
       { label: 'Grab something to eat', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'food');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   }
@@ -863,7 +863,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Oh, look who's showed up. ${((s as any).pcs_nickname ?? '')}, join us for a drink!" they invite you in.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -878,7 +878,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, join us for a drink!" says Andrei.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -893,7 +893,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, come join us for a drink!" Sergei says, noticing you entering.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -908,7 +908,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`Oh, ${((s as any).pcs_nickname ?? '')}, come join us for a drink!" Igor shouts, ignoring the other conversation.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -925,7 +925,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Oh, ${((s as any).pcs_nickname ?? '')}, you're just in time, come join us!"`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Politely decline', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['refuse'] = 1
@@ -1013,14 +1013,14 @@ function enterStove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bucket ?? 0) > 0  &&  ((s as any).boletus ?? 0) > 0  &&  ((s as any).mushroom_soup ?? 0) === 0  &&  ((s as any).stovefire ?? 0) === 1) {
     scene.actions([
       { label: 'Cook some mushroom soup (0:30)', handler: (st: GameState) => {
-    qspCall(st, 'hunter_favors', 'mushroom_soup');
+    qspCall(st, 'hunter_favors', '');
   } },
     ]);
   }
   if (((s as any).bucket ?? 0) > 0  &&  ((s as any).raw_meat ?? 0) > 0  &&  ((s as any).meat_stew ?? 0) === 0  &&  ((s as any).stovefire ?? 0) === 1) {
     scene.actions([
       { label: 'Cook some meat stew (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'hunter_favors', 'meat_stew');
+    qspCall(st, 'hunter_favors', '');
   } },
     ]);
   }
@@ -1043,7 +1043,7 @@ function enterStove(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Move away', goto: ['gad_swamphouse', 'start'] },
     { label: 'Grab something to eat', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'food');
+    qspCall(st, 'gad_swamphouse', '');
   } },
   ]);
   scene.build();
@@ -1234,7 +1234,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to look through the scientific journal, trying to understand all sorts of clever things written in the magazine.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'stackmagazines');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1247,7 +1247,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to look through the literary magazine… But, unfortunately, it\'s a real drag. You almost fall asleep several times while reading it.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'stackmagazines');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1260,7 +1260,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     scene.text('Flicking through the entertainment magazine, you delve into the world of the rich and famous.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'stackmagazines');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1282,7 +1282,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'stackmagazines');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1333,7 +1333,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1351,7 +1351,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1396,7 +1396,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1414,7 +1414,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1459,7 +1459,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1477,7 +1477,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1538,12 +1538,12 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You follow them outside, they give you a cigarette, and you light it and smoke it…');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
           { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         ]);
       }
@@ -1561,7 +1561,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you walk outside, and Andrei hands you a cigarette. Then, you start talking about your feelings for each other.');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1600,7 +1600,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You get up from the bench and quickly go back to the hut.');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1623,7 +1623,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('"Go back to the hut, and crawl under the table, so no one notices," he adds while getting up from the bench.');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1654,7 +1654,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You get up from the bench and quickly go back to the hut.');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1662,7 +1662,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1680,7 +1680,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text(`You go outside for a smoke, with Andrei following you, immediately saying, "To hell with the cigarette, ${((st as any).pcs_nickname ?? '')}, I need to relieve some stress."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -1688,7 +1688,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         ]);
       }
@@ -1707,12 +1707,12 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You follow Sergei outside. He gives you a cigarette, and the two of you continue with your conversation.');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
           { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         ]);
       }
@@ -1731,12 +1731,12 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You follow Igor outside. He gives you a cigarette, and the two of you continue with your conversation.');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
           { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         ]);
       }
@@ -2275,7 +2275,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a shot of vodka. The men laugh at the funny face you\'re making after the shot.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2285,7 +2285,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a bottle of beer, open it and start drinking it.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2297,7 +2297,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab something to eat so you don\'t get drunk too quickly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2317,7 +2317,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You chat with the men about various topics… You try to keep up with their lingo but sometimes fail, and you all laugh about it.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2336,7 +2336,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('You sit down and have something to eat with the hunters.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2399,7 +2399,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
       scene.text('"Want to eat with us? You need to do some work," he mockingly grins and points under the table.');
       scene.actions([
         { label: 'Crawl under the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstableBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         { label: 'Refuse', goto: ['gad_swamphouse', 'start'] },
       ]);
@@ -2413,7 +2413,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Sit at the table', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['tableBJ'] = 1
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
       ]);
     }
@@ -2490,7 +2490,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'hunterstable');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },

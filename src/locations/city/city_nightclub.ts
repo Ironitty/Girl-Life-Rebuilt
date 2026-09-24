@@ -262,8 +262,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     if (((st as any).clrand ?? 0) > 0) {
       if (((st as any).clrand ?? 0) < 5) {
         qspCall(st, 'arousal', 'foreplay', 1);
-        qspCall(st, 'npcgeneratec', '', 0);
-        qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+        qspCall(st, 'npcgeneratec', '0');
+        qspCall(st, 'npcStat', '$npclastgenerated');
         // TODO-QSP: dynamic text: As you''re dancing, you feel someone groping your ass. You turn around and see <...
         scene.text(`As you're dancing, you feel someone groping your ass. You turn around and see ${((st as any).npcheight_pref ?? '')}, ${((st as any).npcbuild ?? '')} guy with ${((st as any).npchair ?? '')} hair. He's wearing ${((st as any).npcClo ?? '')}.`);
         scene.actions([
@@ -544,8 +544,8 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp ?? 0) === 7) {
         qspCall(s, 'stat', '');
         scene.img('images/shared/sex/public/ivrand4.jpg');
-        qspCall(s, 'npcgeneratec', '', 0, 'Club Dancer', (Math.floor(Math.random() * 9) + 18));
-        qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'Club Dancer', (Math.floor(Math.random() * 9) + 18));
+        qspCall(s, 'npcStat', '$npclastgenerated');
         (s as any).spafinloc = 12;
         qspCall(s, 'cum_manage', '');
         scene.text('The last thing you remember is how you sucked someone\'s cock in the middle of the dance floor.');
@@ -786,9 +786,9 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
 
 function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger_oral');
-  qspCall(s, 'npcgeneratec', '', 0);
+  qspCall(s, 'npcgeneratec', '0');
   (s as any).dick = (Math.floor(Math.random() * 9) + 10);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   scene.text('<center><b>toilet stall</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex.jpg');
@@ -1073,7 +1073,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'exp_gain', 'danc', rand (1, 3)
+    qspCall(st, 'exp_gain', 'danc', 0);
     scene.img('images/locations/city/citycenter/nightclub/club12.jpg');
     if (((st as any).pcs_danc ?? 0) > (Math.floor(Math.random() * 71) + 30)) {
       qspCall(st, 'money', 'earn', 300);

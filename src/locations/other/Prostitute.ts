@@ -39,8 +39,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Fight her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    qspCall(st, 'npcgeneratec', '', 1, 'stoned prostitute', (Math.floor(Math.random() * 11) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '1', 'stoned prostitute', (Math.floor(Math.random() * 11) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'prostitute');
     qspGoto(st, 'fight', 'start');
@@ -98,8 +98,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You realize he\'s not going to let you off the hook easily, and that he probably has enough connections to get you into serious trouble. It\'s probably easiest to treat him as just another customer, maybe he\'ll let you go if you do a good job…');
     scene.actions([
       { label: 'Reach for his groin', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Bandit', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Bandit', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspGoto(st, 'blowPR', 'start');
   } },
     ]);
@@ -109,8 +109,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Refuse to pay and fight him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    qspCall(st, 'npcgeneratec', '', 0, 'Bandit', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Bandit', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'bandit');
     qspGoto(st, 'fight', 'start');
@@ -145,8 +145,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse to pay and fight her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    qspCall(st, 'npcgeneratec', '', 1, 'prostitute', (Math.floor(Math.random() * 11) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '1', 'prostitute', (Math.floor(Math.random() * 11) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'prostitute2');
     qspGoto(st, 'fight', 'start');
@@ -175,7 +175,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Walk away from him', goto: ['prostitute', 'start'] },
             { label: 'Change the price', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: ProsMoney = input("Enter a number below, which will be multiplied by <<$func('money', 'string_profit', 100)>>")
+    (st as any).ProsMoney = window.prompt("Enter a number below, which will be multiplied by " + (qspFunc(s, 'money', 'string_profit', 100))) ?? '';
     if (((st as any).ProsMoney ?? 0) < 1) {
       scene.text('"Are you making a joke or something? I\'m not in the mood for jokes!" the customer sighs wearily. He starts his car again and drives away without saying another word.');
       scene.text('The price you set was too low for the man to take you seriously.');
@@ -183,7 +183,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['prostitute', 'start'] },
       ]);
     } else {
-      // TODO-QSP: gt 'prostitute', 'work1', iif(proseventrand <= 8, 'blow job', iif(proseventrand <= 14, 'sex', 'anal'...
+      qspGoto(st, 'prostitute', 'work1', 'iif(proseventrand <= 8, \'blow job\', iif(proseventrand <= 14, \'sex\', \'anal\'))');
     }
   } },
           ]);
@@ -309,7 +309,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).vnpr ?? 0) >= 0) {
     if (((s as any).ProsMoney ?? 0) === 1) {
-      // TODO-QSP: gt 'prostitute', 'work2', $ARGS[1]
+      qspGoto(s, 'prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
     }
     if ((Math.floor(Math.random() * 31) + 0) < ((s as any).vnpr ?? 0)) {
       if (String((s as any).locArgs?.[1] ?? '') === 'blow job') {
@@ -322,7 +322,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
         (s as any).KlientMON = (Math.floor(Math.random() * 36) + 5);
       }
       if (((s as any).KlientMON ?? 0) >= ((s as any).ProsMoney ?? 0)) {
-        // TODO-QSP: gt 'prostitute', 'work2', $ARGS[1]
+        qspGoto(s, 'prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
       }
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         // TODO-QSP: dynamic text: The client smiles and offers: "I only have <<KlientMON * 100>>… what do you say?...
@@ -357,8 +357,8 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get into his car', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, '"John"', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', '"John"', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     if (((st as any).pcs_throat ?? 0) < ((st as any).dick ?? 0)) {
       qspCall(st, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -382,7 +382,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You put a condom between your lips and slowly guide your mouth to his penis, you gently roll it down using only your lips. You can tell the guy is really impressed with your skills.');
     if (String((st as any).locArgs?.[1] ?? '') === 'blow job') {
-      // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+      qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
       scene.text('You proceed to give him a blowjob, licking and sucking his condom-clad penis. The taste of the rubber is a bit unpleasant, but you do a good job regardless. In no time the guy groans loudly.');
       scene.text('When you feel his cock finally soften between your lips, you pull your head back. The man ties a knot in the condom and tosses it out of the window carelessly, then he gives you the money he owes you.');
       qspCall(st, 'dinSex', 'std_trigger_oral');
@@ -403,7 +403,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     } else {
       (st as any).sexcontra = 3;
     }
-    // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.img('images/locations/shared/sex/car/sexcar1.jpg');
@@ -432,7 +432,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
     (st as any).prosti = 0;
-    // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
     qspCall(st, 'stat', '');
     (st as any).dickK = ((st as any).dick ?? 0) * 10 / 100;
     if (((st as any).dickK ?? 0) < 1) {
@@ -484,7 +484,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on his cock', handler: (st: GameState) => {
     if (String((st as any).locArgs?.[1] ?? '') === 'blow job') {
       (st as any).bjrand = (Math.floor(Math.random() * 100) + 1);
-      // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+      qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
       if (((st as any).bjrand ?? 0) <= 50) {
         if (((st as any).stat ?? 0)?.['bj'] <= 15) {
           (st as any).spafinloc = 12;
@@ -569,7 +569,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     (st as any).prosti = 0;
-    // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
     qspCall(st, 'stat', '');
     (st as any).prostRand = (Math.floor(Math.random() * 100) + 1);
     qspCall(st, 'dinSex', 'std_trigger');
@@ -658,7 +658,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him fuck you', handler: (st: GameState) => {
     qspCall(st, 'arousal_funcs', 'stretch', 'vaginal');
-    // TODO-QSP: gs 'money', 'earn', ProsMoney * 110, 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 110, 'cash');
     (st as any).protect = 1;
     qspCall(st, 'dinSex', 'std_trigger');
     (st as any).protect = 0;
@@ -681,7 +681,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave quietly', goto: ['prostitute', 'start'] },
       { label: 'Insist he pays you anyway', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'earn', ProsMoney * 100, 'cash'
+    qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
     qspCall(st, 'mood', 'lower', 'large');
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) - (((st as any).pcs_health ?? 0)/5);
     qspCall(st, 'arousal_funcs', 'stretch', 'oral', 1);

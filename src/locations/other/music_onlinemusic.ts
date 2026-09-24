@@ -11,13 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_online = (s as any).ml_online ?? {})['account'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], 10
+  qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], 10);
   qspCall(s, 'stat', '');
   scene.text('You log into Youtube to set up a channel for your music. You can upload videos or live stream, but you will need to open a bank account if you want to receive any tips from viewers of your stream.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -52,7 +52,7 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
     scene.text(`You have <b>${qspFunc(s, 'money', 'string_profit', ((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'] ?? '')}</b> on your account.`);
     scene.actions([
       { label: 'Stop the stream and transfer the money to your bank account', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'earn', ml_streaming['unclaimed_earnings'], 'bank'
+    qspCall(st, 'money', 'earn', ((st as any).ml_streaming ?? 0)?.['unclaimed_earnings'], 'bank');
     ((st as any).ml_streaming = (st as any).ml_streaming ?? {})['unclaimed_earnings'] = 0;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'streaming']; enterFinish(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -114,7 +114,7 @@ function enterRecordSong(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_onlinemusic', 'finish', 'recording');
+    qspCall(st, 'music_onlinemusic', '');
   } },
   ]);
   scene.build();
@@ -185,7 +185,7 @@ function enterEditSong(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -204,13 +204,13 @@ function enterUploadmusic(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'recording') {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_onlinemusic', 'finish', 'recording');
+    qspCall(st, 'music_onlinemusic', '');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   }
@@ -232,7 +232,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :uploadallmusic
   if (((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 0  &&  ((s as any).access ?? 0) !== 'denied') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], 5
+    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], 5);
     qspCall(s, 'stat', '');
     ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[String((s as any).i ?? 0)] = 1;
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
@@ -244,7 +244,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -256,7 +256,7 @@ function enterDeleteoldmusic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'available_actions');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -269,11 +269,11 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :deletemusic
   if ((((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 1)  ||  (((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 0  &&  ((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)] > ((s as any).ml_threshold_skilllevel ?? 0))) {
     (s as any).j = ((s as any).j ?? 0) + (1);
-    ((s as any).ml_tempsong_freshness = (s as any).ml_tempsong_freshness ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_freshness ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_lastcalcday = (s as any).ml_tempsong_lastcalcday ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_lastcalcday ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_hotcat = (s as any).ml_tempsong_hotcat ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_hotcat ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_skilllevel = (s as any).ml_tempsong_skilllevel ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_uploaded = (s as any).ml_tempsong_uploaded ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).ml_tempsong_freshness = (s as any).ml_tempsong_freshness ?? {})[String((s as any).j ?? 0)] = (((s as any).ml_onlinesong_freshness ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).ml_tempsong_lastcalcday = (s as any).ml_tempsong_lastcalcday ?? {})[String((s as any).j ?? 0)] = (((s as any).ml_onlinesong_lastcalcday ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).ml_tempsong_hotcat = (s as any).ml_tempsong_hotcat ?? {})[String((s as any).j ?? 0)] = (((s as any).ml_onlinesong_hotcat ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).ml_tempsong_skilllevel = (s as any).ml_tempsong_skilllevel ?? {})[String((s as any).j ?? 0)] = (((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    ((s as any).ml_tempsong_uploaded = (s as any).ml_tempsong_uploaded ?? {})[String((s as any).j ?? 0)] = (((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
   } else {
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
   }
@@ -285,11 +285,11 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_uploadablemusic = 0;
   if (((s as any).j ?? 0) >= 0) {
     // TODO-QSP: :looprebuildsongs
-    ((s as any).ml_onlinesong_freshness = (s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_freshness ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_hotcat = (s as any).ml_onlinesong_hotcat ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_hotcat ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_lastcalcday = (s as any).ml_onlinesong_lastcalcday ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_lastcalcday ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_skilllevel = (s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_skilllevel ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    ((s as any).ml_onlinesong_freshness = (s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).ml_tempsong_freshness ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] ?? 0);
+    ((s as any).ml_onlinesong_hotcat = (s as any).ml_onlinesong_hotcat ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).ml_tempsong_hotcat ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] ?? 0);
+    ((s as any).ml_onlinesong_lastcalcday = (s as any).ml_onlinesong_lastcalcday ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).ml_tempsong_lastcalcday ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] ?? 0);
+    ((s as any).ml_onlinesong_skilllevel = (s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).ml_tempsong_skilllevel ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] ?? 0);
+    ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).ml_tempsong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] ?? 0);
     if ((((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] === 0)) {
       (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) + (1);
     }
@@ -329,7 +329,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
 
 function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).ml_streamtime ?? 0));
-  // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], ml_streamtime
+  qspCall(s, 'internet_mobile', 'use_internet', ((s as any).access ?? 0)?.['subscription'], ((s as any).ml_streamtime ?? 0));
   (s as any).ml_maxsuperchats = ( (((s as any).fame ?? {})?.['pav_music'] ?? 0) + ((((s as any).fame ?? {})?.['city_music'] ?? 0) * 2) + (((s as any).fame ?? {})?.['pushkin_music'] ?? 0) + (((s as any).fame ?? {})?.['village_music'] ?? 0) + ((s as any).pcs_apprnc ?? 0) );
   (s as any).ml_superchats = ((Math.floor(Math.random() * (((s as any).ml_maxsuperchats ?? 0) - 0 + 1)) + (0)) * ((s as any).ml_streamtime ?? 0)) / 60;
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  (((s as any).ml_guitar ?? 0)?.['carried'] === 1  ||  ((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0))) {

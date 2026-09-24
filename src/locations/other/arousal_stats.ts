@@ -31,7 +31,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
     (s as any).arousal_temp_npcID = 0;
     if ((!(0 as any))) {
       if (String((s as any).locArgs?.[7] ?? '') !== '') {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[7] ?? 0), ((s as any).arousal_temp_npcID ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+        qspCall(s, 'arousal_stats', '$ARGS[7]', ((s as any).arousal_temp_npcID ?? 0));
       }
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
         // TODO-QSP: stat[$ARGS[4]] += 1
@@ -244,7 +244,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_base_act_fired = 1;
     }
     if (((s as any).temp_chastity_break ?? 0) === 1  &&  ((s as any).temp_base_act_fired ?? 0) === 1) {
-      // TODO-QSP: gs 'archetypes', 'change', 0, 0, -arch_const['sex_chastity_bonus_prude'], 0, 0, 1, 'story', 'Breakin...
+      qspCall(s, 'archetypes', 'change', 0, 0, -(((s as any).arch_const ?? {})?.['sex_chastity_bonus_prude'] ?? 0), 0, 0, 1, 'story', 'Breaking a long dry spell');
     }
     if (((s as any).stim ?? 0)?.['public'] === 1) {
       qspCall(s, 'archetypes', 'sex_change', 300, (-2000), 'Sex in public');
@@ -277,7 +277,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arousal_maxi ?? 0) > 0) {
     (s as any).arousal_i = 0;
     // TODO-QSP: :arousal_sexual_loop
-    (s as any).arousal_temp_npcID = ((s as any).arousal_npc_sexual ?? 0)?.[String((s as any).arousal_i ?? 0)];
+    (s as any).arousal_temp_npcID = (((s as any).arousal_npc_sexual ?? 0)?.[String((s as any).arousal_i ?? 0)] ?? 0);
     if (((s as any).npc_sexual ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
         ((s as any).stat = (s as any).stat ?? {})['male_sexual_partners'] = ((s as any).stat['male_sexual_partners'] ?? 0) + (1);
@@ -311,7 +311,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arousal_maxi ?? 0) > 0) {
     (s as any).arousal_i = 0;
     // TODO-QSP: :arousal_hidden_sexual_loop
-    (s as any).arousal_temp_npcID = ((s as any).arousal_npc_hidden_sexual ?? 0)?.[String((s as any).arousal_i ?? 0)];
+    (s as any).arousal_temp_npcID = (((s as any).arousal_npc_hidden_sexual ?? 0)?.[String((s as any).arousal_i ?? 0)] ?? 0);
     if (((s as any).npc_hidden_sexual ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
         ((s as any).stat = (s as any).stat ?? {})['male_hidden_sexual_partners'] = ((s as any).stat['male_hidden_sexual_partners'] ?? 0) + (1);
@@ -345,7 +345,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     if (((s as any).arousal_maxi ?? 0) > 0) {
       (s as any).arousal_i = 0;
       // TODO-QSP: :arousal_feed_loop
-      (s as any).arousal_temp_npcID = ((s as any).arousal_npc_feed_ids ?? 0)?.[String((s as any).arousal_i ?? 0)];
+      (s as any).arousal_temp_npcID = (((s as any).arousal_npc_feed_ids ?? 0)?.[String((s as any).arousal_i ?? 0)] ?? 0);
       if (((s as any).arousal_npc_feed ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] >= 24) {
         (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (((s as any).succublvl ?? 0) * 20);
         (s as any).succubxp = ((s as any).succubxp ?? 0) + (5);

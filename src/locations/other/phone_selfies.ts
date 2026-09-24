@@ -260,58 +260,58 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).locIndex = qspUntranslated(s, "arrpos('selfieLoc', ARGS[1])", { location: "phone_selfies" });
   if (String((s as any).locArgs?.[2] ?? '') === 'tits'  ||  String((s as any).locArgs?.[2] ?? '') === 'titflash') {
-    (s as any).temp_titflash = ((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+    (s as any).temp_titflash = (((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
     if (((s as any).temp_titflash ?? 0) > 0) {
       (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_titflash ?? 0) - 1 + 1)) + (1));
       // TODO-QSP: dynamic '<<$ARGS[1]>>_titflash[<<phone_rand>>] = 1'
-      (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/titflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+      (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/titflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
     }
   } else {
     if (String((s as any).locArgs?.[2] ?? '') === 'ass'  ||  String((s as any).locArgs?.[2] ?? '') === 'assflash') {
-      (s as any).temp_assflash = ((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+      (s as any).temp_assflash = (((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
       if (((s as any).temp_assflash ?? 0) > 0) {
         (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_assflash ?? 0) - 1 + 1)) + (1));
         // TODO-QSP: dynamic '<<$ARGS[1]>>_assflash[<<phone_rand>>] = 1'
-        (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/assflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+        (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/assflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
       }
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === 'pussy'  ||  String((s as any).locArgs?.[2] ?? '') === 'pussyflash') {
-        (s as any).temp_pussyflash = ((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+        (s as any).temp_pussyflash = (((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
         if (((s as any).temp_pussyflash ?? 0) > 0) {
           (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_pussyflash ?? 0) - 1 + 1)) + (1));
           // TODO-QSP: dynamic '<<$ARGS[1]>>_pussyflash[<<phone_rand>>] = 1'
-          (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/pussyflash/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+          (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/pussyflash/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
         }
       } else {
         if (((s as any).PSwim ?? 0)) {
-          (s as any).temp_swim = ((s as any).selfieSwimTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+          (s as any).temp_swim = (((s as any).selfieSwimTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
           if (((s as any).temp_swim ?? 0) > 0) {
             (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_swim ?? 0) - 1 + 1)) + (1));
             // TODO-QSP: dynamic '<<$ARGS[1]>>_swim[<<phone_rand>>] = 1'
-            (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/bikini/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+            (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/bikini/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
           }
         } else {
           if (((s as any).clothingworntype ?? 0) !== 'nude') {
-            (s as any).temp_clotot = ((s as any).selfieCloTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+            (s as any).temp_clotot = (((s as any).selfieCloTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
             if (((s as any).temp_clotot ?? 0) > 0) {
               (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_clotot ?? 0) - 1 + 1)) + (1));
               // TODO-QSP: dynamic '<<$ARGS[1]>>_closelfie[<<phone_rand>>] = 1'
-              (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/clothed/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+              (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/clothed/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
             }
           } else {
             if (((s as any).pantyworntype ?? 0) !== 'none') {
-              (s as any).temp_undtot = ((s as any).selfieUndTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+              (s as any).temp_undtot = (((s as any).selfieUndTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
               if (((s as any).temp_undtot ?? 0) > 0) {
                 (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_undtot ?? 0) - 1 + 1)) + (1));
                 // TODO-QSP: dynamic '<<$ARGS[1]>>_undselfie[<<phone_rand>>] = 1'
-                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/underwear/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/underwear/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
             } else {
-              (s as any).temp_nudtot = ((s as any).selfieNudTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+              (s as any).temp_nudtot = (((s as any).selfieNudTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
               if (((s as any).temp_nudtot ?? 0) > 0) {
                 (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_nudtot ?? 0) - 1 + 1)) + (1));
                 // TODO-QSP: dynamic '<<$ARGS[1]>>_nudselfie[<<phone_rand>>] = 1'
-                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/nude/' + ((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+                (s as any).result = 'images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/nude/' + (((s as any).selfieFilePrefix ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
               }
             }
           }
@@ -320,9 +320,9 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).result ?? 0) === '') {
-    (s as any).phone_rand = (Math.floor(Math.random() * (qspUntranslated(s, "selfieCloTot[0]", { location: "phone_selfies" }) - 1 + 1)) + (1));
+    (s as any).phone_rand = (Math.floor(Math.random() * ((((s as any).selfieCloTot ?? 0)?.[0] ?? 0) - 1 + 1)) + (1));
     // TODO-QSP: dynamic '<<$selfieLoc[0]>>_closelfie[<<phone_rand>>] = 1'
-    (s as any).result = 'images/pc/activities/phone/selfies/' + qspUntranslated(s, "selfieLoc[0]", { location: "phone_selfies" }) + '/clothed/' + qspUntranslated(s, "selfieFilePrefix[0]", { location: "phone_selfies" }) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
+    (s as any).result = 'images/pc/activities/phone/selfies/' + (((s as any).selfieLoc ?? 0)?.[0] ?? 0) + '/clothed/' + (((s as any).selfieFilePrefix ?? 0)?.[0] ?? 0) + '' + ((s as any).phone_rand ?? 0) + '.jpg';
   }
   return;
   // TODO-QSP: end
@@ -351,7 +351,7 @@ function enterCameraTakeSelfieBathing(s: GameState, scene: SceneBuilder): void {
 function enterSelfieImageShower(s: GameState, scene: SceneBuilder): void {
   (s as any).locIndex = qspUntranslated(s, "arrpos('selfieLoc', 'bathroom')", { location: "phone_selfies" });
   if (((s as any).locIndex ?? 0) >= 0) {
-    (s as any).temp_showertot = ((s as any).selfieShowerTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+    (s as any).temp_showertot = (((s as any).selfieShowerTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
     (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_showertot ?? 0) - 1 + 1)) + (1));
     ((s as any).bathroom_showerselfie = (s as any).bathroom_showerselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
     (s as any).result = 'images/pc/activities/phone/selfies/bathroom/shower/' + ((s as any).phone_rand ?? 0) + '.jpg';
@@ -364,7 +364,7 @@ function enterSelfieImageShower(s: GameState, scene: SceneBuilder): void {
 function enterSelfieImageBathing(s: GameState, scene: SceneBuilder): void {
   (s as any).locIndex = qspUntranslated(s, "arrpos('selfieLoc', 'bathroom')", { location: "phone_selfies" });
   if (((s as any).locIndex ?? 0) >= 0) {
-    (s as any).temp_bathtot = ((s as any).selfieBathTot ?? 0)?.[String((s as any).locIndex ?? 0)];
+    (s as any).temp_bathtot = (((s as any).selfieBathTot ?? 0)?.[String((s as any).locIndex ?? 0)] ?? 0);
     (s as any).phone_rand = (Math.floor(Math.random() * (((s as any).temp_bathtot ?? 0) - 1 + 1)) + (1));
     ((s as any).bathroom_bathselfie = (s as any).bathroom_bathselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
     (s as any).result = 'images/pc/activities/phone/selfies/bathroom/bath/' + ((s as any).phone_rand ?? 0) + '.jpg';
@@ -873,39 +873,39 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
 function enterPopulateSelfiesList(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_locationCnt = 1;
   // TODO-QSP: :LocationTakenLoop
-  (s as any).CloMaxSize = ((s as any).selfieCloTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieCloTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'closelfie', '$selfieTakenClo', 'clothed', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieSwimTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieSwimTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'swim', '$selfieTakenSwim', 'bikini', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieUndTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieUndTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'undselfie', '$selfieTakenUnd', 'underwear', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieNudTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieNudTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nudselfie', '$selfieTakenNud', 'nude', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieBathTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieBathTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathselfie', '$selfieTakenBath', 'bath', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieShowerTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieShowerTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'showerselfie', '$selfieTakenShower', 'shower', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'titflash', '$selfieTakenTitflash', 'titflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'assflash', '$selfieTakenAssflash', 'assflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  (s as any).CloMaxSize = ((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  (s as any).CloMaxSize = (((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0);
   if (((s as any).CloMaxSize ?? 0) > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pussyflash', '$selfieTakenPussyflash', 'pussyflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }

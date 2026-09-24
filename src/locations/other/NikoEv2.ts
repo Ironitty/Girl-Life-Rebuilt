@@ -276,7 +276,7 @@ function enterNikoWake(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean forward and kiss Niko on the cheek before getting up, getting dressed and leaving.');
     scene.actions([
       { label: 'Walk onto the street', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['pav_residential', ''] },
     ]);
   } },
@@ -442,7 +442,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
 
 function enterVickyTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('' + qspFunc(s, '$$face_image') + '');
+  scene.img('' + qspFunc(s, '$face_image') + '');
   scene.text('As you\'re leaving the cafeteria, you suddenly hear someone calling out to you.');
   scene.text('"I saw what you did in the locker room!"');
   // TODO-QSP: end
@@ -459,7 +459,7 @@ function enterVickyTalk(s: GameState, scene: SceneBuilder): void {
     (st as any).NikoEv = 15;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.text('"A whore?" you say as you slowly raise your head.');
     scene.text('Vicky slowly nods. "Then you accept it, huh?"');
     scene.text('You take a second to think about it. "Maybe I am. I… Just love the way he looks at me and all I can think of is pleasing him. It excites me and makes me feel alive and I don\'t even care what others think of me. I only care about what Niko thinks."');
@@ -618,7 +618,7 @@ function enterLunchChat2(s: GameState, scene: SceneBuilder): void {
     scene.text('He buttons up his pants before leaving the room.');
     scene.actions([
       { label: 'Return to the cafeteria', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_lunch', 'lunch'] },
     ]);
   } },
@@ -897,7 +897,7 @@ function enterDiner1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wash up in the restroom', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoEv2', 'Diner Washup'] },
     ]);
   } },
@@ -1050,7 +1050,7 @@ function enterReward2(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko rubs your forehead before getting up and heading to the bathroom to get washed up.');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['VolkovHome', 'Niko Bedroom'] },
     ]);
   } },
@@ -1192,7 +1192,7 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
     (st as any).NikoSlutName = ((st as any).pcs_firstname ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     // TODO-QSP: dynamic text: "My name is <<$pcs_firstname>>," you say. "It''s nice to meet you."
     scene.text(`"My name is ${((st as any).pcs_firstname ?? '')}," you say. "It's nice to meet you."`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>. Very cute name," he says. "It really suits you."
@@ -1209,7 +1209,7 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     // TODO-QSP: dynamic text: "My name is <<$NikoSlutName>>," you say. "It''s nice to meet you."
     scene.text(`"My name is ${((st as any).NikoSlutName ?? '')}," you say. "It's nice to meet you."`);
     // TODO-QSP: dynamic text: "<<$NikoSlutName>> huh?" he replies. "That is is a pretty name."
@@ -1230,7 +1230,7 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
 function enterDinerExit2(s: GameState, scene: SceneBuilder): void {
   (s as any).VKLenaBully = 1;
   if (((s as any).NikoSlut ?? 0) < 3) {
-    // TODO-QSP: gs 'money', 'earn', NikoProfit * 400
+    qspCall(s, 'money', 'earn', ((s as any).NikoProfit ?? 0) * 400);
   }
   (s as any).NikoSlut = 1;
   (s as any).NikoEv = 20;

@@ -69,8 +69,8 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['city_cinema', ''] },
       ]);
     } else {
-      qspCall(st, 'npcgeneratec', '', 0, 'guy from the cinema', (Math.floor(Math.random() * 27) + 19));
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'guy from the cinema', (Math.floor(Math.random() * 27) + 19));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       scene.text('You walk over to him, and with a wicked grin ask: "Is this seat taken?"');
       scene.text('"Umm… no ma\'am it\'s not", he says.');
       scene.text('"Such a gentleman", you say smiling, as you sit down next to him. You immediately rest a hand on his inner thigh, and begin to gently caress him. It\'s not long before he is breathing heavy.');
@@ -125,7 +125,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He hurriedly slides into you from behind, and after just a few pumps finishes inside you.');
     qspCall(st, 'arousal', 'vaginal', 10, 'sub', 'exhibitionism');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', 'guy from the cinema');
+    qspCall(st, 'cum_call', '', 'guy from the cinema');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave unsatisfied', goto: ['city_cinema', ''] },
@@ -212,7 +212,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('Somebody must\'ve told an usher what was going on. "What the hell do you think you\'re doing? I\'m going to call the police," he says.');
     scene.text('You hurriedly start gathering up your clothes, before he can act. Feeling a little thrill from being discovered like this, you make your escape.');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', 'guy from the cinema');
+    qspCall(st, 'cum_call', '', 'guy from the cinema');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Flee', goto: ['city_cinema', ''] },

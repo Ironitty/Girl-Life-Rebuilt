@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -112,7 +110,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
     scene.text('Tamara pretend sighs and says: "So that is what I get for all that time I spent raising you?! Fine, do not worry about your lonely mother; just go play with your friend!"');
     scene.actions([
       { label: 'Go with Vicky', handler: (st: GameState) => {
-    qspCall(st, 'mey_vika_events', 'first_visit');
+    qspCall(st, 'mey_vika_events', '');
   } },
     ]);
   } },
@@ -122,7 +120,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
 
 function enterNextMeet(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
+  (s as any).zz_stage = (((s as any).args ?? 0)?.[1] ?? 0);
   ((s as any).mey_vika = (s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 30;
   qspCall(s, 'stat', '');
@@ -732,7 +730,7 @@ function enterParty3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParty4(s: GameState, scene: SceneBuilder): void {
-  (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
+  (s as any).zz_stage = (((s as any).args ?? 0)?.[1] ?? 0);
   if ((!((s as any).zz_stage ?? 0))) {
     (s as any).zz_stage = 16;
   }
@@ -932,7 +930,7 @@ function enterParty6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReputation(s: GameState, scene: SceneBuilder): void {
-  (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
+  (s as any).zz_stage = (((s as any).args ?? 0)?.[1] ?? 0);
   if (((s as any).zz_stage ?? 0)!==3) {
     // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/ev...
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/reputation` + ((s as any).zz_stage ?? '') + '.jpg"></center>');

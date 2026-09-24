@@ -226,8 +226,8 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Start to suck', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'strip_all', 'VillageRiver');
-    qspCall(st, 'npcgeneratec', '', 0, 'drunk man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'drunk man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_oral1.jpg');
     scene.text('You caress and start to please one of the men with your mouth while bringing pleasure to two other men with your hands. Stroking and jerking their hardened cocks.');
@@ -236,8 +236,8 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck the next guy', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'some country guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'some country guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'a');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_oral2.jpg');
     scene.text('You turn the other way and start sucking on the cock you\'ve been stroking…');
@@ -246,8 +246,8 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Two cocks at once', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'some country guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '0', 'some country guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'b');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_oral3.jpg');
     // TODO-QSP: dynamic text: The drunk and horny men continue to line up, one after another. Finally, some me...
@@ -267,8 +267,8 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get penetrated', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'some country man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'some country man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog1.jpg');
     scene.text('You actually feel a bit ecstatic from all that has happened and want to experience more of it.');
@@ -294,8 +294,8 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
 
 function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'npcgeneratec', '', 0, 'man', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'man', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog2.jpg');
   scene.text('The man that fucks your pussy slows down after a good while of wild and savage thrusting. Then, another man taps him on the shoulder and takes his place, then proceed to hammer your vagina just the same.');
@@ -311,8 +311,8 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let the men fuck your ass', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'drunk man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'drunk man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog3.jpg');
     // TODO-QSP: dynamic text: The third man was in no hurry to to start pounding your pussy, instead you felt ...
@@ -360,8 +360,8 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'village man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'village man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_mis2.jpg');
     scene.text('The next man lifts your leg up to allow himself better access to your pussy with his impressive cock.');
@@ -415,8 +415,8 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     if (((st as any).pcs_health ?? 0) <= 100) {
       (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (100);
     }
-    qspCall(st, 'npcgeneratec', '', 0, 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'gangbang');
     qspCall(st, 'stat', '');
@@ -426,13 +426,13 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make them cum', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
-    qspCall(st, 'npcgeneratec', '', 0, 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'gangbang');
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
-    qspCall(st, 'npcgeneratec', '', 0, 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'unknown drunk guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'gangbang');
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
@@ -444,8 +444,8 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Bend over again', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog5.jpg');
     scene.text('After the short rest, you\'re ready to be fucked again as the remaining men cheer you on.');
@@ -462,8 +462,8 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Please them all', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'unfamiliar guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'unfamiliar guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog6.jpg');
     scene.text('The next trio of men stepped up while arguing about who will get to fuck you first…');
@@ -494,8 +494,8 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'guy', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'guy', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog7.jpg');
   scene.text('Then someone else grabs your hips and starts to penetrate your ass.');
@@ -508,8 +508,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Slow down a little', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Drunk man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Drunk man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog8.jpg');
     scene.text('Next up is a drunk man barely able to stand up straight. His cock is pretty limp, as he\'s having difficulty getting an erection. However, he doesn\'t seem to mind much as he enters your anus.');
@@ -537,8 +537,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Kolyamba\'s waiting', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'a man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog10.jpg');
     scene.text('While you are sucking the men near you. In the corner of your eye, you notice Kolyamba stepping up and getting ready for his turn with you.');
@@ -565,8 +565,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     scene.text('You kneel obediently in front of the men, and several shove their cocks to your face immediately.');
     scene.actions([
       { label: 'Continue on', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_cow1.jpg');
     scene.text('"And now, let the little nympho fuck puppy work herself for a while." you hear someone say. Then, turning your head, you see a naked man lying on the ground and gesture to get on top of him.');
@@ -581,8 +581,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Impale yourself onto the next cock', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'drunk guy', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'drunk guy', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_cow2.jpg');
     scene.text('Another guy lies down beside the man that you\'re currently riding. Again, you climb on top of him and proceed to fuck him just as hard and without hesitation.');
@@ -599,8 +599,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue on', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'a man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_cow3.jpg');
     scene.text('You see a third man lying on the ground, and you might as well just do it. So you climb on top of him as well.');
@@ -637,8 +637,8 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'unknown man', (Math.floor(Math.random() * 27) + 19));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'unknown man', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'boyStat', 'A61', 2);
   // TODO-QSP: npc_had_sex[$boy[2]] = 1
@@ -649,15 +649,15 @@ function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
   scene.text('Kolyamba tells you that Mitka takes off already to visit Mira because he doesn\'t want to wait any longer.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'gangbang');
-  // TODO-QSP: gs 'arousal', 'anal', -5, $npcID[2], 'sub', 'gangbang'
+  qspCall(s, 'arousal', 'anal', (-5), (((s as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'gangbang');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Sandwiched again', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a villager', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'a man', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '0', 'a villager', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'a man', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'b');
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dp2.jpg');
     scene.text('The following two men appreciating the joke, start fucking you also simultaneously.');
@@ -680,14 +680,14 @@ function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck the last men off', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'c');
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'd');
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'b');
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'c');
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'd');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy1 ?? 0), 1);
     qspCall(st, 'cum_call', 'face', ((st as any).boy2 ?? 0), 1);
     qspCall(st, 'stat', '');

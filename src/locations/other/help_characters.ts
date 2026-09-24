@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuild(s: GameState, scene: SceneBuilder): void {
-  (s as any)._hc_fn = ((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
-  (s as any)._hc_nn = ((s as any).npc_nickname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
-  (s as any)._hc_ln = ((s as any).npc_lastname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
-  (s as any)._hc_un = ((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_npcid ?? 0)];
+  (s as any)._hc_fn = (((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_npcid ?? 0)] ?? 0);
+  (s as any)._hc_nn = (((s as any).npc_nickname ?? 0)?.[String((s as any)._hc_npcid ?? 0)] ?? 0);
+  (s as any)._hc_ln = (((s as any).npc_lastname ?? 0)?.[String((s as any)._hc_npcid ?? 0)] ?? 0);
+  (s as any)._hc_un = (((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_npcid ?? 0)] ?? 0);
   if (((s as any)._hc_un ?? 0) !== '') {
     (s as any).help_page_title = ((s as any)._hc_un ?? 0);
   } else {
@@ -91,9 +91,9 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   (s as any)._hc_i = 0;
   // TODO-QSP: :_hc_relloop
   if (((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] !== '') {
-    (s as any)._hc_p1 = ((String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).indexOf(String('|'))) + 1);
-    (s as any)._hc_reltype = (String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).slice((1)-1, ((1)-1)+(((s as any)._hc_p1 ?? 0) - 1)));
-    (s as any)._hc_rest = (String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).slice((((s as any)._hc_p1 ?? 0) + 1)-1));
+    (s as any)._hc_p1 = ((String((((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] ?? 0)).indexOf(String('|'))) + 1);
+    (s as any)._hc_reltype = (String((((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(((s as any)._hc_p1 ?? 0) - 1)));
+    (s as any)._hc_rest = (String((((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] ?? 0)).slice((((s as any)._hc_p1 ?? 0) + 1)-1));
     (s as any)._hc_p2 = ((String(((s as any)._hc_rest ?? 0)).indexOf(String('|'))) + 1);
     (s as any)._hc_relkey = (String(((s as any)._hc_rest ?? 0)).slice((1)-1, ((1)-1)+(((s as any)._hc_p2 ?? 0) - 1)));
     (s as any)._hc_relnpc = (String(((s as any)._hc_rest ?? 0)).slice((((s as any)._hc_p2 ?? 0) + 1)-1));
@@ -101,9 +101,9 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
       (s as any)._hc_relname = ((s as any).pcs_firstname ?? 0);
     } else {
       if (((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)] !== '') {
-        (s as any)._hc_relname = ((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)];
+        (s as any)._hc_relname = (((s as any).npc_usedname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)] ?? 0);
       } else {
-        (s as any)._hc_relname = ((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)];
+        (s as any)._hc_relname = (((s as any).npc_firstname ?? 0)?.[String((s as any)._hc_relnpc ?? 0)] ?? 0);
       }
     }
     (s as any)._hc_href = 'exec: gs ' + '\'' + 'help_characters' + '\'' + ', ' + '\'' + ((s as any)._hc_relkey ?? 0) + '\'';
@@ -154,7 +154,7 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 'In the village (Gad)';
     return;
   }
-  (s as any)._hc_lv = ((s as any).locat ?? 0)?.[String((s as any)._hc_locvar ?? 0)];
+  (s as any)._hc_lv = (((s as any).locat ?? 0)?.[String((s as any)._hc_locvar ?? 0)] ?? 0);
   if (((s as any)._hc_locvar ?? 0) === 'Stepdad') {
     if (((s as any)._hc_lv ?? 0) === 1) {
       (s as any).result = 'Asleep';

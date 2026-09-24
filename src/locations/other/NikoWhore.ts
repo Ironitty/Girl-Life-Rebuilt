@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -56,7 +54,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to remove cuffs', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'flash', 2, 'sub', 'humiliation');
     qspCall(st, 'stat', '');
-    scene.img(`${qspFunc(s, '$$face_image')}`);
+    scene.img(`${qspFunc(s, '$face_image')}`);
     scene.text('You squirm for a few seconds, attempting to free yourself from the cuffs until you hear the locker room door open and quickly look up in excitement.');
     scene.actions([
       { label: '???', handler: (st: GameState) => {
@@ -232,7 +230,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go to the hallway', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
@@ -616,10 +614,10 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoEscape(s: GameState, scene: SceneBuilder): void {
-  ((s as any).VKGroup = (s as any).VKGroup ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "NikoWhore" });
-  ((s as any).VKGroup = (s as any).VKGroup ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "NikoWhore" });
-  ((s as any).VKGroup = (s as any).VKGroup ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "NikoWhore" });
-  ((s as any).VKGroup = (s as any).VKGroup ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "NikoWhore" });
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[1] = (((s as any).grupvalue ?? 0)?.[1] ?? 0);
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[2] = (((s as any).grupvalue ?? 0)?.[2] ?? 0);
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[3] = (((s as any).grupvalue ?? 0)?.[3] ?? 0);
+  ((s as any).VKGroup = (s as any).VKGroup ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 0;
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 0;
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 0;
@@ -929,7 +927,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.text('You hear footsteps as they leave the room and everything starts to fade until you hear… "How could they do this to her?"…"Oh wow, she looks… Sticky."…" This isn\'t the time for jokes, Vicky! We need to do something! We can\'t just leave her like this!" …');
     scene.actions([
       { label: '…', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoDreams', 'family'] },
     ]);
   } },
@@ -1084,7 +1082,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.text(`Once he's finished, you eagerly swallow it all, enjoying the warmth of it sliding down your throat as he places his hand on your cheek and gently strokes it with his thumb. "You're so perfect, ${((st as any).pcs_firstname ?? '')}. I'm so lucky to have you and don't worry, I'll find a way to fix what happened yesterday. Meet me after school and we'll go out on a nice walk. We'll discuss what to do next then." He then kisses you on your forehead before zipping his pants up and leaving the restroom.`);
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_grounds', 'building'] },
     ]);
   } },
@@ -1119,7 +1117,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean forward and give him a passionate kiss. After the kiss, Niko smiles. "You\'re such an incredible girl. I always feel so lucky to have you. Now don\'t forget to meet me after school. I\'ll be waiting in the courtyard." You nod your head as he turns around and walks out of the restroom. You quickly get dressed and follow him out.');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_grounds', 'building'] },
     ]);
   } },
@@ -1139,7 +1137,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod your head. "Sure, I\'ll apologize." You take two steps forward and ram your knee into his balls before spitting on him. You then quickly grab your clothes and walk out of the restroom.');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['gschool_grounds', 'building'] },
     ]);
   } },

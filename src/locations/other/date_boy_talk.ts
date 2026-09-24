@@ -12,13 +12,13 @@ function enterBoyTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['what_do_you_like_talk'] === 0) {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'what_do_you_like_talk'"
   }
-  if ((!((String(((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1))) {
+  if ((!((String((((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';video_games;'))) + 1))) {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'video_games_talk'"
   }
   if (((s as any).date_ev ?? 0)?.['whats_your_type_talk'] === 0  &&  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'boyfriend'  &&  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'husband') {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'whats_your_type_talk'"
   }
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_length');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_length');
   if (((s as any).date_ev ?? 0)?.['love_hair_talk'] === 0  &&  ((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'love_hair_talk'"
   }
@@ -121,7 +121,7 @@ function enterVideoGamesTalk(s: GameState, scene: SceneBuilder): void {
 function enterVideoGamesLove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
   scene.text('"I love video games!" you smile.');
-  if (((String(((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+  if (((String((((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';video_games;'))) + 1) > 0) {
     scene.text('"Yeah?" He perks up, grinning back. "What do you play?"');
   } else {
     scene.text('"Oh, that\'s cool. What do you play?"');
@@ -137,11 +137,11 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
     { label: '"Casual" games', handler: (st: GameState) => {
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'date_talk', 'video_game_menu');
+    qspCall(st, 'date_talk', '');
   } },
       { label: 'Candy Crunch', handler: (st: GameState) => {
     scene.text('"I\'m always playing that candy game on my phone. It\'s so addicting, I can\'t put it down!"');
-    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String((((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0)).indexOf(String(';video_games;'))) + 1) > 0) {
       qspGoto(st, 'date_boy_talk', 'video_games_talk', 'mobile_game');
     } else {
       scene.text('"Oh, that\'s cool I guess."');
@@ -152,7 +152,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Call of Booty', handler: (st: GameState) => {
     scene.text('"I really like playing Call of Booty! Especially because of those sexy skins that come in the loot boxes."');
-    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String((((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0)).indexOf(String(';video_games;'))) + 1) > 0) {
       qspGoto(st, 'date_boy_talk', 'video_games_talk');
     } else {
       scene.text('"Oh, that\'s cool I guess."');
@@ -163,7 +163,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'FUFU (the football game)', handler: (st: GameState) => {
     scene.text('"I really like playing FUFU! All the fun of football without any of the sweating."');
-    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String((((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0)).indexOf(String(';video_games;'))) + 1) > 0) {
       qspGoto(st, 'date_boy_talk', 'video_games_talk');
     } else {
       if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
@@ -181,7 +181,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Competitive games', handler: (st: GameState) => {
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'date_talk', 'video_game_menu');
+    qspCall(st, 'date_talk', '');
   } },
       { label: 'Cunter-Strike', handler: (st: GameState) => {
     scene.text('"I play a lot of Cunter-Strike. I had to spend a lot of time to learn all the spray patters of the guns!"');
@@ -210,7 +210,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
     { label: '"Hardcore" games', handler: (st: GameState) => {
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'date_talk', 'video_game_menu');
+    qspCall(st, 'date_talk', '');
   } },
       { label: 'Cunt Souls', handler: (st: GameState) => {
     scene.text('"I like playing hard and difficult games. Cunt Souls is one of my favorites right now."');
@@ -253,7 +253,7 @@ function enterVideoGameSnob(s: GameState, scene: SceneBuilder): void {
 function enterWhatsYourTypeTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev = (s as any).date_ev ?? {})['whats_your_type_talk'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
-  if ((!((String(((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';type_talk;'))) + 1))) {
+  if ((!((String((((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';type_talk;'))) + 1))) {
     // TODO-QSP: $npc_conversations[$npcID] += ';type_talk;'
     // TODO-QSP: dynamic text: "So, I was wondering, what''s your type?" <<$npcdesc>> asks.
     scene.text(`"So, I was wondering, what's your type?" ${((s as any).npcdesc ?? '')} asks.`);
@@ -270,7 +270,7 @@ function enterWhatsYourTypeMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Never thought about it', handler: (st: GameState) => {
-    if ((!((String(((st as any).npc_conversations ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';type_talk;'))) + 1))) {
+    if ((!((String((((st as any).npc_conversations ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0)).indexOf(String(';type_talk;'))) + 1))) {
       scene.text('"My type?" The question startles you. "Uhmm... I don\'t know? I guess I never really thought about it before."');
     } else {
       scene.text('"Uhmm... I don\'t know? I guess I still haven\'t given it much thought."');
@@ -282,7 +282,7 @@ function enterWhatsYourTypeMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Body type', handler: (st: GameState) => {
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'date_boy_talk', 'whats_your_type_menu');
+    qspCall(st, 'date_boy_talk', '');
   } },
       { label: 'Skinny', handler: (st: GameState) => {
     scene.text('"I kinda like skinny guys," you tell him. "Not a lot of meat on their bones."');

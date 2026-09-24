@@ -11,13 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_id = 'beta_journal';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs $loc_id, 'init_array'
+  qspCall(s, '$loc_id', 'init_array');
   (s as any).hot_link = 'default';
-  // TODO-QSP: gs $loc_id, 'nav_construct'
+  qspCall(s, '$loc_id', 'nav_construct');
   if (((s as any).hot_link ?? 0) === '') {
-    // TODO-QSP: gs $loc_id, 'default'
+    qspCall(s, '$loc_id', 'default');
   } else {
-    // TODO-QSP: gs $loc_id, $hot_link
+    qspCall(s, '$loc_id', '$hot_link');
   }
   // TODO-QSP: end
   scene.build();
@@ -47,10 +47,10 @@ function enterInitArray(s: GameState, scene: SceneBuilder): void {
 
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).hot_link = ((s as any).locArgs?.[0] ?? 0);
-  // TODO-QSP: gs $loc_id, 'nav_construct'
+  qspCall(s, '$loc_id', 'nav_construct');
   scene.text('<center>');
-  // TODO-QSP: gs $loc_id, 'game_events'
-  // TODO-QSP: gs $loc_id, 'gametips'
+  qspCall(s, '$loc_id', 'game_events');
+  qspCall(s, '$loc_id', 'gametips');
   scene.text('</center>');
   // TODO-QSP: end
   scene.build();
@@ -95,7 +95,7 @@ function enterGameEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGametips(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs $loc_id, 'tips_init'
+  qspCall(s, '$loc_id', 'tips_init');
   (s as any).rnd_tip = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
   scene.text('<center><h3>Girl Life Random Tips</h3>');
   // TODO-QSP: $tip_body[rnd_tip]

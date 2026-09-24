@@ -37,7 +37,7 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Wash all your clothes (0:10, ' + String(((s as any).temp_washer_cost ?? '') ?? '') + ' <b>₽</b>)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
-    // TODO-QSP: gs 'money', 'pay', <<washer_total_wash_cost>>
+    qspCall(st, 'money', 'pay', ((st as any).washer_total_wash_cost ?? 0));
     // TODO-QSP: dynamic text: You wash all clothing for <<temp_washer_cost>> <b>₽</b>.
     scene.text(`You wash all clothing for ${((st as any).temp_washer_cost ?? '')} <b>₽</b>.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWashAll(st, scene); (st as any).locArgs = __savedLocArgs; }

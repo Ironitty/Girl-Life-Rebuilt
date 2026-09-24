@@ -32,10 +32,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Test vcard', handler: (st: GameState) => {
-    qspCall(st, 'beta_journal_relationships', 'vcard', 274);
+    qspCall(st, 'beta_journal_relationships', '');
   } },
     { label: 'Test Glossary', handler: (st: GameState) => {
-    qspCall(st, 'beta_journal_geography', 'geo_pavlovsk');
+    qspCall(st, 'beta_journal_geography', '');
   } },
   ]);
   scene.build();

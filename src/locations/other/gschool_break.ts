@@ -414,7 +414,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You swallow hard - perhaps you should have left when you had the chance…');
     scene.text('Some roughly start pulling your clothes off, ripping them in the process, as the others grab toys, dildos and strapons out of Lera\'s pack. Once you\'re naked, they pull you down until you\'re laying on the floor, spread eagle and held in place.');
     scene.text('While one of the girls reaches over and smacks your pussy, one grabs your clit between her fingers and pinches it hard. You can\'t help but squeal in pain.');
-    qspCall(st, 'pain', '', 3, 'clitoris', 'pinch');
+    qspCall(st, 'pain', '3', 'clitoris', 'pinch');
     qspCall(st, 'arousal', 'foreplay', 2, 'humiliation', 'maso', 'gangbang', 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -429,7 +429,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/gbully3.jpg');
     scene.text('Lera gets frustrated at the position, complaining that she can\'t pound you, so she pulls out and stands up. "Get the slut up so I can piledrive this bitch!"');
     scene.text('The other girls lift your hips into the air, pulling your legs forward so your knees are almost against your shoulders as they hold your arms and legs in place.');
@@ -448,8 +448,8 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 3, 'asshole', 'stretch');
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '3', 'asshole', 'stretch');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/gbully5.jpg');
     scene.text('Lena then pulls out. After a brief discussion, another girl, one of the younger ones, puts on the harness and lies down. "Come on slut, mount me."');
     // TODO-QSP: dynamic text: Not giving you a choice, the other girls pull you over to her and force you down...
@@ -754,7 +754,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons', 'short_break'] },
               { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.orgy0,0.jpg');
@@ -764,7 +764,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave the restroom', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.orgy.pre0,0.jpg');
@@ -968,7 +968,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (4);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
@@ -976,7 +976,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('Once he finally works his way balls deep, you stop tensing up and he starts fucking your ass harder and faster. Before long, he\'s pounding you and the slapping of flesh against flesh echoes into the bathroom.');
     scene.text('Just as it\'s starting to hurt again, he suddenly pulls out.');
     qspCall(st, 'arousal', 'anal', 5, 'sub');
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum', handler: (st: GameState) => {
@@ -1061,7 +1061,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop watching', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/alylav4.jpg');
@@ -1072,7 +1072,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop watching', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/alylav5.jpg');
@@ -1234,7 +1234,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Sneak away and leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
@@ -1382,14 +1382,14 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes at her. "Fine, <i>whatever</i>, I won\'t smoke…" you say in a sarcastic and insincere tone.');
     scene.text('She pulls the cigarette out of your hand and drops it on the floor.');
     scene.text('"Don\'t talk to me like that, young lady!" she barks as she grabs you painfully by the hair and forces you down until you\'re looking at the cigarette as she grinds it under her shoe. "You will come with me and learn some respect!"');
-    qspCall(st, 'pain', '', 1, 'hair', 'twist');
+    qspCall(st, 'pain', '1', 'hair', 'twist');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get pulled along', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo5.jpg');
     scene.text('She lets go of your hair, only to grab you by the ear and painfully twist it and pull you along. She drags you out of the restroom, down the hall, and into her currently empty classroom.');
-    qspCall(st, 'pain', '', 2, 'ears', 'twist');
+    qspCall(st, 'pain', '2', 'ears', 'twist');
     scene.actions([
       { label: 'Learn some manners', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo6.jpg');
@@ -1398,14 +1398,14 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
       { label: 'Lesson one', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo7.jpg');
     scene.text('She turns you around and lifts your skirt. Still holding your hair with one hand, her other hand gives your ass cheeks a swift slap, followed by a few more, each one more stinging than the last.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 2, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lesson one - part two', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo8.jpg');
     scene.text('With her hand in your hair, she forces you to bend over her desk to give her easier access to spank you. She lands several more swats on your ass and it\'s starting to sting.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 2, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1413,7 +1413,7 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo9.jpg');
     scene.text('She finally stops and for a moment you think she\'s done, but then she grabs the meter stick off the desk and slaps it painfully hard across your ass.');
     scene.text('"Have you learned your lesson yet?!" she asks before smacking you again.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 2, 'sub');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
@@ -1436,7 +1436,7 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
       { label: 'On your knees', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo11.jpg');
     scene.text('She forces you down to your knees and then your face, all the way against the dirty floor. Slipping out of her shoes, she uses one foot to press your cheek down against the floor as she spanks you with the meter stick.');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 2, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1473,7 +1473,7 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
     scene.text('She uses the meter stick to smack one of your breasts hard enough that it hurts. "Lick!"');
     scene.text('Not wanting to get smacked again, you start to lick her ass.');
     qspCall(st, 'arousal', 'rimming_give', 2, 'sub', 'humiliation');
-    qspCall(st, 'pain', '', 1, 'breasts', 'slap');
+    qspCall(st, 'pain', '1', 'breasts', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Eat her', handler: (st: GameState) => {

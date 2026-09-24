@@ -111,7 +111,7 @@ function enterCondomReactions(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterGoodThingCondom(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },

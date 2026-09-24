@@ -490,7 +490,7 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cats/sex/bj3.jpg');
     scene.text('You soon settle into a rhythm with your eyes closing as you start to enjoy yourself a bit. Mr. Sobulyagin\'s breathing quickens and you hear him moaning in pleasure. Eventually, he places his hand on the back of your head and starts forcing you to deepthroat him, which causes you to gag.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
-    qspCall(st, 'pain', '', 2, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'throat', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -546,7 +546,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, you put his cock in your mouth and start moving your head back and forth with your tongue constantly rolling over the head of his shaft. You feel his cock growing and stiffening as you caress it with your mouth and tongue.');
     scene.text('You soon settle into a rhythm with your eyes closing as you start to enjoy yourself a bit. Mr. Sobulyagin\'s breathing quickens, and you hear him moaning in pleasure. Eventually, he places his hand on the back of your head and starts forcing you to deepthroat him which causes you to gag.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
-    qspCall(st, 'pain', '', 2, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'throat', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -555,7 +555,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass checks several hard slaps, which cause you to wince in pain. "Yeah, bad little girls get their asses punished, and you have been a very bad girl." You can hear the leering in his voice as he gives your bare ass another hard smack. With that done, he spreads your cheeks and rams his cock against your anus. He doesn\'t even spit on your asshole. The only lubrication is the little bit of your slobber that\'s left on his cock.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(st, 'arousal', 'anal', (-5), 'sub', 'maso');
-    qspCall(st, 'pain', '', 3, 'asschecks', 'slap');
+    qspCall(st, 'pain', '3', 'asschecks', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Prepare for it', handler: (st: GameState) => {
@@ -564,14 +564,14 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: With a hard thrust he shoves his <<dick>> cm <<$dick_girth>> cock deep inside yo...
     scene.text(`With a hard thrust he shoves his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
-    qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
+    qspCall(st, 'pain', '7', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired5.jpg');
     scene.text('He soon settles into a hard, pounding rhythm. You are tearing up from the pain and grip the table tightly as you try to endure. Your asshole already feels like it is on fire, but he doesn\'t relent in the slightest. He just keeps pounding your little asshole, leaving you to wish he would hurry up and finish.');
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
-    qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
+    qspCall(st, 'pain', '7', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -627,7 +627,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, you put his cock in your mouth and start moving your head back and forth with your tongue constantly rolling over the head of his shaft. You feel his cock growing and stiffening as you caress it with your mouth and tongue.');
     scene.text('You soon settle into a rhythm with your eyes closing as you start to enjoy yourself a bit. Mr. Sobulyagin\'s breathing quickens, and you hear him moaning in pleasure. Eventually, he places his hand on the back of your head and starts forcing you to deepthroat him which causes you to gag.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
-    qspCall(st, 'pain', '', 2, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'throat', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -636,7 +636,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass checks several hard slaps, which cause you to wince in pain. "Yeah, bad little girls get their asses punished and you have been a very bad girl." You can hear the leering in his voice as he gives your bare ass another hard smack. With that, he spreads your cheeks and rams his cock against your anus. He doesn\'t even spit on your asshole. The only lubrication is the little bit of your slobber that\'s left on his cock.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(st, 'arousal', 'anal', (-5), 'sub', 'maso');
-    qspCall(st, 'pain', '', 3, 'asschecks', 'slap');
+    qspCall(st, 'pain', '3', 'asschecks', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Prepare for it', handler: (st: GameState) => {
@@ -645,14 +645,14 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: With a hard thrust he shoves his <<dick>> cm <<$dick_girth>> cock deep inside yo...
     scene.text(`With a hard thrust he shoves his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
-    qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
+    qspCall(st, 'pain', '7', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired5.jpg');
     scene.text('He soon settles into a hard, pounding rhythm. You are tearing up from the pain and grip the table tightly while you try to endure. Your asshole already feels like it is on fire, but he doesn\'t relent in the slightest. He just keeps pounding your little asshole, leaving you to wish he would hurry up and finish.');
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
-    qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
+    qspCall(st, 'pain', '7', 'asshole', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {

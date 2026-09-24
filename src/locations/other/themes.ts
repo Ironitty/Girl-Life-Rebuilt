@@ -14,11 +14,13 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Default'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === '') {
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'White';
     }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'static']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['themetype'] = 0;
     if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'White'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Black'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Modern Grey'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Custom'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === '') {
       ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'Default';
     }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic ' + ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, '$menu_obnovit', '');
   return;

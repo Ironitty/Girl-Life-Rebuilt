@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -242,7 +240,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
       }
       ((s as any).birth_control = (s as any).birth_control ?? {})['implant_timer'] = ((s as any).birth_control['implant_timer'] ?? 0) - (1);
       if ((((s as any).birth_control ?? 0)?.['implant_timer'] - 1090) > 0) {
-        qspCall(s, 'pain', '', '' + ((((s as any).birth_control ?? {})?.['implant_timer'] ?? 0) - 1090)*2 + '', 'armL', 'ache');
+        qspCall(s, 'pain', '' + ((((s as any).birth_control ?? {})?.['implant_timer'] ?? 0) - 1090)*2 + '', 'armL', 'ache');
       } else {
         if (((s as any).birth_control ?? 0)?.['implant_timer'] > 0  &&  ((s as any).birth_control ?? 0)?.['implant_timer'] < 30) {
           ((s as any).birth_control = (s as any).birth_control ?? {})['implant_status'] = 2;
@@ -361,7 +359,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $cycletemp[8] = ''
   }
   // TODO-QSP: dynamic text: You are currently <<$cycletemp[1]>><<$cycletemp[2]>><<$cycletemp[4]>> <<$cyclete...
-  scene.text(`You are currently ${qspUntranslated(s, "cycletemp[1]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[4]", { location: "fertility" })} ${qspUntranslated(s, "cycletemp[8]", { location: "fertility" })} Your womb damage is at ${((s as any).sterilewb ?? '')} and your Ovary damage is at ${((s as any).sterileov ?? '')}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}. You have been cummed on or inside yourself ${((s as any).stat ?? 0)?.['cum_count'] ?? ''} times.`);
+  scene.text(`You are currently ${(((s as any).cycletemp ?? 0)?.[1] ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}${(((s as any).cycletemp ?? 0)?.[4] ?? '')} ${(((s as any).cycletemp ?? 0)?.[8] ?? '')} Your womb damage is at ${((s as any).sterilewb ?? '')} and your Ovary damage is at ${((s as any).sterileov ?? '')}${(((s as any).cycletemp ?? 0)?.[2] ?? '')}. You have been cummed on or inside yourself ${((s as any).stat ?? 0)?.['cum_count'] ?? ''} times.`);
   (s as any).cycletemp_cnt = 0;
   if (((s as any).cycletemp_cnt ?? 0) > 0) {
     (s as any).cycletemp = 0;
@@ -374,7 +372,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $cycletemp[5] = ''
     }
     // TODO-QSP: dynamic text: Father <<cycletemp>>: <<$wombpotfath[cycletemp]>> - <<$cycletemp[5]>>
-    scene.text(`Father ${((s as any).cycletemp ?? '')}: ${((s as any).wombpotfath ?? 0)?.[String((s as any).cycletemp ?? 0)] ?? ''} - ${qspUntranslated(s, "cycletemp[5]", { location: "fertility" })}`);
+    scene.text(`Father ${((s as any).cycletemp ?? '')}: ${(((s as any).wombpotfath ?? 0)?.[String((s as any).cycletemp ?? 0)] ?? '')} - ${(((s as any).cycletemp ?? 0)?.[5] ?? '')}`);
     (s as any).cycletemp = ((s as any).cycletemp ?? 0) + (1);
     if (((s as any).cycletemp ?? 0) < Object.keys((s as any).wombpotfath ?? {}).length) {
       // TODO-QSP: jump 'cumcpfloop'
@@ -473,7 +471,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     scene.text(`Sperm spatter (of ${((s as any).cycletemp_cnt ?? '')}):`);
     scene.text('<table border=1><tr><th>Index</th><th>ID</th><th>Sperm Owner</th><th>Potential Potency</th><th>Age in Hours</th><th>Aware</th><th>Volume (ml)</th><th>Location</th><th>Spread Value</th></tr>');
     // TODO-QSP: :cumcsbloop
-    (s as any).cycletemp_vol = ((s as any).sparrvol ?? 0)?.[String((s as any).cycletemp ?? 0)] / 10;
+    (s as any).cycletemp_vol = (((s as any).sparrvol ?? 0)?.[String((s as any).cycletemp ?? 0)] ?? 0) / 10;
     if (((s as any).sparrloc ?? 0)?.[String((s as any).cycletemp ?? 0)] === 0) {
       // TODO-QSP: $cycletemp[3] = 'In your Vagina'
     } else {
@@ -685,7 +683,7 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
   (s as any).fp_fathid = ((s as any).locArgs?.[1] ?? 0);
   (s as any).fp_fathname = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).fp_fathname ?? 0) === '') {
-    (s as any).fp_fathname = ((s as any).npc_usedname ?? 0)?.[String((s as any).fp_fathid ?? 0)];
+    (s as any).fp_fathname = (((s as any).npc_usedname ?? 0)?.[String((s as any).fp_fathid ?? 0)] ?? 0);
   }
   (s as any).fp_bio = ((s as any).fp_fathid ?? 0);
   (s as any).fp_bel = ((s as any).fp_fathid ?? 0);

@@ -113,7 +113,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Exit the cafe', goto: ['pav_park', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {

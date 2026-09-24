@@ -60,7 +60,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A32_arg'] === 'gp_room') {
       qspGoto(s, 'gad_gphouse', 'main');
     } else {
-      // TODO-QSP: gt 'gad_gphouse', $locat['A32_arg']
+      qspGoto(s, 'gad_gphouse', (((s as any).locat ?? {})['A32_arg']));
     }
   }
   // TODO-QSP: end
@@ -640,7 +640,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     qspCall(st, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 3) + 1));
-    qspCall(st, 'cum_cleanup', '', 4);
+    qspCall(st, 'cum_cleanup', '4');
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_bathe_horse_prog'] = 2;
     qspCall(st, 'stat', '');
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -675,7 +675,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
       (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     qspCall(st, 'exp_gain', 'hndiwrk', (Math.floor(Math.random() * 3) + 1));
-    qspCall(st, 'cum_cleanup', '', 4);
+    qspCall(st, 'cum_cleanup', '4');
     ((st as any).grandpaQW = (st as any).grandpaQW ?? {})['chore_bathe_horse_prog'] = 2;
     qspCall(st, 'stat', '');
     if (((st as any).clothingworntype ?? 0) === 'nude') {

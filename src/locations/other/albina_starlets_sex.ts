@@ -10,9 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
-  qspCall(s, 'npcgeneratec', '', 0, 'The Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client1'] === 0) {
     scene.text('The Armenian, still tightly gripping your arm, drags you into his hotel room where he forces you to strip naked, his hungry eyes inspecting every inch of you.');
@@ -44,12 +44,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass. You\'re forced to endure this for what feels like an eternity before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Waste of a good pussy if you can\'t cum inside it I say, especially when it\'s hot little numbers like you!" he crudly remarks. "I might pay Albina a little visit again. Her tight little fuck hole is just begging me to fill it again!" he adds.');
     scene.text('To your despair and disgust, he drags you up next to him and forces you into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while speaking on his phone in a language you don\'t understand. This post sex torture finally ends 10 minutes later.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -61,12 +61,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Waste of a good pussy if you can\'t cum inside it I say, especially when it\'s dirty sluts like you who like it rough," he crudly remarks. "I might pay Albina a little visit again. Her tight little fuck hole is just begging me to fill it again!" he adds.');
     scene.text('To your disgust, he drags you up next to him and forces you into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while speaking on his phone in a language you don\'t understand. This post sex torture finally ends 10 minutes later.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -80,12 +80,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass. You\'re forced to endure this for what feels like an eternity before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Waste of a good pussy if you can\'t cum inside it I say, especially when it\'s hot little numbers like you!" he crudly remarks. "I might pay Albina a little visit again. Her tight little fuck hole is just begging me to fill it again!" he adds.');
     scene.text('To your despair and disgust, he drags you up next to him and forces you into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while bragging on his phone to his friend about "the fine little pussy" he just fucked and he "should come and sample it." This post sex torture finally ends 10 minutes later.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -120,12 +120,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass. You\'re forced to endure this for what feels like an eternity before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Another pounding where I can\'t cum inside you," he mutters. "Whores with fucking strings attached. At least the pussy is good."');
     scene.text('Knowing you\'ll have to do it anyway, you reluctantly crawl up next to him and into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while speaking on his phone in a language you don\'t understand. This post sex torture finally ends 10 minutes later.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -137,12 +137,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Another pounding where I can\'t cum inside you," he mutters. "Whores with fucking strings attached. At least the pussy is good."');
     scene.text('Knowing you\'ll have to do it anyway, you crawl into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while speaking on the phone in the language you don\'t understand again.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -158,12 +158,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes, he pulls out and flips you over before pulling you up onto your knees, your ass in the air. He slides back inside your pussy and starts pounding you doggystyle as he slaps and squeezes your ass. You\'re forced to endure this for what feels like an eternity before he suddenly pulls out and you feel his cum splattering onto your labia and asshole.');
     scene.text('"Another pounding where I can\'t cum inside you," he mutters. "Whores with fucking strings attached. At least the pussy is good."');
     scene.text('Knowing you\'ll have to do it anyway, you reluctantly crawl up next to him and into his now sweaty embrace, his flabby arm wrapped around your neck as he fondles and squeezes your breast while speaking on his phone in a language you don\'t understand. This post sex torture finally ends 10 minutes later.');
-    qspCall(st, 'pain', '', 2, 'throat', 'choke');
+    qspCall(st, 'pain', '2', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, 'sub', 'humiliation', 'rough', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 2, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'cum_call', 'labia', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '2', 'nipples', 'pinch');
+    qspCall(st, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(st, 'cum_call', 'labia', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -182,12 +182,12 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'npcgeneratec', '', 0, 'The Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
-  qspCall(s, 'npcgeneratec', '', 0, 'The second Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
+  qspCall(s, 'npcgeneratec', '0', 'The second Armenian', (Math.floor(Math.random() * 15) + 18), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust1\']', 'a');
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client2'] === 0) {
     ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client2'] = 1;
@@ -205,7 +205,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Very good little lamb. Now take my cock. Take it all!" one of the men barks and forces his entire length into your mouth, causing you to choke. The two men laugh and force you to keep sucking and jerking them off.');
     qspCall(st, 'arousal', 'hj', 3, ((st as any).npcID ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'arousal', 'bj', 6, ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'humiliation', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
+    qspCall(st, 'pain', '1', 'throat', 'choke');
     qspCall(st, 'arousal', 'hj', 3, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'stat', '');
@@ -223,7 +223,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('His cock pops out of you and his cum slowly runs from your hole as the man you\'re sucking picks up the pace.');
     qspCall(st, 'arousal', 'anal', 30, ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'prostitution');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID1 ?? 0), 'group', 'sub', 'rough', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'cheeks', 'slap');
+    qspCall(st, 'pain', '1', 'cheeks', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get roughly pounded', handler: (st: GameState) => {
@@ -232,10 +232,10 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re slowly sucking the man\'s cock when he suddenly grabs your head and starts forcefully fucking your mouth, causing you to gag on his cock while the other reaches round and painfully squeezes and twists your nipples as he pounds your pussy.');
     scene.text('You\'re trying your best to endure it, tears running down your cheeks, when the man fucking you suddenly pulls out and moves around in front of you and starts jerking his cock.');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'prostitution');
-    qspCall(st, 'pain', '', 3, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
+    qspCall(st, 'pain', '3', 'nipples', 'pinch');
+    qspCall(st, 'pain', '1', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow', handler: (st: GameState) => {
@@ -243,8 +243,8 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('The man in your mouth suddenly forces you down onto his cock and you choke as his tip hits your throat. Unable to move, you let out a strangled gurgle as cum hits the back of your throat.');
     scene.text('The man frees you from his grip, but you don\'t have time to recover before the other one grabs your hair and roughly pulls you up to him.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group', 'sub', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust']
+    qspCall(st, 'pain', '1', 'throat', 'choke');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow again', handler: (st: GameState) => {
@@ -254,7 +254,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('You do as you\'re told and swallow the loads in your mouth, while using your finger to scoop the cum on your chin back into your mouth. You show the man your clean tongue and he releases you with a pat on the head.');
     scene.text('"This little lamb knows her place. I think we\'ll be seeing you again soon!"');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -285,7 +285,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Very good little lamb. Now take my cock. Take it all!" one of the men barks and forces his entire length into your mouth, causing you to choke. The two men laugh and force you to keep sucking and jerking them off.');
     qspCall(st, 'arousal', 'hj', 3, ((st as any).npcID ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'arousal', 'bj', 6, ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'humiliation', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
+    qspCall(st, 'pain', '1', 'throat', 'choke');
     qspCall(st, 'arousal', 'hj', 3, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
     qspCall(st, 'stat', '');
@@ -303,7 +303,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('His cock pops out of you and his cum slowly runs from your hole as the man you\'re sucking picks up the pace.');
     qspCall(st, 'arousal', 'anal', 30, ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'prostitution');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID1 ?? 0), 'group', 'sub', 'rough', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'cheeks', 'slap');
+    qspCall(st, 'pain', '1', 'cheeks', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get roughly pounded', handler: (st: GameState) => {
@@ -312,10 +312,10 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re slowly sucking the man\'s cock when he suddenly grabs your head and starts forcefully fucking your mouth, causing you to gag on his cock while the other reaches round and painfully squeezes and twists your nipples as he pounds your pussy.');
     scene.text('You\'re trying your best to endure it, tears running down your cheeks, when the man fucking you suddenly pulls out and moves around in front of you and starts jerking his cock. "Get ready for your feeding, lamb. It\'s got lots of protein in it!" he laughs.');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID ?? 0), 'group', 'sub', 'rough', 'prostitution');
-    qspCall(st, 'pain', '', 3, 'nipples', 'pinch');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
+    qspCall(st, 'pain', '3', 'nipples', 'pinch');
+    qspCall(st, 'pain', '1', 'throat', 'choke');
     qspCall(st, 'arousal', 'vaginal', 30, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow', handler: (st: GameState) => {
@@ -323,8 +323,8 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('The man in your mouth suddenly forces you down onto his cock. You choke as his tip hits your throat. Unable to move, you let out a strangled gurgle as cum hits the back of your throat.');
     scene.text('The man frees you from his grip, but you don\'t have time to recover before the other one grabs your hair and roughly pulls you up to him.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group', 'sub', 'prostitution');
-    qspCall(st, 'pain', '', 1, 'throat', 'choke');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust']
+    qspCall(st, 'pain', '1', 'throat', 'choke');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow again', handler: (st: GameState) => {
@@ -334,7 +334,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('You do as you\'re told and swallow the loads in your mouth, while using your finger to scoop the cum on your chin back into your mouth. You show the man your clean tongue and he releases you with a pat on the head.');
     scene.text('"The little lamb remembers her place. Good."');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'group', 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -358,12 +358,12 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'npcgeneratec', '', 0, 'The confident boy', (Math.floor(Math.random() * 6) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The confident boy', (Math.floor(Math.random() * 6) + 18), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
-  qspCall(s, 'npcgeneratec', '', 0, 'The shy boy', (Math.floor(Math.random() * 6) + 18), 0, 1);
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
+  qspCall(s, 'npcgeneratec', '0', 'The shy boy', (Math.floor(Math.random() * 6) + 18), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust1\']', 'a');
   qspCall(s, 'stat', '');
   if (((s as any).AlbinaQW ?? 0)?.['client3'] === 0) {
     ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['client3'] = 1;
@@ -396,7 +396,7 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of them fuck you like this for a good few minutes until the shy boy suddenly pulls out and walks around next to his friend.');
     qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'sub', 'group', 'prostitution');
     qspCall(st, 'arousal', 'vaginal', (-1), ((st as any).npcID1 ?? 0), 'sub', 'group', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'sub', 'group', 'prostitution');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -407,8 +407,8 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
     scene.text('The shy boy jerks his dick and quickly reaches climax as he shoots his load into your open mouth. You absent-mindedly rub your pussy as you play with the cum in your mouth.');
     scene.text('"Damn, you left this kitty in heat. Must have fucked her real good, bro!" the confident boy laughs as his friend blushes and you swallow his cum.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'sub', 'group', 'humiliation', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust']
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -442,9 +442,9 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'sub', 'group', 'prostitution');
     qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID1 ?? 0), 'sub', 'group', 'prostitution');
     qspCall(st, 'arousal', 'vaginal', (-1), ((st as any).npcID ?? 0), 'sub', 'group', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'vaginal', (-1), ((st as any).npcID1 ?? 0), 'sub', 'group', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
@@ -454,8 +454,8 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
     scene.text('"That blonde one has some pretty pretty nice tits. I might get her for a… one on one," the shy one replies.');
     scene.text('"Damn bro, you\'ve barely lost your V-card and you\'re already a player!"');
     scene.text('They ignore you as you go and clean up.');
-    // TODO-QSP: gs 'cum_call', 'face', $AlbinaQW['Cust']
-    // TODO-QSP: gs 'cum_call', 'face', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'face', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'cum_call', 'face', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home'] },
@@ -473,9 +473,9 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'npcgeneratec', '', 0, 'The old man', (Math.floor(Math.random() * 11) + 60), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The old man', (Math.floor(Math.random() * 11) + 60), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
   qspCall(s, 'stat', '');
   scene.text('Holding your hand, the old man escorts you into his cheap motel room. While he still retains some muscle and even tattoos from his youth, you can\'t ignore the fact that he\'s old enough to be your grandfather, if not older.');
   // TODO-QSP: end
@@ -498,7 +498,7 @@ function enterWhore4(s: GameState, scene: SceneBuilder): void {
     scene.text('"God, you feel amazing!" he grunts. "I never thought I\'d ever be fucking a tight young pussy again!"');
     scene.text('You let out some fake moans, his cock not penetrating you deep enough for you to feel much pleasure despite his full length being inside you.');
     qspCall(st, 'arousal', 'vaginal', (-2), 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ride him', handler: (st: GameState) => {
@@ -527,7 +527,7 @@ function enterWhore4(s: GameState, scene: SceneBuilder): void {
     scene.text('"God, that was amazing!" he says with a happy smile. "You truly made an old man feel young again, darling. I\'ll be sure to tell my friends all about you!"');
     scene.text('You get up off your knees as he starts pulling his clothes back on. As you do, you spot the clock on the end table and are surprised to see that barely 10 minutes have passed since you entered the room.');
     scene.text('You sigh as your lack of pleasure suddenly makes sense, but the old man is too busy to hear you.');
-    // TODO-QSP: gs 'cum_call', 'face', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'face', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'hj', (-2), 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -548,12 +548,12 @@ function enterWhore4(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  qspCall(s, 'npcgeneratec', '', 0, 'The first old man', (Math.floor(Math.random() * 6) + 60), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The first old man', (Math.floor(Math.random() * 6) + 60), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
-  qspCall(s, 'npcgeneratec', '', 0, 'The second old man', (Math.floor(Math.random() * 6) + 60), 0, 1);
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
+  qspCall(s, 'npcgeneratec', '0', 'The second old man', (Math.floor(Math.random() * 6) + 60), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust1\']', 'a');
   qspCall(s, 'stat', '');
   scene.text('The two old men can barely contain their excitement as they lead you to their cheap motel room. You can\'t ignore the fact that they\'re both old enough to be your grandfather, if not older.');
   scene.text('As soon as you enter the room, the two men immediately start undressing faster than you were expecting for men their age.');
@@ -579,7 +579,7 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
     scene.text('"You need to try this pussy!" the man behind you says between grunts. "Young, ripe and tighter than the vice in my workshop!"');
     qspCall(st, 'arousal', 'bj', (-2), ((st as any).npcID ?? 0), 'group', 'prostitution');
     qspCall(st, 'arousal', 'vaginal', (-2), ((st as any).npcID1 ?? 0), 'group', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swap position', handler: (st: GameState) => {
@@ -589,7 +589,7 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
     scene.text('"You weren\'t joking about her pussy, either! If she keeps riding me like this, I\'ll be blowing my load before I know it!" the other man laughs.');
     qspCall(st, 'arousal', 'vaginal', (-2), ((st as any).npcID ?? 0), 'group', 'prostitution');
     qspCall(st, 'arousal', 'bj', (-2), ((st as any).npcID1 ?? 0), 'group', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
@@ -598,8 +598,8 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few seconds, they both start jerking themselves off as one of them tells you to open your mouth.');
     scene.text('You do as you\'re told and stick out your tongue before the two men take turns blowing their loads in your mouth. Their cum tastes rather foul, but they force you to swallow it.');
     scene.text('Finished with you, the two men cheerfully chat with each other, stating that you\'re another "Starlet whore" crossed off their list before they discuss what girl they should get next time.');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust']
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'arousal', 'hj', (-2), ((st as any).npcID ?? 0), 'group', 'prostitution');
     qspCall(st, 'arousal', 'bj', (-2), ((st as any).npcID ?? 0), 'group', 'prostitution');
     qspCall(st, 'arousal', 'hj', (-2), ((st as any).npcID1 ?? 0), 'group', 'prostitution');
@@ -621,9 +621,9 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
-  qspCall(s, 'npcgeneratec', '', 0, 'The man', (Math.floor(Math.random() * 17) + 24), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The man', (Math.floor(Math.random() * 17) + 24), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
   qspCall(s, 'stat', '');
   (s as any).orgasm_or = 'no';
   scene.text('The man leads you by the hand into his hotel room and over to the bed, where he undresses you and lays you on your back. You notice the ring on his finger, but since he hasn\'t paid for you to ask questions, you ignore it.');
@@ -655,7 +655,7 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
     scene.text('The man sits up and bends you over on your hands and knees. He moves in behind you and starts grinding the tip of his cock between your labia, knowingly teasing you but still not letting you cum.');
     scene.text('He then slowly slides his dick into your pussy and starts fucking you, teasing you by bringing you to the edge before pulling out at the last second, denying you your much needed orgasm before sliding back in and continuing.');
     qspCall(st, 'arousal', 'vaginal', (-2), 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'BDSM', (-2), 'sub', 'prostitution');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -664,9 +664,9 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
     scene.text('Eventually, his thrusts grow faster and he pulls out and pushes you on your stomach. He groans as his cum spurts onto your ass. When he finishes, he grabs his phone and moves around beside you.');
     scene.text('"That pussy is one of the best I\'ve ever had. I just need a souvenir to remind me of it," he smiles as he takes a photo of you and your cum splattered ass. "You definitely satisfied me, so you deserve your reward."');
     qspCall(st, 'arousal', 'vaginal', (-2), 'sub', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'precum', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'precum', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'arousal', 'BDSM', (-2), 'sub', 'humiliation', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'butt', $AlbinaQW['Cust']
+    qspCall(st, 'cum_call', 'butt', ((st as any).AlbinaQW ?? 0)?.['Cust']);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get your reward', handler: (st: GameState) => {
@@ -679,8 +679,8 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal_finger', (-1), 'sub', 'prostitution');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'BDSM', (-1), 'sub', 'humiliation', 'prostitution');
-    // TODO-QSP: gs 'cum_call', 'pantyrear', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'slap');
+    qspCall(st, 'cum_call', 'pantyrear', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '1', 'asscheeks', 'slap');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home', 'no_clean'] },
@@ -710,14 +710,14 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the other men pours some vodka into a glass and offers it to you.');
   scene.text('"I can see you\'re a little nervous, so why don\'t you take this liquid courage first?"');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'npcgeneratec', '', 0, 'The old man', (Math.floor(Math.random() * 21) + 40), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The old man', (Math.floor(Math.random() * 21) + 40), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust0'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust0']
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust0\']');
   (s as any).s = 1;
   // TODO-QSP: :loop_whore7
-  qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend ' + ((s as any).s ?? 0) + '', (Math.floor(Math.random() * 31) + 30), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The old man\'s friend ' + ((s as any).s ?? 0) + '', (Math.floor(Math.random() * 31) + 30), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust' + String(((s as any).s ?? 0))] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust<<s>>'], s
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust' + ((s as any).s ?? 0) + '\']', ((s as any).s ?? 0));
   (s as any).s = ((s as any).s ?? 0) + (1);
   if (((s as any).s ?? 0) < 12) {
     // TODO-QSP: jump 'loop_whore7'
@@ -781,8 +781,8 @@ function enterWhore7_1(s: GameState, scene: SceneBuilder): void {
   scene.text('However, you don\'t have a chance to recover before you\'re passed to another man who starts roughly throat fucking you. You lose focus and track of time as you\'re passed around by the men and roughly abused by them.');
   (s as any).s = 1;
   // TODO-QSP: :loop_whore7_0
-  // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[s], 'sub', 'gangbang', 'prostitution'
-  // TODO-QSP: gs 'arousal', 'bj', -2, $npcID[s], 'sub', 'gangbang', 'prostitution'
+  qspCall(s, 'arousal', 'hj', (-2), (((s as any).npcID ?? 0)?.[String((s as any).s ?? 0)] ?? 0), 'sub', 'gangbang', 'prostitution');
+  qspCall(s, 'arousal', 'bj', (-2), (((s as any).npcID ?? 0)?.[String((s as any).s ?? 0)] ?? 0), 'sub', 'gangbang', 'prostitution');
   (s as any).s = ((s as any).s ?? 0) + (1);
   if (((s as any).s ?? 0) < 12) {
     // TODO-QSP: jump 'loop_whore7_0'
@@ -797,7 +797,7 @@ function enterWhore7_1(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes, you\'re able to get up on all fours, gather your clothes and slowly crawl to the bathroom, none of the men caring about you.');
     (st as any).s = 1;
     // TODO-QSP: :loop_whore7_1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[s], 1
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[String((st as any).s ?? 0)] ?? 0), 1);
     (st as any).s = ((st as any).s ?? 0) + (1);
     if (((st as any).s ?? 0) < 12) {
       // TODO-QSP: jump 'loop_whore7_1'
@@ -842,8 +842,8 @@ function enterWhore7_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhore8(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'The female client', (Math.floor(Math.random() * 11) + 30), 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'The female client', (Math.floor(Math.random() * 11) + 30), 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/prostitute/dom_start.jpg');
   scene.text('The woman takes you to her car and makes you sit in the back seat. After a silent journey, you arrive at her home and she leads you inside to her bedroom.');
@@ -923,7 +923,7 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
       scene.text('"You need to learn to be a good little pet!" she barks before delivering another hard smack to your ass, making you yelp even louder. She continues spanking you until your ass is red and stinging.');
       scene.text('"Maybe you\'ll remember your purpose now, pet! To make <i>me</i> feel good!"');
       scene.text('You just nod as tears well up in your eyes.');
-      qspCall(st, 'pain', '', 3, 'asscheeks', 'spank');
+      qspCall(st, 'pain', '3', 'asscheeks', 'spank');
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Finished', handler: (st: GameState) => {
@@ -961,12 +961,12 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
 
 function enterWhore9(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 45;
-  qspCall(s, 'npcgeneratec', '', 0, 'The porn actor', (Math.floor(Math.random() * 17) + 24), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'The porn actor', (Math.floor(Math.random() * 17) + 24), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
-  qspCall(s, 'npcgeneratec', '', 0, 'The bald man', (Math.floor(Math.random() * 17) + 24), 0, 1);
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust\']');
+  qspCall(s, 'npcgeneratec', '0', 'The bald man', (Math.floor(Math.random() * 17) + 24), 0, 1);
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Cust1'] = ((s as any).npclastgenerated ?? 0);
-  // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust1'], 'a'
+  qspCall(s, 'npcStat', '$AlbinaQW[\'Cust1\']', 'a');
   qspCall(s, 'stat', '');
   scene.text('The bald man escorts you to a hotel room, where you\'re greeted by a second man.');
   scene.text('"Okay, here\'s the deal, bitch," the bald man says. "We\'ve hired you to film a porn scene for us. My man here will be the one fucking you while I do the filming. Now hurry up and get your clothes off!"');
@@ -1008,8 +1008,8 @@ function enterWhore9(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts filming himself fucking you while occasionally coming up for a shot of you. The bald man just silently watches, but seems pleased as the other man starts grunting while thrusting even harder.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cum_call', 'stomach', $AlbinaQW['Cust']
-    qspCall(st, 'pain', '', 3, 'cheeks', 'slap');
+    qspCall(st, 'cum_call', 'stomach', ((st as any).AlbinaQW ?? 0)?.['Cust']);
+    qspCall(st, 'pain', '3', 'cheeks', 'slap');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/stomach/bellycum5.mp4');
     scene.text('You panic a little since he waits until the very last second to pull out, his warm cum splattering over your stomach as he groans in pleasure.');
@@ -1029,7 +1029,7 @@ function enterWhore9(s: GameState, scene: SceneBuilder): void {
     scene.text('You gag and choke on his cock as he fucks your throat, showing no sign of slowing down. You glance over at the other man, but he doesn\'t seem to care as he pulls his clothes back on.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cum_call', 'face', $AlbinaQW['Cust1']
+    qspCall(st, 'cum_call', 'face', ((st as any).AlbinaQW ?? 0)?.['Cust1']);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/facial/facia0,3.mp4');
     scene.text('Your eyes are watering and your vision is going blurry as he continues thrusting his dick down your throat.');

@@ -80,7 +80,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
-      // TODO-QSP: gs 'money', 'pay', pav_swimpool['entrancefee']
+      qspCall(st, 'money', 'pay', ((st as any).pav_swimpool ?? 0)?.['entrancefee']);
       ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['entrancepaid'] = ((st as any).daystart ?? 0);
       qspCall(st, 'stat', '');
       qspGoto(st, 'pav_pool', 'entrance');
@@ -172,7 +172,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 2;
-      // TODO-QSP: gs 'money', 'pay', pav_swimpool['entrancefee']
+      qspCall(st, 'money', 'pay', ((st as any).pav_swimpool ?? 0)?.['entrancefee']);
       ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['entrancepaid'] = ((st as any).daystart ?? 0);
       qspCall(st, 'stat', '');
       qspGoto(st, 'pav_pool', 'entrance');
@@ -457,8 +457,8 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
       { label: 'Clean the cum from your face', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).pcs_makeup = 1;
-    qspCall(st, 'cum_cleanup', '', 9);
-    qspCall(st, 'cum_cleanup', '', 13);
+    qspCall(st, 'cum_cleanup', '9');
+    qspCall(st, 'cum_cleanup', '13');
     if (((st as any).pcs_sweat ?? 0) > 19) {
       (st as any).pcs_sweat = ((st as any).pcs_sweat ?? 0) - (5);
     }
@@ -803,7 +803,7 @@ function enterPoolwater(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool', 'poolwater');
   (s as any).location_type = 'public_indoors';
   (s as any).pcs_hairbsh = 0;
-  qspCall(s, 'cum_cleanup', '', 10);
+  qspCall(s, 'cum_cleanup', '10');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/inwater.jpg');
   scene.text('You are in the water. It feels very relaxing.');

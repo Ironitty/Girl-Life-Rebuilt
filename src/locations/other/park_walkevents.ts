@@ -48,8 +48,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('From the shadow of the tree, a guy walks out…');
       scene.text('He comes up to you, grabs you, and, through gritted teeth says, "Com\'ear Bitch", dragging you into the bushes.');
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+      qspCall(s, 'npcStat', '$npclastgenerated');
       if (((s as any).succubusQW ?? 0) === 14) {
         scene.actions([
           { label: 'Lure him in and feed (this can take a lot of time)', handler: (st: GameState) => {
@@ -188,7 +188,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 6) + 1);
     scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand ?? '')}.jpg`);
     scene.text('The man pushes you over the backrest of the bench and pushes his cock into your pussy. He slowly begins to thrust in and out of you.');
-    qspCall(st, 'cum_call', '', '', 'Guy from the park');
+    qspCall(st, 'cum_call', '', 'Guy from the park');
     qspCall(st, 'arousal', 'vaginal', 20, 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -234,7 +234,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 6) + 1);
     scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand ?? '')}.jpg`);
     scene.text('The man pushes you over the backrest of the bench and pushes his cock into your pussy. He slowly begins to thrust in and out of you.');
-    qspCall(st, 'cum_call', '', '', 'Guy from the park');
+    qspCall(st, 'cum_call', '', 'Guy from the park');
     qspCall(st, 'arousal', 'vaginal', 20, 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -304,12 +304,12 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     if ((!((st as any).fotoparkrand ?? 0))) {
       scene.text('You hide behind the tree and start taking pictures. Somehow you get carried away and one of the perpetrators noticed you. He slowly walks up behind you, grabs you and takes you to the others.');
       scene.text('"Look what I\'ve found. We\'ve got ourselves a new volunteer." says the guy while holding you tightly.');
-      qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-      qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), '1');
-      qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), '2');
+      qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcStat', '$npclastgenerated');
+      qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcStat', '$npclastgenerated', '1');
+      qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcStat', '$npclastgenerated', '2');
       scene.actions([
         { label: 'Try to talk your way out', handler: (st: GameState) => {
     scene.text('You try to talk your way out, but they just laugh at you, pitying you for even trying. Then one of the guys forces you onto your knees as they prepare to rape you.');
@@ -471,8 +471,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fuck, slut, suck faster!" orders one of the guys.');
     (st as any).i = 0;
     // TODO-QSP: :park_blowbang
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 5) + 19));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 5) + 19));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'bj', 10, 'gangbang', 'sub', 'humiliation', 'deepthroat', 'rape');
     qspCall(st, 'arousal', 'hj', (-10), 'gangbang', 'sub', 'humiliation', 'rape');
     qspCall(st, 'arousal', 'titjob', (-10), 'gangbang', 'sub', 'humiliation', 'rape');
@@ -486,7 +486,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Guys, be quieter… someone might hear," you try to warn them while coughing.');
     scene.text('One the guys bitch-slaps you, "Shut up slut. You\'re not here to talk."');
     scene.text('"Stop talking and work your mouth, bitch. You\'re here to suck, not to lecture us." another one adds.');
-    qspCall(st, 'pain', '', 5, 'cheeks', 'slap');
+    qspCall(st, 'pain', '5', 'cheeks', 'slap');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
@@ -502,19 +502,19 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('That you were ashamed goes without saying, you just swallowed six strangers\' cum and took two others\' loads all over you.');
     (st as any).i = 0;
     // TODO-QSP: :park_blowbang2
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 5) + 19));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 5) + 19));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
     qspCall(st, 'arousal', 'bj', 3, 'gangbang', 'sub', 'humiliation', 'deepthroat');
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) < 6) {
       // TODO-QSP: jump 'park_blowbang2'
     }
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 5) + 19));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 5) + 19));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 5) + 19));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 5) + 19));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'cum_call', 'breasts', ((st as any).boy ?? 0));
     qspCall(st, 'arousal', 'titjob', 2, 'gangbang', 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
@@ -610,14 +610,14 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 { label: 'Walk away', goto: ['city_park', 'start'] },
 { label: 'Walk up to him', handler: (st: GameState) => {
     (st as any).ublyudokparkivent = 1;
-    qspCall(st, 'pain', '', 8, 'head', 'hit');
+    qspCall(st, 'pain', '8', 'head', 'hit');
     qspCall(st, 'stat', '');
     scene.text('You walk up to him, asking what he wants. He says, he would like to show you something. As you approach, and lean in he quickly hits you over the back head and everything fades to black.');
     scene.actions([
       { label: 'Wake up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
-    qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/sex/event/rape/1.jpg');
     scene.text('"Ouch…", you say groggily as you wake up.');
@@ -700,7 +700,7 @@ function enter6b(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/centralpark/sex/event/rape/8.jpg');
     scene.text('All of a sudden he pulls out and your mouth makes a pop sound as his cock leaves your mouth.');
     scene.text('"You\'re quite the cocksucker, but I\'d rather use a different hole instead," he says as he shoves three of his fingers deep inside you. It\'s very painful, and as your pussy stretches, you scream from the pain.');
-    qspCall(st, 'pain', '', 7, 'vaginal', 'stretch');
+    qspCall(st, 'pain', '7', 'vaginal', 'stretch');
     qspCall(st, 'arousal', 'vaginal_finger', 5, 'sub', 'humiliation', 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -841,8 +841,8 @@ function enter7(s: GameState, scene: SceneBuilder): void {
 function enter8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if ((Math.floor(Math.random() * 1201) + 0) <= ((s as any).pcs_apprnc ?? 0)  &&  ((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
-    qspCall(s, 'npcgeneratec', '', 0, '', 'like');
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', '', 'like');
+    qspCall(s, 'npcStat', '$npclastgenerated');
     // TODO-QSP: dynamic text: A guy with <<$npcheight_pref>>, <<$npcbuild>> body and <<$npchair>> hair approac...
     scene.text(`A guy with ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')} body and ${((s as any).npchair ?? '')} hair approaches you. He's wearing wearing ${((s as any).npcClo ?? '')}.`);
     // TODO-QSP: dynamic text: The guy introduces himself as <<$npcdesc>> and asks for your number.
@@ -875,7 +875,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_npcID ?? 0) === '') {
     qspGoto(s, 'park_walkevents', 'empty');
   }
-  qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
+  qspCall(s, 'npcStat', '$temp_npcID');
   // TODO-QSP: dynamic text: As you walk through the park, you notice <<$npcdesc>> walking towards you.
   scene.text(`As you walk through the park, you notice ${((s as any).npcdesc ?? '')} walking towards you.`);
   if (((s as any).npc_had_sex ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  (!((s as any).SUB ?? 0))) {
@@ -934,7 +934,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
 { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['city_park', 'start'] },
 ]);
   return;
@@ -1029,9 +1029,9 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       scene.text('About halfway through your run, you hear a whistle pierce the air.');
       scene.actions([
         { label: 'Turn', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 28) + 18), 'like');
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 28) + 18), 'like');
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    scene.img(`${(((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}`);
     ((st as any).temp = (st as any).temp ?? {})['catcall'] = (Math.floor(Math.random() * 3) + 1);
     scene.text('Turning your head instinctively at the sound, you see a guy lowering his fingers from his mouth, a wide grin on his face.');
     if (((st as any).temp ?? 0)?.['catcall'] === 1) {
@@ -1066,7 +1066,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     scene.text('Slowing down, your jog reduces to a walk until you stop right in front of the guy.');
     scene.text('"You serious?" you puff.');
     // TODO-QSP: dynamic text: "Serious about you," he snickers before making a kissy face at you. "I''m <<$npc...
-    scene.text(`"Serious about you," he snickers before making a kissy face at you. "I'm ${((st as any).npc_firstname ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? ''}. What's your name?"`);
+    scene.text(`"Serious about you," he snickers before making a kissy face at you. "I'm ${(((st as any).npc_firstname ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? '')}. What's your name?"`);
     scene.actions([
       { label: 'You\'re a piece of shit', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['catcall'] = 4;
@@ -1087,7 +1087,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       scene.text('He quickly heads out of the park and towards an apartment complex, you follow all the way.');
       scene.actions([
         { label: 'Go to his place', handler: (st: GameState) => {
-    qspCall(st, 'npcpreservec', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcpreservec', '$npclastgenerated');
     (st as any).npclastgenerated = ((st as any).npclastsaved ?? 0);
     ((st as any).hookup = (st as any).hookup ?? {})['pickup'] = 'park_run';
     qspGoto(st, 'sex_ev_start', 'hookup_npc_home_start');

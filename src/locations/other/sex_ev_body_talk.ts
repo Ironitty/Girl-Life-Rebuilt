@@ -12,7 +12,7 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['boy_like_hair_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "I love your hair," <<$npc_usedname[$npcID]>> murmurs, running his fingers throu...
-  scene.text(`"I love your hair," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} murmurs, running his fingers through your locks.`);
+  scene.text(`"I love your hair," ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} murmurs, running his fingers through your locks.`);
   // TODO-QSP: end
   // TODO-QSP: end
   scene.actions([
@@ -84,7 +84,7 @@ function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
 
 function enterTitsAdmire(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['boob_fondle'] = 1;
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_tits');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_tits');
   qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * 3) + 3));
   scene.img('images/shared/sex/after/boobs1.mp4');
   // TODO-QSP: dynamic text: One thing leads to another and you find yourself with <<$npcdesc>> on top of you...
@@ -238,7 +238,7 @@ function enterCupsizeTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyPubeTalkStart(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_pube_style');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_pube_style');
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   qspGoto(s, 'sex_ev_body_talk', 'boy_pube_talk_first');
@@ -269,7 +269,7 @@ function enterBoyPubeTalkFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
-  if (((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1) > 0  &&  ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0) {
+  if (((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1) > 0  &&  ((String((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';pube_talk'))) + 1) > 0) {
     // TODO-QSP: dynamic text: "I love how sexy your pussy is," <<$npcdesc>> says, admiringly running his finge...
     scene.text(`"I love how sexy your pussy is," ${((s as any).npcdesc ?? '')} says, admiringly running his fingers across the smooth skin of your pubic area.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -323,7 +323,7 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
-  if (((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
+  if (((String((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
     // TODO-QSP: dynamic text: "You forget to shave today?" <<$npcdesc>> says eyeing your stubbly pussy.
     scene.text(`"You forget to shave today?" ${((s as any).npcdesc ?? '')} says eyeing your stubbly pussy.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoyLikesPubes2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -376,7 +376,7 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
-  if (((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
+  if (((String((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';pube_talk'))) + 1) > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
     if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['shape']) {
       // TODO-QSP: dynamic text: "I still can''t get over how sexy your bush is," <<$npcdesc>> says, looking admi...
       scene.text(`"I still can't get over how sexy your bush is," ${((s as any).npcdesc ?? '')} says, looking admiringly at your neatly trimmed pussy hair.`);
@@ -853,7 +853,7 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
       scene.text('Despite how casually you were talking about it before, hearing his praise suddenly brings a flush to your cheeks and you feel embarrassed.');
       scene.text('"I know I said I just like it, but..."');
       // TODO-QSP: dynamic text: "<<$pcs_usedname[$npcID]>>," <<$npcdesc>> says, smiling at you. "It''s beautiful...
-      scene.text(`"${((st as any).pcs_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," ${((st as any).npcdesc ?? '')} says, smiling at you. "It's beautiful."`);
+      scene.text(`"${(((st as any).pcs_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," ${((st as any).npcdesc ?? '')} says, smiling at you. "It's beautiful."`);
     } else {
       scene.text('"It\'s beautiful."');
     }
@@ -914,15 +914,15 @@ function enterBoyLikesPubes2(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((st as any).dick_desc ?? 0) === 'lengthy') {
                         // TODO-QSP: dynamic text: "You''ve got some pretty nice equipment yourself," you say, grinning lewdly at h...
-                        scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his manhood, stretching its ${((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}cm length down his thighs even when flaccid. "I can practically feel you in my stomach when you've got the whole thing inside me."`);
+                        scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his manhood, stretching its ${(((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}cm length down his thighs even when flaccid. "I can practically feel you in my stomach when you've got the whole thing inside me."`);
                       } else {
                         if (((st as any).dick_desc ?? 0) === 'gigantic') {
                           // TODO-QSP: dynamic text: "You''ve got some pretty nice equipment yourself," you say, grinning lewdly at h...
-                          scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his manhood, stretching its ${((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}cm length down his thighs even when flaccid. "I can practically feel you in my stomach when you've got the whole thing inside me."`);
+                          scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his manhood, stretching its ${(((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}cm length down his thighs even when flaccid. "I can practically feel you in my stomach when you've got the whole thing inside me."`);
                         } else {
                           if (((st as any).dick_desc ?? 0) === 'monstrous') {
                             // TODO-QSP: dynamic text: "You''ve got some pretty nice equipment yourself," you say, grinning lewdly at h...
-                            scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his monstrously large manhood, stretching its ${((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}cm length down his thighs with a girth nearly as thick as your wrist even flaccid. "It's like you've got an arm for a dick. I didn't even know cocks could get that big!"`);
+                            scene.text(`"You've got some pretty nice equipment yourself," you say, grinning lewdly at his monstrously large manhood, stretching its ${(((st as any).npc_dick ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}cm length down his thighs with a girth nearly as thick as your wrist even flaccid. "It's like you've got an arm for a dick. I didn't even know cocks could get that big!"`);
                           }
                         }
                       }
@@ -1037,7 +1037,7 @@ function enterPubesOtherLovers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubeTalkEnd(s: GameState, scene: SceneBuilder): void {
-  if ((!((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1))) {
+  if ((!((String((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)).indexOf(String(';pube_talk'))) + 1))) {
     qspCall(s, 'lover', 'add_topic', ((s as any).npcID ?? 0), 'pube_talk');
   }
   // TODO-QSP: $npc_know_pubes[$npcID] = $pube_style['word']

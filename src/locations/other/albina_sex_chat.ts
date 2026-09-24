@@ -27,7 +27,7 @@ function enterSexTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
     { label: 'Keep talking about sex', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'sex_talk2');
+    qspCall(st, 'albina_sex_chat', '');
   } },
     { label: 'Ask her about anal', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -42,7 +42,7 @@ function enterSexTalk2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let her lead', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'sex_talk_albina_lead');
+    qspCall(st, 'albina_sex_chat', '');
   } },
   ]);
   scene.build();
@@ -1232,7 +1232,7 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
       scene.text('"I haven\'t," she replies, a faint blush coloring her cheeks.');
       scene.actions([
         { label: 'Keep talking', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'sex_talk');
+    qspCall(st, 'albina_sex_chat', '');
   } },
       ]);
     }
@@ -1246,7 +1246,7 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh. Never mind then," she says before turning away from you, a faint blush coloring her cheeks.');
     scene.actions([
       { label: 'Keep talking', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'sex_talk');
+    qspCall(st, 'albina_sex_chat', '');
   } },
     ]);
   } },
@@ -1577,7 +1577,7 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
     scene.text('Her eyes twinkle back at you. "Fair point. Okay, how many <i>people</i> have you slept with?"');
     scene.actions([
       { label: 'Tell her your body count', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'alb_ask_body_count2');
+    qspCall(st, 'albina_sex_chat', '');
   } },
     ]);
   } },
@@ -1586,7 +1586,7 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell her your body count', handler: (st: GameState) => {
-    qspCall(st, 'albina_sex_chat', 'alb_ask_body_count2');
+    qspCall(st, 'albina_sex_chat', '');
   } },
   ]);
   scene.build();

@@ -693,7 +693,7 @@ function enterSexFilmAccept(s: GameState, scene: SceneBuilder): void {
 
 function enterSexFilmEnd(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_indiscreet ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (Math.floor(Math.random() * 3) + 1) === 1)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
-    qspCall(s, 'fame', '', ((s as any).region ?? 0), 'sex', 5);
+    qspCall(s, 'fame', '$region', 'sex', 5);
   }
   if (((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
     (s as any).i = 0;
@@ -813,13 +813,13 @@ function enterFuckPunch1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cancel', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     { label: '"Night night"', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['punchout'] = 1;
     scene.img('images/shared/sex/misc/fuck_punch1.mp4');
     // TODO-QSP: dynamic text: "Night night, <<$npc_usedname[$npcID]>>," you smile and punch him in the face, k...
-    scene.text(`"Night night, ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}," you smile and punch him in the face, knocking him out cold.`);
+    scene.text(`"Night night, ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}," you smile and punch him in the face, knocking him out cold.`);
     // TODO-QSP: act'Call it in': gt 'sex_ev_events', 'fuck_punch2'
   } },
   ]);
@@ -838,13 +838,13 @@ function enterFuckPunch2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('You get dressed while you wait for the boys to show up.');
     // TODO-QSP: dynamic text: It doesn''t take long and a few minutes later they arrive to tow <<$npc_usedname...
-    scene.text(`It doesn't take long and a few minutes later they arrive to tow ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s unconscious body out.`);
+    scene.text(`It doesn't take long and a few minutes later they arrive to tow ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s unconscious body out.`);
   } },
     { label: 'Just wait', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('You don\'t bother getting dressed and wait for the boys to show up.');
     // TODO-QSP: dynamic text: It doesn''t take long and within a few minutes They shamelessly ogle you, grinni...
-    scene.text(`It doesn't take long and within a few minutes They shamelessly ogle you, grinning at you as they tow ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s unconscious body out.`);
+    scene.text(`It doesn't take long and within a few minutes They shamelessly ogle you, grinning at you as they tow ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s unconscious body out.`);
     // TODO-QSP: act'Give them the finger':
     scene.text('You sneer back at them with a look that says, <i>shut the fuck up</i> and put your finger up at them. This is the job.');
     scene.actions([
@@ -962,7 +962,7 @@ function enterOfferCiga1(s: GameState, scene: SceneBuilder): void {
 function enterBrushingTeeth(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/brush_teeth_watch.jpg');
   // TODO-QSP: dynamic text: You catch <<$npc_usedname[$npcID]>> watching you brush your teeth.
-  scene.text(`You catch ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} watching you brush your teeth.`);
+  scene.text(`You catch ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} watching you brush your teeth.`);
   // TODO-QSP: act'"What?"':
   scene.text('"What?" you mumble around the brush and toothpaste in your mouth.');
   if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
@@ -1053,7 +1053,7 @@ function enterRummageDrawersStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_after', 'after_sex2_w_picture');
+    qspCall(st, 'sex_ev_after', '');
   } },
     { label: 'Rummage through his dresser', goto: ['sex_ev_events', 'rummage_drawers1'] },
   ]);
@@ -1106,7 +1106,7 @@ function enterRummageDrawers1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Close the drawer', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+    qspCall(st, 'sex_ev_events', '');
   } },
   ]);
   scene.build();
@@ -1118,7 +1118,7 @@ function enterRummageDrawersSleepingRoute(s: GameState, scene: SceneBuilder): vo
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+    qspCall(st, 'sex_ev_events', '');
   } },
   ]);
   scene.build();
@@ -1134,7 +1134,7 @@ function enterRummageDrawersShowerRoute(s: GameState, scene: SceneBuilder): void
     }
     scene.actions([
       { label: 'Hide the money!', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+    qspCall(st, 'sex_ev_events', '');
   } },
     ]);
   } else {
@@ -1230,11 +1230,11 @@ function enterBoyGottaGo2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: With that, <<$npcdesc>> finishes getting dressed and heads out the door, leaving...
     scene.text(`With that, ${((s as any).npcdesc ?? '')} finishes getting dressed and heads out the door, leaving you in the hotel room all to yourself.`);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0) {
-      (s as any).money = ((s as any).money ?? 0) + (((s as any).npc_sugar_daddy_price ?? 0)?.[String((s as any).npcID ?? 0)]);
+      (s as any).money = ((s as any).money ?? 0) + ((((s as any).npc_sugar_daddy_price ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0));
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'exit');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } else {
@@ -1278,7 +1278,7 @@ function enterSugarDaddyGift(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_pillow_talk', 'talk_time_add');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_pillow_talk', 'start');
+    qspCall(st, 'sex_ev_pillow_talk', '');
   } },
     ]);
   } },

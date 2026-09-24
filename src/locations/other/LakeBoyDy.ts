@@ -77,7 +77,7 @@ function enterGo(s: GameState, scene: SceneBuilder): void {
     scene.text('As he feels you up, he tries to coax you into joining him, as if he owns you already. "I know you\'re not, baby. You should come with me, I\'ll show you a good time. You won\'t regret it."');
     scene.actions([
       { label: 'Resist', handler: (st: GameState) => {
-    qspCall(st, 'LakeBoyDy', 'slap');
+    qspCall(st, 'LakeBoyDy', '');
   } },
       { label: 'Apologize and leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

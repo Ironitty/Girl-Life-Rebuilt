@@ -136,7 +136,7 @@ function enterKiosk1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Smile', goto: ['podezdM', 'kiosk2'] },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['podezdM', 'kiosk2'] },
   ]);
   scene.build();

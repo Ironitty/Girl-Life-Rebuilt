@@ -389,7 +389,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Stop kissing and talk more', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['anushkachat', 'chat'] },
       ]);
     } else {
@@ -829,7 +829,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       (st as any).i = 0;
       // TODO-QSP: :marrid_looop
       if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-        (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+        (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
         if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushkachat'', ''telling_...
         }
@@ -1187,7 +1187,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
   if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
+    (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushkachat'', ''tell_about_generic_boyf...
     }

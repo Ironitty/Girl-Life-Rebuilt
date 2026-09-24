@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 { label: '"You have sex with others too!"', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'set', 'A9', 0);
     (st as any).kotovLoveQW = (-1);
-    qspCall(st, 'pain', '', 5, 'cheeks', 'slap');
+    qspCall(st, 'pain', '5', 'cheeks', 'slap');
     qspCall(st, 'stat', '');
     scene.text('Wait, what? Does Vitek really think he can judge you, when he in fact is even worse? You know his history, and how he usually treats girls…');
     scene.text('You yell at him: "You\'re no better, Vitek! How many girls have you fucked already, huh?"');

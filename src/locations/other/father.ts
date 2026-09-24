@@ -801,7 +801,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Get down on your knees', handler: (st: GameState) => {
-    qspCall(st, 'fathersex', 'fatherblow4');
+    qspCall(st, 'fathersex', '');
   } },
     ]);
   }

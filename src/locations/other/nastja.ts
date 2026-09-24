@@ -55,7 +55,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
       { label: '"Do you mind if I ask why you\'re in this restaurant without a companion?"', handler: (st: GameState) => {
     ((st as any).npc_QW = (st as any).npc_QW ?? {})['A192'] = 1;
     qspCall(st, 'telefon', 'AddContact', 'A192', 'icon_nastja', 0);
-    // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
+    qspCall(st, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour < 20');
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/nastja.jpg');
@@ -99,7 +99,7 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
 function enterPos5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 2;
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour < 20');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/1party0.jpg');
   scene.text('You arrive at a karaoke cafe called "Mast".');
@@ -352,7 +352,7 @@ function enterPos12(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'medium');
   ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 3;
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour < 20');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
   scene.text('It rings two, three, four times before Anastasia picks up.');
@@ -522,7 +522,7 @@ function enterPos20(s: GameState, scene: SceneBuilder): void {
 function enterPos21(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 5;
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour < 20');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/2bslp.jpg');
   scene.text('After running and jumping around like that in everybody\'s plain view, sitting down and lying back topless isn\'t enough to make you feel shy and neither you nor Nastya have any qualms about spreading your arms and showing off your bodies to everyone as you sunbathe once again.');
@@ -541,7 +541,7 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'large');
   ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 6;
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour < 20');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
   scene.text('Anastasia answers after a few rings, but she doesn\'t sound anywhere near as upbeat as usual.');
@@ -723,7 +723,7 @@ function enterPos31(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'mood', 'raise', 'large');
   ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 7;
-  // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour <= 20"
+  qspCall(s, 'telefon', 'SetOutCallSchedule', 'A192', 'gs \'nastja\', \'start\'', 'hour >= 8 and hour <= 20');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
   scene.text('Anastasia answers the phone after the first ring.');

@@ -107,7 +107,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
   ]);
   scene.build();
@@ -137,10 +137,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 function enterFrends(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).npcGender ?? 0))) {
     (s as any).sexpartkno = 1;
-    qspCall(s, 'npcgeneratec', '', 0, '' + ((s as any).npcdesc ?? 0) + '\'s "friend"', (Math.floor(Math.random() * 15) + 18));
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, '' + ((s as any).npcdesc ?? 0) + '\'s "friend"', (Math.floor(Math.random() * 15) + 18));
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+    qspCall(s, 'npcgeneratec', '0', '' + ((s as any).npcdesc ?? 0) + '\'s "friend"', (Math.floor(Math.random() * 15) + 18));
+    qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(s, 'npcgeneratec', '0', '' + ((s as any).npcdesc ?? 0) + '\'s "friend"', (Math.floor(Math.random() * 15) + 18));
+    qspCall(s, 'npcStat', '$npclastgenerated', 'b');
     qspGoto(s, 'love', 'frends2');
   } else {
     scene.text('(Further actions are available.)');

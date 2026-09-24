@@ -105,10 +105,10 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
 
 function enterStart3(s: GameState, scene: SceneBuilder): void {
   (s as any).horand = (Math.floor(Math.random() * (100 - 1 + 1)) + (1));
-  qspCall(s, 'npcgeneratec', '', 0, 'A John', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'A John', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'A John', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'A John', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   (s as any).randLCpay = 500;
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   if (((s as any).pcs_vag ?? 0) < 18) {
@@ -314,8 +314,8 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToiletsex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger from the diner restroom', (Math.floor(Math.random() * 15) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Stranger from the diner restroom', (Math.floor(Math.random() * 15) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/city/industrial/bbq/sex/toiletsexend.jpg');
   scene.text('You come up from behind the man and suddenly wrap your arms around him. He\'s startled for a moment, but relaxes when you whisper: "That\'s a nice cock you have there! I bet we could have some fun together, you and I…"');
   scene.text('The man gives you a toothy grin when he feels you wrap your fingers around his cock, but he wants more. He takes you by the hand and guides you to the rear entrance of the diner, into the back alley. He positions you against the dumpsters and eagerly shoves his cock inside you.');

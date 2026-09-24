@@ -442,7 +442,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn off your phone and put it away. Mr. Tsarev give you an approving nod before continuing with his lesson.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev2', 'math');
+    qspCall(st, 'gschool_lessonsev2', '');
   } },
     ]);
   } },
@@ -544,7 +544,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     scene.text('Unlike most of the students in your class, you stay focused on your work.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'working');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -742,7 +742,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'english');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
         ]);
       } else {
@@ -762,7 +762,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Ms. Braakman\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'english');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
       ]);
     } else {
@@ -808,7 +808,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       scene.text('You can barely keep a straight face as you watch Ms. Braakman\'s expression change from smug to confusion and then anger in a matter of seconds. You expect her to go through with her threat and show the class what you were doing, but for whatever reason she doesn\'t. "I don\'t want to see you ever doing that again, young lady! You can have this back after class," she warns you as she turns the screen off and returns to the front of the class.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'getphone');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
       ]);
     } else {
@@ -821,7 +821,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       scene.text(`"I don't want to see you doing such things in my class again, Miss ${((st as any).pcs_lastname ?? '')}! You can have this back after class," she says sharply, but the way she licks her lips afterwards speaks of something else. Without another word, she turns the screen off and returns to the front of the class to resume the lesson.`);
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'getphone');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
       ]);
     }
@@ -882,7 +882,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to aggravate the situation and put your phone away. You can see Ms. Braakman isn\'t happy, but she\'s willing to let it go for now and goes back to teaching the class without reprimanding you.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessonsev3', 'english');
+    qspCall(st, 'gschool_lessonsev3', '');
   } },
     ]);
   } },
@@ -1605,8 +1605,8 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A20');
     qspCall(st, 'npcStat', 'A21', 'a');
     qspCall(st, 'npcStat', 'A24', 'b');
-    qspCall(st, 'npcgeneratec', '', 1, 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'npcgeneratec', '1', 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'c');
     scene.img('images/locations/pavlovsk/school/gym/sex/chris_sveta.jpg');
     scene.text('You try slipping out in the crowd, hoping to avoid getting involved, but a hand grabs you, drags you back to the middle of the room and shoves you down next to Sonia.');
     scene.text('"Look girls, now we\'ve got TWO sluts to have fun with!" Lera says mockingly before walking up to you and spreading her pussy, her clit exposed and awaiting your tongue as you stare up at her.');
@@ -1640,12 +1640,12 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Try to leave unnoticed', handler: (st: GameState) => {
     qspCall(st, 'npcStat', 'A18');
-    qspCall(st, 'npcgeneratec', '', 1, 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 1, 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'npcgeneratec', '', 1, 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'npcgeneratec', '1', 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '1', 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(st, 'npcgeneratec', '1', 'A girl in the shower', ((st as any).age ?? 0), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'c');
     scene.img('images/locations/pavlovsk/school/gym/sex/chris_sveta.jpg');
     scene.text('You try slipping out in the crowd, hoping to avoid getting involved, but a hand grabs you, drags you back to the middle of the room and shoves you down next to Sonia.');
     scene.text('You look up, and to your despair, see that it was Christina. "Let\'s make it a party, girls! Now we have TWO sluts to eat us out!" she says mockingly before walking up to you and spreading her pussy, her clit exposed and awaiting your tongue.');
@@ -2399,7 +2399,7 @@ function enterShowerWatchEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
   ]);
   scene.build();
@@ -2444,7 +2444,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave them in peace', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'post_dress'] },
       { label: 'Masturbate', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/school/gym/sex/mast${(Math.floor(Math.random() * 2) + 1)}.mp4`);
@@ -2568,7 +2568,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
                               scene.text('Just as you finish dressing, you feel someone grab the back of your panties. Before you can say or do anything, you feel your panties get yanked up hard, painfully digging into your ass crack and against your clit. You hear the other girls all laugh as you struggle to free yourself. As you try and get up, you almost lose your balance as the person keeps pulling your panties up higher.');
                               scene.text('You\'re finally able to pull yourself free and turn to see Christina laughing at you. "Well? Anything to say, pet?"');
                               scene.text('"Thank you, Christina…" you mumble while looking down to avoid eye contact as much as possible.');
-                              qspCall(s, 'pain', '', 1, 'asscheeks', 'ache');
+                              qspCall(s, 'pain', '1', 'asscheeks', 'ache');
                               qspCall(s, 'stat', '');
                               scene.actions([
                                 { label: 'Continue', goto: ['gschool_lessons4', 'post_dress'] },
@@ -2577,7 +2577,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
                               if ((((s as any).grupTipe ?? 0) === 3  ||  ((s as any).grupTipe ?? 0) === 5)  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).christinaQW ?? 0)?.['blackmail'] < 2  &&  ((s as any).christinaQW ?? 0)?.['fight'] === 0) {
                                 scene.text('Just as you finish dressing, you feel someone grab the back of your panties. Before you can say or do anything, you feel your panties get yanked up hard, painfully digging into your ass crack and against your clit. You hear the other girls all laugh as you struggle to free yourself. As you try and get up, you almost lose your balance as the person keeps pulling your panties up higher.');
                                 scene.text('You\'re finally able to pull yourself free and turn to see Christina laughing at you. "That\'s likely the closest anything has been to rubbing your clit. loser."');
-                                qspCall(s, 'pain', '', 1, 'asscheeks', 'ache');
+                                qspCall(s, 'pain', '1', 'asscheeks', 'ache');
                                 qspCall(s, 'stat', '');
                                 scene.actions([
                                   { label: 'Ignore her', handler: (st: GameState) => {

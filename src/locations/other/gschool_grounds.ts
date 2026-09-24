@@ -42,7 +42,8 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', 1000 & gt 'nyp_school', 'start'
+      qspCall(st, 'money', 'pay', 1000);
+      qspGoto(st, 'nyp_school', 'start');
     }
   } },
       ]);
@@ -144,7 +145,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re unable to find your clothes, so you cover yourself with your hands and stick to poorly lit areas as you make your way home. You try as hard as you can, but all you can remember are vague flashbacks of skinny dipping in the town fountain with a group of other students.');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },
@@ -400,58 +401,58 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       (s as any).st_count = 0;
       (s as any).show_table = '';
       if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).meet_after_school ?? 0) === 1) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anushka/u0027, /u0027meet_after_school/u0027); return false;">Anushka Konstantinov</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec: gt \'anushka\', \'meet_after_school\'">Anushka Konstantinov</a>', '5');
       }
       if (((s as any).radomirQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).radomirQW ?? 0)?.['meet_after_school'] === 1) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027radapt/u0027, /u0027meet_after_school/u0027); return false;">Radomir</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec: gt \'radapt\', \'meet_after_school\'">Radomir</a>', '5');
       }
       if (((s as any).LariskaQW ?? 0)?.['story'] >= 5  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027LariskaGo/u0027, /u0027/u0027); return false;">Lariska Gruzdev</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 1 & gt \'LariskaGo\'">Lariska Gruzdev</a>', '5');
       }
       if (((s as any).christinaQW ?? 0)?.['subpath'] >= 4  &&  (!((s as any).cheerleaders_on ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027Zvereva_house_events/u0027, /u0027Chris_walk_home/u0027); return false;">Christina Zvereva</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 1 & gt \'Zvereva_house_events\', \'Chris_walk_home\'">Christina Zvereva</a>', '5');
       }
       if (((s as any).juliaQW ?? 0)?.['study_unlocked'] >= 1) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027JuliaMilHome/u0027, /u0027julia_go/u0027); return false;">Julia Milova</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 1 & gt \'JuliaMilHome\', \'julia_go\'">Julia Milova</a>', '5');
       }
       if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 0) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027natbelEv/u0027, /u0027natbel_go/u0027); return false;">Natasha Belova</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 1 & gt \'natbelEv\', \'natbel_go\'">Natasha Belova</a>', '5');
       }
       if (((s as any).artemLernQW ?? 0) >= 1  &&  ((s as any).artemVitokQW ?? 0) !== 2  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0  &&  ((s as any).artemQW ?? 0)?.['artlie'] !== 2  &&  ((s as any).artemQW ?? 0)?.['artembrokenheart'] !== 1) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027artem_events/u0027, /u0027start/u0027); return false;">Artem Chebotarev</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 15 & gt \'artem_events\', \'start\'">Artem Chebotarev</a>', '5');
       }
       if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1  &&  ((s as any).locat ?? 0)?.['katja'] === 6) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027katjaEv/u0027, /u0027/u0027); return false;">Katja Meynold</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 15 & gt \'katjaEv\'">Katja Meynold</a>', '5');
       }
       if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027dimaHome/u0027, /u0027home/u0027); return false;">Dimka Nosov</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 15 & gt \'dimaHome\', \'home\'">Dimka Nosov</a>', '5');
       } else {
         if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).dimarudeday ?? 0) !== ((s as any).daystart ?? 0)  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
             qspGoto(s, 'dimaEv', 'after_school');
           }
-          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027dimaEv/u0027, /u0027after_school/u0027); return false;">Dimka Nosov</a>', '5');
+          qspCall(s, 'show_table', '<a href="exec:minut += 15 & gt \'dimaEv\', \'after_school\'">Dimka Nosov</a>', '5');
         }
       }
       if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0)  &&  ((s as any).IgorQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0  &&  ((s as any).locat ?? 0)?.['igor'] === 6) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; (s.IgorQW ??= {})/u0027daystart/u0027 = s.daystart; return s; }); window.__gameStore.getState().doGoto(/u0027igorhome/u0027, /u0027entrance/u0027); return false;">Igor Kruglov</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec:minut += 15 & IgorQW[\'daystart\'] = daystart & gt \'igorhome\', \'entrance\'">Igor Kruglov</a>', '5');
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).kotovVSkozlov ?? 0) === 1) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv/u0027, /u0027Strela Chat/u0027); return false;">Fedor</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec: gt \'FedorEv\', \'Strela Chat\'">Fedor</a>', '5');
       } else {
         if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fedorkozqw ?? 0) === 2  &&  ((s as any).FedorLuv ?? 0) < -4) {
-          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv2/u0027, /u0027Fedor Breakup/u0027); return false;">Fedor</a>', '5');
+          qspCall(s, 'show_table', '<a href="exec: gt \'FedorEv2\', \'Fedor Breakup\'">Fedor</a>', '5');
         } else {
           if (((s as any).fedorKozlovQW ?? 0) >= 10) {
-            qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv/u0027, /u0027Start/u0027); return false;">Fedor</a>', '5');
+            qspCall(s, 'show_table', '<a href="exec: gt \'FedorEv\', \'Start\'">Fedor</a>', '5');
           }
         }
       }
       if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoDate ?? 0) === 1  &&  ((s as any).NikoNextDate_day ?? 0) <= ((s as any).daystart ?? 0)  ||  ((s as any).NikoEv ?? 0) === 11) {
-        qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoEv/u0027, /u0027niko_dates/u0027); return false;">Nikolai</a>', '5');
+        qspCall(s, 'show_table', '<a href="exec: gt \'NikoEv\', \'niko_dates\'">Nikolai</a>', '5');
       } else {
         if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) >= 17  &&  ((s as any).NikoEv ?? 0) <= 20  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
-          qspCall(s, 'show_table', '', '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NikoEv2/u0027, /u0027Events/u0027); return false;">Nikolai</a>', '5');
+          qspCall(s, 'show_table', '<a href="exec: gt \'NikoEv2\', \'Events\'">Nikolai</a>', '5');
         }
       }
       if (((s as any).st_count ?? 0) > 0) {
@@ -732,7 +733,7 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Run', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'SchoolRun_result');
+    qspCall(st, 'gschool_grounds', '');
   } },
     ]);
   } },
@@ -885,7 +886,7 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Run', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'SchoolRun2_result');
+    qspCall(st, 'gschool_grounds', '');
   } },
     ]);
   } },
@@ -1257,7 +1258,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0  ||  ((s as any).stat ?? 0)?.['girlfriends_current']) {
         (s as any).temp_npcID = qspFunc(s, 'lover', 'draw_random_from', 'boyfrined', 'girlfriend');
-        qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
+        qspCall(s, 'npcStat', '$temp_npcID');
         // TODO-QSP: dynamic text: You hear <<$npcdesc>> shouting your name and jog over to meet them. You both emb...
         scene.text(`You hear ${((s as any).npcdesc ?? '')} shouting your name and jog over to meet them. You both embrace with a cuddle and a kiss on the cheek.`);
         scene.text('"Hey love, well done."');

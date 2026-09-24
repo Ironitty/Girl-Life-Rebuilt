@@ -281,7 +281,7 @@ function enterPlayWithTits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
   qspCall(s, 'stat', '');
   if (((s as any).alko ?? 0) >= 4) {
-    qspCall(s, 'pain', '', 2, 'slap', 'breasts');
+    qspCall(s, 'pain', '2', 'slap', 'breasts');
     scene.img('images/pc/items/accessories/computer/camwhore80.jpg');
   } else {
     scene.img('images/pc/items/accessories/computer/camwhore9.jpg');
@@ -375,7 +375,7 @@ function enterPlayWithAss(s: GameState, scene: SceneBuilder): void {
 
 function enterPinchNipples(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'komp_cam_functions', 'camming', 5, 'fetish');
-  qspCall(s, 'pain', '', 2, 'pinch', 'nipples');
+  qspCall(s, 'pain', '2', 'pinch', 'nipples');
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/camwhore80.jpg');
   scene.text('You\'re getting too turned on, and need to slow yourself down a little!');

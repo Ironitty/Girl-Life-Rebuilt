@@ -438,7 +438,7 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['extra_caution'] = 0;
   } else {
     if ((((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger'  ||  (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'pullout'))  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['position'] !== 'anal') {
-      ((s as any).sex_ev = (s as any).sex_ev ?? {})['extra_caution'] = (Math.floor(Math.random() * ((1+((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)]) - 0 + 1)) + (0));
+      ((s as any).sex_ev = (s as any).sex_ev ?? {})['extra_caution'] = (Math.floor(Math.random() * ((1+(((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0)) - 0 + 1)) + (0));
     }
   }
   if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -468,7 +468,7 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
         ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_where'] = 1;
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] >= 4) {
-          ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_choice'] = ((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)];
+          ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_choice'] = (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0);
           if (((s as any).sex_ev ?? 0)?.['pullout_game'] === 1  &&  ((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1) {
             ((s as any).sex_ev = (s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
           }
@@ -718,7 +718,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['he_ask_facial'] === 1) {
       scene.actions([
         { label: 'You can come on my face', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_facial');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     } else {
@@ -734,7 +734,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['he_ask_mouth'] === 1) {
       scene.actions([
         { label: 'Let him come in your mouth', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_mouth');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     } else {
@@ -742,21 +742,21 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
         { label: 'In my mouth!', handler: (st: GameState) => {
     // TODO-QSP: sex_ev['his_choice'] = 0
     // TODO-QSP: sex_ev['mouth_ask'] = 1
-    qspCall(st, 'sex_ev_cum', 'cum_mouth');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     }
     if (((s as any).sex_ev ?? 0)?.['he_ask_tits'] === 1) {
       scene.actions([
         { label: 'Let him come on your tits', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_tits1');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'On my tits!', handler: (st: GameState) => {
     // TODO-QSP: sex_ev['tits_ask'] = 1
-    qspCall(st, 'sex_ev_cum', 'cum_tits1');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     }
@@ -833,7 +833,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: sex_ev['his_choice'] = 2
-    qspCall(st, 'sex_ev_cum', 'cum_wherever');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     } else {
@@ -858,14 +858,14 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'pullout') {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_pullout');
+    qspCall(st, 'sex_ev_cum', '');
   } },
         ]);
       } else {
         if (((s as any).sex_ev ?? 0)?.['his_choice'] === 2) {
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_his_choice');
+    qspCall(st, 'sex_ev_cum', '');
   } },
           ]);
         } else {
@@ -1743,11 +1743,11 @@ function enterCumMouth2(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cum_describe2'] = 'wiping your mouth';
     qspCall(st, 'sex_ev_stats', 'cum_mouth', 'swallow');
     // TODO-QSP: dynamic text: Taking it in stride, you keep your lips wrapped around <<$npc_usedname[$npcID]>>...
-    scene.text(`Taking it in stride, you keep your lips wrapped around ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s cock, swallowing each glob of sperm as it comes into your mouth. His hips buck beneath you but you don't stop sucking until he's shooting blanks.`);
+    scene.text(`Taking it in stride, you keep your lips wrapped around ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s cock, swallowing each glob of sperm as it comes into your mouth. His hips buck beneath you but you don't stop sucking until he's shooting blanks.`);
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -1762,7 +1762,7 @@ function enterCumMouth2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -1913,7 +1913,7 @@ function enterCumMouth2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -2148,7 +2148,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '"Let\'s come together"', handler: (st: GameState) => {
     // TODO-QSP: sex_ev['creampie_ask'] = 1
-    qspCall(st, 'sex_ev_cum', 'cum_together');
+    qspCall(st, 'sex_ev_cum', '');
   } },
         ]);
       }
@@ -2353,7 +2353,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"Let\'s come together"', handler: (st: GameState) => {
     // TODO-QSP: sex_ev['creampie_ask'] = 1
-    qspCall(st, 'sex_ev_cum', 'cum_together');
+    qspCall(st, 'sex_ev_cum', '');
   } },
       ]);
     }
@@ -2420,7 +2420,7 @@ function enterMissCreampie(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -2448,7 +2448,7 @@ function enterMissCreampie(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'sex_ev_reactions', 'cum_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -2604,7 +2604,7 @@ function enterCumInsidePullAway(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
           scene.img('images/shared/sex/cum/vagcreampie/cowgirl3.mp4');
           // TODO-QSP: dynamic text: Carefully, you raise yourself off of <<$npc_firstname[$npclastsaved]>>. The mome...
-          scene.text(`Carefully, you raise yourself off of ${((s as any).npc_firstname ?? 0)?.[String((s as any).npclastsaved ?? 0)] ?? ''}. The moment his cock is free of your pussy, you feel a thick glob of cum begin to leak out of you.`);
+          scene.text(`Carefully, you raise yourself off of ${(((s as any).npc_firstname ?? 0)?.[String((s as any).npclastsaved ?? 0)] ?? '')}. The moment his cock is free of your pussy, you feel a thick glob of cum begin to leak out of you.`);
         }
       }
     }
@@ -2973,7 +2973,7 @@ function enterCumTogetherFake(s: GameState, scene: SceneBuilder): void {
 function enterCumForce(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['creampie_force'] = 1;
   if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);
+    qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1, 3);
     (s as any).orgasm_or = 'yes';
     qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
     qspCall(s, 'stat', '');
@@ -3345,7 +3345,7 @@ function enterCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_orgasm'] = 1;
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
       (st as any).orgasm_or = 'yes';
-      // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
       qspCall(st, 'stat', '');
       if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
         scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
@@ -3726,7 +3726,7 @@ function enterAnalCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_orgasm'] = 1;
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 2;
       (st as any).orgasm_or = 'yes';
-      // TODO-QSP: gs 'arousal', 'anal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(st, 'arousal', 'anal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
       qspCall(st, 'stat', '');
       scene.img('images/shared/sex/anal/doggy/orgasm1.mp4');
       scene.text('The sensation of cum filling your ass is too much for you to handle and sends you over the edge.');
@@ -3846,7 +3846,7 @@ function enterCumNotInside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumNotYet(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_vid'
+  qspCall(s, 'sex_ev_' + ((s as any).sex_ev ?? 0)?.['position'] + '', '' + ((s as any).sex_ev ?? 0)?.['position'] + '_vid');
   if (((s as any).sex_ev ?? 0)?.['speed'] === 1) {
     // TODO-QSP: '"Not yet!" you gasp. ' + iif(orgasm_buildup >= 100, '"I''m so close! Just a little longer!"', '"Jus...
   } else {
@@ -3887,7 +3887,7 @@ function enterCumNotYet(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: 'And then he yanks his throbbing cock from your ' + iif($sex_ev['position'] ! 'anal', 'pussy.', 'ass...
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cum', 'cum_his_choice2');
+    qspCall(st, 'sex_ev_cum', '');
   } },
         ]);
       }
@@ -3901,7 +3901,7 @@ function enterCumCondom(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
     qspGoto(s, 'sex_ev_cum', 'anal_doggy_creampie');
   }
-  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 1, 3);
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['last_cum'] = 'condom';
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -4062,7 +4062,7 @@ function enterBrokenCondom1(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['broken_condom_creampie_cum'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['simultaneous_orgasm_count'] = ((st as any).sex_ev['simultaneous_orgasm_count'] ?? 0) + (1);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['came_together'] = 1;
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/orgasm1.mp4');
     } else {
@@ -4178,24 +4178,24 @@ function enter2pumpchump(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['2pump'] = 2;
     if (((st as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie_surprise'  ||  ((st as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  ||  ((st as any).sex_ev ?? 0)?.['condom'] === 1) {
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1, 3);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 1, 3);
       if (((st as any).sex_ev ?? 0)?.['position'] === 'miss') {
         scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpEnjoymentDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
         // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stif...
-        scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly stiffens up and thrusts his dick into you to the hilt.`);
+        scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly stiffens up and thrusts his dick into you to the hilt.`);
       } else {
         if (((st as any).sex_ev ?? 0)?.['position'] === 'doggy') {
           scene.img('images/shared/sex/cum/vagcreampie/doggy3.mp4');
           { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpEnjoymentDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
           // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stif...
-          scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly stiffens up and thrusts his dick to the hilt behind you.`);
+          scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly stiffens up and thrusts his dick to the hilt behind you.`);
         } else {
           if (((st as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
             scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
             { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpEnjoymentDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
             // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stif...
-            scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly stiffens up, grabs your hips, and pulls you down all the way to the base of his cock.`);
+            scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly stiffens up, grabs your hips, and pulls you down all the way to the base of his cock.`);
           }
         }
       }
@@ -4225,7 +4225,7 @@ function enter2pumpchump(s: GameState, scene: SceneBuilder): void {
         scene.img('images/shared/sex/cum/stomach/bellycum5.mp4');
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enter2pumpEnjoymentDesc(st, scene); (st as any).locArgs = __savedLocArgs; }
         // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly pull...
-        scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly pulls out.`);
+        scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly pulls out.`);
         scene.text('He pumps his shaft with his hand exactly once and cum erupts from the tip, spattering across your stomach.');
       } else {
         if (((st as any).sex_ev ?? 0)?.['position'] === 'doggy') {
@@ -4236,7 +4236,7 @@ function enter2pumpchump(s: GameState, scene: SceneBuilder): void {
           ((st as any).sex_ev = (st as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
           scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
           // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly pull...
-          scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly pulls out.`);
+          scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly pulls out.`);
           scene.text('His cock slips from your snatch and not even a moment later, hot sticky liquid spatters across your ass and back.');
         } else {
           if (((st as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
@@ -4246,7 +4246,7 @@ function enter2pumpchump(s: GameState, scene: SceneBuilder): void {
             ((st as any).sex_ev = (st as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
             scene.img('images/shared/sex/cum/pullout_cowgirl1.mp4');
             // TODO-QSP: dynamic text: It can''t be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly slip...
-            scene.text(`It can't be more than 30 seconds before ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} suddenly slips his cock out from under you and feel something hot and wet spattering across your back.`);
+            scene.text(`It can't be more than 30 seconds before ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} suddenly slips his cock out from under you and feel something hot and wet spattering across your back.`);
           }
         }
       }

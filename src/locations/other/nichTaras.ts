@@ -86,7 +86,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).nichAbdStage ?? 0) === 21) {
           (s as any).minut = ((s as any).minut ?? 0) + 120;
-          qspCall(s, 'pain', '', 5, 'pubic', 'hit');
+          qspCall(s, 'pain', '5', 'pubic', 'hit');
           qspCall(s, 'stat', '');
           scene.img('images/characters/city/taras/intro3.jpg');
           scene.text('Locked down like this there is nothing you can do than continue waiting.');
@@ -102,7 +102,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
           scene.text('"Shut up, slut! I am sure you have a lot of questions right now. But there are only a few things you need to know."');
           scene.actions([
             { label: 'Object', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'pubic', 'hit');
+    qspCall(st, 'pain', '5', 'pubic', 'hit');
     qspCall(st, 'stat', '');
     scene.text('Just as you open your mouth you feel the whip once more. Taras obviously doesn\'t want you to speak right now.');
   } },
@@ -132,7 +132,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'nichTaras', 'abdIntro');
   } },
               { label: 'No way!', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 6, 'nipples', 'twist');
+    qspCall(st, 'pain', '6', 'nipples', 'twist');
     qspCall(st, 'stat', '');
     scene.text('"No! You can\'t…" you are interrupted by him painfully twisting your nipples.');
     scene.text('"I\'m asking again: do you understand?"');

@@ -199,9 +199,9 @@ function enterShiftStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'clock_in', 'city_salon_masseuse');
   if (((s as any).masseuse ?? 0)?.['late'] === 1) {
     ((s as any).masseuse = (s as any).masseuse ?? {})['late'] = 0;
-    // TODO-QSP: gs 'jobs', 'bonus_pay', 'city_salon_masseuse', 3 * masseuse['hourly']
+    qspCall(s, 'jobs', 'bonus_pay', 'city_salon_masseuse', 3 * (((s as any).masseuse ?? {})?.['hourly'] ?? 0));
   } else {
-    // TODO-QSP: gs 'jobs', 'bonus_pay', 'city_salon_masseuse', 4 * masseuse['hourly']
+    qspCall(s, 'jobs', 'bonus_pay', 'city_salon_masseuse', 4 * (((s as any).masseuse ?? {})?.['hourly'] ?? 0));
   }
   qspGoto(s, 'masseuse_work', 'begin');
   // TODO-QSP: end
@@ -218,11 +218,11 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['worked_' + String(((s as any).daystart ?? 0)) + '_' + String(((s as any).masseuse_shift ?? 0))] = 1;
   qspCall(s, 'jobs', 'clock_out', 'city_salon_masseuse');
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = 0;
-  // TODO-QSP: gs 'money', 'earn', massage['shift_tips']
+  qspCall(s, 'money', 'earn', ((s as any).massage ?? 0)?.['shift_tips']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).massage ?? 0)?.['shift_tips']);
   ((s as any).massage = (s as any).massage ?? {})['shift_tips_total'] = ((s as any).massage['shift_tips_total'] ?? 0) + (((s as any).massage ?? 0)?.['shift_tips']);
   ((s as any).massage = (s as any).massage ?? {})['shift_tips'] = 0;
-  // TODO-QSP: gs 'money', 'earn', massage['sex_tips']
+  qspCall(s, 'money', 'earn', ((s as any).massage ?? 0)?.['sex_tips']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).massage ?? 0)?.['sex_tips']);
   ((s as any).massage = (s as any).massage ?? {})['sex_tips_total'] = ((s as any).massage['sex_tips_total'] ?? 0) + (((s as any).massage ?? 0)?.['sex_tips']);
   ((s as any).massage = (s as any).massage ?? {})['sex_tips'] = 0;
@@ -502,8 +502,8 @@ function enterPrepareNextMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCustomerGenerate(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'salon client', (Math.floor(Math.random() * 28) + 18), 3, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'salon client', (Math.floor(Math.random() * 28) + 18), 3, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   (s as any).masseuse_time_temp = (Math.floor(Math.random() * 11) + 5);
   ((s as any).masseuse = (s as any).masseuse ?? {})['client_type'] = (Math.floor(Math.random() * 3) + 0);
   ((s as any).masseuse = (s as any).masseuse ?? {})['client_request'] = (Math.floor(Math.random() * 13) + 0);
@@ -1193,7 +1193,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
 
 function enter3_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).salon = (s as any).salon ?? {})['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + ((30 - ((s as any).masseuse_time_temp ?? 0)));
-  // TODO-QSP: gs 'arousal_oneline', 'massage_give', (30 - masseuse_time_temp)
+  qspCall(s, 'arousal_oneline', 'massage_give', (30 - ((s as any).masseuse_time_temp ?? 0)));
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/citycenter/mall/salon/work/nude_massage/${(Math.floor(Math.random() * 5) + 1)}.jpg`);
   scene.text('You oil up the client and begin kneading it with your hands, working through his muscles and loosening them up. He stares appreciatively at your body throughout the whole process. Occasionally, you lean down to get the right angles to work his body and your breasts brush up against him, though you\'re fairly certain he doesn\'t mind.');
@@ -1381,7 +1381,7 @@ function enter5Pre(s: GameState, scene: SceneBuilder): void {
     { label: 'Fuck the client', handler: (st: GameState) => {
     ((st as any).salon = (st as any).salon ?? {})['fuck_count'] = ((st as any).salon['fuck_count'] ?? 0) + (1);
     qspCall(st, 'cum_call', 'precum', ((st as any).npcID ?? 0));
-    // TODO-QSP: gs 'arousal_oneline', 'vaginal', (masseuse_time_temp+15), '', 'prostitution', 'rough'
+    qspCall(st, 'arousal_oneline', 'vaginal', (((st as any).masseuse_time_temp ?? 0)+15), '', 'prostitution', 'rough');
     ((st as any).salon = (st as any).salon ?? {})['work_minutes'] = ((st as any).salon['work_minutes'] ?? 0) + ((((st as any).masseuse_time_temp ?? 0)+15));
     qspCall(st, 'stat', '');
     qspGoto(st, 'masseuse_work', '5');
@@ -1420,7 +1420,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
 
 function enter5_1(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0));
+    qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     if (((s as any).masseuse ?? 0)?.['position'] === 'miss') {
       scene.img(`images/shared/sex/massage/creampie${(Math.floor(Math.random() * 4) + 3)}.mp4`);
@@ -1725,7 +1725,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I wouldn\'t mind being a naked masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'naked_masseuse_accept'] },
       ]);
     }
@@ -1745,7 +1745,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I can give handjobs', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'handjob_masseuse_accept'] },
       ]);
     }
@@ -1765,7 +1765,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I can give blowjobs', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'blowjob_masseuse_accept'] },
       ]);
     }
@@ -1785,7 +1785,7 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Sure, I\'ll be a whore', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'whore_masseuse_accept'] },
       ]);
     }
@@ -2029,7 +2029,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
 function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -2070,7 +2070,7 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
 function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -2239,7 +2239,7 @@ function enterJobChange(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Change jobtype to nude masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'job_change_nude'] },
           ]);
         }
@@ -2261,7 +2261,7 @@ function enterJobChange(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Change jobtype to handjob masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'job_change_handjob'] },
           ]);
         }
@@ -2283,7 +2283,7 @@ function enterJobChange(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Change jobtype to oral masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'job_change_oral'] },
           ]);
         }
@@ -2305,7 +2305,7 @@ function enterJobChange(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Change jobtype to whore', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'job_change_whore'] },
           ]);
         }
@@ -2508,7 +2508,7 @@ function enterRehire1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Nude masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'naked_rehire'] },
         ]);
       }
@@ -2528,7 +2528,7 @@ function enterRehire1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Handjob masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'handjob_rehire'] },
         ]);
       }
@@ -2548,7 +2548,7 @@ function enterRehire1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Oral masseuse', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'oral_rehire'] },
         ]);
       }
@@ -2568,7 +2568,7 @@ function enterRehire1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Whore', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['masseuse_work', 'whore_rehire'] },
         ]);
       }
@@ -2649,7 +2649,7 @@ function enterWhoreRehire(s: GameState, scene: SceneBuilder): void {
 
 function enterRehire2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');

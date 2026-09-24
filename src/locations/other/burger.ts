@@ -54,7 +54,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_center', ''] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 315) === 0) {
@@ -617,12 +617,12 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     scene.text('You jitter and mumble, "Yes." as you stand in front of the three men. The movers smile and you are quickly grabbed by your hand and taken to the warehouse. They help you undress and put you on your knees. Then they pull out their cocks waiting for you to serve them.');
     scene.text('You begin to diligently suck and stroke the cocks of the three man. Soon they groan and one of them grabs your head with one hand, holding his erect cock with the other.');
     qspCall(st, 'npcStat', 'A75', 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'First Moving Man', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'npcgeneratec', '0', 'First Moving Man', (Math.floor(Math.random() * 23) + 18));
     ((st as any).BurgerQW = (st as any).BurgerQW ?? {})['GroupSex1'] = ((st as any).npclastgenerated ?? 0);
-    // TODO-QSP: gs 'npcStat', $BurgerQW['GroupSex1'], 'b'
-    qspCall(st, 'npcgeneratec', '', 0, 'Second Moving Man', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'npcStat', '$BurgerQW[\'GroupSex1\']', 'b');
+    qspCall(st, 'npcgeneratec', '0', 'Second Moving Man', (Math.floor(Math.random() * 23) + 18));
     ((st as any).BurgerQW = (st as any).BurgerQW ?? {})['GroupSex2'] = ((st as any).npclastgenerated ?? 0);
-    // TODO-QSP: gs 'npcStat', $BurgerQW['GroupSex2'], 'c'
+    qspCall(st, 'npcStat', '$BurgerQW[\'GroupSex2\']', 'c');
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID1 ?? 0), 'sub', 'group');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID2 ?? 0), 'sub', 'group');
     qspCall(st, 'arousal', 'bj', (-1), ((st as any).npcID3 ?? 0), 'sub', 'group');
@@ -633,8 +633,8 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let them cum on you', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'face', 'A75', 1);
-    // TODO-QSP: gs 'cum_call', 'face', $BurgerQW['GroupSex1']
-    // TODO-QSP: gs 'cum_call', 'face', $BurgerQW['GroupSex2']
+    qspCall(st, 'cum_call', 'face', ((st as any).BurgerQW ?? 0)?.['GroupSex1']);
+    qspCall(st, 'cum_call', 'face', ((st as any).BurgerQW ?? 0)?.['GroupSex2']);
     ((st as any).stat = (st as any).stat ?? {})['facial'] = ((st as any).stat['facial'] ?? 0) + (3);
     scene.img('images/shared/sex/group/gopdbj3.jpg');
     scene.text('Hot jets of sperm slap you in the face, you close your eyes and just feel the stinky seed on your skin. Soon after the sprays of semen stop and your face is all covered with a thick layer of sticky cum. The guys look satisfied and laugh at you. Afterwards they exit the warehouse leaving you by yourself.');

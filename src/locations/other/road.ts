@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'npcgeneratec', '', 0, 'truck driver', (Math.floor(Math.random() * 9) + 14));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'truck driver', (Math.floor(Math.random() * 9) + 14));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   (s as any).autostop_price = 0;
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -52,8 +52,8 @@ function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
 function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'npcgeneratec', '', 0, 'truck driver', (Math.floor(Math.random() * 9) + 14));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'truck driver', (Math.floor(Math.random() * 9) + 14));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   (s as any).autostop_price = 0;
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -87,7 +87,7 @@ function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
 function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs 'money', 'pay', autostop_price * 100, 'cash'
+  qspCall(s, 'money', 'pay', ((s as any).autostop_price ?? 0) * 100, 'cash');
   if (((s as any).road_textrand0 ?? 0) === 'Gadukino') {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).nroad = 10;

@@ -22,7 +22,9 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', 25 & minut += 15 & gt 'pav_voc_school', 'disco'
+      qspCall(st, 'money', 'pay', 25);
+      (st as any).minut = ((st as any).minut ?? 0) + (15);
+      qspGoto(st, 'pav_voc_school', 'disco');
     }
   } },
       ]);
@@ -591,7 +593,7 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Lie down on the couch (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'sleep_simple', 'nap');
+    qspCall(st, 'sleep_simple', '');
   } },
     { label: 'Go to the corridor', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -1044,7 +1046,7 @@ function enterTeachersToilet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.actions([
       { label: 'Remove underwear', handler: (st: GameState) => {
-    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'underwear', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);

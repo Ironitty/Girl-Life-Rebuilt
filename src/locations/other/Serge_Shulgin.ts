@@ -187,14 +187,14 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A112'] < 70) {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'Serge_Shulgin', 'hide', 'sleep_nameksex_otkaz');
+    qspCall(st, 'Serge_Shulgin', '');
   } },
         ]);
       } else {
         if (((s as any).serge_sleep_sex_count ?? 0) <= 0) {
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'Serge_Shulgin', 'hide', 'serge_sleep_sex_perebor');
+    qspCall(st, 'Serge_Shulgin', '');
   } },
           ]);
         } else {

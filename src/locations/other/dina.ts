@@ -134,11 +134,11 @@ function enterHypnoAddiction(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hypnoWithdrawal ?? 0) > 0) {
     if (((s as any).hypnoWithdrawal ?? 0) === 1) {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
-        // TODO-QSP: gs 'exp_deg', 'sprt', 2 * trait_vars['cum_addict']
+        qspCall(s, 'exp_deg', 'sprt', 2 * (((s as any).trait_vars ?? {})?.['cum_addict'] ?? 0));
         qspCall(s, 'mood', 'lower', 'small');
       } else {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: gs 'exp_deg', 'sprt', trait_vars['cum_addict']
+          qspCall(s, 'exp_deg', 'sprt', ((s as any).trait_vars ?? 0)?.['cum_addict']);
         }
         qspCall(s, 'mood', 'lower', 'tiny');
       }

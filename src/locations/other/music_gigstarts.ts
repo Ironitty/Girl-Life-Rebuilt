@@ -59,7 +59,7 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'music_checks', 'reset_checks');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
     ]);
   } else {
@@ -115,7 +115,7 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();
@@ -141,7 +141,7 @@ function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'music_actions', 'finish');
+    qspCall(st, 'music_actions', '');
   } },
   ]);
   scene.build();

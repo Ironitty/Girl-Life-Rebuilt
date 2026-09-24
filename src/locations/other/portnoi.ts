@@ -11,26 +11,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).poshvalldrop = ((s as any).poshvalldrop ?? 0) + (1);
   // TODO-QSP: dynamic 'temp_cloStrength = <<$ARGS[0]>>_h[<<ARGS[1]>>]'
   if (((s as any).temp_cloStrength ?? 0) > 100) {
-    // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[0], ARGS[1]
+    qspCall(s, 'clothing', 'remove_item', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
     qspCall(s, 'money', 'earn', 750);
     (s as any).selltot = ((s as any).selltot ?? 0) + (750);
   } else {
     if (((s as any).temp_cloStrength ?? 0) > 45) {
-      // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[0], ARGS[1]
+      qspCall(s, 'clothing', 'remove_item', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
       qspCall(s, 'money', 'earn', 500);
       (s as any).selltot = ((s as any).selltot ?? 0) + (500);
     } else {
       if (((s as any).temp_cloStrength ?? 0) > 30) {
-        // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[0], ARGS[1]
+        qspCall(s, 'clothing', 'remove_item', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
         qspCall(s, 'money', 'earn', 300);
         (s as any).selltot = ((s as any).selltot ?? 0) + (300);
       } else {
         if (((s as any).temp_cloStrength ?? 0) > 0) {
-          // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[0], ARGS[1]
+          qspCall(s, 'clothing', 'remove_item', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
           qspCall(s, 'money', 'earn', 100);
           (s as any).selltot = ((s as any).selltot ?? 0) + (100);
         } else {
-          // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[0], ARGS[1]
+          qspCall(s, 'clothing', 'remove_item', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
         }
       }
     }

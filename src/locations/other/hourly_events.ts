@@ -205,7 +205,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
       if (((s as any).mosol ?? 0) >= 60  &&  ((s as any).pain ?? 0)?.['pubic'] < 80) {
-        qspCall(s, 'pain', '', 1, 'pubic', 'ache');
+        qspCall(s, 'pain', '1', 'pubic', 'ache');
       }
     }
   }

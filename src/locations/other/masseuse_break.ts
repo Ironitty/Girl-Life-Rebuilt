@@ -120,7 +120,7 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['lei_fun'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Do anything fun lately?', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_fun_talk');
+    qspCall(st, 'masseuse_break', '');
   } },
     ]);
   }
@@ -128,13 +128,13 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Finish your break', goto: ['masseuse_break', 'lei_talk_end'] },
     { label: 'Make small talk', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_small_talk');
+    qspCall(st, 'masseuse_break', '');
   } },
     { label: 'Ask about her', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_talk_self');
+    qspCall(st, 'masseuse_break', '');
   } },
     { label: 'Talk about her family', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_talk_family');
+    qspCall(st, 'masseuse_break', '');
   } },
   ]);
   scene.build();
@@ -270,7 +270,7 @@ function enterLeiTalkSelf(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_talk3');
+    qspCall(st, 'masseuse_break', '');
   } },
     { label: 'How do you feel about working as a whore?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
@@ -340,7 +340,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(st, 'masseuse_break', 'lei_talk3');
+    qspCall(st, 'masseuse_break', '');
   } },
     { label: 'Family business?', handler: (st: GameState) => {
     if (((st as any).masseuse ?? 0)?.['lei_sisters'] < 1) {

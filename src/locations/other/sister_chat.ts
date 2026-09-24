@@ -269,7 +269,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
                             scene.actions([
                               { label: 'Apologize', handler: (st: GameState) => {
     ((st as any).sisterQW = (st as any).sisterQW ?? {})['lowrelboost'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify', 'A33', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify', 'A33', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You apologize to your sister, and it seems she forgives you somewhat.');
     scene.actions([
@@ -293,7 +293,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
                               scene.actions([
                                 { label: 'Try to smooth your relations', handler: (st: GameState) => {
     ((st as any).sisterQW = (st as any).sisterQW ?? {})['lowrelboost'] = ((st as any).daystart ?? 0);
-    // TODO-QSP: gs 'npc_relationship', 'modify', 'A33', (pcs_intel/10) + (pcs_apprnc/20)
+    qspCall(st, 'npc_relationship', 'modify', 'A33', (((st as any).pcs_intel ?? 0)/10) + (((st as any).pcs_apprnc ?? 0)/20));
     qspCall(st, 'stat', '');
     scene.text('You suck up to your sister, and she appears to be slowly treating you better.');
     scene.actions([
@@ -1149,7 +1149,7 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
   (s as any).sz = 0;
   // TODO-QSP: :fathlistloop
   if (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
-    (s as any).fath = ((s as any).npc_usedname ?? 0)?.[((s as any).wombpotfath ?? 0)?.[String((s as any).idx ?? 0)]];
+    (s as any).fath = (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0)] ?? 0);
     if (((s as any).fath ?? 0) === 'Roma'  ||  ((s as any).fath ?? 0) === 'Kolka'  ||  ((s as any).fath ?? 0) === 'Stepfather'  ||  ((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
       if (((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
         (s as any).fath = 'our real father';
@@ -1187,7 +1187,7 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
     (s as any).tmpc = '';
     // TODO-QSP: :hardfathloop
     if (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
-      (s as any).fath = ((s as any).specfath ?? 0)?.[String((s as any).idx ?? 0)];
+      (s as any).fath = (((s as any).specfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
       if (((s as any).fath ?? 0) === 'Roma') {
         // TODO-QSP: dynamic text: You <<$tmpb>>the father might <<$tmpc>>be Roma.
         scene.text(`You ${((s as any).tmpb ?? '')}the father might ${((s as any).tmpc ?? '')}be Roma.`);

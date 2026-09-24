@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterVirginityPaidTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['virginity_paid_talk'] = 1;
-  // TODO-QSP: gs 'sex_ev_stats', 'prostitution_init', sex_ev['buy_virginity'] * 1000
+  qspCall(s, 'sex_ev_stats', 'prostitution_init', (((s as any).sex_ev ?? {})?.['buy_virginity'] ?? 0) * 1000);
   scene.img('images/shared/misc/money.jpg');
   // TODO-QSP: dynamic text: "By the way, here," <<$npcdesc>> says, suddenly turning away from you and diggin...
   scene.text(`"By the way, here," ${((s as any).npcdesc ?? '')} says, suddenly turning away from you and digging about for a moment before coming up with a wad of bank notes.`);
@@ -521,14 +521,14 @@ function enterTherapyReact(s: GameState, scene: SceneBuilder): void {
     { label: 'Empathize with him', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_pillow_talk', 'talk_time_add', (Math.floor(Math.random() * 6) + 15));
     // TODO-QSP: dynamic text: You spend the better part of an hour talking through <<$npc_usedname[$npcID]>>''...
-    scene.text(`You spend the better part of an hour talking through ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s problems.`);
+    scene.text(`You spend the better part of an hour talking through ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s problems.`);
     scene.text('And it isn\'t just lip service. You <i>do</i> feel bad for him. You <i>do</i> want to help him. And he seems to recognize and appreciate that.');
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
     { label: 'The things you do for money...', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_pillow_talk', 'talk_time_add', (Math.floor(Math.random() * 6) + 15));
     // TODO-QSP: dynamic text: You spend the better part of an hour talking through <<$npc_usedname[$npcID]>>''...
-    scene.text(`You spend the better part of an hour talking through ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s problems, listening to him go on and on and <i>on</i> about his shitty wife and his shitty problems.`);
+    scene.text(`You spend the better part of an hour talking through ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')}'s problems, listening to him go on and on and <i>on</i> about his shitty wife and his shitty problems.`);
     scene.text('<i>Sigh</i>. This would be so much easier if you could let him fuck you and leave.');
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
@@ -583,7 +583,7 @@ function enterCoworkerComplain(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['coworker_complain_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> goes on for a long time, complaining about his co-work...
-  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} goes on for a long time, complaining about his co-workers.`);
+  scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} goes on for a long time, complaining about his co-workers.`);
   scene.text('"...eeps mistaking me for this other dickhead. Though I admit it\'s logical since he does the same thing I do and does the same thing I do, has a pension for the same kind of suits I wear, and even goes to the same barber I do. Though I have a slightly better haircut."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkComplainReact(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -595,7 +595,7 @@ function enterSubbordinateComplain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> goes on for a long time, complaining about his subordi...
-  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} goes on for a long time, complaining about his subordinates.`);
+  scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} goes on for a long time, complaining about his subordinates.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWorkComplainReact(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();

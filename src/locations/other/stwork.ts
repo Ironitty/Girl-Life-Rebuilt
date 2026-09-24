@@ -86,11 +86,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', 100 & gs 'food', 'snack'
+      qspCall(st, 'money', 'pay', 100);
+      qspCall(st, 'food', 'snack');
     }
   } },
     { label: 'Have a cup of water (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
   ]);
   scene.build();

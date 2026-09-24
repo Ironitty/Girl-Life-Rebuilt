@@ -107,7 +107,7 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Cook some mushroom soup (0:30)', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['collective_opinion'] += 4
-    qspCall(st, 'hunter_favors', 'mushroom_soup');
+    qspCall(st, 'hunter_favors', '');
   } },
               ]);
             } else {
@@ -115,7 +115,7 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Cook some meat stew (1:00)', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['collective_opinion'] += 3
-    qspCall(st, 'hunter_favors', 'meat_stew');
+    qspCall(st, 'hunter_favors', '');
   } },
                 ]);
               } else {
@@ -496,8 +496,8 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (15);
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (10);
     qspCall(s, 'boyStat', 'A172');
-    qspCall(s, 'pain', '', 6, 'pinch', 'nipples');
-    qspCall(s, 'pain', '', 3, 'pinch', 'breasts');
+    qspCall(s, 'pain', '6', 'pinch', 'nipples');
+    qspCall(s, 'pain', '3', 'pinch', 'breasts');
     qspCall(s, 'arousal', 'foreplay', 5, 'rough', 'masochism');
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/gadukino/sex/hunter/bondage_clamps3.jpg');
@@ -507,7 +507,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hope you are into a bit of fun. Or, at least, we will find out," he says. But, of course, you do not object, having already agreed to "anything".');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 3, 'spank', 'nipples');
+    qspCall(st, 'pain', '3', 'spank', 'nipples');
     qspCall(st, 'arousal', 'foreplay', 5, 'rough', 'masochism');
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/gadukino/sex/hunter/bondage_clamps2.jpg');
@@ -516,7 +516,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    qspCall(st, 'pain', '', 10, 'pinch', 'nipples');
+    qspCall(st, 'pain', '10', 'pinch', 'nipples');
     qspCall(st, 'arousal', 'foreplay', (-10), 'rough', 'masochism');
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/gadukino/sex/hunter/bondage_clamps1.jpg');

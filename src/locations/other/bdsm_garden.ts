@@ -139,8 +139,8 @@ function enterGEV2(s: GameState, scene: SceneBuilder): void {
 
 function enterGEV3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).sexpartkno = 1;
   (s as any).cumprecheck = 1;
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
@@ -215,28 +215,28 @@ function enterGEV8(s: GameState, scene: SceneBuilder): void {
   scene.text('As you reveal in your successful work, you realize for the first time that there were 7 men there.');
   // TODO-QSP: dynamic text: You get up, still naked and your face covered in cum. The men have had their fun...
   scene.text(`You get up, still naked and your face covered in cum. The men have had their fun and are leaving. You find ${qspFunc(s, 'money', 'string_profit', 2000)} on the table.`);
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', (Math.floor(Math.random() * 21) + 55));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
   qspCall(s, 'money', 'earn', 2000);

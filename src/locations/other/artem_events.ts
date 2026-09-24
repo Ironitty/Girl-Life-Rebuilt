@@ -76,7 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'main');
+    qspCall(st, 'gschool_grounds', '');
   } },
     ]);
   } },

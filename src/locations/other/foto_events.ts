@@ -1554,8 +1554,8 @@ function enterFineArt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFineArt2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Alexander', 27);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Alexander', 27);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).dick = 34;
   (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
@@ -1644,7 +1644,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'vaginal', 1);
         qspCall(s, 'stat', '');
         ((s as any).modelfoto = (s as any).modelfoto ?? {})['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
-        // TODO-QSP: gs 'money', 'earn', modelpayfin + 2000
+        qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0) + 2000);
         ((s as any).modelfoto = (s as any).modelfoto ?? {})['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 2000);
         (s as any).minut = ((s as any).minut ?? 0) + 90;
         scene.img('images/locations/city/citycenter/photo/special/art1.jpg');
@@ -2486,7 +2486,7 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).modelpayfin = 2500 + (((st as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
-    // TODO-QSP: gs 'money', 'earn', modelpayfin + 1000
+    qspCall(st, 'money', 'earn', ((st as any).modelpayfin ?? 0) + 1000);
     ((st as any).modelfoto = (st as any).modelfoto ?? {})['earnings'] = ((st as any).modelfoto['earnings'] ?? 0) + (((st as any).modelpayfin ?? 0) + 1000);
     ((st as any).modelfoto = (st as any).modelfoto ?? {})['topless'] = ((st as any).modelfoto['topless'] ?? 0) + (1);
     qspCall(st, 'fame', 'city', 'modelling', 'medium');

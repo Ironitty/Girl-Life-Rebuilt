@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_apprnc ?? 0)/8 === 0) {
       qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).numnpc ?? 0) + '', 1);
     } else {
-      // TODO-QSP: gs 'npc_relationship', 'modify_exact', 'A<<numnpc>>', pcs_apprnc/8
+      qspCall(s, 'npc_relationship', 'modify_exact', 'A' + ((s as any).numnpc ?? 0) + '', ((s as any).pcs_apprnc ?? 0)/8);
     }
     if (((s as any).npc_rel ?? 0)['A' + (((s as any).numnpc ?? 0))] < 20) {
       // TODO-QSP: dynamic text: You talk about some random things that happened to you, and <<$npc_firstname[''A...

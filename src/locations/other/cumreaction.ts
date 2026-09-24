@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).static_num ?? 0), (-10));
     qspCall(s, 'fame', 'pav', 'sex', 10);
     // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>> looks at you "What is that? Is that sperm? Fuck ...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? ''} looks at you "What is that? Is that sperm? Fuck you nasty slut, you could at least clean yourself afterwards."`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')} looks at you "What is that? Is that sperm? Fuck you nasty slut, you could at least clean yourself afterwards."`);
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
       scene.actions([
         { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).static_num ?? 0), (-10));
     qspCall(s, 'fame', 'pav', 'sex', 15);
     // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>> looks at you, "What is that smell on your breath...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? ''} looks at you, "What is that smell on your breath? Yuck It's smells like sperm. Couldn't you at least clean your mouth after sucking dicks."`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).static_num ?? 0)] ?? '')} looks at you, "What is that smell on your breath? Yuck It's smells like sperm. Couldn't you at least clean your mouth after sucking dicks."`);
     if (((s as any).loc ?? 0) === 'gschool_lunch') {
       scene.actions([
         { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },

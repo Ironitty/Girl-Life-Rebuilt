@@ -297,6 +297,7 @@ export interface GameState {
   pcs_hairlng: number;
   curly: number;
   pcs_eyecol: number;
+  pcs_eyecolor: string;
   pcs_lashes: number;
   pcs_eyesize: number;
   glass: number;

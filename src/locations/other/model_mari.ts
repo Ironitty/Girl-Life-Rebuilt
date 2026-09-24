@@ -68,7 +68,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"But other than that, I don\'t mind really. I\'ve always been pretty comfortable being naked." And indeed, as the two of you chat, Mari doesn\'t appear to be bothered in the slightest that her breasts are completely on display.');
     scene.actions([
       { label: 'How long have you been working here?', handler: (st: GameState) => {
-    qspCall(st, 'model_mari', 'mari_1.1');
+    qspCall(st, 'model_mari', '');
   } },
     ]);
   } },
@@ -105,7 +105,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"But other than that, I don\'t mind really. I\'ve always been pretty comfortable being naked." And indeed, as the two of you chat, Mari doesn\'t appear to be bothered in the slightest that her breasts are completely on display.');
     scene.actions([
       { label: 'How long have you been working here?', handler: (st: GameState) => {
-    qspCall(st, 'model_mari', 'mari_1.1');
+    qspCall(st, 'model_mari', '');
   } },
     ]);
   } },
@@ -838,7 +838,7 @@ function enterMariModellingChat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(st, 'model_mari', 'mari_chat');
+    qspCall(st, 'model_mari', '');
   } },
   ]);
   scene.build();

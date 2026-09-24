@@ -43,7 +43,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['A31_arg'] === 'gp_room') {
       qspGoto(s, 'gad_gphouse', 'main');
     } else {
-      // TODO-QSP: gt 'gad_gphouse', $locat['A31_arg']
+      qspGoto(s, 'gad_gphouse', (((s as any).locat ?? {})['A31_arg']));
     }
   }
   // TODO-QSP: end

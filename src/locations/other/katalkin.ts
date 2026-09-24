@@ -262,7 +262,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Raise your glass', handler: (st: GameState) => {
     (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (10);
-    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'drugs', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['katalkinAlko', ''] },
     ]);
@@ -281,7 +281,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Drink the vodka', handler: (st: GameState) => {
     (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (10);
-    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'drugs', '');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['katalkinAlko', ''] },
     ]);

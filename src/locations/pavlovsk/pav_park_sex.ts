@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -176,9 +174,9 @@ function enterOldmanHouse(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'A Male', 65);
+    qspCall(st, 'npcgeneratec', '0', 'A Male', 65);
     ((st as any).npc_dick = (st as any).npc_dick ?? {})[String((st as any).npclastgenerated ?? 0)] = 2;
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera3.jpg');
     scene.text('You take his fairly average-sized dick into your mouth and start sucking it. You glance over at the camera and see it pointing right at you as you tightly wrap your lips around the shaft of his cock and bop your head back and forth, sucking him off while listening to him moaning in pleasure.');
     scene.text('"Oh yeah…" he groans. "Turn around and get on all fours."');
@@ -254,7 +252,7 @@ function enterOldmanDoggy(s: GameState, scene: SceneBuilder): void {
     scene.text('He slaps one of your ass cheeks with one hand as he fucks you. "You have one fine-looking ass to go along with this tight little pussy. I feel so damn lucky!"');
     scene.text('He keeps complimenting you as he spanks and fucks you. He then suddenly pulls out of you and struggles to his feet. "I\'m about to cum. Come over here and jerk me off on your face."');
     qspCall(st, 'arousal', 'vaginal', 3, 'inhibition');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Jerk him off', goto: ['pav_park_sex', 'oldman_finish'] },
@@ -267,8 +265,8 @@ function enterOldmanDoggy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOldmanFinish(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', 52);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Old Man', 52);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera7.jpg');
   scene.text('You slide off the bed onto your knees in front of him and take his wet dick in your hand before jerking him off.');
@@ -916,34 +914,34 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/blowbang/blowbang1.jpg');
     scene.text('You get down on your knees and start to suck Vitek off again. Next thing you know, all the guys are around you with your dicks out. You don\'t know what to do, but with all of them encouraging you, you start jerking them off.');
-    // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[0], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[2], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[3], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[4], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[5], 'sub', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 2, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Look at Pauline', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/blowbang/blowbang2.jpg');
     scene.text('"Look at the camera," Pauline says and you look up at her as you take turns jerking all the guys off and sucking their dicks.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[3], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[4], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[5], 'sub', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck each of them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/blowbang/blowbang3.jpg');
     scene.text('You continue jerking their dicks and sucking each one in turn as the guys all compliment your skills.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[3], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[0], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[2], 'sub', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Mouthful', handler: (st: GameState) => {
@@ -951,39 +949,39 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
     scene.text('While sucking Vasily\'s dick, you suddenly feel his cock twitch before he starts pumping his cum into your mouth. He holds onto the back of your head so you can\'t pull away, filling your mouth with his seed.');
     scene.text('Once he finishes, he wipes the tip of his dick against your clothes and walks away. Before you can even say anything, another dick is shoved in your mouth.');
     scene.text('"Open your mouth, bitch!" Roman suddenly barks.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[3], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[4], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[2], 1
-    // TODO-QSP: gs 'cum_call', 'clothes', $npcID[2], 1
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[2] ?? 0), 1);
+    qspCall(st, 'cum_call', 'clothes', (((st as any).npcID ?? 0)?.[2] ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/blowbang/blowbang5.jpg');
     scene.text('He jerks off, shooting his cum in your mouth as well. This starts a chain reaction, and soon the other guys are all around you, jerking their dicks before they start shooting their cum all over your face.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[0], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[1], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -1, $npcID[3], 'sub', 'group', 'gangbang'
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[5], 1
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group', 'gangbang');
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[5] ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Covered', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/blowbang/blowbang6.jpg');
     scene.text('Before you know it, your face and clothes are covered in cum, so much so you can\'t even open your eyes. Once the last drops of cum land on your face, you wipe your eyes and see everyone walking away, leaving you on your knees with a face covered in their cum.');
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[0], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[1], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[3], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[4], 1
-    // TODO-QSP: gs 'cum_call', 'clothes', $npcID[0], 1
-    // TODO-QSP: gs 'cum_call', 'clothes', $npcID[1], 1
-    // TODO-QSP: gs 'cum_call', 'clothes', $npcID[3], 1
-    // TODO-QSP: gs 'cum_call', 'clothes', $npcID[4], 1
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[1] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[3] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[4] ?? 0), 1);
+    qspCall(st, 'cum_call', 'clothes', (((st as any).npcID ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'cum_call', 'clothes', (((st as any).npcID ?? 0)?.[1] ?? 0), 1);
+    qspCall(st, 'cum_call', 'clothes', (((st as any).npcID ?? 0)?.[3] ?? 0), 1);
+    qspCall(st, 'cum_call', 'clothes', (((st as any).npcID ?? 0)?.[4] ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'deeper_park'] },
@@ -1074,74 +1072,74 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
       { label: 'Look at Pauline', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang2.jpg');
     scene.text('You look up at her as you take turns jerking all the guys off and sucking their dicks.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck each of them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang3.jpg');
     scene.text('You suck each of them off in turn while jerking off two more simultaneously as Pauline keeps recording and the guys keep encouraging you.');
     scene.text('You\'re soon lost in the moment and no longer thinking about what you\'re doing, but your moment of bliss is soon interrupted by Roman. "Come on, she\'s got more than one hole."');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -2, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'hj', (-2), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang4.jpg');
     // TODO-QSP: dynamic text: You''re pushed down on all fours and Vitek shoves his dick back in your mouth be...
-    scene.text(`You're pushed down on all fours and Vitek shoves his dick back in your mouth before you feel a ${qspUntranslated(s, "dick_length[4]", { location: "pav_park_sex" })}cm ${qspUntranslated(s, "dick_girth[4]", { location: "pav_park_sex" })} dick being shoved in your wet pussy.`);
+    scene.text(`You're pushed down on all fours and Vitek shoves his dick back in your mouth before you feel a ${(((st as any).dick_length ?? 0)?.[4] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[4] ?? '')} dick being shoved in your wet pussy.`);
     scene.text('"Damn, this bitch is sopping wet already," Arkadi states.');
     scene.text('Vitek speaks up next. "Alright, move. My turn with this slut."');
     scene.text('He has barely pulled his dick out of your mouth when Dan shoves his dick in.');
-    // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -3, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 3, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-3), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep getting fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang5.jpg');
     // TODO-QSP: dynamic text: You feel a dick being pulled out of you, only to have a <<dick_length[0]>>cm <<$...
-    scene.text(`You feel a dick being pulled out of you, only to have a ${qspUntranslated(s, "dick_length[0]", { location: "pav_park_sex" })}cm ${qspUntranslated(s, "dick_girth[0]", { location: "pav_park_sex" })} cock shoved back in. You keep sucking dick as you're roughly getting fucked - the guys only treat you as a warm wet hole to fuck for their pleasure.`);
-    // TODO-QSP: gs 'arousal', 'vaginal', 3, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', -3, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    scene.text(`You feel a dick being pulled out of you, only to have a ${(((st as any).dick_length ?? 0)?.[0] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[0] ?? '')} cock shoved back in. You keep sucking dick as you're roughly getting fucked - the guys only treat you as a warm wet hole to fuck for their pleasure.`);
+    qspCall(st, 'arousal', 'vaginal', 3, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', (-3), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let them take their turns', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang6.jpg');
     // TODO-QSP: dynamic text: Dan is the next one to take his turn fucking you with his <<dick_length[1]>>cm <...
-    scene.text(`Dan is the next one to take his turn fucking you with his ${qspUntranslated(s, "dick_length[1]", { location: "pav_park_sex" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pav_park_sex" })} dick while you suck off Lavrenti.`);
+    scene.text(`Dan is the next one to take his turn fucking you with his ${(((st as any).dick_length ?? 0)?.[1] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[1] ?? '')} dick while you suck off Lavrenti.`);
     scene.text('Shortly after, Lavrenti is taking his turn fucking you while you suck off Vasily before he switches places and starts to fuck you while you suck off Roman.');
-    // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', -10, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'vaginal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', (-10), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Roman\'s turn', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang7.jpg');
     scene.text('"My turn," Roman says as he moves behind you and Vitek\'s dick takes his place in your mouth. "God damn, look at that pussy gaping. It looks like a wet-bitten-off burrito. Fuck that."');
     // TODO-QSP: dynamic text: The next thing you feel is spit between your cheeks, and then the tip of a dick ...
-    scene.text(`The next thing you feel is spit between your cheeks, and then the tip of a dick shoved against your asshole before Roman forces his ${qspUntranslated(s, "dick_length[5]", { location: "pav_park_sex" })}cm ${qspUntranslated(s, "dick_girth[5]", { location: "pav_park_sex" })} cock into your ass, making you groan loudly and try and pull away, but with Vitek in front of you, you have nowhere to go. You can hear several boys laughing as you try and pull away.`);
+    scene.text(`The next thing you feel is spit between your cheeks, and then the tip of a dick shoved against your asshole before Roman forces his ${(((st as any).dick_length ?? 0)?.[5] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[5] ?? '')} cock into your ass, making you groan loudly and try and pull away, but with Vitek in front of you, you have nowhere to go. You can hear several boys laughing as you try and pull away.`);
     scene.text('"Oh yeah, at least her ass is still tight!" Roman says as he forces his dick balls deep inside you before he starts hammering your ass as hard and fast as he can. Pauline walks over and you hear and feel her spit in the crack of your ass, somewhat lubing you up.');
-    // TODO-QSP: gs 'arousal', 'anal', 3, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', -3, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'anal', 3, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', (-3), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'They take turns on your ass', handler: (st: GameState) => {
@@ -1149,39 +1147,39 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek pulls his dick out of your mouth. "I want a piece of that ass."');
     scene.text('He gets up, moves around behind you, and plunges his dick into your sore and gaping ass. He then hammers away at it as the others line up to take a turn with your ass.');
     // TODO-QSP: dynamic text: Next up is Vasily, who plunges his <<dick[2]>>cm <<$dick_girth[2]>> dick balls-d...
-    scene.text(`Next up is Vasily, who plunges his ${qspUntranslated(s, "dick[2]", { location: "pav_park_sex" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pav_park_sex" })} dick balls-deep into your ass and starts hammering away.`);
-    // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    scene.text(`Next up is Vasily, who plunges his ${(((st as any).dick ?? 0)?.[2] ?? '')}cm ${(((st as any).dick_girth ?? 0)?.[2] ?? '')} dick balls-deep into your ass and starts hammering away.`);
+    qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang9.jpg');
     scene.text('One after another takes their turn fucking your ass raw, with Lavrenti up last. He spits on your ass and is a lot more slow and gentle, but the other guys are soon giving him grief and he starts pounding your ass balls deep.');
     scene.text('Roman once again speaks up speaking up in annoyance. "Fuck, I can\'t wait anymore! She has two more holes."');
-    // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'anal', 5, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get filled up', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang10.jpg');
     scene.text('He crawls under you and slides his dick inside your pussy, while someone else shoves his cock up your ass. Finally, a dick is shoved in your mouth.');
     scene.text('You\'re fucked like this for several minutes before they change places. After that, you lose track of who is fucking you in which hole.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'It doesn\'t end', handler: (st: GameState) => {
@@ -1189,35 +1187,35 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.text('Dicks keep sliding in and out of your holes before you start hearing some of them grunting.');
     scene.text('"On your knees, slut!" Vitek barks.');
     scene.text('You feel all the dicks slide out of you and get on your knees, exhausted and sore all over.');
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'vaginal', -1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[0], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[1], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[2], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[3], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[4], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'anal', -1, $npcID[5], 'sub', 'inhibition', 'humiliation', 'group', 'gangbang'
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 1, (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-1), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'inhibition', 'humiliation', 'group', 'gangbang');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Kneel', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/gopnik/sex/sveta_fall/gangbang/gangbang12.jpg');
     scene.text('Once you\'re on your knees, the boys crowd around you, jerking off in your face and moving aside as one after another cums on your face. It doesn\'t take long until your face is covered in the cum of six boys.');
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[0], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[1], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[2], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[3], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[4], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[5], 1
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[1] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[2] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[3] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[4] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[5] ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Covered', handler: (st: GameState) => {

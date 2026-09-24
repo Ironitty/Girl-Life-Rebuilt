@@ -77,7 +77,7 @@ function enterViewClothingList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothingList(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'clothing_view', 'view_grid', '$ARGS[1]');
+  qspGoto(s, 'clothing_view', 'view_grid', String((s as any).locArgs?.[1] ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -189,7 +189,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterChange(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = '';
-  // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
+  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   if (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
     scene.text('A hessian sack the hunters gave you.');
@@ -253,7 +253,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hypnoClothes ?? 0) <= 0  ||  qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
           scene.actions([
             { label: 'Wear this outfit', handler: (st: GameState) => {
-    // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
+    qspCall(st, 'clothing', 'wear', ((st as any).locArgs?.[1] ?? 0), ((st as any).locArgs?.[2] ?? 0));
     if (((st as any).regularwornclothingtype ?? 0) === '') {
       qspGoto(st, 'wardrobe', 'main');
     } else {
@@ -280,7 +280,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
         { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
+    qspCall(st, 'clothing', 'wear', ((st as any).locArgs?.[1] ?? 0), ((st as any).locArgs?.[2] ?? 0));
     if (((st as any).regularwornclothingtype ?? 0) === '') {
       qspGoto(st, 'wardrobe', 'main');
     } else {

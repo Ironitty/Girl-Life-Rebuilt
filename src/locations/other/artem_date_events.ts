@@ -465,8 +465,8 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj1.jpg');
   scene.text('You quickly glance around and realize there\'s no way you can get past them and outrun them all. With a deep sigh, you drop to your knees and reach out for one of the exposed cocks the gopniks are already shoving in your face.');
   scene.text('Two of the gopniks leave to keep an eye out, satisfied that you can\'t run away without their friends stopping you. The other four all offer you their cocks, so you start sucking on one and jerking off two while the last guy pulls out his phone and starts filming you.');
-  qspCall(s, 'pain', '', 3, 'hair', 'pull');
-  qspCall(s, 'pain', '', 6, 'jaw', 'ache');
+  qspCall(s, 'pain', '3', 'hair', 'pull');
+  qspCall(s, 'pain', '6', 'jaw', 'ache');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism');
   qspCall(s, 'stat', '');
@@ -475,9 +475,9 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
     { label: 'Get face fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj2.jpg');
     scene.text('You try giving the first guy a blowjob, but it\'s quite obvious they don\'t need your cooperation. Another guy roughly grabs you by the hair and pulls your head towards his dick, roughly shoving it down your throat before he starts roughly fucking your mouth. They take turns filming as they pass you around.');
-    qspCall(st, 'pain', '', 3, 'hair', 'pull');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '3', 'hair', 'pull');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID3 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'stat', '');
@@ -485,9 +485,9 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
       { label: 'Swallow it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum1.jpg');
     scene.text('After a while, you suddenly feel cum splashing against the back of your mouth, but he doesn\'t stop face fucking you until he stops. You don\'t have time to catch your breath because as soon as he pulls his dick out, another is shoved in your mouth.');
-    qspCall(st, 'pain', '', 3, 'hair', 'pull');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '3', 'hair', 'pull');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0));
@@ -496,9 +496,9 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep swallowing', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum2.jpg');
     scene.text('As soon as one guy finishes, the next one takes over. After what feels like forever, the third guy finally finishes, and the two that went to keep watch have come over and have their their dicks out.');
-    qspCall(st, 'pain', '', 3, 'hair', 'pull');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '3', 'hair', 'pull');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID2 ?? 0));
@@ -508,9 +508,9 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
       { label: 'Blowbang', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj3.jpg');
     scene.text('The fourth and fifth guy take their turns with you, leaving your throat feeling sore.');
-    qspCall(st, 'pain', '', 3, 'hair', 'pull');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '3', 'hair', 'pull');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID5 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID6 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID4 ?? 0));
@@ -520,10 +520,10 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
       { label: 'Last one', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum3.jpg');
     scene.text('With just one left, you can finally stop giving handjobs, your hands having cramped up. The last one, unlike his friends, pulls his dick out just as he starts to cum and spurts his cum all over your face. As it drips down onto your chin, the one currently filming gets a close up of you as the gopniks all gather round for one last laugh before they leave you and Artem be.');
-    qspCall(st, 'pain', '', 3, 'hair', 'pull');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(st, 'pain', '', 5, 'fingers', 'cramp');
+    qspCall(st, 'pain', '3', 'hair', 'pull');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
+    qspCall(st, 'pain', '5', 'fingers', 'cramp');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID6 ?? 0));
     qspCall(st, 'stat', '');
@@ -608,14 +608,14 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/bound.jpg');
     scene.text('The leader holds you down and puts a knee on your head as another gopnik ties your hands tightly behind your back. By this point, you\'re too tired to resist and just let them have their way with you.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
     qspCall(st, 'arousal', 'BDSM', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'The nightmare begins', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     scene.text('Two of them hold you down while one pulls his dick out, shoves it in your pussy and starts hammering away, not caring if you enjoy it or not. The more you struggle or cry out, the more they seem to enjoy it.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     (st as any).pcs_horny = 0;
     qspCall(st, 'stat', '');
@@ -623,7 +623,7 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape2.jpg');
     scene.text('The one watching takes his turn and forces his dick inside you while the first one just watches as he jerks off.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID2 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     (st as any).pcs_horny = 0;
     qspCall(st, 'stat', '');
@@ -631,7 +631,7 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape3.jpg');
     scene.text('"Alright, my turn," the leader says. "Roll her over onto her hands and knees." You\'re roughly forced into a kneeling position on the nasty old mattress, with your face forced against it. You feel someone spit on your asshole before a dick is shoved inside, causing you to cry out in pain as he starts pounding you balls deep. "Much tighter than that gaping pussy after you guys ripped it up!" He laughs and the others join in.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     (st as any).pcs_horny = 0;
     qspCall(st, 'stat', '');
@@ -639,8 +639,8 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Two at a time', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape4.jpg');
     scene.text('The leader pulls out of your ass and lies in front of you on his side as someone else starts roughly fucking your ass. Once he\'s next to your head, the leader shoves his dick in your mouth and makes you suck his dick as the other three take turns fucking your ass. You soon feel one of them cumming in your ass as another speaks up. "Come on, she has other holes! I\'m tired of waiting!"');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
     qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID1 ?? 0));
@@ -650,8 +650,8 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape5.jpg');
     scene.text('With that, one of them lies down on the mattress and they force you to straddle and mount him, his cock sliding into your battered pussy as another cock is shoved into your mouth and a third back in your ass. The ones who were on watch come over to take their turns as you feel one of them cumming in your pussy.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
     qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'arousal', 'bj', (-10), ((st as any).npcID6 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
@@ -662,8 +662,8 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rapecum1.jpg');
     scene.text('The remaining ones take turns fucking all three of your holes so much that you lose count as two of them cum inside you. When they pull out, you feel the cum leaking out of both of your holes as one of the other guys cums in your mouth.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
     qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'arousal', 'bj', (-10), ((st as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
@@ -676,9 +676,9 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
       { label: 'Last one', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rapecum2.jpg');
     scene.text('The last one starts fucking your throat. Before too long, he starts cumming as well, holding your mouth open with one hand as he jerks off with the other, milking every last drop of cum into your mouth.');
-    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '2', 'wrists', 'bind');
+    qspCall(st, 'pain', '6', 'jaw', 'ache');
+    qspCall(st, 'pain', '6', 'throat', 'stretch');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID6 ?? 0));
     (st as any).pcs_horny = 0;
@@ -720,18 +720,18 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneratgopniks(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 1', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 2', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 3', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 4', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'd');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 5', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 6', (Math.floor(Math.random() * 8) + 18));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'f');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 1', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 2', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 3', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 4', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'd');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 5', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'e');
+  qspCall(s, 'npcgeneratec', '0', 'Gopnik rapist 6', (Math.floor(Math.random() * 8) + 18));
+  qspCall(s, 'npcStat', '$npclastgenerated', 'f');
   // TODO-QSP: end
   scene.build();
 }

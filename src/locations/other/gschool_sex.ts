@@ -550,7 +550,7 @@ function enterAnushKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'cum_call', 'breasts', ((st as any).npcID1 ?? 0), 1);
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_cleanup', '', 4);
+    qspCall(st, 'cum_cleanup', '4');
     scene.actions([
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -673,7 +673,7 @@ function enterRandSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'He fucks your pussy', handler: (st: GameState) => {
     (st as any).cumprecheck = 1;
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     scene.img('images/locations/pavlovsk/school/building/sex/boysex_scool3.jpg');
     (st as any).orgasm_or = 'yes';
     (st as any).orgasm_txt = 'Taking you upstairs to a window sill, he tells you to lay down on your back on the ledge. Once you oblige, he spreads your legs and slowly slides his cock into your dripping pussy, fucking you in low, long thrusts. Every thrust puts him in a little deeper and when he bottoms out in you, he starts fucking you in earnest. You\'ve given into your pleasure a long time ago; you are nothing but putty in his hands, letting him fuck you however he wants as long as you get off on it. Before too long you reach your orgasm and grasp your arms tightly around his neck to keep yourself from falling out the window. Your spasming pussy is milking his cock and you can tell he\'s getting close.';
@@ -740,8 +740,8 @@ function enterRandSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchBj(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'a schoolboy you don\'t know', (Math.floor(Math.random() * 3) + 15));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'a schoolboy you don\'t know', (Math.floor(Math.random() * 3) + 15));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/pavlovsk/school/lunch/sex/lunchbrbj.jpg');
   // TODO-QSP: dynamic text: You lead him into the restroom, where you get down on your knees and pull down h...
   scene.text(`You lead him into the restroom, where you get down on your knees and pull down his pants, revealing his stiff erection. You flash him a smile and close your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock. You don't plan on taking long and quickly use all your tricks to get him to cum as quick as you can: swirling your tongue over the head, licking the shaft and sucking for all you're worth.`);
@@ -763,8 +763,8 @@ function enterLunchBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchSex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'a schoolboy you don\'t know', (Math.floor(Math.random() * 3) + 15));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'a schoolboy you don\'t know', (Math.floor(Math.random() * 3) + 15));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/pavlovsk/school/lunch/sex/roofbj.jpg');
   // TODO-QSP: dynamic text: Once you''re on the roof, you see several blankets and other stuff in a corner i...
   scene.text(`Once you're on the roof, you see several blankets and other stuff in a corner in a safe spot. You grab one and the boy helps you lay it out. Once it's down, you both undress and he lays on his back. Dropping down next to him, you close your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock and start flicking your tongue over the head, licking the shaft and sucking for all you're worth while one of your hands plays with his balls.`);

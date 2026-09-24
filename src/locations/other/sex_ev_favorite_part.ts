@@ -1468,7 +1468,7 @@ function enterPcCowgirlPref1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I liked it when I got to be on top," you smile.');
     if (((st as any).sex_ev ?? 0)?.['cowgirl_dom'] === 1) {
       // TODO-QSP: dynamic text: "Yeah, you really took charge," <<$npc_usedname[$npcID]>> says, blushing.
-      scene.text(`"Yeah, you really took charge," ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} says, blushing.`);
+      scene.text(`"Yeah, you really took charge," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} says, blushing.`);
     } else {
       // TODO-QSP: dynamic text: "Yeah?" <<$npcdesc>> grins back. "You like to ride?"
       scene.text(`"Yeah?" ${((st as any).npcdesc ?? '')} grins back. "You like to ride?"`);

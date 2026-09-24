@@ -10,12 +10,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSetWillpower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['dom'] < 0) {
-    qspCall(s, 'willpower', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'easy');
+    qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0), 'easy');
   } else {
     if (((s as any).katjaQW ?? 0)?.['dom'] <= 30) {
-      qspCall(s, 'willpower', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
     } else {
-      qspCall(s, 'willpower', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'hard');
+      qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0), 'hard');
     }
   }
   // TODO-QSP: end
@@ -316,7 +316,7 @@ function enterDanceGuyApproach(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Join them', goto: ['katja_nightclub', 'dance_guy2'] },
         { label: 'Don\'t join them', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['city_nightclub', 'dance'] },
       ]);
     } else {
@@ -407,7 +407,7 @@ function enterDanceTwoGuysApproach(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Join them', goto: ['katja_nightclub', 'dance_two_guys2'] },
         { label: 'Don\'t join them', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['city_nightclub', 'dance'] },
       ]);
     } else {
@@ -833,8 +833,8 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja then leans in and whispers in your ear. "You go ahead, I won\'t be joining you."');
     scene.actions([
       { label: 'Dance with him alone', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), (Math.floor(Math.random() * 2) + 3));
-    qspCall(st, 'boystat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), (Math.floor(Math.random() * 2) + 3));
+    qspCall(st, 'boystat', '$npclastgenerated');
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     qspGoto(st, 'city_nightclub', 'dance_guy');
@@ -919,8 +919,8 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
         { label: 'Go with him alone', handler: (st: GameState) => {
     scene.text('"Suits yourself," you shrug and turn to the guy. "Lead the way."');
     scene.text('"Great. Follow me, my lady," he says and leads you to a private room. The bouncer seems to know him and opens the door for you.');
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), 4);
-    qspCall(st, 'boystat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), 4);
+    qspCall(st, 'boystat', '$npclastgenerated');
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1072,8 +1072,8 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
         { label: 'Go with him alone', handler: (st: GameState) => {
     scene.text('"Suits yourself," you shrug and turn to the guy "Lead the way."');
     scene.text('"Great. Follow me, my lady," he says and leads you to a private room. The bouncer seems to know him and opens the door for you.');
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), 4);
-    qspCall(st, 'boystat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), 4);
+    qspCall(st, 'boystat', '$npclastgenerated');
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1387,8 +1387,8 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
         { label: 'Go with him alone', handler: (st: GameState) => {
     scene.text('"Suits yourself," you shrug and turn to the guy. "Lead the way."');
     scene.text('"Great. Follow me, my lady," he says and leads you to a private room. The bouncer seems to know him and opens the door for you.');
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), 4);
-    qspCall(st, 'boystat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), 4);
+    qspCall(st, 'boystat', '$npclastgenerated');
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1539,7 +1539,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go home with him alone', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'hate');
-    qspCall(st, 'npcgeneratec', '', 0, '', (Math.floor(Math.random() * 38) + 18), (Math.floor(Math.random() * 2) + 3));
+    qspCall(st, 'npcgeneratec', '0', '', (Math.floor(Math.random() * 38) + 18), (Math.floor(Math.random() * 2) + 3));
     scene.text('"Well, I\'m going with him. If you don\'t want to have fun, then you can stay here alone," you tell her.');
     scene.text('Katja almost looks angry. "If you get hurt, then I won\'t be able to help you. But whatever," she says before turning around and walking away.');
     // TODO-QSP: 'The guy looks a little surprised by the exchange, but takes you under his arm and walks you ' + iif...

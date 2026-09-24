@@ -725,7 +725,7 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Reply', handler: (st: GameState) => {
     (st as any).VKKatjaChat = 1;
     qspCall(st, 'stat', '');
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     if ((!((st as any).VKNatChat ?? 0))) {
       scene.text('"Tell me about it," you sarcastically reply and Katja lightly squeezes your shoulders.');
       scene.text('"No one can change who you are beside you. Remember that. Anyway, you should take a bath before Vicky decides to gussy herself in there. Trust me when I say you won\'t be able to use the bathroom anytime this century."');
@@ -1238,7 +1238,7 @@ function enterKatBath(s: GameState, scene: SceneBuilder): void {
     scene.text(`After the long passionate kiss, Katja smiles. "Well… you should probably go see Vicky. She'll see you out… and ${((st as any).pcs_nickname ?? '')}. Don't forget about what I told you. Niko is no good for you and please… take care of yourself. You are very important to me." You give Katja an approving nod as she climbs out of the tub and you both get dried and dressed.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoMeyHome', 'bathroom'] },
     ]);
   } },
@@ -1293,7 +1293,7 @@ function enterNataliaBath(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoMeyHome', 'bathroom'] },
     ]);
   } },
@@ -1362,7 +1362,7 @@ function enterKatjaBath(s: GameState, scene: SceneBuilder): void {
     scene.text(`After the long passionate kiss, Katja smiles. "Well… You should probably go see Vicky. She'll see you out… And ${((st as any).pcs_nickname ?? '')}. Don't forget about what I told you. Niko is no good for you and please… take care of yourself. You're important to me." You give Katja an approving nod as she climbs out of the tub and you both get dried and dressed.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoMeyHome', 'bathroom'] },
     ]);
   } },

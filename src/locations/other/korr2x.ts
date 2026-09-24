@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set this apartment as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['korr2x', ''] },
     ]);
   } else {

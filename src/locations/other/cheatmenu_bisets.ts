@@ -67,7 +67,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'How to: mod edition', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'mods_how_to');
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -243,9 +243,9 @@ function enterCsMain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <a href="exec: gs ''cheatmenu_bisets'', ''cs_export'', <<ARGS[1]>>">Export image...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_export/u0027); return false;">Export image set.</a>`);
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (String((s as any).locArgs?.[1] ?? '')) + '_advanced'] === 0) {
-    // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_simple', ARGS[1]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMainSimple(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced', ARGS[1]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMainAdvanced(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: dynamic text: <a href="exec: gs ''cheatmenu_bisets'', ''cs_delete_set'', <<ARGS[1]>>">Delete t...
   scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027); return false;">Delete this set.</a>`);
@@ -253,10 +253,10 @@ function enterCsMain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'main');
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
     { label: 'Export set', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'cs_export', ((st as any).locArgs?.[1] ?? 0));
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -333,7 +333,7 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'cs_main', ((st as any).cmbs_exp_set ?? 0));
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -554,7 +554,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'cs_main', ((st as any).cmbs_set ?? 0));
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
     { label: 'Copy to other class', handler: (st: GameState) => {
     ((st as any).cmd_copy_class = (st as any).cmd_copy_class ?? {})['set'] = ((st as any).cmbs_set ?? 0);
@@ -651,7 +651,7 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'cs_main', ((st as any).temp_set ?? 0));
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -777,7 +777,7 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cancel', handler: (st: GameState) => {
-    // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced2', cmd_copy_class['set'], cmd_copy_class['base']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).cmd_copy_class ?? 0)?.['set'], ((st as any).cmd_copy_class ?? 0)?.['base']]; enterCsMainAdvanced2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -856,9 +856,9 @@ function enterCsCopyClassStren(s: GameState, scene: SceneBuilder): void {
 function enterCsOverwriteClassesBase(s: GameState, scene: SceneBuilder): void {
   ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['base_str'] = (String(10000 + (((s as any).cmd_copy_class ?? {})?.['base'] ?? 0)).slice((2)-1));
   ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['string'] = 'fix_biset_' + ((s as any).cmd_copy_class ?? 0)?.['set'] + '_';
-  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['path'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'path_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
-  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['desc'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'desc_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
-  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['imgnums'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
+  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['path'] = (((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'path_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''] ?? 0);
+  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['desc'] = (((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'desc_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''] ?? 0);
+  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['imgnums'] = (((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''] ?? 0);
   ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = 0;
   // TODO-QSP: :cs_overwrite_loop1
   // TODO-QSP: $cmd_copy_class['img_<<cmd_copy_class[''i'']>>'] = $cheatVars[$cmd_copy_class['string'] + 'img_<<$cm...
@@ -883,7 +883,7 @@ function enterCsOverwriteClassesBase(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cmd_copy_class ?? 0)?.['str_i'] < 18) {
     // TODO-QSP: jump 'cs_overwrite_str_loop'
   }
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', cmd_copy_class['set']
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cmd_copy_class ?? 0)?.['set']]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -901,7 +901,7 @@ function enterCsOverwriteClass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))] > ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class ?? 0)?.['imgnums'];
     // TODO-QSP: :cs_overwrite_loop3
-    // TODO-QSP: gs 'array', 'remove_element', '$cheatVars', $cmd_copy_class['string'] + 'img_<<$ARGS[1]>>_<<cmd_copy...
+    qspCall(s, 'array', 'remove_element', '$cheatVars', ((s as any).cmd_copy_class ?? 0)?.['string'] + 'img_' + ((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).cmd_copy_class ?? 0)?.['i'] + '');
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
     if (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))]) {
       // TODO-QSP: jump 'cs_overwrite_loop3'
@@ -932,7 +932,7 @@ function enterAddSet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
     // TODO-QSP: killvar 'klsetask'
-    qspCall(st, 'cheatmenu_bisets', 'main');
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -947,7 +947,7 @@ function enterAddSet2(s: GameState, scene: SceneBuilder): void {
       (s as any).cmd_temp_input = (String(((s as any).cmd_temp_input ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).cmd_temp_input ?? 0)).length)-1)));
     }
     ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] = ((s as any).cmd_temp_input ?? 0);
-    // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -992,7 +992,7 @@ function enterImportSet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
     // TODO-QSP: killvar 'klsetask'
-    qspCall(st, 'cheatmenu_bisets', 'main');
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();
@@ -1021,7 +1021,7 @@ function enterImportSetMod(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :mod_exec
   if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
     // TODO-QSP: dynamic text: <a href="exec: gs ''cheatmenu_bisets'', ''import_set_mod2'', <<cmbs_import_set>>...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027import_set_mod2/u0027); return false;">${((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] ?? ''}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027import_set_mod2/u0027); return false;">${(((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] ?? '')}</a>`);
   }
   (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
   if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length) {
@@ -1106,17 +1106,17 @@ function enterImportCustomSet(s: GameState, scene: SceneBuilder): void {
 
 function enterCsSetSimple(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_advanced'] = 0;
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCsSetAdvanced(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (String((s as any).locArgs?.[1] ?? '')) + '_imgnums_0000'] === 0) {
-    // TODO-QSP: gs 'cheatmenu_bisets', 'cs_init_advanced', ARGS[1]
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsInitAdvanced(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_advanced'] = 1;
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1310,28 +1310,28 @@ function enterCsRemoveImg(s: GameState, scene: SceneBuilder): void {
 
 function enterCsSetDefaultImg(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_img_' + String((String(10000 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1)))] = '';
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCsSetDefaultImgAdv(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_img_' + String((String(10000 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1))) + '_' + String(((s as any).locArgs?.[3] ?? 0))] = '';
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced2', ARGS[1], ARGS[2]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterCsMainAdvanced2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCsSetDefaultDesc(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_desc_' + String((String(10000 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1)))] = '';
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCsSetDefaultDescAdv(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_desc_' + String((String(10000 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1)))] = '';
-  // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced2', ARGS[1], ARGS[2]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterCsMainAdvanced2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1351,7 +1351,7 @@ function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_bodyimg'] = 0;
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_bi_set'] = 0;
       }
-      // TODO-QSP: gs 'cheatmenu_bisets', 'cs_delete_set2', ARGS[1]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCsDeleteSet2(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMain(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: <a href="exec: klsetask = 1 & gs ''cheatmenu_bisets'', ''cs_delete_set'', <<ARGS...
@@ -1367,8 +1367,8 @@ function enterCsDeleteSet2(s: GameState, scene: SceneBuilder): void {
   (s as any).cmbs_text = 'fix_biset_' + ((s as any).locArgs?.[1] ?? 0) + '_';
   (s as any).cmbs_bmi_i = 0;
   // TODO-QSP: :del_bodimgset_loop
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'img_<<cmbs_i>>'
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'desc_<<cmbs_i>>'
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'img_' + ((s as any).cmbs_i ?? 0) + '');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'desc_' + ((s as any).cmbs_i ?? 0) + '');
   (s as any).cmbs_i = ((s as any).cmbs_i ?? 0) + (1);
   if (((s as any).cmbs_i ?? 0) < 9) {
     // TODO-QSP: jump 'del_bodimgset_loop'
@@ -1378,16 +1378,16 @@ function enterCsDeleteSet2(s: GameState, scene: SceneBuilder): void {
   (s as any).cmbs_stren = 0;
   // TODO-QSP: :del_bodimgset_stren_loop
   (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_bmi ?? 0) * 100 + ((s as any).cmbs_stren ?? 0)).slice((2)-1));
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'desc_<<$cmbs_class_str>>'
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'path_<<$cmbs_class_str>>'
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'desc_' + ((s as any).cmbs_class_str ?? 0) + '');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path_' + ((s as any).cmbs_class_str ?? 0) + '');
   (s as any).cmbs_i = 0;
   // TODO-QSP: :del_bodimgset_img_loop
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'img_<<$cmbs_class_str>>_<<cmbs_i>>'
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'img_' + ((s as any).cmbs_class_str ?? 0) + '_' + ((s as any).cmbs_i ?? 0) + '');
   (s as any).cmbs_i = ((s as any).cmbs_i ?? 0) + (1);
   if (((s as any).cmbs_i ?? 0) < ((s as any).cheatVars ?? 0)[((s as any).cmbs_text ?? 0) + 'imgnums_' + (((s as any).cmbs_class_str ?? 0))]) {
     // TODO-QSP: jump 'del_bodimgset_img_loop'
   }
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'imgnums_<<$cmbs_class_str>>'
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'imgnums_' + ((s as any).cmbs_class_str ?? 0) + '');
   (s as any).cmbs_stren = ((s as any).cmbs_stren ?? 0) + (1);
   if (((s as any).cmbs_stren ?? 0) < 18) {
     // TODO-QSP: jump 'del_bodimgset_stren_loop'
@@ -1396,9 +1396,9 @@ function enterCsDeleteSet2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cmbs_bmi ?? 0) < 9) {
     // TODO-QSP: jump 'del_bodimgset_bmi_loop'
   }
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'folder'
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'path'
-  // TODO-QSP: gs 'array', 'remove_element', 'cheatVars', $cmbs_text + 'name'
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'folder');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'name');
   // TODO-QSP: end
   scene.build();
 }
@@ -1439,7 +1439,7 @@ function enterModsHowTo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
-    qspCall(st, 'cheatmenu_bisets', 'main');
+    qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
   scene.build();

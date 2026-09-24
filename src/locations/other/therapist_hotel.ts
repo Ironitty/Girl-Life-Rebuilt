@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
-  dynamicGoto(s, 'ARGS[1]');
+  { const __t = String((s as any).locArgs?.[1] ?? ''); if (__t) qspGoto(s, __t, ''); }
   // TODO-QSP: end
   scene.build();
 }
@@ -114,7 +114,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('He guides you out of the door and closes it behind you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_hotel');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -152,7 +152,7 @@ function enterEvent1PostShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('You stand up and move to the bed and looking up at your therapist as he climbs on top of you and pushes himself inside you. He has his way with your body, fondling your chest, sucking your nipples, kissing and sucking on your neck. He enjoys your body until he cums deep inside you. Unlike back in the clinic, he stays inside you as he pulls a blanket over you and himself before falling asleep.');
     qspCall(st, 'arousal', 'vaginal', 20, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -181,7 +181,7 @@ function enterEvent1Morning(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_hotel');
+    qspCall(st, 'therapist_hotel', '');
   } },
   ]);
   scene.build();
@@ -217,7 +217,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Then come back when you are ready to take that step" He says and walks you to the door. You wake up in the hallway, standing outside a hotel room, unable to remember why you were there in the first place.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_hotel');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -272,7 +272,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t know why, but you feel this isn\'t right. You can\'t put your finger on why but this man isn\'t your lover. As soon as you bite down hard on his cock, he screams out in pain. This wakes you up from your dreamlike state. Not sticking around, you grab a nearby robe and run out of the hotel room and into the night.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -289,7 +289,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 20, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
@@ -309,7 +309,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
     scene.text('You wake up the next morning feeling like a million dollars. You sit up and feel something squirt out of your pussy. You were filled up by whomever you slept. Your subconscious mind makes your body want to keep it inside you. You get up, shower, dress and head back to town.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -372,7 +372,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     scene.text('Something inside you is wanting to rebel, when you are pushed onto the bed. You feel as if something is wrong and when he pushes inside you, you moan out, "No…" softly as he starts pumping in and out of you. He is larger than you so you can\'t really do much about this and when he grunts and cums inside you, you see a chance to do something. He pulls out and lays on the bed. "Mmm, that was good," he says and when you see him drift off to sleep, you grab your clothes and place the key card on the table and run out of the door and head home.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -381,7 +381,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('You moan when he pushes his entire size inside you. You really want this. You push back and help him push deeper inside you. He grabs a hold of your waist and starts to push in and pull out of you. This carries on for several minutes before you feel him cum inside you and he holds you tight to his own body. "Mmmm, dear, your pussy is so perfect" he says giving you another compliment. He holds you on his cock and falls to his side and stays inside you as he pulls the blanket over you and spoons you as you both fall asleep.');
@@ -400,7 +400,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     scene.text('You wake up the next morning to hands fondling your breasts and the therapist groaning in his sleep. You slowly and gently free yourself from his hold, get dressed and head out with a smile on your face. While your mind and heart feel this is right, something in the back of your mind is bothering you, but you just can\'t place it.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -471,13 +471,13 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
       scene.text('This is the end of this path, more to come!');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
       ]);
     }
@@ -522,7 +522,7 @@ function enterEvent4PostWait(s: GameState, scene: SceneBuilder): void {
     scene.text('The next morning, you wake up in the therapist\'s arms. You slowly remove yourself from his hold, dress, and leave the room.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'therapist_hotel', 'leave', 'pav_market');
+    qspCall(st, 'therapist_hotel', '');
   } },
     ]);
   } },
@@ -563,7 +563,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '"Sir, please, fuck me"', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     // TODO-QSP: dynamic text: You say and he climbs on top of you and pushes inside you again. "Anything for y...
@@ -581,7 +581,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
     qspCall(st, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '0', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/vagcreampie/doggy5.mp4');
     scene.text('You wake up the next morning to the therapist pumping in and out of you. "Mmm, good morning my dear, you love me waking you up like this," he says and you nod in agreement with him. "Now be a good girl and just lay there and enjoy it." He says and spends an hour pumping more and more cum inside you.');
@@ -767,7 +767,7 @@ function enterEvent6Submit3(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 90;
     qspCall(st, 'arousal', 'vaginal', 90, 'sub');
-    qspCall(st, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/miss/old1.mp4');
     scene.text('You spend the next hour or two, naked on the bed, watching TV before he comes to bed. He pushes you on your back and before you know it, he is inside you having sex with you.');
@@ -779,7 +779,7 @@ function enterEvent6Submit3(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
     qspCall(st, 'arousal', 'vaginal', (-90), 'sub');
-    qspCall(st, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'cum_call', '', 'A186', 2, 0, 15000, 60);
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/miss/old2.mp4');
     scene.text('You wake up the next morning and your legs are on his shoulders and he is still having sex with you.');

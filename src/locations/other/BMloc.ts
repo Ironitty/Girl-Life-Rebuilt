@@ -10,8 +10,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', goto: ['pav_disco', ''] },
     { label: 'Dance', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    // TODO-QSP: gs 'boystat', $bmNane[Tboynum]
-    (st as any).hookupboy = ((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)];
+    qspCall(st, 'boystat', '', (((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)] ?? 0));
+    (st as any).hookupboy = (((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)] ?? 0);
     // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_nickname[$npclastcalled]
     if (((st as any).bmFrend ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
       if (((st as any).bmHJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmBJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmSEX ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmANAL ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmGANG ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {

@@ -6,9 +6,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0));
+    qspCall(s, 'npcStat', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   } else {
-    // TODO-QSP: gs 'npcStat', $ARGS[0], ARGS[1]
+    qspCall(s, 'npcStat', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
   }
   scene.build();
 }

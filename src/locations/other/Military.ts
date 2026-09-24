@@ -28,7 +28,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Work in the infirmary', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).sanrand = (Math.floor(Math.random() * 11) + 0);
-    // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
+    qspCall(st, 'exp_gain', 'medcn', 0);
     qspCall(st, 'stat', '');
     if ((!((st as any).sanrand ?? 0))) {
       qspGoto(st, 'Military', 'san0');
@@ -59,7 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Get some food and drink from the mess hall', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
   ]);
   scene.build();
@@ -67,8 +67,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterSan0(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
-  qspCall(s, 'npcgeneratec', '', 0, 'soldier', (Math.floor(Math.random() * 13) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'soldier', (Math.floor(Math.random() * 13) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/city/shared/military/sex/san0.jpg');
   scene.text('During the examination, the patient shows you his erection and looks at you with anticipation.');
   qspCall(s, 'willpower', 'bj', 'resist');
@@ -102,8 +102,8 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
 
 function enterSan1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
-  qspCall(s, 'npcgeneratec', '', 0, 'army doctor', (Math.floor(Math.random() * 11) + 22));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'army doctor', (Math.floor(Math.random() * 11) + 22));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/city/shared/military/sex/san1.jpg');
   scene.text('While the infirmary is unoccupied, the doctor begins to molest you.');
   qspCall(s, 'willpower', 'bj', 'resist');
@@ -158,10 +158,10 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     // TODO-QSP: $boy[0] = $boy
-    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
+    qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
     // TODO-QSP: $boy[1] = $npclastgenerated
     scene.img('images/locations/city/shared/military/sex/pro0.jpg');
     scene.text('Your hands are tied and you are led to the headquarters where they set up an interrogation, then with the words "Now the interrogation begins!", they pull out their cocks. That\'s what you get for allowing two burly men you do not even know to bind your hands.');
@@ -255,8 +255,8 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRape(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'rapist', (Math.floor(Math.random() * 13) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * 13) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('You suddenly feel a blow on the back of your head, and lose consciousness.');

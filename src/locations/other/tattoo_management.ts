@@ -259,8 +259,8 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 4) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[4] = ((s as any).price ?? 0);
   }
-  // TODO-QSP: gs 'money', 'pay', ARGS[4]
-  // TODO-QSP: gs 'tattoo_management', 'add', $ARGS[2], ARGS[3]
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[4] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   dynamicGoto(s, 'prevLoc', 'prevArg');
@@ -510,7 +510,7 @@ function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'tattoo_view', 'view_item', 'shop', $ARGS[1], ARGS[2], ARGS[3], ARGS[4]
+  qspCall(s, 'tattoo_view', 'view_item', 'shop', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();

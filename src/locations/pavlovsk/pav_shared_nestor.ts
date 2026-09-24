@@ -13,19 +13,19 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <h3><center><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></...
-  scene.text(`<h3><center><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3></center>`);
+  scene.text(`<h3><center><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3></center>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   // TODO-QSP: $func('npc_notes', $boy)
   if (((s as any).Nestor ?? 0)?.['hadSex'] === 1) {
     // TODO-QSP: dynamic text: As you know very well, <<$npc_firstname[$boy]>> has a <<$npc_thdick[$boy]>> <<np...
-    scene.text(`As you know very well, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} has a ${((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;">dick</a> with somehow maintained pubic hair.`);
+    scene.text(`As you know very well, ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} has a ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_nestor/u0027, /u0027nestor_dick/u0027); return false;">dick</a> with somehow maintained pubic hair.`);
   }
   // TODO-QSP: dynamic text: <b>Today he looks to be in a <<$Nestor[''mood_txt'']>> mood.</b>
   scene.text(`<b>Today he looks to be in a ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''} mood.</b>`);
   if ((((s as any).totminut ?? 0) - ((s as any).Nestor ?? 0)?.['served']) < 180) {
     ((s as any).Nestor = (s as any).Nestor ?? {})['serve'] = 0;
     // TODO-QSP: dynamic text: It''s not even been 3 hours since you last served <<$npc_firstname[$boy]>>
-    scene.text(`It's not even been 3 hours since you last served ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}`);
+    scene.text(`It's not even been 3 hours since you last served ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}`);
   } else {
     if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2) {
       ((s as any).Nestor = (s as any).Nestor ?? {})['serve'] = 1;
@@ -77,7 +77,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/cockflaccid.jpg');
@@ -140,7 +140,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: his mood is <<$Nestor[''mood_txt'']>>
   scene.text(`his mood is ${((s as any).Nestor ?? 0)?.['mood_txt'] ?? ''}`);
   // TODO-QSP: dynamic text: His dick is <<npc_dick[$boy]>> cm long with somehow maintained pubic hair.
-  scene.text(`His dick is ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long with somehow maintained pubic hair.`);
+  scene.text(`His dick is ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long with somehow maintained pubic hair.`);
   if (((s as any).Nestor ?? 0)?.['hj'] === 1) {
     scene.text('-you have jerked him off');
   }
@@ -251,7 +251,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   (s as any).loc_arg = 'Nestor_Chat';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   if (((s as any).hour ?? 0) >= ((s as any).Nestor ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Nestor ?? 0)?.['comes']) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
@@ -265,7 +265,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['chatLvl'] === 0) {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is scanning your nude body with his eyes.
-      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is scanning your nude body with his eyes.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your nude body with his eyes.`);
       if (((s as any).pcs_bmi ?? 0) <= 18) {
         // TODO-QSP: dynamic text: He obviously enjoys the sight: <font color=#<<$Nestor[''font'']>>>"Nice body <<$...
         scene.text(`He obviously enjoys the sight: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Nice body ${((s as any).pcs_firstname ?? '')}. Are you here to offer it?"</font>`);
@@ -299,7 +299,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).PCloBimbo ?? 0) === 1) {
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is scanning your outfit with his eyes.
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is scanning your outfit with his eyes.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your outfit with his eyes.`);
         if (((s as any).pcs_bmi ?? 0) <= 25) {
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"You know I like when you dress like a mindle...
           scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You know I like when you dress like a mindless bimbo. Not that you aren't, but anyway, good job!"</font>`);
@@ -310,7 +310,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is scanning your outfit with his eyes.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is scanning your outfit with his eyes.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is scanning your outfit with his eyes.`);
           if (((s as any).pcs_bmi ?? 0) <= 25) {
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Only thing that I like more than stupid bimb...
             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Only thing that I like more than stupid bimbos are whores. I won't pay you anyway, but good job!"</font>`);
@@ -418,29 +418,29 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
           if (((s as any).shared_apt ?? 0)?.['step'] === 30) {
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             // TODO-QSP: dynamic text: You get into rather wild discussion about sex, porn and all that stuff. <<$npc_f...
-            scene.text(`You get into rather wild discussion about sex, porn and all that stuff. ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is obviously thinking about sex most of his time.`);
+            scene.text(`You get into rather wild discussion about sex, porn and all that stuff. ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is obviously thinking about sex most of his time.`);
             ((s as any).shared_apt = (s as any).shared_apt ?? {})['resCh'] = (Math.floor(Math.random() * 7) + 0);
             if (((s as any).shared_apt ?? 0)?.['resCh'] <= 3) {
               ((s as any).shared_apt = (s as any).shared_apt ?? {})['topicR'] = (Math.floor(Math.random() * 5) + 1);
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 1) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he loves rough sex.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he loves rough sex.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he loves rough sex.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 2) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he loves when the girl is submissive.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he loves when the girl is submissive.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he loves when the girl is submissive.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 3) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he kinda likes when it is a bit painful for t...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he kinda likes when it is a bit painful for the girl.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he kinda likes when it is a bit painful for the girl.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 4) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you his <<npc_dick[$boy]>> cm long dick is big en...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick is big enough, but he would like it to be even bigger.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick is big enough, but he would like it to be even bigger.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 5) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he loves when the girl is young and thin.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he loves when the girl is young and thin.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he loves when the girl is young and thin.`);
               }
               scene.actions([
                 { label: 'Continue', handler: (st: GameState) => {
@@ -451,7 +451,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['resCh'] === 4) {
                 if (((s as any).Nestor ?? 0)?.['doPornpos'] === 0) {
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he loves to fuck girls in the Full Nelson pos...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he loves to fuck girls in the Full Nelson position. He saw it in porn.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he loves to fuck girls in the Full Nelson position. He saw it in porn.`);
                   scene.actions([
                     { label: 'Continue', handler: (st: GameState) => {
     ((st as any).Nestor = (st as any).Nestor ?? {})['doPornpos'] = 1;
@@ -463,7 +463,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).Nestor ?? 0)?.['doPornpos'] === 1) {
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you he loves to fuck girls in the Pile Driver pos...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you he loves to fuck girls in the Pile Driver position. He also saw it in porn.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you he loves to fuck girls in the Pile Driver position. He also saw it in porn.`);
                     scene.actions([
                       { label: 'Continue', handler: (st: GameState) => {
     ((st as any).Nestor = (st as any).Nestor ?? {})['doPornpos'] = 2;
@@ -484,7 +484,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['resCh'] === 5) {
                   if (((s as any).Nestor ?? 0)?.['doAnal'] === 0) {
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you that he loves rough anal sex.
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you that he loves rough anal sex.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you that he loves rough anal sex.`);
                     scene.actions([
                       { label: 'Continue', handler: (st: GameState) => {
     ((st as any).Nestor = (st as any).Nestor ?? {})['doAnal'] = 1;
@@ -504,7 +504,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['resCh'] === 6) {
                     if (((s as any).Nestor ?? 0)?.['doAnal'] === 1  &&  ((s as any).Nestor ?? 0)?.['doPornpos'] === 2) {
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> tells you that he recently bought a vacuum dick enlarge...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} tells you that he recently bought a vacuum dick enlarger and cannot wait to test it.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} tells you that he recently bought a vacuum dick enlarger and cannot wait to test it.`);
                       scene.actions([
                         { label: 'Continue', handler: (st: GameState) => {
     ((st as any).Nestor = (st as any).Nestor ?? {})['doVacuum'] = 1;
@@ -557,7 +557,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).loc_arg = 'Nestor_Serve';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
@@ -584,7 +584,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
         scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"You can do me with your little hands."</font>`);
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_handjob_start'] },
         ]);
       } else {
@@ -593,7 +593,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
           scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, blow me right now."</font>`);
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_Suck'] },
           ]);
         } else {
@@ -602,7 +602,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Present your pussy, ${((s as any).pcs_firstname ?? '')}."</font>`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] },
             ]);
           } else {
@@ -614,7 +614,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'It\'s your choice', goto: ['pav_shared_nestor', 'Nestor_Serve'] },
                     { label: 'You told me you like anal, do you?', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 3);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_SexAnal'] },
                   ]);
                 } else {
@@ -626,7 +626,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
                   scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I would like to take your ass this time."</font>`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_SexAnal'] },
                   ]);
                 }
@@ -640,7 +640,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
                     { label: 'It\'s your choice', goto: ['pav_shared_nestor', 'Nestor_Serve'] },
                     { label: 'You told me you bought some vacuum enlarger, did you?', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 6
-    qspCall(st, 'npc_relationship', 'modify', 'A265', 2);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] },
                   ]);
                 } else {
@@ -669,7 +669,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
 function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - handjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - handjob</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg');
   } else {
@@ -679,7 +679,7 @@ function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_handjob'];
   scene.img('images/shared/sex/blowjob/kotovbj2.mp4');
   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> sits on his bed, spreading his legs, showing you where ...
-  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} sits on his bed, spreading his legs, showing you where to go.`);
+  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} sits on his bed, spreading his legs, showing you where to go.`);
   scene.text('You drop on your knees, crawl to him and unzip his pants.');
   // TODO-QSP: dynamic text: His dick falls out of them, already half hard. <font color=#<<$Nestor[''font'']>...
   scene.text(`His dick falls out of them, already half hard. <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get to work, little girl."</font>`);
@@ -693,7 +693,7 @@ function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
 
 function enterNestorHandjobHeader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - handjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - handjob</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - handjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if ((!((s as any).cockHard ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -712,7 +712,7 @@ function enterNestorHandjobHeader(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   // TODO-QSP: end
   scene.build();
 }
@@ -727,11 +727,11 @@ function enterNestorHandjobSlow(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/handjob/handjob2.mp4');
   // TODO-QSP: dynamic text: You grab <<$npc_firstname[$boy]>>''s cock in your hand, jerking it slowly, chang...
-  scene.text(`You grab ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s cock in your hand, jerking it slowly, changing the pressure from time to time.`);
+  scene.text(`You grab ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s cock in your hand, jerking it slowly, changing the pressure from time to time.`);
   if ((!((s as any).cockHard ?? 0))) {
     (s as any).cockHard = 1;
     // TODO-QSP: dynamic text: Your moves are slowly making the cock to get harder and harder, finally reaching...
-    scene.text(`Your moves are slowly making the cock to get harder and harder, finally reaching his full ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm length.`);
+    scene.text(`Your moves are slowly making the cock to get harder and harder, finally reaching his full ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm length.`);
   }
   qspCall(s, 'arousal', 'hj', 3);
   qspCall(s, 'stat', '');
@@ -827,7 +827,7 @@ function enterNestorHandjobCumAttempt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['cumCh'] <= 70) {
     scene.img('images/shared/sex/cum/handjob/hand0,0.mp4');
     // TODO-QSP: dynamic text: Your attempt is successful, as <<$npc_firstname[$boy]>> cums right onto your han...
-    scene.text(`Your attempt is successful, as ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cums right onto your hands and squirts all around them.`);
+    scene.text(`Your attempt is successful, as ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cums right onto your hands and squirts all around them.`);
     ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
     qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0), 1);
     scene.actions([
@@ -863,7 +863,7 @@ function enterNestorHandjobCumFail(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNestorHandjobHeader(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
-  scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
+  scene.text(`You get up from your knees, looking at ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
   // TODO-QSP: dynamic text: He looks really pissed:<font color=#<<$Nestor[''font'']>>>"Get out you lousy slu...
   scene.text(`He looks really pissed:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get out you lousy slut!"</font>`);
   qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
@@ -890,14 +890,14 @@ function enterNestorHandjobCumSuccess(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> doesn''t pay anymore attention to you, dressing up his ...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} doesn't pay anymore attention to you, dressing up his pants he takes another magazine and starts reading it.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} doesn't pay anymore attention to you, dressing up his pants he takes another magazine and starts reading it.`);
     scene.text('You just pack your things and quietly leave through the door.');
   }
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
   ]);
   scene.build();
@@ -906,7 +906,7 @@ function enterNestorHandjobCumSuccess(s: GameState, scene: SceneBuilder): void {
 function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - blowjob</font><...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - blowjob</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - blowjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -935,12 +935,12 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/gp/cockflaccid.jpg');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes down his pants, revealing his flaccid cock. He re...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes down his pants, revealing his flaccid cock. He relaxes on his bed, expecting you to do the service.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes down his pants, revealing his flaccid cock. He relaxes on his bed, expecting you to do the service.`);
     scene.text('You drop on your knees and crawl to him, trying to move as sexy as possible.');
     scene.actions([
       { label: 'Lick his balls', handler: (st: GameState) => {
@@ -984,9 +984,9 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).shared_apt ?? 0)?.['step'] === 2) {
         scene.img('images/shared/sex/blowjob/kotovbj50.mp4');
         // TODO-QSP: dynamic text: You take <<$npc_firstname[$boy]>> cock in your hand, pointing the tip in front o...
-        scene.text(`You take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cock in your hand, pointing the tip in front of your mouth.`);
+        scene.text(`You take ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cock in your hand, pointing the tip in front of your mouth.`);
         // TODO-QSP: dynamic text: As it was your favourity puppy, you start to gently Lick the tip all around, slo...
-        scene.text(`As it was your favourity puppy, you start to gently Lick the tip all around, slowly making the cock to get harder and harder, finally reaching his full ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm length.`);
+        scene.text(`As it was your favourity puppy, you start to gently Lick the tip all around, slowly making the cock to get harder and harder, finally reaching his full ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm length.`);
         qspCall(s, 'arousal', 'bj', 3);
         qspCall(s, 'stat', '');
         (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 6) + 2));
@@ -1011,13 +1011,13 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
           if ((!((s as any).cockHard ?? 0))) {
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 5));
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s cock is not hard yet, but you start to suck the yet ...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s cock is not hard yet, but you start to suck the yet soft tip as if it was, slurping aloud.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s cock is not hard yet, but you start to suck the yet soft tip as if it was, slurping aloud.`);
             scene.text('You can feel that slowly his member becomes hard right in your mouth.');
             (s as any).cockHard = 1;
           } else {
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 10));
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s already hard cock points toward you and you suck the...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s already hard cock points toward you and you suck the dark pink tip as a lollipop.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s already hard cock points toward you and you suck the dark pink tip as a lollipop.`);
           }
           qspCall(s, 'arousal', 'bj', 3);
           qspCall(s, 'stat', '');
@@ -1051,13 +1051,13 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
             if ((!((s as any).cockHard ?? 0))) {
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 15));
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s cock is not hard yet, but you start to suck the memb...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s cock is not hard yet, but you start to suck the member as if it was, making almost half of it disappear in your throat every time you move on.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s cock is not hard yet, but you start to suck the member as if it was, making almost half of it disappear in your throat every time you move on.`);
               scene.text('You can slowly feel his member becoming hard right in your mouth, making you choke and gag on it more and more with every second.');
               (s as any).cockHard = 1;
             } else {
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s already hard cock points toward you and you suck alm...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s already hard cock points toward you and you suck almost half of it, sucking and slurping it as best as you can.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s already hard cock points toward you and you suck almost half of it, sucking and slurping it as best as you can.`);
             }
             qspCall(s, 'arousal', 'bj', 8);
             qspCall(s, 'stat', '');
@@ -1090,7 +1090,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjdeepthroat.mp4');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
               // TODO-QSP: dynamic text: You decide to take <<$npc_firstname[$boy]>>''s hard, <<npc_dick[$boy]>> cm long ...
-              scene.text(`You decide to take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s hard, ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock all the way your throat.`);
+              scene.text(`You decide to take ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s hard, ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock all the way your throat.`);
               scene.text('You force yourself onto it, overcoming the gag reflex in your throat, saliva and tears almost squirting out of you.');
               scene.text('Doing this several times in a row, you try to hold on as long as you can with dick all the way down in your throat.');
               ((s as any).Nestor = (s as any).Nestor ?? {})['bjDeep'] = 1;
@@ -1100,7 +1100,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
               (s as any).fadeOutCh = (Math.floor(Math.random() * 101) + 0);
               if (((s as any).shared_apt ?? 0)?.['deepthroatFailCh'] <= 10) {
                 // TODO-QSP: dynamic text: <b>You try too hard to put it as far as possible, unable to hold the gag reflex ...
-                scene.text(`<b>You try too hard to put it as far as possible, unable to hold the gag reflex anymore, still with his dick inside you vomit right in ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s crotch!</b>`);
+                scene.text(`<b>You try too hard to put it as far as possible, unable to hold the gag reflex anymore, still with his dick inside you vomit right in ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s crotch!</b>`);
                 scene.actions([
                   { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 8
@@ -1150,7 +1150,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['cumCh'] <= 70) {
                   scene.img('images/shared/sex/cum/mouth/cum1,5.mp4');
                   // TODO-QSP: dynamic text: Your attempt is successful, as <<$npc_firstname[$boy]>> cums right into your mou...
-                  scene.text(`Your attempt is successful, as ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cums right into your mouth and on your face.`);
+                  scene.text(`Your attempt is successful, as ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cums right into your mouth and on your face.`);
                   ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                   qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
                   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
@@ -1198,7 +1198,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['step'] === 7) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
-                  scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
+                  scene.text(`You get up from your knees, looking at ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
                   // TODO-QSP: dynamic text: He looks really pissed:<font color=#<<$Nestor[''font'']>>>"Get out you lousy slu...
                   scene.text(`He looks really pissed:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Get out you lousy slut!"</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
@@ -1253,14 +1253,14 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
                         } else {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> doesn''t pay any more attention to you, dressing up his...
-                          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} doesn't pay any more attention to you, dressing up his pants he takes another magazine and starts reading it.`);
+                          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} doesn't pay any more attention to you, dressing up his pants he takes another magazine and starts reading it.`);
                           scene.text('You just pack your things and quietly leave through the door.');
                           ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         }
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Get up and leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       }
@@ -1281,7 +1281,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
 function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - vaginal sex</fo...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - vaginal sex</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - vaginal sex</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/gp/...
@@ -1310,16 +1310,16 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
     // TODO-QSP: dynamic text: His somewhat thin but muscular body has rather pale skin. He moves towards you, ...
-    scene.text(`His somewhat thin but muscular body has rather pale skin. He moves towards you, lubing his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock and stroking it on the way.`);
+    scene.text(`His somewhat thin but muscular body has rather pale skin. He moves towards you, lubing his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock and stroking it on the way.`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
@@ -1329,7 +1329,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the ass, instantly poking his fingers into...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes you by the ass, instantly poking his fingers into your pussy.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the ass, instantly poking his fingers into your pussy.`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Do you want to have your pussy fucked a cert...
     scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Do you want to have your pussy fucked a certain way, or should I choose?"</font>`);
     if (((s as any).Nestor ?? 0)?.['pornPos'] === 0) {
@@ -1415,14 +1415,14 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vagmissionary1.mp4');
         scene.text('You lie on the bed, spreading your legs for easy access.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels between those, roughly spreading them as wide as...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         // TODO-QSP: dynamic text: He points the tip of his <<npc_dick[$boy]>> to your pussy and looks up to your f...
-        scene.text(`He points the tip of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to your pussy and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your slit!"</font>`);
+        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your pussy and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your slit!"</font>`);
         scene.text('Slightly shaking you do as he says…');
         scene.text('In that moment he pushes his dick inside you as far as your somewhat dry pussy let\'s him.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} bangs you wildly right from the start.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} bangs you wildly right from the start.`);
         qspCall(s, 'arousal', 'vaginal', 10, 'lube');
         qspCall(s, 'stat', '');
         (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 16) + 10));
@@ -1437,7 +1437,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vagmissionary2.mp4');
           scene.text('As he continuously and wildly rams your pussy, you have no strength to do anything but endure it and moan like an injured pig.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as fast as he can, all his <<npc_dick[$boy...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as fast as he can, all his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm are inside you.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as fast as he can, all his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm are inside you.`);
           qspCall(s, 'arousal', 'vaginal', 10);
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 30));
@@ -1466,11 +1466,11 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vagdoggy1.mp4');
           scene.text('You kneel on the bed, bending your back as much as you can, putting your nice round ass as high as possible.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels behind you, probing your vagina with several of ...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels behind you, probing your vagina with several of his fingers.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels behind you, probing your vagina with several of his fingers.`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the entry!"<...
           scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the entry!"</font>`);
           // TODO-QSP: dynamic text: After his words, he grabs your hips and thrusts all of his <<npc_dick[$boy]>> ce...
-          scene.text(`After his words, he grabs your hips and thrusts all of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} centimeters inside your pussy, making you scream from discomfort.`);
+          scene.text(`After his words, he grabs your hips and thrusts all of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} centimeters inside your pussy, making you scream from discomfort.`);
           scene.text('The first pain fades away and you can feel building warmth and a good feeling of being fucked from behind like a mare in heat.');
           scene.text('He fucks you furiously right from the start.');
           qspCall(s, 'arousal', 'vaginal', 10, 'lube');
@@ -1487,7 +1487,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/residential/sauna/sex/fuckroughvaginal4.mp4');
             scene.text('As he continuously and wildly rams your pussy, you have no strength to do anything but endure it and moan like an injured pig.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as deep and as fast he can, all of his <<n...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as deep and as fast he can, all of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm is inside you with each stroke.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as deep and as fast he can, all of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm is inside you with each stroke.`);
             qspCall(s, 'arousal', 'vaginal', 10);
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1517,13 +1517,13 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
             scene.text('You lie on the bed, raising the upper leg in the air, exposing your tender pussy.');
             scene.text('He doesn\'t wait for anything and lies behind you, instantly preparing his large dick for the entry.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes his rod, pointing the tip right to the entry of y...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes his rod, pointing the tip right to the entry of your vagina.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes his rod, pointing the tip right to the entry of your vagina.`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the penetrat...
             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
             // TODO-QSP: dynamic text: Then he pushes as far as his <<npc_dick[$boy]>> cm long dick can reach.
-            scene.text(`Then he pushes as far as his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick can reach.`);
+            scene.text(`Then he pushes as far as his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick can reach.`);
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} bangs you wildly right from the start.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} bangs you wildly right from the start.`);
             qspCall(s, 'arousal', 'vaginal', 10, 'lube');
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 16) + 10));
@@ -1538,8 +1538,8 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagsidefuck2.mp4');
               scene.text('As he continuously and wildly rams your pussy, you have no strength to do anything but endure it and moan like an injured pig.');
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as deep as he can and giving the position ...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as deep as he can and giving the position and the whole (${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm) size of his dick, most of the strokes hurt.`);
-              qspCall(s, 'pain', '', 1, 'vaginal', 'stretch');
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as deep as he can and giving the position and the whole (${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm) size of his dick, most of the strokes hurt.`);
+              qspCall(s, 'pain', '1', 'vaginal', 'stretch');
               qspCall(s, 'arousal', 'vaginal', 10);
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 30));
@@ -1571,10 +1571,10 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagfullnelson1.jpg');
               scene.text('You let him sit on the edge of the bed, having his large dick prepared for your vagina.');
               // TODO-QSP: dynamic text: Facing him with your back, you climb on top of him and bury his <<npc_dick[$boy]...
-              scene.text(`Facing him with your back, you climb on top of him and bury his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick in your pussy. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
+              scene.text(`Facing him with your back, you climb on top of him and bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your pussy. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
               scene.text('Not waiting for your answer he grabs your legs and reaches for your head, immobilizing you entirely. Then he starts fucking you like a wild animal.');
               // TODO-QSP: dynamic text: In this position, you literally see every stroke of his <<npc_dick[$boy]>> cm lo...
-              scene.text(`In this position, you literally see every stroke of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long penis into your pussy… And there is nothing else you can do.`);
+              scene.text(`In this position, you literally see every stroke of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long penis into your pussy… And there is nothing else you can do.`);
               qspCall(s, 'arousal', 'vaginal', 10, 'lube');
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 30));
@@ -1589,7 +1589,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagfullnelson2.mp4');
                 scene.text('As he continuously and wildly rams your pussy, you have no strength to do anything but endure it and moan like an injured pig.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> rams you as deep as he can.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} rams you as deep as he can.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} rams you as deep as he can.`);
                 qspCall(s, 'arousal', 'vaginal', 10);
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
@@ -1622,7 +1622,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 scene.text('You take a pillow from his bed, put it on the floor and lie on it with your back.');
                 scene.text('As if you were doing yoga, you put your ass in the hands and lift it above your head, letting the feet fall down aside your head.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now has the very best access to your pussy: <font color...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now has the very best access to your pussy: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your pussy: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
                 scene.text('He goes to you, probing your pussy with several of his fingers.');
                 scene.text('After a while he takes his phallus, somehow bending it downwards and pushing it inside you.');
                 qspCall(s, 'arousal', 'vaginal', 10, 'lube');
@@ -1639,7 +1639,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagpiledriver2.mp4');
                   scene.text('As he continuously and wildly rams your pussy, you have no strength to do anything but endure it and moan like an injured pig.');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> rams you as deep as he can, making big effort to hammer...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} rams you as deep as he can, making big effort to hammer you down as much as he can.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} rams you as deep as he can, making big effort to hammer you down as much as he can.`);
                   qspCall(s, 'arousal', 'vaginal', 10);
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
@@ -1669,10 +1669,10 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
-                  ((s as any).Nestor = (s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * (Math.floor(Math.random() * 3) + 2) / 10);
+                  ((s as any).Nestor = (s as any).Nestor ?? {})['Dick_enlarged'] = (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? 0) + ((((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? 0) * (Math.floor(Math.random() * 3) + 2) / 10);
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vacuumpumppenis.jpg');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes a vacuum dick enlarger device from his closet, pu...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes a vacuum dick enlarger device from his closet, putting it on his already ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes a vacuum dick enlarger device from his closet, putting it on his already ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick.`);
                   scene.text('As he is pushing the pump, you can see the cock getting larger with each push.');
                   // TODO-QSP: dynamic text: After some time he stops, putting a ring on the root of his dick. Today the devi...
                   scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm!`);
@@ -1689,9 +1689,9 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                     scene.text('As he reaches for your pussy you close your eyes and brace for the expected pain.');
                     scene.text('He starts pushing it into, and even that it is quite lubed, it goes hard.');
                     // TODO-QSP: dynamic text: Finally, he slips through the inner barrier and thrusts a big part of his <<$npc...
-                    scene.text(`Finally, he slips through the inner barrier and thrusts a big part of his ${((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into you.`);
+                    scene.text(`Finally, he slips through the inner barrier and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into you.`);
                     (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 20));
-                    qspCall(s, 'pain', '', 1, 'vaginal', 'tear');
+                    qspCall(s, 'pain', '1', 'vaginal', 'tear');
                     scene.actions([
                       { label: 'Endure it', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 2
@@ -1701,11 +1701,11 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                       scene.img('images/locations/shared/abduction/sex/slavewhorefuckdeep2.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> uses his newly gained centimeters and fucks you harder ...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} uses his newly gained centimeters and fucks you harder than usual, making you scream and moan and beg for relief… in vain.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} uses his newly gained centimeters and fucks you harder than usual, making you scream and moan and beg for relief… in vain.`);
                       scene.text('Today he obviously enjoys his dominance and fucks you relentlessly.');
                       scene.text('You have no strength to fight him and just try to endure it till the end.');
                       (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
-                      qspCall(s, 'pain', '', 1, 'vaginal', 'stretch');
+                      qspCall(s, 'pain', '1', 'vaginal', 'stretch');
                       if (((s as any).orgB ?? 0) < 100) {
                         qspGoto(s, 'pav_shared_nestor', 'Nestor_SexVaginal');
                         scene.actions([
@@ -1731,7 +1731,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning wildly, you can say that he is reaching his...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning wildly, you can say that he is reaching his orgasm.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is groaning wildly, you can say that he is reaching his orgasm.`);
                     scene.text('You decide to tell him:');
                     ((s as any).Nestor = (s as any).Nestor ?? {})['vag'] = ((s as any).Nestor['vag'] ?? 0) + (1);
                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = (Math.floor(Math.random() * 5) + 2);
@@ -1747,23 +1747,23 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                       scene.img('images/locations/shared/abduction/sex/slavewhorecumpussy3.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm, pumping his load <<...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your pussy.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm, pumping his load ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm deep inside your pussy.`);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['vagCumInside'] = ((s as any).Nestor['vagCumInside'] ?? 0) + (1);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['cumVag'] = ((s as any).Nestor['cumVag'] ?? 0) + (1);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
-                      qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+                      qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
                       qspCall(s, 'arousal', 'vaginal', 2);
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                       ]);
                     } else {
                       if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                         scene.img('images/locations/city/residential/sauna/sex/cumbelly2.mp4');
                         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and starts spouting ...
-                        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your stomach.`);
+                        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your stomach.`);
                         scene.text('A large pool of cum lands on your abdomen, feeling warm but sticky.');
                         (s as any).minut = ((s as any).minut ?? 0) + 2;
                         ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1771,14 +1771,14 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       } else {
                         if (((s as any).shared_apt ?? 0)?.['subStep'] === 3) {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/cumonass.mp4');
                           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and starts spouting ...
-                          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your ass.`);
+                          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your ass.`);
                           scene.text('Both your asscheeks are covered in sticky, warm seed.');
                           (s as any).minut = ((s as any).minut ?? 0) + 2;
                           ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1786,14 +1786,14 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'arousal', 'end');
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                           ]);
                         } else {
                           if (((s as any).shared_apt ?? 0)?.['subStep'] === 4) {
                             scene.img('images/characters/pavlovsk/resident/leonid/sex/cumface1.mp4');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and spouting his see...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                             scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh yes, now that''s the right makeup for a g...
                             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh yes, now that's the right makeup for a girl!"</font>`);
@@ -1803,21 +1803,21 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
                               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                             ]);
                           } else {
                             if (((s as any).shared_apt ?? 0)?.['subStep'] === 5) {
                               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagcumtakoutfail.jpg');
                               // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of you any moment, but ...
-                              scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
+                              scene.text(`You expect ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>>, I cum where I wa...
                               scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')}, I cum where I want to."</font>`);
                               if (((s as any).tabletkishot ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 0) {
                                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I am not on the pill <<$npc_firstname[$boy]>>!"</fon...
-                                scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
+                                scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}!"</font>`);
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"And? Your problem. Piss off."</font>
                                 scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"And? Your problem. Piss off."</font>`);
                                 scene.text('He is obvously annoyed by your reaction.');
@@ -1829,12 +1829,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                               ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                               ((s as any).Nestor = (s as any).Nestor ?? {})['cumVag'] = ((s as any).Nestor['cumVag'] ?? 0) + (1);
                               ((s as any).Nestor = (s as any).Nestor ?? {})['vagCumInsideUnwanted'] = ((s as any).Nestor['vagCumInsideUnwanted'] ?? 0) + (1);
-                              qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+                              qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
                               qspCall(s, 'arousal', 'vaginal', 5, 'sub');
                               qspCall(s, 'arousal', 'end');
                               scene.actions([
                                 { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                               ]);
                             } else {
@@ -1869,10 +1869,10 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 20) {
                                   scene.img('images/locations/shared/abduction/sex/slavewhorecummouth5.mp4');
                                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the end and in the moment he is about t...
-                                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
+                                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
                                   scene.text('The seed starts squirting, landing in your mouth and some even around it.');
                                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
-                                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
+                                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                                   scene.text('Afterwards, you show him your tongue as proof that not a drop was left unconsumed…');
                                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good girl, better than any food, is it?"</fo...
                                   scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good girl, better than any food, is it?"</font>`);
@@ -1884,7 +1884,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'arousal', 'end');
                                   scene.actions([
                                     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                                   ]);
                                 } else {
@@ -1922,7 +1922,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
 function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A265');
   // TODO-QSP: dynamic text: <b><font color=#<<$Nestor[''font'']>>><<$npc_firstname[$boy]>> - anal sex</font>...
-  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - anal sex</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - anal sex</font></b>`);
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.text('<center><img height="250" src="images/locations/pavlovsk/resident/sharedapt/gp/gp.jpg"></center>');
   }
@@ -1936,16 +1936,16 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
     // TODO-QSP: dynamic text: His somewhat thin but muscular body has rather pale skin. He moves towards you, ...
-    scene.text(`His somewhat thin but muscular body has rather pale skin. He moves towards you, lubing his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock and stroking it on the way.`);
+    scene.text(`His somewhat thin but muscular body has rather pale skin. He moves towards you, lubing his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock and stroking it on the way.`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
@@ -1955,7 +1955,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the ass, instantly poking his fingers into...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes you by the ass, instantly poking his fingers into your anus.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the ass, instantly poking his fingers into your anus.`);
     // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Do you want to have your ass fucked a certai...
     scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Do you want to have your ass fucked a certain way, or should I choose?"</font>`);
     if (((s as any).Nestor ?? 0)?.['pornPos'] === 0) {
@@ -2041,10 +2041,10 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/analmissionary1.mp4');
         scene.text('You lie on the bed, spreading your legs for easy access.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels between those, roughly spreading them as wide as...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, roughly spreading them as wide as they go, making you scream a bit.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         // TODO-QSP: dynamic text: He points the tip of his <<npc_dick[$boy]>> to your anus and looks up to your fa...
-        scene.text(`He points the tip of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to your anus and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your sphincter!"</font>`);
+        scene.text(`He points the tip of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to your anus and looks up to your face: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Look at me while I penetrate your sphincter!"</font>`);
         if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
           scene.text('Before doing so, he takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated.');
           scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
@@ -2052,13 +2052,13 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
           scene.text('Slightly shaking you do as he says…');
           scene.text('In that moment he pushes his dick inside your ass as far as he can!');
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
           scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
-          qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+          qspCall(s, 'pain', '1', 'asshole', 'tear');
         }
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} bangs you wildly right from the start.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} bangs you wildly right from the start.`);
         qspCall(s, 'arousal', 'anal', 10, 'lube');
         qspCall(s, 'stat', '');
         (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 16) + 5));
@@ -2073,7 +2073,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/shared/abduction/sex/slavewhorefuckanal5.mp4');
           scene.text('As he continuously and wildly rams your anus, you have no strength to do anything but endure it and moan like an injured pig.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as deep as he can, all his <<npc_dick[$boy...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as deep as he can, all his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} centimeters are inside you.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as deep as he can, all his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} centimeters are inside you.`);
           qspCall(s, 'arousal', 'anal', 10);
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -2102,20 +2102,20 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/city/residential/sauna/sex/fuckanal3.mp4');
           scene.text('You kneel on the bed, bending your back as much as you can, putting your nice round ass as high as possible.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels behind you, poking your anus with several of his...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels behind you, poking your anus with several of his fingers.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels behind you, poking your anus with several of his fingers.`);
           if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
             scene.text('He takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated.');
             scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
           } else {
             scene.text('In a few moments, he pushes his dick inside your ass as far as he can!');
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
-            qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+            qspCall(s, 'pain', '1', 'asshole', 'tear');
           }
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} bangs you wildly right from the start.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} bangs you wildly right from the start.`);
           qspCall(s, 'arousal', 'anal', 10, 'lube');
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 16) + 5));
@@ -2130,7 +2130,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/shared/abduction/sex/slavewhorefuckanal2.mp4');
             scene.text('As he continuously and wildly rams your anus, you have no strength to do anything but endure it and moan like an injured pig.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as deep and as fast he can, pushing all of...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as deep and as fast he can, pushing all of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} centimeters inside you with every stroke.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as deep and as fast he can, pushing all of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} centimeters inside you with every stroke.`);
             qspCall(s, 'arousal', 'anal', 10);
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -2160,7 +2160,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             scene.text('You lie on the bed, raising the upper leg in the air, exposing your lustful anus.');
             scene.text('He doesn\'t wait for anything and lies behind you, instantly preparing his large dick for the entry.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes his rod, pointing the tip right to your anus.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes his rod, pointing the tip right to your anus.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes his rod, pointing the tip right to your anus.`);
             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"<<$pcs_firstname>>, prepare for the penetrat...
             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, prepare for the penetration!"</font>`);
             if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
@@ -2169,13 +2169,13 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('In a few moments, he pushes his dick inside your ass as far as he can!');
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-              scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+              scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
               scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good little girl!"</font>`);
-              qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+              qspCall(s, 'pain', '1', 'asshole', 'tear');
             }
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> bangs you wildly right from the start.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} bangs you wildly right from the start.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} bangs you wildly right from the start.`);
             qspCall(s, 'arousal', 'anal', 10, 'lube');
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 16) + 5));
@@ -2189,8 +2189,8 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/shared/abduction/sex/slavewhorefuckanal1.mp4');
               scene.text('As he continuously and wildly rams your anus, you have no strength to do anything but endure it and moan like an injured pig.');
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now rams you as deep and he can and giving the position...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now rams you as deep and he can and giving the position and the entire (${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm) size of his dick, the continuous banging hurts.`);
-              qspCall(s, 'pain', '', 1, 'anal', 'stretch');
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now rams you as deep and he can and giving the position and the entire (${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm) size of his dick, the continuous banging hurts.`);
+              qspCall(s, 'pain', '1', 'anal', 'stretch');
               qspCall(s, 'arousal', 'anal', 10);
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -2222,10 +2222,10 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/analfullnelson1.jpg');
               scene.text('You let him sit on the edge of the bed, having his dick prepared for your anus.');
               // TODO-QSP: dynamic text: Facing him with your back, you climb on top of him and slowly bury his <<npc_dic...
-              scene.text(`Facing him with your back, you climb on top of him and slowly bury his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick in your anus. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
+              scene.text(`Facing him with your back, you climb on top of him and slowly bury his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick in your anus. You wanted to ride it a bit to make the fuck smoother, but he doesn't let you:<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"No time for that ${((s as any).pcs_firstname ?? '')}, let's start already!"</font>`);
               scene.text('Not waiting for your answer he grabs your legs and reaches for your head, immobilizing you entirely. Then he starts fucking you like a wild animal.');
               // TODO-QSP: dynamic text: In this position, you literally see every stroke of his <<npc_dick[$boy]>> cm lo...
-              scene.text(`In this position, you literally see every stroke of his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long penis into your anus, hidden bellow your empty pussy… But there is nothing else you can do.`);
+              scene.text(`In this position, you literally see every stroke of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long penis into your anus, hidden bellow your empty pussy… But there is nothing else you can do.`);
               scene.text('You feel like being continuously impaled.');
               qspCall(s, 'arousal', 'anal', 10, 'lube');
               qspCall(s, 'stat', '');
@@ -2240,7 +2240,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 scene.img('images/locations/shared/abduction/sex/slavewhorefuckanal3.mp4');
                 scene.text('As he continuously and wildly rams your anus, you have no strength to do anything but endure it and moan like an injured pig.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> rams you as deep as he can.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} rams you as deep as he can.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} rams you as deep as he can.`);
                 qspCall(s, 'arousal', 'anal', 10);
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 30));
@@ -2273,19 +2273,19 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 scene.text('You take a pillow from his bed, put it on the floor and lie on it with your back.');
                 scene.text('As if you were doing yoga, you put your ass in the hands and lift it above your head, letting the feet fall down aside your head.');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> now has the very best access to your anus: <font color=...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} now has the very best access to your anus: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} now has the very best access to your anus: <font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Now that's a sight! Every girl should be fucked like that!"</font>`);
                 scene.text('He goes to you, probing your anus with several of his fingers.');
                 if (((s as any).Nestor ?? 0)?.['mood'] <= 5  ||  ((s as any).npc_rel ?? 0)?.['A265'] > 80) {
                   scene.text('He takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated later.');
                   scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
                 } else {
                   // TODO-QSP: dynamic text: Without much care about your feelings he rams his <<npc_dick[$boy]>> cm long thi...
-                  scene.text(`Without much care about your feelings he rams his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long thick dick into your anus.`);
+                  scene.text(`Without much care about your feelings he rams his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long thick dick into your anus.`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-                  scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+                  scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, that hurt!"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>> and take it like ...
                   scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Shut up ${((s as any).pcs_firstname ?? '')} and take it like a good anal slut!"</font>`);
-                  qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+                  qspCall(s, 'pain', '1', 'asshole', 'tear');
                 }
                 scene.text('You feel like being continuously impaled.');
                 qspCall(s, 'arousal', 'anal', 10, 'lube');
@@ -2301,7 +2301,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/analpiledriver2.mp4');
                   scene.text('As he continuously and wildly rams your anus, you have no strength to do anything but endure it and moan like an injured pig.');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> rams you as deep as he can.
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} rams you as deep as he can.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} rams you as deep as he can.`);
                   qspCall(s, 'arousal', 'anal', 10);
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 30));
@@ -2331,10 +2331,10 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
-                  ((s as any).Nestor = (s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * (Math.floor(Math.random() * 25) + 20) / 100);
+                  ((s as any).Nestor = (s as any).Nestor ?? {})['Dick_enlarged'] = (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? 0) + ((((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? 0) * (Math.floor(Math.random() * 25) + 20) / 100);
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vacuumpumppenis.jpg');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes a vacuum dick enlarger device from his closet, pu...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes a vacuum dick enlarger device from his closet, putting it on his already ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes a vacuum dick enlarger device from his closet, putting it on his already ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick.`);
                   scene.text('As he is pushing the pump, you can see the cock getting larger with each push.');
                   // TODO-QSP: dynamic text: After some time he stops, putting a ring on the root of his dick. Today the devi...
                   scene.text(`After some time he stops, putting a ring on the root of his dick. Today the device has enlarged it to ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm!`);
@@ -2351,9 +2351,9 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                     scene.text('As he reaches for your ass you close your eyes and brace for the expected pain.');
                     scene.text('He starts pushing it into you, and even that it is quite lubed, it goes hard.');
                     // TODO-QSP: dynamic text: Finally, he slips through the sphincter and thrusts a big part of his <<$npc_thd...
-                    scene.text(`Finally, he slips through the sphincter and thrusts a big part of his ${((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into your ass.`);
+                    scene.text(`Finally, he slips through the sphincter and thrusts a big part of his ${(((s as any).npc_thdick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} enlarged, ${((s as any).Nestor ?? 0)?.['Dick_enlarged'] ?? ''} cm long dick into your ass.`);
                     (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 20));
-                    qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+                    qspCall(s, 'pain', '1', 'asshole', 'tear');
                     scene.actions([
                       { label: 'Endure it', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['subStep'] = 2
@@ -2363,10 +2363,10 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                       scene.img('images/locations/shared/abduction/sex/slavewhorefuckanaldeep1.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> uses his newly gained centimeters and fucks your ass ha...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} uses his newly gained centimeters and fucks your ass harder than usual, making you scream and moan and beg for relief… in vain.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} uses his newly gained centimeters and fucks your ass harder than usual, making you scream and moan and beg for relief… in vain.`);
                       scene.text('Today he obviously enjoys his dominance and fucks you relentlessly.');
                       scene.text('You have no strength to fight him and just try to endure it till the end.');
-                      qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
+                      qspCall(s, 'pain', '1', 'asshole', 'stretch');
                       (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
                       if (((s as any).orgB ?? 0) < 100) {
                         qspGoto(s, 'pav_shared_nestor', 'Nestor_SexAnal');
@@ -2393,7 +2393,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning loudly, you can say that he is reaching his...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning loudly, you can say that he is reaching his orgasm.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is groaning loudly, you can say that he is reaching his orgasm.`);
                     scene.text('You decide to tell him:');
                     ((s as any).Nestor = (s as any).Nestor ?? {})['anal'] = ((s as any).Nestor['anal'] ?? 0) + (1);
                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = (Math.floor(Math.random() * 5) + 2);
@@ -2409,7 +2409,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                       scene.img('images/locations/city/residential/sauna/sex/cumanal4.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm, pumping his load <<...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your anus.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm, pumping his load ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm deep inside your anus.`);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['analCumInside'] = ((s as any).Nestor['analCumInside'] ?? 0) + (1);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                       ((s as any).Nestor = (s as any).Nestor ?? {})['cumAnal'] = ((s as any).Nestor['cumAnal'] ?? 0) + (1);
@@ -2418,14 +2418,14 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                       ]);
                     } else {
                       if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                         scene.img('images/locations/city/residential/sauna/sex/cumbelly2.mp4');
                         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and at the moment he...
-                        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and at the moment he starts spouting his seed, he takes his dick out and points it on your stomach.`);
+                        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and at the moment he starts spouting his seed, he takes his dick out and points it on your stomach.`);
                         scene.text('A large pool of cum lands on your abdomen, feeling warm but sticky.');
                         (s as any).minut = ((s as any).minut ?? 0) + 2;
                         ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -2433,14 +2433,14 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       } else {
                         if (((s as any).shared_apt ?? 0)?.['subStep'] === 3) {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/cumonass.mp4');
                           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and starts spouting ...
-                          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your ass.`);
+                          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and starts spouting his seed, he takes his dick out and points it on your ass.`);
                           scene.text('Both your asscheeks are covered in sticky, warm seed.');
                           (s as any).minut = ((s as any).minut ?? 0) + 2;
                           ((s as any).Nestor = (s as any).Nestor ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -2448,14 +2448,14 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'arousal', 'end');
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                           ]);
                         } else {
                           if (((s as any).shared_apt ?? 0)?.['subStep'] === 4) {
                             scene.img('images/characters/pavlovsk/resident/leonid/sex/cumface1.mp4');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches his violent orgasm and in the moment he...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches his violent orgasm and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches his violent orgasm and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                             scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                             // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Oh yes, now that''s the right makeup for an ...
                             scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Oh yes, now that's the right makeup for an anal whore like you!"</font>`);
@@ -2465,14 +2465,14 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
                               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                             ]);
                           } else {
                             if (((s as any).shared_apt ?? 0)?.['subStep'] === 5) {
                               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagcumtakoutfail.jpg');
                               // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of your ass any moment,...
-                              scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of your ass any moment, but instead you hear his groans becoming louder.`);
+                              scene.text(`You expect ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to take his cock out of your ass any moment, but instead you hear his groans becoming louder.`);
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                               scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Shut up <<$pcs_firstname>>, I cum where I wa...
@@ -2487,12 +2487,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                               ((s as any).Nestor = (s as any).Nestor ?? {})['cumAnal'] = ((s as any).Nestor['cumAnal'] ?? 0) + (1);
                               ((s as any).Nestor = (s as any).Nestor ?? {})['analCumInsideUnwanted'] = ((s as any).Nestor['analCumInsideUnwanted'] ?? 0) + (1);
                               qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
-                              qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+                              qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
                               qspCall(s, 'arousal', 'anal', 5, 'sub');
                               qspCall(s, 'arousal', 'end');
                               scene.actions([
                                 { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                               ]);
                             } else {
@@ -2527,10 +2527,10 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 20) {
                                   scene.img('images/locations/shared/abduction/sex/slavewhorecummouth3.mp4');
                                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the end and in the moment he is about t...
-                                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
+                                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
                                   scene.text('The seed starts squirting, landing in your mouth and some even around it.');
                                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
-                                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
+                                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                                   scene.text('Afterwards, you show him your tongue as proof that not a drop was left unconsumed…');
                                   // TODO-QSP: dynamic text: <font color=#<<$Nestor[''font'']>>>"Good girl, better than any food, is it?"</fo...
                                   scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font'] ?? ''}>"Good girl, better than any food, is it?"</font>`);
@@ -2542,7 +2542,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'arousal', 'end');
                                   scene.actions([
                                     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                                   ]);
                                 } else {

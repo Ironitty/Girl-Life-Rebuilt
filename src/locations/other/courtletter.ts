@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -144,7 +142,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if ((String(qspUntranslated(s, "policeQW_courtletter_subjects[0]", { location: "courtletter" })).slice((1)-1, ((1)-1)+(12))) === 'missed_court') {
+      if ((String((((s as any).policeQW_courtletter_subjects ?? 0)?.[0] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'missed_court') {
         if (((s as any).week ?? 0) === 6) {
           // TODO-QSP: policeQW_courthearing_dates[] = daystart + 9
         } else {

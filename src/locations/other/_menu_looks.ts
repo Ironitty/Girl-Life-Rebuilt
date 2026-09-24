@@ -29,11 +29,11 @@ function enterLookstabs(s: GameState, scene: SceneBuilder): void {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
     }
   }
-  qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  qspCall(s, 'tabhead', 'menu_page');
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_looks', 'menu_exit');
+    qspCall(st, '$menu_looks', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
   ]);

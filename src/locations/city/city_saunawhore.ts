@@ -450,8 +450,8 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
   (s as any).bodyTypeRand = 3;
   (s as any).heightTypeRand = 3;
   (s as any).customerAge = (Math.floor(Math.random() * 76) + 15);
-  qspCall(s, 'npcgeneratec', '', 0, 'client', ((s as any).customerAge ?? 0), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'client', ((s as any).customerAge ?? 0), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).raceRand = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).raceRand ?? 0) <= 7) {
     (s as any).raceType = 'white';
@@ -762,14 +762,14 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
         scene.text('You kneel in front of him and bite your lip, caressing his cock through his pants with your hands.');
         scene.text('He comes close to you and suddenly slaps your face hard. You\'re caught by surprise and tears well up in your eyes. He seems very angry and even aroused by your misfortune.');
         scene.text('As you kneel in front of him in tears, he grabs you roughly by your arms, painfully twisting them behind your back, and slams you down on the bed.');
-        qspCall(s, 'pain', '', 1, 'cheeks', 'slap');
+        qspCall(s, 'pain', '1', 'cheeks', 'slap');
         if (((s as any).stat ?? 0)?.['prostitution_count'] < 10) {
           (s as any).Mana = ((s as any).Mana ?? 0) - (50);
         } else {
           (s as any).Mana = ((s as any).Mana ?? 0) - (10);
         }
-        qspCall(s, 'pain', '', 2, 'armL', 'twist');
-        qspCall(s, 'pain', '', 2, 'armR', 'twist');
+        qspCall(s, 'pain', '2', 'armL', 'twist');
+        qspCall(s, 'pain', '2', 'armR', 'twist');
         scene.actions([
           { label: 'Brace yourself', goto: ['city_saunawhore', 'fuckRoughGate'] },
         ]);
@@ -841,7 +841,7 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-        qspCall(s, 'pain', '', 1, 'cheeks', 'slap');
+        qspCall(s, 'pain', '1', 'cheeks', 'slap');
         scene.text('Furious, he grabs you roughly by your arms, painfully twisting them behind your back, and slams you down on the bed.');
         scene.actions([
           { label: 'Continue', goto: ['city_saunawhore', 'fuckRoughGate'] },
@@ -953,8 +953,8 @@ function enterFuckVaginal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He thrusts his <<$dick_girth>> <<dick>>cm cock into you over and over, seeming t...
     scene.text(`He thrusts his ${((s as any).dick_girth ?? '')} ${((s as any).dick ?? '')}cm cock into you over and over, seeming to enjoy the tightness and not caring much about your pain.`);
     (s as any).DMG = (((s as any).dick ?? 0) - ((s as any).pcs_vag ?? 0)) / 2;
-    qspCall(s, 'pain', '', 1, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'mood', 'lower', (DMG * 5)
+    qspCall(s, 'pain', '1', 'vaginal', 'stretch');
+    qspCall(s, 'mood', 'lower', (((s as any).DMG ?? 0) * 5));
     qspCall(s, 'arousal', 'vaginal', 10, 'prostitution', 'rough');
   } else {
     // TODO-QSP: dynamic text: He thrusts his <<$dick_girth>> <<dick>>cm cock into you over and over, not carin...
@@ -992,8 +992,8 @@ function enterFuckAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He thrusts his <<$dick_girth>> <<dick>>cm cock into your ass over and over, seem...
     scene.text(`He thrusts his ${((s as any).dick_girth ?? '')} ${((s as any).dick ?? '')}cm cock into your ass over and over, seeming to enjoy the tightness and not caring much about your pain.`);
     (s as any).DMG = (((s as any).dick ?? 0) - ((s as any).pcs_ass ?? 0)) / 2;
-    qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
-    // TODO-QSP: gs 'mood', 'lower', (DMG * 5)
+    qspCall(s, 'pain', '1', 'asshole', 'stretch');
+    qspCall(s, 'mood', 'lower', (((s as any).DMG ?? 0) * 5));
     qspCall(s, 'arousal', 'anal', 10, 'prostitution', 'rough');
   } else {
     // TODO-QSP: dynamic text: He thrusts his <<$dick_girth>> <<dick>>cm cock into your ass over and over, not ...
@@ -1021,8 +1021,8 @@ function enterFuckRoughGate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'huge');
   (s as any).useCondom = (Math.floor(Math.random() * 2) + 1);
   (s as any).forced = 1;
-  qspCall(s, 'pain', '', 2, 'armL', 'twist');
-  qspCall(s, 'pain', '', 2, 'armR', 'twist');
+  qspCall(s, 'pain', '2', 'armL', 'twist');
+  qspCall(s, 'pain', '2', 'armR', 'twist');
   (s as any).holeType = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).holeType ?? 0) === 1  &&  ((s as any).useCondom ?? 0) === 1) {
     scene.text('You feel the tip of his cock against your pussy. It feels like he\'s using a condom.');
@@ -1058,8 +1058,8 @@ function enterFuckRoughVaginal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: His <<$dick_girth>> <<dick>>cm is too big for your pussy and causes you intense ...
     scene.text(`His ${((s as any).dick_girth ?? '')} ${((s as any).dick ?? '')}cm is too big for your pussy and causes you intense pain, stretching you horribly and slamming against your cervix.`);
     (s as any).DMG = (((s as any).dick ?? 0) - ((s as any).pcs_vag ?? 0));
-    qspCall(s, 'pain', '', 2, 'vaginal', 'stretch');
-    // TODO-QSP: gs 'mood', 'lower', (DMG * 5)
+    qspCall(s, 'pain', '2', 'vaginal', 'stretch');
+    qspCall(s, 'mood', 'lower', (((s as any).DMG ?? 0) * 5));
   }
   qspCall(s, 'arousal', 'vaginal', 10, 'prostitution', 'rough', 'bound');
   scene.text('');
@@ -1092,8 +1092,8 @@ function enterFuckRoughAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: His <<$dick_girth>> <<dick>>cm is too big for your ass and causes you intense pa...
     scene.text(`His ${((s as any).dick_girth ?? '')} ${((s as any).dick ?? '')}cm is too big for your ass and causes you intense pain, stretching you out and making it feel like you're being ripped open.`);
     (s as any).DMG = (((s as any).dick ?? 0) - ((s as any).pcs_ass ?? 0));
-    qspCall(s, 'pain', '', 2, 'asshole', 'stretch');
-    // TODO-QSP: gs 'mood', 'lower', (DMG * 5)
+    qspCall(s, 'pain', '2', 'asshole', 'stretch');
+    qspCall(s, 'mood', 'lower', (((s as any).DMG ?? 0) * 5));
   }
   (s as any).not_inside = 2;
   qspCall(s, 'arousal', 'anal', 10, 'prostitution', 'rough', 'bound');
@@ -1139,7 +1139,7 @@ function enterCumClientGate(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).cumRand ?? 0) === 2) {
           scene.text('He just smirks. "Fine. How about in your eyes then, whore?"');
-          qspCall(s, 'pain', '', 1, 'eyes', 'burn');
+          qspCall(s, 'pain', '1', 'eyes', 'burn');
           scene.actions([
             { label: 'Continue', goto: ['city_saunawhore', 'cumFace'] },
           ]);
@@ -1241,16 +1241,16 @@ function enterCumVaginal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).moodType ?? 0) === 'bad') {
       scene.img('images/locations/city/residential/sauna/sex/cumcondompourface.jpg');
       scene.text('He then suddenly grabs your head and pours the contents over your face.');
-      qspCall(s, 'cum_call', '', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
+      qspCall(s, 'cum_call', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
       qspCall(s, 'cum_call', 'face', 'sauna client', 0, 0, 0, ((s as any).cumVolMl ?? 0));
     } else {
       if (((s as any).moodType ?? 0) === 'fairly normal') {
         scene.text('He throws it on the floor, not caring about spilling the fluids around.');
-        qspCall(s, 'cum_call', '', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
+        qspCall(s, 'cum_call', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
       } else {
         if (((s as any).moodType ?? 0) === 'good') {
           scene.text('He throws it in the waste bin and gently caresses your hair afterwards.');
-          qspCall(s, 'cum_call', '', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
+          qspCall(s, 'cum_call', '', 'sauna client', 0, 3, 0, ((s as any).cumVolMl ?? 0));
         }
       }
     }
@@ -1259,7 +1259,7 @@ function enterCumVaginal(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/sauna/sex/cumvaginal` + (Math.floor(Math.random() * 5) + 1) + '.mp4"></video></center>');
     // TODO-QSP: dynamic text: The client''s cock twitches several more times, and you feel a warmth spreading ...
     scene.text(`The client's cock twitches several more times, and you feel a warmth spreading inside you as he pumps ${((s as any).cumType ?? '')} cum deep inside your pussy.`);
-    qspCall(s, 'cum_call', '', '', 'sauna client', 0, 0, 0, ((s as any).cumVolMl ?? 0));
+    qspCall(s, 'cum_call', '', 'sauna client', 0, 0, 0, ((s as any).cumVolMl ?? 0));
     if ((Math.floor(Math.random() * 100) + 1) >= 70) {
       qspCall(s, 'dinSex', 'std_trigger');
     }
@@ -1403,8 +1403,8 @@ function enterBdsmclient(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sit and wait', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'handL', 'bind');
-    qspCall(st, 'pain', '', 2, 'handR', 'bind');
+    qspCall(st, 'pain', '2', 'handL', 'bind');
+    qspCall(st, 'pain', '2', 'handR', 'bind');
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/sauna/sex/bdsm2.jpg');
@@ -1432,7 +1432,7 @@ function enterBdsmclient(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re starting to worry about what his intentions actually are.');
     scene.actions([
       { label: 'On all fours', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 2, 'legs', 'bind');
+    qspCall(st, 'pain', '2', 'legs', 'bind');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/sauna/sex/bdsm5.jpg');
@@ -1442,7 +1442,7 @@ function enterBdsmclient(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to spread your legs as much as you can, but the ropes are preventing you and the harder you try, the more painfully the ropes dig into you. You let out a desperate cry as he starts grunting.');
     scene.actions([
       { label: 'On your back', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'labia', 'pinch');
+    qspCall(st, 'pain', '4', 'labia', 'pinch');
     scene.img('images/locations/city/residential/sauna/sex/bdsm6.jpg');
     scene.text('"You little minx! Do you want me to cum this quickly? No no, we\'re not done just yet." He once again calls in the men and they lie you on your back, spread your legs and tie you tightly. They also tie your hands above your head.');
     scene.text('"Excellent work. Did you bring what I asked for?" the man asks.');

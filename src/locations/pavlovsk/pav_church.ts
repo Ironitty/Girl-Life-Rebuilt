@@ -509,7 +509,7 @@ function enterSexApproachRun(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 28) + 18), 1, 1);
+  qspCall(s, 'npcgeneratec', '0', 'stranger', (Math.floor(Math.random() * 28) + 18), 1, 1);
   scene.text('The service ends and you stand up to leave. As you near the entrance, a man approaches while gazing lecherously at you.');
   // TODO-QSP: dynamic text: "You''re <<$pcs_nickname>>, aren''t you?"
   scene.text(`"You're ${((s as any).pcs_nickname ?? '')}, aren't you?"`);
@@ -517,19 +517,19 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Answer (shy)', handler: (st: GameState) => {
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     ((st as any).temp = (st as any).temp ?? {})['prost_response'] = 'shy';
     scene.text('"Yes, that\'s me," you mumble meekly.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (normal)', handler: (st: GameState) => {
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     ((st as any).temp = (st as any).temp ?? {})['prost_response'] = 'normal';
     scene.text('"Yes, that\'s me," you answer naturally, meeting his eyes like any other conversation.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (slutty)', handler: (st: GameState) => {
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     ((st as any).temp = (st as any).temp ?? {})['prost_response'] = 'slutty';
     scene.text('"Sure am," you answer, stepping closer and returning his gaze with a lascivious smirk of your own.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexOffer(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -603,7 +603,7 @@ function enterSexOffer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_<<$temp[', 'offer_type\']>>');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -618,12 +618,12 @@ function enterRestroomHandjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: 'Inside the restroom, it only takes you a few minutes of working his cock before the man orgasms, gr...
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-    // TODO-QSP: gs 'money', 'earn', temp['prost_money']
+    qspCall(s, 'money', 'earn', ((s as any).temp ?? 0)?.['prost_money']);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
   ]);
   scene.build();
@@ -669,7 +669,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Inside the restroom, the man pulls down his pants and wraps his cock in a condom as you ' + iif(PCl...
     scene.actions([
       { label: 'Fuck the man', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_condom');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } else {
@@ -680,7 +680,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Before doing anything else, you pull a condom from your purse and roll it onto the man''s shaft. On...
     scene.actions([
       { label: 'Fuck the man', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_condom');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -688,7 +688,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Fuck him bareback', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_bareback');
+    qspCall(st, 'pav_church', '');
   } },
       { label: 'Ask him to put on a condom', handler: (st: GameState) => {
     scene.text('"Got a condom?" you ask.');
@@ -700,7 +700,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'With a sigh, you pull a condom from your own stash and roll it onto the man''s shaft before ' + iif...
     scene.actions([
       { label: 'Fuck the man', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_condom');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -711,7 +711,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '"Oh well," you shrug and ' + iif(PCloSkirt > 0, 'flip up your skirt ', 'drop your pants ') + iif($p...
     scene.actions([
       { label: 'Fuck him bareback', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_bareback');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -720,7 +720,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'He nods and pulls one out, wrapping his cock in it as you ' + iif(PCloSkirt > 0, 'flip up your skir...
       scene.actions([
         { label: 'Fuck the man', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_fuck_condom');
+    qspCall(st, 'pav_church', '');
   } },
       ]);
     }
@@ -803,7 +803,7 @@ function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuckCondomCum(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_call', '', '', 'man at church', 0, 3);
+  qspCall(s, 'cum_call', '', 'man at church', 0, 3);
   if ((!((s as any).condom_break ?? 0))) {
     scene.img('images/locations/pavlovsk/church/supplycloset.jpg');
     // TODO-QSP: 'After a few minutes, he groans softly and you feel his cock pulse within the condom inside you. You...
@@ -814,12 +814,12 @@ function enterRestroomFuckCondomCum(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Before you can even finish the man departs, leaving you ' + iif($temp['approach_type'] = 'prostitut...
   }
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-    // TODO-QSP: gs 'money', 'earn', temp['prost_money']
+    qspCall(s, 'money', 'earn', ((s as any).temp ?? 0)?.['prost_money']);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
   ]);
   scene.build();
@@ -829,7 +829,7 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).boy ?? 0)] === 'creampie'  &&  ((s as any).npc_childfree ?? 0)?.[String((s as any).boy ?? 0)] < 1) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'man at church');
+    qspCall(st, 'cum_call', '', 'man at church');
     scene.text('A few minutes later, he groans softly and something warm suddenly shoots into your womb.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -837,7 +837,7 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You gasp in surprise as the man empties his balls into you before pulling away, leaving a sticky wh...
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -851,7 +851,7 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumFace(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'man at church');
+    qspCall(st, 'cum_call', '', 'man at church');
     scene.text('"It\'s okay," you murmur in his ear. "You can cum inside me."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -859,7 +859,7 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'With a soft groan, you feel him orgasm and his thick spunk fills your pussy. It pulses within you f...
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -880,11 +880,11 @@ function enterRestroomCumHand(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/public/restroom/hj_cum1.mp4');
     // TODO-QSP: 'Hopping off the man''s cock, you take it in your hand and start jerking. Cum immediately spurts fro...
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      // TODO-QSP: gs 'money', 'earn', temp['prost_money']
+      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -901,11 +901,11 @@ function enterRestroomCumFace(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/facial/facial0,3.mp4');
     // TODO-QSP: 'He cums on your face. Once finished, he pulls up his pants and departs, leaving you ' + iif($temp['...
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      // TODO-QSP: gs 'money', 'earn', temp['prost_money']
+      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -920,7 +920,7 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/cum11.mp4');
     scene.text('He cums in your mouth.');
     if (((st as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
-      // TODO-QSP: gs 'money', 'earn', temp['prost_money']
+      qspCall(st, 'money', 'earn', ((st as any).temp ?? 0)?.['prost_money']);
     }
     scene.actions([
       { label: 'Swallow it', handler: (st: GameState) => {
@@ -930,7 +930,7 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Once finished, he pulls up his pants and departs, leaving you ' + iif($temp['approach_type'] = 'pro...
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -942,7 +942,7 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: iif($npc_cum_pref[$boy] = 'mouth', 'The man seems annoyed by that. ', '') + 'With nothing more to do...
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(st, 'pav_church', 'restroom_sex_end');
+    qspCall(st, 'pav_church', '');
   } },
     ]);
   } },
@@ -1545,7 +1545,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     { label: 'Bear it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/event/spank2.jpg');
     scene.text('You yelp as he spanks your ass with the sole of the shoe. He isn\'t putting much strength into it - it stings, but you\'ve had far worse. After a few minutes of this, he stops and leans forward. "Have you learned your lesson?"');
-    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '1', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 5, 'unknown');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1565,7 +1565,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/church/event/spank3.jpg');
     scene.text('You shake your head and smile. "No, not when you hit like a girl." you say teasingly.');
     scene.text('You see his eyes flare in anger and he starts spanking you again. This time he puts a lot of force into the blows and your ass is really starting to sting. After a few minutes of this, he stops and leans forward and asks again. "Have you learned your lesson yet?"');
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 5, 'maso');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1587,7 +1587,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/church/event/spank3.jpg');
     scene.text('"Yes, yes! Spank me harder! Please!" you cry out while sticking your ass out more.');
     scene.text('You see his eyes widen and his cheeks blushing. He again puts a lot more force into his blows and your ass is soon bright red and stinging as tears start rolling down your cheeks. After a few more minutes of this, he stops and leans forward again. "Now have you learned your lesson?"');
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'foreplay', 5, 'maso');
     qspCall(st, 'stat', '');
     scene.actions([

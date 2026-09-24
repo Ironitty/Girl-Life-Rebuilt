@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/locations/city/citycenter/mall/cinema/cinema.jpg');
   // TODO-QSP: dynamic text: You go with <<$nameBoyfrend[numnpc]>> to the movie theater near the park. <<$nam...
-  scene.text(`You go with ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? ''} to the movie theater near the park. ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? ''} buys the tickets and then you both enter a small cinema hall and find your seats.`);
+  scene.text(`You go with ${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? '')} to the movie theater near the park. ${(((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? '')} buys the tickets and then you both enter a small cinema hall and find your seats.`);
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
     qspCall(st, 'mood', 'raise', 'large');
@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).otnBoyFrend ?? 0)?.[String((st as any).numnpc ?? 0)] >= 80  &&  ((st as any).gnpcSex ?? 0)?.[String((st as any).numnpc ?? 0)] > 0) {
           // TODO-QSP: dynamic text: You have been watching the movies, and <<$nameBoyfrend[numnpc]>> put his hand on...
-          scene.text(`You have been watching the movies, and ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} put his hand on your foot and began to stroke your knee. Movie finally ended. In the hall lights went on and the screen went titles.`);
+          scene.text(`You have been watching the movies, and ${(((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} put his hand on your foot and began to stroke your knee. Movie finally ended. In the hall lights went on and the screen went titles.`);
           scene.actions([
             { label: 'Go to the exit', goto: ['Gnpc2', ''] },
           ]);

@@ -25,10 +25,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (st as any).boulvar = 0;
       (st as any).boulingnav = ((st as any).boulingnav ?? 0) + ((Math.floor(Math.random() * 4) + 0));
       (st as any).boulrand = (Math.floor(Math.random() * 10) + 0);
-      qspCall(st, 'npcgeneratec', '', 0, 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcgeneratec', '0', 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
       // TODO-QSP: $boy[0] = $npclastgenerated
       // TODO-QSP: $boydesc[0] = $npc_usedname[$npclastgenerated]
-      qspCall(st, 'npcgeneratec', '', 0, 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcgeneratec', '0', 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
       // TODO-QSP: $boy[1] = $npclastgenerated
       // TODO-QSP: $boydesc[1] = $npc_usedname[$npclastgenerated]
       qspCall(st, 'stat', '');
@@ -123,10 +123,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (st as any).boulvar = 0;
       (st as any).boulingnav = ((st as any).boulingnav ?? 0) + ((Math.floor(Math.random() * 4) + 0));
       (st as any).boulrand = (Math.floor(Math.random() * 10) + 0);
-      qspCall(st, 'npcgeneratec', '', 0, 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcgeneratec', '0', 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
       // TODO-QSP: $boy[0] = $npclastgenerated
       // TODO-QSP: $boydesc[0] = $npc_usedname[$npclastgenerated]
-      qspCall(st, 'npcgeneratec', '', 0, 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
+      qspCall(st, 'npcgeneratec', '0', 'Bowling Player', (Math.floor(Math.random() * 23) + 18));
       // TODO-QSP: $boy[1] = $npclastgenerated
       // TODO-QSP: $boydesc[1] = $npc_usedname[$npclastgenerated]
       qspCall(st, 'stat', '');
@@ -298,7 +298,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Pay ( [2000₽]...]', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', 2000, 'cash');
+    qspCall(st, 'money', '');
   }, goto: ['bouling', ''] },
           ]);
         } else {

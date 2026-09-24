@@ -62,7 +62,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Sit down on the bench', handler: (st: GameState) => {
-    qspCall(st, 'placer_sex', 'sitting_park_bench');
+    qspCall(st, 'placer_sex', '');
   } },
   ]);
   scene.build();
@@ -78,8 +78,8 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s a small but well maintained meadow with evergreen grass, perfect for laying down to rest, have a picnic or just sunbathe. Mothers with small children regularly visit this place. Despite that, if you feel like exposing yourself here, there would be less people to see it, making it easier to find the bravery to do so.');
   if (((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
     if ((Math.floor(Math.random() * 601) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
-      qspCall(s, 'npcgeneratec', '', 0, '', 'like');
-      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', '', 'like');
+      qspCall(s, 'npcStat', '$npclastgenerated');
       // TODO-QSP: dynamic text: You notice <<$npcheight_pref>>, <<$npcbuild>>, <<$npchair>> haired guy coming to...
       scene.text(`You notice ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')}, ${((s as any).npchair ?? '')} haired guy coming towards you. He is wearing wearing ${((s as any).npcClo ?? '')}.`);
       // TODO-QSP: dynamic text: The guy introduces himself as <<$boydesc>> and asks for your telephone number.

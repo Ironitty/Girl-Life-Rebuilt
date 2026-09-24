@@ -200,7 +200,7 @@ function enterVaginalSex(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
-  // TODO-QSP: gs 'arousal', 'vaginal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[...
+  qspCall(s, 'arousal', 'vaginal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   (s as any).grange = 0;
   (s as any).vaginal_tightness = 5 + (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0) - ((s as any).pcs_horny ?? 0) / 10;
   (s as any).arousal_modifier = 12 - ((s as any).vaginal_tightness ?? 0);
@@ -249,7 +249,7 @@ function enterVaginalSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', ((s as any).arousal_modifier ?? 0));
   } else {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).arousal_modifier ?? 0) * 2);
-    // TODO-QSP: gs 'mood', 'raise', arousal_modifier * 2
+    qspCall(s, 'mood', 'raise', ((s as any).arousal_modifier ?? 0) * 2);
     // TODO-QSP: dynamic text: <<$boydesc>> pushes <<$xyr>> <<$penis_desc>> into your unexplored pussy gently. ...
     scene.text(`${((s as any).boydesc ?? '')} pushes ${((s as any).xyr ?? '')} ${((s as any).penis_desc ?? '')} into your unexplored pussy gently. It is a bit painful, but as your lust builds up you do not want to wait anymore.`);
     // TODO-QSP: dynamic text: With the next push from <<$boydesc>>, you push your ass towards <<$xyr>> cock. Y...
@@ -490,7 +490,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
-  // TODO-QSP: gs 'arousal', 'anal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+  qspCall(s, 'arousal', 'anal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   (s as any).grange = 0;
   // TODO-QSP: dynamic text: iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream an...
   scene.text(`iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream and bite your lip from the sharp pain when ${((s as any).xe ?? '')} penetrates your ass, ', 'You moan when ${((s as any).xe ?? '')} penetrates your ass, ')`);
@@ -530,7 +530,7 @@ function enterSexcum(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
   }
-  qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0), 'm');
+  qspCall(s, 'npcStat', '$ARGS[1]', 'm');
   (s as any).frost = 0;
   if (((s as any).protect ?? 0) !== 1) {
     if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {
@@ -547,8 +547,8 @@ function enterSexcum(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <<$xec13>> groans, and you feel a jet of sperm hit you inside your body.
         scene.text(`${((s as any).xec13 ?? '')} groans, and you feel a jet of sperm hit you inside your body.`);
       }
-      qspCall(s, 'cuminsidereact', '', ((s as any).npcdesc13 ?? 0));
-      qspCall(s, 'cum_call', '', '', ((s as any).npcID13 ?? 0), 1);
+      qspCall(s, 'cuminsidereact', '$npcdesc13');
+      qspCall(s, 'cum_call', '', ((s as any).npcID13 ?? 0), 1);
     } else {
       if ((!((s as any).pose ?? 0))) {
         (s as any).spafinloc = 14;
@@ -577,8 +577,8 @@ function enterSexcum(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).eff_contra = ((s as any).sexcontra ?? 0);
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID13 ?? 0), 1, ((s as any).sexcontra ?? 0));
-    qspCall(s, 'cuminsidereact', '', ((s as any).npcdesc13 ?? 0), ((s as any).eff_contra ?? 0));
+    qspCall(s, 'cum_call', '', ((s as any).npcID13 ?? 0), 1, ((s as any).sexcontra ?? 0));
+    qspCall(s, 'cuminsidereact', '$npcdesc13', ((s as any).eff_contra ?? 0));
     (s as any).protect = 0;
   }
   (s as any).pose = 0;

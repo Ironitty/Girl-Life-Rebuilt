@@ -369,13 +369,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['gad_gphouse', 'main'] },
     { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'large_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
   ]);
   scene.build();
@@ -432,7 +432,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your grandmother</b></center>');
   scene.img('images/locations/gadukino/village/grandmahelp.jpg');
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
-    // TODO-QSP: gs 'money', 'earn', grandmaQW['help_amount'] * 25, 'cash'
+    qspCall(s, 'money', 'earn', (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0) * 25, 'cash');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func(''money'', ''string_...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0)*25)} for your help with chores.`);
@@ -587,7 +587,7 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func(''money'', ''string_...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', 25 * (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0))} for your help with chores.`);
-    // TODO-QSP: gs 'money', 'earn', 25 * grandmaQW['help_amount'], 'cash'
+    qspCall(s, 'money', 'earn', 25 * (((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0), 'cash');
     ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = 0;
     qspCall(s, 'stat', '');
   } else {
@@ -767,7 +767,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 function enterChoresPay(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
-    // TODO-QSP: gs 'money', 'earn', (grandmaQW['help_amount'] * 25), 'cash'
+    qspCall(s, 'money', 'earn', ((((s as any).grandmaQW ?? {})?.['help_amount'] ?? 0) * 25), 'cash');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');

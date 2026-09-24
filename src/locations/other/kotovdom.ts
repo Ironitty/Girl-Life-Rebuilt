@@ -141,7 +141,7 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'kotovdom', 'kotovkom');
     scene.actions([
       { label: 'Dress yourself', handler: (st: GameState) => {
-    qspCall(st, 'shortgs', 'dress');
+    qspCall(st, 'shortgs', '');
   } },
     ]);
   }
@@ -406,7 +406,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'kotovdom', 'after_sex');
     scene.actions([
       { label: 'Dress yourself', handler: (st: GameState) => {
-    qspCall(st, 'shortgs', 'dress');
+    qspCall(st, 'shortgs', '');
   } },
     ]);
   }

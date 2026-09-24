@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'date_casual_meal', 'arrive_together');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'separate') {
-      qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
+      qspCall(s, 'npcStat', '$temp_npcID');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspGoto(s, 'date_casual_meal', 'arrive_separate');
     } else {
@@ -459,7 +459,7 @@ function enterWaitYoureLate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothingReact(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_thin');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'clothes_thin');
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
     qspGoto(s, 'date_casual_meal', 'clothing_react_school');
   }
@@ -1397,18 +1397,18 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? '')} pays the bill.`);
   } else {
     if (((s as any).date_ev ?? 0)?.['pc_pay_meal'] === 1) {
-      // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost'] * 2
+      qspCall(s, 'money', 'pay', (((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2);
       // TODO-QSP: dynamic text: You pay the bill of <<$func(''money'', ''string_price'', date_ev[''meal_cost''] ...
       scene.text(`You pay the bill of ${qspFunc(s, 'money', 'string_price', (((s as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2)}`);
     } else {
       if (((s as any).date_ev ?? 0)?.['split_meal'] === 1) {
-        // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost']
+        qspCall(s, 'money', 'pay', ((s as any).date_ev ?? 0)?.['meal_cost']);
         // TODO-QSP: dynamic text: You split the bill and end up paying <<$func(''money'', ''string_price'', date_e...
         scene.text(`You split the bill and end up paying ${qspFunc(s, 'money', 'string_price', ((s as any).date_ev ?? 0)?.['meal_cost'] ?? '')}`);
       } else {
         scene.actions([
           { label: 'Suggest splitting the bill', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost']
+    qspCall(st, 'money', 'pay', ((st as any).date_ev ?? 0)?.['meal_cost']);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRestaurauntIntImg(st, scene); (st as any).locArgs = __savedLocArgs; }
     ((st as any).date_ev = (st as any).date_ev ?? {})['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?"');
@@ -1426,7 +1426,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).date_ev ?? 0)?.['meal_cost'] * 2, 'cash') === 0) {
       scene.text('That is, until you open up your bag and realize you don\'t have enough money to pay.');
     } else {
-      // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost'] * 2, 'cash'
+      qspCall(st, 'money', 'pay', (((st as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2, 'cash');
       // TODO-QSP: dynamic text: You dig into your bag and pay the bill of <<$func(''money'', ''string_price'', d...
       scene.text(`You dig into your bag and pay the bill of ${qspFunc(s, 'money', 'string_price', (((st as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2)}.`);
     }
@@ -1466,7 +1466,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost'] * 2, 'cash'
+        qspCall(st, 'money', 'pay', (((st as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2, 'cash');
         scene.text('"Oh!" you chirp awkwardly and pull out cash to pay with instead.');
         scene.actions([
           { label: 'Leave the restaurant', goto: ['date_casual_meal', 'date_end'] },
@@ -1501,7 +1501,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost'] * 2, 'bank'
+        qspCall(st, 'money', 'pay', (((st as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2, 'bank');
         // TODO-QSP: dynamic text: You pull out your card and pay the bill of <<$func(''money'', ''string_price'', ...
         scene.text(`You pull out your card and pay the bill of ${qspFunc(s, 'money', 'string_price', (((st as any).date_ev ?? {})?.['meal_cost'] ?? 0) * 2)}.`);
       }

@@ -58,7 +58,7 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You decide to masturbate in front of him. You rub your clit while exposing your bare ass. He smile and nods appreciating your body. You start to feel warm as you keep rubbing your clit. Your body gets tense as you approach orgasm.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gdktoilet', 'start'] },
       ]);
     } else {
@@ -456,11 +456,11 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensmast2.jpg');
     scene.text('You grab some toilet paper and clean off your now wet clit. You think to yourself, "I hope nobody heard that."');
     if ((Math.floor(Math.random() * 100) + 1) >= 75) {
-      qspCall(st, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', (Math.floor(Math.random() * 27) + 19));
+      qspCall(st, 'npcgeneratec', '0', 'guy from the men\'s bathroom', (Math.floor(Math.random() * 27) + 19));
       ((st as any).npc_dick = (st as any).npc_dick ?? {})[String((st as any).npclastgenerated ?? 0)] = (Math.floor(Math.random() * 15) + 10);
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       // TODO-QSP: dynamic text: You look up and notice the stall door opens. Right then a man in an orange jumps...
-      scene.text(`You look up and notice the stall door opens. Right then a man in an orange jumpsuit walks in. He tells you, "Do you know where you are?" Unable to respond after your intense orgasm the man unzips his jumpsuit and takes out his ${((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? ''}cm dick and places it near your mouth.`);
+      scene.text(`You look up and notice the stall door opens. Right then a man in an orange jumpsuit walks in. He tells you, "Do you know where you are?" Unable to respond after your intense orgasm the man unzips his jumpsuit and takes out his ${(((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? '')}cm dick and places it near your mouth.`);
       qspCall(st, 'willpower', 'bj', 'resist', 'hard');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -566,10 +566,10 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMensglory(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', (Math.floor(Math.random() * 27) + 19));
+  qspCall(s, 'npcgeneratec', '0', 'guy from the men\'s bathroom', (Math.floor(Math.random() * 27) + 19));
   // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
   ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 20;
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/1kissing.jpg');
   // TODO-QSP: end
@@ -586,7 +586,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/3doggy.mp4');
     // TODO-QSP: dynamic text: He licks his fingers and coats the tip of his dick with his saliva. He then take...
-    scene.text(`He licks his fingers and coats the tip of his dick with his saliva. He then takes his ${((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? ''}cm dick and guides it into your wet pussy. Grabbing your hips he begins to thrust, into you hard and fast. You are so overwhelmed and turned on, that you fail to notice other men that just walked in and are now watching.`);
+    scene.text(`He licks his fingers and coats the tip of his dick with his saliva. He then takes his ${(((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? '')}cm dick and guides it into your wet pussy. Grabbing your hips he begins to thrust, into you hard and fast. You are so overwhelmed and turned on, that you fail to notice other men that just walked in and are now watching.`);
     qspCall(st, 'arousal', 'vaginal_finger', 5, 'sub', 'rough');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -604,7 +604,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/5blowjob.mp4');
     // TODO-QSP: dynamic text: After some time, he pulls out of you and lets you down, you think he is getting ...
-    scene.text(`After some time, he pulls out of you and lets you down, you think he is getting a bit tired from holding you up. He leans back on the counter as you bend over and start to suck his dick. He puts his hand on your head and grabs and handful of hair, he pushes your head down while you suck his ${((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? ''}cm dick. His hands hold onto your hair, keeping your from pulling away. Not that you would, you are excited and love sucking his dick.`);
+    scene.text(`After some time, he pulls out of you and lets you down, you think he is getting a bit tired from holding you up. He leans back on the counter as you bend over and start to suck his dick. He puts his hand on your head and grabs and handful of hair, he pushes your head down while you suck his ${(((st as any).npc_dick ?? 0)?.[String((st as any).npclastgenerated ?? 0)] ?? '')}cm dick. His hands hold onto your hair, keeping your from pulling away. Not that you would, you are excited and love sucking his dick.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'rough', 'deepthroat');
     qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
@@ -694,7 +694,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get up', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 5);
-    qspCall(st, 'cum_call', '', '', 'guy from the men\'s bathroom');
+    qspCall(st, 'cum_call', '', 'guy from the men\'s bathroom');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/misscream.mp4');
     scene.text('You pull off him, getting up and looking down at him. That is when you noticed your pussy dripping cum all over his penis. The man unable to move breathing heavily. The man replies, "I thought it felt better than it should\'ve been." ');
@@ -723,7 +723,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Complain', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 5);
-    qspCall(st, 'cum_call', '', '', 'guy from the men\'s bathroom');
+    qspCall(st, 'cum_call', '', 'guy from the men\'s bathroom');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/misscream.mp4');
     scene.text('You pull off him, getting up and looking down at him and say, "Why didn\'t you tell me you were going to cum?" The man replies, "Sorry I was trying to hold back and thought I could, didn\'t you say you were on the pill?" You reply, "Yeah, but still you could\'ve told me. Now I will have to clean up." He continues to breath heavily and says, "Was it really that bad?" He smirks at you, "You were great, perhaps we\'ll meet again and next time use no condoms again." He gets up and gets dressed, that is when you finally notice the other men watching. You stop trying to clean yourself and quickly get dressed. You feel embarrassed you didn\'t notice them before, leaving while you\'re blushing.');
@@ -736,7 +736,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Complain', handler: (st: GameState) => {
     qspCall(st, 'fame', 'pav', 'sex', 5);
-    qspCall(st, 'cum_call', '', '', 'guy from the men\'s bathroom');
+    qspCall(st, 'cum_call', '', 'guy from the men\'s bathroom');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/misscream.mp4');
     scene.text('You pull off him, getting up and looking down at him and say, "Why didn\'t you tell me you were going to cum?" The man replies, "Sorry I was trying to hold back and thought I could, didn\'t you say you were on the pill?" You reply, "No. What am I going to do if I get pregnent?" He continues to breath heavily and says, "Don\'t worry, I\'m sure you won\'t get pregnant from just this one time. You were great, perhaps we\'ll meet again and maybe use some protection." He gets up and gets dressed, that is when you finally notice the other men watching. You quickly get dressed and feel embarrassed you didn\'t notice them before, leaving while you\'re blushing.');
     scene.actions([

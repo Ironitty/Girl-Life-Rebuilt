@@ -173,7 +173,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).obekt ?? 0)?.['i'] < 5) {
           // TODO-QSP: jump 'markdnm'
         }
-        // TODO-QSP: obekt['numberOSDM'] = input("<<$obekt['DMN']>> >= ?")
+        ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM'] = window.prompt((((st as any).obekt ?? 0)?.['DMN']) + " >= ?") ?? '';
         if (((st as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] !== ((st as any).obekt ?? 0)?.['numdmr']) {
         } else {
           ((st as any).obekt = (st as any).obekt ?? {})['openstateDM1'] = 1;

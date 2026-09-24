@@ -25,7 +25,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Check out Albina', handler: (st: GameState) => {
     if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
@@ -46,7 +46,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -67,7 +67,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -76,7 +76,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -99,7 +99,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -114,7 +114,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -123,7 +123,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -146,7 +146,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnush2.jpg');
@@ -167,7 +167,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -176,7 +176,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -199,7 +199,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -221,7 +221,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -230,7 +230,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -254,7 +254,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -281,7 +281,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -290,7 +290,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -314,7 +314,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -337,7 +337,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -346,7 +346,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -370,7 +370,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -387,7 +387,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -396,7 +396,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -419,7 +419,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -432,7 +432,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -441,7 +441,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -460,7 +460,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
@@ -476,7 +476,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -485,7 +485,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -508,7 +508,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -538,7 +538,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -547,7 +547,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -570,7 +570,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -591,7 +591,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -600,7 +600,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -623,7 +623,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -644,7 +644,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -653,7 +653,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -676,7 +676,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -711,7 +711,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -720,7 +720,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -743,7 +743,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -785,7 +785,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -794,7 +794,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -817,7 +817,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
@@ -848,7 +848,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -857,7 +857,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -880,7 +880,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -911,7 +911,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -920,7 +920,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -943,7 +943,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
@@ -959,7 +959,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -968,7 +968,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -991,7 +991,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1019,7 +1019,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1028,7 +1028,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1051,7 +1051,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1078,7 +1078,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1087,7 +1087,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1110,7 +1110,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1123,7 +1123,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1132,7 +1132,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1155,7 +1155,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1170,7 +1170,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1179,7 +1179,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1202,7 +1202,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1219,7 +1219,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1228,7 +1228,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1250,7 +1250,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out Albina', handler: (st: GameState) => {
     if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
@@ -1270,8 +1270,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1292,7 +1292,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1301,7 +1301,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1324,8 +1324,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1340,7 +1340,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1349,7 +1349,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1373,8 +1373,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnush2.jpg');
@@ -1395,7 +1395,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1404,7 +1404,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1427,8 +1427,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1452,7 +1452,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1461,7 +1461,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1477,8 +1477,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1505,7 +1505,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1514,7 +1514,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1537,8 +1537,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1563,7 +1563,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1572,7 +1572,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1595,8 +1595,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if (((st as any).juliaQW ?? 0)?.['date'] === 1) {
@@ -1616,7 +1616,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
     ]);
   } },
@@ -1638,8 +1638,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1652,7 +1652,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1661,7 +1661,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1680,8 +1680,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
@@ -1697,7 +1697,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1706,7 +1706,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1729,8 +1729,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1760,7 +1760,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1769,7 +1769,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1792,8 +1792,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1814,7 +1814,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1823,7 +1823,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1846,8 +1846,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1868,7 +1868,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1877,7 +1877,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1900,8 +1900,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -1936,7 +1936,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -1945,7 +1945,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -1968,8 +1968,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2008,7 +2008,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2017,7 +2017,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2040,8 +2040,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2071,7 +2071,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2080,7 +2080,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2103,8 +2103,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2135,7 +2135,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2144,7 +2144,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2167,8 +2167,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
@@ -2184,7 +2184,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2193,7 +2193,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2216,8 +2216,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2251,7 +2251,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2261,7 +2261,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2284,8 +2284,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2310,7 +2310,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2319,7 +2319,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2342,8 +2342,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2356,7 +2356,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2365,7 +2365,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2388,8 +2388,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2404,7 +2404,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2413,7 +2413,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }
@@ -2436,8 +2436,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
-    qspCall(st, 'gschool_lessons4', 'shower_watch_end');
+    qspCall(st, 'arousal', '');
+    qspCall(st, 'gschool_lessons4', '');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
@@ -2454,7 +2454,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     } else {
@@ -2463,7 +2463,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['gschool_lessons4', 'dress'] },
       ]);
     }

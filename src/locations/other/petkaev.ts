@@ -363,8 +363,8 @@ function enterPetraHomeworkFacial(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Clean your face and leave', handler: (st: GameState) => {
     (st as any).pcs_makeup = 1;
-    qspCall(st, 'cum_cleanup', '', 9);
-    qspCall(st, 'cum_cleanup', '', 11);
+    qspCall(st, 'cum_cleanup', '9');
+    qspCall(st, 'cum_cleanup', '11');
     if (((st as any).pcs_sweat ?? 0) > 19) {
       (st as any).pcs_sweat = ((st as any).pcs_sweat ?? 0) - (5);
     }

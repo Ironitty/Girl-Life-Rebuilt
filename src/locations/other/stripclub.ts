@@ -90,7 +90,7 @@ function enterEmployeeEntrance(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'jobs', 'is_work_time', 'city_strip_bargirl') === 1) {
             if (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0) < ((st as any).result_start ?? 0) + 60) {
               scene.text('"You\'re cutting it close. Get inside and get ready. Don\'t be surprised if some of your pay gets docked," the bouncer says with a frown.');
-              // TODO-QSP: gs 'jobs', 'dock_pay', 'city_strip_bargirl', job_pay_rate['city_strip_bargirl'] / 3
+              qspCall(st, 'jobs', 'dock_pay', 'city_strip_bargirl', (((st as any).job_pay_rate ?? {})?.['city_strip_bargirl'] ?? 0) / 3);
               scene.text('You give him a nod as he stands aside and lets you enter.');
               scene.actions([
                 { label: 'Head to the bar', handler: (st: GameState) => {
@@ -277,13 +277,13 @@ function enterPayEnter(s: GameState, scene: SceneBuilder): void {
 
 function enterWorkLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: gs 'clothing', $lastwornclothingtype['strip_club'], lastwornclothingnumber['strip_club']
+    qspCall(s, 'clothing', '$lastwornclothingtype[\'strip_club\']', ((s as any).lastwornclothingnumber ?? 0)?.['strip_club']);
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).lastwornpantytype ?? 0)?.['strip_club'] !== 'none') {
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['strip_club'], lastwornpantynumber['strip_club']
+    qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0)?.['strip_club'], ((s as any).lastwornpantynumber ?? 0)?.['strip_club']);
   }
   if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).lastwornbratype ?? 0)?.['strip_club'] !== 'none') {
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['strip_club'], lastwornbranumber['strip_club']
+    qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0)?.['strip_club'], ((s as any).lastwornbranumber ?? 0)?.['strip_club']);
   }
   qspGoto(s, 'stripclub', 'main_floor');
   // TODO-QSP: end
@@ -1367,18 +1367,18 @@ function enterFanApproach(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/redlight/stripclub/club_night_summer.jpg');
   }
   ((s as any).temp = (s as any).temp ?? {})['strip_club_partner'] = (Math.floor(Math.random() * 300) + 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'guy from the strip club', 0, (Math.floor(Math.random() * 2) + 3), 'like');
+  qspCall(s, 'npcgeneratec', '0', 'guy from the strip club', 0, (Math.floor(Math.random() * 2) + 3), 'like');
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((s as any).npc_age ?? 0)?.[String((s as any).npcID ?? 0)] < 26) {
     ((s as any).npc_age = (s as any).npc_age ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 20) + 26);
   }
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   ((s as any).temp = (s as any).temp ?? {})['strip_club_partner'] = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
     // TODO-QSP: dynamic text: A man dressed in <<$npc_outfit[$npcID]>> is trying to get your attention as you ...
-    scene.text(`A man dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} is trying to get your attention as you exit through the staff door.`);
+    scene.text(`A man dressed in ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} is trying to get your attention as you exit through the staff door.`);
   } else {
     // TODO-QSP: dynamic text: A man dressed in <<$npc_outfit[$npcID]>> is trying to get your attention as you ...
-    scene.text(`A man dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} is trying to get your attention as you exit through the staff door. His clothes look expensive.`);
+    scene.text(`A man dressed in ${(((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} is trying to get your attention as you exit through the staff door. His clothes look expensive.`);
   }
   // TODO-QSP: end
   scene.actions([

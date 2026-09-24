@@ -785,7 +785,7 @@ function enterAnachase3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).fat = ((s as any).fat ?? 0) - (5);
   qspCall(s, 'mood', 'raise', 'tiny');
-  // TODO-QSP: gs 'exp_gain', 'run', rand (1, 5)
+  qspCall(s, 'exp_gain', 'run', 0);
   qspCall(s, 'fame', 'city', 'running', 5);
   qspCall(s, 'sweat', 'add', 10);
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
@@ -1284,11 +1284,11 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).fat = ((s as any).fat ?? 0) - (10);
     qspCall(s, 'mood', 'raise', 'small');
-    // TODO-QSP: gs 'exp_gain', 'run', rand (5, 10)
-    // TODO-QSP: gs 'exp_gain', 'stren', rand (5, 10)
-    // TODO-QSP: gs 'exp_gain', 'agil', rand (5, 10)
-    // TODO-QSP: gs 'exp_gain', 'vital', rand (5, 10)
-    // TODO-QSP: gs 'exp_gain', 'react', rand (5, 10)
+    qspCall(s, 'exp_gain', 'run', 0);
+    qspCall(s, 'exp_gain', 'stren', 0);
+    qspCall(s, 'exp_gain', 'agil', 0);
+    qspCall(s, 'exp_gain', 'vital', 0);
+    qspCall(s, 'exp_gain', 'react', 0);
     qspCall(s, 'fame', 'city', 'running', 10);
     qspCall(s, 'sweat', 'add', 20);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (16);
@@ -1345,11 +1345,11 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).fat = ((s as any).fat ?? 0) - (5);
       qspCall(s, 'mood', 'lower', 'huge');
-      // TODO-QSP: gs 'exp_gain', 'run', rand (0, 5)
-      // TODO-QSP: gs 'exp_gain', 'stren', rand (0, 5)
-      // TODO-QSP: gs 'exp_gain', 'agil', rand (0, 5)
-      // TODO-QSP: gs 'exp_gain', 'vital', rand (0, 5)
-      // TODO-QSP: gs 'exp_gain', 'react', rand (0, 5)
+      qspCall(s, 'exp_gain', 'run', 0);
+      qspCall(s, 'exp_gain', 'stren', 0);
+      qspCall(s, 'exp_gain', 'agil', 0);
+      qspCall(s, 'exp_gain', 'vital', 0);
+      qspCall(s, 'exp_gain', 'react', 0);
       qspCall(s, 'sweat', 'add', 10);
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
       if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {

@@ -46,12 +46,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     ((s as any).tpKnown = (s as any).tpKnown ?? {})[String((s as any).EntryPoint ?? 0)] = 1;
   }
-  qspCall(s, 'treeCircActs', '', ((s as any).EntryPoint ?? 0));
+  qspCall(s, 'treeCircActs', '$EntryPoint');
   (s as any).i = 0;
   // TODO-QSP: :LocLoop
   if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
     if (((s as any).EntryPoint ?? 0) !== ((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)]) {
-      // TODO-QSP: gs 'treeCircActs', $tpLocations[i]
+      qspCall(s, 'treeCircActs', '', (((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)] ?? 0));
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'LocLoop'

@@ -270,51 +270,51 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     (st as any).randchan = (Math.floor(Math.random() * 8) + 0);
     if (((st as any).randchan ?? 0) === 0  &&  ((st as any).pcs_piercings ?? 0)?.['ears'] === 0) {
       qspCall(st, 'piercing_management', 'add', 'ears', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'ears') - 1 + 1)) + (1)));
-      qspCall(st, 'pain', '', 7, 'ears', 'pierce');
+      qspCall(st, 'pain', '7', 'ears', 'pierce');
       scene.img(`${qspFunc(s, 'piercing_management', 'ears_image')}`);
       scene.text('The artist takes a look at your unpierced ears, and with a quick sharp pain, pierces them.');
     } else {
       if (((st as any).randchan ?? 0) === 1  &&  ((st as any).pcs_piercings ?? 0)?.['tongue'] === 0) {
         qspCall(st, 'piercing_management', 'add', 'tongue', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'tongue') - 1 + 1)) + (1)));
-        qspCall(st, 'pain', '', 7, 'tongue', 'pierce');
+        qspCall(st, 'pain', '7', 'tongue', 'pierce');
         scene.img(`${qspFunc(s, 'piercing_management', 'tongue_image')}`);
         scene.text('He asks you to stick out your tongue. You comply and then start to regret it as he pierces your tongue.');
       } else {
         if (((st as any).randchan ?? 0) === 2  &&  ((st as any).pcs_piercings ?? 0)?.['lip'] === 0) {
           qspCall(st, 'piercing_management', 'add', 'lip', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'lip') - 1 + 1)) + (1)));
-          qspCall(st, 'pain', '', 7, 'lips', 'pierce');
+          qspCall(st, 'pain', '7', 'lips', 'pierce');
           scene.img(`${qspFunc(s, 'piercing_management', 'lip_image')}`);
           scene.text('The artist gently holds your lip as he drives the needle through to pierce it.');
         } else {
           if (((st as any).randchan ?? 0) === 3  &&  ((st as any).pcs_piercings ?? 0)?.['nose'] === 0) {
             qspCall(st, 'piercing_management', 'add', 'nose', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'nose') - 1 + 1)) + (1)));
-            qspCall(st, 'pain', '', 7, 'nose', 'pierce');
+            qspCall(st, 'pain', '7', 'nose', 'pierce');
             scene.img(`${qspFunc(s, 'piercing_management', 'nose_image')}`);
             scene.text('You feel a sharp pain in your nose as he pierces your nose.');
           } else {
             if (((st as any).randchan ?? 0) === 4  &&  ((st as any).pcs_piercings ?? 0)?.['brow'] === 0) {
               qspCall(st, 'piercing_management', 'add', 'brow', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'brow') - 1 + 1)) + (1)));
-              qspCall(st, 'pain', '', 7, 'eyebrows', 'pierce');
+              qspCall(st, 'pain', '7', 'eyebrows', 'pierce');
               scene.img(`${qspFunc(s, 'piercing_management', 'brow_image')}`);
               scene.text('The artist moves to above your eyes and quickly pierces your eyebrow.');
             } else {
               if (((st as any).randchan ?? 0) === 5  &&  ((st as any).pcs_piercings ?? 0)?.['navel'] === 0) {
                 qspCall(st, 'piercing_management', 'add', 'navel', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'navel') - 1 + 1)) + (1)));
-                qspCall(st, 'pain', '', 7, 'tummy', 'pierce');
+                qspCall(st, 'pain', '7', 'tummy', 'pierce');
                 (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
                 scene.img(`${qspFunc(s, 'piercing_management', 'navel_image')}`);
                 scene.text('He positions himself to pierce your belly button. You feel a sharp pain through your navel as he pierces it.');
               } else {
                 if (((st as any).randchan ?? 0) === 6  &&  ((st as any).pcs_piercings ?? 0)?.['nipples'] === 0) {
                   qspCall(st, 'piercing_management', 'add', 'nipples', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'nipples') - 1 + 1)) + (1)));
-                  qspCall(st, 'pain', '', 7, 'nipples', 'pierce');
+                  qspCall(st, 'pain', '7', 'nipples', 'pierce');
                   (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
                   scene.img(`${qspFunc(s, 'piercing_management', 'nipples_image')}`);
                   scene.text('He motions for you to lift up your shirt. After you do the man grabs your breasts rather softly and carefully pierces each nipple.');
                 } else {
                   if (((st as any).randchan ?? 0) === 7  &&  ((st as any).pcs_piercings ?? 0)?.['pussy'] === 0) {
                     qspCall(st, 'piercing_management', 'add', 'pussy', (Math.floor(Math.random() * (qspFunc(s, 'piercing_management', 'get_total', 'pussy') - 1 + 1)) + (1)));
-                    qspCall(st, 'pain', '', 7, 'pubic', 'pierce');
+                    qspCall(st, 'pain', '7', 'pubic', 'pierce');
                     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (7);
                     scene.img(`${qspFunc(s, 'piercing_management', 'pussy_image')}`);
                     scene.text('"Ma \'am can you take off your bottoms?", the man says. You realize that he plans to pierce your labia and you reluctantly present yourself.');

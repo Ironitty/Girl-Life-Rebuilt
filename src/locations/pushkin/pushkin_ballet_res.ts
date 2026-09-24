@@ -102,7 +102,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ballet_day ?? 0) === 3  &&  ((s as any).mayaqw ?? 0)?.['grave'] === 0  &&  (((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) <= 20)) {
       scene.actions([
         { label: 'Answer the knock', handler: (st: GameState) => {
-    qspCall(st, 'npc_274_init', 'grave');
+    qspCall(st, 'npc_274_init', '');
   } },
       ]);
     } else {
@@ -123,12 +123,12 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'core_library', 'bedroom');
     if (((s as any).week ?? 0) !== 7) {
       if (((s as any).homework_active ?? 0) === 1) {
-        // TODO-QSP: gs $loc, 'homework'
+        qspCall(s, '$loc', 'homework');
       } else {
         scene.actions([
           { label: 'Homework tasks', handler: (st: GameState) => {
     (st as any).homework_active = 1;
-    // TODO-QSP: gs $loc, 'homework'
+    qspCall(st, ((st as any).loc ?? 0), '');
   } },
           { label: 'Read the rules', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'rules');
@@ -185,7 +185,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).birthday_party ?? 0)?.['events'] === 0  &&  ((s as any).week ?? 0) === 2  &&  (((s as any).hour ?? 0) > 16  &&  ((s as any).hour ?? 0) < 18)) {
-    // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'birthday', 'card'
+    qspGoto(s, 'pushkin_ballet_evt', 'res_events', 'birthday', 'card');
   } else {
     scene.actions([
       { label: 'Go to your room', handler: (st: GameState) => {
@@ -274,7 +274,7 @@ function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pushkin_ballet_evt', 'res_events', 'prep');
     } else {
       if ((((s as any).birthday_party ?? 0)?.['events'] === 2  ||  ((s as any).birthday_party ?? 0)?.['events'] === 4)  &&  ((((s as any).hour ?? 0) >= 18  &&  ((s as any).minut ?? 0) >= 30)  ||  (((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 21))) {
-        // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'birthday' , 'party'
+        qspGoto(s, 'pushkin_ballet_evt', 'res_events', 'birthday', 'party');
       } else {
         scene.text('WIP Progress - no content');
       }
@@ -307,10 +307,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 16) {
     scene.actions([
       { label: 'Eat a light meal', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
       { label: 'Eat an Evening Meal', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
     ]);
   } else {
@@ -478,7 +478,7 @@ function enterRadio(s: GameState, scene: SceneBuilder): void {
     (s as any).instrmusic_exp = ((s as any).instrmusic_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     qspCall(s, 'exp_gain', 'perform', (Math.floor(Math.random() * 3) + 1));
     ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
-    ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+    ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   }
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Radio';
   scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/russian_radio.jpg');
@@ -521,7 +521,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   (s as any).mood = ((s as any).mood ?? 0) - ((Math.floor(Math.random() * 10) + 1));
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
-  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Ballet Studies';
   scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/study.jpg');
   qspCall(s, 'stat', '');
@@ -539,7 +539,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 function enterMakeUp(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
-  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+  ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + ((((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] ?? 0));
   qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
   if (((s as any).pcs_makupskl ?? 0) <= 30) {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (9);

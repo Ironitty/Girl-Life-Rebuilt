@@ -12,7 +12,7 @@ function enterRapistGenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   ((s as any).temp = (s as any).temp ?? {})['rapist_age'] = (Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: :rape_gangbang_loop
-  qspCall(s, 'npcgeneratec', '', 0, 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
+  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
   if (((s as any).re_i ?? 0) < 3  &&  ((s as any).fight ?? 0)?.['rape_type'] === 'gang') {
@@ -28,7 +28,7 @@ function enterFightInit(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   ((s as any).temp = (s as any).temp ?? {})['rapist_age'] = (Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: :rape_gang_fight_loop
-  qspCall(s, 'npcgeneratec', '', 0, 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
+  qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - ((s as any).temp ?? 0)?.['rapist_age'] + 1)) + (((s as any).temp ?? 0)?.['rapist_age'])));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   qspCall(s, 'fight_npcdata', 'rapist');
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
@@ -106,7 +106,7 @@ function enterUrbanRape(s: GameState, scene: SceneBuilder): void {
     ((st as any).temp = (st as any).temp ?? {})['skip'] = 0;
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/street/sex/rape2.jpg');
-    qspCall(st, 'pain', '', 7, 'head', 'slam');
+    qspCall(st, 'pain', '7', 'head', 'slam');
     scene.text('You can\'t help it and shriek at the top of your lungs.');
     scene.text('For a single moment.');
     scene.text('Your scream is immediately cut off as he bashes your head into the wall. Your legs buckle underneath you and your vision goes fuzzy.');
@@ -163,7 +163,7 @@ function enterUrbanRapeStruggle(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Endure it', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'rapist');
+    qspCall(st, 'cum_call', '', 'rapist');
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/street/sex/rape_cum.mp4');
     scene.text('After what feels like an eternity, the man thrusts into you several times, much harder than before before completely burying his cock inside you.');
@@ -256,7 +256,7 @@ function enterUrbanRapeLimp(s: GameState, scene: SceneBuilder): void {
       scene.text('There is a sensation of something, a pressure stabbing into your behind, but your mind continues to swirl in the darkness and you do not wake.');
     }
     (st as any).orgasm_or = 'no';
-    // TODO-QSP: gs 'arousal', $temp['rape'], rand(5, 10), 'rough', 'rape'
+    qspCall(st, 'arousal', '$temp[\'rape\']', (Math.floor(Math.random() * 6) + 5), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -606,7 +606,7 @@ function enterParkRapeSolo(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'The end…', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', 'rapist');
+    qspCall(st, 'cum_call', '', 'rapist');
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/street/sex/rape_cum.mp4');
     scene.text('After what feels like an eternity, the man thrusts into you several times, much harder than before before completely burying his cock inside you.');
@@ -723,7 +723,7 @@ function enterParkRapeSolo(s: GameState, scene: SceneBuilder): void {
 function enterParkGangrapeStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).fight = (s as any).fight ?? {})['rape_type'] = 'gang';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'npcStat', $rapist[0]
+  qspCall(s, 'npcStat', '$rapist[0]');
   scene.img('images/shared/sex/rape/park_gangrape_undress1.mp4');
   scene.text('The men haul you off into the bushes and you try to scream, but the hand clamped over your mouth prevents anything from coming out but muffled sobs. They tear the clothes from your body as you struggle but it\'s no use.');
   scene.text('You can\'t escape.');
@@ -741,7 +741,7 @@ function enterParkGangrapeFightLoss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', 1, $rapist[0], 'rough', 'rape'
+    qspCall(st, 'arousal', 'vaginal', 1, (((st as any).rapist ?? 0)?.[0] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     scene.text('Some modicum of control makes its way back into your muscles and you begin to struggle even as your attackers force your legs apart.');
@@ -766,7 +766,7 @@ function enterParkGangrapeFightSurrender(s: GameState, scene: SceneBuilder): voi
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', 1, $rapist[0], 'rough', 'rape'
+    qspCall(st, 'arousal', 'vaginal', 1, (((st as any).rapist ?? 0)?.[0] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     scene.text('Some modicum of control makes its way back into your muscles and you begin to struggle even as your attackers force your legs apart.');
@@ -785,7 +785,7 @@ function enterParkGangrapeStruggle1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Struggle', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', 1, $rapist[0], 'rough', 'rape'
+    qspCall(st, 'arousal', 'vaginal', 1, (((st as any).rapist ?? 0)?.[0] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     scene.text('Despite knowing escape is an impossibility, your fight or flight response refuses to let you give in and you continue to struggle beneath the hard grips of the men assaulting you. They force your legs apart and something hard is roughly shoved into your pussy.');
@@ -804,7 +804,7 @@ function enterParkGangrapeStruggle2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Scream louder', handler: (st: GameState) => {
-    // TODO-QSP: gs 'arousal', 'vaginal', rand(3, 5), $rapist[0], 'rough', 'rape'
+    qspCall(st, 'arousal', 'vaginal', (Math.floor(Math.random() * 3) + 3), (((st as any).rapist ?? 0)?.[0] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -824,9 +824,9 @@ function enterParkGangrapeTp(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Gangraped', handler: (st: GameState) => {
     ((st as any).temp = (st as any).temp ?? {})['rape_time'] = (Math.floor(Math.random() * 21) + 10);
-    // TODO-QSP: gs 'arousal', 'vaginal', temp['rape_time'], 'rough', 'rape'
-    // TODO-QSP: gs 'arousal', 'anal', -temp['rape_time'], $rapist[1], 'rough', 'rape'
-    // TODO-QSP: gs 'arousal', 'bj', -temp['rape_time'], $rapist[2], 'rough', 'rape'
+    qspCall(st, 'arousal', 'vaginal', ((st as any).temp ?? 0)?.['rape_time'], 'rough', 'rape');
+    qspCall(st, 'arousal', 'anal', -(((st as any).temp ?? {})?.['rape_time'] ?? 0), (((st as any).rapist ?? 0)?.[1] ?? 0), 'rough', 'rape');
+    qspCall(st, 'arousal', 'bj', -(((st as any).temp ?? {})?.['rape_time'] ?? 0), (((st as any).rapist ?? 0)?.[2] ?? 0), 'rough', 'rape');
     qspCall(st, 'stat', '');
     scene.text('The men violate you, roughly fucking you with no regard for your pain or your pleasure. With one cock choking your mouth, it\'s all you can do to breathe, let alone make any noise other than the occasional groan as the others ravage your ass and pussy.');
     scene.text('There\'s nothing for you to do except hold on for dear life until it ends.');
@@ -837,17 +837,17 @@ function enterParkGangrapeTp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParkGangrapeCum(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'cum_call', '', $rapist[0]
-  // TODO-QSP: gs 'cum_call', 'anus', $rapist[1]
-  // TODO-QSP: gs 'cum_call', 'mouth_swallow', $rapist[2]
-  qspCall(s, 'pain', '', 4, 'asshole', 'stretch');
-  qspCall(s, 'pain', '', 4, 'vaginal', 'stretch');
-  qspCall(s, 'pain', '', 4, 'wrists', 'bind');
-  qspCall(s, 'pain', '', 4, 'armL', 'bind');
-  qspCall(s, 'pain', '', 4, 'armR', 'bind');
-  qspCall(s, 'pain', '', 3, 'thighs', 'ache');
-  qspCall(s, 'pain', '', 3, 'legL', 'ache');
-  qspCall(s, 'pain', '', 3, 'legR', 'ache');
+  qspCall(s, 'cum_call', '', (((s as any).rapist ?? 0)?.[0] ?? 0));
+  qspCall(s, 'cum_call', 'anus', (((s as any).rapist ?? 0)?.[1] ?? 0));
+  qspCall(s, 'cum_call', 'mouth_swallow', (((s as any).rapist ?? 0)?.[2] ?? 0));
+  qspCall(s, 'pain', '4', 'asshole', 'stretch');
+  qspCall(s, 'pain', '4', 'vaginal', 'stretch');
+  qspCall(s, 'pain', '4', 'wrists', 'bind');
+  qspCall(s, 'pain', '4', 'armL', 'bind');
+  qspCall(s, 'pain', '4', 'armR', 'bind');
+  qspCall(s, 'pain', '3', 'thighs', 'ache');
+  qspCall(s, 'pain', '3', 'legL', 'ache');
+  qspCall(s, 'pain', '3', 'legR', 'ache');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();

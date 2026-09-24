@@ -124,7 +124,7 @@ function enterOrder(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cancel order', goto: ['brothel', 'bar'] },
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
     ]);
   }
@@ -149,10 +149,10 @@ function enterAbductionStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbducted(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 3, 'armL', 'bind');
-  qspCall(s, 'pain', '', 3, 'armR', 'bind');
-  qspCall(s, 'pain', '', 3, 'legL', 'bind');
-  qspCall(s, 'pain', '', 3, 'legR', 'bind');
+  qspCall(s, 'pain', '3', 'armL', 'bind');
+  qspCall(s, 'pain', '3', 'armR', 'bind');
+  qspCall(s, 'pain', '3', 'legL', 'bind');
+  qspCall(s, 'pain', '3', 'legR', 'bind');
   qspCall(s, 'stat', '');
   scene.text('<h3>Hotel Room</h3>');
   scene.text('You wasted yourself in the bar and now you suffer the consequences.');
@@ -168,7 +168,7 @@ function enterAbducted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbducted1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 4, 'asshole', 'pinch');
+  qspCall(s, 'pain', '4', 'asshole', 'pinch');
   (s as any).orgasm_or = 'no';
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'bound', 'rape');
   qspCall(s, 'arousal', 'anal_finger', 5, 'bound', 'rape');
@@ -187,7 +187,7 @@ function enterAbducted1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbducted2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 7, 'asshole', 'stretch');
+  qspCall(s, 'pain', '7', 'asshole', 'stretch');
   qspCall(s, 'arousal', 'anal_dildo', 5, 'bound', 'rape');
   scene.img('images/locations/shared/brothel/openchampagne.mp4');
   scene.text('"Now slut, let\'s get you your drink!"');
@@ -204,13 +204,13 @@ function enterAbducted2(s: GameState, scene: SceneBuilder): void {
 
 function enterAbducted3(s: GameState, scene: SceneBuilder): void {
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
-  qspCall(s, 'pain', '', 7, 'asshole', 'stretch');
+  qspCall(s, 'pain', '7', 'asshole', 'stretch');
   (s as any).guy = ((s as any).guy ?? 0) + (4);
   (s as any).temp = 4;
   (s as any).sexpartkno = 0;
   // TODO-QSP: :abdrapeloop
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 16) + 35));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 16) + 35));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   qspCall(s, 'arousal', 'vaginal', 5, 'bound', 'rape');
   qspCall(s, 'arousal', 'anal', 10, 'bound', 'rape');
   (s as any).cumarrcon = 0;
@@ -246,10 +246,10 @@ function enterAbducted4(s: GameState, scene: SceneBuilder): void {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['notathomesleep'] = ((s as any).sleepVars['notathomesleep'] ?? 0) + (1);
   }
   qspCall(s, 'sleep_simple', 'sleep_until', 10, 0);
-  qspCall(s, 'pain', '', 3, 'armL', 'bind');
-  qspCall(s, 'pain', '', 3, 'armR', 'bind');
-  qspCall(s, 'pain', '', 3, 'legL', 'bind');
-  qspCall(s, 'pain', '', 3, 'legR', 'bind');
+  qspCall(s, 'pain', '3', 'armL', 'bind');
+  qspCall(s, 'pain', '3', 'armR', 'bind');
+  qspCall(s, 'pain', '3', 'legL', 'bind');
+  qspCall(s, 'pain', '3', 'legR', 'bind');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/wakeupboundonbedanalplug.jpg');
   scene.text('You wake up, still bound to the bed. Behind the curtains you can see that it is late morning.');
@@ -284,7 +284,7 @@ function enterAbducted5(s: GameState, scene: SceneBuilder): void {
 function enterAbducted6(s: GameState, scene: SceneBuilder): void {
   (s as any).analPlugIn = 0;
   (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
-  qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
+  qspCall(s, 'pain', '5', 'asshole', 'stretch');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/pullplugfromass.mp4');
   scene.text('He leans to your ass and reaches for the top of the plug.');
@@ -649,10 +649,10 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Have a snack (0:15)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'snack');
+    qspCall(st, 'food', '');
   } },
     { label: 'Have a glass of water (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
     { label: 'Change your clothes', goto: ['wardrobe', 'start'] },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },

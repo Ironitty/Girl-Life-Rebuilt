@@ -27,11 +27,11 @@ function enterGetMessage(s: GameState, scene: SceneBuilder): void {
   (s as any).loop_counter = 0;
   (s as any).tracked_values_size = 0;
   // TODO-QSP: :exp_notification_loop
-  (s as any).tracked_stat = ((s as any).exp_tracked_names ?? 0)?.[String((s as any).loop_counter ?? 0)];
+  (s as any).tracked_stat = (((s as any).exp_tracked_names ?? 0)?.[String((s as any).loop_counter ?? 0)] ?? 0);
   if (((s as any).att_desc ?? 0)?.[String((s as any).tracked_stat ?? 0)] !== '') {
-    (s as any).tracked_stat_description = ((s as any).att_desc ?? 0)?.[String((s as any).tracked_stat ?? 0)];
+    (s as any).tracked_stat_description = (((s as any).att_desc ?? 0)?.[String((s as any).tracked_stat ?? 0)] ?? 0);
   } else {
-    (s as any).tracked_stat_description = ((s as any).skl_desc ?? 0)?.[String((s as any).tracked_stat ?? 0)];
+    (s as any).tracked_stat_description = (((s as any).skl_desc ?? 0)?.[String((s as any).tracked_stat ?? 0)] ?? 0);
   }
   if (((s as any).exp_tracked_values ?? 0)?.[String((s as any).tracked_stat ?? 0)] > 0) {
     // TODO-QSP: $result += iif($result <> '', '&ensp;', '') + '↑&nbsp;<<$tracked_stat_description>>&nbsp;[<<exp_trac...

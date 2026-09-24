@@ -96,7 +96,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Nap until your alarm rings (' + String(((s as any).temp_hour ?? '') ?? '') + ':' + String((String(100+((s as any).temp_minut ?? '')).slice((2)-1)) ?? '') + ')', handler: (st: GameState) => {
     scene.text('You turn around on your bed and close your eyes.');
-    // TODO-QSP: gs 'sleep_simple', 'forced', sleepVars['alarm_time'] - sleepVars['time_now']
+    qspCall(st, 'sleep_simple', 'forced', (((st as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((st as any).sleepVars ?? {})?.['time_now'] ?? 0));
     qspGoto(st, 'wakeup', 'start');
   } },
     ]);

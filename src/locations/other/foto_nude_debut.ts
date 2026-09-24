@@ -543,7 +543,7 @@ function enterDebutAfter1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
     // TODO-QSP: modelfoto['debut_image'] = 1
-    qspCall(st, 'foto_nude_debut', 'debut_after2');
+    qspCall(st, 'foto_nude_debut', '');
   } },
     ]);
   } },
@@ -557,7 +557,7 @@ function enterDebutAfter2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Next set', handler: (st: GameState) => {
     // TODO-QSP: modelfoto['debut_image'] += 3
-    qspCall(st, 'foto_nude_debut', 'debut_after2');
+    qspCall(st, 'foto_nude_debut', '');
   } },
     ]);
   }
@@ -565,7 +565,7 @@ function enterDebutAfter2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Previous set', handler: (st: GameState) => {
     // TODO-QSP: modelfoto['debut_image'] -= 3
-    qspCall(st, 'foto_nude_debut', 'debut_after2');
+    qspCall(st, 'foto_nude_debut', '');
   } },
     ]);
   }

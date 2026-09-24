@@ -12,7 +12,7 @@ function enterZoyaChatMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
-    qspCall(st, 'albina_mother_events', 'zoya_small_talk');
+    qspCall(st, 'albina_mother_events', '');
   } },
   ]);
   scene.build();

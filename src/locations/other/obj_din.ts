@@ -183,7 +183,7 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :AddDebugVarLoop
       if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-        if (((String(((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)]).indexOf(String('$'))) + 1) === 1) {
+        if (((String((((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).indexOf(String('$'))) + 1) === 1) {
           // TODO-QSP: dynamic '$tmp = <<$ObjDebugVars[i]>>'
           // TODO-QSP: addobj '<<$ObjDebugVars[i]>>: <<$tmp>>'
         } else {
@@ -222,7 +222,7 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWait(s: GameState, scene: SceneBuilder): void {
-  (s as any).waitStr = window.prompt("How long would you like to wait?<br>(maximum 120 minutes, leave blank or press cancel to wait 15 minutes)<br>Alternatively, input a time to wait until (hh:mm). It is <<$mid(100+hour,2,2)>>:<<$mid(100+minut,2,2)>> now.") ?? '';
+  (s as any).waitStr = window.prompt("How long would you like to wait?<br>(maximum 120 minutes, leave blank or press cancel to wait 15 minutes)<br>Alternatively, input a time to wait until (hh:mm). It is " + ((String(100+((s as any).hour ?? 0)).slice((2)-1, ((2)-1)+(2)))) + ":" + ((String(100+((s as any).minut ?? 0)).slice((2)-1, ((2)-1)+(2)))) + " now.") ?? '';
   (s as any).waiting = 0;
   if (((s as any).waitStr ?? 0) === '') {
     (s as any).waiting = 15;

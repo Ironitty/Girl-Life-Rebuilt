@@ -66,7 +66,7 @@ function enterRexRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'RexRoom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs $loc, 'EventUpdate'
+  qspCall(s, '$loc', 'EventUpdate');
   scene.text('<center><b>Rex\'s Room</b></center>');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'RexRoom');
   // TODO-QSP: end
@@ -81,7 +81,7 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'LivingRoom';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs $loc, 'EventUpdate'
+  qspCall(s, '$loc', 'EventUpdate');
   scene.text('<center><b>Living room</b></center>');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'LivingRoom');
   // TODO-QSP: end
@@ -99,7 +99,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'Kitchen';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  // TODO-QSP: gs $loc, 'EventUpdate'
+  qspCall(s, '$loc', 'EventUpdate');
   scene.text('<center><b>Kitchen room</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/kuh.jpg');
   qspCall(s, 'rex_party', 'Event' + ((s as any).eventNumber ?? 0) + '', 'Kitchen');

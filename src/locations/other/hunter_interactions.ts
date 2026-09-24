@@ -26,7 +26,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'drugs', 'smoke', 1);
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -45,7 +45,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you walk outside, Andrei hands you a cigarette. You start talking about your feelings for each other.');
       scene.actions([
         { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
       ]);
     } else {
@@ -83,7 +83,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -106,7 +106,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -134,7 +134,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -142,7 +142,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
           ]);
         }
@@ -156,7 +156,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Go', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
+    qspCall(st, 'gad_swamphouse', '');
   } },
         ]);
       }
@@ -180,7 +180,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -201,7 +201,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -213,7 +213,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
   ]);
   scene.build();
@@ -669,7 +669,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'voyeur', 'humiliation');
       qspCall(s, 'stat', '');
       if (((s as any).clothingworntype ?? 0) !== 'nude'  ||  ((s as any).pantyworntype ?? 0) !== 'none') {
-        // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'strip'
+        qspGoto(s, 'hunter_interactions', 'booze_dare', 'pick', 'strip');
       } else {
         ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (2);
         if (((s as any).alko ?? 0) < 4) {
@@ -723,7 +723,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'exhib');
         if (((s as any).pantyworntype ?? 0) !== 'none') {
           ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (1);
-          // TODO-QSP: gt 'hunter_interactions', 'booze_dare', 'pick', 'strip'
+          qspGoto(s, 'hunter_interactions', 'booze_dare', 'pick', 'strip');
         } else {
           if (((s as any).hunterVars ?? 0)?.['collective_opinion'] > 40) {
             ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (3);
@@ -1037,7 +1037,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A172');
     qspCall(st, 'arousal', 'foreplay', (-5), 'sub', 'exhibitionism');
     qspCall(st, 'arousal', 'vaginal', 8, 'sub', 'exhibitionism');
-    qspCall(st, 'cum_call', '', '', 'A172', 1);
+    qspCall(st, 'cum_call', '', 'A172', 1);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Grab a drink', handler: (st: GameState) => {
@@ -1079,7 +1079,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A173');
     qspCall(st, 'arousal', 'vaginal', 5, 'exhibitionism', 'dom');
     qspCall(st, 'arousal', 'clit_finger', (-5), 'exhibitionism', 'dom');
-    qspCall(st, 'cum_call', '', '', 'A174', 1);
+    qspCall(st, 'cum_call', '', 'A174', 1);
     qspCall(st, 'cum_call', 'labia', 'A174', 1);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -1181,7 +1181,7 @@ function enterMeetHuntersAfterRescue(s: GameState, scene: SceneBuilder): void {
     scene.text('"Here, you can have this to cover up, you have nothing to be embarrassed about. Sorry we do not have any change of clothes for you."');
     scene.actions([
       { label: 'Cover up with the burlap sack', handler: (st: GameState) => {
-    qspCall(st, 'clothing', 'gad_swamp_clothes', 1);
+    qspCall(st, 'clothing', '');
   } },
     ]);
   } else {
@@ -1313,7 +1313,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
 function enterAndreiQuickFuck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/andrei_naked_encounter_pull.jpg');
   scene.text('Andrei walks up to you without saying another word and forcefully pulls you closer by your nipples.');
-  qspCall(s, 'pain', '', 10, 'pinch', 'nipples');
+  qspCall(s, 'pain', '10', 'pinch', 'nipples');
   scene.text('You yelp but it is cut short when he shoves his tongue down your throat, roughly fondling you all over');
   qspCall(s, 'arousal', 'foreplay', 15, 'sub');
   // TODO-QSP: end
@@ -1501,7 +1501,7 @@ function enterNakedEncounter(s: GameState, scene: SceneBuilder): void {
           scene.text('"I… uh… wow." stammers Igor. "Still not used to you prancing around like that"');
           scene.actions([
             { label: 'Help him get more used to it', handler: (st: GameState) => {
-    qspCall(st, 'hunter_interactions', 'igor_demonstration');
+    qspCall(st, 'hunter_interactions', '');
   } },
           ]);
         } else {
@@ -1856,7 +1856,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return to the table', handler: (st: GameState) => {
-    qspCall(st, 'gad_swamphouse', 'meal_table');
+    qspCall(st, 'gad_swamphouse', '');
   } },
     ]);
   } },
@@ -2045,7 +2045,7 @@ function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'bj_swallow_random');
     qspCall(st, 'boyStat', 'A173');
     qspCall(st, 'dinsex', 'vaginal_sex', 5);
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'dinsex', 'sexcumsk');
     // TODO-QSP: dynamic text: You feel <<$boydesc>>''s cock twitch inside your pussy and realize he just came
     scene.text(`You feel ${((st as any).boydesc ?? '')}'s cock twitch inside your pussy and realize he just came`);
@@ -2064,12 +2064,12 @@ function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     // TODO-QSP: dynamic text: After a few minutes of <<$boydesc>> vigorously fucking your pussy, you feel him ...
     scene.text(`After a few minutes of ${((st as any).boydesc ?? '')} vigorously fucking your pussy, you feel him cumming inside you`);
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     scene.actions([
       { label: 'The men finish up and leave you', handler: (st: GameState) => {
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['hunters'], lastwornclothingnumber['hunters']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['hunters'], lastwornpantynumber['hunters']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['hunters'], lastwornbranumber['hunters']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['hunters'], ((st as any).lastwornclothingnumber ?? 0)?.['hunters']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['hunters'], ((st as any).lastwornpantynumber ?? 0)?.['hunters']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['hunters'], ((st as any).lastwornbranumber ?? 0)?.['hunters']);
     qspCall(st, 'stat', '');
     qspGoto(st, 'gad_swamp_yard', 'start');
   } },

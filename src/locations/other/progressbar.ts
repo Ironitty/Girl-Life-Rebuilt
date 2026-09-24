@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -138,10 +136,10 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
             (s as any).color_stop_upper = 4;
             (s as any).color_stop_lower = 0;
             if (((s as any).color_value ?? 0) <= ((s as any).color_stop_at ?? 0)[0]) {
-              (s as any).result = qspUntranslated(s, "color_stop_hex[0]", { location: "progressbar" });
+              (s as any).result = (((s as any).color_stop_hex ?? 0)?.[0] ?? 0);
             } else {
               if (((s as any).color_value ?? 0) >= ((s as any).color_stop_at ?? 0)[4]) {
-                (s as any).result = qspUntranslated(s, "color_stop_hex[4]", { location: "progressbar" });
+                (s as any).result = (((s as any).color_stop_hex ?? 0)?.[4] ?? 0);
               } else {
                 (s as any).color_stop_i = 1;
                 // TODO-QSP: :color_smooth_find_loop
@@ -154,13 +152,13 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: jump 'color_smooth_find_loop'
                   }
                 }
-                (s as any).color_stop_span = ((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_upper ?? 0)] - ((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_lower ?? 0)];
+                (s as any).color_stop_span = (((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_upper ?? 0)] ?? 0) - (((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_lower ?? 0)] ?? 0);
                 if (((s as any).color_stop_span ?? 0) > 0) {
-                  (s as any).color_stop_ratio = (((s as any).color_value ?? 0) - ((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_lower ?? 0)]) * 100 / ((s as any).color_stop_span ?? 0);
+                  (s as any).color_stop_ratio = (((s as any).color_value ?? 0) - (((s as any).color_stop_at ?? 0)?.[String((s as any).color_stop_lower ?? 0)] ?? 0)) * 100 / ((s as any).color_stop_span ?? 0);
                 } else {
                   (s as any).color_stop_ratio = 0;
                 }
-                (s as any).result = qspFunc(s, 'math', 'color_mix', ((s as any).color_stop_hex ?? 0)?.[String((s as any).color_stop_lower ?? 0)], ((s as any).color_stop_hex ?? 0)?.[String((s as any).color_stop_upper ?? 0)], ((s as any).color_stop_ratio ?? 0));
+                (s as any).result = qspFunc(s, 'math', 'color_mix', (((s as any).color_stop_hex ?? 0)?.[String((s as any).color_stop_lower ?? 0)] ?? 0), (((s as any).color_stop_hex ?? 0)?.[String((s as any).color_stop_upper ?? 0)] ?? 0), ((s as any).color_stop_ratio ?? 0));
               }
             }
             // TODO-QSP: killvar 'color_stop_hex'
@@ -173,7 +171,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
           } else {
             if ((String(((s as any).color_gradient ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'mono:') {
               (s as any).color_mono_key = (String(((s as any).color_gradient ?? 0)).slice((6)-1, ((6)-1)+((String(((s as any).color_gradient ?? 0)).length) - 5)));
-              (s as any).color_mono_full = ((s as any).theme_hex ?? 0)?.[String((s as any).color_mono_key ?? 0)];
+              (s as any).color_mono_full = (((s as any).theme_hex ?? 0)?.[String((s as any).color_mono_key ?? 0)] ?? 0);
               if (((s as any).theme ?? 0)?.['is_dark']) {
                 (s as any).color_mono_base = qspFunc(s, 'math', 'color_mix', ((s as any).color_mono_full ?? 0), '#000000', 75);
               } else {
@@ -184,7 +182,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: killvar 'color_mono_full'
               // TODO-QSP: killvar 'color_mono_base'
             } else {
-              (s as any).result = ((s as any).theme_hex ?? 0)?.[String((s as any).color_gradient ?? 0)];
+              (s as any).result = (((s as any).theme_hex ?? 0)?.[String((s as any).color_gradient ?? 0)] ?? 0);
             }
           }
         }

@@ -68,7 +68,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     scene.text('"You were saying?"');
     scene.text('Sullenly, knowing Christina is just a call away and if you lost to her, and would have to fight off both, you say "I\'m a virgin, <i>Master</i>."');
     scene.text('"Good, that means you\'re unspoiled. Before today is done, you won\'t be able to say that anymore."');
-    qspCall(s, 'pain', '', 2, 'cheeks', 'slap');
+    qspCall(s, 'pain', '2', 'cheeks', 'slap');
     qspCall(s, 'stat', '');
   } else {
     scene.text('"I\'m a virgin, <i>Master</i>."');
@@ -112,7 +112,7 @@ function enterFirstRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('He smiles coldly. "You will refer to me as Master."');
   scene.text('"Like hell I will!"');
   scene.text('He simply raises his hand again, making you flinch back. "If you have at least half a brain between those slappable cheeks, I would kneel. Now."');
-  qspCall(s, 'pain', '', 3, 'cheeks', 'slap');
+  qspCall(s, 'pain', '3', 'cheeks', 'slap');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -128,7 +128,7 @@ function enterSecondRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking amused, he says "Actually, that\'s exactly what you are. It\'s why my sister brought you here. And you forgot to call me Master again…" <b>SLAP</b>');
   scene.text('This one was hard enough to knock you off your feet entirely. Laying on the ground, seeing stars, you barely register the fact he has reached down and pulled you back to your feet. "Well that just happened," you hear yourself say out loud.');
   scene.text('"That one will leave a mark. Not off to a good start, are you? The next one will be a fist, in a place that won\'t bruise."');
-  qspCall(s, 'pain', '', 9, 'cheeks', 'slap');
+  qspCall(s, 'pain', '9', 'cheeks', 'slap');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

@@ -120,8 +120,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (5);
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = 0;
       if (((st as any).katjaQW ?? 0)?.['park_sex'] === 0) {
@@ -155,8 +155,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Continue', handler: (st: GameState) => {
     if (((st as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (10);
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = 0;
       if (((st as any).katjaQW ?? 0)?.['park_sex'] < 2) {
@@ -200,8 +200,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take him in your mouth', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/bj.jpg');
     scene.text('You quietly slide down to your haunches, while you rub your hand over the quite noticeable bulge in his pants. Unable to withstand your teasings any longer, he unbuttons his pants and his erect penis jumps out.');
@@ -268,9 +268,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stay with the guys', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(st, 'stat', '');
@@ -291,7 +291,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'dinsex', 'boy_puts_condom');
       qspCall(st, 'dinsex', 'vaginal_sex', 10);
       qspCall(st, 'dinsex', 'sexcum');
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       (st as any).spafinloc = 12;
       qspCall(st, 'cum_manage', '');
       (st as any).spafinloc = 11;
@@ -310,7 +310,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_manage', '');
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/doublemiss2.jpg');
     scene.text('The guys change places, and the guy who you had been sucking for the last few minutes easily slides his cock inside you. You\'d done a good job drooling over his dick, and the saliva made his entry very easy. Meanwhile, the guy who had been fucking you for the last few minutes thrusts his cock at your face, and you obediently open your mouth to take it in. When you lick your own juices of him you realize… you kind of like your own taste! You don\'t get long to enjoy it, however. Within the minute he groans, shooting his load all over your exposed tongue and inside your mouth. He pulls out before he is finished, shooting the last drops of his load over your face.');
@@ -336,7 +336,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
     (st as any).spafinloc = 3;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).sexrand = (Math.floor(Math.random() * 2) + 0);
     if ((!((st as any).sexrand ?? 0))) {
       (st as any).spafinloc = 12;
@@ -374,7 +374,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'boy_puts_condom');
     qspCall(st, 'dinsex', 'vaginal_sex', 10);
     qspCall(st, 'dinsex', 'sexcum');
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).spafinloc = 12;
     qspCall(st, 'cum_manage', '');
     (st as any).spafinloc = 11;
@@ -399,9 +399,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text(`The boys begin to embrace you and your girlfriend, feeling emboldened by the liquor they have been drinking. Their touches soon make you want more, and you and ${((s as any).ev_name ?? '')} make out with the boys while they impatiently tug at your clothes. Two of them seem to have taken a liking to you, while the two others are focusing their efforts on ${((s as any).ev_name ?? '')}.`);
           scene.actions([
             { label: 'Have sex with two of them', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'boyStat', '', ((st as any).boy ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated', 'b');
+    qspCall(st, 'boyStat', '$boy', 'a');
     if (((st as any).placerParameter ?? 0)?.['friend_index'] === 14) {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (10);
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = 0;

@@ -20,7 +20,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'ArgLoopNPC'
   }
-  (s as any).manaCost = ((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)];
+  (s as any).manaCost = (((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)] ?? 0);
   (s as any).casterMana = 0;
   if (((s as any).casterMana ?? 0) >= ((s as any).manaCost ?? 0)) {
     // TODO-QSP: dynamic '<<$ARGS[3]>>_mana[<<ARGS[4]>>] -= <<manaCost>>'

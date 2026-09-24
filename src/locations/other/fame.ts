@@ -214,7 +214,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 6 < 1000) {
                         ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 6);
                       } else {
-                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
+                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
                       }
                     }
                   }
@@ -254,9 +254,9 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 3);
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 3 < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
                           } else {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
                           }
                         }
                       }
@@ -296,12 +296,12 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
                           } else {
                             if ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '')) < 3100) {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
                             } else {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
                             }
                           }
                         }
@@ -398,7 +398,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 6 < 1000) {
                         ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 6);
                       } else {
-                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
+                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
                       }
                     }
                   }
@@ -438,9 +438,9 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 3);
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 3 < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
                           } else {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
                           }
                         }
                       }
@@ -480,12 +480,12 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
                           } else {
                             if ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '')) < 3100) {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
                             } else {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
                             }
                           }
                         }
@@ -582,7 +582,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 6 < 1000) {
                         ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 6);
                       } else {
-                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
+                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
                       }
                     }
                   }
@@ -622,9 +622,9 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 3);
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 3 < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
                           } else {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
                           }
                         }
                       }
@@ -664,12 +664,12 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
                           } else {
                             if ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '')) < 3100) {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
                             } else {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
                             }
                           }
                         }
@@ -766,7 +766,7 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 6 < 1000) {
                         ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 6);
                       } else {
-                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
+                        ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 6 - 1000)) / 5;
                       }
                     }
                   }
@@ -806,9 +806,9 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0) / 3);
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') / 3 < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2;
                           } else {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) / 3 - 700) / 2 - 300)) / 5;
                           }
                         }
                       }
@@ -848,12 +848,12 @@ function enterVillage(s: GameState, scene: SceneBuilder): void {
                           ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = ((s as any).fame[String((s as any).temp_fame_arg ?? 0)] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
                         } else {
                           if (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '') < 1300) {
-                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + (((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
+                            ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 400 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3;
                           } else {
                             if ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + String((s as any).locArgs?.[2] ?? '')) < 3100) {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + ((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 700 + (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2;
                             } else {
-                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * (((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
+                              ((s as any).fame = (s as any).fame ?? {})[String((s as any).temp_fame_arg ?? 0)] = 1000 + (3 * ((((((s as any).fame ?? 0)?.[String((s as any).temp_fame_arg ?? 0)] ?? 0) + ((s as any).locArgs?.[2] ?? 0) - 400) / 3 - 300) / 2 - 300)) / 5;
                             }
                           }
                         }

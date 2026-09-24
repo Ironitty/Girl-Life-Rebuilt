@@ -133,14 +133,14 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
         (s as any).anal_slip = ((s as any).anal_slip ?? 0) + ((Math.floor(Math.random() * (((s as any).cumvol ?? 0)[0] / 10 - ((s as any).cumvol ?? 0)[0] / 15 + 1)) + (((s as any).cumvol ?? 0)[0] / 15)));
       }
     }
-    // TODO-QSP: gs 'arousal_funcs', 'get_hole_pain', pcs_vag, vaginal_slip, pain['vaginal'], dick_length11, arousalV...
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pcs_vag ?? 0), ((s as any).vaginal_slip ?? 0), ((s as any).pain ?? 0)?.['vaginal'], ((s as any).dick_length11 ?? 0), ((s as any).arousalVars ?? 0)?.['girth_range'], ((s as any).silavag11 ?? 0), Math.max(1, ((s as any).stim ?? 0)?.['time'])]; enterGetHolePain(s, scene); (s as any).locArgs = __savedLocArgs; }
     ((s as any).stim = (s as any).stim ?? {})['act'] = 80 - (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0) + 8 * ((s as any).silavag11 ?? 0);
     ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], ((s as any).dick_length11 ?? 0), ((s as any).pcs_vag ?? 0));
     if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 2  &&  ((s as any).sexcontra ?? 0) === 3) {
       // TODO-QSP: stim['act'] /= 2
     }
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 0) {
-      // TODO-QSP: gs 'pain', arousalVars['girth_diff'] + arousalVars['length_diff'], 'vaginal', 'stretch'
+      qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'vaginal', 'stretch');
       ((s as any).pain = (s as any).pain ?? {})['vaginal'] = Math.min(((s as any).pain ?? 0)?.['vaginal'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
       if ((Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).dick_length11 ?? 0) / Math.max(1, ((s as any).silavag11 ?? 0))) {
         qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).arousalVars ?? 0)?.['length_diff'] - 0 + 1)) + (0)), 'cervix', 'shock');
@@ -152,7 +152,7 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pain_coeff ?? 0) > 0) {
-      // TODO-QSP: gs 'pain', rand(0, pain_coeff) / 5, 'clitoris', 'hit'
+      qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - 0 + 1)) + (0)), 'clitoris', 'hit');
     }
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 2 * ((s as any).vgape ?? 0) + ((s as any).pcs_vag ?? 0) / 2) {
       (s as any).vgape = ((s as any).vgape ?? 0) + (1);
@@ -165,7 +165,7 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
-    // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
+    qspCall(s, 'cum_manage', 'cum_decay', ((((s as any).dick_length11 ?? 0) + (((s as any).arousalVars ?? {})?.['girth_range'] ?? 0)) / 2) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   // TODO-QSP: end
   scene.build();
@@ -183,14 +183,14 @@ function enterInAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vaginal_slip ?? 0) < Math.max(1, ((s as any).anal_slip ?? 0) / 2)  &&  ((s as any).cumloc ?? 0)[3] > 0) {
       (s as any).vaginal_slip = ((s as any).vaginal_slip ?? 0) + ((Math.floor(Math.random() * (((s as any).cumvol ?? 0)[3] / 5 - ((s as any).cumvol ?? 0)[3] / 10 + 1)) + (((s as any).cumvol ?? 0)[3] / 10)));
     }
-    // TODO-QSP: gs 'arousal_funcs', 'get_hole_pain', pcs_ass, anal_slip, pain['asshole'], dick_length11, arousalVars...
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), ((s as any).pain ?? 0)?.['asshole'], ((s as any).dick_length11 ?? 0), ((s as any).arousalVars ?? 0)?.['girth_range'], ((s as any).silavag11 ?? 0), Math.max(1, ((s as any).stim ?? 0)?.['time'])]; enterGetHolePain(s, scene); (s as any).locArgs = __savedLocArgs; }
     ((s as any).stim = (s as any).stim ?? {})['act'] = 80 - (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0) + 8 * ((s as any).silavag11 ?? 0);
     if (((s as any).trait_vars ?? 0)?.['buttslut'] >= 1) {
       ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (10 + 5 * ((((s as any).trait_vars ?? {})?.['buttslut'] ?? 0) - 1));
     }
     ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], ((s as any).dick_length11 ?? 0), ((s as any).pcs_ass ?? 0));
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 0) {
-      // TODO-QSP: gs 'pain', arousalVars['girth_diff'] + arousalVars['length_diff'], 'asshole', 'stretch'
+      qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'asshole', 'stretch');
       ((s as any).pain = (s as any).pain ?? {})['asshole'] = Math.min(((s as any).pain ?? 0)?.['asshole'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
     }
     if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 2 * ((s as any).agape ?? 0) + ((s as any).pcs_ass ?? 0) / 2) {
@@ -204,7 +204,7 @@ function enterInAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') > 0  &&  ((s as any).cumvol ?? 0)[3] > (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2))) {
-    // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
+    qspCall(s, 'cum_manage', 'cum_decay', ((((s as any).dick_length11 ?? 0) + (((s as any).arousalVars ?? {})?.['girth_range'] ?? 0)) / 2) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   // TODO-QSP: end
   scene.build();
@@ -228,13 +228,13 @@ function enterInThroat(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).stim ?? 0)?.['deepthroat'] === 1) {
-      // TODO-QSP: gs 'arousal_funcs', 'get_hole_pain', pcs_throat, pcs_hydra / 10, pain['throat'], dick_length11, arou...
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pcs_throat ?? 0), ((s as any).pcs_hydra ?? 0) / 10, ((s as any).pain ?? 0)?.['throat'], ((s as any).dick_length11 ?? 0), ((s as any).arousalVars ?? 0)?.['girth_range'], ((s as any).silavag11 ?? 0), Math.max(1, ((s as any).stim ?? 0)?.['time'])]; enterGetHolePain(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).stim = (s as any).stim ?? {})['act'] = 80 - (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + 8 * ((s as any).silavag11 ?? 0);
       ((s as any).stim = (s as any).stim ?? {})['act'] = qspFunc(s, 'traits', 'sizequeen', 'calc_effect', ((s as any).stim ?? 0)?.['act'], ((s as any).dick_length11 ?? 0), ((s as any).pcs_throat ?? 0));
       if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] > 0) {
-        // TODO-QSP: gs 'pain', arousalVars['girth_diff'] + arousalVars['length_diff'], 'throat', 'stretch'
+        qspCall(s, 'pain', '', (((s as any).arousalVars ?? {})?.['girth_diff'] ?? 0) + (((s as any).arousalVars ?? {})?.['length_diff'] ?? 0), 'throat', 'stretch');
         ((s as any).pain = (s as any).pain ?? {})['throat'] = Math.min(((s as any).pain ?? 0)?.['throat'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
-        // TODO-QSP: gs 'pain', arousalVars['girth_diff'], 'jaw', 'stretch'
+        qspCall(s, 'pain', '', ((s as any).arousalVars ?? 0)?.['girth_diff'], 'jaw', 'stretch');
         ((s as any).pain = (s as any).pain ?? {})['jaw'] = Math.min(((s as any).pain ?? 0)?.['jaw'], ((s as any).arousalVars ?? 0)?.['max_sex_pain']);
       }
       if (((s as any).pcs_throat ?? 0) < ((s as any).dick_length11 ?? 0)) {

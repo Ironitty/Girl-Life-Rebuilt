@@ -183,28 +183,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      qspCall(s, 'show_table', '', 'Fancier house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027dimaHome/u0027, /u0027home/u0027); return false;">Dimka Nosov</a>', '3');
+      qspCall(s, 'show_table', 'Fancier house of <a href="exec:minut += 10 & gt \'dimaHome\', \'home\'">Dimka Nosov</a>', '3');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      qspCall(s, 'show_table', '', 'A nearby house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Home Entrance/u0027); return false;">Fedor</a>', '3');
+      qspCall(s, 'show_table', 'A nearby house of <a href="exec: minut += 1 & gt \'FedorEv4\', \'Home Entrance\'">Fedor</a>', '3');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      qspCall(s, 'show_table', '', 'Fancier house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027IgorHome/u0027, /u0027home/u0027); return false;">Igor Kruglov</a>', '3');
+      qspCall(s, 'show_table', 'Fancier house of <a href="exec:minut += 10 & gt \'IgorHome\', \'home\'">Igor Kruglov</a>', '3');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      qspCall(s, 'show_table', '', 'The house of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027mey_home/u0027, /u0027door/u0027); return false;">Meynold twins</a>', '3');
+      qspCall(s, 'show_table', 'The house of the <a href="exec:minut += 10 & gt\'mey_home\', \'door\'">Meynold twins</a>', '3');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      qspCall(s, 'show_table', '', 'House of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027front_door/u0027); return false;">Lariska Gruzdev</a> in the richer part of town', '3');
+      qspCall(s, 'show_table', 'House of <a href="exec:minut += 10 & gt \'LariskaHome\', \'front_door\'" >Lariska Gruzdev</a> in the richer part of town', '3');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
-      qspCall(s, 'show_table', '', '<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house/u0027, /u0027front_door/u0027); return false;">Christina</a> lives in an expensive house near here.', '3');
+      qspCall(s, 'show_table', '<br><a href="exec: gt \'Zvereva_house\', \'front_door\'">Christina</a> lives in an expensive house near here.', '3');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      qspCall(s, 'show_table', '', 'A luxurious mansion that\'s home to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027albinahome/u0027, /u0027door_bell/u0027); return false;">Albina Barlovskaya</a>', '3');
+      qspCall(s, 'show_table', 'A luxurious mansion that\'s home to <a href="exec:minut += 10 & gt \'albinahome\',\'door_bell\'">Albina Barlovskaya</a>', '3');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      qspCall(s, 'show_table', '', 'A grey wooden-clad house that\'s home to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027soniahome/u0027, /u0027home/u0027); return false;">Sonia Ivanko</a>', '3');
+      qspCall(s, 'show_table', 'A grey wooden-clad house that\'s home to <a href="exec:minut += 10 & gt \'soniahome\',\'home\'">Sonia Ivanko</a>', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
@@ -443,28 +443,28 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
-      qspCall(s, 'show_table', '', 'Fancier house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027dimaHome/u0027, /u0027home/u0027); return false;">Dimka Nosov</a>', '3');
+      qspCall(s, 'show_table', 'Fancier house of <a href="exec:minut += 10 & gt \'dimaHome\', \'home\'">Dimka Nosov</a>', '3');
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).FedorKozHome ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15  &&  ((s as any).FedorKozHome ?? 0) === 1) {
-      qspCall(s, 'show_table', '', 'A nearby house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Home Entrance/u0027); return false;">Fedor</a>', '3');
+      qspCall(s, 'show_table', 'A nearby house of <a href="exec: minut += 1 & gt \'FedorEv4\', \'Home Entrance\'">Fedor</a>', '3');
     }
     if ((((s as any).IgorQW ?? 0)?.['history'] === 1  ||  ((s as any).IgorQW ?? 0)?.['Lover'] > 0  ||  ((s as any).IgorQW ?? 0)?.['house_open'] === 1)  &&  ((s as any).IgorQW ?? 0)?.['block'] === 0) {
-      qspCall(s, 'show_table', '', 'Fancier house of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027IgorHome/u0027, /u0027home/u0027); return false;">Igor Kruglov</a>', '3');
+      qspCall(s, 'show_table', 'Fancier house of <a href="exec:minut += 10 & gt \'IgorHome\', \'home\'">Igor Kruglov</a>', '3');
     }
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 27  ||  ((s as any).mey_vika ?? 0)?.['key'] === 1) {
-      qspCall(s, 'show_table', '', 'The house of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027mey_home/u0027, /u0027door/u0027); return false;">Meynold twins</a>', '3');
+      qspCall(s, 'show_table', 'The house of the <a href="exec:minut += 10 & gt\'mey_home\', \'door\'">Meynold twins</a>', '3');
     }
     if (((s as any).LariskaQW ?? 0)?.['story'] >= 6) {
-      qspCall(s, 'show_table', '', 'House of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027LariskaHome/u0027, /u0027front_door/u0027); return false;">Lariska Gruzdev</a> in the richer part of town', '3');
+      qspCall(s, 'show_table', 'House of <a href="exec:minut += 10 & gt \'LariskaHome\', \'front_door\'" >Lariska Gruzdev</a> in the richer part of town', '3');
     }
     if (((s as any).christinaQW ?? 0)?.['subpath'] >= 5) {
-      qspCall(s, 'show_table', '', '<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_house/u0027, /u0027front_door/u0027); return false;">Christina</a> lives in an expensive house near here.', '3');
+      qspCall(s, 'show_table', '<br><a href="exec: gt \'Zvereva_house\', \'front_door\'">Christina</a> lives in an expensive house near here.', '3');
     }
     if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 1) {
-      qspCall(s, 'show_table', '', 'A luxurious mansion that\'s home to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027albinahome/u0027, /u0027door_bell/u0027); return false;">Albina Barlovskaya</a>', '3');
+      qspCall(s, 'show_table', 'A luxurious mansion that\'s home to <a href="exec:minut += 10 & gt \'albinahome\',\'door_bell\'">Albina Barlovskaya</a>', '3');
     }
     if (((s as any).soniaQW ?? 0)?.['homeinvite'] === 1) {
-      qspCall(s, 'show_table', '', 'A grey wooden-clad house that\'s home to <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027soniahome/u0027, /u0027home/u0027); return false;">Sonia Ivanko</a>', '3');
+      qspCall(s, 'show_table', 'A grey wooden-clad house that\'s home to <a href="exec:minut += 10 & gt \'soniahome\',\'home\'">Sonia Ivanko</a>', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>

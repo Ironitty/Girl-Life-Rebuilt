@@ -300,7 +300,7 @@ function enterCityPornstudioActress(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).firstkasting ?? 0) > 0  &&  ((s as any).pfilmNO ?? 0) < 1) {
-    (s as any).temp_avail = ((s as any).job_booking_max_concurrent ?? 0)?.[String((s as any).temp_job_id ?? 0)] - ((s as any).job_bookings_active ?? 0)?.[String((s as any).temp_job_id ?? 0)];
+    (s as any).temp_avail = (((s as any).job_booking_max_concurrent ?? 0)?.[String((s as any).temp_job_id ?? 0)] ?? 0) - (((s as any).job_bookings_active ?? 0)?.[String((s as any).temp_job_id ?? 0)] ?? 0);
     if (((s as any).temp_avail ?? 0) <= 0) {
       // TODO-QSP: $temp_jl_desc += ' You have reached the booking limit.'
     } else {

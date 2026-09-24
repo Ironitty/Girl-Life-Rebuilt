@@ -52,7 +52,7 @@ function enterZnakomstvo(s: GameState, scene: SceneBuilder): void {
     (s as any).katday = ((s as any).daystart ?? 0);
     (s as any).telkat = ((s as any).telkat ?? 0) + (1);
     qspCall(s, 'telefon', 'AddContact', 'A219', 'icon_kat', 0);
-    // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A219', "$telsob = 'Kate' & gt 'lover_call', 'mobilaraz'", "hour...
+    qspCall(s, 'telefon', 'SetOutCallSchedule', 'A219', '$telsob = \'Kate\' & gt \'lover_call\', \'mobilaraz\'', 'hour >= 8 and hour <= 20');
     (s as any).kat = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A219', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -161,9 +161,9 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Kat', handler: (st: GameState) => {
-    // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
-    // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
-    // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
+    qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0)?.['swim'], ((st as any).lastwornclothingnumber ?? 0)?.['swim']);
+    qspCall(st, 'panties', 'wear', ((st as any).lastwornpantytype ?? 0)?.['swim'], ((st as any).lastwornpantynumber ?? 0)?.['swim']);
+    qspCall(st, 'bras', 'wear', ((st as any).lastwornbratype ?? 0)?.['swim'], ((st as any).lastwornbranumber ?? 0)?.['swim']);
     qspGoto(st, 'kathouse0', '');
   } },
   ]);

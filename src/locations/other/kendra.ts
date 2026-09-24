@@ -40,7 +40,7 @@ function enterKendraRoomStart(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoomRouting(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kendraQW ?? 0)?.['dom'] < 11) {
-    // TODO-QSP: gt 'kendra', 'kendra_room_'+kendraQW['dom']
+    qspGoto(s, 'kendra', '\'kendra_room_\'+kendraQW[\'dom\']');
   } else {
     if (((s as any).kendraQW ?? 0)?.['dom'] === 12) {
       qspGoto(s, 'kendra', 'kendra_couch');
@@ -183,7 +183,7 @@ function enterKendraRoom_5(s: GameState, scene: SceneBuilder): void {
   scene.text('She finally stops and pushes you off her lap onto the floor. She then stands up and points sternly at the door. "Now go slave."');
   scene.text('"Yes, mistress." You quickly stand up and get dressed before walking over to the door and leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation');
-  qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '3', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -204,7 +204,7 @@ function enterKendraRoom_6(s: GameState, scene: SceneBuilder): void {
   scene.text('She finally stops and pushes you off her lap onto the floor. She then stands up and points sternly at the door. "Now go slave."');
   scene.text('"Yes, mistress." You quickly stand up and get dressed before walking over to the door and leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation');
-  qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '4', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -282,7 +282,7 @@ function enterKendraRoom_10(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s really starting to sting when she finally pushes you off her lap onto the floor. She then stands up and points sternly at the door. "Now go slave."');
   scene.text('"Yes, mistress." You stand up and get dressed before walking over to the door and leaving.');
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'humiliation', 'inhibition');
-  qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '3', 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -323,7 +323,7 @@ function enterKendraRoom_11(s: GameState, scene: SceneBuilder): void {
     scene.text('She pushes you off her lap onto the floor and points sternly at the door. "Now go slave."');
     scene.text('"Yes, mistress." You quickly stand up and get dressed. As you walk to the door, the two of them continue talking about the guy.');
     qspCall(st, 'arousal', 'foreplay', 10, 'sub', 'humiliation', 'inhibition', 'group');
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to the eighth floor', goto: ['uni_dorm', 'eighth_floor'] },
@@ -350,14 +350,14 @@ function enterKendraCouch(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/lezdom2.jpg');
     scene.text('You do as you\'re told and get on your hands and knees as she kneels down next to you and starts spanking you. Each open handed smack causes your ass cheeks to sting.');
     qspCall(st, 'arousal', 'foreplay', 3, 'lesbian', 'sub');
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get spanked more', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/lezdom3.jpg');
     scene.text('After several minutes of this, she stops and takes off her clothes before pulling your clothes aside to expose your ass and going back to spanking your now bare ass cheeks.');
     qspCall(st, 'arousal', 'foreplay', 3, 'lesbian', 'sub');
-    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '2', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Eat pussy', handler: (st: GameState) => {
@@ -756,8 +756,8 @@ function enterKendraGloryhole(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraGloryholeSuck1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   ((s as any).kendraQW = (s as any).kendraQW ?? {})['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory5.jpg');
@@ -821,8 +821,8 @@ function enterKendraGloryholeSuck1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraGloryholeSuck1a(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory7.jpg');
   scene.text('You open your mouth and start sucking the next stranger\'s dick. You can hear soft moans from the other side and glance over to see that she still has her phone out filming you.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
@@ -868,8 +868,8 @@ function enterKendraGloryholeSuck1a(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraGloryholeSuck2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   ((s as any).kendraQW = (s as any).kendraQW ?? {})['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory5.jpg');
   scene.text('You know the drill at this point and get down on your knees to start sucking the stranger\'s dick right away. You can hear soft moans from the other side and feel Kendra\'s hands on the sides of your head pushing you to take the dick deeper.');
@@ -931,8 +931,8 @@ function enterKendraGloryholeSuck2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     if (((s as any).temp_glory_fuck ?? 0) >= 1) {
       qspGoto(s, 'kendra', 'kendra_gloryhole_fuck');
@@ -968,7 +968,7 @@ function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick up the pace as you fuck him and your efforts are rewarded with the sounds of him moaning even louder as you feel him cum in your pussy. You continue bouncing on his dick, milking every last drop out of it with your pussy. Kendra gets down to take a look as you feel the dick pulling out of you before his cum starts running out of you. "Good girl," Kendra says as you glance over and notice that the hole is now empty.');
       scene.text('Kendra raps on the wall and you wait for several minutes, but nothing happens and she sighs. "Looks like everyone else is busy. Maybe we can find you more dicks next time?" She gets up and walks out, leaving you in the stall alone. You fix your clothes before walking out of the stall and checking yourself in the mirror before leaving the restroom.');
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 0);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
@@ -978,7 +978,7 @@ function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick up the pace as you fuck him and your efforts are rewarded with the sounds of him moaning even louder as you feel him cum in your pussy. You keep bouncing on his dick, milking every last drop out of it with your pussy. Kendra gets down to take a look as you feel the dick pulling out of you before his cum starts running out of you. "Good girl," Kendra says as you glance over and notice that the hole is now empty.');
       scene.text('Kendra raps on the wall and you almost instantly feel another dick pushing against you as Kendra smiles. "It\'s your lucky day, slut! It seems like they\'re lining up for you."');
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 0);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Another dick', goto: ['kendra', 'kendra_gloryhole_suck2a'] },
@@ -1042,8 +1042,8 @@ function enterKendraGloryholeSuck2a(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraGloryholeFuck(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Unknown gloryhole guy', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).temp_glory_fuck = 1;
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory10.jpg');
   scene.text('You don\'t have to be told what to do. You reach back and grab the dick to help line it up as you push back. You feel the cock slowly slide inside you, causing you to moan softly as it does.');
@@ -1070,7 +1070,7 @@ function enterKendraGloryholeFuck(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick up the pace as you fuck him and your efforts are rewarded with the sounds of him moaning even louder as you feel him cum in your pussy. You continue bouncing on his dick, milking every last drop out of it with your pussy. Kendra gets down to take a look as you feel the dick pulling out of you before his cum starts running out of you. "Good girl," Kendra says as you glance over and notice that the hole is now empty.');
       scene.text('Kendra raps on the wall and you wait for several minutes, but nothing happens and she sighs. "Looks like everyone else is busy. Maybe we can find you more dicks next time?" She gets up and walks out, leaving you in the stall alone. You fix your clothes before walking out of the stall and checking yourself in the mirror before leaving the restroom.');
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 0);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Leave', goto: ['uni_grounds', ''] },
@@ -1080,7 +1080,7 @@ function enterKendraGloryholeFuck(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick up the pace as you fuck him and your efforts are rewarded with the sounds of him moaning even louder as you feel him cum in your pussy. You keep bouncing on his dick, milking every last drop out of it with your pussy. Kendra gets down to take a look as you feel the dick pulling out of you before his cum starts running out of you. "Good girl," Kendra says as you glance over and notice that the hole is now empty.');
       scene.text('Kendra raps on the wall and you almost instantly feel another dick pushing against you as Kendra smiles. "It\'s your lucky day, slut! It seems like they\'re lining up for you."');
       qspCall(st, 'arousal', 'vaginal', 3, 'sub');
-      qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 0);
+      qspCall(st, 'cum_call', '', ((st as any).npcID ?? 0), 0);
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Another dick', goto: ['kendra', 'kendra_gloryhole_suck2a'] },

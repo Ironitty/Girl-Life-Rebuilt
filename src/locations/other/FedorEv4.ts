@@ -68,7 +68,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
     scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((st as any).pcs_firstname ?? '')} you're so damn good at that."`);
     scene.text('You respond, "I will always do my best to please you Fyodor." Fedor gives you a warm smile then begins getting dressed as he replies, "That\'s my girl. Shall we go and watch a movie together?" You reply, "Sure but I need to wash up first.');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -90,7 +90,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go wash up', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['FedorEv4', 'Bathroom Wash'] },
     ]);
   } },
@@ -171,7 +171,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
     scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((st as any).pcs_firstname ?? '')} you're so damn good at that."`);
     scene.text('You respond, "I will always do my best to please you Fyodor." Fedor gives you a warm smile then begins getting dressed as he replies, "That\'s my girl. Shall we go and watch a movie together?" You reply, "Sure but I need to wash up first.');
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -193,7 +193,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go wash up', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['FedorEv4', 'Bathroom Wash'] },
     ]);
   } },
@@ -770,7 +770,7 @@ function enterPicture(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-  scene.img('' + qspFunc(s, '$$face_image') + '');
+  scene.img('' + qspFunc(s, '$face_image') + '');
   scene.text('Fedor has framed the picture he took of you and placed it by his bed with your name on the frame. After seeing the picture by his bed, you can\'t help but think to yourself. "That\'s so sweet. I must mean a lot to him… ohh Fedor." you then place the picture back.');
   // TODO-QSP: end
   scene.actions([
@@ -901,7 +901,7 @@ function enterEndDate2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
   ]);
   scene.build();
@@ -1742,7 +1742,7 @@ function enterHomeEntrance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorShelter ?? 0) === 2) {
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-    scene.img('' + qspFunc(s, '$$face_image') + '');
+    scene.img('' + qspFunc(s, '$face_image') + '');
     scene.text('You place the key into the door lock then turn it, unlocking the door then making your way inside.');
     scene.actions([
       { label: 'Enter house', goto: ['FedorEv4', 'Hallway'] },

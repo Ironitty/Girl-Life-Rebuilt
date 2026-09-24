@@ -114,14 +114,14 @@ function enterBrit1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['vann', 'start'] },
       ]);
     }
     scene.actions([
       { label: 'Come on', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = 74;
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/brit3.jpg');
     scene.text('"Well at least you only have to shave your face," you say with a laugh.');
@@ -197,8 +197,8 @@ function enterV2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Offer help', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = 75;
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/v3.jpg');
     scene.text('"Let me help you…" you say sweetly. The guy pauses. "What?" he replies. You walk up to him and slide your hand under his towel, slowly jerking his cock in your hand. The guy relaxes and drops his towel as you drop to your knees and keep stroking his shaft. He begins to moan in pleasure.');
@@ -353,8 +353,8 @@ function enterV4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy from the uni dorm bathroom', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).picrand = 76;
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/v11.jpg');
     scene.text('You nod, and he immediately strips off his clothes and climbs into the bath with you. He begins to rub your loofah, along with his free hand, over your body, caressing your chest before sliding down to your pussy. His fingers gently caress your pussy, and you shudder and cling to him, his erection grinding between your ass cheeks. He begins to slide up and down, and you lean forward, giving him room to maneuver. However, he doesn\'t penetrate you, instead placing his hands on your shoulders and gently pushing you down. You understand what he wants and turn to face him. You lean down and suck on his balls before licking his shaft from base to tip.');

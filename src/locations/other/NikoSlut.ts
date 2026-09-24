@@ -132,7 +132,7 @@ function enterCustomer1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Biker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Biker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/1/Vag2.jpg');
@@ -153,7 +153,7 @@ function enterCustomer1(s: GameState, scene: SceneBuilder): void {
     scene.text('The man reaches out for your hands, which you happily let him grab onto while looking him in his eyes.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Biker');
+    qspCall(st, 'cum_call', '', 'Biker');
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
@@ -272,7 +272,7 @@ function enterCustomer2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Trucker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Trucker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/2/Vag2.jpg');
@@ -287,7 +287,7 @@ function enterCustomer2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Trucker');
+    qspCall(st, 'cum_call', '', 'Trucker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
@@ -388,7 +388,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Increase your pace', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Biker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Biker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/3/Ride2.jpg');
@@ -398,10 +398,10 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"That was incredible, ${((st as any).NikoSlutName ?? '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
     scene.actions([
       { label: 'Remain in restroom', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -409,7 +409,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Increase your pace', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Biker');
+    qspCall(st, 'cum_call', '', 'Biker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/cum81.mp4');
@@ -419,10 +419,10 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"That was incredible, ${((st as any).NikoSlutName ?? '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -442,7 +442,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Biker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Biker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/3/Vag2.jpg');
@@ -450,10 +450,10 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text('After the man finishes, he pulls out of you. "Wow, I\'ve never fucked a girl as hot as you. I definitely look forward to seeing you again." He then puts his pants back on before leaving the restroom.');
     scene.actions([
       { label: 'Remain in restroom', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -461,7 +461,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Biker');
+    qspCall(st, 'cum_call', '', 'Biker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
@@ -470,10 +470,10 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wow, I\'ve never fucked a girl as hot as you. I definitely look forward to seeing you again," he says as he puts his pants back on before leaving the restroom.');
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -526,10 +526,10 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     scene.text('He then pulls his pants up and walks back into the diner as Niko approaches you. "Are you ready for another customer, or would you like to wash up first?"');
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back inside', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -541,10 +541,10 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     scene.text('He then pulls his pants up and walks back into the diner as Niko approaches you. "Are you ready for another customer, or would you like to wash up first?"');
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back inside', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -562,7 +562,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Biker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Biker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/4/Vag1.jpg');
@@ -571,7 +571,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     scene.text('"You did a great job. Now let\'s get back to the diner. We don\'t want to keep your customers waiting."');
     scene.actions([
       { label: 'Head back inside', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -579,7 +579,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Biker');
+    qspCall(st, 'cum_call', '', 'Biker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/4/Vag1.jpg');
@@ -589,10 +589,10 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Well done ${((st as any).pcs_nickname ?? '')}. You should probably get washed up for the next customer."`);
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Ladies Restroom'] },
       { label: 'Head back inside', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'restore');
+    qspCall(st, 'outfit', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -673,7 +673,7 @@ function enterCustomer5(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Keith', 0, 3);
+    qspCall(st, 'cum_call', '', 'Keith', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/5/Vag2.jpg');
@@ -688,7 +688,7 @@ function enterCustomer5(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Keith');
+    qspCall(st, 'cum_call', '', 'Keith');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
@@ -927,7 +927,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a wink before escorting you out of the back room.');
     scene.actions([
       { label: 'Get back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200, 'cash');
+    qspCall(st, 'money', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -957,7 +957,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue riding him', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Trucker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Trucker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/7/Ride2.jpg');
@@ -973,7 +973,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Continue riding him', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Trucker');
+    qspCall(st, 'cum_call', '', 'Trucker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/cum81.mp4');
@@ -983,10 +983,10 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a wink before escorting you out of the back room.');
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -1030,10 +1030,10 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a wink before escorting you out of the back room.');
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', handler: (st: GameState) => {
-    qspCall(st, 'money', 'earn', 200);
+    qspCall(st, 'money', '');
   }, goto: ['NikoSlut', 'Customers'] },
     ]);
   } },
@@ -1120,7 +1120,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Increase your pace', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Trucker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Trucker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/8/Vag2.jpg');
@@ -1134,7 +1134,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Increase your pace', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Trucker');
+    qspCall(st, 'cum_call', '', 'Trucker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/cum81.mp4');
@@ -1257,7 +1257,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ride his cock', handler: (st: GameState) => {
     qspCall(st, 'dina', 'prezik');
-    qspCall(st, 'cum_call', '', '', 'Trucker', 0, 3);
+    qspCall(st, 'cum_call', '', 'Trucker', 0, 3);
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/6/ride2.jpg');
@@ -1272,7 +1272,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Ride his cock', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', 'Trucker');
+    qspCall(st, 'cum_call', '', 'Trucker');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'prostitution');
     qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/cum81.mp4');
@@ -1375,7 +1375,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
     { label: 'Help Niko', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`${qspFunc(s, '$$face_image')}`);
+    scene.img(`${qspFunc(s, '$face_image')}`);
     scene.text('You punch the biker as hard as you can, but he barely reacts before turning to you and smacking you with the back of his hand. You look in horror as Niko stops squirming "STOP IT! YOU\'RE KILLING HIM!!!" you cry out, but the biker turns to you and smirks.');
     scene.text('"Am I?" he shrugs. You charge at the biker again, trying one last time to save Niko when you\'re suddenly grabbed from behind and pulled back as a man charges past and rams his fist into the biker\'s face, sending him falling onto the floor. The man then climbs on top of the biker and starts repeatedly punching him in the face. "HOW DARE YOU TOUCH MY BROTHER, YOU WORTHLESS SACK OF SHIT! I\'LL FUCKING TEAR YOU APART!"');
     scene.actions([
@@ -1901,9 +1901,9 @@ function enterDinerExit(s: GameState, scene: SceneBuilder): void {
       (st as any).NikoSlut = 1;
     }
     if (((st as any).NikoSlut ?? 0) < 3) {
-      // TODO-QSP: gs 'money', 'earn', NikoProfit * 400
+      qspCall(st, 'money', 'earn', ((st as any).NikoProfit ?? 0) * 400);
     } else {
-      // TODO-QSP: gs 'money', 'earn', NikoProfit * 1000
+      qspCall(st, 'money', 'earn', ((st as any).NikoProfit ?? 0) * 1000);
     }
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/payment.jpg');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -137,9 +137,9 @@ function enterStage_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobInit(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'photography_work', 'job_' + rand(1, 5)
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'job_' + (Math.floor(Math.random() * 5) + 1)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhotojobPay(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'jobs_gigs', 'generate_event_schedule', '6', rand(4, 8) * 30
+  qspCall(s, 'jobs_gigs', 'generate_event_schedule', '6', (Math.floor(Math.random() * (8 - 4 + 1)) + (4)));
   // TODO-QSP: end
   scene.build();
 }
@@ -171,7 +171,7 @@ function enterJob_1(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_desc = 'Tank and Bazooka Experience Day in Levingrad Oblast';
   (s as any).temp_journal_desc = 'Travel to St Petersburg Industrial Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 1, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
-  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
+  qspCall(s, 'jobs_gigs', 'set_loc_code', 'city_industrial', '', 'gt \'photography_work\', \'evt_stage\'');
   // TODO-QSP: end
   scene.build();
 }
@@ -181,7 +181,7 @@ function enterJob_2(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_desc = 'Newspaper Commission at Petrovskaya Akvatoria';
   (s as any).temp_journal_desc = 'Meet Branko at the Photography Shop';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 2, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
-  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
+  qspCall(s, 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', 'gt \'photography_work\', \'evt_stage\'');
   // TODO-QSP: end
   scene.build();
 }
@@ -191,7 +191,7 @@ function enterJob_3(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_desc = 'Wedding at Yelagin Palace';
   (s as any).temp_journal_desc = 'Travel to St Petersburg Residential Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 3, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
-  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_residential', '', "gt 'photography_work', 'evt_stage'"
+  qspCall(s, 'jobs_gigs', 'set_loc_code', 'city_residential', '', 'gt \'photography_work\', \'evt_stage\'');
   // TODO-QSP: end
   scene.build();
 }
@@ -201,7 +201,7 @@ function enterJob_4(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_desc = 'Russian Touring Car Championship Event at St. Petersburg Autodrome';
   (s as any).temp_journal_desc = 'Travel to St Petersburg Industrial Area';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 4, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
-  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
+  qspCall(s, 'jobs_gigs', 'set_loc_code', 'city_industrial', '', 'gt \'photography_work\', \'evt_stage\'');
   // TODO-QSP: end
   scene.build();
 }
@@ -211,7 +211,7 @@ function enterJob_5(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_job_desc = 'Press Event at City Courthouse';
   (s as any).temp_journal_desc = 'Meet Branko at the Photography Shop';
   qspCall(s, 'jobs_gigs', 'set_event', 1, 5, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
-  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
+  qspCall(s, 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', 'gt \'photography_work\', \'evt_stage\'');
   // TODO-QSP: end
   scene.build();
 }
@@ -219,9 +219,9 @@ function enterJob_5(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') === "((s as any).evt_stage ?? 0)"  ||  String((s as any).locArgs?.[0] ?? '') === '') {
     ((s as any).photography = (s as any).photography ?? {})['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
-    // TODO-QSP: gs 'money', 'earn', evtVars['wage']
+    qspCall(s, 'money', 'earn', ((s as any).evtVars ?? 0)?.['wage']);
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'photography_work', 'stage_' + evtVars['event_sub']
+    qspGoto(s, 'photography_work', '\'stage_\' + evtVars[\'event_sub\']');
   }
   const arg = s.locArg;
   switch (arg) {

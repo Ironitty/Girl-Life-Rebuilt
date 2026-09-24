@@ -58,10 +58,10 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Post', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     // TODO-QSP: $boy[0] = $boy
-    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
+    qspCall(st, 'npcgeneratec', '0', 'Soldier', (Math.floor(Math.random() * 17) + 18));
     // TODO-QSP: $boy[1] = $npclastgenerated
     (st as any).guy = ((st as any).guy ?? 0) + (2);
     (st as any).picrand = 22;
@@ -96,8 +96,8 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Repay in full', handler: (st: GameState) => {
     (st as any).sexpartkno = 1;
-    qspCall(st, 'npcgeneratec', '', 0, 'Black Soldier', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Black Soldier', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).picrand = 43;
     qspGoto(st, 'sex', 'minet');

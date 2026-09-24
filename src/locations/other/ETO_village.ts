@@ -325,14 +325,14 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
       { label: 'Have sex', handler: (st: GameState) => {
     scene.img('images/locations/suburban/sex/event/dachagang4.jpg');
     scene.text('The guys pounce on you, and after a few brief caresses, they start fucking all your holes.');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'c');
     qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'group', 'gangbang');
     qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID1 ?? 0), 'group', 'gangbang');
     qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID2 ?? 0), 'group', 'gangbang');
@@ -348,7 +348,7 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0));
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).npcID2 ?? 0));
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID3 ?? 0));
     ((st as any).exhib = (st as any).exhib ?? {})['status'] = 16;
     qspCall(st, 'stat', '');
@@ -379,14 +379,14 @@ function enterWorkerAssault(s: GameState, scene: SceneBuilder): void {
       { label: 'Surrender', handler: (st: GameState) => {
     scene.img('images/locations/suburban/sex/event/dachagang4.jpg');
     scene.text('The drunk workers pounce on you, and after a few brief caresses, they fuck all your holes.');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
-    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'b');
+    qspCall(st, 'npcgeneratec', '0', 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'c');
     qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
     qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
     qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
@@ -402,7 +402,7 @@ function enterWorkerAssault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0));
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
-    qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).npcID2 ?? 0));
     qspCall(st, 'cum_call', 'anus', ((st as any).npcID3 ?? 0));
     ((st as any).exhib = (st as any).exhib ?? {})['status'] = 16;
     qspCall(st, 'stat', '');

@@ -1007,9 +1007,9 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       } else {
         (st as any).temp_npcID = qspFunc(s, 'lover', 'draw_random_from', 'boyfriend');
         // TODO-QSP: dynamic text: You tell him. "I have a boyfriend you know, I''m dating <<$npc_usedname[$temp_np...
-        scene.text(`You tell him. "I have a boyfriend you know, I'm dating ${((st as any).npc_usedname ?? 0)?.[String((st as any).temp_npcID ?? 0)] ?? ''}."`);
+        scene.text(`You tell him. "I have a boyfriend you know, I'm dating ${(((st as any).npc_usedname ?? 0)?.[String((st as any).temp_npcID ?? 0)] ?? '')}."`);
         // TODO-QSP: dynamic text: He busts out laughing. "<<$npc_usedname[$temp_npcID]>>? Oh god I thought you had...
-        scene.text(`He busts out laughing. "${((st as any).npc_usedname ?? 0)?.[String((st as any).temp_npcID ?? 0)] ?? ''}? Oh god I thought you had more sense than that. You know you could do much better than him, right?" He says as he strokes your hair.`);
+        scene.text(`He busts out laughing. "${(((st as any).npc_usedname ?? 0)?.[String((st as any).temp_npcID ?? 0)] ?? '')}? Oh god I thought you had more sense than that. You know you could do much better than him, right?" He says as he strokes your hair.`);
       }
     }
     qspCall(st, 'willpower', 'misc', 'self', 'easy');

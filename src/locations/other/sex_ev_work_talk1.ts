@@ -16,7 +16,7 @@ function enterJobTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_pillow_talk', 'topics');
+    qspCall(st, 'sex_ev_pillow_talk', '');
   } },
   ]);
   scene.build();

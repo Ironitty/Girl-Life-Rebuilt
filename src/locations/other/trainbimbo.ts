@@ -30,8 +30,8 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_horny ?? 0) > 50) {
       scene.actions([
         { label: 'Look at him and smile', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'young man', (Math.floor(Math.random() * 8) + 18), 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'young man', (Math.floor(Math.random() * 8) + 18), 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspGoto(st, 'trainbimbo', 'pos2');
   } },
       ]);
@@ -45,8 +45,8 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_horny ?? 0) > 50) {
         scene.actions([
           { label: 'Look at him and smile', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'fifty year old man', (Math.floor(Math.random() * 10) + 50), 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'fifty year old man', (Math.floor(Math.random() * 10) + 50), 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspGoto(st, 'trainbimbo', 'pos3');
   } },
         ]);
@@ -278,7 +278,7 @@ function enterPos3334(s: GameState, scene: SceneBuilder): void {
   scene.text('"So, you actually like it slut? If you visit here again, you can be a my toilet whore any time, ha ha!" With these words, his cock begins to twitch, and you can feel spurts of hot sperm shooting deep into your pussy. Once he has finished cumming, he pushes your head against the wall while he pulls his dick out of you and wipes it off on your butt cheeks.');
   (s as any).orgasm_txt = 'As you feel him cumming, your own orgasm sweeps through you.';
   qspCall(s, 'arousal', 'vaginal', 10);
-  // TODO-QSP: gs 'cum_call', '', $npcID, 0, 0, 500*rand(16, 24), rand(30, 50)
+  qspCall(s, 'cum_call', '', ((s as any).npcID ?? 0), 0, 0, 500*(Math.floor(Math.random() * 9) + 16), (Math.floor(Math.random() * 21) + 30));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -362,8 +362,8 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
   (s as any).iscumvag = 0;
   // TODO-QSP: :currentgangbang
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'drunk guy in the train station toilet', (Math.floor(Math.random() * 29) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'drunk guy in the train station toilet', (Math.floor(Math.random() * 29) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   (s as any).svol = (Math.floor(Math.random() * 21) + 30);
   (s as any).spot = 500*(Math.floor(Math.random() * 9) + 16);
   (s as any).tiprand = (Math.floor(Math.random() * 3) + 0);
@@ -396,7 +396,7 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).toiletrand ?? 0) > 5) {
       qspCall(s, 'arousal', 'vaginal', 1, 'gangbang', 'humiliation', 'rough');
-      qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
+      qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
       (s as any).iscumvag = ((s as any).iscumvag ?? 0) + (1);
       (s as any).sck = ((s as any).sexcontra ?? 0);
     }
@@ -459,7 +459,7 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).iscumvag ?? 0) > 0) {
-    qspCall(s, 'cuminsidereact', '', 'some drunk guy whom you likely won\'t even remember tomorrow', ((s as any).sck ?? 0));
+    qspCall(s, 'cuminsidereact', 'some drunk guy whom you likely won\'t even remember tomorrow', ((s as any).sck ?? 0));
   }
   scene.text('After taking a few breaths, you stand up with some difficulty and gather your scattered stuff from the bathroom floor.');
   // TODO-QSP: end

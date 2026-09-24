@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -560,7 +558,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'boyStat', 'A63');
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A63'] = 1;
-    qspCall(st, 'cum_call', '', '', 'A63', 1);
+    qspCall(st, 'cum_call', '', 'A63', 1);
     qspCall(st, 'arousal', 'vaginal', 20, 'sub');
     qspCall(st, 'arousal', 'end');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -686,7 +684,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A63');
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A63'] = 1;
     if ((!((st as any).mesec ?? 0))) {
-      qspCall(st, 'cum_call', '', '', 'A63', 1);
+      qspCall(st, 'cum_call', '', 'A63', 1);
       qspCall(st, 'arousal', 'vaginal', 10, 'sub', 'rough');
     } else {
       qspCall(st, 'cum_call', 'anus', 'A63', 1);
@@ -711,7 +709,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A61');
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A61'] = 1;
     if ((!((st as any).mesec ?? 0))) {
-      qspCall(st, 'cum_call', '', '', 'A61', 1);
+      qspCall(st, 'cum_call', '', 'A61', 1);
       qspCall(st, 'arousal', 'vaginal', 10, 'sub');
     } else {
       qspCall(st, 'cum_call', 'anus', 'A61', 1);
@@ -743,12 +741,12 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: While you are drinking, <<$boydesc[0]>> comes up to you and takes the shot glass...
-    scene.text(`While you are drinking, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} comes up to you and takes the shot glass out of your hand. You can have this back after you do something for me.`);
+    scene.text(`While you are drinking, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} comes up to you and takes the shot glass out of your hand. You can have this back after you do something for me.`);
     // TODO-QSP: dynamic text: "Get down on your knees and suck my dick." <<$boydesc[0]>> commands as he pulls ...
-    scene.text(`"Get down on your knees and suck my dick." ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} commands as he pulls his pants down.`);
+    scene.text(`"Get down on your knees and suck my dick." ${(((s as any).boydesc ?? 0)?.[0] ?? '')} commands as he pulls his pants down.`);
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     if (((st as any).npc_QW ?? 0)?.['A63'] < 20) {
       ((st as any).npc_QW = (st as any).npc_QW ?? {})['A63'] = ((st as any).npc_QW['A63'] ?? 0) + (1);
     }
@@ -761,7 +759,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkagroupcum2.jpg');
     // TODO-QSP: dynamic text: <<$boydesc[1]>> groans as your head quickly bobs up and down his dick. As he beg...
-    scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} groans as your head quickly bobs up and down his dick. As he begins to cum you open your mouth to give him a good view as he shoots his load down your throat.`);
+    scene.text(`${(((st as any).boydesc ?? 0)?.[1] ?? '')} groans as your head quickly bobs up and down his dick. As he begins to cum you open your mouth to give him a good view as he shoots his load down your throat.`);
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       scene.text('After he\'s done he looks at you and says, "What are you waiting for? Oh right, money. You\'ll do anything for a ruble. Here you go."');
       // TODO-QSP: dynamic text: He takes a <<$func(''money'', ''string_profit'', 5)>> note out of his pocket and...
@@ -770,7 +768,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('He makes you lick his dick clean before he leaves you to go back to drinking again. After a little while you sober up enough to get dressed and go sit back by the boys.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
+    qspCall(st, 'cum_call', 'mouth_swallow', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -791,12 +789,12 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: While you are drinking, <<$boydesc[0]>> comes up to you and takes the shot glass...
-    scene.text(`While you are drinking, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} comes up to you and takes the shot glass out of your hand. You can have this back after you do something for me.`);
+    scene.text(`While you are drinking, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} comes up to you and takes the shot glass out of your hand. You can have this back after you do something for me.`);
     // TODO-QSP: dynamic text: "Bend over and let me fuck you." <<$boydesc[0]>> commands as he pulls his pants ...
-    scene.text(`"Bend over and let me fuck you." ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} commands as he pulls his pants down.`);
+    scene.text(`"Bend over and let me fuck you." ${(((s as any).boydesc ?? 0)?.[0] ?? '')} commands as he pulls his pants down.`);
     scene.actions([
       { label: 'Bend over', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     if (((st as any).npc_QW ?? 0)?.['A63'] < 20) {
       ((st as any).npc_QW = (st as any).npc_QW ?? {})['A63'] = ((st as any).npc_QW['A63'] ?? 0) + (1);
     }
@@ -809,17 +807,17 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkasexpublic0.2.jpg');
     // TODO-QSP: dynamic text: '<<$boydesc[0]>> bends you over a nearby log outside the trailer. He places one ...
-    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} bends you over a nearby log outside the trailer. He places one hand on your back to steady himself while guiding his dick into your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
+    scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} bends you over a nearby log outside the trailer. He places one hand on your back to steady himself while guiding his dick into your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     if ((!((st as any).mesec ?? 0))) {
-      // TODO-QSP: gs 'cum_call', '', $boy[0], 1
+      qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     } else {
-      // TODO-QSP: gs 'cum_call', 'anus', $boy[0], 1
+      qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     }
     // TODO-QSP: dynamic text: 'He quickly picks up the pace, and you feel as if every thrust goes deeper than ...
     scene.text('He quickly picks up the pace, and you feel as if every thrust goes deeper than the last. Soon enough, he cums inside of your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       // TODO-QSP: dynamic text: After he''s done <<$boydesc[0]>> looks at you and says, "What are you waiting fo...
-      scene.text(`After he's done ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
+      scene.text(`After he's done ${(((st as any).boydesc ?? 0)?.[0] ?? '')} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
       // TODO-QSP: dynamic text: He takes a <<$func(''money'', ''string_profit'', 5)>> note out of his pocket and...
       scene.text(`He takes a ${qspFunc(s, 'money', 'string_profit', 5)} note out of his pocket and throws it at you, "Clean yourself up with that."`);
       qspCall(st, 'money', 'earn', 5);
@@ -856,13 +854,13 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/village/2boys.2.jpg');
     }
     // TODO-QSP: dynamic text: While you are drinking, <<$boydesc[0]>> and <<$boydesc[1]>> come up to you and t...
-    scene.text(`While you are drinking, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} and ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} come up to you and takes the shot glass out of your hand. You can have this back after you do something for us.`);
+    scene.text(`While you are drinking, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} and ${(((s as any).boydesc ?? 0)?.[1] ?? '')} come up to you and takes the shot glass out of your hand. You can have this back after you do something for us.`);
     // TODO-QSP: dynamic text: "Get down on your knees and suck our dicks." <<$boydesc[0]>> commands as he pull...
-    scene.text(`"Get down on your knees and suck our dicks." ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} commands as he pulls his pants down. ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} quickly follows his lead and start getting his own dick out.`);
+    scene.text(`"Get down on your knees and suck our dicks." ${(((s as any).boydesc ?? 0)?.[0] ?? '')} commands as he pulls his pants down. ${(((s as any).boydesc ?? 0)?.[1] ?? '')} quickly follows his lead and start getting his own dick out.`);
     scene.actions([
       { label: 'Suck them one a time', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[1], 1
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
     if (((st as any).npc_QW ?? 0)?.['A63'] < 20) {
       ((st as any).npc_QW = (st as any).npc_QW ?? {})['A63'] = ((st as any).npc_QW['A63'] ?? 0) + (1);
     }
@@ -873,24 +871,24 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/mitka/mitkabjpublicguys.jpg');
     // TODO-QSP: dynamic text: 'As you bend over to suck <<$boydesc[0]>>''s cock, <<$boydesc[1]>> moves behind ...
-    scene.text(`As you bend over to suck ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })}'s cock, ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} moves behind you and begins to finger your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
+    scene.text(`As you bend over to suck ${(((st as any).boydesc ?? 0)?.[0] ?? '')}'s cock, ${(((st as any).boydesc ?? 0)?.[1] ?? '')} moves behind you and begins to finger your ` + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + '.');
     scene.text('After a few minutes they switch positions, each taking turns having you blow them while the other fingers you.');
     scene.actions([
       { label: 'Make them cum', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkabjpublicguys2.jpg');
     // TODO-QSP: dynamic text: You kneel in front of <<$boydesc[0]>> and <<$boydesc[1]>> and shove both cocks i...
-    scene.text(`You kneel in front of ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} and ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} and shove both cocks in your mouth. The two boys begin to cum and you have to quickly swallow their combined loads before it overflows from your mouth.`);
+    scene.text(`You kneel in front of ${(((st as any).boydesc ?? 0)?.[0] ?? '')} and ${(((st as any).boydesc ?? 0)?.[1] ?? '')} and shove both cocks in your mouth. The two boys begin to cum and you have to quickly swallow their combined loads before it overflows from your mouth.`);
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       // TODO-QSP: dynamic text: After they''re done <<$boydesc[0]>> looks at you and says, "What are you waiting...
-      scene.text(`After they're done ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
+      scene.text(`After they're done ${(((st as any).boydesc ?? 0)?.[0] ?? '')} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
       // TODO-QSP: dynamic text: He takes a <<$func(''money'', ''string_profit'', 5)>> note out of his pocket and...
       scene.text(`He takes a ${qspFunc(s, 'money', 'string_profit', 5)} note out of his pocket and throws it at you, "Clean yourself up with that."`);
       qspCall(st, 'money', 'earn', 5);
     }
     scene.text('They make you lick them both clean before going back to drinking again. After a little while you sober up enough to get dressed and go sit back by the boys.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
-    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
+    qspCall(st, 'cum_call', 'mouth_swallow', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -916,13 +914,13 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/village/2boys.2.jpg');
     }
     // TODO-QSP: dynamic text: While you are drinking, <<$boydesc[0]>> and <<$boydesc[1]>> come up to you and t...
-    scene.text(`While you are drinking, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} and ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} come up to you and takes the shot glass out of your hand. You can have this back after you do something for us.`);
+    scene.text(`While you are drinking, ${(((s as any).boydesc ?? 0)?.[0] ?? '')} and ${(((s as any).boydesc ?? 0)?.[1] ?? '')} come up to you and takes the shot glass out of your hand. You can have this back after you do something for us.`);
     // TODO-QSP: dynamic text: "Let us double team you." <<$boydesc[0]>> commands as he pulls his pants down. <...
-    scene.text(`"Let us double team you." ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} commands as he pulls his pants down. ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} quickly follows his lead and start getting his own dick out.`);
+    scene.text(`"Let us double team you." ${(((s as any).boydesc ?? 0)?.[0] ?? '')} commands as he pulls his pants down. ${(((s as any).boydesc ?? 0)?.[1] ?? '')} quickly follows his lead and start getting his own dick out.`);
     scene.actions([
       { label: 'Bend over for them', handler: (st: GameState) => {
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
-    // TODO-QSP: gs 'npc_relationship', 'modify', $boy[1], 1
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
+    qspCall(st, 'npc_relationship', 'modify', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
     if (((st as any).npc_QW ?? 0)?.['A63'] < 20) {
       ((st as any).npc_QW = (st as any).npc_QW ?? {})['A63'] = ((st as any).npc_QW['A63'] ?? 0) + (1);
     }
@@ -943,24 +941,24 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('First the boys remove your clothes exposing your body for everyone to see.');
     // TODO-QSP: dynamic text: '<<$boydesc[0]>> bends you over '+iif(sunWeather=1, 'the bench outside the trail...
-    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} bends you over ` + ((((st as any).sunWeather ?? 0)===1) ? ('the bench outside the trailer.') : ('in the kitcen of the trailer.')) + ' He places his hands on your hips and pulls your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + ' onto his dick.');
+    scene.text(`${(((st as any).boydesc ?? 0)?.[0] ?? '')} bends you over ` + ((((st as any).sunWeather ?? 0)===1) ? ('the bench outside the trailer.') : ('in the kitcen of the trailer.')) + ' He places his hands on your hips and pulls your ' + ((((st as any).mesec ?? 0)===0) ? ('pussy') : ('ass')) + ' onto his dick.');
     // TODO-QSP: dynamic text: <<$boydesc[1]>> grabs you by the hair and shoves his cock into your mouth. You r...
-    scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh" })} grabs you by the hair and shoves his cock into your mouth. You rock back and forth between the two boys as they thrust into you.`);
+    scene.text(`${(((st as any).boydesc ?? 0)?.[1] ?? '')} grabs you by the hair and shoves his cock into your mouth. You rock back and forth between the two boys as they thrust into you.`);
     scene.text('They quicken their pace and it doesn\'t take long for them both to cum inside of you.');
     if (((st as any).GadBoy ?? 0)?.['river_gang'] === 2) {
       // TODO-QSP: dynamic text: After they''re done <<$boydesc[0]>> looks at you and says, "What are you waiting...
-      scene.text(`After they're done ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh" })} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
+      scene.text(`After they're done ${(((st as any).boydesc ?? 0)?.[0] ?? '')} looks at you and says, "What are you waiting for? Oh right, money. You'll do anything for a ruble. Here you go."`);
       // TODO-QSP: dynamic text: He takes a <<$func(''money'', ''string_profit'', 5)>> note out of his pocket and...
       scene.text(`He takes a ${qspFunc(s, 'money', 'string_profit', 5)} note out of his pocket and throws it at you, "Clean yourself up with that."`);
       qspCall(st, 'money', 'earn', 5);
     }
     scene.text('They make you lick them both clean before going back to drinking again. After a little while you sober up enough to get dressed and go sit back by the boys.');
     if ((!((st as any).mesec ?? 0))) {
-      // TODO-QSP: gs 'cum_call', '', $boy[0], 1
+      qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     } else {
-      // TODO-QSP: gs 'cum_call', 'anus', $boy[0], 1
+      qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[0] ?? 0), 1);
     }
-    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
+    qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
     qspCall(st, 'arousal', 'end');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetContinueActs(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1029,7 +1027,7 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', 'A61', 1);
     qspCall(st, 'cum_call', 'mouth', 'A61', 1);
     if ((!((st as any).mesec ?? 0))) {
-      qspCall(st, 'cum_call', '', '', 'A63', 1);
+      qspCall(st, 'cum_call', '', 'A63', 1);
     } else {
       qspCall(st, 'cum_call', 'anus', 'A63', 1);
     }

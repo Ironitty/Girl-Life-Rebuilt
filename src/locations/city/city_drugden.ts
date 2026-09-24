@@ -234,7 +234,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 420, 'cash') === 0  &&  ((s as any).drugVars ?? 0)?.['heroin_need'] > 0) {
     scene.actions([
       { label: 'Beg him to give you some', handler: (st: GameState) => {
-    qspCall(st, 'city_drugden', 'drugslut');
+    qspCall(st, 'city_drugden', '');
   } },
     ]);
   }
@@ -296,7 +296,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'events', 'snkayf1');
+    qspCall(st, 'events', '');
   } },
     ]);
   } },
@@ -325,7 +325,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave in a daze', handler: (st: GameState) => {
-    qspCall(st, 'events', 'snkayf1');
+    qspCall(st, 'events', '');
   } },
     ]);
   } },
@@ -352,7 +352,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave in a daze', handler: (st: GameState) => {
-    qspCall(st, 'events', 'snkayf1');
+    qspCall(st, 'events', '');
   } },
     ]);
   } },

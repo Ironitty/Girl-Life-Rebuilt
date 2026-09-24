@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_stock_db', 'cleanup');
   (s as any).curr_aisle = ((s as any).locArgs?.[1] ?? 0);
-  qspCall(s, 'item_stock_db', '', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'item_stock_db', '$ARGS[1]');
   // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...
   scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? ''))}"><td>&nbsp;<font color="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? ''))}" size="+2"><b>${((s as any).shop_title ?? '')}</b></font>&nbsp;</td></table></center>`);
   // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...

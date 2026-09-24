@@ -695,15 +695,15 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_firstname ?? 0) === '') {
         qspCall(s, 'intro_functions', 'set_default', 'name');
       }
-      (s as any).temp = window.prompt("What is the girl's first name? (Leave blank for <<$pcs_firstname>>)") ?? '';
+      (s as any).temp = window.prompt("What is the girl's first name? (Leave blank for " + (((s as any).pcs_firstname ?? 0)) + ")") ?? '';
       if (((s as any).temp ?? 0) !== '') {
         (s as any).pcs_firstname = ((s as any).temp ?? 0);
       }
-      (s as any).temp = window.prompt("What is the girl's family name? (Leave blank for <<$pcs_lastname>>)") ?? '';
+      (s as any).temp = window.prompt("What is the girl's family name? (Leave blank for " + (((s as any).pcs_lastname ?? 0)) + ")") ?? '';
       if (((s as any).temp ?? 0) !== '') {
         (s as any).pcs_lastname = ((s as any).temp ?? 0);
       }
-      (s as any).temp = window.prompt("What is the girl's nickname? (Leave blank for <<$pcs_nickname>>)") ?? '';
+      (s as any).temp = window.prompt("What is the girl's nickname? (Leave blank for " + (((s as any).pcs_nickname ?? 0)) + ")") ?? '';
       if (((s as any).temp ?? 0) !== '') {
         (s as any).pcs_nickname = ((s as any).temp ?? 0);
       }

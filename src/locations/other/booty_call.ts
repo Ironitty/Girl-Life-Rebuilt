@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -20,7 +20,7 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bc_i = 0;
   // TODO-QSP: :bc_sched_loop
   if (((s as any).temp_bc_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_bc_id = ((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)];
+    (s as any).temp_bc_id = (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy') {
       qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).temp_bc_id ?? 0));
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_bc_id ?? 0)]; enterBcNpcStatUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -48,13 +48,13 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
 
 function enterScheduleSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_booty_call ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
+    qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).locArgs?.[1] ?? 0), 'gs \'booty_call_sms\', \'start\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 * (((s as any).npc_booty_call_time ?? 0)[((s as any).locArgs?.[1] ?? 0)] - ((s as any).hour ?? 0)) + (Math.floor(Math.random() * 181) + 0) - ((s as any).minut ?? 0) + '');
   } else {
     if (((s as any).week ?? 0) === ((s as any).npc_day_off ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-      // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
+      qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).locArgs?.[1] ?? 0), 'gs \'booty_call_sms\', \'start\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 * (10 - ((s as any).hour ?? 0)) + (Math.floor(Math.random() * 241) + 0) + (Math.floor(Math.random() * 241) + 0) + (Math.floor(Math.random() * 241) + 0) - ((s as any).minut ?? 0) + '');
     } else {
       if (((s as any).week ?? 0) !== ((s as any).npc_day_off ?? 0)[String((s as any).locArgs?.[1] ?? '')]) {
-        // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
+        qspCall(s, 'telefon', 'SetInSMSSchedule', ((s as any).locArgs?.[1] ?? 0), 'gs \'booty_call_sms\', \'start\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\'', 'totminut > ' + ((s as any).totminut ?? 0) + 60 * ((Math.floor(Math.random() * (((s as any).npc_end_free_time ?? 0)[((s as any).locArgs?.[1] ?? 0)] - 1 - qspUntranslated(s, "npc_start_free_time[\u00000\u0000]", { location: "booty_call" }) + 1)) + (qspUntranslated(s, "npc_start_free_time[\u00000\u0000]", { location: "booty_call" }))) - ((s as any).hour ?? 0)) + (Math.floor(Math.random() * 181) + 0) - ((s as any).minut ?? 0) + '');
       }
     }
   }
@@ -128,7 +128,7 @@ function enterSetBootyCallDate(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_booty_call_time ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-    ((s as any).npc_booty_call_time = (s as any).npc_booty_call_time ?? {})[String((s as any).boy ?? 0)] = ((s as any).npc_start_free_time ?? 0)?.[String((s as any).boy ?? 0)];
+    ((s as any).npc_booty_call_time = (s as any).npc_booty_call_time ?? {})[String((s as any).boy ?? 0)] = (((s as any).npc_start_free_time ?? 0)?.[String((s as any).boy ?? 0)] ?? 0);
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).boy ?? 0)] === 'sugar_daddy') {
     ((s as any).sugar_daddy_call = (s as any).sugar_daddy_call ?? {})[String((s as any).boy ?? 0)] = 1;
@@ -163,9 +163,9 @@ function enterHotelLinks(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bc_i = 0;
   // TODO-QSP: :loop_hotel
   if (((s as any).temp_bc_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_bc_id = ((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)];
+    (s as any).temp_bc_id = (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'sugar_daddy') {
-      // TODO-QSP: gs 'booty_call', 'generate_hotel_link', $lover[temp_bc_i]
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0)]; enterGenerateHotelLink(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_hotel'
@@ -312,16 +312,16 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
     ((st as any).npc_meetday = (st as any).npc_meetday ?? {})[String((st as any).boy ?? 0)] = ((st as any).daystart ?? 0);
-    // TODO-QSP: npc_meethour[$boy] = input ("When do you want to go over to his place? It is now <<func('time', 'get_time_string', hour, minut)>>. [Enter the hour only <<hour>> - 22]")
+    ((st as any).npc_meethour = (st as any).npc_meethour ?? {})[String((st as any).boy ?? 0)] = window.prompt("When do you want to go over to his place? It is now " + (qspFunc(s, 'time', 'get_time_string', ((st as any).hour ?? 0), ((st as any).minut ?? 0))) + ". [Enter the hour only " + (((st as any).hour ?? 0)) + " - 22]") ?? '';
     if (((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] <= ((st as any).hour ?? 0)  ||  ((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] > 23) {
       ((st as any).npc_meethour = (st as any).npc_meethour ?? {})[String((st as any).boy ?? 0)] = 20;
     }
     // TODO-QSP: dynamic text: <b><font color="pink">maybe around <<npc_meethour[$boy]>>:00?</font></b>
-    scene.text(`<b><font color="pink">maybe around ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00?</font></b>`);
+    scene.text(`<b><font color="pink">maybe around ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00?</font></b>`);
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$boy]>>:00?."
-    scene.text(`"How about ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00?."`);
+    scene.text(`"How about ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00?."`);
     // TODO-QSP: dynamic text: <<$call4Date["CallerName"]>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<np...
-    scene.text(`${((st as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00."`);
+    scene.text(`${((st as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${(((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? '')}:00."`);
     scene.actions([
       { label: 'Put away your phone', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -469,7 +469,7 @@ function enterDraw(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0  ||  ((s as any).stat ?? 0)?.['girlfriends_current'] > 0) {
       // TODO-QSP: :find_textable_lover
       (s as any).temp_bc_i = (Math.floor(Math.random() * (0 - 0 + 1)) + (0));
-      (s as any).lover_drawn = ((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)];
+      (s as any).lover_drawn = (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0);
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).lover_drawn ?? 0)] !== 'boyfriend'  &&  ((s as any).npc_rel_type ?? 0)?.[String((s as any).lover_drawn ?? 0)] !== 'girlfriend') {
         // TODO-QSP: jump 'find_textable_lover'
       }
@@ -485,7 +485,7 @@ function enterSMSRaiser(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bc_i = 0;
   // TODO-QSP: :sms_raiser_loop
   if (((s as any).temp_bc_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-    (s as any).temp_bc_id = ((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)];
+    (s as any).temp_bc_id = (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0);
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'sugar_daddy') {
       if (((s as any).booty_call_time ?? 0)?.[String((s as any).temp_bc_id ?? 0)] < ((((s as any).hour ?? 0) * 60) + ((s as any).minut ?? 0))  &&  ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)] !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_last_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)] !== ((s as any).daystart ?? 0)) {
         qspCall(s, 'booty_call_sms', 'start', ((s as any).temp_bc_id ?? 0));

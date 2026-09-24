@@ -216,7 +216,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
     scene.text('After the dance, Dimka holds onto your hand. "Let\'s go outside."');
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A1', (-5));
+    qspCall(st, 'npc_relationship', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Go outside with him', handler: (st: GameState) => {
@@ -226,7 +226,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinnpc', 'din_predlog_dima_bj');
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A1', (-5));
+    qspCall(st, 'npc_relationship', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
@@ -395,7 +395,7 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDimkaPay(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'money', 'pay', ARGS[1] * 420
+  qspCall(s, 'money', 'pay', ((s as any).locArgs?.[1] ?? 0) * 420);
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/cocainebag.jpg');

@@ -72,7 +72,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the pharmacy', handler: (st: GameState) => {
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['pav_commercial', ''] },
     { label: 'Buy something', goto: ['pav_pharmacy', 'cart'] },
   ]);
@@ -86,7 +86,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
     scene.text('The pharmacy is currently closed.');
     scene.actions([
 { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['pav_commercial', ''] },
 ]);
     return;
@@ -103,7 +103,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['pav_pharmacy', 'start'] },
   ]);
   scene.build();
@@ -930,14 +930,14 @@ function enterBuyMorningAfter(s: GameState, scene: SceneBuilder): void {
     if (((st as any).stat ?? 0)?.['last_broken_condom'] >= ((st as any).daystart ?? 0) - 3) {
       scene.actions([
         { label: 'The condom broke', handler: (st: GameState) => {
-    qspCall(st, 'pav_pharmacy', 'buy_morning_after_condom_broke_meek');
+    qspCall(st, 'pav_pharmacy', '');
   } },
       ]);
     }
     if (((st as any).birth_control ?? 0)?.['condom_stealth'] >= ((st as any).daystart ?? 0) - 3) {
       scene.actions([
         { label: 'I got stealthed', handler: (st: GameState) => {
-    qspCall(st, 'pav_pharmacy', 'morning_after_stealth_meek');
+    qspCall(st, 'pav_pharmacy', '');
   } },
       ]);
     }
@@ -965,14 +965,14 @@ function enterBuyMorningAfter(s: GameState, scene: SceneBuilder): void {
       if (((st as any).stat ?? 0)?.['last_broken_condom'] >= ((st as any).daystart ?? 0) - 3) {
         scene.actions([
           { label: 'The condom broke', handler: (st: GameState) => {
-    qspCall(st, 'pav_pharmacy', 'buy_morning_after_condom_broke_meek');
+    qspCall(st, 'pav_pharmacy', '');
   } },
         ]);
       }
       if (((st as any).birth_control ?? 0)?.['condom_stealth'] >= ((st as any).daystart ?? 0) - 3) {
         scene.actions([
           { label: 'I got stealthed', handler: (st: GameState) => {
-    qspCall(st, 'pav_pharmacy', 'morning_after_stealth_open');
+    qspCall(st, 'pav_pharmacy', '');
   } },
         ]);
       }
@@ -999,7 +999,7 @@ function enterBuyMorningAfter(s: GameState, scene: SceneBuilder): void {
       if (((st as any).birth_control ?? 0)?.['condom_stealth'] >= ((st as any).daystart ?? 0) - 3) {
         scene.actions([
           { label: 'I got stealthed', handler: (st: GameState) => {
-    qspCall(st, 'pav_pharmacy', 'morning_after_stealth_open');
+    qspCall(st, 'pav_pharmacy', '');
   } },
         ]);
       }
@@ -1343,7 +1343,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
     ((st as any).LudaQW = (st as any).LudaQW ?? {})['birth_control_timer'] = ((st as any).daystart ?? 0);
     ((st as any).pharmacy_timers = (st as any).pharmacy_timers ?? {})['birth_control'] = ((st as any).daystart ?? 0);
     (st as any).pharmacyfirstbirthcontrol = 1;
-    // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'contraceptive_pill') + 1
+    qspCall(st, 'item_cart', 'simple_add', ((st as any).arrpos ?? 0)('var_curr_aisle', 'contraceptive_pill') + 1);
     scene.text('"You\'re right Aunt Luda," you nod apologetically. "I should stop being dumb and taking chances."');
     scene.text('She sighs in relief and retrieves a box of pills for you. "At least you have more sense than your mother did at your age."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyMorningAfterEnd(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -2079,10 +2079,10 @@ function enterCondomAddon(s: GameState, scene: SceneBuilder): void {
       ((st as any).LudaQW = (st as any).LudaQW ?? {})['condoms'] = 1;
       ((st as any).LudaQW = (st as any).LudaQW ?? {})['knows_sex'] = 1;
       if ((!((st as any).preziktype ?? 0))) {
-        // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'equipped_condoms') + 1
+        qspCall(st, 'item_cart', 'simple_add', ((st as any).arrpos ?? 0)('var_curr_aisle', 'equipped_condoms') + 1);
       } else {
         if (((st as any).preziktype ?? 0) === 1  ||  ((st as any).preziktype ?? 0) === 2) {
-          // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'normal_condoms') + 1
+          qspCall(st, 'item_cart', 'simple_add', ((st as any).arrpos ?? 0)('var_curr_aisle', 'normal_condoms') + 1);
         }
       }
       scene.text('<center><b>Pharmacy</b></center>');
@@ -2175,7 +2175,7 @@ function enterBirthControlAddon(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Not a bad idea (buy birth control)', handler: (st: GameState) => {
     (st as any).pharmacyfirstbirthcontrol = 1;
-    // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'contraceptive_pill') + 1
+    qspCall(st, 'item_cart', 'simple_add', ((st as any).arrpos ?? 0)('var_curr_aisle', 'contraceptive_pill') + 1);
     scene.text('"That\'s... Not a bad idea. I guess I could while I\'m here."');
     scene.text('"Good choice," Luda says, nodding once and adding on pills to your purchase. "It pays to be safe."');
     scene.actions([
@@ -2186,7 +2186,7 @@ function enterBirthControlAddon(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Might as well be safe (buy birth control)', handler: (st: GameState) => {
     (st as any).pharmacyfirstbirthcontrol = 1;
-    // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'contraceptive_pill') + 1
+    qspCall(st, 'item_cart', 'simple_add', ((st as any).arrpos ?? 0)('var_curr_aisle', 'contraceptive_pill') + 1);
     scene.text('"I guess I might as well. Just to be safe."');
     scene.text('"It always pays to be safe," Luda says, nodding once and adding on pills to your purchase.');
     scene.actions([

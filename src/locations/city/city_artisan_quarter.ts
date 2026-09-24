@@ -15,7 +15,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== ((s as any).curloc ?? 0)) {
-    // TODO-QSP: gs $curloc, 'init'
+    qspCall(s, '$curloc', 'init');
   }
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'core_library', 'stage_title');
@@ -39,7 +39,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs $curloc, 'setup', $ARGS[0]
+  qspCall(s, '$curloc', 'setup', ((s as any).locArgs?.[0] ?? 0));
   // TODO-QSP: end
   scene.build();
 }

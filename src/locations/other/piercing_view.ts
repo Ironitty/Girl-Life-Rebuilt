@@ -46,13 +46,13 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    // TODO-QSP: gs 'piercing_attributes', $ARGS[2], ARGS[3]
+    qspCall(s, 'piercing_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).PirQuality ?? 0))) {
       // TODO-QSP: exit
     }
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_quality', $ARGS[2], ARGS[3], PirQuality
-    // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_price', $ARGS[2], ARGS[3], PirPrice
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_number', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_quality', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).PirQuality ?? 0));
+    qspCall(s, 'shop_utils', 'sorted', 'add_to_price', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).PirPrice ?? 0));
     return;
   }
   return;
@@ -66,7 +66,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      // TODO-QSP: gs 'piercing_attributes', $ARGS[4], ARGS[5]
+      qspCall(s, 'piercing_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, 'piercing_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -85,7 +85,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
-  // TODO-QSP: gs 'piercing_attributes', $shop_utils_view['type'], shop_utils_view['number']
+  qspCall(s, 'piercing_attributes', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number']);
   scene.img(`${qspFunc(s, 'piercing_management', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
     qspGoto(s, 'piercing_view', 'view_item_shop');
@@ -134,8 +134,8 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.img(`${qspFunc(s, 'piercing_management', ((st as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((st as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
     // TODO-QSP: dynamic text: The tattooist disinfects the area, pierces your <<$shop_utils_view[''type'']>> a...
     scene.text(`The tattooist disinfects the area, pierces your ${((st as any).shop_utils_view ?? 0)?.['type'] ?? ''} and inserts your chosen piercing.`);
-    // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
-    // TODO-QSP: gs 'piercing_management', 'add', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
+    qspCall(st, 'piercing_management', 'add', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspCall(st, 'piercing_management', 'count');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -159,8 +159,8 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Buy (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
-    // TODO-QSP: gs 'piercing_management', 'add', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(st, 'money', 'pay', ((st as any).shop_utils_view ?? 0)?.['price']);
+    qspCall(st, 'piercing_management', 'add', ((st as any).shop_utils_view ?? 0)?.['type'], ((st as any).shop_utils_view ?? 0)?.['number']);
     qspCall(st, 'piercing_management', 'count');
     qspCall(st, 'stat', '');
     dynamicGoto(st, 'prevLoc', 'prevArg');

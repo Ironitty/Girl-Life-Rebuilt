@@ -165,7 +165,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_menu');
     scene.actions([
       { label: 'Remove all tattoos', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'full_reset');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -173,7 +173,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove face tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'face');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -181,7 +181,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove lip tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'lip');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -189,7 +189,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove neck tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'neck');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -197,7 +197,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove back tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'back');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -205,7 +205,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove shoulder tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'shoulder');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -213,7 +213,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove breast tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'breast');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -221,7 +221,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove under tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'under');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -229,7 +229,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove chest tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'chest');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -237,7 +237,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove side tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'side');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -245,7 +245,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove belly tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'belly');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -253,7 +253,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove arm tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'arm');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -261,7 +261,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove wrist tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'wrist');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -269,7 +269,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove hand tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'hand');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -277,7 +277,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove leg tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'leg');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -285,7 +285,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove ankle tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'ankle');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -293,7 +293,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove tramp tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'tramp');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -301,7 +301,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove ass tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'ass');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -309,7 +309,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'intro_character_custom', 'modclo_tattoos');
     scene.actions([
       { label: 'Remove pussy tattoo', handler: (st: GameState) => {
-    qspCall(st, 'tattoo_management', 'remove', 'pussy');
+    qspCall(st, 'tattoo_management', '');
   } },
     ]);
   }
@@ -770,11 +770,11 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'add_type', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'shop_utils', 'init', 'end');
   }
-  qspCall(s, 'shop_utils', '', 'display_' + ((s as any).intro_custom_shop ?? 0)?.['slot'] + '_grid_shop');
+  qspCall(s, 'shop_utils', 'display_' + ((s as any).intro_custom_shop ?? 0)?.['slot'] + '_grid_shop');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(st, 'shop_utils', 'cleanup');
+    qspCall(st, 'shop_utils', '');
   }, goto: ['intro_character_custom', 'modclo'] },
   ]);
   scene.build();
@@ -892,7 +892,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Body fat (' + String(((s as any).pcs_mass ?? 0)?.['body'] ?? '' ?? '') + '/200)', handler: (st: GameState) => {
-    qspCall(st, 'intro_character_custom', 'setbodymass');
+    qspCall(st, 'intro_character_custom', '');
     // TODO-QSP: pcs_mass['body'] = nstat
   }, goto: ['intro_character_custom', 'modapp'] },
     { label: 'Return', goto: ['intro_character_custom', 'start'] },

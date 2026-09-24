@@ -646,7 +646,7 @@ function enterMissInsertOrgasm(s: GameState, scene: SceneBuilder): void {
       { label: 'Orgasm!', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['orgasm'] === ((st as any).orgasm ?? 0)) {
       (st as any).orgasm_or = 'yes';
-      // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     }
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['insertion_orgasm'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['orgasm'] = ((st as any).orgasm ?? 0);
@@ -1150,7 +1150,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
-    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} plow into you with his amazingly <i>disappointing</i> cock.`);
+    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
     if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
@@ -1633,7 +1633,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
-    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} plow into you with his amazingly <i>disappointing</i> cock.`);
+    scene.text(`It takes all of your willpower not to audibly sigh as you keep letting ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} plow into you with his amazingly <i>disappointing</i> cock.`);
     if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
@@ -1838,7 +1838,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     qspGoto(s, 'sex_ev_virgin', 'miss_virg_hard1');
   }
-  // TODO-QSP: gs 'arousal', 'vaginal',1, 'no_orgasm_msg', $sex_ev['prostitution_flag'], 'rough'
+  qspCall(s, 'arousal', 'vaginal', 1, 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag'], 'rough');
   scene.img('images/shared/sex/vag/miss/rough1.mp4');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiss3StartDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mesec ?? 0) > 0) {
@@ -2010,7 +2010,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s hips are smacking into yours with an exceptional am...
-    scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s hips are smacking into yours with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
+    scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s hips are smacking into yours with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
     if (((s as any).sex_ev ?? 0)?.['prostitution'] === 1) {
       scene.text('<i>At least I\'m getting paid for this...</i>');
     }
@@ -2339,7 +2339,7 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss him', handler: (st: GameState) => {
     ((st as any).npc_like = (st as any).npc_like ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_like[String((st as any).npcID ?? 0)] ?? 0) + (2);
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['kiss'] = 1;
-    // TODO-QSP: gs 'arousal', 'kiss', -rand(1, 2), 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    qspCall(st, 'arousal', 'kiss', -(Math.floor(Math.random() * 2) + 1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     scene.img('images/shared/sex/vag/miss/kiss1.mp4');
     if (((st as any).sex_ev ?? 0)?.['cuni_count'] > 0) {
       // TODO-QSP: dynamic text: You let <<$npcdesc>>''s lips touch yours and feel his tongue snake into your mou...
@@ -4175,15 +4175,15 @@ function enterMiss3_1Desc(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'lengthy') {
                       // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with the entire length of his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock and hurting you in all the <i>best</i> ways.`);
+                      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with the entire length of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock and hurting you in all the <i>best</i> ways.`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'gigantic') {
                         // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his gigantic cock, forcing its entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length inside and hurting you in all the <i>best</i> ways.`);
+                        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his gigantic cock, forcing its entire ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length inside and hurting you in all the <i>best</i> ways.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'monstrous') {
                           // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, forcing in the entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length of his monstrous cock inside you, hammering your cervix and threatening to tear your pussy in half and hurting you in all the <i>best</i> ways.`);
+                          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, forcing in the entire ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length of his monstrous cock inside you, hammering your cervix and threatening to tear your pussy in half and hurting you in all the <i>best</i> ways.`);
                         }
                       }
                     }
@@ -4231,15 +4231,15 @@ function enterMiss3_1Desc(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'lengthy') {
                       // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock bashing against your cervix, trying to force its way past with every thrust.`);
+                      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock bashing against your cervix, trying to force its way past with every thrust.`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'gigantic') {
                         // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock filling you up and bashing against your cervix with its weight, trying to force its way past with every thrust.`);
+                        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his gigantic ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock filling you up and bashing against your cervix with its weight, trying to force its way past with every thrust.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'monstrous') {
                           // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock trying to force its way into your cervix and split you in half with every thrust.`);
+                          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock trying to force its way into your cervix and split you in half with every thrust.`);
                         }
                       }
                     }
@@ -4294,15 +4294,15 @@ function enterMiss3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'lengthy') {
                       // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
-                      scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding your pussy. His cock slams into you, relentlessly smashing against your cervix with its insane ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                      scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding your pussy. His cock slams into you, relentlessly smashing against your cervix with its insane ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'gigantic') {
                         // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
-                        scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding your pussy. His cock slams into you, filling you up and relentlessly smashing against your cervix with its gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                        scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding your pussy. His cock slams into you, filling you up and relentlessly smashing against your cervix with its gigantic ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'monstrous') {
                           // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
-                          scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding you. His cock slams into you, painfully splitting your pussy with it's absurd girth and relentlessly smashing against your cervix with its montrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                          scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? '')} keeps pounding you. His cock slams into you, painfully splitting your pussy with it's absurd girth and relentlessly smashing against your cervix with its montrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
                         }
                       }
                     }
@@ -4351,15 +4351,15 @@ function enterMiss3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'lengthy') {
                         // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, battering your cervix with h...
-                        scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, battering your cervix with his insanely long ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                        scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, battering your cervix with his insanely long ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'gigantic') {
                           // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, battering your cervix with h...
-                          scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, battering your cervix with his gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                          scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, battering your cervix with his gigantic ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
                         } else {
                           if (((s as any).dick_desc ?? 0) === 'monstrous') {
                             // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, splitting your pussy with hi...
-                            scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, splitting your pussy with his absurd girth and battering your cervix with his monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                            scene.text(`You moan loudly as ${((s as any).npcdesc ?? '')} keeps pounding you, splitting your pussy with his absurd girth and battering your cervix with his monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
                           }
                         }
                       }

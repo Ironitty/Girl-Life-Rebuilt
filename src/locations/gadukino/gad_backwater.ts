@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  (Math.floor(Math.random() * 10) + 1) === 1) {
-      // TODO-QSP: gt 'gad_backwater', 'hunter' else gt 'gad_backwater', 'alone'
+      qspGoto(s, 'gad_backwater', 'hunter\' else gt \'gad_backwater', 'alone');
     }
   }
   // TODO-QSP: end

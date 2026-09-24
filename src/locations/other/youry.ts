@@ -39,7 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A38');
     (st as any).Yuri_sex = 1;
     (st as any).NoGuy = 1;
-    (st as any).gtGuy = 1;
+    qspGoto(st, 'Guy = 1', '');
     (st as any).finance = 1;
     scene.text('You gladly accept as Yuri hands a glass of champagne over to you. As you take a sip of the champagne, Yuri begins to praise your sex skills. You blush a little as he keeps complementing you.');
     scene.text('As you finish the second glass of champagne, Yuri suggests that you should continue in the bedroom.');

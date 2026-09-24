@@ -221,7 +221,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     { label: 'Drink some water', handler: (st: GameState) => {
     // TODO-QSP: $loc = 'stwork3'
     // TODO-QSP: $loc_arg = 'events1'
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
     { label: 'Chat with Ivanna', handler: (st: GameState) => {
     qspGoto(st, 'stwork3', 'manager_chat');
@@ -481,8 +481,8 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Unbutton his pants', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'a customer at Golden Girls', (Math.floor(Math.random() * 48) + 18));
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'a customer at Golden Girls', (Math.floor(Math.random() * 48) + 18));
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/cafe/sex/waitress_work_2.jpg');
     scene.text('You take a quick look around, but the club is too noisy and dark for anyone to take notice. The man smiles as you undo his pants and grasp his rock hard cock in your hand. It twitches in anticipation.');
@@ -1018,7 +1018,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strip_club ?? 0)?.['tips_total'] > 500) {
     ((s as any).strip_club = (s as any).strip_club ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
-  // TODO-QSP: gs 'money', 'earn', strip_club['tips_total']
+  qspCall(s, 'money', 'earn', ((s as any).strip_club ?? 0)?.['tips_total']);
   ((s as any).strip_club = (s as any).strip_club ?? {})['tips_roll'] = 0;
   if (((s as any).pcs_servng ?? 0) < 100) {
     qspCall(s, 'exp_gain', 'servng', 1);
@@ -1150,7 +1150,7 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', 5);
-    qspCall(st, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
+    qspCall(st, 'cum_call', '', 'Ivanna', 0, 1, (-1));
     qspCall(st, 'arousal', 'end');
     if (((st as any).strip_club ?? 0)?.['ivanna_sex'] === 0) {
       ((st as any).strip_club = (st as any).strip_club ?? {})['ivanna_sex'] = 1;
@@ -1207,7 +1207,7 @@ function enterIvannaSlave(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', 5);
-    qspCall(st, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
+    qspCall(st, 'cum_call', '', 'Ivanna', 0, 1, (-1));
     qspCall(st, 'arousal', 'end');
     scene.text('When she finally finishes, she pulls you off of her and throws you down on the sofa, panting loudly as cum dribbles out the tip of her cock. Your stretched pussy suddenly feels very empty as a stream of thick cum oozes out of you.');
     scene.text('When you catch your breath, you get dressed as she casts the spell to remove her cock before fixing her dress.');

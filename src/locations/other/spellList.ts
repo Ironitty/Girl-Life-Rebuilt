@@ -11,11 +11,11 @@ function enterTeacherActions(s: GameState, scene: SceneBuilder): void {
   (s as any).ExitLocation = ((s as any).locArgs?.[2] ?? 0);
   (s as any).ExitLocation2 = ((s as any).locArgs?.[3] ?? 0);
   (s as any).ThisArraySize = 0;
-  (s as any).MaxAvailable = ((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)];
+  (s as any).MaxAvailable = (((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)] ?? 0);
   (s as any).i = 0;
   // TODO-QSP: :LearnSpellLoop
   (s as any).ThisSpellName = 0;
-  (s as any).spellDifficulty = Math.max(((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)], 1);
+  (s as any).spellDifficulty = Math.max((((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0), 1);
   if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
     if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
       if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {

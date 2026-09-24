@@ -27,8 +27,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'vaginal_sex', 15, 'sub');
     (st as any).orgasm_or = 'yes';
     (st as any).orgasm_txt = '' + ((st as any).boydesc ?? 0) + ' groans, and you feel a jet of sperm spurt inside of your body, followed by several more.';
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
-    qspCall(st, 'cuminsidereact', '', ((st as any).boydesc ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cuminsidereact', '$boydesc');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Breathe', handler: (st: GameState) => {

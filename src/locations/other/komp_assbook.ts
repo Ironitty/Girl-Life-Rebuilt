@@ -88,7 +88,7 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
   scene.text('You consider which name you\'d like to register under.');
-  // TODO-QSP: $assbook['account_name'] = input('Which name would you like to use? (Leave blank for <<$pcs_nickname>>)')
+  ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = window.prompt("Which name would you like to use? (Leave blank for " + (((s as any).pcs_nickname ?? 0)) + ")") ?? '';
   if (((s as any).assbook ?? 0)?.['account_name'] === '') {
     ((s as any).assbook = (s as any).assbook ?? {})['account_name'] = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
@@ -148,7 +148,7 @@ function enterLogin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'komp_assbook', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "komp_assbook" })]; enterListretrieve(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -255,7 +255,7 @@ function enterUploadPhoto2(s: GameState, scene: SceneBuilder): void {
 
 function enterShowlocation2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "komp_assbook" })} selfies</b></center>`);
-  // TODO-QSP: gs 'komp_assbook', 'listretrieve2', ARGS[1], $selfieLoc[ARGS[1]]
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "komp_assbook" })]; enterListretrieve2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

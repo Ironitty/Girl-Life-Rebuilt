@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -16,7 +14,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_type = (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('_'))) + 1) - 1)));
   }
-  // TODO-QSP: gs $ARGS[1], 'add_item', $temp_type, ARGS[3]
+  qspCall(s, '$ARGS[1]', 'add_item', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') === 'clothing') {
     if (String((s as any).locArgs?.[4] ?? '') > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] = <<ARGS[4]>>'
@@ -32,7 +30,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[7] ?? '') === 1) {
-    // TODO-QSP: gs $ARGS[1], 'wear', $temp_type, ARGS[3]
+    qspCall(s, '$ARGS[1]', 'wear', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   }
   return;
   // TODO-QSP: end
@@ -40,7 +38,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWearItem(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'intro_initialization', 'add_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4], ARGS[5], ARGS[6], 1
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), 1]; enterAddItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -52,7 +50,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :generate_random_loop
   if (((s as any).temp_gr_ind ?? 0) <= String((s as any).locArgs?.[1] ?? '')) {
     ((s as any).temp_rand = (s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2)));
-    (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
+    (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + ((((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)] ?? 0));
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
     // TODO-QSP: jump 'generate_random_loop'
   }
@@ -81,17 +79,17 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
 
 function enterRandomizeStats(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterGenerateRandom(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (qspUntranslated(s, "temp_rand[1]", { location: "intro_initialization" }));
-  (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (qspUntranslated(s, "temp_rand[2]", { location: "intro_initialization" }));
-  (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + (qspUntranslated(s, "temp_rand[3]", { location: "intro_initialization" }));
-  (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) + (qspUntranslated(s, "temp_rand[4]", { location: "intro_initialization" }));
-  (s as any).pcs_react = ((s as any).pcs_react ?? 0) + (qspUntranslated(s, "temp_rand[5]", { location: "intro_initialization" }));
-  (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + (qspUntranslated(s, "temp_rand[6]", { location: "intro_initialization" }));
-  (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (qspUntranslated(s, "temp_rand[7]", { location: "intro_initialization" }));
-  (s as any).pcs_prcptn = ((s as any).pcs_prcptn ?? 0) + (qspUntranslated(s, "temp_rand[8]", { location: "intro_initialization" }));
-  (s as any).strenbuf = ((s as any).strenbuf ?? 0) + (qspUntranslated(s, "temp_rand[1]", { location: "intro_initialization" }));
-  (s as any).agilbuf = ((s as any).agilbuf ?? 0) + (qspUntranslated(s, "temp_rand[2]", { location: "intro_initialization" }));
-  (s as any).vitalbuf = ((s as any).vitalbuf ?? 0) + (qspUntranslated(s, "temp_rand[3]", { location: "intro_initialization" }));
+  (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + ((((s as any).temp_rand ?? 0)?.[1] ?? 0));
+  (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + ((((s as any).temp_rand ?? 0)?.[2] ?? 0));
+  (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + ((((s as any).temp_rand ?? 0)?.[3] ?? 0));
+  (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) + ((((s as any).temp_rand ?? 0)?.[4] ?? 0));
+  (s as any).pcs_react = ((s as any).pcs_react ?? 0) + ((((s as any).temp_rand ?? 0)?.[5] ?? 0));
+  (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + ((((s as any).temp_rand ?? 0)?.[6] ?? 0));
+  (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + ((((s as any).temp_rand ?? 0)?.[7] ?? 0));
+  (s as any).pcs_prcptn = ((s as any).pcs_prcptn ?? 0) + ((((s as any).temp_rand ?? 0)?.[8] ?? 0));
+  (s as any).strenbuf = ((s as any).strenbuf ?? 0) + ((((s as any).temp_rand ?? 0)?.[1] ?? 0));
+  (s as any).agilbuf = ((s as any).agilbuf ?? 0) + ((((s as any).temp_rand ?? 0)?.[2] ?? 0));
+  (s as any).vitalbuf = ((s as any).vitalbuf ?? 0) + ((((s as any).temp_rand ?? 0)?.[3] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -99,19 +97,19 @@ function enterRandomizeStats(s: GameState, scene: SceneBuilder): void {
 
 function enterRandomizeGrades(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 13]; enterGenerateRandom(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'math',  temp_rand[1]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'rus',  temp_rand[2]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'lit',  temp_rand[3]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'art',  temp_rand[4]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'bio',  temp_rand[5]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'eng',  temp_rand[6]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'geo',  temp_rand[7]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'sci',  temp_rand[8]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'his',  temp_rand[9]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'shop',  temp_rand[10]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'comp',  temp_rand[11]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'mus',  temp_rand[12]
-  // TODO-QSP: gs 'grades', 'grade_award', 'school', 'pe',    temp_rand[13]
+  qspCall(s, 'grades', 'grade_award', 'school', 'math', (((s as any).temp_rand ?? 0)?.[1] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'rus', (((s as any).temp_rand ?? 0)?.[2] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'lit', (((s as any).temp_rand ?? 0)?.[3] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'art', (((s as any).temp_rand ?? 0)?.[4] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'bio', (((s as any).temp_rand ?? 0)?.[5] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'eng', (((s as any).temp_rand ?? 0)?.[6] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'geo', (((s as any).temp_rand ?? 0)?.[7] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'sci', (((s as any).temp_rand ?? 0)?.[8] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'his', (((s as any).temp_rand ?? 0)?.[9] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'shop', (((s as any).temp_rand ?? 0)?.[10] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'comp', (((s as any).temp_rand ?? 0)?.[11] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'mus', (((s as any).temp_rand ?? 0)?.[12] ?? 0));
+  qspCall(s, 'grades', 'grade_award', 'school', 'pe', (((s as any).temp_rand ?? 0)?.[13] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -538,10 +536,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFixStatInner(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_stat_diff = ((s as any).stat ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  (s as any).temp_stat_diff = (((s as any).stat ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   (s as any).args_i = 2;
   // TODO-QSP: :fix_stat_inner_loop
-  (s as any).temp_stat_diff = ((s as any).temp_stat_diff ?? 0) - (((s as any).stat ?? 0)?.[((s as any).ARGS ?? 0)?.[String((s as any).args_i ?? 0)] + '_times']);
+  (s as any).temp_stat_diff = ((s as any).temp_stat_diff ?? 0) - ((((s as any).stat ?? 0)?.[(((s as any).ARGS ?? 0)?.[String((s as any).args_i ?? 0)] ?? 0) + '_times'] ?? 0));
   if (((s as any).stat ?? 0)[((s as any).ARGS ?? 0)?.[String((s as any).args_i ?? 0)] + '_times'] < ((s as any).stat ?? 0)[((s as any).ARGS ?? 0)?.[String((s as any).args_i ?? 0)]]) {
     // TODO-QSP: stat[$ARGS[args_i] + '_times'] = stat[$ARGS[args_i]]
     (s as any).temp_stats_changed = 1;

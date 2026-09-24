@@ -33,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Browse the internet - You have ' + String(((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? '' ?? '') + ' minutes of access left', goto: ['komp', 'browse'] },
+        { label: '', labelFn: (s: GameState) => 'Browse the internet - You have ' + String((((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? '') ?? '') + ' minutes of access left', goto: ['komp', 'browse'] },
       ]);
     }
   } else {
@@ -175,7 +175,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 function enterSale(s: GameState, scene: SceneBuilder): void {
   if (((s as any).access ?? 0)?.['metered']  &&  ((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 15) {
     // TODO-QSP: dynamic text: You check the website, but realize that <<subscription[$subs]>> minutes won''t b...
-    scene.text(`You check the website, but realize that ${((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? ''} minutes won't be enough to fill out all the forms.`);
+    scene.text(`You check the website, but realize that ${(((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? '')} minutes won't be enough to fill out all the forms.`);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).elektro = ((s as any).elektro ?? 0) + (3);
@@ -205,7 +205,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
         scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((st as any).predsum ?? ''))} in cash.`);
         scene.actions([
           { label: 'Accept the offer', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((st as any).month ?? 0) + 1 > 12) ? (1) : (((st as any).month ?? 0) + 1)), Math.min(((st as any).day ?? 0), ((st as any).monthsEnd ?? 0)?.[String((st as any).tenant_endmonth ?? 0)]));
+    qspCall(st, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((st as any).month ?? 0) + 1 > 12) ? (1) : (((st as any).month ?? 0) + 1)), Math.min(((st as any).day ?? 0), (((st as any).monthsEnd ?? 0)?.[String((st as any).tenant_endmonth ?? 0)] ?? 0)));
     qspCall(st, 'money', 'earn', ((st as any).predsum ?? 0), 'cash');
     qspGoto(st, 'komp', 'start');
   } },
@@ -474,8 +474,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Look for a kind man', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0');
+    qspCall(st, 'npcStat', '$npclastgenerated');
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 1;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
@@ -486,8 +486,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Look for a normal guy', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0');
+    qspCall(st, 'npcStat', '$npclastgenerated');
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 0;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
@@ -498,8 +498,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Look for a strong man', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0');
+    qspCall(st, 'npcStat', '$npclastgenerated');
     ((st as any).npc_gentle = (st as any).npc_gentle ?? {})[String((st as any).npcID ?? 0)] = 0;
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 1;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
@@ -923,11 +923,11 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 10, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: intinp = input ("How many hours of internet access do you wish to purchase? (1hr = <<$func('money', 'string_price', 10)>>)")
+      (st as any).intinp = window.prompt("How many hours of internet access do you wish to purchase? (1hr = " + (qspFunc(s, 'money', 'string_price', 10)) + ")") ?? '';
       if (((st as any).intinp ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((st as any).intinp ?? 0) * 10, 'bank') === 0) {
         scene.text('Invalid amount.');
       } else {
-        // TODO-QSP: gs 'money', 'pay', intinp * 10, 'bank'
+        qspCall(st, 'money', 'pay', ((st as any).intinp ?? 0) * 10, 'bank');
         (st as any).internet = ((st as any).internet ?? 0) + (((st as any).intinp ?? 0));
         // TODO-QSP: dynamic text: You pay for <<intinp>> hours of prepaid internet access. You have a total of <<i...
         scene.text(`You pay for ${((st as any).intinp ?? '')} hours of prepaid internet access. You have a total of ${((st as any).internet ?? '')} hours of internet access remaining.`);

@@ -447,9 +447,9 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).tipelakeboyrand ?? 0) < 80) {
-        qspCall(s, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * (((s as any).age ?? 0) + 5 - Math.max(((s as any).age ?? 0) - 5, 16) + 1)) + (Math.max(((s as any).age ?? 0) - 5, 16))));
+        qspCall(s, 'npcgeneratec', '0', 'Guy', (Math.floor(Math.random() * (((s as any).age ?? 0) + 5 - Math.max(((s as any).age ?? 0) - 5, 16) + 1)) + (Math.max(((s as any).age ?? 0) - 5, 16))));
         (s as any).lbz_npc = ((s as any).npclastgenerated ?? 0);
-        qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
+        qspCall(s, 'npcStat', '$lbz_npc');
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
         // TODO-QSP: dynamic text: "Hey there beautiful, I''m <<$boydesc>>. What''s your name?" he asks in an attem...
         scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc ?? '')}. What's your name?" he asks in an attempt to chat you up.`);
@@ -500,7 +500,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
     scene.text('"So… how much?"');
     scene.actions([
       { label: 'Resist', handler: (st: GameState) => {
-    qspCall(st, 'LakeBoyDy', 'slap');
+    qspCall(st, 'LakeBoyDy', '');
   } },
       { label: 'Move away', goto: ['LakeBoyDy', 'go'] },
     ]);
@@ -521,7 +521,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come with me, baby and I\'ll make you feel so good! You won\'t regret it." His groping becomes more insistent.');
     scene.actions([
       { label: 'Resist', handler: (st: GameState) => {
-    qspCall(st, 'LakeBoyDy', 'slap');
+    qspCall(st, 'LakeBoyDy', '');
   } },
     ]);
   } },

@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -841,7 +843,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s more like it. You have until the end of the day to get results, or else you know what will happen. Don\'t you? I don\'t want to see you in class until you get it done." He nods and heads into the hall. You breathe a sigh of relief. You were seriously scared there, but it was also exciting seeing him so scared himself. You think about following him around to make sure he keeps his word, but that would mean skipping class. You know he won\'t cross you as long as you have dirt on him. You head to class.');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'gschool_lessons', 'morning' & school_period = 1
+    qspCall(st, 'gschool_lessons', '', qspUntranslated(s, "'morning' & school_period = 1", { location: "dimaRevenge" }));
     scene.text('<center><b>Classroom</b></center>');
     scene.img('images/locations/pavlovsk/school/classroom/engaged.jpg');
     scene.text('You sit in class listening to the lesson. Looking around you see Dimka isn\'t here. Good. He must be doing what he promised. Or he\'s up to something. You hear some chatter from the other students, but none of it seems to be about you.');

@@ -1035,7 +1035,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    qspCall(st, 'pain', '', 5, 'neck', 'pinch');
+    qspCall(st, 'pain', '5', 'neck', 'pinch');
     qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('In a moment of bravery, you fight back. "Sonia and I are not your playthings, so go fuck yourself!" you yell.');
@@ -1175,7 +1175,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     (st as any).rand_boy = ((st as any).npc_firstname ?? 0)?.['A9'];
     qspCall(st, 'fame', 'pav', 'sex', 60);
     qspCall(st, 'npcStat', 'A11', 1);
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub');
     // TODO-QSP: npc_had_sex[$npcID[1]] = 1
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1185,12 +1185,12 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You slurp on one cock in your mouth while using your hands to jerk off two other...
     scene.text(`You slurp on one cock in your mouth while using your hands to jerk off two others, casually looking up you see that Dimka has taken out a camera and started filming it all. "Don't worry, ${((st as any).pcs_nickname ?? '')}. This is for all our private collections. I'm sure no one will spread this video around," he winks.`);
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 1, 1, 0, 0, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 2);
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub'
+    qspCall(st, 'npcStat', '$school_static_num', 2);
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub');
     // TODO-QSP: npc_had_sex[$npcID[2]] = 1
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 0, 0, 1, 1, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 3);
-    // TODO-QSP: gs 'arousal', 'hj', -5, $npcID[3], 'sub', 'group'
+    qspCall(st, 'npcStat', '$school_static_num', 3);
+    qspCall(st, 'arousal', 'hj', (-5), (((st as any).npcID ?? 0)?.[3] ?? 0), 'sub', 'group');
     // TODO-QSP: npc_had_sex[$npcID[3]] = 1
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1199,12 +1199,12 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snyblowbang.jpg');
     scene.text('You suck more cocks than you can count, constantly changing from one to another while always making sure that you\'re jerking off two others. You completely lose track of how many guys there are. All you know is that they\'re surrounding you and are awaiting their turn as they hold their bare cocks out.');
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 0, 0, 1, 1, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 4);
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[4], 'sub'
+    qspCall(st, 'npcStat', '$school_static_num', 4);
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[4] ?? 0), 'sub');
     // TODO-QSP: npc_had_sex[$npcID[4]] = 1
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 1, 1, 0, 0, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 5);
-    // TODO-QSP: gs 'arousal', 'hj', -5, $npcID[5], 'sub', 'group'
+    qspCall(st, 'npcStat', '$school_static_num', 5);
+    qspCall(st, 'arousal', 'hj', (-5), (((st as any).npcID ?? 0)?.[5] ?? 0), 'sub', 'group');
     // TODO-QSP: npc_had_sex[$npcID[5]] = 1
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1213,12 +1213,12 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snyblowbang2.jpg');
     scene.text('Some of them grow tired of waiting and start slapping their cocks against your head and face as they wait for your mouth or one of your hands to become available. By now, you\'re starting to feel fatigued and your mouth and arms are already getting tired.');
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 1, 1, 0, 0, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 6);
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[6], 'sub'
+    qspCall(st, 'npcStat', '$school_static_num', 6);
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[6] ?? 0), 'sub');
     // TODO-QSP: npc_had_sex[$npcID[6]] = 1
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 0, 0, 1, 1, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0), 7);
-    // TODO-QSP: gs 'arousal', 'hj', -5, $npcID[7], 'sub', 'group'
+    qspCall(st, 'npcStat', '$school_static_num', 7);
+    qspCall(st, 'arousal', 'hj', (-5), (((st as any).npcID ?? 0)?.[7] ?? 0), 'sub', 'group');
     // TODO-QSP: npc_had_sex[$npcID[7]] = 1
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1227,7 +1227,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snyblowbang3.jpg');
     scene.text('Your jaw starts to ache from sucking so many cocks, but the guys aren\'t easing up as they continue to pile on. You look at them pleadingly, but they just turn away as they tell you that they won\'t fall for your tricks as everyone knows that you\'ve done this many times before.');
     qspCall(st, 'gschool_events', 'rand_boy_arg1', 1, 1, 1, 1, 0, 0);
-    qspCall(st, 'npcStat', '', ((st as any).school_static_num ?? 0));
+    qspCall(st, 'npcStat', '$school_static_num');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'gangbang');
     ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).npcID ?? 0)] = 1;
     qspCall(st, 'stat', '');
@@ -1237,13 +1237,13 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('Just as you\'re about to break, you finally feel one of them twitch inside your mouth and he cums. All of a sudden, you feel another shoot his load onto your face and so begins the rest of them. It\'s like everyone waited for the first one to finish just so they wouldn\'t last the shortest time. By the time the last one finishes, you have lost count of the amount of cum you have either swallowed or have trickling down your face.');
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0), 1);
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[1], 1
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[2], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[3], 1
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[4], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[5], 1
-    // TODO-QSP: gs 'cum_call', 'mouth', $npcID[6], 1
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[7], 1
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[1] ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[2] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[3] ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[4] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[5] ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', (((st as any).npcID ?? 0)?.[6] ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[7] ?? 0), 1);
     qspCall(st, 'stat', '');
     qspCall(st, 'arousal', 'end');
     scene.actions([

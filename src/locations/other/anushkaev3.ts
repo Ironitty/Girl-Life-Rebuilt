@@ -625,7 +625,7 @@ function enterBedroomLesbianFinish(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'homes_properties', '');
   } },
     ]);
   } },

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -36,7 +34,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   scene.text('</table></center>');
   // TODO-QSP: end
   if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[0]) {
-    // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[0]
+    qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[0] ?? 0));
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/system/image_needed.png');
@@ -45,14 +43,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Sign up', handler: (st: GameState) => {
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_names[0]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_names ?? 0)?.[0] ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -146,14 +144,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/city/residential/clinic/experiments/pill${(Math.floor(Math.random() * 3) + 2)}.jpg`);
     // TODO-QSP: dynamic text: The doctor observes as you swallow the pill and then makes a note on a clipboard...
     scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[0]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[0] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
     ]);
   } else {
     if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[1]) {
-      // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[1]
+      qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[1] ?? 0));
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       qspCall(s, 'stat', '');
       scene.text('We have developed a cream, based on natural hormones, which enhances the natural growth of breasts, leading to fuller and more natural looking breasts.');
@@ -162,18 +160,18 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Sign up', handler: (st: GameState) => {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['times_participated_1'] = ((st as any).experimentQW['times_participated_1'] ?? 0) + (1);
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[1]", { location: "city_experimental_trials_list" });
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[1]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_sections ?? 0)?.[1] ?? 0);
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = (((st as any).trial_durations ?? 0)?.[1] ?? 0);
     if (((st as any).therapistQW ?? 0)?.['breast_cream'] === 1) {
       ((st as any).therapistQW = (st as any).therapistQW ?? {})['breast_cream'] = 2;
     }
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -190,14 +188,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).temp_doc ?? '')} puts on a pair of latex gloves and grabs a generic white tube. Squeezing a large amount of white cream into his hands, he starts massaging it into your breasts.`);
     // TODO-QSP: dynamic text: The massage continues for about a minute, at which point <<$temp_doc>> steps awa...
     scene.text(`The massage continues for about a minute, at which point ${((st as any).temp_doc ?? '')} steps away and takes off his gloves. "Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[1]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[1] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
       ]);
     } else {
       if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[2]) {
-        // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[2]
+        qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[2] ?? 0));
         (s as any).minut = ((s as any).minut ?? 0) + 2;
         qspCall(s, 'stat', '');
         scene.text('We have developed a hair extension shampoo which enhances your natural hair growth, leading to longer, fuller and glossier hair.');
@@ -206,15 +204,15 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Sign up', handler: (st: GameState) => {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['times_participated_2'] = ((st as any).experimentQW['times_participated_2'] ?? 0) + (1);
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[2]", { location: "city_experimental_trials_list" });
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[2]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_sections ?? 0)?.[2] ?? 0);
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = (((st as any).trial_durations ?? 0)?.[2] ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -230,14 +228,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).temp_doc ?? '')} puts on a pair of latex gloves and grabs a generic chestnut brown tube. He squeezes a large amount of beige cream into his hands and starts massaging it into your hair and scalp.`);
     // TODO-QSP: dynamic text: The massage continues for about a minute, at which point <<$temp_doc>> steps awa...
     scene.text(`The massage continues for about a minute, at which point ${((st as any).temp_doc ?? '')} steps away and takes off his gloves. "Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[2]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[2] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
         ]);
       } else {
         if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[3]) {
-          // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[3]
+          qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[3] ?? 0));
           (s as any).minut = ((s as any).minut ?? 0) + 2;
           qspCall(s, 'stat', '');
           scene.text('We have developed a general aphrodisiac to put you and your partner in the mood and ready to go for hours.');
@@ -247,15 +245,15 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Sign up', handler: (st: GameState) => {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['times_participated_3'] = ((st as any).experimentQW['times_participated_3'] ?? 0) + (1);
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[3]", { location: "city_experimental_trials_list" });
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[3]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_sections ?? 0)?.[3] ?? 0);
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = (((st as any).trial_durations ?? 0)?.[3] ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -270,14 +268,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/clinic/experiments/pill1.jpg');
     // TODO-QSP: dynamic text: The doctor observes as you swallow the pill and then makes a note on a clipboard...
     scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[3]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[3] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
           ]);
         } else {
           if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[4]) {
-            // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[4]
+            qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[4] ?? 0));
             (s as any).minut = ((s as any).minut ?? 0) + 2;
             qspCall(s, 'stat', '');
             scene.text('Disappointed by your genetic disposition to a flat behind, but afraid of invasive surgery? We at Kardashian Medics have heard you and developed our patented<sup>*</sup> KBI treatment! Get a behind like ours!');
@@ -288,15 +286,15 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Sign up', handler: (st: GameState) => {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['times_participated_4'] = ((st as any).experimentQW['times_participated_4'] ?? 0) + (1);
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[4]", { location: "city_experimental_trials_list" });
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[4]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_sections ?? 0)?.[4] ?? 0);
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = (((st as any).trial_durations ?? 0)?.[4] ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -311,14 +309,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).temp_doc ?? '')} briefly searches through a drawer and pulls out a syringe filled with a light brownish liquid. A mild sting and a small injection in each bottock, and you are done.`);
     // TODO-QSP: dynamic text: "Thank you for your participation, Miss <<$pcs_lastname>>. We''ll speak again so...
     scene.text(`"Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[4]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[4] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
             ]);
           } else {
             if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[5]) {
-              // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[5]
+              qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[5] ?? 0));
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               qspCall(s, 'stat', '');
               scene.text('Do you want a baby, but are having problems getting pregnant? Fear not, for we have developed the answer! Just one shot and your chances of bringing that little ray of sunshine into your life will quadruple!');
@@ -327,15 +325,15 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Sign up', handler: (st: GameState) => {
     ((st as any).experimentQW = (st as any).experimentQW ?? {})['times_participated_5'] = ((st as any).experimentQW['times_participated_5'] ?? 0) + (1);
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[5]", { location: "city_experimental_trials_list" });
-    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[5]", { location: "city_experimental_trials_list" });
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_active'] = (((st as any).trial_sections ?? 0)?.[5] ?? 0);
+    ((st as any).experimentQW = (st as any).experimentQW ?? {})['trial_duration'] = (((st as any).trial_durations ?? 0)?.[5] ?? 0);
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[0]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[0] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc1.jpg');
     } else {
-      (st as any).temp_doc = qspUntranslated(s, "exp_docs[1]", { location: "city_experimental_trials_list" });
+      (st as any).temp_doc = (((st as any).exp_docs ?? 0)?.[1] ?? 0);
       scene.img('images/locations/city/residential/clinic/experiments/doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
@@ -350,7 +348,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).temp_doc ?? '')} briefly searches through a drawer and pulls out a syringe filled with a bubbling red liquid. A sharp sting and an injection into your lower stomach, and you are done.`);
     // TODO-QSP: dynamic text: "Thank you for your participation, Miss <<$pcs_lastname>>. We''ll speak again so...
     scene.text(`"Thank you for your participation, Miss ${((st as any).pcs_lastname ?? '')}. We'll speak again soon."`);
-    // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[5]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).trial_pays ?? 0)?.[5] ?? 0)]; enterActReturn(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -363,7 +361,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'city_experimental_trials_list', 'killvars');
+    qspCall(st, 'city_experimental_trials_list', '');
   }, goto: ['city_experimental_trials', 'front_desk'] },
   ]);
   scene.build();
@@ -434,9 +432,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).cetl_i = 0;
     // TODO-QSP: :therapist_overwrite_loop
     // TODO-QSP: $trial_names[cetl_i]  = $trial_names[1]
-    ((s as any).trial_pays = (s as any).trial_pays ?? {})[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_pays[1]", { location: "city_experimental_trials_list" });
+    ((s as any).trial_pays = (s as any).trial_pays ?? {})[String((s as any).cetl_i ?? 0)] = (((s as any).trial_pays ?? 0)?.[1] ?? 0);
     // TODO-QSP: $trial_sections[cetl_i]  = $trial_sections[1]
-    ((s as any).trial_maxs = (s as any).trial_maxs ?? {})[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_maxs[1]", { location: "city_experimental_trials_list" });
+    ((s as any).trial_maxs = (s as any).trial_maxs ?? {})[String((s as any).cetl_i ?? 0)] = (((s as any).trial_maxs ?? 0)?.[1] ?? 0);
     (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
     if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
       // TODO-QSP: jump 'therapist_overwrite_loop'

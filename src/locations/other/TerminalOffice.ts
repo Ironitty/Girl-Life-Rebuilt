@@ -133,7 +133,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'The small trinkets cost ' + String(qspFunc(s, 'money', 'string_price', 100) ?? '') + '. Please put in how many trinkets you want to purchase.', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 13;
-    // TODO-QSP: BuyQuantity = input("How many trinkets do you want to buy for <<$func('money', 'string_price', 100)>> apiece?")
+    (st as any).BuyQuantity = window.prompt("How many trinkets do you want to buy for " + (qspFunc(s, 'money', 'string_price', 100)) + " apiece?") ?? '';
     if (((st as any).BuyQuantity ?? 0) > (((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0))) {
       // TODO-QSP: dynamic text: '<b><font color=red>You have nowhere to store the surplus <<BuyQuantity-(MaxQuan...
       scene.text(`<b><font color=red>You have nowhere to store the surplus ${((st as any).BuyQuantity ?? '')-(((st as any).MaxQuantityHome ?? '') + ((st as any).MaxQuantityGarage ?? ''))} ` + ((((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0)) === 1) ? ('trinket') : ('trinkets')) + '.</front></b>');

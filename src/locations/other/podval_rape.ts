@@ -50,7 +50,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
       } else {
         if (((s as any).tiprand ?? 0) === 2) {
-          qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+          qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri');
+          qspCall(s, 'dinsex', 'analsex');
           qspCall(s, 'arousal', 'bj', 15, 'group', 'sub', 'rough');
           qspCall(s, 'arousal', 'anal', (-15), 'group', 'sub', 'rough');
           qspCall(s, 'stat', '');
@@ -59,8 +60,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       (s as any).ciklkm = ((s as any).ciklkm ?? 0) - (1);
       if (((s as any).ciklkm ?? 0) > 0) {
-        qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 11) + 18));
-        qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 11) + 18));
+        qspCall(s, 'boyStat', '$npclastgenerated');
         qspCall(s, 'arousal', 'vaginal', 15, 'group', 'sub');
         qspCall(s, 'stat', '');
         scene.actions([

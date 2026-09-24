@@ -1064,7 +1064,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text('With that she softly pushes you out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['nichBathMaster', 'return'] },
     ]);
   } },
@@ -1083,7 +1083,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text(`"What the hell are you doing, ${((st as any).pcs_nickname ?? '')}?! First you break up with me and then you want to fuck me anyways? Get lost!"`);
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['nichBathMaster', 'return'] },
       ]);
     } else {
@@ -1093,7 +1093,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         scene.text(`"What the hell are you doing, ${((st as any).pcs_nickname ?? '')}?! I told you it's over! Get lost!"`);
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['nichBathMaster', 'return'] },
         ]);
       } else {
@@ -1104,7 +1104,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
           scene.text(`"What the hell are you doing, ${((st as any).pcs_nickname ?? '')}?! Get lost!"`);
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['nichBathMaster', 'return'] },
           ]);
         } else {
@@ -1128,7 +1128,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('Tanya smiles at you, but removes your hand and leaves, blowing you a kiss.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'outfit', '');
   }, goto: ['nichBathMaster', 'return'] },
       ]);
     } else {

@@ -4,11 +4,11 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_notes ?? 0)[String((s as any).locArgs?.[0] ?? '')] !== '') {
-    (s as any).result = ((s as any).npc_notes ?? 0)?.[((s as any).locArgs?.[0] ?? 0)];
+    (s as any).result = (((s as any).npc_notes ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] ?? 0);
     return;
   } else {
     if (((s as any).npc_notes ?? 0)['A' + String((s as any).locArgs?.[0] ?? '')] !== '') {
-      (s as any).result = ((s as any).npc_notes ?? 0)?.['A' + ((s as any).locArgs?.[0] ?? 0)];
+      (s as any).result = (((s as any).npc_notes ?? 0)?.['A' + ((s as any).locArgs?.[0] ?? 0)] ?? 0);
       return;
     }
   }

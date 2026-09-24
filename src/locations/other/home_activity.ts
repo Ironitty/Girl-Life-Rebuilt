@@ -147,7 +147,7 @@ function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pain', '', 3, 'head', 'ache');
+  qspCall(s, 'pain', '3', 'head', 'ache');
   if (((s as any).region ?? 0) === 'gad') {
     ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).clothingworntype ?? 0);
     ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).clothingwornnumber ?? 0);

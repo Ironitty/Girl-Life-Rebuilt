@@ -228,7 +228,7 @@ function enterServices(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
     { label: 'Tanning booth', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).salon_rate ?? 0)) === 0) {
@@ -612,7 +612,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
 function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -657,7 +657,7 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
 function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
   ((s as any).masseuse = (s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
-  // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
+  qspCall(s, 'jobs', 'set_rank', 'city_salon_masseuse', ((s as any).masseuse ?? 0)?.['pending_rank']);
   ((s as any).masseuse = (s as any).masseuse ?? {})['salon_state'] = '';
   ((s as any).masseuse = (s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
@@ -1383,7 +1383,7 @@ function enterHairRemoval(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
   ]);
   scene.build();
@@ -1393,15 +1393,15 @@ function enterWaxlegs(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_leghair = (-10);
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 1));
-  qspCall(s, 'pain', '', 5, 'legL', 'pull');
-  qspCall(s, 'pain', '', 5, 'legR', 'pull');
+  qspCall(s, 'pain', '5', 'legL', 'pull');
+  qspCall(s, 'pain', '5', 'legR', 'pull');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get your legs waxed, leaving them feeling silky smooth and completely hair free.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
   ]);
   scene.build();
@@ -1411,14 +1411,14 @@ function enterWaxpubic(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_pubes = (-10);
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 1));
-  qspCall(s, 'pain', '', 5, 'pubic', 'pull');
+  qspCall(s, 'pain', '5', 'pubic', 'pull');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get your pubic region waxed, leaving it feeling silky smooth and completely hair free.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
   ]);
   scene.build();
@@ -1429,16 +1429,16 @@ function enterWaxbody(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_leghair = (-10);
   (s as any).pcs_pubes = (-10);
   qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 1));
-  qspCall(s, 'pain', '', 5, 'legL', 'pull');
-  qspCall(s, 'pain', '', 5, 'legR', 'pull');
-  qspCall(s, 'pain', '', 5, 'pubic', 'pull');
+  qspCall(s, 'pain', '5', 'legL', 'pull');
+  qspCall(s, 'pain', '5', 'legR', 'pull');
+  qspCall(s, 'pain', '5', 'pubic', 'pull');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   scene.text('You get a full body hair removal treatment, giving you a smooth and completely hair free body.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
   ]);
   scene.build();
@@ -1876,7 +1876,7 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2500]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'What kind of massages are there?', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'massage_explain');
+    qspCall(st, 'salon', '');
   } },
       { label: 'Normal massage', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).salon_rate ?? 0)) === 0) {
@@ -2090,7 +2090,7 @@ function enterMagicMassage(s: GameState, scene: SceneBuilder): void {
 
 function enterThroatMassage(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'undress');
-  qspCall(s, 'npcgeneratec', '', 0, 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
   (s as any).salon_masseur_id = ((s as any).npclastgenerated ?? 0);
   qspCall(s, 'arousal', 'foreplay', 15);
   qspCall(s, 'arousal', 'bj', 15, ((s as any).salon_masseur_id ?? 0));
@@ -2163,7 +2163,7 @@ function enterThroatMassage(s: GameState, scene: SceneBuilder): void {
 function enterHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   (s as any).cumnostd = 1;
   qspCall(s, 'outfit', 'undress');
-  qspCall(s, 'npcgeneratec', '', 0, 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
   (s as any).salon_masseur_id = ((s as any).npclastgenerated ?? 0);
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).salon_masseur_id ?? 0), 'rough');
   qspCall(s, 'stat', '');
@@ -2179,7 +2179,7 @@ function enterHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Moan incoherently', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', ((st as any).salon_masseur_id ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).salon_masseur_id ?? 0), 'rough', 'no_orgasm_msg');
     scene.img(`images/shared/sex/massage/creampie${(Math.floor(Math.random() * 3) + 2)}.mp4`);
@@ -2198,7 +2198,7 @@ function enterHardcoreMassage(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Inside! Inside!', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', ((st as any).salon_masseur_id ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).salon_masseur_id ?? 0), 'rough', 'no_orgasm_msg');
     scene.img(`images/shared/sex/massage/creampie${(Math.floor(Math.random() * 3) + 2)}.mp4`);
@@ -2251,9 +2251,9 @@ function enterHardcoreMassage(s: GameState, scene: SceneBuilder): void {
 function enterDoubleHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   (s as any).cumnostd = 1;
   qspCall(s, 'outfit', 'undress');
-  qspCall(s, 'npcgeneratec', '', 0, 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
   (s as any).salon_masseur_id = ((s as any).npclastgenerated ?? 0);
-  qspCall(s, 'npcgeneratec', '', 0, 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
   (s as any).salon_masseur2_id = ((s as any).npclastgenerated ?? 0);
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).salon_masseur_id ?? 0), 'rough');
   qspCall(s, 'arousal', 'bj', (-30), ((s as any).salon_masseur2_id ?? 0), 'rough');
@@ -2270,7 +2270,7 @@ function enterDoubleHardcoreMassage(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '"Mm-mm mmm" (inside please)', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', ((st as any).salon_masseur_id ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
     qspCall(st, 'cum_call', 'mouth', ((st as any).salon_masseur2_id ?? 0));
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'bj', (-5), ((st as any).salon_masseur2_id ?? 0), 'rough', 'no_orgasm_msg');
@@ -2324,7 +2324,7 @@ function enterDoubleHardcoreMassage(s: GameState, scene: SceneBuilder): void {
 function enterGentleMassage(s: GameState, scene: SceneBuilder): void {
   (s as any).cumnostd = 1;
   qspCall(s, 'outfit', 'undress');
-  qspCall(s, 'npcgeneratec', '', 0, 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
+  qspCall(s, 'npcgeneratec', '0', 'masseur', (Math.floor(Math.random() * 43) + 18), 0, 1);
   (s as any).salon_masseur_id = ((s as any).npclastgenerated ?? 0);
   qspCall(s, 'arousal', 'massage', 5);
   qspCall(s, 'arousal', 'vaginal', 25, ((s as any).salon_masseur_id ?? 0));
@@ -2340,7 +2340,7 @@ function enterGentleMassage(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Inside', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '', ((st as any).salon_masseur_id ?? 0));
+    qspCall(st, 'cum_call', '', ((st as any).salon_masseur_id ?? 0));
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).salon_masseur_id ?? 0), 'rough', 'no_orgasm_msg');
     qspCall(st, 'stat', '');
@@ -2401,7 +2401,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'salon', 'cleanvar');
+    qspCall(st, 'salon', '');
   }, goto: ['salon', 'start'] },
   ]);
   scene.build();

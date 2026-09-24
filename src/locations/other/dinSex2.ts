@@ -80,14 +80,14 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You feel <<$xyr>> fake penis enter your pussy. This gives you a nice tingling fe...
       scene.text(`You feel ${((s as any).xyr ?? '')} fake penis enter your pussy. This gives you a nice tingling feeling between your legs, but ${((s as any).xyr ?? '')} ${((s as any).dick ?? '')} cm rubber dick is significantly less than what your pussy needs. It is not big enough for you. Gradually a pleasant warmth and some pulsations start building up in your stomach. Then the feeling decreases a little and remains like that until the end${((s as any).temp_mens ?? '')}.`);
     }
-    // TODO-QSP: gs 'arousal', 'vaginal_strap', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], ...
+    qspCall(s, 'arousal', 'vaginal_strap', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   } else {
     (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain while tears start to flow from...
     scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain while tears start to flow from your eyes when ${((s as any).boydesc ?? '')} penetrates you, breaking your hymen. You moan while crying and ${((s as any).xyr ?? '')} rubber ${((s as any).dick ?? '')} centimeter dick fucks your bloody pussy.`);
-    // TODO-QSP: gs 'arousal', 'vaginal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[...
+    qspCall(s, 'arousal', 'vaginal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   }
   // TODO-QSP: end
   scene.build();
@@ -134,14 +134,14 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You feel the dildo penetrating your pussy. Between your legs feels nice, but the...
       scene.text(`You feel the dildo penetrating your pussy. Between your legs feels nice, but the ${((s as any).dick ?? '')}cm dildo is a bit too small for your pussy. Gradually, a warm and throbbing feeling grows in your lower abdomen, then the feeling slightly subsides and remains steady until the end of${((s as any).temp_mens ?? '')}.`);
     }
-    // TODO-QSP: gs 'arousal', 'vaginal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+    qspCall(s, 'arousal', 'vaginal_dildo', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   } else {
     (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You bite your lip in pain while tears stream from your eyes when the bottle ente...
     scene.text(`You bite your lip in pain while tears stream from your eyes when the bottle enters you, breaking your hymen. You cry out in pain and afterwards reveals a bloody bottle${((s as any).temp_mens ?? '')}.`);
-    // TODO-QSP: gs 'arousal', 'vaginal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+    qspCall(s, 'arousal', 'vaginal_dildo', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   }
   // TODO-QSP: end
   scene.build();
@@ -192,7 +192,7 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
       scene.text(`You feel like your anus is stretching when ${((s as any).xyr ?? '')} fake shaft enters you. You start to moan rhythmically in unison with ${((s as any).xyr ?? '')} fake cock's movements inside of you.`);
     }
   }
-  // TODO-QSP: gs 'arousal', 'anal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+  qspCall(s, 'arousal', 'anal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   // TODO-QSP: end
   scene.build();
 }
@@ -243,7 +243,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
       scene.text('You moan in pleasure when the bottle moves inside your ass.');
     }
   }
-  // TODO-QSP: gs 'arousal', 'anal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+  qspCall(s, 'arousal', 'anal_dildo', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   // TODO-QSP: end
   scene.build();
 }
@@ -367,8 +367,8 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: gs 'arousal', 'vaginal',  ARGS[1] / 2, $npcID1, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $A...
-  // TODO-QSP: gs 'arousal', 'anal',    ARGS[1] / 2, $npcID2, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $AR...
+  qspCall(s, 'arousal', 'vaginal', ((s as any).locArgs?.[1] ?? 0) / 2, ((s as any).npcID1 ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0));
+  qspCall(s, 'arousal', 'anal', ((s as any).locArgs?.[1] ?? 0) / 2, ((s as any).npcID2 ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0));
   // TODO-QSP: end
   scene.build();
 }

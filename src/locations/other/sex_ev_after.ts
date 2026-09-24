@@ -114,7 +114,7 @@ function enterStopHere(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -438,10 +438,10 @@ function enterWellContinue2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him lead', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'he_choose_position');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     { label: 'Foreplay', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_foreplay', 'foreplay_choose');
+    qspCall(st, 'sex_ev_foreplay', '');
   } },
     { label: 'Sex', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['no_condom'] !== 1) {
@@ -459,8 +459,8 @@ function enterTapOut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dick_desc ?? 0) === 'long'  ||  ((s as any).dick_desc ?? 0) === 'huge'  ||  ((s as any).dick_desc ?? 0) === 'enormous'  ||  ((s as any).dick_desc ?? 0) === 'lengthy'  ||  ((s as any).dick_desc ?? 0) === 'gigantic'  ||  ((s as any).dick_desc ?? 0) === 'monstrous'  &&  (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl')) {
       scene.actions([
         { label: 'Tap out (too big)', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 4, 'cervix', 'ache');
-    qspCall(st, 'pain', '', 4, 'vaginal', 'stretch');
+    qspCall(st, 'pain', '4', 'cervix', 'ache');
+    qspCall(st, 'pain', '4', 'vaginal', 'stretch');
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['tap_out'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['sore_pussy'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
@@ -495,7 +495,7 @@ function enterTapOut(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sex_ev_sex', 'position_choose');
       scene.actions([
         { label: 'Let him lead', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'he_choose_position');
+    qspCall(st, 'sex_ev_sex', '');
   } },
       ]);
     } else {
@@ -531,7 +531,7 @@ function enterTapOut(s: GameState, scene: SceneBuilder): void {
         scene.text('He laughs aloud, not seeming to care much that your pussy is sore beyond belief.');
         scene.actions([
           { label: 'Finish sex', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_after', 'after_sex1');
+    qspCall(st, 'sex_ev_after', '');
   } },
         ]);
       }
@@ -581,7 +581,7 @@ function enterStopHurry1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Pull apart', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_after', 'stop_hurry2');
+    qspCall(st, 'sex_ev_after', '');
   } },
     ]);
   } },
@@ -720,10 +720,10 @@ function enterNoCondomEnd(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'sex_ev_sex', 'reset');
           scene.actions([
             { label: 'Let him lead', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'he_choose_position');
+    qspCall(st, 'sex_ev_sex', '');
   } },
             { label: 'Sex', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'position_choose');
+    qspCall(st, 'sex_ev_sex', '');
   } },
           ]);
         } else {
@@ -754,10 +754,10 @@ function enterBoySleep(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'talking') {
     scene.text('"Hey, do you-"');
     // TODO-QSP: dynamic text: You turn to face <<$npc_usedname[$npcID]>> as you start talking and realize he i...
-    scene.text(`You turn to face ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} as you start talking and realize he isn't listening. His eyes are closed, his breathing soft and relaxed. He fell asleep...`);
+    scene.text(`You turn to face ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} as you start talking and realize he isn't listening. His eyes are closed, his breathing soft and relaxed. He fell asleep...`);
   } else {
     // TODO-QSP: dynamic text: It''s been a while since <<$npc_usedname[$npcID]>> has moved and glancing at him...
-    scene.text(`It's been a while since ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} has moved and glancing at him, you see his eyes are closed, his breathing soft and relaxed. He's fallen asleep...`);
+    scene.text(`It's been a while since ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} has moved and glancing at him, you see his eyes are closed, his breathing soft and relaxed. He's fallen asleep...`);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAfterSex2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -1514,7 +1514,7 @@ function enterCumClean(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Never mind', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   } },
@@ -1688,41 +1688,41 @@ function enterLoverRoomDesc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
       if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s apartment is neat and tidy.
-        scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s apartment is neat and tidy.`);
+        scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s apartment is neat and tidy.`);
       } else {
         if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
           // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s apartment is a bit of a mess with a sink of unwashe...
-          scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s apartment is a bit of a mess with a sink of unwashed dishes, cluttered tabletops, and randomly thrown clothing.`);
+          scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s apartment is a bit of a mess with a sink of unwashed dishes, cluttered tabletops, and randomly thrown clothing.`);
         } else {
           // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s apartment feels very "lived in." Not messy exactly,...
-          scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s apartment feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis.`);
+          scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s apartment feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis.`);
         }
       }
     } else {
       if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
         if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s fancy bedroom is neat, tidy, and well kept.
-          scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s fancy bedroom is neat, tidy, and well kept.`);
+          scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s fancy bedroom is neat, tidy, and well kept.`);
         } else {
           if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
             // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s bedroom is a bit of a mess with. The tops of his dr...
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s bedroom is a bit of a mess with. The tops of his dressers are cluttered with items, the bed you're laying in doesn't seem like it's been made properly in ages, and you can see clothes randomly littering the floor of his walk-in closet.`);
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s bedroom is a bit of a mess with. The tops of his dressers are cluttered with items, the bed you're laying in doesn't seem like it's been made properly in ages, and you can see clothes randomly littering the floor of his walk-in closet.`);
           } else {
             // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s bedroom feels very "lived in." Not messy exactly, b...
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s bedroom feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis`);
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s bedroom feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis`);
           }
         }
       } else {
         if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s bedroom is neat and tidy.
-          scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s bedroom is neat and tidy.`);
+          scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s bedroom is neat and tidy.`);
         } else {
           if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
             // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s bedroom is a bit of a mess with overflowing bins of...
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s bedroom is a bit of a mess with overflowing bins of dirty laundry, cluttered dressers, and random items littering the floor.`);
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s bedroom is a bit of a mess with overflowing bins of dirty laundry, cluttered dressers, and random items littering the floor.`);
           } else {
             // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>''s bedroom feels very "lived in." Not messy exactly, b...
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s bedroom feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis.`);
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}'s bedroom feels very "lived in." Not messy exactly, but everything just askew enough to know what gets used on a regular basis.`);
           }
         }
       }
@@ -1833,12 +1833,12 @@ function enterAfterSex2(s: GameState, scene: SceneBuilder): void {
     scene.text(`You wait patiently on the bed for ${((st as any).npcdesc ?? '')} to finish his shower.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_shower', 'boy_shower_finish');
+    qspCall(st, 'sex_ev_shower', '');
   } },
     ]);
   } },
           { label: 'Join him in the shower', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_shower', 'shower_join1');
+    qspCall(st, 'sex_ev_shower', '');
   } },
         ]);
       }
@@ -1931,13 +1931,13 @@ function enterBathroomAfter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['sleepover'] === 0) {
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_shower', 'after_alone');
+    qspCall(st, 'sex_ev_shower', '');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_morning', 'shower');
+    qspCall(st, 'sex_ev_morning', '');
   } },
       ]);
     }
@@ -2291,7 +2291,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: gs 'arousal', 'kiss', -10, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(s, 'arousal', 'kiss', (-10), 'no_orgasm_msg', ((s as any).sex_ev ?? 0)?.['prostitution_flag']);
       qspCall(s, 'arousal', 'kiss', (Math.floor(Math.random() * 2) + 2));
       // TODO-QSP: dynamic text: You lean over to kiss <<$npcdesc>>, gently pressing your lips against his. Insta...
       scene.text(`You lean over to kiss ${((s as any).npcdesc ?? '')}, gently pressing your lips against his. Instantly, it sparks something within you and the kiss takes on a passion of its own and you find yourself drinking him in; his taste, his scent, his tongue, feverishly pressing your faces together as if you might die at any second.`);
@@ -2407,7 +2407,7 @@ function enterDrinkWater2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/after/drink1.jpg');
   scene.text('"Could I get some more water?" you ask.');
   // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> hands you a bottle and you drink from it gratefully.
-  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} hands you a bottle and you drink from it gratefully.`);
+  scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} hands you a bottle and you drink from it gratefully.`);
   qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
   scene.build();
@@ -2473,7 +2473,7 @@ function enterDrinkVodka2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/after/drink1.jpg');
   scene.text('"Can I get another hit of that vodka?" you ask.');
   // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> hands you a bottle and you take a swig of it gratefull...
-  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} hands you a bottle and you take a swig of it gratefully.`);
+  scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} hands you a bottle and you take a swig of it gratefully.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkVodkaEffect(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
   // TODO-QSP: end
@@ -2835,7 +2835,7 @@ function enterSmokeCiga1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_after', 'after_sex2');
+    qspCall(st, 'sex_ev_after', '');
   } },
   ]);
   scene.build();
@@ -3372,7 +3372,7 @@ function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).alko ?? 0) > 6) {
         qspCall(s, 'sleep_simple', 'simple');
-        qspCall(s, 'pain', '', 3, 'head', 'ache');
+        qspCall(s, 'pain', '3', 'head', 'ache');
       } else {
         qspCall(s, 'sleep_simple', 'simple');
       }
@@ -3385,7 +3385,7 @@ function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
     if (((s as any).alko ?? 0) > 6) {
       ((s as any).sex_ev = (s as any).sex_ev ?? {})['hangover'] = 1;
       qspCall(s, 'sleep_simple', 'simple');
-      qspCall(s, 'pain', '', 3, 'head', 'ache');
+      qspCall(s, 'pain', '3', 'head', 'ache');
     } else {
       qspCall(s, 'sleep_simple', 'simple');
     }

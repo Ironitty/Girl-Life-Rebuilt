@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -134,10 +132,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/pavlovsk/resident/apartment/garage/father/sex/father.misha0,${(Math.floor(Math.random() * 2) + 0)}.jpg`);
     scene.text('You meekly nod and fall to your knees in front of them, reaching for their hard dicks.');
     scene.text('Since they have been talking about "punishment" non-stop, you do your best to keep them happy. Maybe they\'ll go easy on you? You obediently put your lips around your stepfather\'s dick, diligently sucking him off while you massage your uncle\'s rod with your hand at the same time. A while later, the roles are reversed, and Uncle Misha\'s dick is deep down your throat as you try to keep your stepfather happy.');
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'deepthroat', 'group'
-    // TODO-QSP: gs 'arousal', 'hj', -5, $npcID[2], 'sub', 'group'
-    // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub', 'deepthroat', 'group'
-    // TODO-QSP: gs 'arousal', 'hj', -5, $npcID[1], 'sub', 'group'
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'deepthroat', 'group');
+    qspCall(st, 'arousal', 'hj', (-5), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group');
+    qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'deepthroat', 'group');
+    qspCall(st, 'arousal', 'hj', (-5), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -146,11 +144,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your stepfather agrees. "You''re right. <<$pcs_nickname>> should be punished pro...
     scene.text(`Your stepfather agrees. "You're right. ${((st as any).pcs_nickname ?? '')} should be punished properly." Then turning his attention to you, he says, "Go on, ${((st as any).pcs_nickname ?? '')}, spread those cute little legs of yours. After that, it's time for your real punishment."`);
     // TODO-QSP: dynamic text: You open your legs wide and <<lcase(mid($boydesc[2],1,1))>><<mid($boydesc[2],2,l...
-    scene.text(`You open your legs wide and ${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))} enters your pussy, while you suck your ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))}. Neither of them is too gentle about it. Within seconds, you find yourself gagging on cock on one end and being roughly pounded on the other. After a while, they change positions. You can tell this is definitely not the first time they've used a girl together. You're surprised at the number of positions they manage to fuck you in, but at the same time, are too horny to care and just enjoy your "punishment".`);
-    // TODO-QSP: gs 'arousal', 'bj', 15, $npcID[1], 'sub', 'deepthroat', 'group', 'rough'
-    // TODO-QSP: gs 'arousal', 'vaginal', -15, $npcID[2], 'sub', 'group', 'rough'
-    // TODO-QSP: gs 'arousal', 'bj', 15, $npcID[2], 'sub', 'deepthroat', 'group', 'rough'
-    // TODO-QSP: gs 'arousal', 'vaginal', -15, $npcID[1], 'sub', 'group', 'rough'
+    scene.text(`You open your legs wide and ${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))} enters your pussy, while you suck your ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))}. Neither of them is too gentle about it. Within seconds, you find yourself gagging on cock on one end and being roughly pounded on the other. After a while, they change positions. You can tell this is definitely not the first time they've used a girl together. You're surprised at the number of positions they manage to fuck you in, but at the same time, are too horny to care and just enjoy your "punishment".`);
+    qspCall(st, 'arousal', 'bj', 15, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'deepthroat', 'group', 'rough');
+    qspCall(st, 'arousal', 'vaginal', (-15), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+    qspCall(st, 'arousal', 'bj', 15, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'deepthroat', 'group', 'rough');
+    qspCall(st, 'arousal', 'vaginal', (-15), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -159,26 +157,26 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).stepmisha = (Math.floor(Math.random() * 13) + 0);
     if ((!((st as any).stepmisha ?? 0))) {
       scene.img(`images/characters/pavlovsk/resident/misha/sex/misha.cum0,${(Math.floor(Math.random() * 2) + 0)}.jpg`);
-      // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
-      // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1
+      qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+      qspCall(st, 'cum_call', 'face', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
       scene.text('Eventually, they\'re close enough to reach orgasm, telling you to get on your knees and take it on your face like a good little slut. You simply get down on your knees and do everything they say, having way too much of a good time to cause any trouble. They drop their loads on your face one at a time while you try to lick off any bits of cum that drop close enough to your mouth. Then, being fully satisfied by you, they drop back into their chairs and resume their drinking, not paying any more attention to you.');
       qspCall(st, 'arousal', 'end');
     } else {
       if (((st as any).stepmisha ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/father.misha1,5.jpg');
-        // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[1], 'sub', 'group', 'rough'
-        // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[2], 'sub', 'group', 'rough'
-        // TODO-QSP: gs 'cum_call', '', $boy[2], 1
-        // TODO-QSP: gs 'cum_call', 'anus', $boy[1], 1
+        qspCall(st, 'arousal', 'anal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+        qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+        qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
+        qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
         scene.text('Finally, Uncle Misha fills up your pussy, while your stepfather comes inside your ass.');
         qspCall(st, 'arousal', 'end');
       } else {
         if (((st as any).stepmisha ?? 0) === 2) {
           scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/garagefuck.mp4');
-          // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[2], 'sub', 'group', 'rough'
-          // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[1], 'sub', 'group', 'rough'
-          // TODO-QSP: gs 'cum_call', '', $boy[1], 1
-          // TODO-QSP: gs 'cum_call', 'anus', $boy[2], 1
+          qspCall(st, 'arousal', 'anal', 10, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+          qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+          qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+          qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
           scene.text('Finally, your stepfather fills up your pussy, while Uncle Misha comes inside your ass.');
           qspCall(st, 'arousal', 'end');
         } else {
@@ -187,10 +185,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: jump 'misha_tootight'
             }
             scene.img('images/shared/sex/group/doublevag2.mp4');
-            // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[1], 'sub', 'group', 'rough'
-            // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[2], 'sub', 'group', 'rough'
-            // TODO-QSP: gs 'cum_call', '', $boy[1], 1
-            // TODO-QSP: gs 'cum_call', '', $boy[2], 1
+            qspCall(st, 'arousal', 'vaginal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+            qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+            qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+            qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
             qspCall(st, 'npc_relationship', 'modify', 'A28', 2);
             scene.text('Finally, they force their cocks in your pussy simultaneously and push up inside you. The gravity helps them move you down on them to the hilt, but you still feel incredibly complete with their dicks.');
             scene.text('For a few minutes, your pussy feels almost too tight. You moan and hang on while they piston inside your tight cunt, and in the end, they both cum inside of you simultaneously.');
@@ -198,73 +196,73 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((st as any).stepmisha ?? 0) === 5) {
               scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/father.misha1,0.jpg');
-              // TODO-QSP: gs 'arousal', 'bj', 10, $npcID[1], 'sub', 'group', 'rough'
-              // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[2], 'sub', 'group', 'rough'
-              // TODO-QSP: gs 'cum_call', '', $boy[2], 1
-              // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
+              qspCall(st, 'arousal', 'bj', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+              qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+              qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
+              qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
               // TODO-QSP: dynamic text: Finally your <<lcase(mid($boydesc[2],1,1))>><<mid($boydesc[2],2,len($boydesc[2])...
-              scene.text(`Finally your ${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))} fills up your pussy, while your ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))} fills up your mouth.`);
+              scene.text(`Finally your ${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))} fills up your pussy, while your ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))} fills up your mouth.`);
               qspCall(st, 'arousal', 'end');
             } else {
               if (((st as any).stepmisha ?? 0) === 6) {
                 scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/father.gar.1,0.jpg');
-                // TODO-QSP: gs 'arousal', 'bj', 10, $npcID[2], 'sub', 'group', 'rough'
-                // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[1], 'sub', 'group', 'rough'
-                // TODO-QSP: gs 'cum_call', '', $boy[1], 1
-                // TODO-QSP: gs 'cum_call', 'mouth', $boy[2], 1
+                qspCall(st, 'arousal', 'bj', 10, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+                qspCall(st, 'arousal', 'vaginal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+                qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+                qspCall(st, 'cum_call', 'mouth', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
                 // TODO-QSP: dynamic text: Finally your <<lcase(mid($boydesc[1],1,1))>><<mid($boydesc[1],2,len($boydesc[1])...
-                scene.text(`Finally your ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))} fills up your pussy, while your ${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))} fills up your mouth.`);
+                scene.text(`Finally your ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))} fills up your pussy, while your ${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))} fills up your mouth.`);
                 qspCall(st, 'arousal', 'end');
               } else {
                 if (((st as any).stepmisha ?? 0) >= 7  &&  ((st as any).stepmisha ?? 0) <= 8) {
-                  // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[2], 'sub', 'group', 'rough'
-                  // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[1], 'sub', 'group', 'rough'
-                  // TODO-QSP: gs 'cum_call', '', $boy[1], 1
-                  // TODO-QSP: gs 'cum_call', '', $boy[2], 1
+                  qspCall(st, 'arousal', 'vaginal', 10, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+                  qspCall(st, 'arousal', 'vaginal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+                  qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+                  qspCall(st, 'cum_call', '', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
                   scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/firstguy.mp4');
                   // TODO-QSP: dynamic text: "Seriously, come already!" says <<lcase(mid($boydesc[1],1,1))>><<mid($boydesc[1]...
-                  scene.text(`"Seriously, come already!" says ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))}, while watching his brother fuck you.`);
+                  scene.text(`"Seriously, come already!" says ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))}, while watching his brother fuck you.`);
                   scene.text('"Hang on, I\'m going to cum inside her puss… ahh… yeah, that\'s it!"');
                   // TODO-QSP: dynamic text: <<ucase(mid($boydesc[2],1,1))>><<mid($boydesc[2],2,len($boydesc[2])-1)>> pulls o...
-                  scene.text(`${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))} pulls out of your pussy, causing the pumped-in sperm to start to flow out, but it doesn't have much time.`);
+                  scene.text(`${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))} pulls out of your pussy, causing the pumped-in sperm to start to flow out, but it doesn't have much time.`);
                   scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/secondguy.mp4');
                   // TODO-QSP: dynamic text: <<ucase(mid($boydesc[1],1,1))>><<mid($boydesc[1],2,len($boydesc[1])-1)>> immedia...
-                  scene.text(`${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))} immediately jumps to the newly available hole, and stuffs his prick inside.`);
+                  scene.text(`${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))} immediately jumps to the newly available hole, and stuffs his prick inside.`);
                   // TODO-QSP: dynamic text: "Ohh, yeah!" groans your <<lcase(mid($boydesc[1],1,1))>><<mid($boydesc[1],2,len(...
-                  scene.text(`"Ohh, yeah!" groans your ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))}, cumming almost immediately inside your womb. "That's how you fuck a whore properly!"`);
+                  scene.text(`"Ohh, yeah!" groans your ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))}, cumming almost immediately inside your womb. "That's how you fuck a whore properly!"`);
                   // TODO-QSP: dynamic text: "All right, get lost, <<$pcs_nickname>>!" says <<lcase(mid($boydesc[2],1,1))>><<...
-                  scene.text(`"All right, get lost, ${((st as any).pcs_nickname ?? '')}!" says ${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))}, while slapping your ass. "We are done."`);
+                  scene.text(`"All right, get lost, ${((st as any).pcs_nickname ?? '')}!" says ${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))}, while slapping your ass. "We are done."`);
                   (st as any).cump = 3;
                   qspCall(st, 'arousal', 'end');
                 } else {
                   if (((st as any).stepmisha ?? 0) >= 9  &&  ((st as any).stepmisha ?? 0) <= 10) {
-                    // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[2], 'sub', 'group', 'rough'
-                    // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[1], 'sub', 'group', 'rough'
-                    // TODO-QSP: gs 'cum_call', 'anus', $boy[1], 1
-                    // TODO-QSP: gs 'cum_call', 'anus', $boy[2], 1
+                    qspCall(st, 'arousal', 'anal', 10, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+                    qspCall(st, 'arousal', 'anal', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+                    qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
+                    qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
                     scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/firstguy.mp4');
                     // TODO-QSP: dynamic text: "Seriously, come already!" says <<$boydesc[2]>>, watching his brother fucking yo...
-                    scene.text(`"Seriously, come already!" says ${qspUntranslated(s, "boydesc[2]", { location: "misha" })}, watching his brother fucking you.`);
+                    scene.text(`"Seriously, come already!" says ${(((st as any).boydesc ?? 0)?.[2] ?? '')}, watching his brother fucking you.`);
                     scene.text('"Hang on, I\'m going to cum inside her ass soon… ahh… yeah, that\'s it!"');
                     // TODO-QSP: dynamic text: <<ucase(mid($boydesc[1],1,1))>><<mid($boydesc[1],2,len($boydesc[1])-1)>> pulls o...
-                    scene.text(`${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))} pulls out of your gaping anus, causing the pumped-in sperm to start to flow out, but it doesn't have much time.`);
+                    scene.text(`${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))} pulls out of your gaping anus, causing the pumped-in sperm to start to flow out, but it doesn't have much time.`);
                     scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/secondguy.mp4');
                     // TODO-QSP: dynamic text: <<ucase(mid($boydesc[2],1,1))>><<mid($boydesc[2],2,len($boydesc[2])-1)>> immedia...
-                    scene.text(`${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))} immediately jumps to the newly available hole, and stuffs his prick inside.`);
+                    scene.text(`${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))} immediately jumps to the newly available hole, and stuffs his prick inside.`);
                     // TODO-QSP: dynamic text: "Ohh, yeah!" groans your <<lcase(mid($boydesc[2],1,1))>><<mid($boydesc[2],2,len(...
-                    scene.text(`"Ohh, yeah!" groans your ${(String((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[2]", { location: "misha" })).length)-1)))}, cumming almost immediately inside your colon. "That's how you fuck a whore properly!"`);
+                    scene.text(`"Ohh, yeah!" groans your ${(String((String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[2] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[2] ?? '')).length)-1)))}, cumming almost immediately inside your colon. "That's how you fuck a whore properly!"`);
                     // TODO-QSP: dynamic text: "All right, get lost, <<$pcs_nickname>>!" says <<lcase(mid($boydesc[1],1,1))>><<...
-                    scene.text(`"All right, get lost, ${((st as any).pcs_nickname ?? '')}!" says ${(String((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).slice((2)-1, ((2)-1)+((String(qspUntranslated(s, "boydesc[1]", { location: "misha" })).length)-1)))}, while slapping your ass. "We are done."`);
+                    scene.text(`"All right, get lost, ${((st as any).pcs_nickname ?? '')}!" says ${(String((String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((1)-1, ((1)-1)+(1)))).toLowerCase())}${(String((((st as any).boydesc ?? 0)?.[1] ?? '')).slice((2)-1, ((2)-1)+((String((((st as any).boydesc ?? 0)?.[1] ?? '')).length)-1)))}, while slapping your ass. "We are done."`);
                     qspCall(st, 'arousal', 'end');
                   } else {
                     if (((st as any).pcs_ass ?? 0) < 15) {
                       // TODO-QSP: jump 'misha_tootight'
                     }
                     scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/doubleanal.mp4');
-                    // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[2], 'sub', 'group', 'rough'
-                    // TODO-QSP: gs 'arousal', 'anal', -10, $npcID[1], 'sub', 'group', 'rough'
-                    // TODO-QSP: gs 'cum_call', 'anus', $boy[2], 1
-                    // TODO-QSP: gs 'cum_call', 'anus', $boy[1], 1
+                    qspCall(st, 'arousal', 'anal', 10, (((st as any).npcID ?? 0)?.[2] ?? 0), 'sub', 'group', 'rough');
+                    qspCall(st, 'arousal', 'anal', (-10), (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group', 'rough');
+                    qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[2] ?? 0), 1);
+                    qspCall(st, 'cum_call', 'anus', (((st as any).boy ?? 0)?.[1] ?? 0), 1);
                     qspCall(st, 'npc_relationship', 'modify', 'A28', 2);
                     qspCall(st, 'stat', '');
                     scene.text('Finally, they both force their cocks in your ass simultaneously and push up inside of you. The gravity helps you slide down on them to the hilt, but you still feel incredibly complete with their dicks.');

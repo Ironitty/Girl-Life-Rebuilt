@@ -119,7 +119,7 @@ function enterSlutReconcileSchoolCheck(s: GameState, scene: SceneBuilder): void 
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReconcile(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspGoto(s, 'natbel_friend', 'slut_reconcile_school_event', '$ARGS[1]');
+  qspGoto(s, 'natbel_friend', 'slut_reconcile_school_event', String((s as any).locArgs?.[1] ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -1202,7 +1202,7 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'kickboxing_funcs', 'init_fight_vars');
     ((st as any).kickbox = (st as any).kickbox ?? {})['opponent'] = (((st as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     ((st as any).temp_kickboxVars = (st as any).temp_kickboxVars ?? {})['fight_type'] = 1;
-    // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
+    qspCall(st, 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', ((st as any).kickbox ?? 0)?.['opponent']);
     qspGoto(st, 'havana_kickboxing', 'match');
   } },
             ]);
@@ -2261,7 +2261,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['bday_invite'] = 1;
     qspCall(st, 'money', 'pay', 1000);
     qspCall(st, 'time', 'to_daystart', ((st as any).year ?? 0), 7, 6);
-    // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
+    qspCall(st, 'time', 'to_date', ((st as any).dateVars ?? 0)?.['daystart']);
     ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['bday_day'] = (((st as any).dateVars ?? {})?.['daystart'] ?? 0) + ((13 - (((st as any).dateVars ?? {})?.['week'] ?? 0)) % 7);
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha7.jpg');

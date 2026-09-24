@@ -114,7 +114,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((st as any).temp_doses ?? 0) * 360) !== 1  ||  ((st as any).temp_doses ?? 0) <= 0) {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
-        // TODO-QSP: gs 'money', 'pay', temp_doses * 360
+        qspCall(st, 'money', 'pay', ((st as any).temp_doses ?? 0) * 360);
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cocaine'] = ((st as any).mc_inventory['cocaine'] ?? 0) + (((st as any).temp_doses ?? 0));
         scene.text('You quickly pull your purse out and pay him, hoping nobody saw you giving him money, and he passes you the doses you\'ve paid for. You can safely sniff the stuff at home.');
       }
@@ -520,8 +520,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('"Hey, you\'re not one of us! Are you one of Stella\'s goons? Let\'s see you try and \'collect\' for her after I knock your teeth out!"');
-      qspCall(s, 'npcgeneratec', '', 0, 'Stoned Prostitute', (Math.floor(Math.random() * 16) + 15));
-      qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', 'Stoned Prostitute', (Math.floor(Math.random() * 16) + 15));
+      qspCall(s, 'boyStat', '$npclastgenerated');
       scene.actions([
         { label: 'Fight back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -553,8 +553,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Fight back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    qspCall(st, 'npcgeneratec', '', 0, 'Bandit', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Bandit', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'bandit');
     qspGoto(st, 'fight', 'start');
@@ -567,8 +567,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
         (st as any).guy = ((st as any).guy ?? 0) + (1);
         qspCall(st, 'money', 'earn', 500);
         qspCall(st, 'arousal_funcs', 'stretch', 'oral', 1);
-        qspCall(st, 'npcgeneratec', '', 0, 'Client', (Math.floor(Math.random() * 16) + 15));
-        qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+        qspCall(st, 'npcgeneratec', '0', 'Client', (Math.floor(Math.random() * 16) + 15));
+        qspCall(st, 'boyStat', '$npclastgenerated');
         qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
         qspCall(st, 'dinSex', 'std_trigger_oral');
         scene.img('images/locations/highway/sex/car.jpg');
@@ -603,8 +603,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
   } },
             { label: 'Fight back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
-    qspCall(st, 'npcgeneratec', '', 0, 'Prostitute', (Math.floor(Math.random() * 16) + 15));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Prostitute', (Math.floor(Math.random() * 16) + 15));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'prostitute');
     qspGoto(st, 'fight', 'start');
@@ -626,8 +626,8 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
 function enterRape1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+  qspCall(s, 'boyStat', '$npclastgenerated');
   scene.img('images/locations/city/centralpark/sex/rape.jpg');
   scene.text('You\'re suddenly hit on the head and wake up sometime later in a bush with some guy holding you firmly in place.');
   scene.text('As you look down at yourself, you realize that you\'re not wearing anything, but before you can even react, the man suddenly rams his dick into your pussy.');
@@ -699,8 +699,8 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     (s as any).parkrand = (Math.floor(Math.random() * 11) + 0);
     if (((s as any).parkrand ?? 0) >= 8) {
       scene.text('A man steps out of the shadow of a tree and runs up to you. Before you can react, he grabs you and starts dragging you into the bushes.');
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-      qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+      qspCall(s, 'boyStat', '$npclastgenerated');
       if (((s as any).succubusQW ?? 0) === 14) {
         scene.actions([
           { label: 'Lure him in and feed (this can take a lot of time)', handler: (st: GameState) => {

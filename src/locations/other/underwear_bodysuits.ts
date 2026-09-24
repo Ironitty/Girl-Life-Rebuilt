@@ -76,7 +76,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
+    qspCall(s, 'underwear_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_bodysuits', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'underwear_bodysuits', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -111,7 +111,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
+    qspCall(s, 'underwear_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_bodysuits', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'underwear_bodysuits', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -244,7 +244,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
     // TODO-QSP: exit
   }
-  // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
+  qspCall(s, 'underwear_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_bodysuits', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).BraQuality ?? 0))) {
     // TODO-QSP: exit
   }

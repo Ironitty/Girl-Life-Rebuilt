@@ -430,7 +430,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
     scene.text('You open your eyes and notice the large bulge in his pants. As you turn your head and give him a sweet smile, you put your hand on the bulge and gently start to pet it. Your stepfather, without hesitation, unbuttons his pants and pulls out his dick. You, also without hesitation, lower your head and give it a lick.');
     scene.actions([
       { label: 'Get down on your knees', handler: (st: GameState) => {
-    qspCall(st, 'fathersex', 'fatherblow4');
+    qspCall(st, 'fathersex', '');
   } },
     ]);
   } },
@@ -470,7 +470,7 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
       scene.text('You open your eyes and notice the large bulge in his pants. As you turn your head and give him a sweet smile, you put your hand on the bulge and gently start to pet it. Your stepfather, without hesitation, unbuttons his pants and pulls out his dick. You, also without hesitation, lower your head and give it a lick.');
       scene.actions([
         { label: 'Get down on your knees', handler: (st: GameState) => {
-    qspCall(st, 'fathersex', 'fatherblow4');
+    qspCall(st, 'fathersex', '');
   } },
       ]);
     }

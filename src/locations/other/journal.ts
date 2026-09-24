@@ -285,7 +285,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: 'Your school social group consists of nerds, geeks and good students.' + $journal_school_standing
             if (((s as any).nerd_game ?? 0)?.['game_day'] > ((s as any).daystart ?? 0)) {
               // TODO-QSP: dynamic text: 'You have been invited to a games night on <<$weekName[(week + (nerd_game[''game...
-              scene.text(`You have been invited to a games night on ${((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))]} at 20:00 in the community center library.`);
+              scene.text(`You have been invited to a games night on ${(((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))] ?? '')} at 20:00 in the community center library.`);
             }
             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
               // TODO-QSP: dynamic text: 'You have been invited to a games night tonight at ' + func('time', 'get_time_st...
@@ -1028,13 +1028,13 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       if (((s as any).kid ?? 0) === 1) {
         // TODO-QSP: dynamic text: You have a child, a <<$polreb[0]>> named <<$kidname[0]>>. Born <<daykid[0]>>-<<m...
-        scene.text(`You have a child, a ${qspUntranslated(s, "polreb[0]", { location: "journal" })} named ${qspUntranslated(s, "kidname[0]", { location: "journal" })}. Born ${qspUntranslated(s, "daykid[0]", { location: "journal" })}-${qspUntranslated(s, "monthkid[0]", { location: "journal" })}-${qspUntranslated(s, "yearkid[0]", { location: "journal" })}. Aged ${qspUntranslated(s, "kidage[0]", { location: "journal" })}.`);
+        scene.text(`You have a child, a ${(((s as any).polreb ?? 0)?.[0] ?? '')} named ${(((s as any).kidname ?? 0)?.[0] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[0] ?? '')}-${(((s as any).monthkid ?? 0)?.[0] ?? '')}-${(((s as any).yearkid ?? 0)?.[0] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[0] ?? '')}.`);
       } else {
         scene.text('You have children:');
         // TODO-QSP: :LoopKidCounter
         if (((s as any).i ?? 0) < ((s as any).kid ?? 0)) {
           // TODO-QSP: dynamic text: <br> a <<$polreb[i]>> named <<$kidname[i]>>. Born <<daykid[i]>>-<<monthkid[i]>>-...
-          scene.text(`<br> a ${((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? ''} named ${((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? ''}. Born ${((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}-${((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}-${((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}. Aged ${((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? ''}.`);
+          scene.text(`<br> a ${(((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? '')} named ${(((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? '')}.`);
           (s as any).i = ((s as any).i ?? 0) + (1);
           // TODO-QSP: jump 'LoopKidCounter'
         }
@@ -1044,17 +1044,17 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     (s as any).jnl_max_i = 0;
     // TODO-QSP: :loverjournalloop
     if (((s as any).jnl_i ?? 0) < ((s as any).jnl_max_i ?? 0)) {
-      // TODO-QSP: gs 'npcStat', $lover[jnl_i], 'j'
-      if ((String(((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
+      qspCall(s, 'npcStat', '', (((s as any).lover ?? 0)?.[String((s as any).jnl_i ?? 0)] ?? 0), 'j');
+      if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
         (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
         // TODO-QSP: jump 'loverjournalloop'
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
         // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars[''marry_day'']>> days. Your hu...
-        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Member ${((s as any).dick_desc10 ?? '')} cock and ${((s as any).dick_girth10 ?? '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''}.`);
+        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Member ${((s as any).dick_desc10 ?? '')} cock and ${((s as any).dick_girth10 ?? '')}. Relationship ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')}.`);
       } else {
         // TODO-QSP: dynamic text: Your <<$npcrelat10>> <<$npcdesc10>> is <<$npcheight10>> and <<$npcbuild10>> with...
-        scene.text(`Your ${((s as any).npcrelat10 ?? '')} ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)]} days dating.`);
+        scene.text(`Your ${((s as any).npcrelat10 ?? '')} ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Your relationship is ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} after ${(((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? '')} dates and ${((s as any).daystart ?? '') - (((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? 0)} days dating.`);
       }
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] > 1) {
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID10 ?? 0)] === 1) {
@@ -1117,7 +1117,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :jur_loop
   if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
     // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic ''killvar''''$zapis'''',<<jur_temp>>...
-    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
+    scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }
@@ -1213,7 +1213,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :class_loop
     if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).j ?? 0))) {
       // TODO-QSP: dynamic text: <<$class_list_name[k]>>: <<$class_grade_desc[''<<$class_list_institution[k]>>_<<...
-      scene.text(`${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}_grade']>>`);
+      scene.text(`${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}_grade']>>`);
     }
     (s as any).k = ((s as any).k ?? 0) + (1);
     if (((s as any).k ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
@@ -1258,7 +1258,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
           if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
             // TODO-QSP: dynamic text: You think you''re doing great in <<$class_list_name[j]>> and will probably pass ...
-            scene.text(`You think you're doing great in ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} and will probably pass with a top grade if you keep this up.`);
+            scene.text(`You think you're doing great in ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} and will probably pass with a top grade if you keep this up.`);
             if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
               scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
             } else {
@@ -1271,7 +1271,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] > (2 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
               // TODO-QSP: dynamic text: You''re following the <<$class_list_name[j]>> class well and will probably pass ...
-              scene.text(`You're following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
+              scene.text(`You're following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
               if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
                 scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
               } else {
@@ -1288,7 +1288,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (1 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
                 // TODO-QSP: dynamic text: You have trouble following the <<$class_list_name[j]>> class, but will probably ...
-                scene.text(`You have trouble following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
+                scene.text(`You have trouble following the ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
                 if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
                   scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
                 } else {
@@ -1305,7 +1305,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
                   // TODO-QSP: dynamic text: You will fail your <<$class_list_name[j]>> class unless you do something about i...
-                  scene.text(`You will fail your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class unless you do something about it right now. It might even be too late to catch up.`);
+                  scene.text(`You will fail your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class unless you do something about it right now. It might even be too late to catch up.`);
                   if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
                     scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you be even further from passing the class.');
                   } else {
@@ -1317,7 +1317,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
                   }
                 } else {
                   // TODO-QSP: dynamic text: You are hopelessly behind in your <<$class_list_name[j]>> class, but can probabl...
-                  scene.text(`You are hopelessly behind in your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
+                  scene.text(`You are hopelessly behind in your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
                   if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain'] + ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_weekly_grade_gain_breakeven_point']) {
                     scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of even passing the class worse.');
                   } else {
@@ -1349,30 +1349,30 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
           if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
             if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_exam_done'] === 1) {
               // TODO-QSP: dynamic text: You completed your <<$class_list_name[j]>> exam and think you will get an <<$cla...
-              scene.text(`You completed your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and think you will get an ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[j]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''}_grade']>>.`);
+              scene.text(`You completed your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and think you will get an ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[j]", { location: "journal" })}_${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')}_grade']>>.`);
             } else {
-              if (qspFunc(s, 'uni_programs', 'is_exam_over', ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) === 1) {
+              if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) === 1) {
                 // TODO-QSP: dynamic text: Your exam <<$class_list_name[j]>> is over, but you did not attend. This means yo...
-                scene.text(`Your exam ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
+                scene.text(`Your exam ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
               } else {
                 if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 40) {
                   // TODO-QSP: dynamic text: If your <<$class_list_name[j]>> exam was today, then you would fail. Time to hit...
-                  scene.text(`If your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
+                  scene.text(`If your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
                 } else {
                   if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 70) {
                     // TODO-QSP: dynamic text: You think you''ve prepared enough to pass your <<$class_list_name[j]>> exam, but...
-                    scene.text(`You think you've prepared enough to pass your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam, but if you want a good grade, then you'll need to do some serious studying.`);
+                    scene.text(`You think you've prepared enough to pass your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam, but if you want a good grade, then you'll need to do some serious studying.`);
                   } else {
                     if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 90) {
                       // TODO-QSP: dynamic text: You think that you''ve prepared pretty well for your <<$class_list_name[j]>> exa...
-                      scene.text(`You think that you've prepared pretty well for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably get a 4. With some more studying, you might get a 5.`);
+                      scene.text(`You think that you've prepared pretty well for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably get a 4. With some more studying, you might get a 5.`);
                     } else {
                       if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] < 100) {
                         // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
-                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with a 5, but a little more studying never hurts.`);
+                        scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with a 5, but a little more studying never hurts.`);
                       } else {
                         // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
-                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with the highest mark possible.`);
+                        scene.text(`You think you're well prepared for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and will probably pass with the highest mark possible.`);
                       }
                     }
                   }

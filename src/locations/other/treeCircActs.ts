@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).canTeleport ?? 0) === 1  &&  ((s as any).tpKnown ?? 0)[String((s as any).locArgs?.[0] ?? '')] === 1) {
-      (s as any).dynAction = 'act \'Will yourself to ' + ((s as any).treeCircName ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] + '\': gs \'castSpell\', \'teleport\', \'' + ((s as any).locArgs?.[0] ?? 0) + '\'';
+      (s as any).dynAction = 'act \'Will yourself to ' + (((s as any).treeCircName ?? 0)?.[((s as any).locArgs?.[0] ?? 0)] ?? 0) + '\': gs \'castSpell\', \'teleport\', \'' + ((s as any).locArgs?.[0] ?? 0) + '\'';
     }
   }
   scene.build();

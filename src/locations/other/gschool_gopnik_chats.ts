@@ -51,7 +51,7 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
     scene.text('You start yelling at Vitek about him fucking other girls. Vitek starts yelling at you before there\'s a sudden ringing in your head and your vision goes blurry.');
     scene.text('You find you\'re on the floor with Vitek standing over you. Your cheek burns with pain and it takes you a few seconds to figure out what happened. It seems he slapped you so hard that he knocked you off your feet.');
     scene.text('"Stay away from me, you fucking whore! It\'s over between us!"');
-    qspCall(st, 'pain', '', 7, 'cheeks', 'slap');
+    qspCall(st, 'pain', '7', 'cheeks', 'slap');
     qspCall(st, 'mood', 'lower', 'medium');
     qspCall(st, 'stat', '');
     scene.actions([

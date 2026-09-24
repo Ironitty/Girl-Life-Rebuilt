@@ -142,25 +142,25 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).st_count = 0;
     (s as any).show_table = '';
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 70  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 23)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)) {
-      qspCall(s, 'show_table', '', 'Apartment of Uncle <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027vasilyhome/u0027, /u0027home/u0027); return false;">Shulgin</a>.', '3');
+      qspCall(s, 'show_table', 'Apartment of Uncle <a href="exec:minut += 15 & gt \'vasilyhome\', \'home\'" >Shulgin</a>.', '3');
     } else {
       qspCall(s, 'show_table', 'Apartment of Uncle Shulgin.', '3');
     }
     if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
-      qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027artemhome/u0027, /u0027home/u0027); return false;">Artem Chebotarev</a>.', '3');
+      qspCall(s, 'show_table', 'Apartment of <a href="exec:minut += 15 & gt \'artemhome\', \'home\'">Artem Chebotarev</a>.', '3');
     }
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
       if ((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 6)  ||  (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) >= 6)) {
-        qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027JuliaMilHome/u0027, /u0027home/u0027); return false;">Julia Milova</a>.', '3');
+        qspCall(s, 'show_table', 'Apartment of <a href="exec:minut += 15 & gt \'JuliaMilHome\', \'home\'">Julia Milova</a>.', '3');
       } else {
         qspCall(s, 'show_table', 'Apartment of Julia Milova.', '3');
       }
     }
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
-      qspCall(s, 'show_table', '', 'Apartment of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.15; return s; }); window.__gameStore.getState().doGoto(/u0027natbelapt/u0027, /u0027home/u0027); return false;">Natasha Belova</a>.', '3');
+      qspCall(s, 'show_table', 'Apartment of <a href="exec:minut += 15 & gt \'natbelapt\', \'home\'">Natasha Belova</a>.', '3');
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] !== 0) {
-      qspCall(s, 'show_table', '', 'Messy home of <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027anushapt/u0027, /u0027home/u0027); return false;">Anushka Konstantinov</a>.', '3');
+      qspCall(s, 'show_table', 'Messy home of <a href="exec:minut += 10 & gt \'anushapt\', \'home\'">Anushka Konstantinov</a>.', '3');
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>

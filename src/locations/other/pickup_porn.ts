@@ -548,8 +548,8 @@ function enterTalentScoutMeet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'the porn talent scout', (Math.floor(Math.random() * 11) + 35));
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'npcgeneratec', '0', 'the porn talent scout', (Math.floor(Math.random() * 11) + 35));
+  qspCall(s, 'npcStat', '$npclastgenerated');
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sex/club_casting2.jpg');

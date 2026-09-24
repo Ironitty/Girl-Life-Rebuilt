@@ -247,7 +247,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cum…', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/cumshot/cum_cowgirl.mp4');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'cuminsidereact', '');
@@ -256,7 +256,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'More… Cum together', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     if (((st as any).pcs_horny ?? 0) >= 100) {
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
@@ -292,7 +292,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(st, 'boyStat', 'A28');
-      qspCall(st, 'cum_call', '', '', 'A28', 1);
+      qspCall(st, 'cum_call', '', 'A28', 1);
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
       (st as any).orgasm_or = 'yes';
@@ -316,7 +316,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'daddy wants more', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex6.mp4');
     scene.text('Your dad presses you against the wall and starts pounding your pussy, thrusting his throbbing cock deep inside you.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
@@ -336,7 +336,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/city/residential/sauna/sex/cumvaginal1.mp4');
     // TODO-QSP: dynamic text: With his cock deep inside you and between his moans and cum pumping deep inside ...
     scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((st as any).pcs_nickname ?? '')}."`);
@@ -398,7 +398,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cum…', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/cumshot/cum_cowgirl.mp4');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'cuminsidereact', '');
@@ -407,7 +407,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'More… Cum together', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     if (((st as any).pcs_horny ?? 0) >= 100) {
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
@@ -443,7 +443,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(st, 'boyStat', 'A28');
-      qspCall(st, 'cum_call', '', '', 'A28', 1);
+      qspCall(st, 'cum_call', '', 'A28', 1);
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
       (st as any).orgasm_or = 'yes';
@@ -467,7 +467,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'daddy wants more', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex6.mp4');
     scene.text('Your dad presses you against the wall and starts pounding your pussy, thrusting his throbbing cock deep inside you.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
@@ -487,7 +487,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A28');
-    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'cum_call', '', 'A28', 1);
     scene.img('images/locations/city/residential/sauna/sex/cumvaginal1.mp4');
     // TODO-QSP: dynamic text: With his cock deep inside you and between his moans and cum pumping deep inside ...
     scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((st as any).pcs_nickname ?? '')}."`);

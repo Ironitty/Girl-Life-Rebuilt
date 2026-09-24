@@ -245,7 +245,7 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Head back inside', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodils');
+    qspCall(st, 'dina', '');
   } },
       ]);
     }

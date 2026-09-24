@@ -124,7 +124,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set the Nicholas house as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['nichBedroomServant', ''] },
     ]);
   }
@@ -284,7 +284,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set the Nicholas house as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['nichBedroomServant', ''] },
     ]);
   }
@@ -444,7 +444,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([
       { label: 'Set the Nicholas house as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['nichBedroomServant', ''] },
     ]);
   }
@@ -505,7 +505,7 @@ function enterEvtBodyguardIntim1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes sir, I understand."');
   scene.text('He waits for another few seconds before gently stroking your hair and then releasing you.');
   scene.text('"Good girl. I would hate to actually hurt you." With this obvious lie, he leaves your room.');
-  qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+  qspCall(s, 'pain', '3', 'asscheeks', 'spank');
   (s as any).nichGalaOpinion = 2;
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -579,7 +579,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
         (s as any).nichGalaTarasPlan = 1;
         scene.actions([
           { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
         ]);
       } else {
@@ -593,7 +593,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
           (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
           scene.actions([
             { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
           ]);
         } else {
@@ -618,7 +618,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
             (s as any).saunaWhore = Math.max(((s as any).SaunaWhore ?? 0), 1);
             scene.actions([
               { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
             ]);
           } else {
@@ -638,7 +638,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
               (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
               scene.actions([
                 { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
               ]);
             } else {
@@ -660,7 +660,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                 (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                 scene.actions([
                   { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                 ]);
               } else {
@@ -683,7 +683,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                   (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                   scene.actions([
                     { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                   ]);
                 } else {
@@ -703,7 +703,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                     (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                     scene.actions([
                       { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                     ]);
                   } else {
@@ -718,7 +718,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'vaginal', 10, 'bound');
                       qspCall(s, 'arousal', 'end');
                       scene.text('After about 10 minutes, you feel him cumming inside of you.');
-                      qspCall(s, 'cum_call', '', '', 'A513', 1);
+                      qspCall(s, 'cum_call', '', 'A513', 1);
                       qspCall(s, 'stat', '');
                       scene.text('Without saying another word, he stands up and leaves the room.');
                       scene.text('He can\'t leave you tied up like this, can he?');
@@ -737,7 +737,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
     ]);
   } },
@@ -758,7 +758,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                         (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                         scene.actions([
                           { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                         ]);
                       } else {
@@ -767,7 +767,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                           scene.text('Suddenly you wake up. Your butt hurts. You realize that you are tied to your bed and that somebody is sitting next to you, spanking your ass.');
                           scene.text('"Silence, slut! You don\'t want to wake anybody up!"');
                           scene.text('Taras continues to spank you for about 30 minutes.');
-                          qspCall(s, 'pain', '', 8, 'asscheeks', 'spank');
+                          qspCall(s, 'pain', '8', 'asscheeks', 'spank');
                           (s as any).minut = ((s as any).minut ?? 0) + 30;
                           qspCall(s, 'stat', '');
                           scene.text('After a while he seems to get tired. His hits get less frequent and less painful.');
@@ -776,7 +776,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                           (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                           scene.actions([
                             { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                           ]);
                         } else {
@@ -809,7 +809,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
     ]);
   } },
@@ -830,7 +830,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                               (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
                               scene.actions([
                                 { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
                               ]);
                             } else {
@@ -862,7 +862,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
     ]);
   } },
@@ -878,7 +878,8 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
                                 scene.text('Opening your eyes, you only see the crotch of a man.');
                                 scene.text('"Good, you are finally awake."');
                                 scene.text('Of course it\'s Taras who is fucking your mouth.');
-                                qspCall(s, 'arousal', 'bj', 5, 'bound', 'rough', 'rape\' & gs \'stat');
+                                qspCall(s, 'arousal', 'bj', 5, 'bound', 'rough', 'rape');
+                                qspCall(s, 'stat', '');
                                 scene.actions([
                                   { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/taras/bed8x2.jpg');
@@ -896,13 +897,13 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('It doesn\'t take long before he cums inside of you.');
     scene.text('"Well done, slave."');
     qspCall(st, 'arousal', 'end');
-    qspCall(st, 'cum_call', '', '', 'A513', 1);
+    qspCall(st, 'cum_call', '', 'A513', 1);
     qspCall(st, 'stat', '');
     scene.text('He unties you and leaves your room again.');
     (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
-    qspCall(st, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', '');
   } },
     ]);
   } },

@@ -11,14 +11,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).husID ?? 0) !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+    qspCall(s, 'npcStat', '$husID');
   } else {
     if (((s as any).wifID ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).wifID ?? 0));
+      qspCall(s, 'npcStat', '$wifID');
     }
   }
   scene.text(`<center><b>${((s as any).npcdesc ?? '')}</b></center>`);
-  scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}`);
+  scene.img(`${(((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoverDiscription(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoverAction(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -47,7 +47,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoverDiscription(s: GameState, scene: SceneBuilder): void {
-  (s as any).spouse_birth_year = ((s as any).npc_dob ?? 0)?.[String((s as any).npcID ?? 0)] / 10000;
+  (s as any).spouse_birth_year = (((s as any).npc_dob ?? 0)?.[String((s as any).npcID ?? 0)] ?? 0) / 10000;
   if (((s as any).birthyear ?? 0) < ((s as any).spouse_birth_year ?? 0)) {
     (s as any).age_diff = ((s as any).npcAge ?? 0) - ((s as any).age ?? 0);
     (s as any).h_age = '' + ((s as any).npcdesc ?? 0) + ' was born in ' + ((s as any).spouse_birth_year ?? 0) + ', ' + ((s as any).xe ?? 0) + ' is ' + ((s as any).npcAge ?? 0) + ' years old. ' + ((s as any).xec ?? 0) + ' is ' + ((s as any).age_diff ?? 0) + ' years older than you';
@@ -126,12 +126,12 @@ function enterLoverAction(s: GameState, scene: SceneBuilder): void {
 function enterBedr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
     if (((s as any).npcID ?? 0) !== ((s as any).husID ?? 0)) {
-      qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+      qspCall(s, 'npcStat', '$husID');
     }
   } else {
     if (((s as any).wifID ?? 0) !== '') {
       if (((s as any).npcID ?? 0) !== ((s as any).wifID ?? 0)) {
-        qspCall(s, 'npcStat', '', ((s as any).wifID ?? 0));
+        qspCall(s, 'npcStat', '$wifID');
       }
     }
   }
@@ -456,7 +456,7 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
     return;
   }
   (s as any).sexpartkno = 1;
-  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', '$husID');
   qspCall(s, 'npcStat', 'A53', 1);
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10) {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -569,8 +569,8 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
       scene.text('Your husband is a little shocked by the idea, what would convince him? In a loud voice you continue, "Let him lick me while I caress you."');
       scene.text('The plumber tenses, waiting for the reaction of your husband, "Well, if only licking you, then let him." Says your husband. The plumber does not need persuading, your husband sits on the sofa, and you get on your knees and stick out your ass as the plumbers tongue penetrates your pussy.');
       scene.text('At first your husband keeps glancing in his direction, but soon relaxes and finally when the guy starts to finger your hole with a vengeance, he says nothing, you decide that he is no longer against you sharing with others.');
-      // TODO-QSP: gs 'arousal', 'cuni', 10, $npcID[1], 'sub', 'group'
-      // TODO-QSP: gs 'arousal', 'vaginal_finger', -10, $npcID[0], 'sub', 'group'
+      qspCall(st, 'arousal', 'cuni', 10, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group');
+      qspCall(st, 'arousal', 'vaginal_finger', (-10), (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group');
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Serve both', handler: (st: GameState) => {
@@ -592,8 +592,8 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
         scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
         scene.text('"It\'s not for nothing that they say all women are whores, hey man this whore wants to do both of us, but then the repair is free of charge." Says your husband. The plumber does need a second invite, he quickly approaches and pulls out his dick.');
         scene.text('Bringing it to your face, you cling to him and start to suck both cocks alternately, your husband stands carefully watching your actions "You like sucking fresh meat, but do not forget about me, and this boys and mine you swallow deeper and deeper."');
-        // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[0], 'sub', 'group'
-        // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'group'
+        qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[0] ?? 0), 'sub', 'group');
+        qspCall(st, 'arousal', 'bj', 5, (((st as any).npcID ?? 0)?.[1] ?? 0), 'sub', 'group');
         qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Serve both', handler: (st: GameState) => {

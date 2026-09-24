@@ -115,10 +115,10 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         scene.text(`In that instant, all the little moments the two of you have shared flash through your mind as it dawns on you that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is at work…`);
         scene.actions([
           { label: 'Daddy wants to join?', handler: (st: GameState) => {
-    qspCall(st, 'vanrPar', 'stepdad_sex');
+    qspCall(st, 'vanrPar', '');
   } },
           { label: 'Go away', handler: (st: GameState) => {
-    qspCall(st, 'vanrPar', 'stepdad_sex_no');
+    qspCall(st, 'vanrPar', '');
   } },
         ]);
       }
@@ -145,8 +145,8 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Invite him in for a chat', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'exhib', 'self', 'easy', 'incest');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['brother_voyeur', 'showertalk1'] },
           ]);
         }
@@ -162,8 +162,8 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Invite him into the shower with you', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'exhib', 'self', 'incest');
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
+    qspCall(st, 'willpower', '');
   }, goto: ['brother_voyeur', 'brother_shower_together'] },
           ]);
         }
@@ -352,7 +352,7 @@ function enterStepdadSexCreampie(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'ve never been filled up like this. You didn\'t even know it was <i>possible</i> for a man to cum this much!');
   scene.text('The thought alone is almost enough to make you forget the gravity of the situation - overcome with pleasure and on the cusp of orgasm - but your anger wins out.');
   qspCall(s, 'arousal', 'vaginal', 5, 'rough');
-  qspCall(s, 'cum_call', '', '', 'A28', 1);
+  qspCall(s, 'cum_call', '', 'A28', 1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

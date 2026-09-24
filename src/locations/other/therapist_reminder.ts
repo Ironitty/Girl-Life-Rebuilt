@@ -50,7 +50,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel bad about missing your appointment, but you have other things to do now. You tell yourself that you\'ll see him again as soon as possible.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_reminder', 'return');
+    qspCall(st, 'therapist_reminder', '');
   } },
     ]);
   } },
@@ -64,7 +64,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk to your therapist\'s office.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_reminder', 'therapist');
+    qspCall(st, 'therapist_reminder', '');
   } },
     ]);
   } },
@@ -81,7 +81,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel terrible about missing your appointment. You tell yourself that you\'ll see him again as soon as possible.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'therapist_reminder', 'return');
+    qspCall(st, 'therapist_reminder', '');
   } },
     ]);
   } },

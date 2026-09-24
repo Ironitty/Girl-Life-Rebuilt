@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'reset_CloVars');
   if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')))) {
-    // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
+    qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).CloQuality ?? 0))) {
     // TODO-QSP: exit

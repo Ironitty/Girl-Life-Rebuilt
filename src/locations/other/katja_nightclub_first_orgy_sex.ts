@@ -47,8 +47,8 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Join in having sex with the guys', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['first_orgy'] = 'joining_in';
-    qspCall(st, 'npcgeneratec', '', 1, 'brown_dress', (Math.floor(Math.random() * 5) + 19), 4);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'e');
+    qspCall(st, 'npcgeneratec', '1', 'brown_dress', (Math.floor(Math.random() * 5) + 19), 4);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'e');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative1.jpg');
@@ -1390,8 +1390,8 @@ function enterFirstOrgyJoin10(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstOrgyPlayerTakesInitiative(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW = (s as any).katjaQW ?? {})['first_orgy'] = 'taking_initiative';
-  qspCall(s, 'npcgeneratec', '', 1, 'boob_window', (Math.floor(Math.random() * 5) + 19), 4);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
+  qspCall(s, 'npcgeneratec', '1', 'boob_window', (Math.floor(Math.random() * 5) + 19), 4);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'e');
   qspCall(s, 'arousal', 'foreplay', 2, 'orgy');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_initiative1.jpg');

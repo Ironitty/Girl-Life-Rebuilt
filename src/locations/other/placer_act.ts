@@ -9,8 +9,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'placer_man', '');
   (s as any).ev_name = ((s as any).placerStringParameter ?? 0)?.['ev_name'];
   if (((s as any).placerParameter ?? 0)?.['player_act'] === 0) {
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
+    qspCall(s, 'npcStat', '$npclastgenerated');
     qspCall(s, 'stat', '');
     if (((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
       (s as any).text_mod = ' Your girlfriend ' + ((s as any).ev_name ?? 0) + ' introduces herself too.';
@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).text_mod = '';
     }
     // TODO-QSP: $npc_usedname[$boy] = $npc_nickname[$boy]
-    (s as any).boydesc = ((s as any).npc_nickname ?? 0)?.[String((s as any).boy ?? 0)];
+    (s as any).boydesc = (((s as any).npc_nickname ?? 0)?.[String((s as any).boy ?? 0)] ?? 0);
     if (((s as any).placerParameter ?? 0)?.['recognize_status'] === 2) {
       if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 3) {
         scene.img('images/locations/pavlovsk/park/skver_znacom_1.jpg');
@@ -360,12 +360,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).i = 0;
     // TODO-QSP: :parkbj
     if (((st as any).i ?? 0) > 0) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), ((st as any).i ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
+      qspCall(st, 'npcStat', '$npclastgenerated', ((st as any).i ?? 0));
     }
-    // TODO-QSP: gs 'arousal', 'bj', temp_time_elapsed, $npcID[i], 'sub', 'group', 'humiliation', 'gangbang'
-    // TODO-QSP: gs 'arousal', 'hj', -temp_time_elapsed, $npcID[i], 'sub', 'group', 'humiliation', 'gangbang'
-    // TODO-QSP: gs 'cum_call', iif(rand(0, 1)=0, 'mouth', 'face'), $npcID[i]
+    qspCall(st, 'arousal', 'bj', ((st as any).temp_time_elapsed ?? 0), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0), 'sub', 'group', 'humiliation', 'gangbang');
+    qspCall(st, 'arousal', 'hj', -((st as any).temp_time_elapsed ?? 0), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0), 'sub', 'group', 'humiliation', 'gangbang');
+    qspCall(st, 'cum_call', '', (((Math.floor(Math.random() * 2) + 0)===0) ? ('mouth') : ('face')), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0));
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) < ((st as any).placerParameter ?? 0)?.['number_of_man']) {
       // TODO-QSP: jump 'parkbj'
@@ -416,12 +416,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).i = 0;
     // TODO-QSP: :parkbj2
     if (((st as any).i ?? 0) > 0) {
-      qspCall(st, 'npcgeneratec', '', 0, 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
-      qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), ((st as any).i ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Stranger', (Math.floor(Math.random() * 18) + 18), 0, 1);
+      qspCall(st, 'npcStat', '$npclastgenerated', ((st as any).i ?? 0));
     }
-    // TODO-QSP: gs 'arousal', 'bj', temp_time_elapsed, $npcID[i], 'sub', 'group', 'humiliation'
-    // TODO-QSP: gs 'arousal', 'hj', -temp_time_elapsed, $npcID[i], 'sub', 'group', 'humiliation'
-    // TODO-QSP: gs 'cum_call', iif(rand(0, 1)=0, 'mouth', 'face'), $npcID[i]
+    qspCall(st, 'arousal', 'bj', ((st as any).temp_time_elapsed ?? 0), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0), 'sub', 'group', 'humiliation');
+    qspCall(st, 'arousal', 'hj', -((st as any).temp_time_elapsed ?? 0), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0), 'sub', 'group', 'humiliation');
+    qspCall(st, 'cum_call', '', (((Math.floor(Math.random() * 2) + 0)===0) ? ('mouth') : ('face')), (((st as any).npcID ?? 0)?.[String((st as any).i ?? 0)] ?? 0));
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) < ((st as any).placerParameter ?? 0)?.['number_of_man']) {
       // TODO-QSP: jump 'parkbj2'

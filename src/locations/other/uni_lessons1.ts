@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1729,10 +1729,10 @@ function enterExaminationAndTreatment_101(s: GameState, scene: SceneBuilder): vo
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['meet_uni_class'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
-    // TODO-QSP: gt 'katja_uni', 'first_in_class_meet', $ARGS[0]
+    qspGoto(s, 'katja_uni', 'first_in_class_meet', String((s as any).locArgs?.[0] ?? ''));
   }
   if (((s as any).AlbinaQW ?? 0)?.['meet_uni_class'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'nursing') {
-    // TODO-QSP: gt 'albina_events', 'first_in_class_meet', $ARGS[0]
+    qspGoto(s, 'albina_events', 'first_in_class_meet', String((s as any).locArgs?.[0] ?? ''));
   }
   const arg = s.locArg;
   switch (arg) {

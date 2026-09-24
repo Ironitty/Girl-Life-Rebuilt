@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Tell him no and go to your work station', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     (st as any).salonslut = 0;
   }, goto: ['worksalon', 'start'] },
         ]);
@@ -325,13 +325,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'worksalon', 'start');
   } },
     { label: 'Have a snack (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'snack');
+    qspCall(st, 'food', '');
   } },
     { label: 'Eat a light meal (0:20)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'small_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Drink some water (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
   ]);
   scene.build();
@@ -353,7 +353,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Finish the massage', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['worksalon', 'start'] },
     ]);
@@ -361,8 +361,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck him off', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'guy massaged at ' + ((st as any).monthName ?? 0) + ' ' + ((st as any).day ?? 0) + ', ' + ((st as any).masstime ?? 0) + 'h', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy massaged at ' + ((st as any).monthName ?? 0) + ' ' + ((st as any).day ?? 0) + ', ' + ((st as any).masstime ?? 0) + 'h', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).sexstart = 1;
     (st as any).sexvar = 6;
     (st as any).guy = ((st as any).guy ?? 0) + (1);
@@ -383,8 +383,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', 1000);
     scene.img('images/locations/city/citycenter/mall/salon/wmass5.jpg');
     scene.text('You think for a moment and then smile to him and nod. "Be right back." Then you leave and fetch Masha. Once you start to undress, she does as well, following your lead. You both crawl on him, rubbing your breasts against him all over while you take turns jerking him off.');
-    qspCall(st, 'npcgeneratec', '', 0, 'guy massaged at ' + ((st as any).monthName ?? 0) + ' ' + ((st as any).day ?? 0) + ', ' + ((st as any).masstime ?? 0) + 'h', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'guy massaged at ' + ((st as any).monthName ?? 0) + ' ' + ((st as any).day ?? 0) + ', ' + ((st as any).masstime ?? 0) + 'h', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'willpower', 'bj', 'force');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -458,7 +458,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Tell him to fuck off and return to work', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
     (st as any).salonslut = 0;
   }, goto: ['worksalon', 'start'] },
       ]);

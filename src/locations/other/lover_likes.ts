@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterClotTypePrefTmp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ngp_pref[] = 'clothes_style_wealthy'
   // TODO-QSP: $ngp_pref[] = 'clothes_style_fetish'
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'no_clear');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'no_clear');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
@@ -54,7 +54,7 @@ function enterClotTypePrefTmp(s: GameState, scene: SceneBuilder): void {
 function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ngp_pref[] = 'clothes_quality_low'
   // TODO-QSP: $ngp_pref[] = 'clothes_quality_high'
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'no_clear');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'no_clear');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
@@ -97,7 +97,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClotTopPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_cleavage');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'clothes_cleavage');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'clothes_cleavage_none') {
       // TODO-QSP: $temp_text[0] = 'only a little bit of'
@@ -177,9 +177,9 @@ function enterClotTopPrefTmp(s: GameState, scene: SceneBuilder): void {
 
 function enterBottShorPrefTmp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloSkirt ?? 0) > 0) {
-    qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_skirt');
+    qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'clothes_skirt');
   } else {
-    qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_pants');
+    qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'clothes_pants');
   }
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -401,7 +401,7 @@ function enterBottShorPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClotThinPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_thin');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'clothes_thin');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
@@ -508,7 +508,7 @@ function enterBimbPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPierPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'cosmetics_piercings');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_piercings');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'cosmetics_piercings_none') {
     // TODO-QSP: dynamic text: <<$npcdesc>> is glad to see you wear no piercings.
     scene.text(`${((s as any).npcdesc ?? '')} is glad to see you wear no piercings.`);
@@ -553,7 +553,7 @@ function enterPierPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTattPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'cosmetics_tattoos');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_tattoos');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'cosmetics_tattoos_none') {
     // TODO-QSP: dynamic text: <<$npcdesc>> is glad to see you have no tattoos.
     scene.text(`${((s as any).npcdesc ?? '')} is glad to see you have no tattoos.`);
@@ -598,7 +598,7 @@ function enterTattPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLipsPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_lips');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_lips');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_lips_thin'  ||  ((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_lips_normal'  ||  ((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_lips_plump') {
     // TODO-QSP: dynamic text: <<$npcdesc>> makes a comment on how <<$Xe>> likes that your lips aren''t outrage...
     scene.text(`${((s as any).npcdesc ?? '')} makes a comment on how ${((s as any).Xe ?? '')} likes that your lips aren't outrageously huge.`);
@@ -623,7 +623,7 @@ function enterLipsPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMakePrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'cosmetics_makeup');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'cosmetics_makeup');
   if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_running')) {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
@@ -730,7 +730,7 @@ function enterMakePrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHairPref(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_color');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     (s as any).temp_pref = ((s as any).ngpPrefResult ?? 0)?.['HasPos'];
   } else {
@@ -780,7 +780,7 @@ function enterHairPref(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$npcdesc>> says to you curtly, "I am your <<$npc_nickname[$npcID]>> and all, b...
-          scene.text(`${((s as any).npcdesc ?? '')} says to you curtly, "I am your ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} and all, but girls with ${((s as any).pcs_haircolor ?? '')} hair just doesn't do it for me. I like girls with ${((s as any).temp_pref_haircol ?? '')} hair."`);
+          scene.text(`${((s as any).npcdesc ?? '')} says to you curtly, "I am your ${(((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} and all, but girls with ${((s as any).pcs_haircolor ?? '')} hair just doesn't do it for me. I like girls with ${((s as any).temp_pref_haircol ?? '')} hair."`);
         } else {
           // TODO-QSP: dynamic text: <<$npcdesc>> says with a candor tone, "You don''t look good at all with <<$pcs_h...
           scene.text(`${((s as any).npcdesc ?? '')} says with a candor tone, "You don't look good at all with ${((s as any).pcs_haircolor ?? '')} hair, but girls with ${((s as any).temp_pref_haircol ?? '')} hair look amazing."`);
@@ -793,7 +793,7 @@ function enterHairPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIQPrefTmp(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'stats_intel');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'stats_intel');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'stats_intel_dumb') {
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'stats_intel_normal') {
@@ -818,7 +818,7 @@ function enterIQPrefTmp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTitBoy(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_tits');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_tits');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_tits_small') {
@@ -964,7 +964,7 @@ function enterTitBoy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFigPref(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_bmi');
+  qspCall(s, 'npc_get_preference', '$npcID', 'randomPosIndNeg', 'body_bmi');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_bmi_starving'  ||  ((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'body_bmi_underweight') {

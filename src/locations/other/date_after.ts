@@ -884,7 +884,7 @@ function enterCoffeeAfter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_living_together ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
       { label: 'End the date', handler: (st: GameState) => {
-    qspCall(st, 'date_ev', 'date_finish');
+    qspCall(st, 'date_ev', '');
   }, goto: ['lover_home', 'kitchen'] },
     ]);
   } else {
@@ -1294,7 +1294,7 @@ function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).alko ?? 0) > 6) {
         qspCall(s, 'sleep_simple', 'simple');
-        qspCall(s, 'pain', '', 3, 'head', 'ache');
+        qspCall(s, 'pain', '3', 'head', 'ache');
       } else {
         qspCall(s, 'sleep_simple', 'simple');
       }
@@ -1305,7 +1305,7 @@ function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
     if (((s as any).alko ?? 0) > 6) {
       ((s as any).date_ev = (s as any).date_ev ?? {})['hangover'] = 1;
       qspCall(s, 'sleep_simple', 'simple');
-      qspCall(s, 'pain', '', 3, 'head', 'ache');
+      qspCall(s, 'pain', '3', 'head', 'ache');
     } else {
       qspCall(s, 'sleep_simple', 'simple');
     }

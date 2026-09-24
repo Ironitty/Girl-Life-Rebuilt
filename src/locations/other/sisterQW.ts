@@ -137,7 +137,7 @@ function enterSpy1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -169,7 +169,7 @@ function enterSpy2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -203,7 +203,7 @@ function enterSpy3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -236,7 +236,7 @@ function enterSpy4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -270,7 +270,7 @@ function enterSpy5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -357,7 +357,7 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['korrPar', ''] },
   ]);
   scene.build();
@@ -501,7 +501,7 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse to fuck Roma', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['sisterQW', 'refuse_to_fuck_roma'] },
       ]);
     }
@@ -542,7 +542,7 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
       (st as any).roma_cherry = 1;
       // TODO-QSP: dynamic text: When you nod your head in agreement, Roma pulls his dick out of your mouth and l...
       scene.text(`When you nod your head in agreement, Roma pulls his dick out of your mouth and lies down on his back. Anya encourages you to straddle him and takes hold of his dick to guide it as you lower yourself down. You feel the head of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick, already slick with drool, press up against your lips before you feel your hymen tearing as it slides into you. As you ride his cock, Anya licks and sucks at your clit, reducing the pain and causing the pleasure to be almost overwhelming.`);
-      qspCall(st, 'pain', '', 3, 'vaginal', 'tear');
+      qspCall(st, 'pain', '3', 'vaginal', 'tear');
       qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'group');
       qspCall(st, 'arousal', 'cuni', (-10), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
       qspCall(st, 'stat', '');

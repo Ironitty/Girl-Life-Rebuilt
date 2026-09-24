@@ -31,7 +31,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev = (s as any).date_ev ?? {})['type'] = 'cinema_date';
   // TODO-QSP: $date_ev[''] = 'cinema_date'
   ((s as any).date_ev = (s as any).date_ev ?? {})['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
-  qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
+  qspCall(s, 'npcStat', '$temp_npcID');
   // TODO-QSP: end
   scene.build();
 }
@@ -712,7 +712,7 @@ function enterBuyTicketsPayment(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).date_ev ?? 0)?.['pay_cost']) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', date_ev['pay_cost']
+      qspCall(st, 'money', 'pay', ((st as any).date_ev ?? 0)?.['pay_cost']);
       ((st as any).date_ev = (st as any).date_ev ?? {})['total_cost'] = ((st as any).date_ev['total_cost'] ?? 0) + (((st as any).date_ev ?? 0)?.['pay_cost']);
       ((st as any).date_ev = (st as any).date_ev ?? {})['pay_cost'] = 0;
       scene.text('You pay for the tickets.');
@@ -1123,7 +1123,7 @@ function enterBuySnacksPayment(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((st as any).date_ev ?? 0)?.['snack_cost']) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', date_ev['snack_cost']
+      qspCall(st, 'money', 'pay', ((st as any).date_ev ?? 0)?.['snack_cost']);
       ((st as any).date_ev = (st as any).date_ev ?? {})['total_cost'] = ((st as any).date_ev['total_cost'] ?? 0) + (((st as any).date_ev ?? 0)?.['snack_cost']);
       scene.text('You pay for the snacks.');
       scene.actions([
@@ -1209,7 +1209,7 @@ function enterMovieInterlude(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> whispers in your ear.
     scene.text(`${((s as any).npcdesc ?? '')} whispers in your ear.`);
     // TODO-QSP: dynamic text: "<i>Hey <<$npc_pcspetname[$npcID]>>…</i>" You hear the sound of a zipper and a q...
-    scene.text(`"<i>Hey ${((s as any).npc_pcspetname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}…</i>" You hear the sound of a zipper and a quick glance reveals that he's pulled his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} dick out. "<i>Suck me off…</i>"`);
+    scene.text(`"<i>Hey ${(((s as any).npc_pcspetname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}…</i>" You hear the sound of a zipper and a quick glance reveals that he's pulled his ${(((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} dick out. "<i>Suck me off…</i>"`);
     scene.actions([
       { label: 'Shush him', handler: (st: GameState) => {
     scene.text('"<i>Shhh!</i>" you hiss. "I\'m trying to watch the movie!"');
@@ -1415,7 +1415,7 @@ function enterTheaterBjCumPre(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.text('He starts panting and writhing between your lips. His hips <i>buck</i> into your mouth. It isn\'t long before you feel him quickly tapping your head.');
     // TODO-QSP: dynamic text: "<<$pcs_usedname[$npcID]>>-! I''m gonna cum-!"
-    scene.text(`"${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}-! I'm gonna cum-!"`);
+    scene.text(`"${(((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}-! I'm gonna cum-!"`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTheaterBjCumMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     ((s as any).date_ev = (s as any).date_ev ?? {})['surprise_throatpie'] = 1;

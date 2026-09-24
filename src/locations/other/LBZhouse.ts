@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'boyStat', '', ((s as any).lbz_npc ?? 0));
+  qspCall(s, 'boyStat', '$lbz_npc');
   scene.img('images/shared/sex/kiss/kiss.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> leads you back to his place, gently brushing your cheek, "You are r...
   scene.text(`${((s as any).boydesc ?? '')} leads you back to his place, gently brushing your cheek, "You are really hot, but I bet you know that already, don't you?" You start feeling a tingling sensation in your stomach. ${((s as any).boydesc ?? '')} lowers his hand, raising your face up towards his and gives you a slow, passionate kiss.`);
@@ -97,7 +97,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed, spreads your legs, and enters you without he...
     scene.text(`${((st as any).boydesc ?? '')} throws you on the bed, spreads your legs, and enters you without hesitation. Ignoring the sounds you make, he picks up the pace and fucks you hard, filling the room with wet slaps as he pounds your pussy. Out of the middle of nowhere he stops thrusting and cums inside, surprising you, but since you were going to let him cum inside you decide you aren't mad about it.`);
     qspCall(st, 'arousal', 'vaginal', 5);
-    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 0);
+    qspCall(st, 'cum_call', '', ((st as any).boy ?? 0), 0);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['LBZhouse', 'End'] },

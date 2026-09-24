@@ -245,7 +245,7 @@ function enterAndreyStasyaMarcus(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 1);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID2 ?? 0), 1);
     qspCall(st, 'cum_call', 'face', ((st as any).npcID2 ?? 0), 1);
-    qspCall(st, 'cum_cleanup', '', 12);
+    qspCall(st, 'cum_cleanup', '12');
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },

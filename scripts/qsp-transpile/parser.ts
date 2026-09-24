@@ -4,10 +4,18 @@ function isCleanGsArg(a: string): boolean {
   if (/^-?\d+(?:\.\d+)?$/.test(a)) return true;
   if (/^'.*'$/.test(a) || /^".*"$/.test(a)) return true;
   if (/^\$\w+$/.test(a)) return true;
+  if (/^\$\w+\[\d+\]$/.test(a)) return true;
+  if (/^\$\w+\['[^']*'\]$/.test(a)) return true;
+  if (/^\$\w+\[\$\w+\]$/.test(a)) return true;
   if (/^\$ARGS\[\d+\]$/.test(a)) return true;
   if (/^\$locat\[[^\]]*\]$/.test(a)) return true;
   if (/^[a-zA-Z_]\w*$/.test(a)) return true;
+  if (/^[a-zA-Z_]\w*\[\d+\]$/.test(a)) return true;
+  if (/^[a-zA-Z_]\w*\['[^']*'\]$/.test(a)) return true;
+  if (/^[a-zA-Z_]\w*\[\$\w+\]$/.test(a)) return true;
   if (/^[a-zA-Z_]\w*\(.*\)$/.test(a)) return true;
+  if (/^\$\w+\s*[+\-*/]\s*\d+$/.test(a)) return true;
+  if (/^[a-zA-Z_]\w*\[\d+\]\s*[+\-*/]\s*\d+$/.test(a)) return true;
   return false;
 }
 
@@ -69,15 +77,17 @@ function splitTopLevel(s: string): string[] {
   let depth = 0;
   let cur = '';
   let inStr = false;
+  let strCh = '';
   for (let i = 0; i < s.length; i++) {
     const ch = s[i];
     if (inStr) {
       cur += ch;
-      if (ch === "'") {
-        if (s[i + 1] === "'") { cur += "'"; i++; } else inStr = false;
+      if (ch === strCh) {
+        if (s[i + 1] === strCh) { cur += strCh; i++; } else inStr = false;
       }
-    } else if (ch === "'") {
+    } else if (ch === "'" || ch === '"') {
       inStr = true;
+      strCh = ch;
       cur += ch;
     } else if (ch === '(') {
       depth++;
@@ -342,6 +352,10 @@ interface ParseResult {
       const act: QspAct = { kind: 'act', label: isCostLabel ? label : `${label} [+${truncate(dynPart, 40)}]`, body: [] };
 
       if (rest) {
+        const gtVarTargetMatch = rest.match(/^gt\s+(\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\])?|\w+)\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*$/);
+        if (gtVarTargetMatch) {
+          act.inlineGoto = { target: gtVarTargetMatch[1], arg: (gtVarTargetMatch[3] && gtVarTargetMatch[3].startsWith("'") && gtVarTargetMatch[3].endsWith("'") ? gtVarTargetMatch[3].slice(1, -1) : gtVarTargetMatch[3]) || '', arg2: undefined };
+        } else {
         const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
@@ -381,6 +395,7 @@ interface ParseResult {
               }
             }
           }
+        }
         }
         i++;
       } else {
@@ -572,7 +587,7 @@ interface ParseResult {
     }
 
     // Goto: gt 'target', 'arg' or xgt 'target', 'arg'
-    const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s+(.+)$/);
+    const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s*(.+)$/);
     if (gtAnyMatch) {
       const argsStr = gtAnyMatch[1].trim();
       const args = argsStr.split(',').map(a => a.trim()).filter(Boolean);
@@ -595,24 +610,36 @@ interface ParseResult {
           if (a3Quoted) cleanA3 = a3.slice(1, -1);
           nodes.push({ kind: 'goto', target: t, arg: cleanA1, arg2: cleanA2 || undefined, arg3: cleanA3 || undefined, argQuoted: a1Quoted, arg2Quoted: a2Quoted, arg3Quoted: a3Quoted });
         } else {
-          nodes.push({ kind: 'goto', target, arg: args[1] || '', arg2: args[2] || undefined, arg3: args[3] || undefined });
+          const a1 = args[1] || '';
+          const a2 = args[2] || '';
+          const a3 = args[3] || '';
+          const a1Quoted = !!(a1 && a1.startsWith("'") && a1.endsWith("'"));
+          const a2Quoted = !!(a2 && a2.startsWith("'") && a2.endsWith("'"));
+          const a3Quoted = !!(a3 && a3.startsWith("'") && a3.endsWith("'"));
+          let cleanA1 = a1;
+          let cleanA2 = a2;
+          let cleanA3 = a3;
+          if (a1Quoted) cleanA1 = a1.slice(1, -1);
+          if (a2Quoted) cleanA2 = a2.slice(1, -1);
+          if (a3Quoted) cleanA3 = a3.slice(1, -1);
+          nodes.push({ kind: 'goto', target, arg: cleanA1, arg2: cleanA2 || undefined, arg3: cleanA3 || undefined, argQuoted: a1Quoted, arg2Quoted: a2Quoted, arg3Quoted: a3Quoted });
         }
       }
       i++;
       continue;
     }
 
-    // GS call: gs 'module', 'func', args...
-    const gsMatch = trimmed.match(/^gs\s+'([^']+)'\s*(?:,\s*'([^']+)')?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
+    // GS call: gs 'module', 'func', args... or gs $var, 'func', args...
+    const gsMatch = trimmed.match(/^gs\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+)\s*(?:,\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+))?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
     if (gsMatch) {
-      const module = gsMatch[1];
-      const func = gsMatch[2] || '';
-      const extraArgs = gsMatch[3] ? splitTopLevel(gsMatch[3]).map(a => a.trim()) : [];
-      if (extraArgs.every(isCleanGsArg)) {
-        nodes.push({ kind: 'gs', module, func, args: extraArgs });
-        i++;
-        continue;
-      }
+      const moduleRaw = gsMatch[1];
+      const module = moduleRaw.startsWith("'") ? unescapeQsp(moduleRaw.slice(1, -1)) : moduleRaw;
+      const funcRaw = gsMatch[4] || '';
+      const func = funcRaw.startsWith("'") ? unescapeQsp(funcRaw.slice(1, -1)) : (funcRaw || '');
+      const extraArgs = gsMatch[7] ? splitTopLevel(gsMatch[7]).map(a => a.trim()) : [];
+      nodes.push({ kind: 'gs', module, func, args: extraArgs });
+      i++;
+      continue;
     }
 
     // Time: minut += N
@@ -745,7 +772,7 @@ interface ParseResult {
     }
 
     // Goto with variable: gt $var or xgt $var (including dict access)
-    const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\])?|'[^']*'))?\s*$/);
+    const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\])?|'[^']*'))?\s*$/);
     if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
       nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[3] || '').replace(/^'|'$/g, '') });
       i++;
@@ -910,7 +937,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: j + 1 };
   }
 
-  if (trimmed.includes('&') && !trimmed.startsWith('act ') && !trimmed.startsWith('if ') && !trimmed.startsWith('end') && !trimmed.startsWith('else') && !trimmed.startsWith("'") && !trimmed.startsWith('gt ') && !trimmed.startsWith('gs ')) {
+  if (trimmed.includes('&') && !trimmed.startsWith('act ') && !trimmed.startsWith('if ') && !trimmed.startsWith('end') && !trimmed.startsWith('else') && !trimmed.startsWith("'") && !trimmed.startsWith('gt ')) {
     const parts = splitTopLevelAmp(trimmed);
     const stmtRe = /^(?:[\w$]+\[?\w*\]?\s*(?:\+=|-=|=)\s*|jump\s+|gt\s+|gs\s+|\*p\s+|\*s\s+|killvar\s+|dynamic\s+)/;
     if (parts.length > 1 && parts.every(p => stmtRe.test(p))) {
@@ -1152,33 +1179,42 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Goto or xgt
-  const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
-  if (gt4Match) {
-    nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
-    return { nodes, nextIdx: idx + 1 };
-  }
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
-  if (gtMatch) {
-    const rawA1 = gtMatch[2];
-    const rawA2 = gtMatch[3];
-    const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
-    const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
-    let a1 = rawA1;
-    let a2 = rawA2;
-    if (a1Quoted) a1 = a1.slice(1, -1);
-    if (a2Quoted) a2 = a2.slice(1, -1);
-    nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
+  const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s*(.+)$/);
+  if (gtAnyMatch) {
+    const argsStr = gtAnyMatch[1].trim();
+    const args = splitTopLevel(argsStr).map(a => a.trim()).filter(Boolean);
+    if (args.length >= 1) {
+      const target = args[0];
+      const isDynamicTarget = target.startsWith('$') || target.includes('<<');
+      const rawArgs = args.slice(1);
+      const a1Quoted = !!(rawArgs[0] && rawArgs[0].startsWith("'") && rawArgs[0].endsWith("'"));
+      const a2Quoted = !!(rawArgs[1] && rawArgs[1].startsWith("'") && rawArgs[1].endsWith("'"));
+      const a3Quoted = !!(rawArgs[2] && rawArgs[2].startsWith("'") && rawArgs[2].endsWith("'"));
+      const cleanArgs = rawArgs.map(a => {
+        const q = a.startsWith("'") && a.endsWith("'");
+        return q ? unescapeQsp(a.slice(1, -1)) : a;
+      });
+      const gotoNode = { kind: 'goto' as const, arg: cleanArgs[0] || '', arg2: cleanArgs[1] || undefined, arg3: cleanArgs[2] || undefined, argQuoted: a1Quoted, arg2Quoted: a2Quoted, arg3Quoted: a3Quoted };
+      if (!isDynamicTarget) {
+        const t = target.startsWith("'") && target.endsWith("'") ? unescapeQsp(target.slice(1, -1)) : target;
+        nodes.push({ ...gotoNode, target: t });
+      } else {
+        nodes.push({ ...gotoNode, target });
+      }
+    }
     return { nodes, nextIdx: idx + 1 };
   }
 
   // GS
-  const gsMatch = trimmed.match(/^gs\s+'([^']+)'\s*(?:,\s*'([^']+)')?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
+  const gsMatch = trimmed.match(/^gs\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+)\s*(?:,\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+))?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
   if (gsMatch) {
-    const extraArgs = gsMatch[3] ? splitTopLevel(gsMatch[3]).map(a => a.trim()) : [];
-    if (extraArgs.every(isCleanGsArg)) {
-      nodes.push({ kind: 'gs', module: gsMatch[1], func: gsMatch[2] || '', args: extraArgs });
-      return { nodes, nextIdx: idx + 1 };
-    }
+    const moduleRaw = gsMatch[1];
+    const module = moduleRaw.startsWith("'") ? moduleRaw.slice(1, -1) : moduleRaw;
+    const funcRaw = gsMatch[4] || '';
+    const func = funcRaw.startsWith("'") ? funcRaw.slice(1, -1) : (funcRaw || '');
+    const extraArgs = gsMatch[7] ? splitTopLevel(gsMatch[7]).map(a => a.trim()) : [];
+    nodes.push({ kind: 'gs', module, func, args: extraArgs });
+    return { nodes, nextIdx: idx + 1 };
   }
 
   // Time
@@ -1303,7 +1339,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Goto with variable: gt $var or xgt $var (including dict access)
-  const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\])?|'[^']*'))?\s*$/);
+  const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\])?|'[^']*'))?\s*$/);
   if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
     nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[3] || '').replace(/^'|'$/g, '') });
     return { nodes, nextIdx: idx + 1 };
@@ -1446,32 +1482,41 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
-  if (gt4Match) {
-    nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
-    return nodes;
-  }
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
-  if (gtMatch) {
-    const rawA1 = gtMatch[2];
-    const rawA2 = gtMatch[3];
-    const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
-    const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
-    let a1 = rawA1;
-    let a2 = rawA2;
-    if (a1Quoted) a1 = a1.slice(1, -1);
-    if (a2Quoted) a2 = a2.slice(1, -1);
-    nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
+  const gtAnyMatch = trimmed.match(/^(?:gt|xgt)\s*(.+)$/);
+  if (gtAnyMatch) {
+    const argsStr = gtAnyMatch[1].trim();
+    const args = splitTopLevel(argsStr).map(a => a.trim()).filter(Boolean);
+    if (args.length >= 1) {
+      const target = args[0];
+      const isDynamicTarget = target.startsWith('$') || target.includes('<<');
+      const rawArgs = args.slice(1);
+      const a1Quoted = !!(rawArgs[0] && rawArgs[0].startsWith("'") && rawArgs[0].endsWith("'"));
+      const a2Quoted = !!(rawArgs[1] && rawArgs[1].startsWith("'") && rawArgs[1].endsWith("'"));
+      const a3Quoted = !!(rawArgs[2] && rawArgs[2].startsWith("'") && rawArgs[2].endsWith("'"));
+      const cleanArgs = rawArgs.map(a => {
+        const q = a.startsWith("'") && a.endsWith("'");
+        return q ? unescapeQsp(a.slice(1, -1)) : a;
+      });
+      const gotoNode = { kind: 'goto' as const, arg: cleanArgs[0] || '', arg2: cleanArgs[1] || undefined, arg3: cleanArgs[2] || undefined, argQuoted: a1Quoted, arg2Quoted: a2Quoted, arg3Quoted: a3Quoted };
+      if (!isDynamicTarget) {
+        const t = target.startsWith("'") && target.endsWith("'") ? unescapeQsp(target.slice(1, -1)) : target;
+        nodes.push({ ...gotoNode, target: t });
+      } else {
+        nodes.push({ ...gotoNode, target });
+      }
+    }
     return nodes;
   }
 
-  const gsMatch = trimmed.match(/^gs\s+'([^']+)'\s*(?:,\s*'([^']+)')?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
+  const gsMatch = trimmed.match(/^gs\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+)\s*(?:,\s*('((?:[^']|'')*)'|\$\w+(\['[^']*'\]|\[\$\w+\]|\[\d+\]|\[\$\w+\[\d+\]\])?|\w+))?\s*(?:,\s*(.+?))?\s*(?:&\s*!!.*)?$/);
   if (gsMatch) {
-    const extraArgs = gsMatch[3] ? splitTopLevel(gsMatch[3]).map(a => a.trim()) : [];
-    if (extraArgs.every(isCleanGsArg)) {
-      nodes.push({ kind: 'gs', module: gsMatch[1], func: gsMatch[2] || '', args: extraArgs });
-      return nodes;
-    }
+    const moduleRaw = gsMatch[1];
+    const module = moduleRaw.startsWith("'") ? moduleRaw.slice(1, -1) : moduleRaw;
+    const funcRaw = gsMatch[4] || '';
+    const func = funcRaw.startsWith("'") ? funcRaw.slice(1, -1) : (funcRaw || '');
+    const extraArgs = gsMatch[7] ? splitTopLevel(gsMatch[7]).map(a => a.trim()) : [];
+    nodes.push({ kind: 'gs', module, func, args: extraArgs });
+    return nodes;
   }
 
   const assignMatch = trimmed.match(/^(\w+)\s*(\+=|-=|=)\s*(.+)$/);

@@ -41,7 +41,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 0;
     // TODO-QSP: :loop_categorize
     if (((s as any).temp_i ?? 0) < Object.keys((s as any).query_events_for_day ?? {}).length) {
-      (s as any).temp_evt_id = ((s as any).query_events_for_day ?? 0)?.[String((s as any).temp_i ?? 0)];
+      (s as any).temp_evt_id = (((s as any).query_events_for_day ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
       qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
       if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
         (s as any).temp_found = 0;
@@ -101,7 +101,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_i = 0;
   // TODO-QSP: :loop_build_spans
   if (((s as any).temp_i ?? 0) < ((s as any).temp_allday_count ?? 0)) {
-    (s as any).temp_evt_id = ((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)];
+    (s as any).temp_evt_id = (((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
     (s as any).temp_first_day = (-1);
     (s as any).temp_last_day = (-1);
     (s as any).temp_d = 1;
@@ -132,7 +132,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :loop_sort_pass
     if (((s as any).temp_i ?? 0) < ((s as any).temp_allday_count ?? 0) - 1) {
       if (((s as any).allday_spans ?? 0)[(((s as any).temp_i ?? 0)) + ', length'] < ((s as any).allday_spans ?? 0)[(((s as any).temp_i ?? 0)+1) + ', length']) {
-        (s as any).temp_swap = ((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)];
+        (s as any).temp_swap = (((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
         // TODO-QSP: $allday_events_week[temp_i] = $allday_events_week[temp_i+1]
         // TODO-QSP: $allday_events_week[temp_i+1] = $temp_swap
         (s as any).temp_swap_first = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first'];
@@ -163,7 +163,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_i = 0;
   // TODO-QSP: :loop_place_events
   if (((s as any).temp_i ?? 0) < ((s as any).temp_allday_count ?? 0)) {
-    (s as any).temp_evt_id = ((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)];
+    (s as any).temp_evt_id = (((s as any).allday_events_week ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
     qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
     (s as any).temp_first_day = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', first'];
     (s as any).temp_last_day = ((s as any).allday_spans ?? 0)?.[String(((s as any).temp_i ?? 0)) + ', last'];
@@ -187,8 +187,8 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
           // TODO-QSP: jump 'place_days'
         }
-        ((s as any).row_first_occupied = (s as any).row_first_occupied ?? {})[String((s as any).temp_r ?? 0)] = Math.min(((s as any).row_first_occupied ?? 0)?.[String((s as any).temp_r ?? 0)], ((s as any).temp_first_day ?? 0));
-        ((s as any).row_last_occupied = (s as any).row_last_occupied ?? {})[String((s as any).temp_r ?? 0)] = Math.max(((s as any).row_last_occupied ?? 0)?.[String((s as any).temp_r ?? 0)], ((s as any).temp_last_day ?? 0));
+        ((s as any).row_first_occupied = (s as any).row_first_occupied ?? {})[String((s as any).temp_r ?? 0)] = Math.min((((s as any).row_first_occupied ?? 0)?.[String((s as any).temp_r ?? 0)] ?? 0), ((s as any).temp_first_day ?? 0));
+        ((s as any).row_last_occupied = (s as any).row_last_occupied ?? {})[String((s as any).temp_r ?? 0)] = Math.max((((s as any).row_last_occupied ?? 0)?.[String((s as any).temp_r ?? 0)] ?? 0), ((s as any).temp_last_day ?? 0));
         if (((s as any).temp_r ?? 0) > ((s as any).temp_max_row ?? 0)) {
           (s as any).temp_max_row = ((s as any).temp_r ?? 0);
         }

@@ -237,10 +237,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                               }
                               (s as any).fightEnding = 0;
                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                              qspCall(s, 'pain', '', 5, 'tummy', 'kick');
-                              qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
-                              qspCall(s, 'pain', '', 5, 'thighs', 'kick');
-                              qspCall(s, 'pain', '', 5, 'hair', 'stretch');
+                              qspCall(s, 'pain', '5', 'tummy', 'kick');
+                              qspCall(s, 'pain', '5', 'cheeks', 'hit');
+                              qspCall(s, 'pain', '5', 'thighs', 'kick');
+                              qspCall(s, 'pain', '5', 'hair', 'stretch');
                               qspCall(s, 'clothing', 'displose');
                               // TODO-QSP: $streetev_title
                               scene.img('images/locations/shared/street/lostfight.jpg');
@@ -262,7 +262,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                 ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
-                                qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
+                                qspCall(s, 'pain', '5', 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
                                 scene.img('images/characters/shared/headshots_main/big248.jpg');
                                 scene.text('You know he isn\'t that tough, but somehow he just keeps getting lucky blows in. After a solid punch knocks you off your feet, you just lay there, dazed and completely done resisting.');
@@ -658,7 +658,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                       scene.text('Satisfied with her answer, you let her go and straighten up, looking around. The kids watching look at you a bit warily, seeing you in a new light. Christina had a reputation of being one of the toughest fighters in school, and you just thrashed her, right in front of everybody.');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'main');
+    qspCall(st, 'gschool_grounds', '');
   } },
                       ]);
                     } else {
@@ -819,7 +819,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                                           scene.text('You shake her off, but her words replay in your head as you walk out the door. The gopniks, Vitek least of all, aren\'t going to let your actions here go unpunished…');
                                           scene.actions([
                                             { label: 'Go to class', handler: (st: GameState) => {
-    qspCall(st, 'gschool_lessons', 'short_break');
+    qspCall(st, 'gschool_lessons', '');
   } },
                                           ]);
                                         } else {
@@ -1095,7 +1095,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                           }
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'gschool_grounds', 'main');
+    qspCall(st, 'gschool_grounds', '');
   } },
                           ]);
                         } else {
@@ -1113,7 +1113,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).fightEnding ?? 0) === 14) {
                               (s as any).fightEnding = 0;
                               (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                              qspCall(s, 'pain', '', 5, 'hair', 'stretch');
+                              qspCall(s, 'pain', '5', 'hair', 'stretch');
                               // TODO-QSP: $streetev_title
                               scene.img('images/locations/shared/street/lostfight.jpg');
                               if (((s as any).fightPStats ?? 0)?.['Health'] === ((s as any).pcs_health ?? 0)) {
@@ -1148,7 +1148,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                                 ((s as any).slyQW = (s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
-                                qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
+                                qspCall(s, 'pain', '5', 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
                                 scene.img('images/characters/shared/headshots_main/big248.jpg');
                                 scene.text('You know he isn\'t that tough, but somehow he just keeps getting lucky blows in. After a solid punch knocks you off your feet, you just lay there, dazed and completely done resisting.');

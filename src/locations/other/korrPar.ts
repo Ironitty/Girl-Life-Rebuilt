@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).blockBedrPar = 0;
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 30  &&  ((s as any).motherQW ?? 0)?.['con_steal_talk'] + 4 < ((s as any).daystart ?? 0)  &&  ((s as any).prezikday ?? 0) + 4 > ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
-    // TODO-QSP: gt 'mother', 'condom_steal', iif(locat['Stepdad'] = 1, 'talk', 'hear')
+    qspGoto(s, 'mother', 'condom_steal', 'iif(locat[\'Stepdad\'] = 1, \'talk\', \'hear\')');
   }
   if ((!((s as any).GspravkaAmbush ?? 0))) {
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
@@ -278,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).mothervideotalk = 3;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).spank = ((st as any).spank ?? 0) + (1);
-    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '5', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.text(`<center><b>${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/spank.jpg');

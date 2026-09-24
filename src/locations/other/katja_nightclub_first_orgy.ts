@@ -158,20 +158,20 @@ function enterFirstOrgyInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfterAcceptance(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'tatoo_guy', (Math.floor(Math.random() * 8) + 23), 4);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a', 'none');
+  qspCall(s, 'npcgeneratec', '0', 'tatoo_guy', (Math.floor(Math.random() * 8) + 23), 4);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a', 'none');
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_tatoo_guy'] = 'Savin';
-  qspCall(s, 'npcgeneratec', '', 0, 'bald_guy', (Math.floor(Math.random() * 9) + 27), 4);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b', 'none');
+  qspCall(s, 'npcgeneratec', '0', 'bald_guy', (Math.floor(Math.random() * 9) + 27), 4);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'b', 'none');
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_bald_guy'] = 'Oleg';
-  qspCall(s, 'npcgeneratec', '', 0, 'green_shirt_guy', (Math.floor(Math.random() * 8) + 23), 4);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c', 'none');
+  qspCall(s, 'npcgeneratec', '0', 'green_shirt_guy', (Math.floor(Math.random() * 8) + 23), 4);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'c', 'none');
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_green_shirt_guy'] = 'Ilya';
   qspCall(s, 'npcStat', 'A144', 'd');
-  qspCall(s, 'npcgeneratec', '', 1, 'first_black_girl', (Math.floor(Math.random() * 5) + 18), 2);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'f', 'none');
-  qspCall(s, 'npcgeneratec', '', 1, 'second_black_girl', (Math.floor(Math.random() * 5) + 18), 2);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'g', 'none');
+  qspCall(s, 'npcgeneratec', '1', 'first_black_girl', (Math.floor(Math.random() * 5) + 18), 2);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'f', 'none');
+  qspCall(s, 'npcgeneratec', '1', 'second_black_girl', (Math.floor(Math.random() * 5) + 18), 2);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'g', 'none');
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_white_dress'] = 'Inna';
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_brown_dress'] = 'Yustina';
   ((s as any).katja_first_orgy_temp = (s as any).katja_first_orgy_temp ?? {})['first_orgy_name_curly'] = 'Lyubov';
@@ -1626,7 +1626,7 @@ function enterFirstOrgyWatchingLastGuyCum(s: GameState, scene: SceneBuilder): vo
 function enterFirstOrgyGetDressed(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  qspCall(s, 'cum_cleanup', '', 1);
+  qspCall(s, 'cum_cleanup', '1');
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('With all the guys having cum, the party seems to be coming to an end. A couple of girls head to the bar to get some more drinks, but most start to get dressed.');
   // TODO-QSP: dynamic text: You help Katja clean up and get dressed. It''s clear she''s still in a sort of d...

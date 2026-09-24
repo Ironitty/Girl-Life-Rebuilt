@@ -211,7 +211,7 @@ function enterComb(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor combs your hair for you as you watch him, admiring how handsome he is. After Fedor finishes combing your hair, he says, "There is my beautiful girlfriend. Your hair is too pretty to be all knotted up like that." you give Fedor a kiss on the cheek as he puts his comb away.');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorMisc" })} [${((s as any).pcs_nickname ?? '')}] ${((s as any).pcs_lastname ?? '')}">></font></h4></b></center>`);
-  scene.img('' + qspFunc(s, '$$face_image') + '');
+  scene.img('' + qspFunc(s, '$face_image') + '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
@@ -276,7 +276,7 @@ function enterLockerRoom1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/school/lockerroom/lr4.jpg');
     scene.text('You reply, "Please cum inside me." Fedor flashes you a sweet smile then increases his pace. After a few seconds, Fedor groans and you feel his penis throbbing as he begins filling your womb with his warm seed. You let out a soft moan as the warmth of his cum fills you. After a few seconds Fedor looks down to you. "I always feel so lucky having the hottest girl in school as my girlfriend." Your face grows a little flushed as you respond, "You really are the sweetest boyfriend ever." Fedor gives you a passionate kiss before getting dressed and leaving the locker room.');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum5.mp4');
-    qspCall(st, 'cum_call', '', '', 'A5');
+    qspCall(st, 'cum_call', '', 'A5');
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -340,7 +340,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You turn to Fedor and say, "Fill me with your seed, my love." Fedor gives you a ...
     scene.text(`You turn to Fedor and say, "Fill me with your seed, my love." Fedor gives you a pleased smile as he increases the pace of his thrusts. You can feel his penis pushing deeper inside you then it begins throbbing and you feel a warmth growing inside you. You let out a moan as Fedor drains his cock inside your vagina and you do your best to milk his penis. Fedor gives your ass a firm smack as he says, "You are so beautiful ${((st as any).pcs_firstname ?? '')} and so damn sexy too." You turn to Fedor and reply, "Well I'm all yours, my love and I always will be." Fedor leans forward and gives you a soft kiss before getting dressed then leaving the locker room.`);
     scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
-    qspCall(st, 'cum_call', '', '', 'A5');
+    qspCall(st, 'cum_call', '', 'A5');
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -407,7 +407,7 @@ function enterLockerRoom3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You turn to Fedor and say, "I want your cum inside me." as you continue riding h...
     scene.text(`You turn to Fedor and say, "I want your cum inside me." as you continue riding his hard cock, pushing it deeper inside you. Fedor groans and you feel a stream of cum filling your womb with its warmth as Fedor's penis begins throbbing, pumping you with his seed. When Fedor finishes filling you up, he leans over your shoulder then says, "${((st as any).pcs_firstname ?? '')} you are the sexiest, most beautiful girl I've ever met. I'm so lucky to have you." You turn to Fedor then respond, "You and I are perfect for each other. You make my life complete Fyodor." Fedor gives you a long passionate kiss before getting dressed then leaving the locker room.`);
     scene.img('images/shared/sex/cum/cum81.mp4');
-    qspCall(st, 'cum_call', '', '', 'A5');
+    qspCall(st, 'cum_call', '', 'A5');
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -479,7 +479,7 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You look Fedor in the eyes and say, "Please fill me with your cum." Fedor gives ...
     scene.text(`You look Fedor in the eyes and say, "Please fill me with your cum." Fedor gives you a pleased smile as he picks up his pace, thrusting his penis deeper inside you. Fedor groans and begins filling your womb with his seed which his penis throbs as it fills your womb. You push against Fedor's pelvis driving his dick further inside you. Fedor lowers you to the ground then gives you a kiss before saying "${((st as any).pcs_firstname ?? '')} You are a shining light in my life and I will always love you." Your face becomes a bit flushed at his sweet words as you respond, "I love you with all my heart Fyodor and will always be by your side when you need me." Fedor smiles at you for a few seconds in silence before grabbing your neck and bringing your lips to his as he gives you a long passionate kiss. After a full minute of kissing, Fedor pulls up his pants then walks away with an almost blissful look on his face.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
-    qspCall(st, 'cum_call', '', '', 'A5');
+    qspCall(st, 'cum_call', '', 'A5');
     qspCall(st, 'arousal', 'vaginal', 5, 'dom');
     qspCall(st, 'arousal', 'end');
     scene.actions([

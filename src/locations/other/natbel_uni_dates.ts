@@ -1000,7 +1000,7 @@ function enterBeachDate1BuySwimsuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'start');
     qspCall(s, 'shop_utils', 'init', 'set_link', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'allure_swimsuit');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 3, Clothingstock mod 3
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 3, ((s as any).Clothingstock ?? 0) % 3);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'clothing_view', 'display_grid_shop');
@@ -1024,7 +1024,7 @@ function enterBeachDate1BuyBikini(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'start');
     qspCall(s, 'shop_utils', 'init', 'set_link', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'allure_bikinis');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 4, (Clothingstock / 3) mod 4
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 4, (((s as any).Clothingstock ?? 0) / 3) % 4);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'clothing_view', 'display_grid_shop');

@@ -40,8 +40,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :traitdegloop
   ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "exp_deg" });
   if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-    ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + ((s as any).expdegVars ?? 0)?.['statName'] + '-deg_loss']);
-    ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-' + ((s as any).expdegVars ?? 0)?.['statName'] + '-deg_loss']);
+    ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + ((s as any).expdegVars ?? 0)?.['statName'] + '-deg_loss'] ?? 0));
+    ((s as any).expdegVars = (s as any).expdegVars ?? {})['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['all-' + ((s as any).expdegVars ?? 0)?.['statName'] + '-deg_loss'] ?? 0));
   }
   (s as any).tl = ((s as any).tl ?? 0) + (1);
   if (((s as any).tl ?? 0) < Object.keys((s as any).traitattskl ?? {}).length) {

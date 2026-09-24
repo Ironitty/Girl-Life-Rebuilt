@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -119,27 +117,27 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027evaluation/u0027); return false;">Get detailed performance evaluation</a>');
   scene.text('<i><b>Chore state</b>: higher numbers are worse</i>');
   // TODO-QSP: dynamic text: Hallway: <<nichChoreState[0]>> <a href="exec: gt ''nichUtil'', ''debug'', ''chor...
-  scene.text(`Hallway: ${qspUntranslated(s, "nichChoreState[0]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Hallway: ${(((s as any).nichChoreState ?? 0)?.[0] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Guest cloakroom: <<nichChoreState[1]>> <a href="exec: gt ''nichUtil'', ''debug''...
-  scene.text(`Guest cloakroom: ${qspUntranslated(s, "nichChoreState[1]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Guest cloakroom: ${(((s as any).nichChoreState ?? 0)?.[1] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Maid bedroom: <<nichChoreState[2]>> <a href="exec: gt ''nichUtil'', ''debug'', '...
-  scene.text(`Maid bedroom: ${qspUntranslated(s, "nichChoreState[2]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Maid bedroom: ${(((s as any).nichChoreState ?? 0)?.[2] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Maid bathroom: <<nichChoreState[3]>> <a href="exec: gt ''nichUtil'', ''debug'', ...
-  scene.text(`Maid bathroom: ${qspUntranslated(s, "nichChoreState[3]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Maid bathroom: ${(((s as any).nichChoreState ?? 0)?.[3] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Laundry: <<nichChoreState[4]>> <a href="exec: gt ''nichUtil'', ''debug'', ''chor...
-  scene.text(`Laundry: ${qspUntranslated(s, "nichChoreState[4]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Laundry: ${(((s as any).nichChoreState ?? 0)?.[4] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Tanya bedroom: <<nichChoreState[5]>> <a href="exec: gt ''nichUtil'', ''debug'', ...
-  scene.text(`Tanya bedroom: ${qspUntranslated(s, "nichChoreState[5]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Tanya bedroom: ${(((s as any).nichChoreState ?? 0)?.[5] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Master bathroom: <<nichChoreState[6]>> <a href="exec: gt ''nichUtil'', ''debug''...
-  scene.text(`Master bathroom: ${qspUntranslated(s, "nichChoreState[6]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Master bathroom: ${(((s as any).nichChoreState ?? 0)?.[6] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Master bedroom: <<nichChoreState[7]>> <a href="exec: gt ''nichUtil'', ''debug'',...
-  scene.text(`Master bedroom: ${qspUntranslated(s, "nichChoreState[7]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Master bedroom: ${(((s as any).nichChoreState ?? 0)?.[7] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Living room: <<nichChoreState[8]>> <a href="exec: gt ''nichUtil'', ''debug'', ''...
-  scene.text(`Living room: ${qspUntranslated(s, "nichChoreState[8]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Living room: ${(((s as any).nichChoreState ?? 0)?.[8] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Kitchen: <<nichChoreState[9]>> <a href="exec: gt ''nichUtil'', ''debug'', ''chor...
-  scene.text(`Kitchen: ${qspUntranslated(s, "nichChoreState[9]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Kitchen: ${(((s as any).nichChoreState ?? 0)?.[9] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   // TODO-QSP: dynamic text: Study: <<nichChoreState[10]>> <a href="exec: gt ''nichUtil'', ''debug'', ''chore...
-  scene.text(`Study: ${qspUntranslated(s, "nichChoreState[10]", { location: "nichUtil" })} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
+  scene.text(`Study: ${(((s as any).nichChoreState ?? 0)?.[10] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">min</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+1</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027chore/u0027); return false;">+5</a>`);
   scene.text('<i><b>NPCs</b></i>');
   scene.text('The following settings are meant for debugging only. Touching them will influence the intended progression in the story.');
   scene.text('<b>Gala</b>');
@@ -163,7 +161,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text(`Tanya has a dominance of ${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''} (range: -100 - 100)`);
   scene.actions([
     { label: 'DEBUG: New Workday', handler: (st: GameState) => {
-    qspCall(st, 'nichUtil', 'startWorkday');
+    qspCall(st, 'nichUtil', '');
   } },
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'menu_loc', 'menu_arg');
@@ -370,7 +368,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichtTimeQuick ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
-    // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
+    qspCall(st, 'exp_gain', 'cleaning', 0);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -382,7 +380,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichTimeNormal ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
-    // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
+    qspCall(st, 'exp_gain', 'cleaning', 0);
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -393,7 +391,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichTimeDiligently ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
-    // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
+    qspCall(st, 'exp_gain', 'cleaning', 0);
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -768,7 +766,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).RESULT = qspUntranslated(s, "nichNpcActArr[0]", { location: "nichUtil" });
+  (s as any).RESULT = (((s as any).nichNpcActArr ?? 0)?.[0] ?? 0);
   (s as any).nichNpcActC = 0;
   // TODO-QSP: :nichNpcActivityLoop
   if (((s as any).nichNpcActTime ?? 0)?.[String((s as any).nichNpcActC ?? 0)] <= ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)) {
@@ -777,7 +775,7 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'nichNpcActivityLoop'
     }
   }
-  (s as any).RESULT = ((s as any).nichNpcActArr ?? 0)?.[String((s as any).nichNpcActC ?? 0)];
+  (s as any).RESULT = (((s as any).nichNpcActArr ?? 0)?.[String((s as any).nichNpcActC ?? 0)] ?? 0);
   // TODO-QSP: end
   scene.build();
 }

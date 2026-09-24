@@ -151,7 +151,7 @@ function enterDressingclothes(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'fashionista_dress');
-    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 4, Clothingstock mod 4
+    qspCall(s, 'shop_utils', 'init', 'set_steps', 4, ((s as any).Clothingstock ?? 0) % 4);
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
@@ -254,7 +254,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-    qspCall(st, 'shop_utils', 'cleanup');
+    qspCall(st, 'shop_utils', '');
   }, goto: ['shop_fashionista', 'start'] },
   ]);
   scene.build();

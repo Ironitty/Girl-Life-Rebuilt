@@ -75,8 +75,8 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).rco = (s as any).rco ?? {})['label'] = ((s as any).rco ?? 0)?.['entry_lbl'];
   }
-  ((s as any).rco = (s as any).rco ?? {})['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_left[0]", { location: "stat_display_menu" })));
-  ((s as any).rco = (s as any).rco ?? {})['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_right[0]", { location: "stat_display_menu" })));
+  ((s as any).rco = (s as any).rco ?? {})['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : ((((s as any).temp_actions_left ?? 0)?.[0] ?? 0)));
+  ((s as any).rco = (s as any).rco ?? {})['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : ((((s as any).temp_actions_right ?? 0)?.[0] ?? 0)));
   if (((s as any).rco ?? 0)?.['action_left'] === ''  ||  ((s as any).rco ?? 0)?.['action_right'] === '') {
     ((s as any).rco = (s as any).rco ?? {})['idx_prev'] = ((((s as any).rco ?? {})?.['idx'] ?? 0) - 1 + (((s as any).rco ?? {})?.['size'] ?? 0)) % (((s as any).rco ?? {})?.['size'] ?? 0);
     ((s as any).rco = (s as any).rco ?? {})['idx_next'] = ((((s as any).rco ?? {})?.['idx'] ?? 0) + 1) % (((s as any).rco ?? {})?.['size'] ?? 0);
@@ -165,7 +165,7 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['lower'] = 'images/system/ui/angle_down_' + ((s as any).temp_st_icon_color ?? 0) + '.png';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['hide'] = 'images/system/ui/' + ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('hide_') : ('show_')) + ((s as any).temp_st_icon_color ?? 0) + '.png';
   ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['expand'] = 'images/system/ui/' + ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('expand_') : ('collapse_')) + ((s as any).temp_st_icon_color ?? 0) + '.png';
-  (s as any).temp_st_align_val = ((s as any).stat_cfg ?? 0)?.['align_' + ((s as any).temp_st_key ?? 0)];
+  (s as any).temp_st_align_val = (((s as any).stat_cfg ?? 0)?.['align_' + ((s as any).temp_st_key ?? 0)] ?? 0);
   if ((!((s as any).temp_st_align_val ?? 0))) {
     (s as any).temp_st_align_eff = ((s as any).stat_cfg ?? 0)?.['global_align'];
   } else {
@@ -174,15 +174,15 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_st_align_icon_name[0] = 'left'
   // TODO-QSP: $temp_st_align_icon_name[1] = 'center'
   // TODO-QSP: $temp_st_align_icon_name[2] = 'right'
-  ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['align'] = 'images/system/ui/align_' + ((s as any).temp_st_align_icon_name ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] + '_' + ((s as any).temp_st_icon_color ?? 0) + '.png';
+  ((s as any).temp_st_icon = (s as any).temp_st_icon ?? {})['align'] = 'images/system/ui/align_' + (((s as any).temp_st_align_icon_name ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] ?? 0) + '_' + ((s as any).temp_st_icon_color ?? 0) + '.png';
   (s as any).temp_st_align_opacity = (((!((s as any).temp_st_align_val ?? 0))) ? (' style="opacity:0.6"') : (''));
   // TODO-QSP: $temp_st_align_label[0] = 'Left'
   // TODO-QSP: $temp_st_align_label[1] = 'Center'
   // TODO-QSP: $temp_st_align_label[2] = 'Right'
   if ((!((s as any).temp_st_align_val ?? 0))) {
-    ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['align'] = 'Global Alignment (' + ((s as any).temp_st_align_label ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] + ') — click to set explicitly';
+    ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['align'] = 'Global Alignment (' + (((s as any).temp_st_align_label ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] ?? 0) + ') — click to set explicitly';
   } else {
-    ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['align'] = 'Aligned ' + ((s as any).temp_st_align_label ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] + ' — click to cycle';
+    ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['align'] = 'Aligned ' + (((s as any).temp_st_align_label ?? 0)?.[String((s as any).temp_st_align_eff ?? 0)] ?? 0) + ' — click to cycle';
   }
   ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['hide'] = ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('Show Section') : ('Hide Section'));
   ((s as any).temp_st_title = (s as any).temp_st_title ?? {})['expand'] = ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options'));
@@ -602,7 +602,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).ro = (s as any).ro ?? {})['hidden'] = 0;
   ((s as any).ro = (s as any).ro ?? {})['hide_icon'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']] + '</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']]));
+  ((s as any).ro = (s as any).ro ?? {})['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']] ?? 0)));
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -639,11 +639,11 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rns_gloop
   ((s as any).ro = (s as any).ro ?? {})['gkey'] = qspUntranslated(s, "skill_group_order[ro['gi']]", { location: "stat_display_menu" });
-  ((s as any).ro = (s as any).ro ?? {})['ghid'] = ((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  ((s as any).ro = (s as any).ro ?? {})['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_skills_' + ((s as any).ro ?? 0)?.['gkey']];
+  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_skills_' + ((s as any).ro ?? 0)?.['gkey']] ?? 0);
   ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
   ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] + '</b></font>') : ('<b>' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] + '</b>'));
+  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b>'));
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -662,13 +662,13 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['mi'] = 0;
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])] ?? 0);
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
-    ((s as any).ro = (s as any).ro ?? {})['mhid'] = ((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] + '</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]));
+    ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0) + '</font>') : ((((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0)));
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg_alt'] + '; padding:4px 6px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -710,11 +710,11 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rnr_gloop
   ((s as any).ro = (s as any).ro ?? {})['gkey'] = qspUntranslated(s, "rel_group_order[ro['gi']]", { location: "stat_display_menu" });
-  ((s as any).ro = (s as any).ro ?? {})['ghid'] = ((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  ((s as any).ro = (s as any).ro ?? {})['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_rels_' + ((s as any).ro ?? 0)?.['gkey']];
+  ((s as any).ro = (s as any).ro ?? {})['ghid'] = (((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0);
+  ((s as any).ro = (s as any).ro ?? {})['gexp'] = (((s as any).stat_cfg ?? 0)?.['show_rels_' + ((s as any).ro ?? 0)?.['gkey']] ?? 0);
   ((s as any).ro = (s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
   ((s as any).ro = (s as any).ro ?? {})['gex_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['gexp'] === 1) ? ('expand_') : ('collapse_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] + '</b></font>') : ('<b>' + ((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] + '</b>'));
+  ((s as any).ro = (s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b></font>') : ('<b>' + (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['gkey']] ?? 0) + '</b>'));
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '" style="border:' + ((s as any).ro ?? 0)?.['bdr'] + '; background-color:' + ((s as any).theme_hex ?? 0)?.['table_bg'] + '; padding:5px 6px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -742,49 +742,49 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = (((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])] ?? 0);
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }
-    ((s as any).ro = (s as any).ro ?? {})['mhid'] = ((s as any).stat_hide_rel ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    ((s as any).ro = (s as any).ro ?? {})['mhid'] = (((s as any).stat_hide_rel ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     ((s as any).ro = (s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/' + ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('hide_') : ('show_')) + ((s as any).ro ?? 0)?.['c'] + '.png';
-    ((s as any).ro = (s as any).ro ?? {})['eff_nm'] = ((((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? (((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]) : (((s as any).ro ?? 0)?.['nm']));
+    ((s as any).ro = (s as any).ro ?? {})['eff_nm'] = ((((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? ((((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0)) : (((s as any).ro ?? 0)?.['nm']));
     if (((s as any).ro ?? 0)?.['eff_nm'] === 1) {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     } else {
       if (((s as any).ro ?? 0)?.['eff_nm'] === 2) {
-        ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+        ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
         if (((s as any).ro ?? 0)?.['mname'] === '') {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
         }
       } else {
         if (((s as any).ro ?? 0)?.['eff_nm'] === 3) {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
           if (((s as any).ro ?? 0)?.['mname'] === '') {
-            ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+            ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
           }
         } else {
-          ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+          ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
         }
       }
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
-      ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      ((s as any).ro = (s as any).ro ?? {})['mname'] = (((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     }
     if (((s as any).ro ?? 0)?.['mname'] === '') {
       ((s as any).ro = (s as any).ro ?? {})['mname'] = ((s as any).ro ?? 0)?.['mkey'];
     }
     ((s as any).ro = (s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">' + ((s as any).ro ?? 0)?.['mname'] + '</font>') : (((s as any).ro ?? 0)?.['mname']));
-    ((s as any).ro = (s as any).ro ?? {})['nmo'] = ((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    ((s as any).ro = (s as any).ro ?? {})['nmo'] = (((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']] ?? 0);
     if (((s as any).ro ?? 0)?.['nmo'] === 1) {
       ((s as any).ro = (s as any).ro ?? {})['nmo_ic'] = 'images/system/ui/name_first_' + ((s as any).ro ?? 0)?.['c'] + '.png';
     } else {

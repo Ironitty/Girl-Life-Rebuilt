@@ -1961,7 +1961,7 @@ function enterDormRoom(s: GameState, scene: SceneBuilder): void {
   if (! qspFunc(s, 'homes_properties', 'is_current_home')) {
     scene.actions([
       { label: 'Set your dorm room as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['uni_dorm', 'dorm_room'] },
     ]);
   }

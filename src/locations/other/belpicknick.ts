@@ -484,7 +484,8 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
     // TODO-QSP: dynamic text: You find yourself being on elbows and knees as you''re fully aware he is about t...
     scene.text(`You find yourself being on elbows and knees as you're fully aware he is about to penetrate your ass. ${((s as any).boydesc ?? '')} leans the tip of his cock against your anus and pushes it into you. It is a little painful, but the desire to pleasure him outweighs it. ${((s as any).boydesc ?? '')} gradually accelerates his pace, you can feel his balls slap against your wet clit. After a while your anus relaxes and stretches making his cock slide in and out easily now.`);
-    qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+    qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri');
+    qspCall(s, 'dinsex', 'analsex');
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'prostitution');
     qspCall(s, 'stat', '');
   }
@@ -639,19 +640,19 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take their loads on your face', handler: (st: GameState) => {
-    qspCall(st, 'npcStat', '', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'npcStat', '$npcID1');
     (st as any).sexpartkno = 1;
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'npcStat', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'npcStat', '$npcID2');
     (st as any).sexpartkno = 1;
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'npcStat', '', ((st as any).npcID3 ?? 0));
+    qspCall(st, 'npcStat', '$npcID3');
     (st as any).sexpartkno = 1;
     (st as any).spafinloc = 12;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'npcStat', '', ((st as any).npcID4 ?? 0));
+    qspCall(st, 'npcStat', '$npcID4');
     (st as any).sexpartkno = 1;
     (st as any).spafinloc = 12;
     qspCall(st, 'cum_manage', '');

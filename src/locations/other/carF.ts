@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -231,7 +229,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
             (s as any).car_town = 0;
             scene.actions([
               { label: 'Go to local destination', handler: (st: GameState) => {
-    qspCall(st, 'carF', 'pav');
+    qspCall(st, 'carF', '');
   } },
               { label: 'Go to the city (0:20)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
@@ -284,7 +282,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: $temptime[1] = '(<<temptime[0] /60>>:<<(temptime[0]  mod 60)>>)'
               scene.actions([
                 { label: 'Go to another city destination', handler: (st: GameState) => {
-    qspCall(st, 'carF', 'city');
+    qspCall(st, 'carF', '');
   } },
                 { label: 'Go to Pavlovsk  [+$temptime[1]]', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + ((20 + ((st as any).temptime ?? 0)[0]));
@@ -298,7 +296,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHighway(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
                 { label: 'Go to another destination  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[0]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[0] ?? 0));
     scene.text('You drive out of the city.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOther(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -411,7 +409,7 @@ function enterHighway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nroad ?? 0) > 0) {
     scene.actions([
       { label: 'Drive toward St. Petersburg', handler: (st: GameState) => {
-    (st as any).driveStr = window.prompt("How long would you like to drive along the highway?<br>Distance to the city limit is <<nroad>> km. ") ?? '';
+    (st as any).driveStr = window.prompt("How long would you like to drive along the highway?<br>Distance to the city limit is " + (((st as any).nroad ?? 0)) + " km. ") ?? '';
     (st as any).driving = parseFloat(((st as any).driveStr ?? 0));
     if (((st as any).driving ?? 0) >= 0  &&  ((st as any).driving ?? 0) <= ((st as any).nroad ?? 0)) {
       (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).driving ?? 0)+1)/2);
@@ -427,7 +425,7 @@ function enterHighway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nroad ?? 0) < 19) {
     scene.actions([
       { label: 'Drive towards Pavlovsk', handler: (st: GameState) => {
-    (st as any).driveStr = window.prompt("How long would you like to drive along the highway?<br>Distance to the Pavlovsk is <<20-nroad>> km.") ?? '';
+    (st as any).driveStr = window.prompt("How long would you like to drive along the highway?<br>Distance to the Pavlovsk is " + (20-((st as any).nroad ?? 0)) + " km.") ?? '';
     (st as any).driving = parseFloat(((st as any).driveStr ?? 0));
     if (((st as any).driving ?? 0) >= 0  &&  ((st as any).driving ?? 0) <= 20 - ((st as any).nroad ?? 0)) {
       (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).driving ?? 0)+1)/2);
@@ -507,7 +505,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $temptime[1] = '(<<temptime[2] /60>>:<<(temptime[2] mod 60)>>)'
         scene.actions([
           { label: 'Go to Matryona Mansion  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[2]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[2] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[2]/12 - 0 + 1)) + (0)));
     scene.text('You drive to your mansion.');
@@ -537,7 +535,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $temptime[1] = '(<<temptime[3] /60>>:<<(temptime[3] mod 60)>>)'
       scene.actions([
         { label: 'Go to city suburbs  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[3]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[3] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[3]/12 - 0 + 1)) + (0)));
     scene.text('You drive to St. Petersburg\'s suburbs.');
@@ -561,7 +559,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temptime[1] = '(<<temptime[4] /60>>:<<(temptime[4] mod 60)>>)'
     scene.actions([
       { label: 'Go to the construction site  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[4]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[4] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[4]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
@@ -585,7 +583,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temptime[1] = '(<<temptime[5] /60>>:<<(temptime[5] mod 60)>>)'
     scene.actions([
       { label: 'Go to the Suburban Cooperative  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[5]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[5] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[5]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
@@ -609,7 +607,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temptime[1] = '(<<temptime[6] /60>>:<<(temptime[6] mod 60)>>)'
     scene.actions([
       { label: 'Go to the village of Gadukino  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[6]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[6] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[6]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
@@ -634,7 +632,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $temptime[1] = '(<<temptime[7] /60>>:<<(temptime[7] mod 60)>>)'
       scene.actions([
         { label: 'Go to the gas station on M11  [+$temptime[1]]', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + (qspUntranslated(s, "temptime[7]", { location: "carF" }));
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).temptime ?? 0)?.[7] ?? 0));
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[7]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
@@ -758,7 +756,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to your house in the residential area  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_house_res_misc', 'fronty', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[1]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[1]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_house_res_misc', 'fronty'] },
     ]);
@@ -788,7 +786,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to St. Petersburg\'s Industrial Region  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_industrial', '', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[2]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[2]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_industrial', ''] },
     ]);
@@ -809,7 +807,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to St. Petersburg\'s residential area  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_residential', '', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[3]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[3]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_residential', ''] },
     ]);
@@ -834,10 +832,10 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to St. Petersburg city center  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_center', '', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[4]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[4]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', handler: (st: GameState) => {
-    qspCall(st, 'car_funcs', 'goto_car');
+    qspCall(st, 'car_funcs', '');
   } },
     ]);
   } },
@@ -861,7 +859,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the city industrial train station  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_industrial_train', 'outside', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[5]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[5]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_industrial_train', 'outside'] },
     ]);
@@ -890,7 +888,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the city lake  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_lake', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[6]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[6]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_lake', 'start'] },
     ]);
@@ -915,7 +913,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the city park  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_park', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[7]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[7]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_park', 'start'] },
     ]);
@@ -940,7 +938,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the gas station  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'fuelstation', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[8]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[8]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', handler: (st: GameState) => {
     // TODO-QSP: $region = 'city'
@@ -968,7 +966,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to the auto repair shop  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'autoservisF', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[9]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[9]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['autoservisF', 'start'] },
     ]);
@@ -995,7 +993,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to the car dealership  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[10]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[10]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['autotraidF', 'start'] },
     ]);
@@ -1021,7 +1019,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the island  [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_island', '', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[11]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[11]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_island', ''] },
     ]);
@@ -1046,7 +1044,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the red light district   [+$temptime[0]]', handler: (st: GameState) => {
     qspCall(st, 'car_funcs', 'setloc', 'city_redlight', 'start', 'city');
-    // TODO-QSP: gs 'carF', 'nearby', 5 + temptime[12]
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 5 + ((st as any).temptime ?? 0)[12]]; enterNearby(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Park and get out', goto: ['city_redlight', 'start'] },
     ]);

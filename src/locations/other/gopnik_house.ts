@@ -60,8 +60,8 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ciklkm ?? 0) < ((s as any).placerParameter ?? 0)?.['number_of_man']) {
       scene.text('Once the Gopnik finishes, his friend quickly takes his place between your legs.');
     }
-    qspCall(s, 'npcgeneratec', '', 0, 'Gopnik from the park', (Math.floor(Math.random() * 11) + 16));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'Gopnik from the park', (Math.floor(Math.random() * 11) + 16));
+    qspCall(s, 'boyStat', '$npclastgenerated');
     scene.actions([
       { label: 'Continue', goto: ['gopnik_house', 'rape'] },
     ]);

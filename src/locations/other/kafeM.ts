@@ -40,14 +40,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
     { label: 'Smile', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
   ]);
@@ -97,7 +97,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['kafeM', 'dance'] },
   ]);
   scene.build();
@@ -113,7 +113,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? '')} is very reserved in his dance. He holds you a bit awkwardly and apologizes.`);
     scene.actions([
       { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'kafeM', 'end'
   } },
     ]);
@@ -123,7 +123,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npcdesc ?? '')} leads you confidently in the dance.`);
       scene.actions([
         { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: xgt 'kafeM', 'end'
   } },
       ]);

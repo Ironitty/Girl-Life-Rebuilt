@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Work in the operating room (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
+    qspCall(st, 'exp_gain', 'medcn', 0);
     if ((!((st as any).jobhosprand ?? 0))) {
       qspGoto(st, 'WorkHosp', '2');
     }
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Help the doctors in the emergency room (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
+    qspCall(st, 'exp_gain', 'medcn', 0);
     if ((!((st as any).jobhosprand ?? 0))) {
       qspGoto(st, 'WorkHosp', '3');
     }
@@ -79,7 +79,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Eat in the cafeteria (0:30)', handler: (st: GameState) => {
-    qspCall(st, 'food', 'medium_meal');
+    qspCall(st, 'food', '');
   } },
     { label: 'Chat with Kat', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
@@ -134,8 +134,8 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).picrand = 12;
     (st as any).sexpartkno = 1;
-    qspCall(st, 'npcgeneratec', '', 0, 'Patient', (Math.floor(Math.random() * 31) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Patient', (Math.floor(Math.random() * 31) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'arousal', 'cuni_give', 10, 'lesbian');
     qspCall(st, 'arousal', 'vaginal', (-10), 'unknown');
     qspGoto(st, 'podrsex', 'suck');
@@ -286,7 +286,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Oust him', handler: (st: GameState) => {
-    // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 1)
+    qspCall(st, 'exp_gain', 'medcn', 0);
     qspGoto(st, 'WorkHosp', 'start');
   } },
   ]);
@@ -306,8 +306,8 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Play along', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 1, 'Patient', 0, 0, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '1', 'Patient', 0, 0, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 'a');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
     (st as any).girl = ((st as any).girl ?? 0) + (1);
     ((st as any).stat = (st as any).stat ?? {})['lesbian_count'] = ((st as any).stat['lesbian_count'] ?? 0) + (1);
@@ -327,7 +327,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask if she actually needs treatment', handler: (st: GameState) => {
-    qspCall(st, 'exp_gain', 'medcn', 0);
+    qspCall(st, 'exp_gain', '');
   }, goto: ['WorkHosp', 'start'] },
   ]);
   scene.build();
@@ -336,124 +336,124 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 function enterRanddoc(s: GameState, scene: SceneBuilder): void {
   (s as any).randdoc = (Math.floor(Math.random() * 20) + 0);
   if ((!((s as any).randdoc ?? 0))) {
-    qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+    qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
     // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Ivanov'
     // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Ivanov'
-    qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcpreservec', '$npclastgenerated');
   } else {
     if (((s as any).randdoc ?? 0) === 1) {
-      qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+      qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
       // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Smirnov'
       // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Smirnov'
-      qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+      qspCall(s, 'npcpreservec', '$npclastgenerated');
     } else {
       if (((s as any).randdoc ?? 0) === 2) {
-        qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+        qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
         // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Kuznetsov'
         // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Kuznetsov'
-        qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+        qspCall(s, 'npcpreservec', '$npclastgenerated');
       } else {
         if (((s as any).randdoc ?? 0) === 3) {
-          qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+          qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
           // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Popov'
           // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Popov'
-          qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+          qspCall(s, 'npcpreservec', '$npclastgenerated');
         } else {
           if (((s as any).randdoc ?? 0) === 4) {
-            qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+            qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
             // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Vasiliev'
             // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Vasiliev'
-            qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+            qspCall(s, 'npcpreservec', '$npclastgenerated');
           } else {
             if (((s as any).randdoc ?? 0) === 5) {
-              qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+              qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
               // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Petrov'
               // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Petrov'
-              qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+              qspCall(s, 'npcpreservec', '$npclastgenerated');
             } else {
               if (((s as any).randdoc ?? 0) === 6) {
-                qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                 // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Sokolov'
                 // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Sokolov'
-                qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                qspCall(s, 'npcpreservec', '$npclastgenerated');
               } else {
                 if (((s as any).randdoc ?? 0) === 7) {
-                  qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                  qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                   // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Mikhailov'
                   // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Mikhailov'
-                  qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                  qspCall(s, 'npcpreservec', '$npclastgenerated');
                 } else {
                   if (((s as any).randdoc ?? 0) === 8) {
-                    qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                    qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                     // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Fedorov'
                     // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Fedorov'
-                    qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                    qspCall(s, 'npcpreservec', '$npclastgenerated');
                   } else {
                     if (((s as any).randdoc ?? 0) === 9) {
-                      qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                      qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                       // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Morozov'
                       // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Morozov'
-                      qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                      qspCall(s, 'npcpreservec', '$npclastgenerated');
                     } else {
                       if (((s as any).randdoc ?? 0) === 10) {
-                        qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                        qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                         // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Volkov'
                         // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Volkov'
-                        qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                        qspCall(s, 'npcpreservec', '$npclastgenerated');
                       } else {
                         if (((s as any).randdoc ?? 0) === 11) {
-                          qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                          qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                           // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Alexeev'
                           // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Alexeev'
-                          qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                          qspCall(s, 'npcpreservec', '$npclastgenerated');
                         } else {
                           if (((s as any).randdoc ?? 0) === 12) {
-                            qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                            qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                             // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Lebedev'
                             // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Lebedev'
-                            qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                            qspCall(s, 'npcpreservec', '$npclastgenerated');
                           } else {
                             if (((s as any).randdoc ?? 0) === 13) {
-                              qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                              qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                               // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Semenov'
                               // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Semenov'
-                              qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                              qspCall(s, 'npcpreservec', '$npclastgenerated');
                             } else {
                               if (((s as any).randdoc ?? 0) === 14) {
-                                qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                 // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Egerov'
                                 // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Egerov'
-                                qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                qspCall(s, 'npcpreservec', '$npclastgenerated');
                               } else {
                                 if (((s as any).randdoc ?? 0) === 15) {
-                                  qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                  qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                   // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Pavlov'
                                   // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Pavlov'
-                                  qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                  qspCall(s, 'npcpreservec', '$npclastgenerated');
                                 } else {
                                   if (((s as any).randdoc ?? 0) === 16) {
-                                    qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                    qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                     // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Kozlov'
                                     // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Kozlov'
-                                    qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                    qspCall(s, 'npcpreservec', '$npclastgenerated');
                                   } else {
                                     if (((s as any).randdoc ?? 0) === 17) {
-                                      qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                      qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                       // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Stepanov'
                                       // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Stepanov'
-                                      qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                      qspCall(s, 'npcpreservec', '$npclastgenerated');
                                     } else {
                                       if (((s as any).randdoc ?? 0) === 18) {
-                                        qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                        qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                         // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Nikolaev'
                                         // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Nikolaev'
-                                        qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                        qspCall(s, 'npcpreservec', '$npclastgenerated');
                                       } else {
                                         if (((s as any).randdoc ?? 0) === 19) {
-                                          qspCall(s, 'npcgeneratec', '', 0, 'Doctor', (Math.floor(Math.random() * 21) + 28));
+                                          qspCall(s, 'npcgeneratec', '0', 'Doctor', (Math.floor(Math.random() * 21) + 28));
                                           // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Dr. Orlov'
                                           // TODO-QSP: $npc_lastname[$npclastgenerated] = 'Orlov'
-                                          qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
+                                          qspCall(s, 'npcpreservec', '$npclastgenerated');
                                         }
                                       }
                                     }
@@ -474,7 +474,7 @@ function enterRanddoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'boyStat', '', ((s as any).npclastsaved ?? 0));
+  qspCall(s, 'boyStat', '$npclastsaved');
   ((s as any).docfuck = (s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();

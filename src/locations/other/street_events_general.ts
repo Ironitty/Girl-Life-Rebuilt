@@ -22,8 +22,8 @@ function enterRandomRape(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('As you walk down the street, a man jumps out of the shadows and suddenly grabs you. As you\'re caught off-guard, he manages to drag you into a nearby alleyway. You try to scream but his strong hand covers your mouth. You attempt to get free, but his other arm wraps around your waist and lifts you off the ground as he drags you further down the alleyway.');
-    qspCall(s, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 28) + 18));
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 28) + 18));
+    qspCall(s, 'boyStat', '$npclastgenerated');
     qspCall(s, 'stat', '');
     if (((s as any).succubusQW ?? 0) === 14) {
       scene.actions([
@@ -123,8 +123,8 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
     scene.text('You clutch your purse to your body and tell him, "Fuck you, asshole!" He snarls and lunges at you.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Robber', (Math.floor(Math.random() * 28) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Robber', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'robber');
     qspGoto(st, 'fight', 'start');
@@ -173,8 +173,8 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(st, 'npcgeneratec', '', 0, 'Purse Snatcher', (Math.floor(Math.random() * 28) + 18));
-      qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+      qspCall(st, 'npcgeneratec', '0', 'Purse Snatcher', (Math.floor(Math.random() * 28) + 18));
+      qspCall(st, 'boyStat', '$npclastgenerated');
       // TODO-QSP: $streetev_title
       scene.img('images/locations/shared/street/pursechase.jpg');
       scene.text('You chase after him, screaming at him to stop or for someone to stop him. All that working out is paying off, you are gaining on him. He keeps glancing back as you get closer, he turns and ducks down an alley when you are nearly on top of him. He leaps over an overturned trash can, obviously still hoping to get away from you. You easily leap over it as well, and a few steps later, you tackle him, sending both of you rolling on the ground. You both get back to your feet at the same time. Realising he can\'t escape, he lunges at you.');
@@ -199,10 +199,10 @@ function enterMistmeet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Rapist', 0, 0, 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Rapist', 0, 0, 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);

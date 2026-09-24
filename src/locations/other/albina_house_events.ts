@@ -835,7 +835,7 @@ function enterWinterHotTub(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['skinny_dip'] === 1) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_house_events', 'winter_hot_tub_no_panties1');
+    qspCall(st, 'albina_house_events', '');
   } },
     ]);
   } else {
@@ -860,7 +860,7 @@ function enterWinterHotTubNoPanties1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'albina_house_events', 'winter_hot_tub_no_panties2');
+    qspCall(st, 'albina_house_events', '');
   } },
   ]);
   scene.build();
@@ -875,7 +875,7 @@ function enterWinterHotTubNoPanties2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
-    qspCall(st, 'albina_house_events', 'winter_hot_tub_no_panties3');
+    qspCall(st, 'albina_house_events', '');
   } },
   ]);
   scene.build();

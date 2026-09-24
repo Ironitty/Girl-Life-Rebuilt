@@ -94,12 +94,12 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).billwin ?? 0) <= 10  &&  ((s as any).billvar ?? 0) === 2) {
                 scene.text('You lose, open those legs.');
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '1');
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
-                qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '2');
+                qspCall(s, 'npcgeneratec', '0', 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
+                qspCall(s, 'boyStat', '$npclastgenerated');
+                qspCall(s, 'npcgeneratec', '0', 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
+                qspCall(s, 'boyStat', '$npclastgenerated', '1');
+                qspCall(s, 'npcgeneratec', '0', 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
+                qspCall(s, 'boyStat', '$npclastgenerated', '2');
                 (s as any).picrand = 12;
                 scene.actions([
                   { label: 'Pay', goto: ['paysex', 'var'] },

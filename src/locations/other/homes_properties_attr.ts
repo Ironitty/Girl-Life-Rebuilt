@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -97,7 +95,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
             ((s as any).property = (s as any).property ?? {})['display_0'] = 'plot of land in the St. Petersburg\'s suburbs';
             ((s as any).property = (s as any).property ?? {})['display_1'] = 'impressive mansion under construction in the St. Petersburg\'s suburbs';
             ((s as any).property = (s as any).property ?? {})['display_2'] = 'impressive mansion in the St. Petersburg\'s suburbs';
-            ((s as any).property = (s as any).property ?? {})['display'] = ((s as any).property ?? 0)?.['display_' + String(((s as any).accessible_property ?? 0)?.[String(qspUntranslated(s, "args[1]", { location: "homes_properties_attr" })) + '-construction-status'])];
+            ((s as any).property = (s as any).property ?? {})['display'] = ((s as any).property ?? 0)?.['display_' + String(((s as any).accessible_property ?? 0)?.[String((((s as any).args ?? 0)?.[1] ?? 0)) + '-construction-status'])];
             ((s as any).property = (s as any).property ?? {})['region'] = 'city';
             ((s as any).property = (s as any).property ?? {})['town'] = 'city';
             ((s as any).property = (s as any).property ?? {})['location'] = 'city_mansion_entrance';
@@ -347,8 +345,8 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                       if (Object.keys((s as any).home_property_attr_calls ?? {}).length > 0) {
                                         (s as any).i = 0;
                                         // TODO-QSP: :mod_get_property_attr_calls_loop
-                                        (s as any).temp_app_loc = ((String((String(((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)]).slice((3)-1))).indexOf(String('\''))) + 1);
-                                        (s as any).temp_loc_name = (String(((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)]).slice((2)-1, ((2)-1)+(((s as any).temp_app_loc ?? 0))));
+                                        (s as any).temp_app_loc = ((String((String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((3)-1))).indexOf(String('\''))) + 1);
+                                        (s as any).temp_loc_name = (String((((s as any).home_property_attr_calls ?? 0)?.[String((s as any).i ?? 0)] ?? 0)).slice((2)-1, ((2)-1)+(((s as any).temp_app_loc ?? 0))));
                                         if (hasLocation(((s as any).temp_loc_name ?? 0))) {
                                         }
                                       }

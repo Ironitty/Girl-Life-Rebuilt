@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -90,7 +88,7 @@ function enterInitiation(s: GameState, scene: SceneBuilder): void {
 
 function enterWalkoff(s: GameState, scene: SceneBuilder): void {
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 51) + 600);
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
@@ -163,7 +161,7 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
     scene.text('You stay silent and watch them walk away. You know you just painted a target on your back, but you couldn\'t bring yourself to steal. Sighing, you walk back to the street.');
     ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 51) + 600);
-    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = (((st as any).grupvalue ?? 0)?.[4] ?? 0);
     qspCall(st, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
     qspCall(st, 'stat', '');
     scene.actions([
@@ -207,7 +205,7 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
   scene.text('You shake your head. "I\'m not a slut."');
   scene.text('They turn around and start walking away again. "Then fuck you bitch!" You know you\'re a target for the gopniks now, but it\'s better than being their personal slut. You turn and make your way back to the street.');
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 51) + 600);
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -218,9 +216,9 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 625), qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), (((s as any).grupvalue ?? 0)?.[1] ?? 0));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 625), (((s as any).grupvalue ?? 0)?.[2] ?? 0));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), (((s as any).grupvalue ?? 0)?.[3] ?? 0));
   if (((s as any).grupTipe ?? 0) === 1) {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = (Math.floor(Math.random() * 101) + 500);
   }
@@ -230,10 +228,10 @@ function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grupTipe ?? 0) === 3) {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = (Math.floor(Math.random() * 101) + 500);
   }
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = (((s as any).grupvalue ?? 0)?.[1] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = (((s as any).grupvalue ?? 0)?.[2] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = (((s as any).grupvalue ?? 0)?.[3] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   (s as any).grupTipe = 4;
   ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_gopnik'] = 1;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 10);
@@ -831,7 +829,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to the others', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A157', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['gopnik_initiation', 'explore'] },
       { label: 'Try to make out the figure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/princoff.jpg');
@@ -1211,9 +1209,9 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   (s as any).gopnik_slut = 1;
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 625), qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), (((s as any).grupvalue ?? 0)?.[1] ?? 0));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 625), (((s as any).grupvalue ?? 0)?.[2] ?? 0));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), (((s as any).grupvalue ?? 0)?.[3] ?? 0));
   if (((s as any).grupTipe ?? 0) === 1) {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = (Math.floor(Math.random() * 101) + 500);
   }
@@ -1223,10 +1221,10 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grupTipe ?? 0) === 3) {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = (Math.floor(Math.random() * 101) + 500);
   }
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = (((s as any).grupvalue ?? 0)?.[1] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = (((s as any).grupvalue ?? 0)?.[2] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = (((s as any).grupvalue ?? 0)?.[3] ?? 0);
+  ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = (((s as any).grupvalue ?? 0)?.[4] ?? 0);
   (s as any).grupTipe = 4;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');
@@ -1244,7 +1242,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('As you look around, you notice Vitek giving you a hard stare, Lena seemingly having filled him in on your unwillinginess to steal and your deal to still join. He doesn\'t look remotely pleased as he walks over to you and roughly grabs a handful of your hair. He pushes you forward, guiding you painfully by your hair as he talks. At some point, someone cuts the music and his voice carries clearly around the room.');
     // TODO-QSP: dynamic text: "It seems little <<$pcs_nickname>> here is too good to steal or even help steal....
     scene.text(`"It seems little ${((st as any).pcs_nickname ?? '')} here is too good to steal or even help steal." You hear a chorus of booing, hisses and threats.`);
-    qspCall(st, 'pain', '', 2, 'hair', 'twist');
+    qspCall(st, 'pain', '2', 'hair', 'twist');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'In position', handler: (st: GameState) => {
@@ -1252,14 +1250,14 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He painfully pushes you up against the largest and sturdiest of the tables, then...
     scene.text(`He painfully pushes you up against the largest and sturdiest of the tables, then lifts you by your hair, forcing you to crawl up on the table. Once on the table, he makes you get down on your hands and knees before he turns to address the crowd. "I know, I know. I wondered why my sister brought her as well, but it turns out that while our little ${((st as any).pcs_nickname ?? '')} might not want to be one of us, she is willing to show us all a good time. She has offered herself up to be the party slut, if we will take her in. We can do any and everything we want to her. So what do you say guys?"`);
     scene.text('There\'s an awkward silence before the guys roar with approval. You overhear a number of crude comments that you wish you hadn\'t.');
-    qspCall(st, 'pain', '', 2, 'hair', 'twist');
+    qspCall(st, 'pain', '2', 'hair', 'twist');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'The rules', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/3.jpg');
     scene.text('Vitek laughs loudly. "The ayes have it." He walks around behind you and roughly rips at your clothes until your ass and pussy are on fully display to the whole room before he moves back around and grabs you hard by the neck, choking you as he does. His grip is so tight that you can hardly breathe as he leans in close to you and whispers in your ear.');
     scene.text('"Okay slut, here\'s the rules. You\'re our personal fuck doll that will happily do anything we like, and will like it and not complain or I\'ll make this a living nightmare for you. Understand?" You nod your head, unable to speak as your eyes begin to water. He grins at you. "Good girl."');
-    qspCall(st, 'pain', '', 2, 'neck', 'bind');
+    qspCall(st, 'pain', '2', 'neck', 'bind');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Display', handler: (st: GameState) => {
@@ -1276,7 +1274,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('As the girls take turns spanking you, Vitek jumps up on the table and pulls his dick out of his pants before he roughly grabs you hair and shoves his dick down your throat. He starts fucking your face, barely letting up enough for you to breathe while the girls keep spanking you.');
     qspCall(st, 'arousal', 'foreplay', 10, ((st as any).npcID ?? 0), 'group', 'sub', 'humiliation', 'exhibitionism');
     qspCall(st, 'arousal', 'bj', (-10), ((st as any).npcID ?? 0), 'group', 'rough', 'sub', 'humiliation', 'deepthroat');
-    qspCall(st, 'pain', '', 10, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '10', 'asscheeks', 'spank');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Getting you loose', handler: (st: GameState) => {
@@ -1284,7 +1282,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/6.jpg');
     scene.text('Vitek doesn\'t even try and hold back. He quickly blows his load down your throat, giving you no choice but to swallow it. With that done, he tucks his dick back in his pants and jumps off the table. The girls have stopped spanking you, but you feel fingers rubbing against your slit as Lena says "We need to get you wet and loosened up." She then slides a few of her fingers inside you before she shoves her whole hand up into your pussy and starts fisting you.');
     qspCall(st, 'arousal', 'vaginal_fist', 5, ((st as any).npcID1 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'lesbian', 'exhibitionism');
-    qspCall(st, 'pain', '', 5, 'vaginal', 'stretch');
+    qspCall(st, 'pain', '5', 'vaginal', 'stretch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Full display', handler: (st: GameState) => {
@@ -1299,21 +1297,21 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('Once they get bored taking your picture, a few of the guys come over and start fondling your naked body. One of them pinches your nipple hard before they start taking turns roughly fingering your pussy, squeezing your tits and pinching your nipples. After a while, you\'ve lost track of how many guys have manhandled you.');
     (st as any).temp_i = 0;
     // TODO-QSP: :guys_manhandling_loop
-    qspCall(st, 'npcgeneratec', '', 0, 'A guy from the disco', (Math.floor(Math.random() * 4) + 17), 1, 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 2);
-    // TODO-QSP: gs 'arousal', 'vaginal_finger', 1, $npcID[1+temp_i], 'group', 'rough', 'sub', 'humiliation', 'exhibi...
+    qspCall(st, 'npcgeneratec', '0', 'A guy from the disco', (Math.floor(Math.random() * 4) + 17), 1, 1);
+    qspCall(st, 'npcStat', '$npclastgenerated', 2);
+    qspCall(st, 'arousal', 'vaginal_finger', 1, (((st as any).npcID ?? 0)?.[1+((st as any).temp_i ?? 0)] ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
     (st as any).temp_i = ((st as any).temp_i ?? 0) + (1);
     if (((st as any).temp_i ?? 0) < 5) {
       // TODO-QSP: jump 'guys_manhandling_loop'
     }
-    qspCall(st, 'pain', '', 5, 'nipples', 'pinch');
+    qspCall(st, 'pain', '5', 'nipples', 'pinch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lena', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/9.jpg');
     scene.text('Lena comes back over and drives the guys off. "My turn boys." She reaches down and pinches your clit hard before she alternates between rubbing your clit, slipping her finger into you to finger bang you and pinching your clit. The switching between pleasure and pain is maddening.');
     qspCall(st, 'arousal', 'vaginal_finger', 5, ((st as any).npcID1 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'lesbian', 'exhibitionism');
-    qspCall(st, 'pain', '', 5, 'clitoris', 'pinch');
+    qspCall(st, 'pain', '5', 'clitoris', 'pinch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lera', handler: (st: GameState) => {
@@ -1321,7 +1319,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/10.jpg');
     scene.text('Once Lena gets bored with you, Lera takes a turn. She rubs your clit and really starts to get you turned on before she starts finger banging you while she sucks on your nipples. She then bites your nipples as she keeps finger banging you.');
     qspCall(st, 'arousal', 'vaginal_finger', 5, ((st as any).npcID2 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'lesbian', 'exhibitionism');
-    qspCall(st, 'pain', '', 5, 'bite', 'pinch');
+    qspCall(st, 'pain', '5', 'bite', 'pinch');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'On your back', handler: (st: GameState) => {
@@ -1330,7 +1328,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('"Enough already, I want to fuck her." Roman pushes Lera aside, who shoves him back. Roman in turn shoves her harder, almost knocking her to the floor. For a moment, you think a fight might break out before Vitek\'s voice cuts through. "Enough you two!"');
     scene.text('Roman then drags you over to the table again and pushes you down on it. As you lay on your back, he raises your legs and spreads them apart before you feel his cock plunge deep into your pussy as another cock is shoved into your mouth. Before long, there is a line of guys taking turns fucking your pussy or your mouth. You can\'t even keep up with who is fucking you.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID3 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    // TODO-QSP: gs 'arousal', 'bj', -10, $npcID[rand(1, 5)], 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'de...
+    qspCall(st, 'arousal', 'bj', (-10), 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Flipped over', handler: (st: GameState) => {
@@ -1338,7 +1336,7 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/12.jpg');
     scene.text('You see Vasily approaching and he takes one look at you before he roughly grabs you and flips you over onto your stomach so you\'re bent over the table. "I don\'t want to look at the slut\'s face. Now this is the view every bitch should show you." He plunges his dick into your pussy and starts pounding away while another cock is shoved in your mouth and it\'s back to the guys standing in line taking turns.');
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID4 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    // TODO-QSP: gs 'arousal', 'bj', -10, $npcID[rand(1, 5)], 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'de...
+    qspCall(st, 'arousal', 'bj', (-10), 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'deepthroat');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Vitek\'s claim', handler: (st: GameState) => {
@@ -1346,14 +1344,14 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('The non-stop gangbang is suddenly interrupted as Vitek\'s voice cuts through. "All right back off, I\'m ready for round two." The other guys stop and make space for him. He moves up behind you and rubs his dick against your asshole before he shoves his cock up your ass.');
     (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (4);
     qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
-    qspCall(st, 'pain', '', 5, 'asshole', 'tear');
+    qspCall(st, 'pain', '5', 'asshole', 'tear');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Anal train', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/14.jpg');
     scene.text('Sometime later, Vitek pulls out and walks around the table. "Next!" Before he even finishes saying it, you feel another cock being shoved up your ass. As the next guy starts pounding your ass, Vitek holds you by the hair and jerks off on your face, coating your face with his cum.');
     qspCall(st, 'arousal', 'anal', 15, ((st as any).npcID ?? 0), 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
-    // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[rand(1, 5)], 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'ex...
+    qspCall(st, 'arousal', 'anal', 5, 0, 'group', 'rough', 'sub', 'humiliation', 'gangbang', 'exhibitionism');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 1);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1361,9 +1359,9 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/oldschool/gophangout/slut/15.jpg');
     scene.text('Most of the guys seem to be having trouble holding out much longer, so you are dragged off the table and forced to kneel by Lena, who slaps you across the face. "Open your mouth and stick out your tongue, slut! You\'re going to play cum dumpster." The guys line up and take turns blowing their loads over your face. Some can\'t wait and cum on the table instead.');
     qspCall(st, 'arousal', 'foreplay', 5, ((st as any).npcID1 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[1]
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[2]
-    // TODO-QSP: gs 'cum_call', 'face', $npcID[3]
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[1] ?? 0));
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[2] ?? 0));
+    qspCall(st, 'cum_call', 'face', (((st as any).npcID ?? 0)?.[3] ?? 0));
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
@@ -1373,9 +1371,9 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
     scene.text('"Look at the bright side, bunny. At least you\'re only the gopniks slut. At least for now," she adds with a laugh. The two then leave you to clean yourself up and try and salavage your ripped clothes. You do your best to get dressed again before leaving yourself, wondering if you just make the biggest mistake of your life.');
     qspCall(st, 'fame', 'pav', 'sex', 25);
     qspCall(st, 'arousal', 'foreplay', 5, ((st as any).npcID1 ?? 0), 'group', 'rough', 'sub', 'humiliation', 'exhibitionism');
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID[4]
-    // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID[5]
-    qspCall(st, 'cum_cleanup', '', 4);
+    qspCall(st, 'cum_call', 'mouth_swallow', (((st as any).npcID ?? 0)?.[4] ?? 0));
+    qspCall(st, 'cum_call', 'mouth_swallow', (((st as any).npcID ?? 0)?.[5] ?? 0));
+    qspCall(st, 'cum_cleanup', '4');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },

@@ -13,19 +13,19 @@ function enterYakov(s: GameState, scene: SceneBuilder): void {
   (s as any).loc_arg = 'Yakov';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
   // TODO-QSP: $func('npc_notes', $boy)
   if (((s as any).Yakov ?? 0)?.['hadSex'] === 1) {
     // TODO-QSP: dynamic text: As you know very well, <<$npc_firstname[$boy]>> has <<npc_dick[$boy]>> cm long <...
-    scene.text(`As you know very well, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} has ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;">dick</a> with always smoothly shaved pubic hair.`);
+    scene.text(`As you know very well, ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} has ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_shared_yakov/u0027, /u0027yakov_dick/u0027); return false;">dick</a> with always smoothly shaved pubic hair.`);
   }
   // TODO-QSP: dynamic text: <b>Today he looks to be in a <<$Yakov[''mood_txt'']>> mood.</b>
   scene.text(`<b>Today he looks to be in a ${((s as any).Yakov ?? 0)?.['mood_txt'] ?? ''} mood.</b>`);
   if ((((s as any).totminut ?? 0) - ((s as any).Yakov ?? 0)?.['served']) < 180) {
     ((s as any).Yakov = (s as any).Yakov ?? {})['serve'] = 0;
     // TODO-QSP: dynamic text: It''s not even been 3 hours since you last served <<$npc_firstname[$boy]>>
-    scene.text(`It's not even been 3 hours since you last served ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}`);
+    scene.text(`It's not even been 3 hours since you last served ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}`);
   } else {
     if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2) {
       ((s as any).Yakov = (s as any).Yakov ?? {})['serve'] = 1;
@@ -77,7 +77,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   (s as any).loc_arg = 'Yakov_Chat';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
   if (((s as any).hour ?? 0) >= ((s as any).Yakov ?? 0)?.['leaves']  &&  ((s as any).hour ?? 0) < ((s as any).Yakov ?? 0)?.['comes']) {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
@@ -93,7 +93,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).say ?? 0) === 1) {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is looking at your nude body wondering…
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is looking at your nude body wondering…`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is looking at your nude body wondering…`);
         if (((s as any).pcs_bmi ?? 0) <= 15) {
           // TODO-QSP: dynamic text: He is not very content with the sight: <font color=#<<$Yakov[''font'']>>>"<<$pcs...
           scene.text(`He is not very content with the sight: <font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, are you not anorexic? Better not, it is a terrible thing."</font>`);
@@ -116,7 +116,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
           scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, is that a buttplug??"</font> (his eyes spark with weird shine).`);
           if ((Math.floor(Math.random() * 101) + 0) < 30) {
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes <<$npc_firstname[$boy]>>, it is. Do you like it?...
-            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, it is. Do you like it? Will you help me with it? It seems stuck."</font>`);
+            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, it is. Do you like it? Will you help me with it? It seems stuck."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Yes! How does it feel walking around with tha...
             scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Yes! How does it feel walking around with that inside you?"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"It is… arousing. And also fulfilling. If you know wh...
@@ -137,7 +137,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).PCloBimbo ?? 0) === 1) {
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is looking at your outfit with suspicion.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is looking at your outfit with suspicion.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is looking at your outfit with suspicion.`);
           if (((s as any).pcs_bmi ?? 0) >= 12  &&  ((s as any).pcs_bmi ?? 0) <= 25) {
             // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"What a sexy dress are you wearing! Aren''t yo...
             scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"What a sexy dress are you wearing! Aren't you afraid it is too sexy for some people in the town, though?"</font>`);
@@ -148,7 +148,7 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is looking at your outfit with suspicion.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is looking at your outfit with suspicion.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is looking at your outfit with suspicion.`);
             if (((s as any).pcs_bmi ?? 0) <= 25) {
               // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"I love sexy dresses on you sweetie, but this ...
               scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I love sexy dresses on you sweetie, but this one makes you look like a… playgirl if you know what I mean."</font>`);
@@ -264,29 +264,29 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
           if (((s as any).shared_apt ?? 0)?.['step'] === 30) {
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             // TODO-QSP: dynamic text: You get into rather passionate discussion about sex and all that stuff. <<$npc_f...
-            scene.text(`You get into rather passionate discussion about sex and all that stuff. ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} seems to love to talk about such topics.`);
+            scene.text(`You get into rather passionate discussion about sex and all that stuff. ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} seems to love to talk about such topics.`);
             ((s as any).shared_apt = (s as any).shared_apt ?? {})['resCh'] = (Math.floor(Math.random() * 6) + 0);
             if (((s as any).shared_apt ?? 0)?.['resCh'] <= 3) {
               ((s as any).shared_apt = (s as any).shared_apt ?? {})['topicR'] = (Math.floor(Math.random() * 5) + 1);
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 1) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you he loves looking at the girls fa...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you he loves looking at the girls face when she orgasms.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} passionately tells you he loves looking at the girls face when she orgasms.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 2) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you he loves when a girl is touching...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you he loves when a girl is touching with his asscheeks.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} passionately tells you he loves when a girl is touching with his asscheeks.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 3) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you he adores blond girls the most.
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you he adores blond girls the most.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} passionately tells you he adores blond girls the most.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 4) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you his <<npc_dick[$boy]>> cm long d...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick is just enough to make love and not pain.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} passionately tells you his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick is just enough to make love and not pain.`);
               }
               if (((s as any).shared_apt ?? 0)?.['topicR'] === 5) {
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> passionately tells you he loves when the girl is a spor...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} passionately tells you he loves when the girl is a sporting type.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} passionately tells you he loves when the girl is a sporting type.`);
               }
               scene.actions([
                 { label: 'Continue', handler: (st: GameState) => {
@@ -297,12 +297,12 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['resCh'] === 4) {
                 if (((s as any).Yakov ?? 0)?.['anal'] === 0) {
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> admits that no girl has yet allowed him to fuck her ass...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} admits that no girl has yet allowed him to fuck her ass.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} admits that no girl has yet allowed him to fuck her ass.`);
                   ((s as any).Yakov = (s as any).Yakov ?? {})['doAnal'] = 1;
                   scene.actions([
                     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_Chat'] },
                   ]);
                 } else {
@@ -316,12 +316,12 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['resCh'] === 5) {
                   if (((s as any).Yakov ?? 0)?.['anal'] === 0) {
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> almost secretly tells you he owns a dildo so big that n...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} almost secretly tells you he owns a dildo so big that no girl can insert it into her entirely.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} almost secretly tells you he owns a dildo so big that no girl can insert it into her entirely.`);
                     ((s as any).Yakov = (s as any).Yakov ?? {})['doDildo'] = 1;
                     scene.actions([
                       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 0
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_Chat'] },
                     ]);
                   } else {
@@ -344,12 +344,12 @@ function enterYakov_Chat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Let''s see what you have in there…"</font>
       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Let's see what you have in there…"</font>`);
       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes the plug and slowly pulls it halfway out, gazing ...
-      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes the plug and slowly pulls it halfway out, gazing and how big it is.`);
+      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes the plug and slowly pulls it halfway out, gazing and how big it is.`);
       scene.text('Then he twists it around, still in your ass and pushes it back in there, repeating this few times.');
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"I think it fits better now."</font>
       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I think it fits better now."</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Thank you <<$npc_firstname[$boy]>>!"</font>
-      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Thank you ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
+      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Thank you ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}!"</font>`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['chatLvl'] = 0
@@ -365,7 +365,7 @@ function enterYakovDick(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
     scene.img('images/locations/pavlovsk/resident/sharedapt/sp/cockflaccid.jpg');
@@ -428,7 +428,7 @@ function enterYakovDick(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: His mood is <<$Yakov[''mood_txt'']>>.
   scene.text(`His mood is ${((s as any).Yakov ?? 0)?.['mood_txt'] ?? ''}.`);
   // TODO-QSP: dynamic text: His dick is <<npc_dick[$boy]>> cm long with always smoothly shaved pubic hair.
-  scene.text(`His dick is ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long with always smoothly shaved pubic hair.`);
+  scene.text(`His dick is ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long with always smoothly shaved pubic hair.`);
   if (((s as any).Yakov ?? 0)?.['hj'] === 1) {
     scene.text('-you jerked him off');
   }
@@ -561,7 +561,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).loc_arg = 'Yakov_Serve';
   // TODO-QSP: dynamic text: <h3><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>></font></h3>
-  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}</font></h3>`);
+  scene.text(`<h3><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}</font></h3>`);
   scene.img('images/locations/pavlovsk/resident/sharedapt/sp/sp.jpg');
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['subStep'] = 0;
@@ -588,7 +588,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I could use a nice blowjob."</font>`);
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_Suck'] },
         ]);
       } else {
@@ -597,7 +597,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
           scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Good idea, I would like to have sex."</font>`);
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] },
           ]);
         } else {
@@ -609,7 +609,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'It\'s your choice', goto: ['pav_shared_yakov', 'Yakov_Serve'] },
                   { label: 'You told me you have never tried anal, didn\'t you?', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 2);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
                 ]);
               } else {
@@ -621,7 +621,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
                 scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I would like to take enjoy your beautiful ass this time."</font>`);
                 scene.actions([
                   { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_SexAnal'] },
                 ]);
               }
@@ -635,7 +635,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'It\'s your choice', goto: ['pav_shared_yakov', 'Yakov_Serve'] },
                     { label: 'You told me you own some kind of giant dildo, do you?', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 2);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_SexGiantdildo'] },
                   ]);
                 } else {
@@ -647,7 +647,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
                   scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Great ${((s as any).pcs_firstname ?? '')}, I want to see you ride the Big boy once again!"</font>`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['pav_shared_yakov', 'Yakov_SexGiantdildo'] },
                   ]);
                 }
@@ -674,7 +674,7 @@ function enterYakov_Serve(s: GameState, scene: SceneBuilder): void {
 function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   // TODO-QSP: dynamic text: <b><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>> - blowjob</font></...
-  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - blowjob</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - blowjob</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/sp/...
@@ -703,12 +703,12 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_blowjob'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     scene.img('images/locations/pavlovsk/resident/sharedapt/sp/cockflaccid.jpg');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes down his pants, revealing his flaccid cock. He re...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes down his pants, revealing his flaccid cock. He relaxes on his bed, expecting you to do the service.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes down his pants, revealing his flaccid cock. He relaxes on his bed, expecting you to do the service.`);
     scene.text('You drop on your knees and crawl to him, trying to move as sexy as possible.');
     scene.actions([
       { label: 'Lick his balls', handler: (st: GameState) => {
@@ -752,9 +752,9 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).shared_apt ?? 0)?.['step'] === 2) {
         scene.img('images/shared/sex/blowjob/kotovbjbonus3.mp4');
         // TODO-QSP: dynamic text: You take <<$npc_firstname[$boy]>> cock in your hand, pointing the tip in front o...
-        scene.text(`You take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cock in your hand, pointing the tip in front of your mouth.`);
+        scene.text(`You take ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cock in your hand, pointing the tip in front of your mouth.`);
         // TODO-QSP: dynamic text: As it was your favorite puppy, you start to gently lick the tip all around, slow...
-        scene.text(`As it was your favorite puppy, you start to gently lick the tip all around, slowly making the cock to get harder and harder, finally reaching his full ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm length.`);
+        scene.text(`As it was your favorite puppy, you start to gently lick the tip all around, slowly making the cock to get harder and harder, finally reaching his full ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm length.`);
         qspCall(s, 'arousal', 'bj', 3);
         qspCall(s, 'stat', '');
         (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 6) + 2));
@@ -779,13 +779,13 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
           if ((!((s as any).cockHard ?? 0))) {
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 5));
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s cock is not hard yet, but you start to suck the yet ...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s cock is not hard yet, but you start to suck the yet soft tip as if it was, slurping aloud.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s cock is not hard yet, but you start to suck the yet soft tip as if it was, slurping aloud.`);
             scene.text('You can feel that slowly his member becomes hard right in your mouth.');
             (s as any).cockHard = 1;
           } else {
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 11) + 10));
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s already hard cock points toward you and you suck the...
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s already hard cock points toward you and you suck the dark pink tip as a lollipop.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s already hard cock points toward you and you suck the dark pink tip as a lollipop.`);
           }
           qspCall(s, 'arousal', 'bj', 3);
           qspCall(s, 'stat', '');
@@ -819,13 +819,13 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
             if ((!((s as any).cockHard ?? 0))) {
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 15));
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s cock is not hard yet, but you start to suck the memb...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s cock is not hard yet, but you start to suck the member as if it was, making almost half of it disappear in your throat every time you move on.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s cock is not hard yet, but you start to suck the member as if it was, making almost half of it disappear in your throat every time you move on.`);
               scene.text('You can slowly feel his member becoming hard right in your mouth, making you choke and gag on it more and more with every second.');
               (s as any).cockHard = 1;
             } else {
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>>''s already hard cock points toward you and you suck alm...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s already hard cock points toward you and you suck almost half of it, sucking and slurping it as best as you can.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s already hard cock points toward you and you suck almost half of it, sucking and slurping it as best as you can.`);
             }
             qspCall(s, 'arousal', 'bj', 8);
             qspCall(s, 'stat', '');
@@ -858,7 +858,7 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
               scene.img('images/shared/sex/blowjob/shower7.mp4');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 40));
               // TODO-QSP: dynamic text: You decide to take <<$npc_firstname[$boy]>>''s hard, <<npc_dick[$boy]>> cm long ...
-              scene.text(`You decide to take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s hard, ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock all the way your throat.`);
+              scene.text(`You decide to take ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s hard, ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock all the way your throat.`);
               scene.text('You force yourself on to it, overcoming the gag reflex in your throat, saliva and tears almost squirting out of you.');
               scene.text('Even though his cock is not the largest one, it is long enough to make you gag.');
               scene.text('Doing this several times in a row, you try to hold on as long as you can with dick all the way down in your throat.');
@@ -869,7 +869,7 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
               (s as any).fadeOutCh = (Math.floor(Math.random() * 101) + 0);
               if (((s as any).shared_apt ?? 0)?.['deepthroatFailCh'] <= 10) {
                 // TODO-QSP: dynamic text: <b>You try too hard to put it as far as possible, unable to hold the gag reflex ...
-                scene.text(`<b>You try too hard to put it as far as possible, unable to hold the gag reflex anymore, still with his dick inside you vomit right in ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s crotch!</b>`);
+                scene.text(`<b>You try too hard to put it as far as possible, unable to hold the gag reflex anymore, still with his dick inside you vomit right in ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s crotch!</b>`);
                 scene.actions([
                   { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 8
@@ -919,7 +919,7 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['cumCh'] <= 70) {
                   scene.img('images/characters/pavlovsk/resident/leonid/sex/cummouth1.mp4');
                   // TODO-QSP: dynamic text: Your attempt is successful, as <<$npc_firstname[$boy]>> cums right into your mou...
-                  scene.text(`Your attempt is successful, as ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cums right into your mouth and on your face.`);
+                  scene.text(`Your attempt is successful, as ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cums right into your mouth and on your face.`);
                   ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                   qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
                   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
@@ -967,7 +967,7 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['step'] === 7) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
-                  scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
+                  scene.text(`You get up from your knees, looking at ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
                   // TODO-QSP: dynamic text: He looks annoyed:<font color=#<<$Yakov[''font'']>>>"Try better next time."</font...
                   scene.text(`He looks annoyed:<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Try better next time."</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A264', (-3));
@@ -1022,14 +1022,14 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
                         } else {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> doesn''t pay any more attention to you, getting back to...
-                          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} doesn't pay any more attention to you, getting back to reading his sports magazine.`);
+                          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} doesn't pay any more attention to you, getting back to reading his sports magazine.`);
                           scene.text('You just pack your things and quietly leave through the door.');
                           ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         }
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Get up and leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       }
@@ -1050,7 +1050,7 @@ function enterYakov_Suck(s: GameState, scene: SceneBuilder): void {
 function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   // TODO-QSP: dynamic text: <b><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>> - vaginal sex</fon...
-  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - vaginal sex</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - vaginal sex</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/sp/...
@@ -1072,16 +1072,16 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_vaginal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
     // TODO-QSP: dynamic text: His hairless, muscular body has a bronze tan. He moves towards you, lubing his <...
-    scene.text(`His hairless, muscular body has a bronze tan. He moves towards you, lubing his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock and stroking it on the way.`);
+    scene.text(`His hairless, muscular body has a bronze tan. He moves towards you, lubing his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock and stroking it on the way.`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
@@ -1091,7 +1091,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the waist, delicately kissing you.
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes you by the waist, delicately kissing you.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the waist, delicately kissing you.`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Do you want to make love in a certain positio...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Do you want to make love in a certain position, or should I choose?"</font>`);
     if (((s as any).Yakov ?? 0)?.['pornPos'] === 0) {
@@ -1117,11 +1117,11 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
         scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
         scene.text('You lie on the bed, spreading your legs for easy access.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels between those, gently spreading them a bit wider...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels between those, gently spreading them a bit wider with his hands.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, gently spreading them a bit wider with his hands.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         scene.text('You can feel a warm sensation between your legs, replaced by pressure and suddenly even a mild pain. That\'s when he enters your tender pussy.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to move inside you, ever-increasing the pace.
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to move inside you, ever-increasing the pace.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to move inside you, ever-increasing the pace.`);
         scene.text('In a few moments, he starts groaning, obviously enjoying the fuck.');
         qspCall(s, 'arousal', 'vaginal', 10, 'lube');
         qspCall(s, 'stat', '');
@@ -1137,7 +1137,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
           scene.text('As he continuously fucks your pussy, you rub his hairless ass, making him even hornier.');
           scene.text('As you move your hands around his smooth asscheeks, it seems to arouse him even more.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
           qspCall(s, 'arousal', 'vaginal', 10);
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1166,7 +1166,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/shared/sex/vag/doggy/kotovsex10.mp4');
           scene.text('You kneel on the bed, bending your back as much as you can, putting your nice round ass high as possible.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels behind you, rubbing your asscheeks. He starts pr...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels behind you, rubbing your asscheeks. He starts probing your pussy with his lubed fingers, sensitively stimulating your labia and clitoris.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels behind you, rubbing your asscheeks. He starts probing your pussy with his lubed fingers, sensitively stimulating your labia and clitoris.`);
           scene.text('Then he takes his dick and slowly enters your moist hole, pushing in until you he feels it\'s starting to feel enough for you.');
           scene.text('The first mild pain fades away and you can feel building warmth and a good feeling of being fucked from behind like a mare in heat.');
           qspCall(s, 'arousal', 'vaginal', 10, 'lube');
@@ -1183,7 +1183,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             scene.text('As he continuously fucks your pussy, you reach for his smooth balls bashing your clitoris from behind and rubbing it, making his slow movements even more passionate.');
             scene.text('He often plays with your anus with his fingers during the sex, using the doggystyle position to his advantage.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
             qspCall(s, 'arousal', 'vaginal', 10);
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1214,7 +1214,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             scene.text('He takes this as an invitation, lying behind you.');
             scene.text('He rubs your ass, slowly making his way to your hole, playing with it for a while.');
             // TODO-QSP: dynamic text: Finally <<$npc_firstname[$boy]>> takes his rod, pointing the tip right to the en...
-            scene.text(`Finally ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes his rod, pointing the tip right to the entry of your vagina.`);
+            scene.text(`Finally ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes his rod, pointing the tip right to the entry of your vagina.`);
             scene.text('He starts pushing it inside, and as it is lubed, it goes in quite easily.');
             qspCall(s, 'arousal', 'vaginal', 10, 'lube');
             qspCall(s, 'stat', '');
@@ -1229,8 +1229,8 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagsidefuck2.mp4');
               scene.text('As he continuously fucks your pussy, you reach for his smooth balls and rub them, making his slow movements even more passionate.');
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
-              qspCall(s, 'pain', '', 1, 'vaginal', 'stretch');
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
+              qspCall(s, 'pain', '1', 'vaginal', 'stretch');
               qspCall(s, 'arousal', 'vaginal', 10);
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1258,7 +1258,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning loudly, you can say that he is reaching his...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning loudly, you can say that he is reaching his orgasm.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is groaning loudly, you can say that he is reaching his orgasm.`);
               scene.text('You decide to tell him:');
               ((s as any).Yakov = (s as any).Yakov ?? {})['vag'] = ((s as any).Yakov['vag'] ?? 0) + (1);
               ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = (Math.floor(Math.random() * 5) + 2);
@@ -1274,23 +1274,23 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                 scene.img('images/locations/shared/abduction/sex/slavewhorecumpussy3.mp4');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end, pumping his load <<npc_d...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your pussy.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end, pumping his load ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm deep inside your pussy.`);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['vagCumInside'] = ((s as any).Yakov['vagCumInside'] ?? 0) + (1);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
-                qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+                qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
                 qspCall(s, 'arousal', 'vaginal', 2);
                 qspCall(s, 'arousal', 'end');
                 scene.actions([
                   { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                 ]);
               } else {
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                   scene.img('images/locations/city/residential/sauna/sex/cumbelly2.mp4');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and starts spouting his s...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and starts spouting his seed, he takes his dick out and points it on your stomach.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and starts spouting his seed, he takes his dick out and points it on your stomach.`);
                   scene.text('An extensive pool of cum lands on your abdomen, feeling warm but sticky.');
                   (s as any).minut = ((s as any).minut ?? 0) + 2;
                   ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1298,14 +1298,14 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'arousal', 'end');
                   scene.actions([
                     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                   ]);
                 } else {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 3) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/cumonass.mp4');
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and in the moment he star...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
                     scene.text('Both your asscheeks are covered in sticky, warm seed.');
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1313,14 +1313,14 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'arousal', 'end');
                     scene.actions([
                       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                     ]);
                   } else {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 4) {
                       scene.img('images/characters/pavlovsk/resident/leonid/sex/cumface1.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and in the moment he star...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he gently pushes you on your knees and points his tip in front of your face.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and in the moment he starts spouting his seed, he gently pushes you on your knees and points his tip in front of your face.`);
                       scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                       (s as any).minut = ((s as any).minut ?? 0) + 2;
                       ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1328,21 +1328,21 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                       ]);
                     } else {
                       if (((s as any).shared_apt ?? 0)?.['subStep'] === 5) {
                         scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagcumtakoutfail.jpg');
                         // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of you any moment, but ...
-                        scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
+                        scene.text(`You expect ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
                         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                         // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Sorry <<$pcs_firstname>>, it was just too int...
                         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname ?? '')}, it was just too intensive."</font>`);
                         if (((s as any).tabletkishot ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 0) {
                           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I am not on the pill <<$npc_firstname[$boy]>>!"</fon...
-                          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
+                          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}!"</font>`);
                           // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Uh… Don''t worry, it will be alright. You can...
                           scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Uh… Don't worry, it will be alright. You can take birth-control pills, anyway!"</font>`);
                           scene.text('He is obviously displeased by this.');
@@ -1352,12 +1352,12 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                         ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                         ((s as any).Yakov = (s as any).Yakov ?? {})['cumVag'] = ((s as any).Yakov['cumVag'] ?? 0) + (1);
                         ((s as any).Yakov = (s as any).Yakov ?? {})['vagCumInsideUnwanted'] = ((s as any).Yakov['vagCumInsideUnwanted'] ?? 0) + (1);
-                        qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+                        qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
                         qspCall(s, 'arousal', 'vaginal', 5, 'sub');
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       } else {
@@ -1376,10 +1376,10 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).shared_apt ?? 0)?.['subStep'] === 20) {
                             scene.img('images/locations/shared/abduction/sex/slavewhorecummouth5.mp4');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the end and in the moment he is about t...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
                             scene.text('The seed starts squirting, landing in your mouth and some even around it.');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                             scene.text('Afterwards you show him your tongue as proof that not a drop was left unconsumed…');
                             ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                             ((s as any).Yakov = (s as any).Yakov ?? {})['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
@@ -1389,7 +1389,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
                               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                             ]);
                           } else {
@@ -1424,7 +1424,7 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
 function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   // TODO-QSP: dynamic text: <b><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>> - anal sex</font><...
-  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - anal sex</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - anal sex</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/sp/...
@@ -1446,16 +1446,16 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_anal'];
   if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
     // TODO-QSP: dynamic text: '<<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100'
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} orgasm build-up: ` + ((s as any).orgB ?? '') + '/100');
   }
   if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
     // TODO-QSP: dynamic text: His hairless, muscular body has a bronze tan. He moves towards you, lubing his <...
-    scene.text(`His hairless, muscular body has a bronze tan. He moves towards you, lubing his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock and stroking it on the way.`);
+    scene.text(`His hairless, muscular body has a bronze tan. He moves towards you, lubing his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock and stroking it on the way.`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
@@ -1465,7 +1465,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes you by the waist, delicately kissing you.
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes you by the waist, delicately kissing you.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes you by the waist, delicately kissing you.`);
     // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Do you want to make love in a certain positio...
     scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Do you want to make love in a certain position, or should I choose?"</font>`);
     if (((s as any).Yakov ?? 0)?.['pornPos'] === 0) {
@@ -1491,7 +1491,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
         scene.img('images/shared/sex/anal/mis/analenter.mp4');
         scene.text('You lie on the bed, spreading your legs for easy access.');
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels between those, gently spreading them a bit wider...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels between those, gently spreading them a bit wider with his hands.`);
+        scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels between those, gently spreading them a bit wider with his hands.`);
         scene.text('As he is content with the sight, he leans above you, moving his hips closer to your crotch.');
         scene.text('He rubs the tip of his phallus around your sphincter, making it wet and preparing to penetrate it.');
         scene.text('Before doing so, he takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated.');
@@ -1510,7 +1510,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
           scene.text('As he continuously fucks your anus, you rub his hairless ass, making him even hornier.');
           scene.text('As you move your hands around his smooth asscheeks, it seems to arouse him even more.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
           qspCall(s, 'arousal', 'anal', 10);
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1539,7 +1539,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
           scene.img('images/shared/sex/anal/doggy/anal4.mp4');
           scene.text('You kneel on the bed, bending your back as much as you can, putting your nice round ass as high as possible.');
           // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> kneels behind you, rubbing your asscheeks. He starts pr...
-          scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} kneels behind you, rubbing your asscheeks. He starts probing your anus with his lubed fingers, penetrating in and out, playing with the nice round sphincter…`);
+          scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} kneels behind you, rubbing your asscheeks. He starts probing your anus with his lubed fingers, penetrating in and out, playing with the nice round sphincter…`);
           scene.text('He takes some more lube on his fingers and one by one he stretches your anus with them. Making it easier for you to be penetrated.');
           scene.text('He starts pushing his dick inside, and as it is lubed, it goes in quite easily.');
           qspCall(s, 'arousal', 'anal', 10, 'lube');
@@ -1555,7 +1555,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
             scene.img('images/shared/sex/anal/doggy/kotovsexanal11.mp4');
             scene.text('As he continuously fucks your anus, you reach for his smooth balls and rub them, making his slow movements even more passionate.');
             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
+            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
             qspCall(s, 'arousal', 'anal', 10);
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1600,8 +1600,8 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/analsidefuck2.mp4');
               scene.text('As he continuously fucks your anus, you reach for his smooth balls and rub them, making his slow movements even more passionate.');
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> fucks you slowly and sensitively.
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} fucks you slowly and sensitively.`);
-              qspCall(s, 'pain', '', 1, 'anal', 'stretch');
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} fucks you slowly and sensitively.`);
+              qspCall(s, 'pain', '1', 'anal', 'stretch');
               qspCall(s, 'arousal', 'anal', 10);
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 21) + 20));
@@ -1629,7 +1629,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
             if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> is groaning loudly, you can say that he is reaching his...
-              scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is groaning loudly, you can say that he is reaching his orgasm.`);
+              scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} is groaning loudly, you can say that he is reaching his orgasm.`);
               scene.text('You decide to tell him:');
               ((s as any).Yakov = (s as any).Yakov ?? {})['anal'] = ((s as any).Yakov['anal'] ?? 0) + (1);
               ((s as any).shared_apt = (s as any).shared_apt ?? {})['cumOutL'] = (Math.floor(Math.random() * 5) + 2);
@@ -1645,7 +1645,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['subStep'] === 1) {
                 scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
                 // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end, pumping his load <<npc_d...
-                scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end, pumping his load ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm deep inside your anus.`);
+                scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end, pumping his load ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm deep inside your anus.`);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['analCumInside'] = ((s as any).Yakov['analCumInside'] ?? 0) + (1);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
                 ((s as any).Yakov = (s as any).Yakov ?? {})['cumAnal'] = ((s as any).Yakov['cumAnal'] ?? 0) + (1);
@@ -1654,14 +1654,14 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'arousal', 'end');
                 scene.actions([
                   { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                 ]);
               } else {
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 2) {
                   scene.img('images/shared/sex/cum/stomach/cumbelly2.mp4');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and at the moment he star...
-                  scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and at the moment he starts spouting his seed, he takes his dick out and points it on your stomach.`);
+                  scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and at the moment he starts spouting his seed, he takes his dick out and points it on your stomach.`);
                   scene.text('A small pool of cum lands on your abdomen, feeling warm but sticky.');
                   (s as any).minut = ((s as any).minut ?? 0) + 2;
                   ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1669,14 +1669,14 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'arousal', 'end');
                   scene.actions([
                     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                   ]);
                 } else {
                   if (((s as any).shared_apt ?? 0)?.['subStep'] === 3) {
                     scene.img('images/shared/sex/cum/cum3.mp4');
                     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and in the moment he star...
-                    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
+                    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and in the moment he starts spouting his seed, he takes his dick out and points it on your ass.`);
                     scene.text('Both your asscheeks are covered in sticky, warm seed.');
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1684,14 +1684,14 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'arousal', 'end');
                     scene.actions([
                       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                     ]);
                   } else {
                     if (((s as any).shared_apt ?? 0)?.['subStep'] === 4) {
                       scene.img('images/shared/sex/cum/cumf10.mp4');
                       // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the happy end and in the moment he star...
-                      scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the happy end and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
+                      scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the happy end and in the moment he starts spouting his seed, he pushes you on your knees and points his tip in front of your face.`);
                       scene.text('The seed starts squirting, splashing your face with surprisingly strong force, leaking to your nose and eyes and hair…');
                       (s as any).minut = ((s as any).minut ?? 0) + 2;
                       ((s as any).Yakov = (s as any).Yakov ?? {})['lastCum'] = ((s as any).daystart ?? 0);
@@ -1699,14 +1699,14 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'end');
                       scene.actions([
                         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                       ]);
                     } else {
                       if (((s as any).shared_apt ?? 0)?.['subStep'] === 5) {
                         scene.img('images/locations/pavlovsk/resident/sharedapt/sex/vagcumtakoutfail.jpg');
                         // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of you any moment, but ...
-                        scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
+                        scene.text(`You expect ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
                         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
                         scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                         // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Sorry <<$pcs_firstname>>, it was just too int...
@@ -1726,7 +1726,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         scene.actions([
                           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                         ]);
                       } else {
@@ -1745,10 +1745,10 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).shared_apt ?? 0)?.['subStep'] === 20) {
                             scene.img('images/shared/sex/cum/mouth/yum.mp4');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> finally reaches the end and in the moment he is about t...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} finally reaches the end and in the moment he is about the come, you get on your knees and open your mouth for his delivery.`);
                             scene.text('The seed starts squirting, landing in your mouth and some even around it.');
                             // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> spins the last of his cum dry from his cock, you close ...
-                            scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
+                            scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} spins the last of his cum dry from his cock, you close your mouth, swallowing the mouthful in one gulp.`);
                             scene.text('Afterwards you show him your tongue as proof that not a drop was left unconsumed…');
                             ((s as any).Yakov = (s as any).Yakov ?? {})['swall'] = ((s as any).Yakov['swall'] ?? 0) + (1);
                             qspCall(s, 'npc_relationship', 'modify', 'A264', 1);
@@ -1758,7 +1758,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             scene.actions([
                               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'payService');
+    qspCall(st, 'pav_shared_apt', '');
   } },
                             ]);
                           } else {
@@ -1793,7 +1793,7 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
 function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A264');
   // TODO-QSP: dynamic text: <b><font color=#<<$Yakov[''font'']>>><<$npc_firstname[$boy]>> - giant dildo</fon...
-  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} - giant dildo</font></b>`);
+  scene.text(`<b><font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} - giant dildo</font></b>`);
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/sp/...
@@ -1818,9 +1818,9 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
     (s as any).clothingworntype = 'nude';
     scene.img('images/locations/city/residential/sauna/sex/simplystrip1.mp4');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to undress and you follow his example, stripping...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
+    scene.text(`${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} begins to undress and you follow his example, stripping the few clothes you are currently wearing.`);
     // TODO-QSP: dynamic text: His hairless, muscular body has a bronze tan. He sits on a bed next to you, care...
-    scene.text(`His hairless, muscular body has a bronze tan. He sits on a bed next to you, caressing his own ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long cock.`);
+    scene.text(`His hairless, muscular body has a bronze tan. He sits on a bed next to you, caressing his own ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long cock.`);
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
@@ -1830,7 +1830,7 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
     // TODO-QSP: dynamic text: As you continue to undress, <<$npc_firstname[$boy]>> takes something large from ...
-    scene.text(`As you continue to undress, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes something large from a box beneath his bed.`);
+    scene.text(`As you continue to undress, ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} takes something large from a box beneath his bed.`);
     if (((s as any).Yakov ?? 0)?.['dildo'] === 0) {
       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"I hope you really thought it through <<$pcs_f...
       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I hope you really thought it through ${((s as any).pcs_firstname ?? '')}… This Big boy did not get his name just like that!"</font>`);
@@ -1892,12 +1892,12 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/sp/dildo5.mp4');
               scene.text('The whole mass of the Big boy is now inside of you, not just stretching the entry to your sweet little pussy, but also oppressing your intestines from the other side and pusing on your cervix.');
               // TODO-QSP: dynamic text: Your struggle and the idea of this makes <<$npc_firstname[$boy]>> very aroused. ...
-              scene.text(`Your struggle and the idea of this makes ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} very aroused. He gets up from the bed where he watched you from until now.`);
+              scene.text(`Your struggle and the idea of this makes ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} very aroused. He gets up from the bed where he watched you from until now.`);
               // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"Suck me you impaled dildo pouch."</font>
               scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"Suck me you impaled dildo pouch."</font>`);
               scene.text('Even in case you wanted to object, there is no chance given. He pushes his aroused cock to your mouth, making it penetrate inside and shutting you up.');
               // TODO-QSP: dynamic text: He fucks your mouth, and even that his <<npc_dick[$boy]>> cm long dick is not th...
-              scene.text(`He fucks your mouth, and even that his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long dick is not the largest one, it makes you gag.`);
+              scene.text(`He fucks your mouth, and even that his ${(((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} cm long dick is not the largest one, it makes you gag.`);
               scene.text('As you choke and cough, struggling not to throw up, you move around with the giant dildo inside you, causing you pain and even more struggle.');
               scene.text('This seems to arouse him even more…');
               scene.actions([
@@ -1909,7 +1909,7 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['step'] === 70) {
                 scene.img('images/locations/pavlovsk/resident/sharedapt/sex/sp/dildo6.jpg');
                 // TODO-QSP: dynamic text: Being helplessly impaled on the thick rubber rod, <<$npc_firstname[$boy]>> seems...
-                scene.text(`Being helplessly impaled on the thick rubber rod, ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} seems to be at his maximum arousal.`);
+                scene.text(`Being helplessly impaled on the thick rubber rod, ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')} seems to be at his maximum arousal.`);
                 scene.text('He is now standing in front of you, masturbating himself furiously while holding your head by the hair next to the tip of his cock.');
                 // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"This is for you Big boy! Now I will shower th...
                 scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"This is for you Big boy! Now I will shower this pouch of yours with my cum!"</font>`);
@@ -1923,7 +1923,7 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['step'] === 80) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/sp/dildo7.jpg');
                   // TODO-QSP: dynamic text: You sit there, impaled to the edge of this giant, thick dildo, covered in <<$npc...
-                  scene.text(`You sit there, impaled to the edge of this giant, thick dildo, covered in ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}'s sperm from your head all the way down the belly.`);
+                  scene.text(`You sit there, impaled to the edge of this giant, thick dildo, covered in ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}'s sperm from your head all the way down the belly.`);
                   scene.text('The experience has exhausted you so much that you cannot even lift yourself up the take out the monster.');
                   scene.text('Finally you manage to push yourself with your legs up, leaving your pussy with a gape easily interchangeable with a freshly given birth, lacking just the blood.');
                   if (((s as any).Yakov ?? 0)?.['dildo'] === 0) {
@@ -2018,16 +2018,16 @@ function enterYakov_SexGiantdildo(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"I am really disappointed <<$pcs_firstname>>. ...
                       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I am really disappointed ${((s as any).pcs_firstname ?? '')}. First you entice me on this, then you tell me you are afraid to do it. I know it is huge, but I told you so."</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I… I''m sorry <<$npc_firstname[$boy]>>, I guess I wa...
-                      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I… I'm sorry ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, I guess I wasn't really sure about it until I saw the monster…"</font>`);
+                      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I… I'm sorry ${(((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? '')}, I guess I wasn't really sure about it until I saw the monster…"</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$Yakov[''font'']>>>"I know, he is quite big one. Is there any cha...
                       scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font'] ?? ''}>"I know, he is quite big one. Is there any chance you'll change your mind, or no?"</font>`);
                       scene.actions([
                         { label: 'No, this is just impossible for me', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', (-20));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: shared_apt['step'] = 110
   }, goto: ['pav_shared_apt', 'start'] },
                         { label: 'I don\'t know, maybe…', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A264', (-10));
+    qspCall(st, 'npc_relationship', '');
     // TODO-QSP: shared_apt['step'] = 120
   }, goto: ['pav_shared_apt', 'start'] },
                       ]);

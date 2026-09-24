@@ -182,7 +182,7 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEV', 'kathan'] },
         ]);
       }
@@ -324,7 +324,7 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   }
@@ -340,7 +340,7 @@ function enterBeachInSwimwear1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   } else {
@@ -368,7 +368,7 @@ function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   } else {
@@ -399,7 +399,7 @@ function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   } else {
@@ -417,7 +417,7 @@ function enterSaunaInSwimmwear2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   } else {
@@ -478,7 +478,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
       scene.text(`"I - I'm sorry, ${((st as any).pcs_nickname ?? '')}!" she manages to say while laughing heartily.`);
       scene.actions([
         { label: '…?', handler: (st: GameState) => {
-    qspCall(st, 'pain', '', 5, 'asscheeks');
+    qspCall(st, 'pain', '5', 'asscheeks');
     (st as any).dummy = (Math.floor(Math.random() * 6) + 1);
     qspCall(st, 'stat', '');
     if (((st as any).dummy ?? 0) <= 3) {
@@ -535,7 +535,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
             qspCall(st, 'stat', '');
             scene.actions([
               { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'mood', 'lower', 'small');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan'] },
             ]);
           }
@@ -595,7 +595,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
         scene.text('You roll your eyes and help Katja, who has suddenly stopped her whining and gets up. You both stand looking intensely at Lizaveta, who after a few seconds, understands the silent message and leaves.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
         ]);
       }
@@ -643,7 +643,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
               scene.text('And that is how you pass the next half hour. Skating, giggling and just showing off before it\'s time to look for something else to do.');
               scene.actions([
                 { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
               ]);
             } else {
@@ -656,7 +656,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
               scene.text('You hold each other, laughing as you try to dance over the ice. After a great half hour, you\'re both a little weary and decide that it\'s time to look for something else to do.');
               scene.actions([
                 { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['katjaEv', 'kathan'] },
               ]);
             }
@@ -775,7 +775,7 @@ function enterHockeyMatch(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan'] },
       ]);
     } else {
@@ -784,7 +784,7 @@ function enterHockeyMatch(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'mood', 'lower', 'small');
+    qspCall(st, 'mood', '');
   }, goto: ['katjaEv', 'kathan'] },
       ]);
     }

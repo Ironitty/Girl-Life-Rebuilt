@@ -441,7 +441,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', '');
   }, goto: ['pav_park', 'start'] },
     ]);
   }
@@ -828,7 +828,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 function enterPiss(s: GameState, scene: SceneBuilder): void {
   (s as any).r1_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  // TODO-QSP: gs'stat'
+  qspCall(s, 'stat', '');
   scene.text('As you\'re sitting on your haunches peeing in the park, you hear some footsteps and a conversation behind you. You continue your business, desperately hoping they weren\'t talking about you. However, when you\'re finished and turn around, you see two police officers looking directly at you.');
   scene.img('images/locations/pavlovsk/park/gop/p.jpg');
   scene.text('They come up to you and one says: "Miss, do you know where you are? This is a public park, people go here for their enjoyment! Urinating in a public place is strictly forbidden!"');
@@ -837,13 +837,13 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   (s as any).r2_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  // TODO-QSP: gs'stat'
+  qspCall(s, 'stat', '');
   scene.text('You excuse yourself and disappear between some brushes to pee. Just as you pull your clothes aside, you hear some branches snapping behind you.');
   scene.text('When you turn around, you see a guy. You recognize him as one of the regulars in the park. He drinks here quite often, and apparently has to pee just like you.');
   scene.text('For a second you consider getting up and leaving, but you really have to go! You decide to just ignore him and close your eyes, relaxing your muscles. While your pee freely flows out of you, you half expect the guy to move over and drag you away… but he never does. When you\'re finished, you look around to see the guy still watching you. You give him a smug smile and walk away as if nothing happened, after straightening your clothes.');
   (s as any).r3_event_piss = qspUntranslated(s, "{", { location: "zsoft_gopskverGorSlut" });
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  // TODO-QSP: gs'stat'
+  qspCall(s, 'stat', '');
   scene.text('You excuse yourself and disappear between some brushes to pee. Your head is buzzing from the booze, and you quickly pull your clothes to the side. Right in time too, a warm stream of urine steadily exits your body, landing on the grass and dry leaves beneath you.');
   scene.text('The feeling is really nice, and when you finish you idly run a finger over your clitoris.');
   scene.text('Then suddenly, someone pulls you back sharply… you hope you didn\'t land in the spot where you just peed. A guy frantically covers your mouth with his hand and says in a hoarse voice: "Don\'t shout or even say a word!"');
@@ -903,7 +903,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs'stat'
+      qspCall(st, 'stat', '');
       qspCall(st, 'money', 'pay', 500);
       // TODO-QSP: dynamic text: '<center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/vz'+rand(1, ...
       scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/vz` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
@@ -920,8 +920,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     (st as any).schtraf = 500;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).katalkinNoexit = 1;
-    // TODO-QSP: gt'katalkin'
-  } },
+  }, goto: ['katalkin', ''] },
     { label: 'Say you can\'t afford the fine', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'bj', 'self');
     qspCall(st, 'stat', '');
@@ -939,8 +938,8 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Persuade the policemen with a blowjob', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'npcgeneratec', '', 0, 'Policeman', (Math.floor(Math.random() * 21) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Policeman', (Math.floor(Math.random() * 21) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).stat = (st as any).stat ?? {})['bj'] = ((st as any).stat['bj'] ?? 0) + (2);
@@ -948,7 +947,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), '', '', 20000, 20);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), '', '', 20000, 20);
     qspCall(st, 'cum_call', 'hair', ((st as any).boy ?? 0), '', '', 20000, 20);
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/p_otsos.mp4');
     scene.text('You sigh and drop to your knees, rubbing your hands over the groins of their police uniforms. They obviously want you, the bulges in their pants are impossible to ignore.');
     scene.text('One of the policemen makes a token effort to object, but quickly quiets down when you pull out his hard rod and eagerly close your lips around it. You realize you have to show some effort if you want this fine to go away, and dutifully suck the guy off, massaging the other policeman\'s cock with your hand after he pulls it out for you.');
@@ -971,19 +970,18 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     (st as any).schtraf = 500;
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).katalkinNoexit = 1;
-    // TODO-QSP: gt'katalkin'
-  } },
+  }, goto: ['katalkin', ''] },
     ]);
   } },
     { label: 'Leave', goto: ['pav_park', 'start'] },
     { label: 'Return to the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
     { label: 'Don\'t resist', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).pcs_health = ((st as any).pcs_health ?? 0) - (30);
     (st as any).minut = ((st as any).minut ?? 0) + 3;
     ((st as any).stat = (st as any).stat ?? {})['rape_count'] = ((st as any).stat['rape_count'] ?? 0) + (1);
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_1.mp4');
     scene.text('Afraid to anger the man, you just nod meekly. Satisfied that you probably won\'t scream or run off, he slowly removes his hand and says: "Very good. Now come with me, I\'ll have some of what you were showing."');
     scene.text('You blush furiously as he takes your hand and pulls you away, your clothes still disheveled. When you try to straighten them, he slaps your hand away and puts his hand on your exposed cunt: "Relax, girl… me and my friends will take good care of you."');
@@ -998,7 +996,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', 3, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(st, 'arousal', 'anal', 2, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(st, 'arousal', 'bj', 2, 'rough', 'sub', 'gangbang', 'humiliation');
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_2.mp4');
     scene.text('Their humiliating words only make you feel sluttier, and you groan embarrassedly around the cock buried in your mouth.');
     scene.text('Another of the guys worms his way underneath you and works his cock inside your pussy, while a third guy spits on your clenched sphincter and begins to rub his hard cock against your anus.');
@@ -1008,7 +1006,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'bj', 1, 'rough', 'sub', 'gangbang', 'humiliation');
     qspCall(st, 'arousal', 'anal', 1, 'rough', 'sub', 'gangbang', 'humiliation');
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_3.mp4');
     scene.text('Suddenly, some of them pull their cocks away from you. The guy who found you first lies down on the bench, offering his cock to your mouth while one of his friends continues to brutally fuck your ass from behind. The guy who was fucking your pussy also begins to wank off over your face, and you do your best to please the two of them with your mouth.');
     scene.text('The guys are really enjoying themselves. They call you a washed-up whore and a promiscuous slut, probably willing to open your legs for anyone the park who treats you the way you deserved to be treated. They joke about what to do the next time they find you, and whether they should take you over to their football training for some team bonding afterwards.');
@@ -1020,11 +1018,11 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_manage', '');
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
-    qspCall(st, 'npcgeneratec', '', 0, 'Rapist', (Math.floor(Math.random() * 23) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Rapist', (Math.floor(Math.random() * 23) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_4.mp4');
     scene.text('Then, one of them roughly shoves his cock down your throat and finishes inside. You barely taste his cum, and just let it slide down your throat and swallow obediently.');
     scene.text('The other guys jerk off over your face, and drop their loads onto you one by one. Some of it seeps into your hair, and you keep your eyes closed to at least not get any in your eyes.');
@@ -1032,7 +1030,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins at you: "Before you can go, I want to see you shove this beer bottle into your pussy. Get on with it, slut…');
     scene.actions([
       { label: 'Obey', handler: (st: GameState) => {
-    // TODO-QSP: gs'stat'
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/but.jpg');
     scene.text('You sigh… you\'re too exhausted to fight them. If this is what you have to do so they\'ll let you go…');
     scene.text('You take the bottle from his hand and slowly guide it towards your pussy, and begin to push it in. After a while they lose interest in you fucking yourself with the bottle and disperse, leaving you by yourself.');
@@ -1439,7 +1437,7 @@ function enterCumassGroup(s: GameState, scene: SceneBuilder): void {
 function enterCumpussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'large');
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (30);
-  qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0));
+  qspCall(s, 'cum_call', '', ((s as any).boy ?? 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: '<center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/...
   scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cump` + (Math.floor(Math.random() * 2) + 1) + '.mp4"></video></center>');

@@ -19,7 +19,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gs 'money', 'pay', 25 & minut += (60 - minut) & pav_disco_in = daystart & gt 'pav_disco'
+      qspCall(st, 'money', 'pay', 25);
+      (st as any).minut = ((st as any).minut ?? 0) + ((60 - ((st as any).minut ?? 0)));
+      (st as any).pav_disco_in = ((st as any).daystart ?? 0);
+      qspGoto(st, 'pav_disco', '');
     }
   } },
     ]);
@@ -40,7 +43,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'money', 'can_afford', 25) === 1) {
             scene.actions([
               { label: 'Go to the dance ( [25₽])\']', handler: (st: GameState) => {
-    qspCall(st, 'money', 'pay', 25);
+    qspCall(st, 'money', '');
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_disco', ''] },
             ]);
@@ -134,7 +137,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
   }, goto: ['pav_residential', ''] },
     { label: 'Check the noticeboard', handler: (st: GameState) => {
-    qspCall(st, 'adverts_manager', 'start');
+    qspCall(st, 'adverts_manager', '');
   } },
     { label: 'Walk to the bus station (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

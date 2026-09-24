@@ -35,7 +35,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
     }
   }
-  qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  qspCall(s, 'tabhead', 'menu_page');
   if (((s as any).settingmode ?? 0) === 1) {
     scene.actions([
       { label: '<center><b>Return to character creation</b></center>', handler: (st: GameState) => {
@@ -46,20 +46,20 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Enter cheat menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
-    // TODO-QSP: gs '$menu_cheat'
+    qspCall(st, '$menu_settings', '');
+    qspCall(st, '$menu_cheat', '');
   } },
       { label: 'Export Game Settings', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
   }, goto: ['import_export', 'export'] },
       { label: 'Import Game Settings', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
   }, goto: ['import_export', 'import'] },
       { label: 'Emergency Exit', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
   }, goto: ['$menu_settings', 'emergency'] },
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
@@ -144,10 +144,10 @@ function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_value ?? 0) === ((s as any).i ?? 0)) {
     // TODO-QSP: dynamic text: <b><<$ARGS[i+4]>></b>
-    scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
+    scene.text(`<b>${(((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4] ?? '')}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4] ?? '')}</a>`);
   }
   // TODO-QSP: dynamic text: $temp_toggle_names
   scene.text(String((s as any).temp_toggle_names ?? ''));
@@ -171,10 +171,10 @@ function enterToggleMenuRev(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_value ?? 0) === ((s as any).i ?? 0)) {
     // TODO-QSP: dynamic text: <b><<$ARGS[i+4]>></b>
-    scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
+    scene.text(`<b>${(((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4] ?? '')}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4] ?? '')}</a>`);
   }
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) >= 0) {
@@ -189,8 +189,8 @@ function enterToggleMenuSymOpt(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tms_pi = 1;
   // TODO-QSP: :toggle_menu_sym_opt_loop
   if (((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)] !== '') {
-    (s as any).temp_tms_colon = ((String(((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)]).indexOf(String(':'))) + 1);
-    ((s as any).tms_opt_val = (s as any).tms_opt_val ?? {})[String((s as any).tms_opt_count ?? 0)] = parseFloat((String(((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)]).slice((1)-1, ((1)-1)+(((s as any).temp_tms_colon ?? 0) - 1))));
+    (s as any).temp_tms_colon = ((String((((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)] ?? 0)).indexOf(String(':'))) + 1);
+    ((s as any).tms_opt_val = (s as any).tms_opt_val ?? {})[String((s as any).tms_opt_count ?? 0)] = parseFloat((String((((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(((s as any).temp_tms_colon ?? 0) - 1))));
     // TODO-QSP: $tms_opt_lbl[tms_opt_count] = mid($ARGS[temp_tms_pi], temp_tms_colon + 1)
     (s as any).tms_opt_count = ((s as any).tms_opt_count ?? 0) + (1);
     (s as any).temp_tms_pi = ((s as any).temp_tms_pi ?? 0) + (1);
@@ -217,11 +217,11 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).temp_tms_cur ?? 0) === ((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)]) {
       // TODO-QSP: dynamic text: <b><<$tms_opt_lbl[temp_tms_i]>></b>
-      scene.text(`<b>${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''}</b>`);
+      scene.text(`<b>${(((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? '')}</b>`);
       (s as any).temp_tms_matched = 1;
     } else {
       // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<tms_opt_val[temp_tms_i]>> & gt '$menu_settings', '<...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''}</a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${(((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${(((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? '')}</a>`);
     }
     (s as any).temp_tms_i = ((s as any).temp_tms_i ?? 0) + (1);
     // TODO-QSP: jump 'toggle_menu_sym_loop'
@@ -460,34 +460,34 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingtabs', 'Gameplay');
   scene.text('<center><h2>General Settings</h2></center>');
   // TODO-QSP: $settings['table_start']
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['disable_autosave']", 'AutoSave', 'Enabled'...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['music_off']", 'Music', 'Enabled', 'Dis...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['environment_off']", 'Environment sound...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['menu_off']", 'Menu/Phone sounds', 'Ena...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt']", 'Default payment method', 'Cas...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'disable_autosave\']', 'AutoSave', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'music_off\']', 'Music', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'environment_off\']', 'Environment sounds', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'menu_off\']', 'Menu/Phone sounds', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt\']', 'Default payment method', 'Cash', 'Card', 'Choose every time');
   if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
-    // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+    qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt_backup\']', 'Backup payment method', 'Card', 'Hybrid Payment', 'Choose every time');
   } else {
     if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1) {
-      // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+      qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt_backup\']', 'Backup payment method', 'Cash', 'Hybrid Payment', 'Choose every time');
     }
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['income_opt']", 'Income method', 'Cash', 'C...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'income_opt\']', 'Income method', 'Cash', 'Card', 'Choose every time');
   if (((s as any).bankAccount ?? 0) === 0  &&  (((s as any).cfg_vars ?? 0)?.['income_opt'] === 1  ||  ((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1)) {
     scene.text('<center><b>Warning: You\'ve selected the card payment option, but you don\'t have a bank account yet!</b></center>');
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['allow_overdraft']", 'Allow paying with ove...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'allow_overdraft\']', 'Allow paying with overdraft', 'Disabled', 'Enabled');
   scene.text('<font color="grey">Hybrid payment will first use up your cash, then pay the remainder with your card.</font>');
   qspCall(s, '$menu_settings', 'print_life_sim_cheat');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['auto_brush']", 'Auto brush hair on mirror...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'setting', "cheatVars['enema']", 'Enema realism', 'Enabled',...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['pee']", 'Peeing', 'Enabled', 'Disabled' &...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'auto_brush\']', 'Auto brush hair on mirror visit', 'Disabled', 'Enabled');
+  qspCall(s, '$menu_settings', 'toggle_menu_rev', 'setting', 'cheatVars[\'enema\']', 'Enema realism', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'pee\']', 'Peeing', 'Enabled', 'Disabled');
   qspCall(s, 'daily_routine', 'settings_defaults');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "droutine_settings['disabled']", 'Quick morning and e...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'droutine_settings[\'disabled\']', 'Quick morning and evening routines', 'Enabled', 'Disabled');
   if (((s as any).droutine_settings ?? 0)?.['disabled'] === 0) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027menu_exit/u0027); return false;">Set up your daily routine</a>');
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['rename_porn']", 'Renaming porn movies you...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'rename_porn\']', 'Renaming porn movies you star in', 'Disabled', 'Enabled');
   scene.text('<b>Calendar Events</b>');
   qspCall(s, '$menu_settings', 'show_hide_calendar', 'disco_party', 'Disco Party');
   qspCall(s, '$menu_settings', 'show_hide_calendar', 'church', 'Church Service', 'pack');
@@ -514,34 +514,34 @@ function enterSetting(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingtabs', 'Gameplay');
   scene.text('<center><h2>General Settings</h2></center>');
   // TODO-QSP: $settings['table_start']
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['disable_autosave']", 'AutoSave', 'Enabled'...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['music_off']", 'Music', 'Enabled', 'Dis...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['environment_off']", 'Environment sound...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['menu_off']", 'Menu/Phone sounds', 'Ena...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt']", 'Default payment method', 'Cas...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'disable_autosave\']', 'AutoSave', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'music_off\']', 'Music', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'environment_off\']', 'Environment sounds', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'music', 'sound_settings[\'menu_off\']', 'Menu/Phone sounds', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt\']', 'Default payment method', 'Cash', 'Card', 'Choose every time');
   if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
-    // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+    qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt_backup\']', 'Backup payment method', 'Card', 'Hybrid Payment', 'Choose every time');
   } else {
     if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1) {
-      // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+      qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'pay_opt_backup\']', 'Backup payment method', 'Cash', 'Hybrid Payment', 'Choose every time');
     }
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['income_opt']", 'Income method', 'Cash', 'C...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'income_opt\']', 'Income method', 'Cash', 'Card', 'Choose every time');
   if (((s as any).bankAccount ?? 0) === 0  &&  (((s as any).cfg_vars ?? 0)?.['income_opt'] === 1  ||  ((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1)) {
     scene.text('<center><b>Warning: You\'ve selected the card payment option, but you don\'t have a bank account yet!</b></center>');
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['allow_overdraft']", 'Allow paying with ove...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cfg_vars[\'allow_overdraft\']', 'Allow paying with overdraft', 'Disabled', 'Enabled');
   scene.text('<font color="grey">Hybrid payment will first use up your cash, then pay the remainder with your card.</font>');
   qspCall(s, '$menu_settings', 'print_life_sim_cheat');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['auto_brush']", 'Auto brush hair on mirror...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'setting', "cheatVars['enema']", 'Enema realism', 'Enabled',...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['pee']", 'Peeing', 'Enabled', 'Disabled' &...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'auto_brush\']', 'Auto brush hair on mirror visit', 'Disabled', 'Enabled');
+  qspCall(s, '$menu_settings', 'toggle_menu_rev', 'setting', 'cheatVars[\'enema\']', 'Enema realism', 'Enabled', 'Disabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'pee\']', 'Peeing', 'Enabled', 'Disabled');
   qspCall(s, 'daily_routine', 'settings_defaults');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "droutine_settings['disabled']", 'Quick morning and e...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'droutine_settings[\'disabled\']', 'Quick morning and evening routines', 'Enabled', 'Disabled');
   if (((s as any).droutine_settings ?? 0)?.['disabled'] === 0) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027menu_exit/u0027); return false;">Set up your daily routine</a>');
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['rename_porn']", 'Renaming porn movies you...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'setting', 'cheatVars[\'rename_porn\']', 'Renaming porn movies you star in', 'Disabled', 'Enabled');
   scene.text('<b>Calendar Events</b>');
   qspCall(s, '$menu_settings', 'show_hide_calendar', 'disco_party', 'Disco Party');
   qspCall(s, '$menu_settings', 'show_hide_calendar', 'church', 'Church Service', 'pack');
@@ -592,25 +592,25 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 4, '<b>Slow</b>', '<a href="exec: gs ''_difficulty...
   scene.text('iif(cheatVars[\'skill_gain\'] = 4, \'<b>Slow</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027setdifficulty_int/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">Slow</a>\')');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-1:¾×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['deg_speed_opt']", '    Skill degra...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'deg_speed_opt\']', '    Skill degradation rate', 'cheatVars[\'deg_speed_custom\']', 'cheatVars[\'deg_speed_opt\'] = 99 & cheatVars[\'deg_speed_custom\'] = input(\'Set degradation speed (in %)\') & gt \'$menu_settings\', \'difficulty\'', 'Off');
   scene.text('<b>Economic multipliers:</b>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-1:¾×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cfg_vars['pos_mult_opt']", '    Income', "cfg...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cfg_vars[\'pos_mult_opt\']', '    Income', 'cfg_vars[\'pos_mult\']', 'cfg_vars[\'pos_mult\'] = input(\'Set income multiplier (in %)\') & cfg_vars[\'pos_mult_opt\'] = 99 & gt \'$menu_settings\', \'difficulty\'');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-1:¾×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cfg_vars['neg_mult_opt']", '    Expense', "cf...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cfg_vars[\'neg_mult_opt\']', '    Expense', 'cfg_vars[\'neg_mult\']', 'cfg_vars[\'neg_mult\'] = input(\'Set expense multiplier (in %)\') & cfg_vars[\'neg_mult_opt\'] = 99 & gt \'$menu_settings\', \'difficulty\'');
   scene.text('<b>Mood multipliers:</b>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-3:½×', '-2:⅔×', '-1:¾×', '0:1× ✿', '1:1¼×', '2:1½×', '3:2×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['pos_mood_opt']", '    Positive moo...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'pos_mood_opt\']', '    Positive mood effects', 'cheatVars[\'pos_mood_mult\']', 'cheatVars[\'pos_mood_mult\'] = input(\'Set positive mood effect multiplier (in %)\') & cheatVars[\'pos_mood_opt\'] = 99 & gt \'$menu_settings\', \'difficulty\'');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-3:½×', '-2:⅔×', '-1:¾×', '0:1× ✿', '1:1¼×', '2:1½×', '3:2×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['neg_mood_opt']", '    Negative moo...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'neg_mood_opt\']', '    Negative mood effects', 'cheatVars[\'neg_mood_mult\']', 'cheatVars[\'neg_mood_mult\'] = input(\'Set negative mood effect multiplier (in %)\') & cheatVars[\'neg_mood_opt\'] = 99 & gt \'$menu_settings\', \'difficulty\'');
   scene.text('<b>Willpower cost multiplier:</b>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-3:½×', '-2:⅔×', '-1:¾×', '0:1× ✿', '1:1¼×', '2:1½×', '3:2×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['wp_cost_opt']", '    Willpower cos...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'wp_cost_opt\']', '    Willpower costs', 'cheatVars[\'wp_cost_mult\']', 'cheatVars[\'wp_cost_mult\'] = input(\'Set willpower cost multiplier (in %)\') & cheatVars[\'wp_cost_opt\'] = 99 & gt \'$menu_settings\', \'difficulty\'');
   scene.text('<b>Fertility multipliers:</b>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-2:⅔×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['preg_chance']", '    Pregnancy cha...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'preg_chance\']', '    Pregnancy chance', 'cheatVars[\'preg_chance_custom\']', 'cheatVars[\'preg_chance\'] = 99 & cheatVars[\'preg_chance_custom\'] = input(\'Set pregnancy chance multiplier (in %)\') & gt \'$menu_settings\', \'difficulty\'');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-2:⅔×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['preg_speed']", '    Pregnancy spee...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'preg_speed\']', '    Pregnancy speed', 'cheatVars[\'preg_speed_custom\']', 'cheatVars[\'preg_speed\'] = 99 & cheatVars[\'preg_speed_custom\'] = input(\'Set pregnancy speed multiplier (in %)\') & gt \'$menu_settings\', \'difficulty\'');
   scene.text('<b>Event chance:</b>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '1:Disabled', '2:Low', '0:Normal ✿', '3:High', '4:Very High');
   qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'random_lovers\']', '    Random boyfriend / girlfriend events');
@@ -624,16 +624,16 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'abduction_chance\']', '    Abduction events');
   scene.text('<b>Other tweaks:</b>');
   if (((s as any).cheatVars ?? 0)?.['no_periods'] === 0) {
-    // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'difficulty', "cheatVars['auto_tampons']", '    Auto-discard...
-    // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'difficulty', "cheatVars['track_period']", '    Automaticall...
+    qspCall(s, '$menu_settings', 'toggle_menu_rev', 'difficulty', 'cheatVars[\'auto_tampons\']', '    Auto-discard used pads and tampons', 'Disabled', 'Enabled');
+    qspCall(s, '$menu_settings', 'toggle_menu_rev', 'difficulty', 'cheatVars[\'track_period\']', '    Automatically track periods', 'Disabled', 'Enabled');
   }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-    // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'difficulty', "cheatVars['tatiana_apprnc_change']", '    Tatiana...
+    qspCall(s, '$menu_settings', 'toggle_menu', 'difficulty', 'cheatVars[\'tatiana_apprnc_change\']', '    Tatiana can help with your appearance', 'Enabled', 'Disabled');
   }
   scene.text('<b>Archetype difficulty:</b>');
   scene.text('<font color="grey">Controls how many trait points are needed to activate traits and reach full effect. Lower values make it easier to get traits.</font>');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-2:¼×', '-1:½×', '0:1× ✿', '1:2×', '2:4×');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['arch_difficulty']", '    Archetype...
+  qspCall(s, '$menu_settings', 'toggle_menu_sym', 'difficulty', 'cheatVars[\'arch_difficulty\']', '    Archetype activation thresholds', '', 'cheatVars[\'arch_difficulty\'] = val(input(\'Set trait difficulty option (-2 to 2)\')) & gs \'archetypes\', \'init\' & gt \'$menu_settings\', \'difficulty\'');
   scene.text('<font color="grey">✿ = default value</font>');
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
@@ -645,7 +645,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Display Settings</h2></center>');
   // TODO-QSP: $settings['table_start']
   scene.text('<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $themes_menu_ret_loc = /u0027$menu_settings/u0027 */ /* TODO-QSP: $themes_menu_ret_arg = /u0027display/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Show theme selector</a></b>');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['themetype']", 'Theme type', 'Dynamic', 'St...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'themetype\']', 'Theme type', 'Dynamic', 'Static');
   if (((s as any).theme ?? 0)?.['name'] === ''  ||  ((s as any).theme ?? 0)?.['type'] === '') {
     ((s as any).theme = (s as any).theme ?? {})['name'] = 'Dynamic Default';
     ((s as any).theme = (s as any).theme ?? {})['type'] = 'dynamic';
@@ -659,6 +659,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'White'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Black'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Modern Grey'  ||  ((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Custom') {
         ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'Default';
       }
+      qspCall(s, 'themes', 'set_theme', 'Dynamic ' + ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'dynamic');
       qspCall(s, '$menu_obnovit', '');
       dynamicGoto(s, 'menu_settings');
     }
@@ -670,42 +671,47 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cfg_vars ?? 0)?.['theme_main_name'] === 'Default') {
         ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['theme_main_name'] = 'White';
       }
+      qspCall(s, 'themes', 'set_theme', ((s as any).cfg_vars ?? 0)?.['theme_main_name'], 'static');
       qspCall(s, '$menu_obnovit', '');
       dynamicGoto(s, 'menu_settings');
     }
     // TODO-QSP: dynamic text: $menu_span + 'Classic Theme Selection [Static only]:</span>'
     scene.text('$menu_span + \'Classic Theme Selection [Static only]:</span>\'');
-    qspCall(s, '$menu_settings', 'pick_theme', 'White', 'static\' & *p \'&nbsp;|&nbsp;');
-    qspCall(s, '$menu_settings', 'pick_theme', 'Black', 'static\' & *p \'&nbsp;|&nbsp;');
-    qspCall(s, '$menu_settings', 'pick_theme', 'Modern Grey', 'static\' & *p \'&nbsp;|&nbsp;');
-    qspCall(s, '$menu_settings', 'pick_theme', 'Custom', 'static\' & *p \'&nbsp;');
+    qspCall(s, '$menu_settings', 'pick_theme', 'White', 'static');
+    scene.text('&nbsp;|&nbsp;');
+    qspCall(s, '$menu_settings', 'pick_theme', 'Black', 'static');
+    scene.text('&nbsp;|&nbsp;');
+    qspCall(s, '$menu_settings', 'pick_theme', 'Modern Grey', 'static');
+    scene.text('&nbsp;|&nbsp;');
+    qspCall(s, '$menu_settings', 'pick_theme', 'Custom', 'static');
+    scene.text('&nbsp;');
     scene.img(`images/system/ui/preferences${((((s as any).theme ?? 0)?.['is_dark'] === 0) ? ('_b') : ('_w'))}.png`);
   }
   // TODO-QSP: dynamic text: $menu_span + 'Catppuccin themes:</span>'
   scene.text('$menu_span + \'Catppuccin themes:</span>\'');
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Latte', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static') & *...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Frappé', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static') & ...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Macchiato', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Mocha', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')
+  qspCall(s, '$menu_settings', 'pick_theme', 'Latte', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Frappé', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Macchiato', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Mocha', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
   // TODO-QSP: dynamic text: $menu_span + 'Nord themes:</span>'
   scene.text('$menu_span + \'Nord themes:</span>\'');
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Nord Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static'...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Nord Dark', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')
+  qspCall(s, '$menu_settings', 'pick_theme', 'Nord Light', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Nord Dark', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
   // TODO-QSP: dynamic text: $menu_span + 'Solarized themes:</span>'
   scene.text('$menu_span + \'Solarized themes:</span>\'');
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Solarized Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'st...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Solarized Dark', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
+  qspCall(s, '$menu_settings', 'pick_theme', 'Solarized Light', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Solarized Dark', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
   // TODO-QSP: dynamic text: $menu_span + 'Tokyo Night themes:</span>'
   scene.text('$menu_span + \'Tokyo Night themes:</span>\'');
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Tokyo Night Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', '...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Tokyo Night', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static...
+  qspCall(s, '$menu_settings', 'pick_theme', 'Tokyo Night Light', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Tokyo Night', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
   // TODO-QSP: dynamic text: $menu_span + 'Rosé Pine themes:</span>'
   scene.text('$menu_span + \'Rosé Pine themes:</span>\'');
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine Dawn', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')...
-  // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine Moon', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
+  qspCall(s, '$menu_settings', 'pick_theme', 'Rosé Pine Dawn', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Rosé Pine', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
+  qspCall(s, '$menu_settings', 'pick_theme', 'Rosé Pine Moon', ((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('dynamic') : ('static')));
   scene.text('<font color="grey">Dynamic themes will change colour based on the game hour.</font>');
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['use_popups']", 'Allow Popup Pictures', 'OF...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'use_popups\']', 'Allow Popup Pictures', 'OFF', 'ON');
   if (((s as any).cfg_vars ?? 0)?.['imgh'] > 0) {
     ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['imgw'] = 0;
     (s as any).set_imgh = 'height = ' + ((s as any).cfg_vars ?? 0)?.['imgh'] + '';
@@ -723,9 +729,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_width = ((((s as any).cfg_vars ?? 0)?.['imgw']===0) ? ('OFF') : (String(((s as any).cfg_vars ?? 0)?.['imgw'])));
   // TODO-QSP: $menu_span + 'Force Image height:</span><a href="exec:cfg_vars[''imgw'']=0 & cfg_vars[''imgh'']=inpu...
   // TODO-QSP: $menu_span + 'Force Image width:</span><a href="exec:cfg_vars[''imgh'']=0 & cfg_vars[''imgw'']=input...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['tablemap']", 'List friends in table', 'Dis...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "stat_cfg['android']", 'Android Mode', 'Disabled', 'E...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'display', "cfg_vars['debug']", 'Show Debug window on save l...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'tablemap\']', 'List friends in table', 'Disabled', 'Enabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'stat_cfg[\'android\']', 'Android Mode', 'Disabled', 'Enabled');
+  qspCall(s, '$menu_settings', 'toggle_menu_rev', 'display', 'cfg_vars[\'debug\']', 'Show Debug window on save load', 'Disabled', 'Enabled');
   if (((s as any).cfg_vars ?? 0)?.['debug'] === 0  &&  (!((s as any).debug_warning_closed ?? 0))) {
     scene.text('<font color="grey">Even if <b>Disabled</b>, the Debug window will still show until you click <b>Remove debug info</b>!</font>');
   }
@@ -733,9 +739,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     scene.text('Set Fontsize for Status: Unsupported');
     scene.text('click <b>refresh</b> on top of status window to renew.');
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cheatVars['willcost_style']", 'Willpower cost style'...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['faceturn']", 'Always show face', 'Disabled...
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "face_style['type']", 'Profile image type', 'Dynamic'...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cheatVars[\'willcost_style\']', 'Willpower cost style', 'Willpower / Will cost', 'Will cost / Willpower', 'Will cost');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cfg_vars[\'faceturn\']', 'Always show face', 'Disabled', 'Enabled');
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'face_style[\'type\']', 'Profile image type', 'Dynamic', 'Fixed', 'Rendered');
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     if (((s as any).temp_path ?? 0) !== '') {
       ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = ((s as any).temp_path ?? 0);
@@ -745,14 +751,14 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: $menu_span + 'Current profile image:</span><a href="exec: $temp_path = $input(''Where is the avatar ...
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "face_style['custom_hair_toggle']", 'Custom hair desc...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'face_style[\'custom_hair_toggle\']', 'Custom hair description', 'Disabled', 'Enabled');
   if (((s as any).face_style ?? 0)?.['custom_hair_toggle'] === 1) {
     // TODO-QSP: $menu_span + 'Custom hair description:</span><a href="exec: $face_style[''avatar_hair''] = $input(''...
   }
   if ((!((s as any).settingmode ?? 0))) {
     // TODO-QSP: $menu_span + '<a href="exec:$temp_loc_font = ''$menu_settings'' & $temp_loc_arg_font = ''display'' &...
   }
-  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cheatVars['shop_alt_color']", 'Filter alternative co...
+  qspCall(s, '$menu_settings', 'toggle_menu', 'display', 'cheatVars[\'shop_alt_color\']', 'Filter alternative colors', '<font color="green">Green</font>', qspFunc(s, 'wrap', 'accent', 'Blue'));
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
   scene.build();
@@ -886,7 +892,7 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
     (st as any).menu_page = 2;
   }, goto: ['$menu_settings', 'display'] },
     { label: 'Presets', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'theme_presets');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Export', goto: ['$menu_settings', 'theme_export'] },
     { label: 'Import', handler: (st: GameState) => {
@@ -899,7 +905,7 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
 function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'rgb') {
     (s as any).result = ((s as any).locArgs?.[3] ?? 0);
-    (s as any).temp_input = (String((String(window.prompt("\u00000\u0000") ?? '').trim())).toUpperCase());
+    (s as any).temp_input = (String((String(window.prompt('Enter ' + (String((s as any).locArgs?.[2] ?? '')) + ' color component in 0 - 255  ||  00 - FF format') ?? '').trim())).toUpperCase());
     if (((s as any).temp_input ?? 0) !== '') {
       if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
         if (parseFloat(((s as any).temp_input ?? 0)) < 0  ||  parseFloat(((s as any).temp_input ?? 0)) > 255) {
@@ -997,7 +1003,7 @@ function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): v
 
 function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_hsi = (String((String(window.prompt("\u00000\u0000") ?? '').trim())).toUpperCase());
+  (s as any).temp_hsi = (String((String(window.prompt('Enter ' + (String((s as any).locArgs?.[2] ?? '')) + ' color (ABC  ||  AABBCC hex format):') ?? '').trim())).toUpperCase());
   if (((s as any).temp_hsi ?? 0) !== '') {
     (s as any).temp_hsi = (String(((s as any).temp_hsi ?? 0)).split('#').join(undefined));
     (s as any).temp_hsi_len = (String(((s as any).temp_hsi ?? 0)).length);
@@ -1132,98 +1138,98 @@ function enterThemePresets(s: GameState, scene: SceneBuilder): void {
     { label: 'White', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'White'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Black', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Black'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Modern Grey', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Modern Grey'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Latte', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Latte'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Frappé', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Frappé'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Macchiato', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Macchiato'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Mocha', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Mocha'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Nord Light', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Nord Light'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Nord Dark', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Nord Dark'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Sol. Light', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Solarized Light'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Sol. Dark', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Solarized Dark'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'TN Light', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Tokyo Night Light'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Tokyo Night', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Tokyo Night'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'RP Dawn', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Rosé Pine Dawn'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'Rosé Pine', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Rosé Pine'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
     { label: 'RP Moon', handler: (st: GameState) => {
     // TODO-QSP: $theme['name'] = 'Rosé Pine Moon'
     // TODO-QSP: $theme['type'] = 'static'
-    qspCall(st, 'themes', 'get_theme', 'indoors');
-    qspCall(st, '$menu_settings', 'theme_presets_copy');
+    qspCall(st, 'themes', '');
+    qspCall(st, '$menu_settings', '');
   } },
   ]);
   scene.build();
@@ -1300,9 +1306,9 @@ function enterFonts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $fontMod[] = 'Italic + Underline'
   // TODO-QSP: $fontMod[] = 'Bold + Italic + Underline'
   // TODO-QSP: $fontMod[] = 'None'
-  (s as any).tempFont = ((s as any).fontList ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_font'] % ((s as any).arrsize ?? 0)('fontList')];
+  (s as any).tempFont = (((s as any).fontList ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_font'] % ((s as any).arrsize ?? 0)('fontList')] ?? 0);
   (s as any).tempFontActual = ((((s as any).tempFont ?? 0) === 'Default') ? ('') : (((s as any).tempFont ?? 0)));
-  (s as any).tempColor = ((s as any).fontColor ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_color'] % ((s as any).arrsize ?? 0)('fontColor')];
+  (s as any).tempColor = (((s as any).fontColor ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_color'] % ((s as any).arrsize ?? 0)('fontColor')] ?? 0);
   if (((s as any).tempColor ?? 0) === 'Theme: Foreground') {
     (s as any).tempColorActual = '';
   } else {
@@ -1344,7 +1350,7 @@ function enterFonts(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).tempModifier = ((s as any).fontMod ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_mod'] % ((s as any).arrsize ?? 0)('fontMod')];
+  (s as any).tempModifier = (((s as any).fontMod ?? 0)?.[((s as any).font_vars ?? 0)[((s as any).temp_args1 ?? 0) + '_mod'] % ((s as any).arrsize ?? 0)('fontMod')] ?? 0);
   if (((s as any).tempModifier ?? 0) === 'Italic') {
     (s as any).tempModifierActual = '<em>';
     (s as any).tempModifierBack = '</em>';
@@ -1449,10 +1455,10 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
     qspCall(s, '$menu_settings', 'display_mod_table');
     scene.actions([
       { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Update all mods' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'update_all_mods');
+    qspCall(st, '$menu_settings', '');
   } },
       { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Disable all mods' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'delete_all_mods');
+    qspCall(st, '$menu_settings', '');
   } },
     ]);
   }
@@ -1460,7 +1466,7 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Install new mod' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'install_new_mod');
+    qspCall(st, '$menu_settings', '');
   } },
   ]);
   scene.build();
@@ -1514,7 +1520,7 @@ function enterInstallNewMod(s: GameState, scene: SceneBuilder): void {
 
 function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
   if (((s as any).input ?? 0)('Are you sure you want to delete ' + (((s as any).mod_name ?? 0)[String((s as any).locArgs?.[1] ?? '')]) + '? (type anything to confirm)') !== '') {
-    // TODO-QSP: gs 'mod_system', 'delete_mod', ARGS[1]
+    qspCall(s, 'mod_system', 'delete_mod', ((s as any).locArgs?.[1] ?? 0));
     dynamicGoto(s, 'menu_settings');
   }
   // TODO-QSP: end
@@ -1692,7 +1698,7 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
@@ -1722,7 +1728,7 @@ function enterExplanationAttributes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
@@ -1753,7 +1759,7 @@ function enterExplanationSkill(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
@@ -1784,7 +1790,7 @@ function enterExplanationStatus(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
@@ -1816,7 +1822,7 @@ function enterExplanationArchetypes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
-    qspCall(st, '$menu_settings', 'menu_exit');
+    qspCall(st, '$menu_settings', '');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);

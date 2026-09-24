@@ -121,7 +121,7 @@ function enterQwmeetdy(s: GameState, scene: SceneBuilder): void {
     scene.text('The Asian man smiles again and you shut the back door. Leaping into the driver\'s seat, he again looks at you greedily, undressing you with his eyes, and slams his door with a smirk. The wheels screech and the car immediately jumps away from the pavement and speeds away, disappearing into the distance.');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
     ]);
   } },
@@ -487,7 +487,7 @@ function enterQwbereg2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- qwpbereg2 ---
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
   ]);
   scene.build();
@@ -571,7 +571,7 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     scene.text('You tell Vladimir that you have a husband. He starts apologizing time and again before he says goodbye to you.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
     ]);
   } },
@@ -579,14 +579,14 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Sorry, but I need to get on', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
       ]);
     } else {
       scene.text('After the meal you leave the restaurant and get into the car with Vladimir. He suggests that you go with him, to a safe place.');
       scene.actions([
         { label: 'Sorry, but I need to get on', handler: (st: GameState) => {
-    qspCall(st, 'dina', 'brodilr');
+    qspCall(st, 'dina', '');
   } },
         { label: 'Agree', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

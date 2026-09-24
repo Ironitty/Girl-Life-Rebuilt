@@ -188,7 +188,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'debt_add', 'workDolg', 200);
   } },
       { label: 'Drink some water (0:05)', handler: (st: GameState) => {
-    qspCall(st, 'beverage', 'water');
+    qspCall(st, 'beverage', '');
   } },
     ]);
   } else {

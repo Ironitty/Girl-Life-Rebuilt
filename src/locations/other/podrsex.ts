@@ -191,12 +191,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).tmp = qspFunc(s, 'pregriskeval', '\'');
       if ((!((s as any).tmp ?? 0))) {
         scene.text('<br>"Oh, shit!" you think, when you feel his cock pumping his load deep inside you. Hopefully you won\'t end up pregnant…');
-        qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+        qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
         qspCall(s, 'arousal', 'end');
       } else {
         if (((s as any).tmp ?? 0) > 0) {
           scene.text('<br>You push against him when you feel his cock pumping his load deep inside you. Maybe you\'ll end up pregnant…');
-          qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+          qspCall(s, 'cum_call', '', ((s as any).boy ?? 0), 1);
           qspCall(s, 'arousal', 'end');
         }
       }

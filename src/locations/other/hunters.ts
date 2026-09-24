@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -1429,7 +1427,7 @@ function enterHuntersgroupVias(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1476,7 +1474,7 @@ function enterHuntersgroupVas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1489,7 +1487,7 @@ function enterHuntersgroupVas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).andrhuntanal ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1529,7 +1527,7 @@ function enterHuntersgroupVas1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1568,7 +1566,7 @@ function enterHuntersgroupVa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1618,7 +1616,7 @@ function enterHuntersgroupVs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1662,7 +1660,7 @@ function enterHuntersgroupVi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1733,7 +1731,7 @@ function enterHuntersgroupVis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1795,7 +1793,7 @@ function enterHuntersgroupVis1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1834,7 +1832,7 @@ function enterHuntersgroupVi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1878,7 +1876,7 @@ function enterHuntersgroupVs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -1932,7 +1930,7 @@ function enterHuntersgroupVia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2120,7 +2118,7 @@ function enterHuntersgroupVaOsHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2160,7 +2158,7 @@ function enterHuntersgroupVOsHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2200,7 +2198,7 @@ function enterHuntersgroupVaOHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2256,7 +2254,7 @@ function enterHuntersgroupDPasi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2313,7 +2311,7 @@ function enterHuntersgroupDPsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2367,7 +2365,7 @@ function enterHuntersgroupDPas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2421,7 +2419,7 @@ function enterHuntersgroupDPai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2588,7 +2586,7 @@ function enterHuntersgroupVsOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2628,7 +2626,7 @@ function enterHuntersgroupVOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2668,7 +2666,7 @@ function enterHuntersgroupVsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2840,7 +2838,7 @@ function enterHuntersgroupVaOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2880,7 +2878,7 @@ function enterHuntersgroupVOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -2920,7 +2918,7 @@ function enterHuntersgroupVaO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3789,7 +3787,7 @@ function enterHuntersgroupOsend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }
@@ -3887,7 +3885,7 @@ function enterHuntersgroupOiend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 5, 'gangbang');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickC ?? 0) > 0) {
     // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "hunters" })}`);
+    scene.text(`${(((s as any).textsexhunter ?? 0)?.[1] ?? '')}`);
     qspCall(s, 'mood', 'lower', 'tiny');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
   }

@@ -352,10 +352,10 @@ function enterGoOutAfter(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['type'] === 'hookup'  &&  ((st as any).npc_rel_goal ?? 0)?.[String((st as any).npcID ?? 0)] === 'sex'  &&  (!((st as any).date_ev ?? 0))) {
       if (((st as any).npc_assertive ?? 0)?.[String((st as any).npcID ?? 0)] < 0) {
         // TODO-QSP: dynamic text: "I''m, uhh... not really looking for anything serious," <<$npc_usedname[$npcID]>...
-        scene.text(`"I'm, uhh... not really looking for anything serious," ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} stammers out. "This was just sex..."`);
+        scene.text(`"I'm, uhh... not really looking for anything serious," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} stammers out. "This was just sex..."`);
       } else {
         // TODO-QSP: dynamic text: "I''m not really looking for anything serious," <<$npc_usedname[$npcID]>> says. ...
-        scene.text(`"I'm not really looking for anything serious," ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} says. "This was just sex."`);
+        scene.text(`"I'm not really looking for anything serious," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} says. "This was just sex."`);
       }
       scene.actions([
         { label: 'Oh... (awkward)', handler: (st: GameState) => {
@@ -375,7 +375,7 @@ function enterGoOutAfter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "Sure, I could go for some food," <<$npc_usedname[$npcID]>> smiles.
-      scene.text(`"Sure, I could go for some food," ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} smiles.`);
+      scene.text(`"Sure, I could go for some food," ${(((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? '')} smiles.`);
       if (((st as any).clothingworntype ?? 0) === 'nude') {
         scene.actions([
           { label: 'Get dressed', goto: ['sex_ev_leave', 'go_out_together'] },
@@ -401,7 +401,7 @@ function enterGoOutTogether(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the local cafe', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'exit_into_date');
+    qspCall(st, 'sex_ev_leave', '');
   }, goto: ['date_casual_meal', 'start', 'together'] },
   ]);
   scene.build();
@@ -902,7 +902,7 @@ function enterHurryLeave2(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = 'You make sure all your clothes are in place with one last quick check and dash over to ' + ((st as any).npcdesc ?? 0) + ' to give him a quick kiss on the lips';
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'hurry_leave_finish');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } },
@@ -910,7 +910,7 @@ function enterHurryLeave2(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['leave_action'] = 'You make sure all your clothes are in place with one last quick check and dash over to ' + ((st as any).npcdesc ?? 0) + ' to kiss him. Despite your rush, you savour this moment, breathing in the taste of ' + ((st as any).npcdesc ?? 0) + '\'s lips even as you force your tongue into his mouth to dance with his. A full five seconds go by until you break the kiss';
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_leave', 'hurry_leave_finish');
+    qspCall(st, 'sex_ev_leave', '');
   } },
     ]);
   } },
@@ -1121,7 +1121,7 @@ function enterNoMoreCheatingBreakup(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "Oh." <<$npc_firstname[$npclastsaved]>> looks at you. "I guess that''s fair. So....
-      scene.text(`"Oh." ${((st as any).npc_firstname ?? 0)?.[String((st as any).npclastsaved ?? 0)] ?? ''} looks at you. "I guess that's fair. So... I'll see you around?"`);
+      scene.text(`"Oh." ${(((st as any).npc_firstname ?? 0)?.[String((st as any).npclastsaved ?? 0)] ?? '')} looks at you. "I guess that's fair. So... I'll see you around?"`);
       scene.actions([
         { label: 'See you', handler: (st: GameState) => {
     scene.text('"Yeah," you mumble wistfully. "See you..."');
@@ -1661,7 +1661,7 @@ function enterDressing2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['ma_pill_money'] === 0  &&  ((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_count'] > 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_dress_talking', 'money_for_ma_pill');
+    qspCall(st, 'sex_ev_dress_talking', '');
   } },
     ]);
   }
@@ -2118,14 +2118,14 @@ function enterGoChurch1(s: GameState, scene: SceneBuilder): void {
 function enterGoChurchReply(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0  &&  ((s as any).sex_ev ?? 0)?.['anal_count'] === 0) {
     // TODO-QSP: dynamic text: "I guess that explains the lack of penetration," <<$npc_usedname[$npcID]>> says ...
-    scene.text(`"I guess that explains the lack of penetration," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} says dryly.`);
+    scene.text(`"I guess that explains the lack of penetration," ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} says dryly.`);
   } else {
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
       // TODO-QSP: dynamic text: "I love religious girls like you," <<$npc_usedname[$npcID]>> grins. "You''re alw...
-      scene.text(`"I love religious girls like you," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} grins. "You're always the kinkiest."`);
+      scene.text(`"I love religious girls like you," ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} grins. "You're always the kinkiest."`);
     } else {
       // TODO-QSP: dynamic text: "You don''t really strike me as the religious type," <<$npc_usedname[$npcID]>> c...
-      scene.text(`"You don't really strike me as the religious type," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} comments, looking amused.`);
+      scene.text(`"You don't really strike me as the religious type," ${(((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')} comments, looking amused.`);
     }
   }
   // TODO-QSP: end

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -11,10 +9,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = ((s as any)._n_counter['timer'] ?? 0) - (500);
     } else {
       if (((s as any).notification_message ?? 0)[1] !== '') {
-        (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split(qspUntranslated(s, "notification_message[0]", { location: "counter" })).join(qspUntranslated(s, "notification_message[1]", { location: "counter" })));
+        (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split((((s as any).notification_message ?? 0)?.[0] ?? 0)).join((((s as any).notification_message ?? 0)?.[1] ?? 0)));
         ((s as any)._n_counter = (s as any)._n_counter ?? {})['timer'] = ((s as any)._n_counter ?? 0)?.['duration'];
       } else {
-        (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split(qspUntranslated(s, "notification_message[0]", { location: "counter" })).join(undefined));
+        (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split((((s as any).notification_message ?? 0)?.[0] ?? 0)).join(undefined));
         ((s as any)._n_counter = (s as any)._n_counter ?? {})['shown'] = 0;
       }
     }

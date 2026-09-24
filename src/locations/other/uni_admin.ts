@@ -196,7 +196,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_teaching', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_teaching', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You tell her you would like to continue pursuing a teaching degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((st as any).day ?? 0) - ((st as any).week ?? 0)) >= 27  &&  ((st as any).month ?? 0) === 8) {
       ((st as any).university = (st as any).university ?? {})['semester_week'] = 1;
@@ -221,7 +221,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Enroll', handler: (st: GameState) => {
     ((st as any).university = (st as any).university ?? {})['enrolled_in_semester'] = ((st as any).university['enrolled_in_semester'] ?? 0) + (1);
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_nursing', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_nursing', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You tell her you would like to continue pursuing a nursing degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((st as any).day ?? 0) - ((st as any).week ?? 0)) >= 27  &&  ((st as any).month ?? 0) === 8) {
       ((st as any).university = (st as any).university ?? {})['semester_week'] = 1;
@@ -259,7 +259,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('You read about the computer class, which seems to be a basic class that teaches you how to use a computer, the functions of some of the more basic programs and how to troubleshoot the OS if something goes wrong. It seems like a fairly useful class.');
     scene.actions([
       { label: 'Enroll in the computer class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_elective_computer', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_computer', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enrol in the computer class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -278,7 +278,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning how to draw. It will start off with the basics before moving onto the more advanced art studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the art class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_elective_art', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_art', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the art class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -297,7 +297,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning psychology to better understand how and why people think they way they do. It will start off with the basics before moving onto the more advanced behavior studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the psychology class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_elective_psychology', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_psychology', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the psychology class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -316,7 +316,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning the history and culture of Africa and its people. It will start off with the history of the continent before moving on to modern day Africa by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the African studies class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_elective_african', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_african', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the African studies class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -336,7 +336,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
     scene.text('This class is about learning the history and culture of Asia and its people. It will start off with the history of the continent before moving on to modern day Asia by the end of the second semester. It might be fun to take part in such a relaxed class.');
     scene.actions([
       { label: 'Enroll in the Asian studies class', handler: (st: GameState) => {
-    // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_elective_asian', university['enrolled_in_semester']
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'enroll_elective_asian', ((st as any).university ?? 0)?.['enrolled_in_semester']]; enterCourses(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You decide to enroll in the Asian studies class for the first and second semester of this year.');
     scene.actions([
       { label: 'Consider other elective classes', goto: ['uni_admin', 'select_electives'] },
@@ -447,25 +447,25 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'general education 102', 3, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'teaching methods 102', 3, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'psychology of a student 101', 3, 2, 'no', 'no', 1, 12);
-        // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'general education 102', (class['uni_...
-        // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'teaching methods 102', (class['uni_t...
+        qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'general education 102', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? 0)/3+10));
+        qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'teaching methods 102', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? 0)/3+10));
         qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'psychology of a student 101', 35);
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 3) {
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'general education 201', 3, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'assessment 201', 3, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'learning theories 201', 3, 2, 'no', 'no', 1, 12);
-          // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'general education 201', ((class['uni...
-          // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'learning theories 201', (class['uni_...
+          qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'general education 201', (((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_teaching_studies_semester_2_general education 102_grade'] ?? 0))/6+10));
+          qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'learning theories 201', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? 0)/3+10));
           qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'assessment 201', 35);
         } else {
           if (String((s as any).locArgs?.[2] ?? '') === 4) {
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'general education 202', 3, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'learning theories 202', 3, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'psychology of a student 201', 3, 2, 'no', 'no', 1, 12);
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'general education 202', ((class['uni...
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'learning theories 202', ((class['uni...
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'psychology of a student 201', (class...
+            qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'general education 202', (((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_teaching_studies_semester_2_general education 102_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_teaching_studies_semester_3_general education 201_grade'] ?? 0))/9+10));
+            qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'learning theories 202', (((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_teaching_studies_semester_3_learning theories 201_grade'] ?? 0))/6+10));
+            qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_4', 'psychology of a student 201', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_2_psychology of a student 101_grade'] ?? 0)/3+10));
           }
         }
       }
@@ -489,25 +489,25 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'patient care 102', 4, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'anatomy and physiology 102', 4, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'examination and treatment 102', 1, 2, 'no', 'no', 1, 12);
-        // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_2', 'patient care 102', (class['uni_nursing_semest...
-        // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_2', 'anatomy and physiology 102', (class['uni_nurs...
-        // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_2', 'examination and treatment 102', (class['uni_n...
+        qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_2', 'patient care 102', ((((s as any).class ?? {})?.['uni_nursing_semester_1_patient care 101_grade'] ?? 0)/3+10));
+        qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_2', 'anatomy and physiology 102', (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade']/3+10));
+        qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_2', 'examination and treatment 102', (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade']/3+10));
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 3) {
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'patient care 201', 4, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'anatomy and physiology 201', 4, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'dosages and pharmaceuticals 101', 1, 2, 'no', 'no', 1, 12);
-          // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_3', 'patient care 201', ((class['uni_nursing_semes...
-          // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_3', 'anatomy and physiology 201', ((class['uni_nur...
+          qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_3', 'patient care 201', (((((s as any).class ?? {})?.['uni_nursing_semester_1_patient care 101_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_nursing_semester_2_patient care 102_grade'] ?? 0))/6+10));
+          qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_3', 'anatomy and physiology 201', ((((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] + ((s as any).class ?? 0)?.['uni_nursing_semester_2_anatomy  &&  physiology 102_grade'])/6+10));
           qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_3', 'dosages and pharmaceuticals 101', 35);
         } else {
           if (String((s as any).locArgs?.[2] ?? '') === 4) {
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'patient care 202', 4, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'anatomy and physiology 202', 4, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'dosages and pharmaceuticals 102', 1, 2, 'no', 'no', 1, 12);
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_4', 'patient care 202', ((class['uni_nursing_semes...
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_4', 'anatomy and physiology 202', ((class['uni_nur...
-            // TODO-QSP: gs 'grades', 'grade_award', 'uni_nursing_semester_4', 'dosages and pharmaceuticals 102', (class['uni...
+            qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_4', 'patient care 202', (((((s as any).class ?? {})?.['uni_nursing_semester_1_patient care 101_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_nursing_semester_2_patient care 102_grade'] ?? 0) + (((s as any).class ?? {})?.['uni_nursing_semester_3_patient care 201_grade'] ?? 0))/9+10));
+            qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_4', 'anatomy and physiology 202', ((((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] + ((s as any).class ?? 0)?.['uni_nursing_semester_2_anatomy  &&  physiology 102_grade'] + ((s as any).class ?? 0)?.['uni_nursing_semester_3_anatomy  &&  physiology 201_grade'])/9+10));
+            qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_4', 'dosages and pharmaceuticals 102', (((s as any).class ?? 0)?.['uni_nursing_semester_3_dosages  &&  pharmaceuticals 101_grade']/3+10));
           }
         }
       }

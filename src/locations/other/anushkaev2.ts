@@ -20,7 +20,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad2.jpg');
@@ -29,7 +29,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad3.jpg');
@@ -43,7 +43,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'npcStat', 'A144');
@@ -56,7 +56,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((st as any).maksimQW ?? 0)?.['blackmail'] < 1) {
@@ -69,7 +69,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad6.jpg');
@@ -78,7 +78,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad7.jpg');
@@ -87,7 +87,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Climax', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad8.jpg');
@@ -543,7 +543,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval2.jpg');
@@ -552,7 +552,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval3.jpg');
@@ -567,7 +567,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((st as any).maksimQW ?? 0)?.['blackmail'] < 1) {
@@ -580,7 +580,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(st, 'npcStat', 'A144');
@@ -593,7 +593,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Climax', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval6.jpg');

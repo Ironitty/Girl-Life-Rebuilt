@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', '$husID');
   ((s as any).spouseVars = (s as any).spouseVars ?? {})['sexday'] = ((s as any).spouseVars['sexday'] ?? 0) + (1);
   (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -35,10 +35,10 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_nickname ?? '')}, wrap your lips around my cock."`);
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'minet'] },
       { label: 'Not now. Let\'s do another position.', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'variant'] },
     ]);
   } else {
@@ -47,10 +47,10 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       scene.text(`"${((s as any).pcs_nickname ?? '')}, I want your ass."`);
       scene.actions([
         { label: 'Anal', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 2);
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'anal'] },
         { label: 'Fuck that. Let\'s do something else.', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'variant'] },
       ]);
     } else {
@@ -60,7 +60,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Open your legs', goto: ['husbsex', 'miss'] },
           { label: 'Let\'s do another position.', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'variant'] },
         ]);
       } else {
@@ -70,7 +70,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Doggy style', goto: ['husbsex', 'dog'] },
             { label: 'Let\'s do another position.', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-1));
+    qspCall(st, 'npc_relationship', '');
   }, goto: ['husbsex', 'variant'] },
           ]);
         }
@@ -135,10 +135,10 @@ function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDolg(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Husband debtor', (Math.floor(Math.random() * 11) + 30), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Husband debtor', (Math.floor(Math.random() * 11) + 30), (Math.floor(Math.random() * 2) + 3), 1);
-  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  qspCall(s, 'npcgeneratec', '0', 'Husband debtor', (Math.floor(Math.random() * 11) + 30), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated');
+  qspCall(s, 'npcgeneratec', '0', 'Husband debtor', (Math.floor(Math.random() * 11) + 30), (Math.floor(Math.random() * 2) + 3), 1);
+  qspCall(s, 'npcStat', '$npclastgenerated', 'a');
   scene.img('images/characters/city/husband/sex/d1.jpg');
   scene.text('The bandits take out their cocks and attempt to put them both in your mouth. You try to open your mouth as wide as possible, but you fail and eventually begin to suck them one by one. Soon they get tired and hurl you on the bed, arguing who will be the first to fuck you.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group', 'humiliation', 'rape');
@@ -237,7 +237,7 @@ function enterDolgend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVariant(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', '$husID');
   // TODO-QSP: dynamic text: <<$npcdesc>> He is looking at you and waiting for what you say
   scene.text(`${((s as any).npcdesc ?? '')} He is looking at you and waiting for what you say`);
   if (((s as any).kundayH ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -286,7 +286,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     { label: 'Remove his cock from your mouth', handler: (st: GameState) => {
     (st as any).tiprand = (Math.floor(Math.random() * 2) + 0);
     if ((!((st as any).tiprand ?? 0))) {
-      qspCall(st, 'boyStat', '', ((st as any).husID ?? 0));
+      qspCall(st, 'boyStat', '$husID');
       (st as any).sexpartkno = 1;
       (st as any).spafinloc = 11;
       qspCall(st, 'cum_manage', '');
@@ -368,7 +368,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     (s as any).analPlugInbonus = 10;
     (s as any).analPlugIn = 0;
     (s as any).analPlugOut = 1;
-    qspCall(s, 'boyStat', '', ((s as any).husID ?? 0));
+    qspCall(s, 'boyStat', '$husID');
     (s as any).sexpartkno = 1;
     (s as any).spafinloc = 3;
     qspCall(s, 'cum_manage', '');

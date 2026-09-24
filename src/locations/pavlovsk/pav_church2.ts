@@ -1343,7 +1343,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/church/sex/anal3.jpg');
     // TODO-QSP: dynamic text: Once you bend over, he applies some lube to your asshole and rubs it in with his...
     scene.text(`Once you bend over, he applies some lube to your asshole and rubs it in with his fingers. He then presses the head of his dick against your asshole and you feel the pressure build up until the tip pops into your ass, causing you to cry out slightly in both pain and pleasure. He pauses to let you adjust to it before he slowly and gently begins fucking your ass with his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick.`);
-    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'pain', '1', 'asshole', 'stretch');
     qspCall(st, 'arousal', 'anal', 5);
     qspCall(st, 'stat', '');
     scene.actions([

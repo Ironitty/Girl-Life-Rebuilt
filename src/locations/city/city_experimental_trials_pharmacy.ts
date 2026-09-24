@@ -42,7 +42,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
-    qspCall(st, 'item_cart', 'shopping_var_clear');
+    qspCall(st, 'item_cart', '');
   }, goto: ['city_experimental_trials_pharmacy', 'counter'] },
   ]);
   scene.build();

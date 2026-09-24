@@ -47,7 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     scene.actions([
       { label: 'Hide some cigarettes in your drawer', handler: (st: GameState) => {
-    // TODO-QSP: cigIN = input('How many cigarettes do you want to hide in your drawer? (Your purse contains <<mc_inventory[''cigarettes'']>> cigarettes.)')
+    (st as any).cigIN = window.prompt("How many cigarettes do you want to hide in your drawer? (Your purse contains " + (((st as any).mc_inventory ?? 0)?.['cigarettes']) + " cigarettes.)") ?? '';
     if (((st as any).cigIN ?? 0) <= 0  ||  ((st as any).cigIN ?? 0) > ((st as any).mc_inventory ?? 0)?.['cigarettes']) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
@@ -84,7 +84,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Put some money in the desk drawer', handler: (st: GameState) => {
-    // TODO-QSP: stolIN = input ("How much money you want to put in the drawer? (Your purse contains <<$func('money', 'format_balance', 'cash')>>.)")
+    (st as any).stolIN = window.prompt("How much money you want to put in the drawer? (Your purse contains " + (qspFunc(s, 'money', 'format_balance', 'cash')) + ".)") ?? '';
     if (((st as any).stolIN ?? 0) <= 0  ||  ((st as any).stolIN ?? 0) > ((st as any).money ?? 0)) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
@@ -109,7 +109,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Take some money from the desk drawer', handler: (st: GameState) => {
-    // TODO-QSP: stolOUT = input ("How much money do you want to put in your purse? (There is <<$func('money', 'format_balance', 'desk')>> here.)")
+    (st as any).stolOUT = window.prompt("How much money do you want to put in your purse? (There is " + (qspFunc(s, 'money', 'format_balance', 'desk')) + " here.)") ?? '';
     if (((st as any).stolOUT ?? 0) <= 0  ||  ((st as any).stolOUT ?? 0) > ((st as any).stolmoney ?? 0)) {
       scene.text('You can\'t take this amount from the drawer.');
     } else {
@@ -136,7 +136,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic ' act ''Study for your <<$class_list_name[i]>> class'': gt ''stol'', ''studying'', ''<<$clas...
         } else {
           // TODO-QSP: dynamic text: You don''t need to study more this week for your <<$class_list_name[i]>> class.
-          scene.text(`You don't need to study more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
+          scene.text(`You don't need to study more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
@@ -148,7 +148,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (s as any).i = 0;
         // TODO-QSP: :exam_loop
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-          if (qspFunc(s, 'uni_programs', 'exam', 'is_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
+          if (qspFunc(s, 'uni_programs', 'exam', 'is_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
             // TODO-QSP: dynamic ' act ''Study intensely for your <<$class_list_name[i]>> exam'': gt ''stol'', ''studying_exa...
           }
         }
@@ -191,7 +191,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/shared/apartment/homework.jpg');
     (st as any).minut = ((st as any).minut ?? 0) + 60;
-    // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic']
+    qspCall(st, 'mood', 'raise', 5 * (((st as any).trait_vars ?? {})?.['academic'] ?? 0));
     (st as any).lern = ((st as any).lern ?? 0) + (1);
     qspCall(st, 'stat', '');
     if (((st as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
@@ -222,7 +222,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Finish all of your homework (' + String(((s as any).lernHome ?? '') ?? '') + ':00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (60 * ((st as any).lernHome ?? 0));
-    // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic'] *lernHome
+    qspCall(st, 'mood', 'raise', 5 * (((st as any).trait_vars ?? {})?.['academic'] ?? 0) *((st as any).lernHome ?? 0));
     (st as any).lern = ((st as any).lern ?? 0) + (1 + ((st as any).lernHome ?? 0)/2);
     if (((st as any).trait_vars ?? 0)?.['academic'] < 3) {
       qspCall(st, 'willpower', 'pay', 'self', 'chore');
@@ -346,11 +346,11 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       }
       if (((st as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of <a href="...
-        scene.text(`You have ${((st as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkiedt/u0027); return false;">birth control pills</a> and ${((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] ?? ''} pills left in your opened package.</b>`);
+        scene.text(`You have ${((st as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkiedt/u0027); return false;">birth control pills</a> and ${(((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] ?? '')} pills left in your opened package.</b>`);
       } else {
         if (((st as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] > 0) {
           // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> <a href="exec:gs ''din_bad'', ''d_tabletkiedt''">b...
-          scene.text(`You have ${((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkiedt/u0027); return false;">birth control pills</a> left.</b>`);
+          scene.text(`You have ${(((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_tabletkiedt/u0027); return false;">birth control pills</a> left.</b>`);
         } else {
           if (((st as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((st as any).pillsleft ?? 0)?.[String((st as any).ptype ?? 0)] === 0) {
             // TODO-QSP: dynamic text: You have <<mc_inventory[''contraceptive_pill'']>> unopened packages of <a href="...
@@ -411,7 +411,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
 function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/apartment/homework.jpg');
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
-  // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
+  qspCall(s, 'mood', 'raise', ((((s as any).trait_vars ?? {})?.['academic'] ?? 0)*5 -10));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).pcs_sleep ?? 0) < 5) {
     (s as any).no_study = 1;

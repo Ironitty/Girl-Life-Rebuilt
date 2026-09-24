@@ -400,7 +400,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Follow Katja to the toilets', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
-    qspGoto(st, 'katja_uni', 'bathroom_panty_check', '$ARGS[1]');
+    qspGoto(st, 'katja_uni', 'bathroom_panty_check', String((st as any).locArgs?.[1] ?? ''));
   } },
       ]);
     } else {
@@ -501,7 +501,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
-    qspGoto(st, 'katja_uni', 'bathroom_panty_check', '$ARGS[1]');
+    qspGoto(st, 'katja_uni', 'bathroom_panty_check', String((st as any).locArgs?.[1] ?? ''));
   } },
           ]);
         }
@@ -577,7 +577,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
-    qspGoto(st, 'katja_uni', 'bathroom_panty_check', '$ARGS[1]');
+    qspGoto(st, 'katja_uni', 'bathroom_panty_check', String((st as any).locArgs?.[1] ?? ''));
   } },
             ]);
           }
@@ -620,7 +620,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
-    qspGoto(st, 'katja_uni', 'bathroom_panty_check', '$ARGS[1]');
+    qspGoto(st, 'katja_uni', 'bathroom_panty_check', String((st as any).locArgs?.[1] ?? ''));
   } },
             ]);
           }
@@ -666,7 +666,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Just find a place to sit', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    qspGoto(st, 'uni_lessons1', '$ARGS[1]');
+    qspGoto(st, 'uni_lessons1', String((st as any).locArgs?.[1] ?? ''));
   } },
       ]);
     } else {
@@ -703,7 +703,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Just find a place to sit', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
-    qspGoto(st, 'uni_lessons1', '$ARGS[1]');
+    qspGoto(st, 'uni_lessons1', String((st as any).locArgs?.[1] ?? ''));
   } },
       ]);
     }
@@ -1034,11 +1034,11 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
           if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' class together', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+              { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' class together', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
             ]);
           } else {
             // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
-            scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
+            scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
@@ -1050,9 +1050,9 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
           (s as any).i = 0;
           // TODO-QSP: :exam_loop
           if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-            if (qspFunc(s, 'uni_programs', 'is_exam_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
+            if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' exam together', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+                { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' exam together', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
               ]);
             }
           }
@@ -1091,11 +1091,11 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
         if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' class together', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+            { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' class together', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
           ]);
         } else {
           // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
-          scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
+          scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
@@ -1107,9 +1107,9 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
         (s as any).i = 0;
         // TODO-QSP: :exam_loop2
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-          if (qspFunc(s, 'uni_programs', 'is_exam_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
+          if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' exam together', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+              { label: '', labelFn: (s: GameState) => 'Ask if you can study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' exam together', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
             ]);
           }
         }
@@ -1248,7 +1248,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The University Library</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/studying_together.jpg');
   qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
-  // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
+  qspCall(s, 'mood', 'raise', ((((s as any).trait_vars ?? {})?.['academic'] ?? 0)*5 -10));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   // TODO-QSP: dynamic text: You and Katja start studying for the <<$ARGS[2]>> exam. The library is mostly qu...
   scene.text(`You and Katja start studying for the ${((s as any).locArgs?.[2] ?? '')} exam. The library is mostly quiet, so you try to keep your voices down, though she can't always help herself when she gets excited about the material before realizing her volume and turning red with embarrassment.`);
@@ -1384,11 +1384,11 @@ function enterStudySelect(s: GameState, scene: SceneBuilder): void {
     if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
       if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) + '_optional_weekly_max']) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' class with Katja', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+          { label: '', labelFn: (s: GameState) => 'Study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' class with Katja', goto: ['katja_uni', 'studying_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
-        scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
+        scene.text(`You don't need to study any more this week for your ${(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '')} class.`);
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -1400,9 +1400,9 @@ function enterStudySelect(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 0;
       // TODO-QSP: :exam_loop3
       if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
-        if (qspFunc(s, 'uni_programs', 'is_exam_over', ((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]) === 0) {
+        if (qspFunc(s, 'uni_programs', 'is_exam_over', (((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) === 0) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Study for your ' + String(((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '' ?? '') + ' exam with Katja', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
+            { label: '', labelFn: (s: GameState) => 'Study for your ' + String((((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? '') ?? '') + ' exam with Katja', goto: ['katja_uni', 'studying_exam_ask', 'class_list_institution[i]', 'class_list_name[i]'] },
           ]);
         }
       }

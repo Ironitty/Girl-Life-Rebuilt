@@ -41,7 +41,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Touch her', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['sistersleep', 'sister_sleep_1'] },
           ]);
         }
@@ -76,7 +76,7 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['sistersleep', 'sister_sleep_2'] },
         ]);
       }
@@ -94,7 +94,7 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
-    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'arousal', '');
   }, goto: ['bedrPar', ''] },
   ]);
   scene.build();
@@ -121,7 +121,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Kiss her', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', '');
   }, goto: ['sistersleep', 'sister_sleep_2_kiss'] },
       ]);
     }
@@ -178,7 +178,7 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Convince her', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'willpower', '');
   }, goto: ['sistersleep', 'sister_sleep_3'] },
         ]);
       }

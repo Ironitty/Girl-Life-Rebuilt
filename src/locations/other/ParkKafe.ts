@@ -69,7 +69,7 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get up from the table', goto: ['parkKafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
+    qspCall(st, 'food_menu', '');
   } },
   ]);
   scene.build();
@@ -111,8 +111,8 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Drink beer with the guys', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A44');
-    qspCall(st, 'npcgeneratec', '', 0, 'Sporty Guy', (Math.floor(Math.random() * 18) + 18));
-    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Sporty Guy', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '$npclastgenerated');
     qspCall(st, 'fame', 'city', 'sex', 3);
     qspCall(st, 'drugs', 'alcohol', 'beer');
     scene.text('One of the guys orders another round at the bar and brings you all a beer. You realize that you\'ve gotten drunk a little too quickly for only one beer, but the guys have already started guiding you into the woods.');
@@ -140,7 +140,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
       scene.text('One of them finishes deep inside you while the other pulls out and cums on your ass.');
       qspCall(st, 'arousal', 'anal', 5);
       qspCall(st, 'arousal', 'vaginal', (-5));
-      qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0));
+      qspCall(st, 'cum_call', '', ((st as any).boy ?? 0));
       qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0));
       qspCall(st, 'arousal', 'end');
       scene.actions([
@@ -248,10 +248,10 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
     scene.text('"A favor for a favor, girl! We gave you something to drink and now you need to repay us," one of them grins.');
     scene.actions([
       { label: 'Let them have their way', handler: (st: GameState) => {
-    qspCall(st, 'npcgeneratec', '', 0, 'Senior citizen', (Math.floor(Math.random() * 21) + 60), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
-    qspCall(st, 'npcgeneratec', '', 0, 'Senior citizen', (Math.floor(Math.random() * 21) + 60), (Math.floor(Math.random() * 2) + 3), 1);
-    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '0', 'Senior citizen', (Math.floor(Math.random() * 21) + 60), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
+    qspCall(st, 'npcgeneratec', '0', 'Senior citizen', (Math.floor(Math.random() * 21) + 60), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '$npclastgenerated');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/sex/foreplayold.jpg');
     scene.text('"Don\'t worry, girl. We\'ll take good care of you…," one of them says in a calm manner as they approach you.');
@@ -462,7 +462,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '');
+    qspCall(st, 'cum_call', '');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/sex/cuminside.jpg');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid. "Your pussy is too tight! I\'m going to cum!"');
@@ -544,7 +544,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '');
+    qspCall(st, 'cum_call', '');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/sex/cuminside.jpg');
     scene.text('After a few minutes, he starts grunting as his thrusts become more rapid. "I\'m going to cum!"');
@@ -604,7 +604,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '');
+    qspCall(st, 'cum_call', '');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/sex/cuminside.jpg');
     scene.text('He keeps fucking you as his grunts are getting more frequently, "I\'m cumming…"');
@@ -665,7 +665,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum inside me', handler: (st: GameState) => {
-    qspCall(st, 'cum_call', '', '');
+    qspCall(st, 'cum_call', '');
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/sex/reversecow.jpg');
     scene.text('You continue bouncing on his cock as his grunts become more frequent. "I\'m cumming…" he groans.');

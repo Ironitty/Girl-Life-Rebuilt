@@ -53,7 +53,7 @@ function enterUpdate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shared_apt ?? 0)?.['debug'] === 2) {
       scene.actions([
         { label: 'Debug', handler: (st: GameState) => {
-    qspCall(st, 'pav_shared_apt', 'debug');
+    qspCall(st, 'pav_shared_apt', '');
   } },
       ]);
     }
@@ -85,12 +85,12 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
         ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
         if (((s as any).shared_apt ?? 0)?.['missedWeeks'] >= 2) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterBlockApt(s, scene); (s as any).locArgs = __savedLocArgs; }
-          // TODO-QSP: gs 'notification', 'add', $func('wrap', 'neg', 'You''ve been evicted from the shared apartment for n...
+          qspCall(s, 'notification', 'add', 0);
         } else {
           if (((s as any).shared_apt ?? 0)?.['missedWeeks'] > 0) {
-            // TODO-QSP: gs 'notification', 'add', $func('wrap', 'neg', 'Your rent is now overdue! You owe <<$func(''money'',...
+            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'neg', 'Your rent is now overdue! You owe ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft']) + ' for ' + ((s as any).shared_apt ?? 0)?.['missedWeeks'] + ' week' + ((((s as any).shared_apt ?? 0)?.['missedWeeks'] > 1) ? ('s') : ('')) + ' at the shared apartment.'));
           } else {
-            // TODO-QSP: gs 'notification', 'add', $func('wrap', 'accent', 'Your weekly rent of <<$func(''money'', ''string_p...
+            qspCall(s, 'notification', 'add', qspFunc(s, 'wrap', 'accent', 'Your weekly rent of ' + qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly']) + ' for the shared apartment is now due.'));
           }
         }
       }
@@ -196,7 +196,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
       scene.actions([
         { label: 'Set this apartment as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['pav_shared_apt', 'start'] },
       ]);
     }
@@ -309,7 +309,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
       scene.actions([
         { label: 'Set this apartment as your main home', handler: (st: GameState) => {
-    qspCall(st, 'homes_properties', 'set_home');
+    qspCall(st, 'homes_properties', '');
   }, goto: ['pav_shared_apt', 'start'] },
       ]);
     }
@@ -628,7 +628,7 @@ function enterSofabed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take a nap (1:00)', handler: (st: GameState) => {
-    qspCall(st, 'sleep_simple', 'nap');
+    qspCall(st, 'sleep_simple', '');
   } },
     { label: 'Get up', goto: ['pav_shared_apt', 'pcsRoom'] },
   ]);
@@ -874,7 +874,7 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You paid <<$func(''money'', ''string_price'', shared_apt[''rentLeft''])>> in cas...
       scene.text(`You paid ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'] ?? '')} in cash for next week's rent.`);
     }
-    // TODO-QSP: gs 'money', 'pay', shared_apt['rentLeft'], 'cash'
+    qspCall(s, 'money', 'pay', ((s as any).shared_apt ?? 0)?.['rentLeft'], 'cash');
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['cashPaid'] = ((s as any).shared_apt['cashPaid'] ?? 0) + (((s as any).shared_apt ?? 0)?.['rentLeft']);
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['rentLeft'] = 0;
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['Lockrent'] = 0;
@@ -979,7 +979,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).shared_apt ?? 0)?.['rentWeekly'], 'cash')) {
         scene.actions([
           { label: '', labelFn: (s: GameState) => 'Pay the first week\'s rent (' + String(qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentWeekly'] ?? '') ?? '') + ')', handler: (st: GameState) => {
-    // TODO-QSP: gs 'money', 'pay', shared_apt['rentWeekly'], 'cash'
+    qspCall(st, 'money', 'pay', ((st as any).shared_apt ?? 0)?.['rentWeekly'], 'cash');
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['cashPaid'] = ((st as any).shared_apt['cashPaid'] ?? 0) + (((st as any).shared_apt ?? 0)?.['rentWeekly']);
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['enabled'] = 1;
     ((st as any).shared_apt = (st as any).shared_apt ?? {})['rentPaid'] = 1;
@@ -1254,17 +1254,17 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Say you will pay the rent the normal way', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['enabled'] = 1
-    qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
+    qspCall(st, 'homes_properties', '');
     // TODO-QSP: shared_apt['pavIntroStep'] = 10
   }, goto: ['pav_shared_apt', 'intro'] },
               { label: 'Say you don\'t mind doing the homekeeping stuff', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['enabled'] = 1
-    qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
+    qspCall(st, 'homes_properties', '');
     // TODO-QSP: shared_apt['pavIntroStep'] = 20
   }, goto: ['pav_shared_apt', 'intro'] },
               { label: 'Say you don\'t mind anything', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['enabled'] = 1
-    qspCall(st, 'homes_properties', 'give_access', 'shared_apartment');
+    qspCall(st, 'homes_properties', '');
     // TODO-QSP: shared_apt['pavIntroStep'] = 30
   }, goto: ['pav_shared_apt', 'intro'] },
             ]);

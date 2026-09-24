@@ -230,7 +230,7 @@ function enterCowgirlClimbOn(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['first_insertion'] !== 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cowgirl', 'cowgirl_insert_slow');
+    qspCall(st, 'sex_ev_cowgirl', '');
   } },
     ]);
   } else {
@@ -541,7 +541,7 @@ function enterCowgirlInsertOrgasm(s: GameState, scene: SceneBuilder): void {
       { label: 'Orgasm!', handler: (st: GameState) => {
     if (((st as any).sex_ev ?? 0)?.['orgasm'] === ((st as any).orgasm ?? 0)) {
       (st as any).orgasm_or = 'yes';
-      // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(st, 'arousal', 'vaginal', (-1), 'no_orgasm_msg', ((st as any).sex_ev ?? 0)?.['prostitution_flag']);
     }
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['first_insertion'] = 1;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['insertion_orgasm'] = 1;
@@ -693,7 +693,7 @@ function enterCowgirlPain2(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCowgirlMenu2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: '', labelFn: (s: GameState) => 'Tell ' + String(((s as any).npcdesc ?? '') ?? '') + ' it hurts', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_cowgirl', 'cowgirl_pain3');
+    qspCall(st, 'sex_ev_cowgirl', '');
   } },
     { label: 'Ask to try something else', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/miss/3.jpg');
@@ -2072,7 +2072,7 @@ function enterCowgirlChangePace(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['speed'] === 1) {
     scene.actions([
       { label: 'Keep riding him gently', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_sex', '');
   } },
       { label: 'Pick up the pace a little', goto: ['sex_ev_cowgirl', 'cowgirl2'] },
       { label: 'Ride \'em cowgirl!', goto: ['sex_ev_cowgirl', 'cowgirl3'] },
@@ -2082,7 +2082,7 @@ function enterCowgirlChangePace(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Slow down, go gently', goto: ['sex_ev_cowgirl', 'cowgirl1'] },
       { label: 'Keep riding him steadily', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_sex', '');
   } },
       { label: 'Ride \'em cowgirl!', goto: ['sex_ev_cowgirl', 'cowgirl3'] },
     ]);
@@ -2092,7 +2092,7 @@ function enterCowgirlChangePace(s: GameState, scene: SceneBuilder): void {
       { label: 'Slow down, go gently', goto: ['sex_ev_cowgirl', 'cowgirl1'] },
       { label: 'Go down to a moderate pace', goto: ['sex_ev_cowgirl', 'cowgirl2'] },
       { label: 'Keep riding him hard', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+    qspCall(st, 'sex_ev_sex', '');
   } },
     ]);
   }
@@ -2122,45 +2122,45 @@ function enterCowgirl1StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).dick_desc ?? 0) === 'long') {
               // TODO-QSP: dynamic text: You gently roll your hips over his, hugging the full length of his <<npc_dick[$n...
-              scene.text(`You gently roll your hips over his, hugging the full length of his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock with your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+              scene.text(`You gently roll your hips over his, hugging the full length of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock with your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
             } else {
               if (((s as any).dick_desc ?? 0) === 'huge') {
                 // TODO-QSP: dynamic text: You gently roll your hips over his, <i>filled</i> by the huge <<npc_dick[$npcID]...
-                scene.text(`You gently roll your hips over his, <i>filled</i> by the huge ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock with your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                scene.text(`You gently roll your hips over his, <i>filled</i> by the huge ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock with your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
               } else {
                 if (((s as any).dick_desc ?? 0) === 'enormous') {
                   // TODO-QSP: dynamic text: You gently roll your hips over his, <i>stretched</i> by the enormous <<npc_dick[...
-                  scene.text(`You gently roll your hips over his, <i>stretched</i> by the enormous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                  scene.text(`You gently roll your hips over his, <i>stretched</i> by the enormous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'lengthy') {
                     if (((s as any).pcs_vag ?? 0) <= 15) {
                       // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                      scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it painfully bumps up against your cervix. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                      scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it painfully bumps up against your cervix. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
                     } else {
                       // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                      scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it presses hard against your cervix. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                      scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it presses hard against your cervix. Looking down, you can see his cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
                     }
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'gigantic') {
                       if (((s as any).pcs_vag ?? 0) <= 15) {
                         // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                        scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it fills you all the way to your cervix, bumping up hard against it. Looking down, you can see his gigantic cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                        scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it fills you all the way to your cervix, bumping up hard against it. Looking down, you can see his gigantic cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
                       } else {
                         // TODO-QSP: dynamic text: You gently roll your hips over his, barely able to fit the full length of <<$npc...
-                        scene.text(`You gently roll your hips over his, barely able to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it fills you all the way to your cervix, pressing hard against it. Looking down, you can see his gigantic cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
+                        scene.text(`You gently roll your hips over his, barely able to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it fills you all the way to your cervix, pressing hard against it. Looking down, you can see his gigantic cock is stained red from your period, blood mixing with your juices, both of them providing a lot of natural lubrication.`);
                       }
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'monstrous') {
                         if (((s as any).pcs_vag ?? 0) <= 10) {
                           // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                          scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. Too long and too wide for your tight pussy, it feels like being impaled in every sense of the word. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
+                          scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. Too long and too wide for your tight pussy, it feels like being impaled in every sense of the word. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
                         } else {
                           if (((s as any).pcs_vag ?? 0) <= 25) {
                             // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. You're no virgin, but even for your experienced pussy it feels like fucking a telephone pole. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
+                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. You're no virgin, but even for your experienced pussy it feels like fucking a telephone pole. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
                           } else {
                             // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. It fills you completely, and even for your experienced pussy it feels on the verge of tearing. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
+                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. It fills you completely, and even for your experienced pussy it feels on the verge of tearing. Looking down, you can see the red liquid mixing with your juices, both of them providing a lot of natural lubrication.`);
                           }
                         }
                       }
@@ -2200,45 +2200,45 @@ function enterCowgirl1StartDesc(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).dick_desc ?? 0) === 'long') {
               // TODO-QSP: dynamic text: You gently roll your hips over his, hugging the full length of his <<npc_dick[$n...
-              scene.text(`You gently roll your hips over his, hugging the full length of his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock with your pussy.`);
+              scene.text(`You gently roll your hips over his, hugging the full length of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock with your pussy.`);
             } else {
               if (((s as any).dick_desc ?? 0) === 'huge') {
                 // TODO-QSP: dynamic text: You gently roll your hips over his, <i>filled</i> by the huge <<npc_dick[$npcID]...
-                scene.text(`You gently roll your hips over his, <i>filled</i> by the huge ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock with your pussy.`);
+                scene.text(`You gently roll your hips over his, <i>filled</i> by the huge ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock with your pussy.`);
               } else {
                 if (((s as any).dick_desc ?? 0) === 'enormous') {
                   // TODO-QSP: dynamic text: You gently roll your hips over his, <i>stretched</i> by the enormous <<npc_dick[...
-                  scene.text(`You gently roll your hips over his, <i>stretched</i> by the enormous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy.`);
+                  scene.text(`You gently roll your hips over his, <i>stretched</i> by the enormous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy.`);
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'lengthy') {
                     if (((s as any).pcs_vag ?? 0) <= 15) {
                       // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                      scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it painfully bumps up against your cervix.`);
+                      scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it painfully bumps up against your cervix.`);
                     } else {
                       // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                      scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it presses hard against your cervix.`);
+                      scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it presses hard against your cervix.`);
                     }
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'gigantic') {
                       if (((s as any).pcs_vag ?? 0) <= 15) {
                         // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                        scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it fills you all the way to your cervix, bumping up hard against it.`);
+                        scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it fills you all the way to your cervix, bumping up hard against it.`);
                       } else {
                         // TODO-QSP: dynamic text: You gently roll your hips over his, barely able to fit the full length of <<$npc...
-                        scene.text(`You gently roll your hips over his, barely able to fit the full length of ${((s as any).npcdesc ?? '')}'s ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your pussy as it fills you all the way to your cervix, pressing hard against it.`);
+                        scene.text(`You gently roll your hips over his, barely able to fit the full length of ${((s as any).npcdesc ?? '')}'s ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your pussy as it fills you all the way to your cervix, pressing hard against it.`);
                       }
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'monstrous') {
                         if (((s as any).pcs_vag ?? 0) <= 10) {
                           // TODO-QSP: dynamic text: You gently roll your hips over his, unable to fit the full length of <<$npcdesc>...
-                          scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. Too long and too wide for your tight pussy, it feels like being impaled in every sense of the word.`);
+                          scene.text(`You gently roll your hips over his, unable to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. Too long and too wide for your tight pussy, it feels like being impaled in every sense of the word.`);
                         } else {
                           if (((s as any).pcs_vag ?? 0) <= 25) {
                             // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. You're no virgin, but even for your experienced pussy it feels like fucking a telephone pole.`);
+                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. You're no virgin, but even for your experienced pussy it feels like fucking a telephone pole.`);
                           } else {
                             // TODO-QSP: dynamic text: You gently roll your hips over his, barely to fit the full length of <<$npcdesc>...
-                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock inside your bleeding snatch. It fills you completely, and even for your experienced pussy, you feel barely able to contain it.`);
+                            scene.text(`You gently roll your hips over his, barely to fit the full length of ${((s as any).npcdesc ?? '')}'s monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock inside your bleeding snatch. It fills you completely, and even for your experienced pussy, you feel barely able to contain it.`);
                           }
                         }
                       }
@@ -3782,15 +3782,15 @@ function enterCowgirl3_1Desc(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'lengthy') {
                       // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with the entire length of his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock and hurting you in all the <i>best</i> ways.`);
+                      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with the entire length of his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock and hurting you in all the <i>best</i> ways.`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'gigantic') {
                         // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his gigantic cock, forcing its entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length inside and hurting you in all the <i>best</i> ways.`);
+                        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his gigantic cock, forcing its entire ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length inside and hurting you in all the <i>best</i> ways.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'monstrous') {
                           // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
-                          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, forcing in the entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm length of his monstrous cock inside you, hammering your cervix and threatening to tear your pussy in half and hurting you in all the <i>best</i> ways.`);
+                          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? '')} keeps a firm hold on your hair and pulls hard with every thrust, forcing in the entire ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm length of his monstrous cock inside you, hammering your cervix and threatening to tear your pussy in half and hurting you in all the <i>best</i> ways.`);
                         }
                       }
                     }
@@ -3838,15 +3838,15 @@ function enterCowgirl3_1Desc(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'lengthy') {
                       // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock bashing against your cervix, trying to force its way past with every thrust.`);
+                      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock bashing against your cervix, trying to force its way past with every thrust.`);
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'gigantic') {
                         // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock filling you up and bashing against your cervix with its weight, trying to force its way past with every thrust.`);
+                        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his gigantic ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock filling you up and bashing against your cervix with its weight, trying to force its way past with every thrust.`);
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'monstrous') {
                           // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
-                          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}cm cock trying to force its way into your cervix and split you in half with every thrust.`);
+                          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? '')}'s hips slam against your thighs and you break out in a sweat, his monstrous ${(((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] ?? '')}cm cock trying to force its way into your cervix and split you in half with every thrust.`);
                         }
                       }
                     }
